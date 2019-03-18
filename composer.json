@@ -1,0 +1,26 @@
+{
+  "name": "pixelstudio/edje-wp-theme",
+  "description": "Wordpress site for paritama.com",
+  "repositories":[
+    {
+      "type":"composer",
+      "url":"https://wpackagist.org"
+    }
+  ],
+  "authors": [
+    {
+      "name": "Pixel Studio",
+      "email": "info@pixelstudio.id",
+      "homepage": "https://pixelstudio.id"
+    }
+  ],
+  "require": {
+    "wpackagist-plugin/timber-library": "~1.8.4",
+    "wpackagist-plugin/autodescription": "~3.2.3"
+  },
+  "autoload": {
+    "psr-0": {
+      "Acme": "src/"
+    }
+  }
+}
