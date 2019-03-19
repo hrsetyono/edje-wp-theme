@@ -1,12 +1,9 @@
 {
   "name": "pixelstudio/edje-wp-theme",
-  "description": "Wordpress site for paritama.com",
-  "repositories":[
-    {
-      "type":"composer",
-      "url":"https://wpackagist.org"
-    }
-  ],
+  "description": "A WordPress starter theme for developer using Timber Library and ACF Pro.",
+  "keywords": ["wordpress", "plugin", "library"],
+  "type": "wordpress-theme",
+  "homepage": "https://github.com/hrsetyono/edje-wp-theme/",
   "authors": [
     {
       "name": "Pixel Studio",
@@ -14,13 +11,11 @@
       "homepage": "https://pixelstudio.id"
     }
   ],
+  "license": "MIT",
   "require": {
+    "php": ">=7.0.0",
+    "composer/installers": ">=1.6.0",
     "wpackagist-plugin/timber-library": "~1.8.4",
-    "wpackagist-plugin/autodescription": "~3.2.3"
-  },
-  "autoload": {
-    "psr-0": {
-      "Acme": "src/"
-    }
+    "pixelstudio/edje-wp-library": "~2.0.0"
   }
 }

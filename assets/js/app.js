@@ -1,17 +1,16 @@
-(function($) {
 'use strict';
 
-$(document).ready( start );
-$(document).on( 'page:load', start );
-$(window).load( startOnLoad );
+(function() { 
 
-function start() {
+$( onReady );
+$( window ).on( 'load', onLoad );
+
+function onReady() {
   myApp.init();
   myNav.init();
 }
 
-// functions that needs to run only after everything loads
-function startOnLoad() {
+function onLoad() {
 }
 
 
@@ -19,9 +18,8 @@ function startOnLoad() {
 
 var myApp = {
   init() {
-    var self = this;
-    // self.slider();
-    // self.lightbox();
+    // this.slider();
+    // this.lightbox();
   },
 
   /*
@@ -29,7 +27,7 @@ var myApp = {
     https://github.com/hrsetyono/hSlider
   */
   slider() {
-    $('.wp-gallery').hSlider({
+    hSlider( $('.wp-gallery').get(0), {
       index: 0,
       arrows: true,
       dots: true,
@@ -46,7 +44,7 @@ var myApp = {
     https://github.com/hrsetyono/hLightbox
   */
   lightbox() {
-    $('.wp-block-button a').hLightbox({
+    hLightbox( $('.wp-block-button a').get(0), {
       closeButton: true
     });
   }
@@ -57,22 +55,20 @@ var myApp = {
 
 var myNav = {
   init() {
-    var self = this;
-    self.mobileNav();
-    self.dialogNav();
+    this.mobileNav();
+    this.dialogNav();
 
-    $(document).on( 'click', self.closeNav );
+    $(document).on( 'click', this.closeNav );
   },
 
   /*
     Toggle mobile nav
   */
   mobileNav() {
-    var self = this;
     $('#nav-toggle').on( 'click', toggle );
-    $('.nav-items').on( 'click', self.preventClose );
-    
+    $('.nav-items').on( 'click', this.preventClose );
 
+    
     function toggle( e ) {
       e.stopPropagation();
       $('body').removeClass( 'dialog-is-active' ).toggleClass( 'nav-is-active' );
@@ -120,4 +116,4 @@ var myNav = {
 
 // Browser compatibility, leave this untouched
 if('registerElement' in document) { document.createElement( 'h-grid' ); document.createElement( 'h-tile' ); }
-})( jQuery );
+})();

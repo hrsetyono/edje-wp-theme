@@ -35,6 +35,10 @@ function my_enqueue_scripts() {
   wp_enqueue_style( 'my-app', $css_dir . '/app.css' );
   wp_enqueue_style( 'dashicons', get_stylesheet_uri(), 'dashicons' ); // WP native icons
 
+  // Replace jQuery with lighter alternative
+  wp_deregister_script( 'jquery' );
+  wp_enqueue_script( 'cash', $js_dir . '-vendor/cash.min.js', [], false, true );
+
   // JavaScript
   wp_enqueue_script( 'h-lightbox', $js_dir . '-vendor/h-lightbox.min.js', [], false, true );
   wp_enqueue_script( 'h-slider', $js_dir . '-vendor/h-slider.min.js', [], false, true );
@@ -90,7 +94,7 @@ function my_init() {
   // ACF Option page
   if( function_exists( 'acf_add_options_page' ) ) {
     acf_add_options_sub_page( [
-  		'page_title' => 'Custom Settings',
+  		'page_title' => 'Theme Options',
   		'parent_slug' => 'options-general.php',
     ] );
   }
