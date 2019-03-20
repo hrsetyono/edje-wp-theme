@@ -2,6 +2,8 @@
 
 A WordPress starter theme for developer using Timber Library and ACF Pro.
 
+Also supports WooCommerce.
+
 **REQUIREMENTS**
 
 - PHP 7.0
@@ -18,10 +20,12 @@ A WordPress starter theme for developer using Timber Library and ACF Pro.
 
 ## Installation
 
-1. Copy this repository to your `/wp-content` directory.
-1. Rename `/themes/wp-theme` to better fit your project.
-1. Delete **README.md** and move **composer.json** to outer WP directory (where **wp-config.php** is).
-1. Run the command `composer update` to install the plugins.
+**MANUAL**
+
+- Copy this repo to `/wp-content/themes/project-name`.
+- 
+
+**WITH COMPOSER**
 
 ## Useful Links
 
