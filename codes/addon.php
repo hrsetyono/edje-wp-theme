@@ -3,22 +3,24 @@
 
 class MyShortcode {
   function __construct() {
-    add_shortcode( 'button', array($this, 'button') );
+    add_shortcode( 'example', [$this, 'example'] );
   }
 
   /*
-    Add button class to the link inside
-    Usage: [button] link [/button]
-  */
-  function button( $attr, $content = null ) {
-    // if have anchor inside, add button class
-    if(preg_match( '/<a (.+?)>/', $content, $match ) ) {
-      $content = substr_replace( $content, ' class="button" ', 3, 0 );
-    }
-    // else, make it into do-nothing button
-    else { $content = '<a class="button">' . $content . '</a>'; }
+    Example custom shortcode.
 
-    return wpautop( $content );
+      [example name="$name"] ... [/example]
+
+    @atts $name (string) - Description of this attribute.
+  */
+  function example( $atts, $content = null ) {
+    $atts = shortcode([
+      'name' => 'Default value'
+    ], $atts);
+
+    // do something
+
+    return "<div class='example'>" . $content . "</div>";
   }
 }
 
@@ -26,10 +28,8 @@ class MyShortcode {
 
 class MyFilter {
   function __construct() {
-    add_action( 'after_setup_theme', array($this, 'default_theme_support') );
+    add_action( 'after_setup_theme', [$this, 'default_theme_support'] );
   }
-
-
 
   /////
 
@@ -42,7 +42,7 @@ class MyFilter {
     add_theme_support( 'menus' );
     add_theme_support( 'custom-logo' );
     add_theme_support( 'title_tag' );
-    add_theme_support( 'html5', array('search-form', 'comment-form', 'gallery', 'caption') );
+    add_theme_support( 'html5', ['search-form', 'comment-form', 'gallery', 'caption'] );
     add_theme_support( 'automatic-feed-links' );
 
     add_theme_support( 'jetpack-responsive-videos' );
@@ -57,10 +57,10 @@ class MyFilter {
 class MyHelper {
   /*
     Check activation of required plugins
-    @param $plugins mixed - String or array of Class name to check for existence
+    @param $plugins (mixed) - String or array of Class name to check for existence
     @return boolean
   */
-  static function has_required_plugins( $plugins = array('H', 'Timber') ) {
+  static function has_required_plugins( $plugins = ['H', 'Timber'] ) : boolean {
     $is_all_installed = true;
 
     // if any of the plugins doesn't exist, break the loop

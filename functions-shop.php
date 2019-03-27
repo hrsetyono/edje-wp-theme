@@ -29,7 +29,7 @@ function shop_enqueue_scripts() {
 */
 function shop_after_setup_theme() {
   add_theme_support( 'woocommerce', [
-    'product_grid' => array( 'default_columns' => 4 ),
+    'product_grid' => [ 'default_columns' => 4 ],
     'single_image_width' => 480,
   ] );
   add_theme_support( 'wc-product-gallery-zoom' );

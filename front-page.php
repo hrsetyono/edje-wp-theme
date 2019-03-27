@@ -5,7 +5,7 @@ if( is_home() ) {
   $context['posts'] = Timber::get_posts();
   
   // if infinite scroll not active, add Pagination
-  if(!class_exists('Jetpack') || !Jetpack::is_module_active('infinite-scroll') || is_paged() ) {
+  if( !class_exists('Jetpack') || !Jetpack::is_module_active('infinite-scroll') || is_paged() ) {
     $context['pagination'] = Timber::get_pagination();
   }
 

@@ -12,7 +12,7 @@ class MyShop {
   function construct() {
     // replace default pagination
     remove_action( 'woocommerce_after_shop_loop', 'woocommerce_pagination', 10 );
-    add_action( 'woocommerce_after_shop_loop', array($this, 'custom_woocommerce_pagination'), 10 );
+    add_action( 'woocommerce_after_shop_loop', [$this, 'custom_woocommerce_pagination'], 10 );
   }
 
   /*
@@ -26,9 +26,9 @@ class MyShop {
       return false;
     }
 
-    $context = array(
+    $context = [
       'pagination' => Timber::get_pagination()
-    );
+    ];
     Timber::render( '/partials/_pagination.twig', $context );
   }
 
@@ -59,20 +59,20 @@ class MyShop {
   /*
     Get WC_Product data from posts and embed it
 
-    @param $posts (arr)
-    @return (arr) - Posts with embedded Product data
+    @param $posts
+    @return - Posts with embedded Product data
   */
-  static function get_products( $posts ) {
+  static function get_products( array $posts ) : array {
     $post_ids = array_reduce($posts, function( $result, $p ) {
       $result[] = $p->id;
       return $result;
-    }, array() );
+    }, [] );
 
-    $products = wc_get_products(array(
+    $products = wc_get_products( [
       'include' => $post_ids,
       'orderby' => 'post__in',
       'posts_per_page' => wc_get_loop_prop( 'total' )
-    ) );
+     ] );
 
     $posts = array_map( function( $p, $index ) use ( $products ) {
       $p->product = $products[$index];
@@ -99,11 +99,11 @@ class MyProduct {
 class MyCart {
   function __construct() {
     // Cart navigation widget
-    add_filter( 'woocommerce_add_to_cart_fragments', array($this, 'update_cart_widget_fragment') );
+    add_filter( 'woocommerce_add_to_cart_fragments', [$this, 'update_cart_widget_fragment'] );
 
     // replace default cross-sell
     remove_action( 'woocommerce_cart_collaterals', 'woocommerce_cross_sell_display' );
-    add_action( 'woocommerce_cart_collaterals', array($this, 'custom_cross_sell_display') );
+    add_action( 'woocommerce_cart_collaterals', [$this, 'custom_cross_sell_display'] );
   }
 
   /*
@@ -115,7 +115,7 @@ class MyCart {
   function update_cart_widget_fragment( $fragments ) {
     ob_start();
     global $woocommerce;
-    $context = array( 'woo' => $woocommerce );
+    $context = [ 'woo' => $woocommerce ];
 
     Timber::render( 'woo/_cart-button.twig', $context );
     $fragments['.cart-button'] = ob_get_clean();
@@ -131,9 +131,7 @@ class MyCart {
     $products = Timber::get_posts( WC()->cart->get_cross_sells() );
 
     if( $products ) {
-      $context = array(
-        'products' => $products,
-      );
+      $context = [ 'products' => $products ];
 
       Timber::render( 'woo/_cart-cross-sells.twig', $context );
     }

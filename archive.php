@@ -9,7 +9,7 @@ if( !class_exists('Jetpack') || !Jetpack::is_module_active('infinite-scroll') ||
 }
 
 // Decide which template to use
-$templates = array( 'archive.twig' );
+$templates = [ 'archive.twig' ];
 
 if( is_category() || is_tax() ) {
   $context['term'] = $query;
