@@ -40,6 +40,7 @@
   main,
   nav,
   section,
+  picture,
   summary {
     display: block;
   }
@@ -319,6 +320,7 @@ h-grid {
   @include grid( $width: $grid-max-width );
   @include grid( $rim: $grid-rim );
   margin: 0 auto;
+  width: 100%;
 
   &.collapse {
     @include grid( $collapse: true );

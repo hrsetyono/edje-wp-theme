@@ -1,7 +1,7 @@
 (function() {
 
 $( onReady );
-$(window).load( onLoad );
+$( window ).on( 'load', onLoad );
 
 function onReady () {
   myShop.init();

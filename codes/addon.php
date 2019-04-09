@@ -6,21 +6,16 @@ class MyShortcode {
     add_shortcode( 'example', [$this, 'example'] );
   }
 
-  /*
-    Example custom shortcode.
-
-      [example name="$name"] ... [/example]
-
-    @atts $name (string) - Description of this attribute.
-  */
+  /**
+   * Example of custom shortcode
+   *   [example name="$name"] ... [/example]
+   */
   function example( $atts, $content = null ) {
     $atts = shortcode([
       'name' => 'Default value'
     ], $atts);
 
-    // do something
-
-    return "<div class='example'>" . $content . "</div>";
+    return "<div class='example'> <h2>${ $atts['name'] }</h2>  $content </div>";
   }
 }
 
@@ -45,7 +40,7 @@ class MyFilter {
     add_theme_support( 'html5', ['search-form', 'comment-form', 'gallery', 'caption'] );
     add_theme_support( 'automatic-feed-links' );
 
-    add_theme_support( 'jetpack-responsive-videos' );
+    // add_theme_support( 'jetpack-responsive-videos' );
 
     add_post_type_support( 'page', 'excerpt' ); // allow page to have excerpt
   }
@@ -58,9 +53,9 @@ class MyHelper {
   /*
     Check activation of required plugins
     @param $plugins (mixed) - String or array of Class name to check for existence
-    @return boolean
+    @return mixed
   */
-  static function has_required_plugins( $plugins = ['H', 'Timber'] ) : boolean {
+  static function has_required_plugins( $plugins = ['H', 'Timber'] ) {
     $is_all_installed = true;
 
     // if any of the plugins doesn't exist, break the loop

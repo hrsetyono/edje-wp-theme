@@ -9,11 +9,11 @@ class MyTimber extends TimberSite {
     parent::__construct();
   }
 
-  /*
-    Global Context
-    @filter timber_context
-  */
-  function add_to_context( $context ) {
+  /**
+   * Global context
+   * @filter timber_context
+   */
+  function add_to_context( array $context ) : array {
     $context['nav'] = new TimberMenu( 'main-nav' );
     $context['social_nav'] = new TimberMenu( 'social-nav' );
 
@@ -46,10 +46,10 @@ class MyTimber extends TimberSite {
     return $context;
   }
 
-  /*
-    Custom Filter for Twig
-    @filter get_twig
-  */
+  /**
+   * Custom filter for Twig
+   * @filter get_twig
+   */
   function add_to_twig( $twig ) {
     $twig->addExtension( new Twig_Extension_StringLoader() );
 
@@ -59,11 +59,10 @@ class MyTimber extends TimberSite {
     return $twig;
   }
 
-  /*
-    Custom filter sample
-
-      Lorem ipsum dolor sit amet | my_example( $name )
-  */
+  /**
+   * Example of custom filter
+   *  {{ post.my_data | my_example( $name ) }}
+   */
   function filter_my_example( string $text, string $name ) : string {
     return "<h1>$name</h1> $text";
   }

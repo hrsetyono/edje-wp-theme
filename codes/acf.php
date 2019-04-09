@@ -25,7 +25,7 @@ class MyBlock {
   function __construct() {
     add_action( 'acf/init', [$this, 'create_blocks'] );
 
-    add_action( 'enqueue_block_assets', [$this, 'enqueue_assets'] );
+    add_action( 'enqueue_block_editor_assets', [$this, 'enqueue_assets'] );
   }
 
   
@@ -33,9 +33,7 @@ class MyBlock {
     Create gutenberg blocks
   */
   function create_blocks() {
-    if( !function_exists('acf_register_block') ) { return false; }
-
-    $this->_create( 'block-name', [
+    H::register_block( 'block-name', [
       'icon' => 'admin-page'
     ] );
   }
@@ -49,7 +47,7 @@ class MyBlock {
     $css_dir = get_stylesheet_directory_uri() . '/assets/css';
     $js_dir = get_stylesheet_directory_uri() . '/assets/js';
 
-    wp_enqueue_script( 'block-editor', $js_dir . '/block-editor.js', [ 'wp-blocks', 'wp-element' ], false, true );
+    wp_enqueue_script( 'block-editor', $js_dir . '/block-editor.js', [ 'wp-blocks', 'wp-dom' ] , false, true );
     wp_enqueue_style( 'block-editor', $css_dir . '/block-editor.css', [ 'wp-edit-blocks' ] );
   }
 

@@ -43,12 +43,12 @@ else {
   // if display products
   if( $display_mode === 'both' || $display_mode === 'products' ) {
     $posts = Timber::get_posts();
-    $context['products'] =  MyShop::get_products( $posts );
+    $context['products'] =  _get_products( $posts );
   }
 
   // if display categories
   if( $display_mode === 'both' || $display_mode === 'subcategories' ) {
-    $context['categories'] = MyShop::get_category_thumbnails( $parent_term_id );
+    $context['categories'] = _get_categories( $parent_term_id );
   }
 
   // disable pagination
@@ -57,4 +57,59 @@ else {
   }
 
   Timber::render( 'shop/shop.twig', $context );
+}
+
+
+//
+
+
+/*
+  Get WC_Product data from posts and embed it
+
+  @param $posts
+  @return - Posts with embedded Product data
+*/
+function _get_products( array $posts ) : array {
+  $post_ids = array_reduce($posts, function( $result, $p ) {
+    $result[] = $p->id;
+    return $result;
+  }, [] );
+
+  $products = wc_get_products( [
+    'include' => $post_ids,
+    'orderby' => 'post__in',
+    'posts_per_page' => wc_get_loop_prop( 'total' )
+   ] );
+
+  $posts = array_map( function( $p, $index ) use ( $products ) {
+    $p->product = $products[$index];
+    return $p;
+  }, $posts, array_keys( $posts ) );
+
+  return $posts;
+}
+
+/*
+  Get categories / subcategories with attached Thumbnail image and Permalink
+
+  @param $parent_id
+  @return - The formatted categories
+*/
+function _get_categories( int $parent_id = 0 ) : array {
+  $raw_cats = woocommerce_get_product_subcategories( $parent_id );
+
+  // get extra data for category
+  $parsed_cats = array_map( function( $c ) {
+    // get thumbnail image
+    $thumb_id = get_woocommerce_term_meta( $c->term_id, 'thumbnail_id', true );
+    $image = wp_get_attachment_image_src( $thumb_id, 'medium' );
+    $c->image = $image ? $image[0] : wc_placeholder_img_src();
+
+    // get permalink
+    $c->link = get_term_link( $c->term_id, 'product_cat' );
+
+    return $c;
+  }, $raw_cats );
+
+  return $parsed_cats;
 }

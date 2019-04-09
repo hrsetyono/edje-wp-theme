@@ -9,7 +9,6 @@ require_once 'codes/addon-shop.php';
 add_action( 'wp_enqueue_scripts', 'shop_enqueue_scripts', 101 );
 add_action( 'after_setup_theme', 'shop_after_setup_theme' );
 add_action( 'init', 'shop_init' );
-add_action( 'widgets_init', 'my_widgets' );
 
 /*
   Register Woocommerce assets here

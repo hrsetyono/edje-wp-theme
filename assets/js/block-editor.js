@@ -1,6 +1,8 @@
-// Create new Table styling
+wp.domReady( () => {
+  
+  // wp.blocks.registerBlockStyle( 'core/table', {
+  //   name: 'custom-style',
+  //   label: 'Custom Style'
+  // } );
 
-// wp.blocks.registerBlockStyle( 'core/table', {
-//   name: 'custom-style',
-//   label: 'Custom Style'
-// } );
+} );

@@ -32,63 +32,21 @@ class MyShop {
     Timber::render( '/partials/_pagination.twig', $context );
   }
 
-  /*
-    Get categories data to be displayed as Thumbnail in SHOP page
 
-    @param int $parent_id - Parent category ID. Default is 0.
-  */
-  static function get_category_thumbnails( $parent_id = 0 ) {
-    $raw_cats = woocommerce_get_product_subcategories( $parent_id );
-
-    // get extra data for category
-    $parsed_cats = array_map( function( $c ) {
-      // get thumbnail image
-      $thumb_id = get_woocommerce_term_meta( $c->term_id, 'thumbnail_id', true );
-      $image = wp_get_attachment_image_src( $thumb_id, 'medium' );
-      $c->image = $image ? $image[0] : wc_placeholder_img_src();
-
-      // get permalink
-      $c->link = get_term_link( $c->term_id, 'product_cat' );
-
-      return $c;
-    }, $raw_cats );
-
-    return $parsed_cats;
-  }
-
-  /*
-    Get WC_Product data from posts and embed it
-
-    @param $posts
-    @return - Posts with embedded Product data
-  */
-  static function get_products( array $posts ) : array {
-    $post_ids = array_reduce($posts, function( $result, $p ) {
-      $result[] = $p->id;
-      return $result;
-    }, [] );
-
-    $products = wc_get_products( [
-      'include' => $post_ids,
-      'orderby' => 'post__in',
-      'posts_per_page' => wc_get_loop_prop( 'total' )
-     ] );
-
-    $posts = array_map( function( $p, $index ) use ( $products ) {
-      $p->product = $products[$index];
-      return $p;
-    }, $posts, array_keys( $posts ) );
-
-    return $posts;
-  }
 }
-
 /*
   Functions for SINGLE PRODUCT page
 */
 class MyProduct {
   function __construct() {
-    // ....
+    $this->remove_image_sizes();
+  }
+
+  function remove_image_sizes() {
+    $wc_image_sizes = [ 'woocommerce_thumbnail', 'woocommerce_single', 'woocommerce_gallery_thumbnail', 'shop_catalog', 'shop_single', 'shop_thumbnail' ];
+    foreach( $wc_image_sizes as $s ) {
+      remove_image_size( $s );
+    }
   }
 }
 

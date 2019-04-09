@@ -195,17 +195,3 @@ $social-logos: (
     color: rgba(white, .4);
   }
 }
-
-
-///// JETPACK RESPONSIVE VIDEO
-
-.jetpack-video-wrapper {
-	margin-bottom: 1.6em;
-}
-
-.jetpack-video-wrapper > embed,
-.jetpack-video-wrapper > iframe,
-.jetpack-video-wrapper > object,
-.jetpack-video-wrapper > .wp-video {
-	margin-bottom: 0;
-}
