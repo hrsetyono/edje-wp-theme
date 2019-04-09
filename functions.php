@@ -5,6 +5,10 @@ if( !MyHelper::has_required_plugins() ) { return false; }
 require_once 'codes/timber.php';
 require_once 'codes/acf.php';
 
+if( class_exists('WooCommerce') ) {
+  require_once 'functions-shop.php';
+}
+
 add_action( 'wp_enqueue_scripts', 'my_enqueue_scripts', 100 );
 add_action( 'after_setup_theme', 'my_after_setup_theme' );
 add_action( 'init', 'my_init' );
@@ -13,12 +17,6 @@ add_action( 'widgets_init', 'my_widgets' );
 new MyFilter();
 new MyACF();
 new MyBlock();
-
-
-if( class_exists('WooCommerce') ) {
-  require_once 'functions-shop.php';
-}
-
 
 /////
 
@@ -57,6 +55,7 @@ function my_after_setup_theme() {
 
   // Gutenberg support
   add_theme_support( 'align-wide' );
+  add_theme_support( 'responsive-embeds' );
   // add_theme_support( 'editor-color-palette', [
   //   [
   //     'name' => 'Main',

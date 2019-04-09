@@ -9,7 +9,6 @@ require_once 'codes/addon-shop.php';
 add_action( 'wp_enqueue_scripts', 'shop_enqueue_scripts', 101 );
 add_action( 'after_setup_theme', 'shop_after_setup_theme' );
 add_action( 'init', 'shop_init' );
-add_action( 'widgets_init', 'my_widgets' );
 
 /*
   Register Woocommerce assets here
@@ -29,7 +28,7 @@ function shop_enqueue_scripts() {
 */
 function shop_after_setup_theme() {
   add_theme_support( 'woocommerce', [
-    'product_grid' => array( 'default_columns' => 4 ),
+    'product_grid' => [ 'default_columns' => 4 ],
     'single_image_width' => 480,
   ] );
   add_theme_support( 'wc-product-gallery-zoom' );

@@ -13,17 +13,9 @@ $include-typography: true;
 $include-visibility: true;
 
 
-// ---------
-// VARIABLE
-// ---------
-
-// Font Family
-$font-family : -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-
-$font-family-header : "Apple Garamond", "Baskerville", "Times New Roman", "Droid Serif", "Times","Source Serif Pro", serif;
-
-$font-faces: ();
-
+// ----------------
+// GLOBAL VARIABLE
+// ----------------
 
 // Color
 $main : #2196f3;
@@ -63,18 +55,31 @@ $above-m: "min-width:#{ $size-m + 1px }";
 $below-l: "max-width:#{ $size-l }";
 $above-l: "min-width:#{ $size-l + 1px }";
 
-$below-nav-s: "max-width:#{ $size-s }"; // mobile navigation breakpoint
-$above-nav-s: "min-width:#{ $size-s + 1px }";
+$below-nav: $below-s; // small navigation breakpoint
+$above-nav: $above-s;
 
 $portrait: "orientation: portrait";
 $landscape: "orientation: landscape";
 $retina: "min-resolution: 192dpi";
 
-// Global value
+// Other
 $g-radius : 4px;
 $g-transition : all .25s ease-out;
 
 // Typography
+$font-family : -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
+$font-family-header : "Apple Garamond", "Baskerville", "Times New Roman", "Droid Serif", "Times","Source Serif Pro", serif;
+
+// Put file in /assets/fonts directory
+$font-faces: (
+  // "Open Sans": (
+  //   ( "opensans.woff", 400 ),
+  //   ( "opensans-italic.woff", 400, italic ),
+  //   ( "opensans-bold.woff", 700 )
+  // )
+);
+
 $font-color  : #222;
 $font-passive : #888;
 $font-weight : 400;
@@ -117,7 +122,6 @@ $shadow-z1: 0 1.5px 4px rgba(black, .24), 0 1.5px 6px rgba(black, .12);
 $shadow-z2: 0 3px 12px rgba(black, .23), 0 3px 12px rgba(black, .16);
 $shadow-z3: 0 6px 12px rgba(black, .23), 0 10px 40px rgba(black, .19);
 
-$spinner_path: '../../../../../wp-admin/images/spinner.gif';
 
 // ----------------
 // FUNCTIONAL SASS
@@ -125,7 +129,7 @@ $spinner_path: '../../../../../wp-admin/images/spinner.gif';
 
 // If the CSS doesn't fit in any variable, put it here
 $h-custom: (
-  example-anim: ( animation: 1s fadeInUp 0s both ),
+  m0-auto: ( margin: 0 auto )
 );
 
 // Height
@@ -517,15 +521,16 @@ $h-font-family: (
 
 // Line Height
 $h-line-height: (
-  names: ( lh-: line-height ),
+  names: ( lh: line-height ),
   values: (
-    base: 1,
-    normal: normal,
-    body: $font-line,
-    header: $header-line,
+    0: 0,
+    1: 1,
+    '-normal': normal,
+    '-body': $font-line,
+    '-header': $header-line,
   )
 );
 
 @import "edje/utility";
 @import "edje/private-vars";
-@import "edje/framework";
+@import "edje/output";

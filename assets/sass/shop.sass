@@ -59,7 +59,7 @@ $wc-panel-dark: darken($wc-panel, 5%)
 .woocommerce-message::before,
 .woocommerce-error::before
   +h( cursor-pointer absolute top0 left0 )
-  +h( ta-center lh-base fs-h5 fw-header  )
+  +h( ta-center lh1 fs-h5 fw-header  )
   width: 24px
   height: 24px
 
@@ -73,7 +73,7 @@ $wc-panel-dark: darken($wc-panel, 5%)
   
   a
     +h( d-inline-block float-right bg-main-dark pv05 ph2 )
-    +h( c-white td-underline )
+    +h( c-white td-u )
     margin: -0.5em -1em
 
     &:hover
@@ -92,7 +92,7 @@ $wc-panel-dark: darken($wc-panel, 5%)
     figure
       +h( o80 )
     h3
-      +h( td-underline )
+      +h( td-u )
 
   figure
     +h( mb1 transition )
@@ -132,7 +132,7 @@ $wc-panel-dark: darken($wc-panel, 5%)
     a
       +h( d-block c-body )
     a:hover
-      +h( td-underline )
+      +h( td-u )
 
   .price
     +h( d-block )
@@ -227,7 +227,7 @@ $wc-panel-dark: darken($wc-panel, 5%)
   &::before
     content: "\f504"
     +h( d-inline-block bg-white p025 )
-    +h( lh-base c-body brad shadow0 )
+    +h( lh1 c-body brad shadow0 )
     font-family: "dashicons"
     font-size: 1.5rem
 
@@ -336,7 +336,7 @@ ul.wc-tabs
 ///// STAR RATING
 
 .star-rating
-  +h( d-inline-block relative lh-base )
+  +h( d-inline-block relative lh1 )
 
   &::before,
   span::before
@@ -354,7 +354,7 @@ ul.wc-tabs
   +h( mb1 )
 
   a
-    +h( o30 d-inline-block lh-base td-none )
+    +h( o30 d-inline-block lh1 td-none )
     font-size: 0
 
   a::before

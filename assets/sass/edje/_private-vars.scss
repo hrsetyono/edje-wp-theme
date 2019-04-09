@@ -59,6 +59,7 @@ $_h-flex-portion: (
     flex: flex,
   ),
   values: (
+    0: 0,
     1: 1,
     2: 2,
     3: 3,
@@ -348,7 +349,7 @@ $_h-font-style: (
   b: ( font-weight: 700 ),
   i: ( font-style: italic ),
   u: ( text-decoration: underline ),
-  td-underline: ( text-decoration: underline ),
+  td-u: ( text-decoration: underline ),
   strike: ( text-decoration: line-through ),
   td-strike: ( text-decoration: line-through ),
   td-none: ( text-decoration: none ),
@@ -373,8 +374,6 @@ $_h-vertical-align: (
 /////
 
 $_h-all: map-merge( $_h-all, _merge(
-  $h-custom,
-  
   $_h-display,
   $_h-flex,
   $_h-align-items,
@@ -423,4 +422,6 @@ $_h-all: map-merge( $_h-all, _merge(
   $_h-font-weight,
   $_h-font-style,
   $_h-vertical-align,
+
+  $h-custom,
 ) );

@@ -348,3 +348,15 @@ $_media-sizes: (
     &:-moz-placeholder { @content; }
   }
 }
+
+// -----------
+// ASSET URL
+// -----------
+
+@function font-url( $file ) {
+  @return url("../fonts/" + $file);
+}
+
+@function image-url( $file ) {
+  @return url("../images/" + $file);
+}

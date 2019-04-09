@@ -2,8 +2,10 @@
 
   {# Featured Post #}
   {% if loop.first and post.thumbnail %}
-    <article class="post-banner" style="background-image: url('{{ post.thumbnail.src('large') }}');">
-      <a href="{{ post.link }}" class="post-banner-content">
+    <article class="post-tease post-tease--featured alignwide"
+      style="background-image: url('{{ post.thumbnail.src('large') }}');">
+
+      <a href="{{ post.link }}" class="tease-body">
         <h2>{{ post.title }}</h2>
 
         {{ post.get_preview(25, false, false) | wpautop }}

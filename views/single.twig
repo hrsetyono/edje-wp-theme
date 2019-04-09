@@ -1,31 +1,27 @@
 {% extends "layout.twig" %}
 {% block content %}
 
-{# Header #}
-<h-grid class="post-grid">
-  <header class="post-header large-4">
+
+{# Content #}
+<article class="post-content">
+  {# Header #}
+  <header class="post-header">
     <h1>{{ post.title }}</h1>
     {% include "partials/_post-meta.twig" %}
   </header>
-</h-grid>
 
-{% if post.thumbnail %}
-  <figure class="post-featured-image">
-    <img src="{{ post.thumbnail.src('large') }}" alt="{{ post.title }} Banner">
-  </figure>
-{% endif %}
+  {% if post.thumbnail %}
+    <figure class="post-featured-image alignwide">
+      <img src="{{ post.thumbnail.src('large') }}" alt="{{ post.title }} Banner">
+    </figure>
+  {% endif %}
 
+  {{ post.content }}  
 
-{# Content #}
-<h-grid class="post-grid">
-  <article class="post-content large-4">
-    {{ post.content }}
-
-    <footer class="post-author">
-      {% include "partials/_author-info.twig" with { author: post.author } %}
-    </footer>
-  </article>
-</h-grid>
+  <footer class="post-author">
+    {% include "partials/_author-info.twig" with { author: post.author } %}
+  </footer>
+</article>
 
 {# Comments #}
 <footer class="post-footer">
