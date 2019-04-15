@@ -49,22 +49,38 @@ article
 ///// BLOCKQUOTE
 
 blockquote
-  +h( p1 pl2 bg-gray-light )
+  +h( relative ph1 bg-gray-light )
   border-left: 4px solid $main
+
+  &::after
+    +h( content-empty absolute bgs-cover bgp-cc )
+    top: -1rem
+    right: -1rem
+    width: 4rem
+    height: 4rem
+    background-image: svg('<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z" fill="#{ rgba($main, .3) }"/><path d="M0 0h24v24H0z" fill="none"/></svg>')
   
   p
     +h( mb0 )
 
+  * + *
+    +h( mt1 mb0 )
+
   cite
-    +h( d-block mt1 fs-s )
+    +h( d-block fs-s )
 
   &.alignleft,
   &.align-right
     +h( ml0 )
 
 .wp-block-pullquote
-  +h( fs-h4 pv1 ph0 bt2-solid bb2-solid bc-gray )
-  +h( bg-gray-light ta-center )
+  +h( p0 bg-gray-light ta-center )
+
+  blockquote
+    +h( pv1 b2-solid br0 bl0 bc-main )
+
+  p
+    +h( fs-body )
 
   cite
     +h( ta-center )

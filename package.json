@@ -10,6 +10,6 @@
   "devDependencies": {},
   "scripts": {
     "sass": "node-sass -w assets/sass -o assets/css --output-style compressed",
-    "remote-debug": "browser-sync start --proxy \"mysite.dev\" --files 'css/*.css/js/*.js'"
+    "browser-sync": "browser-sync start --proxy \"premiera.test\" --files \"assets/css/*.css\" \"assets/js/*.js\""
   }
 }

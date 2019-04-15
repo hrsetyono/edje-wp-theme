@@ -3,6 +3,11 @@
 
 <div class="post-content" id="content">
 
+  <header class="post-header">
+    <h1>{{ title }}</h1>
+    {{ description | markdown }}
+  </header>
+
   {# Blog Nav #}
   <nav class="blog-nav">
     <a href="{{ blog_url }}" {% if not term %} class="active" {% endif %}>All</a>

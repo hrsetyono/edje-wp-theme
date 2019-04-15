@@ -1,6 +1,7 @@
 <?php
-///// SHORTCODE /////
-
+/**
+ * Codes for custom Shortcode
+ */
 class MyShortcode {
   function __construct() {
     add_shortcode( 'example', [$this, 'example'] );
@@ -19,19 +20,20 @@ class MyShortcode {
   }
 }
 
-///// FILTER /////
 
+/**
+ * Dump any custom Wordpress filter or action here
+ */
 class MyFilter {
   function __construct() {
     add_action( 'after_setup_theme', [$this, 'default_theme_support'] );
   }
 
-  /////
 
-  /*
-    Default theme_support
-    @action after_setup_theme
-  */
+  /**
+   * Default theme_support
+   * @action after_setup_theme
+   */
   function default_theme_support() {
     add_theme_support( 'post-thumbnails' );
     add_theme_support( 'menus' );
@@ -40,22 +42,19 @@ class MyFilter {
     add_theme_support( 'html5', ['search-form', 'comment-form', 'gallery', 'caption'] );
     add_theme_support( 'automatic-feed-links' );
 
-    // add_theme_support( 'jetpack-responsive-videos' );
-
     add_post_type_support( 'page', 'excerpt' ); // allow page to have excerpt
   }
 }
 
 
-///// HELPER /////
-
+/**
+ * Reusable functions
+ */
 class MyHelper {
-  /*
-    Check activation of required plugins
-    @param $plugins (mixed) - String or array of Class name to check for existence
-    @return mixed
-  */
-  static function has_required_plugins( $plugins = ['H', 'Timber'] ) {
+  /**
+   * Check activation of Edje and Timber plugins
+   */
+  static function has_required_plugins( array $plugins = ['H', 'Timber'] ) {
     $is_all_installed = true;
 
     // if any of the plugins doesn't exist, break the loop

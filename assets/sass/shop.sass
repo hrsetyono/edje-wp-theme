@@ -82,7 +82,7 @@ $wc-panel-dark: darken($wc-panel, 5%)
 ///// CATEGORY LISTING
 
 .shop-categories
-  +h( m0 mt2 mb3 )
+  +h( m0 mb3 )
 
   h2
     +h( mb1 fw-body ta-center )
@@ -110,7 +110,7 @@ $wc-panel-dark: darken($wc-panel, 5%)
     +tile(2, $gap: 10px)
 
 .shop-before-products
-  +h( d-flex ai-center mv2 )
+  +h( d-flex ai-center mb2 )
 
   p
     +h( mr1 ml-auto fs-s )
@@ -142,8 +142,8 @@ $wc-panel-dark: darken($wc-panel, 5%)
     +h( mt05 fs-s va-middle )
 
   .button.added
-    +h( relative bg-green c-transparent )
-    border-color: darken($green, 10%)
+    +h( relative bg-green c-transparent bc-green )
+    border-color: darken( $green, 10%) 
 
     &::after
       content: "\f147"
@@ -186,18 +186,28 @@ $wc-panel-dark: darken($wc-panel, 5%)
     +h( d-block )
 
 
-// product header
-.product-header
+// Before product action
+.before-product
   +h( mb2 )
 
   .sharedaddy  // Jetpack Sharing
     +h( pv05 ph0 m0 mt075 bb1-solid bc-gray )
 
-  div.sd-block
+  .sd-block
     +h( fd-row ai-center )
+  
+  .sd-content
+    +h( d-iblock )
 
-  div.sd-block h3.sd-title
-    +h( mb0 mr1 )
+  .sd-content li
+    +h( mb0 )
+
+  .sd-block .sd-title
+    +h( d-iblock mb0 mr1 )
+
+    @media ($below-s)
+      +h( d-block mb05 )
+
 
 
 // product gallery
@@ -232,7 +242,7 @@ $wc-panel-dark: darken($wc-panel, 5%)
     font-size: 1.5rem
 
   &:hover::before
-    background-color: darken(white, 5%)
+    +h( bg-gray )
 
 // drag zoom
 .zoomImg

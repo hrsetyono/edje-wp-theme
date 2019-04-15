@@ -11,6 +11,9 @@ if( !class_exists('Jetpack') || !Jetpack::is_module_active('infinite-scroll') ||
 // Decide which template to use
 $templates = [ 'archive.twig' ];
 
+$context['title'] = $query->name;
+$context['description'] = $query->description;
+
 if( is_category() || is_tax() ) {
   $context['term'] = $query;
   array_unshift( $templates, 'archive-' . $query->taxonomy . '.twig' );
