@@ -1,18 +1,12 @@
-$blog-width: 650px
-$blog-font-size: 18px
-
 $below-related-s: "max-width:870px"
 
-$output-tease: true
 $output-author: true
-$output-blog-nav: true
-
 $output-related: true
 $output-comment: true
 $output-password-form: false
 $output-infinite-scroll: false
 
-///// ARTICLE
+///// GENERAL
 
 article
   letter-spacing: 0.01 * $font-size
@@ -46,28 +40,74 @@ article
   img
     +h( brad )
 
+  h1, h2, h3, h4, h5, h6
+    +h( clear-both )
+
+
+// EDITOR ALIGN
+
+.alignleft
+  +h( float-left mr1 )
+
+.alignright
+  +h( float-right ml1 )
+
+.alignleft,
+.alignright
+  +h( mb1 maxw50 )
+
+  @media ($below-s)
+    +h( float-none maxw-none )
+
+.aligncenter
+  +h( d-block mh0 mv-auto clear-both )
+
+.alignfull,
+.alignwide
+  @media ($above-s)
+    margin-right: -5em
+    margin-left: -5em
+
+
 ///// BLOCKQUOTE
 
 blockquote
-  +h( p1 pl2 bg-gray-light )
+  +h( relative p1 bg-gray-light )
   border-left: 4px solid $main
+
+  &::after
+    +h( content-empty absolute bgs-cover bgp-cc )
+    top: -1rem
+    right: -1rem
+    width: 4rem
+    height: 4rem
+    background-image: svg('<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z" fill="#{ rgba($main, .3) }"/><path d="M0 0h24v24H0z" fill="none"/></svg>')
   
   p
     +h( mb0 )
 
+  * + *
+    +h( mt1 mb0 )
+
   cite
-    +h( d-block mt1 fs-s )
+    +h( d-block fs-s )
 
   &.alignleft,
   &.align-right
     +h( ml0 )
 
 .wp-block-pullquote
-  +h( fs-h4 pv1 ph0 bt2-solid bb2-solid bc-gray )
-  +h( bg-gray-light ta-center )
+  +h( p0 bg-gray-light ta-center )
+
+  blockquote
+    +h( pv1 b2-solid br0 bl0 bc-main )
+
+  p
+    +h( fs-body )
 
   cite
     +h( ta-center )
+
 
 ///// TABLE
 
@@ -88,6 +128,7 @@ article table
   p, ul, ol
     +h( mb0 )
 
+
 ///// PREFORMATTED & CODE
 
 pre,
@@ -105,35 +146,8 @@ pre code
   +h( p0 b0 bg-transparent )
 
 
-///// EDITOR STYLE
-h1, h2, h3, h4, h5, h6
-  +h( clear-both )
-
-.alignleft
-  +h( float-left mr1 )
-
-.alignright
-  +h( float-right ml1 )
-
-.alignleft,
-.alignright
-  +h( mb1 maxw50 )
-
-  @media ($below-s)
-    +h( float-none maxw-none )
-
-.aligncenter
-  +h( d-block mh0 mv-auto clear-both )
-
-  
-.alignfull,
-.alignwide
-  @media ($above-s)
-    margin-right: -5em
-    margin-left: -5em
-
-
 ///// CAPTION
+
 .wp-caption,
 .wp-block-image,
 .wp-block-embed
@@ -146,20 +160,25 @@ h1, h2, h3, h4, h5, h6
 
 
 ///// EMBED
+
 .wp-embedded-content
   +h( maxw100 )
 
 
+///// MEDIA & GALLERY
+
+ul.wp-block-gallery
+  +h( pl0 )
+
+
 ///// PAGINATION
+
 .pagination
   +h( d-flex mv2 fs-s c-passive ta-center )
 
   a,
   select
     +h( cursor-pointer w-auto no-appearance )
-
-  select:not(:hover)
-    +h( bc-transparent )
 
   a
     +h( as-center )
@@ -175,54 +194,91 @@ h1, h2, h3, h4, h5, h6
     +h( v-hidden o0 )
 
 
-///// MEDIA & GALLERY
-.gallery,
-.tiled-gallery
-  +h( mb15 )
+///// POSTS LISTING
+
+.post-tease
+  +h( d-flex fd-row-reverse relative pb2 mv2 bb1-solid bc-gray )
 
   a
+    +h( td-none c-inherit )
+  figure
+    +h( mb0 ml075 )
+  
+  //
+  @media ($below-s)
     +h( d-block )
+    figure
+      +h( float-right )
+    img
+      width: 150px
 
-  a img
-    +h( cursor-pointer transition )
+  @media ($below-m)
+    img
+      width: 100px
 
-  a:hover img
-    +h( o70 )
+.tease-body
+  +h( flex1 )
 
-.gallery[class*="gallery-columns-"]
-  +h( d-flex fw-wrap )
+  > a:hover h3
+    +h( td-u )
+  h3
+    +h( m0 mb05 )
+  p
+    +h( mb1 )
 
-.gallery-item
-  padding: 0 1px
-  margin-top: 0 !important
-  margin-bottom: 2px
+  @media ($below-s)
+    h3
+      +h( clear-none )
 
-  img
-    +h( brad )
-    border: none !important
 
-  .gallery-columns-2 &
-    width: percentage(1 / 2)
-  .gallery-columns-3 &
-    width: percentage(1 / 3)
-  .gallery-columns-4 &
-    width: percentage(1 / 4)
-  .gallery-columns-5 &
-    width: percentage(1 / 5)
-  .gallery-columns-6 &
-    width: percentage(1 / 6)
-  .gallery-columns-7 &
-    width: percentage(1 / 7)
-  .gallery-columns-8 &
-    width: percentage(1 / 8)
-  .gallery-columns-9 &
-    width: percentage(1 / 9)
+// Tease with background-image
+.post-tease.--featured
+  +h( d-flex fd-column jc-end relative ov-hidden )
+  +h( bgs-cover bgp-cc mb2 brad )
+  padding: 0 5em 1.5em
+  height: 400px
 
-ul.wp-block-gallery
-  +h( pl0 )
+  .tease-body
+    +h( flex0 relative z10 c-white )
+
+    *
+      +h( c-white )
+    &:hover h2
+      +h( td-u )
+
+  //
+  @media ($below-m)
+    margin-right: -$grid-rim
+    margin-left: -$grid-rim
+
+  @media ($below-s)
+    height: 300px
+    padding: 1em 10px
+
+  &::before
+    content: ""
+    +h( absolute z2 top0 left0 w100 h100 bg-black50 )
+
+
+///// BLOG NAV
+
+.blog-nav
+  +h( d-flex fw-wrap mv2 pv05 )
+  border-bottom: 2px solid $font-color
+  border-top: 1px solid $gray
+
+  a
+    +h( d-inline-block pv025 ph05 )
+    +h( c-body tt-uppercase fs-s ls25 brad transition )
+
+    &:hover
+      +h( c-main )
+    &.active
+      +h( bg-main c-white )
 
 
 ///// SINGLE POST
+
 .post-content
   +h( mv0 mh-auto ph1 )
   font-size: em($blog-font-size)
@@ -236,10 +292,25 @@ ul.wp-block-gallery
     +h( brad )
 
 .post-header
-  +h( mv2 mh0 )
+  +h( relative mv2 mh0 )
+
+  h1, h2
+    +h( mb1 )
+  p
+    +h( mb1 )
+  a:hover
+    +h( td-u )
+
+  .author &
+    small
+      +h( d-block fs-body fw-body )
+    img
+      +h( float-right brad )
+      width: 70px
 
 
 ///// POST META
+
 .post-meta
   +h( relative )
 
@@ -256,13 +327,14 @@ ul.wp-block-gallery
   .post-tease &
     +h( c-passive )
 
-  .post-tease--featured &
-    +h( relative z10 c-white75 )
+  .--featured &
+    +h( relative z10 c-white50 )
   
   .post-header &
     +h( mt05 pv05 )
     border-top: 1px solid $gray
     border-bottom: 2px solid $font-color
+
 
 .meta-author
   +h( pr05)
@@ -281,92 +353,8 @@ ul.wp-block-gallery
     +h( w100 )
 
 
-///// POST TEASE
-@if $output-tease
-  .post-tease
-    +h( d-flex fd-row-reverse relative pb2 mv2 bb1-solid bc-gray )
-
-    a
-      +h( td-none c-inherit )
-    figure
-      +h( mb0 ml075 )
-    
-    //
-    @media ($below-s)
-      +h( d-block )
-      figure
-        +h( float-right )
-      img
-        width: 150px
-
-    @media ($below-m)
-      img
-        width: 100px
-
-  .tease-body
-    +h( flex1 )
-
-    > a:hover h3
-      +h( td-u )
-    h3
-      +h( m0 mb05 )
-    p
-      +h( mb1 )
-
-    @media ($below-s)
-      h3
-        +h( clear-none )
-
-
-  .post-tease--featured
-    +h( d-flex fd-column jc-end relative ov-hidden )
-    +h( bgs-cover bgp-cc mb2 brad )
-    padding: 0 5em 1.5em
-    height: 400px
-
-    //
-    @media ($below-m)
-      margin-right: -$grid-rim
-      margin-left: -$grid-rim
-
-    @media ($below-s)
-      height: 300px
-      padding: 1em 10px
-
-    &::before
-      content: ""
-      +h( absolute z2 top0 left0 w100 h100 bg-black50 )
-
-
-  .post-tease--featured .tease-body
-    +h( flex0 relative z10 c-white )
-
-    *
-      +h( c-white )
-
-    &:hover h2
-      +h( td-u )
-
-
-
-///// BLOG NAV
-@if $output-blog-nav 
-  .blog-nav
-    +h( d-flex fw-wrap mv2 pv05 )
-    border-bottom: 2px solid $font-color
-    border-top: 1px solid $gray
-
-    a
-      +h( d-inline-block pv025 ph05 )
-      +h( c-body tt-uppercase fs-s ls25 brad transition )
-
-      &:hover
-        +h( c-main )
-      &.active
-        +h( bg-main c-white )
-
-
 ///// AUTHOR
+
 @if $output-author
   .post-author
     +h( d-flex pv2 mt1 bt1-solid bc-gray )
@@ -425,7 +413,8 @@ ul.wp-block-gallery
       +h( mb1 )
 
 
-///// RELATED /////
+///// RELATED POSTS
+
 @if $output-related
   .post-footer
     +h( pt1 bg-black05 )
@@ -563,7 +552,8 @@ ul.wp-block-gallery
           +h( d-block )
 
 
-///// COMMENTS /////
+///// COMMENTS
+
 @if $output-comment
   .post-comments
     ul

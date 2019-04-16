@@ -20,10 +20,10 @@ new MyBlock();
 
 /////
 
-/*
-  Register all your CSS and JS here
-  @action wp_enqueue_scripts 100
-*/
+/**
+ * Register all your CSS and JS here
+ * @action wp_enqueue_scripts 100
+ */
 function my_enqueue_scripts() {
   $css_dir = get_stylesheet_directory_uri() . '/assets/css';
   $js_dir = get_stylesheet_directory_uri() . '/assets/js';
@@ -33,9 +33,9 @@ function my_enqueue_scripts() {
   wp_enqueue_style( 'my-app', $css_dir . '/app.css' );
   wp_enqueue_style( 'dashicons', get_stylesheet_uri(), 'dashicons' ); // WP native icons
 
-  // Replace jQuery with lighter alternative
-  wp_deregister_script( 'jquery' );
-  wp_enqueue_script( 'cash', $js_dir . '-vendor/cash.min.js', [], false, true );
+  // Replace jQuery with lighter alternative, not recommended if you use WooCommerce
+  // wp_deregister_script( 'jquery' );
+  // wp_enqueue_script( 'cash', $js_dir . '-vendor/cash.min.js', [], false, true );
 
   // JavaScript
   wp_enqueue_script( 'h-lightbox', $js_dir . '-vendor/h-lightbox.min.js', [], false, true );
@@ -44,11 +44,10 @@ function my_enqueue_scripts() {
 }
 
 
-
-/*
-  Run after theme is loaded
-  @action after_setup_theme
-*/
+/**
+ * Run after theme is loaded
+ * @action after_setup_theme
+ */
 function my_after_setup_theme() {
   $GLOBALS['content_width'] = 650; // Blog width, affect Jetpack Tiled-Gallery size
   add_theme_support( 'widgets' );
@@ -72,22 +71,18 @@ function my_after_setup_theme() {
   // Create Nav assignment
   register_nav_menu( 'main-nav', 'Main Nav' );
   register_nav_menu( 'social-nav', 'Social Nav' );
+  register_nav_menu( 'blog-nav', 'Blog Nav' );
 }
 
 
-
-/*
-  After Wordpress has finished loading but no data has been sent
-  @action init 1
-*/
+/**
+ * After Wordpress has finished loading but no data has been sent
+ * @action init 1
+ */
 function my_init() {
   new MyShortcode();
   new MyTimber();
 
-  /*
-    Register Custom Post Type and Taxonomy
-    https://github.com/hrsetyono/wp-edje/wiki/Custom-Post-Type
-  */
   // H::register_post_type( 'product' );
 
   // ACF Option page
@@ -99,10 +94,11 @@ function my_init() {
   }
 }
 
-/*
-  Register widgets
-  @action widgets_init
-*/
+
+/**
+ * Register widgets
+ * @action widgets_init
+ */
 function my_widgets() {
   register_sidebar( [ 'name' => 'My Footer', 'id' => 'my-footer' ] );
 }
