@@ -6,6 +6,7 @@ $context['title'] = $post->title;
 $context['description'] = $post->_genesis_description ?? $post->post_excerpt;
 
 $context['posts'] = Timber::get_posts();
+$context['blog_nav'] = new TimberMenu( 'blog-nav' );
 
 // if infinite scroll not active, add Pagination
 if(!class_exists('Jetpack') || !Jetpack::is_module_active('infinite-scroll') || is_paged() ) {

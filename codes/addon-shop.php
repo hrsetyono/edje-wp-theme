@@ -26,8 +26,6 @@ class MyShop {
     ];
     Timber::render( '/partials/_pagination.twig', $context );
   }
-
-
 }
 
 /**
@@ -35,14 +33,6 @@ class MyShop {
  */
 class MyProduct {
   function __construct() {
-    $this->remove_image_sizes();
-  }
-
-  function remove_image_sizes() {
-    $wc_image_sizes = [ 'woocommerce_thumbnail', 'woocommerce_single', 'woocommerce_gallery_thumbnail', 'shop_catalog', 'shop_single', 'shop_thumbnail' ];
-    foreach( $wc_image_sizes as $s ) {
-      remove_image_size( $s );
-    }
   }
 }
 

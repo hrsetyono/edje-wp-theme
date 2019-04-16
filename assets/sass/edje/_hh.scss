@@ -1,0 +1,414 @@
+// EXPERIMENTAL - Dynamic Functional Sass
+//
+// Visit https://github.com/hrsetyono/edje/wiki/Dynamic-Functional-Sass
+
+// Translate shorthand syntax to real CSS
+//
+@mixin hh( $bits ) {
+  @each $b in $bits {
+    $prop-key: getPropKey( $b );
+    $value-raw: str-slice( $b, str-length( $prop-key ) + 1 );
+
+    $has-default-unit-rem: map-has-key( $h-props-sizing, $prop-key );
+
+    $prop: formatProp( $prop-key );
+    $value: formatValue( $value-raw, $has-default-unit-rem );
+
+    // print the style
+    @if type-of( $value ) == map {
+      @each $p, $v in $value {
+        #{ $p } : $v;
+      }
+    }
+    @else if type-of( $prop ) == list {
+      @each $p in $prop {
+        #{ $p } : $value;
+      }
+    } @else {
+      #{ $prop } : $value;
+    }
+  }
+}
+
+
+// Get property name, indicated by the letters before number or dash
+//
+@function getPropKey( $bit ) {
+  $separator: ( '-': '-', '0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9);
+  $prop-key: '';
+
+  @for $i from 1 through str-length( $bit ) {
+    $char: str-slice( $bit, $i, $i );
+
+    @if map-has-key( $separator, $char ) {
+      @return $prop-key;
+    } @else {
+      $prop-key: $prop-key + $char;
+    }
+  }
+}
+
+@function formatProp( $key ) {
+  $prop: '';
+
+  @if map-has-key( $h-props, $key ) {
+    $prop: map-get( $h-props, $key );
+  }
+  @else if map-has-key( $h-props-sizing, $key ) {
+    $prop: map-get( $h-props-sizing, $key );
+  }
+  @else {
+    @warn 'Property "' + $key '" is not found';
+  }
+
+  @return $prop;
+}
+
+
+// Format the raw value
+//
+@function formatValue( $raw, $add-rem: false ) {
+  $numbers: ( '0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9);
+  $values: ();
+  $raws: str-split( $raw, '/' );
+
+  @each $r in $raws {
+    $first-char: str-slice( $r, 1, 1 );
+    $second-char: str-slice( $r, 2, 2 );
+
+    // if has double dash
+    @if $first-char == '-' AND $second-char == '-' {
+      $r: formatCSSVar( $r );
+    }
+    // if number
+    @else if map-has-key( $numbers, $first-char ) OR map-has-key( $numbers, $second-char ) {
+      $r: formatNumber( $r, $add-rem );
+    }
+    // else, it's a string
+    @else {
+      // if first char is dash, remove it
+      @if $first-char == '-' {
+        $r: str-slice( $r, 2 );
+      }
+
+      // check if using shorthand value
+      @if map-has-key( $h-value-shorthand, $r ) {
+        $r: map-get( $h-value-shorthand, $r );
+      }
+    }
+    
+    $values: append( $values, $r );
+  }
+
+  @return $values;
+}
+
+
+// Format value with double dash in front of it
+//
+@function formatCSSVar( $raw ) {
+  $result: '';
+
+  // if color with opacity like "bgc--white_70"
+  $has-opacity: str-index( $raw, '_' );
+  @if $has-opacity {
+    $color: str-slice( $raw, 1, $has-opacity - 1 ) + '-rgb';
+    $opacity: '0.' + str-slice( $raw, $has-opacity + 1 );
+    $result: rgba( var( $color ),  unquote( $opacity ) );
+  }
+  // else, standard CSS Var
+  @else {
+    $result: var( $raw );
+  }
+
+  @return $result;
+}
+
+// Format raw number
+//
+@function formatNumber( $number, $add-rem: true ) {
+  $numbers: ('0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9 );
+
+  // if already number
+  @if type-of( $number ) == 'number' {
+    @return $number;
+  }
+
+  $len: str-length( $number );
+  $first-char: str-slice( $number, 1, 1 );
+  $last-char: str-slice( $number, $len, $len );
+
+  // If found underscore, replace it with dot.
+  $number: str-replace( $number, '_' , '.' );
+
+  // If last char is "p", change to %
+  @if $last-char == 'p' {
+    @return str-replace( $number, 'p', '%');
+  }
+  // If last char is not number, return as is
+  @else if not map-has-key( $numbers, $last-char ) {
+    @return $number;
+  }
+
+  // if zero or $add-rem is false, no need to add unit
+  @if ($len == 1 AND $first-char == '0') OR not $add_rem {
+    @return $number;
+  }
+
+  @return $number + rem;
+}
+
+
+// ---------
+// VARIABLE
+// ---------
+
+$h-props: (
+  // LAYOUT
+  pos: position,
+  float: float,
+  clear: clear,
+
+  z: z-index,
+
+  // DISPLAY
+  d: display,
+  v: visibility,
+  pe: pointer-events,
+  us: user-select,
+  app: appearance,
+  bf: backface-visibility,
+
+  fld: flex-direction,
+  flw: flex-wrap,
+  flf: flex-flow,
+  ai: align-items,
+  ac: align-content,
+  jc: justify-content,
+
+  fl: flex,
+  flg: flex-grow,
+  fls: flex-shrink,
+  flb: flex-basis,  
+  as: align-self,
+  js: justify-self,
+  order: order,
+
+  ov: overflow,
+  ovx: overflow-x,
+  ovy: overflow-y,
+  cursor: cursor,
+
+  // SPACING
+  bc: border-color,
+  bs: border-style,
+  brad: border-radius,
+
+  // TYPOGRAPHY
+  c: color,
+  fs: font-style,
+  ff: font-family,
+  fw: font-weight,
+
+  tt: text-transform,
+  ta: text-align,
+  va: vertical-align,
+  lh: line-height,
+
+  td: text-decoration,
+  ls: letter-spacing,
+  lst: list-style-type,
+
+  ws: white-space,
+  
+  // THEME
+  bg: background,
+  bgc: background-color,
+  bgp: background-position,
+  bgr: background-repeat,
+  bgi: background-image,
+  bgs: background-size,
+
+  o: opacity,
+  shadow: box-shadow,
+
+  tr: transition,
+  transition: transition,
+
+  tf: transform,
+  transform: transform,
+);
+
+
+// All the props here have "rem" default unit
+$h-props-sizing: (
+  top: top,
+  right: right,
+  bottom: bottom,
+  left: left,
+
+  h: height,
+  minh: min-height,
+  maxh: max-height,
+  w: width,
+  minw: min-width,
+  maxw: max-width,
+
+  b: border,
+  bw: border-width,
+  
+  m: margin,
+  mt: margin-top,
+  mr: margin-right,
+  mb: margin-bottom,
+  ml: margin-left,
+  mv: ( margin-top, margin-bottom ),
+  mh: ( margin-right, margin-left ),
+
+  p: padding,
+  pt: padding-top,
+  pr: padding-right,
+  pb: padding-bottom,
+  pl: padding-left,
+  pv: ( padding-top, padding-bottom ),
+  ph: ( padding-right, padding-left ),
+
+  fz: font-size,
+);
+
+
+
+// If a string value is listed here, it will be translated to the longer value.
+// Example: "bgr-x" will be printed as "background-repeat: repeat-x" instead of "background-repeat: x"
+$h-value-shorthand: (
+  // POS - Position
+  absolute-fill: ( position: absolute, top: 0, right: 0, bottom: 0, left: 0 ),
+
+  // JC and AI - Justify content and Align items
+  start: flex-start,
+  end: flex-end,
+  around: space-around,
+  between: space-between,
+
+  // BR - Border radius
+  circle: 50%,
+  pill: 9999px,
+
+  // TD - Text decoration
+  strike: line-through,
+  u: underline,
+
+  // BGR - Background repeat
+  no: no-repeat,
+  x: repeat-x,
+  y: repeat-y,
+
+  // BGP - Background position
+  ct: center top,
+  cc: center center,
+  cb: center bottom,
+  lt: left top,
+  lc: left center,
+  lb: left bottom,
+  rt: right top,
+  rc: right center,
+  rb: right bottom,
+
+  // OTHER
+  us-none: ( -webkit-touch-callout: none, -webkit-user-select: none, -moz-user-select: none, user-select: none ),
+);
+
+// -------------
+// ROOT CSS VAR
+// -------------
+
+// Each item will be made into 2 CSS Variables
+// (1) --$name
+// (2) --$name-rgb
+//
+// The RGB one is needed for Bit that include opacity.
+// Example: "bgc--main_10" becomes "background-color: rgba( var(--main-rgb), 0.10 )"
+$h-root-colors: (
+  black: black,
+  white: white,
+
+  main: $main,
+  main-dark: $main-dark,
+  main-light: $main-light,
+
+  sub: $sub,
+  sub-dark: $sub-dark,
+  sub-light: $sub-light,
+
+  red: $red,
+  yellow: $yellow,
+  green: $green,
+  blue: $blue,
+
+  gray: $gray,
+  gray-dark: $gray-dark,
+  gray-light: $gray-light,
+);
+
+:root {
+  @each $name, $value in $h-root-colors {
+    --#{ $name }: #{ $value };
+    --#{ $name }-rgb: #{ red($value) }, #{ green($value) }, #{ blue($value) }; 
+  }
+
+  // C - Color
+  --body: #{ $font-color };
+  --passive: #{ $font-passive };
+  --header: #{ $header-color };
+
+  // FZ - Font size
+  --normal: 1rem;
+  --xsmall: 0.75em;
+  --small: 0.875em;
+  --medium: 1.125em;
+
+  // FF - Font family
+  --fontBody: #{ $font-family };
+  --fontHeader: #{ $font-family-header };
+
+  // SHADOW - Box shadow
+  --z0: #{ $shadow-z0 };
+  --z1: #{ $shadow-z1 };
+  --z2: #{ $shadow-z2 };
+  --z3: #{ $shadow-z3 };
+}
+
+
+// --------
+// HELPER
+// --------
+
+// Replace part of string
+//
+@function str-replace( $string, $search, $replace: '' ) {
+  $index: str-index( $string, $search );
+  
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+  
+  @return $string;
+}
+
+
+// Split string into list
+//
+@function str-split( $string, $separator ) {
+  $split-arr: ();
+  $index : str-index( $string, $separator );
+
+  @while $index != null {
+    $item: str-slice( $string, 1, $index - 1 );
+    $split-arr: append( $split-arr, $item );
+    $string: str-slice( $string, $index + 1 );
+    $index : str-index( $string, $separator );
+  }
+
+  $split-arr: append( $split-arr, $string );
+  @return $split-arr;
+}

@@ -33,9 +33,9 @@ function my_enqueue_scripts() {
   wp_enqueue_style( 'my-app', $css_dir . '/app.css' );
   wp_enqueue_style( 'dashicons', get_stylesheet_uri(), 'dashicons' ); // WP native icons
 
-  // Replace jQuery with lighter alternative
-  wp_deregister_script( 'jquery' );
-  wp_enqueue_script( 'cash', $js_dir . '-vendor/cash.min.js', [], false, true );
+  // Replace jQuery with lighter alternative, not recommended if you use WooCommerce
+  // wp_deregister_script( 'jquery' );
+  // wp_enqueue_script( 'cash', $js_dir . '-vendor/cash.min.js', [], false, true );
 
   // JavaScript
   wp_enqueue_script( 'h-lightbox', $js_dir . '-vendor/h-lightbox.min.js', [], false, true );
@@ -71,6 +71,7 @@ function my_after_setup_theme() {
   // Create Nav assignment
   register_nav_menu( 'main-nav', 'Main Nav' );
   register_nav_menu( 'social-nav', 'Social Nav' );
+  register_nav_menu( 'blog-nav', 'Blog Nav' );
 }
 
 

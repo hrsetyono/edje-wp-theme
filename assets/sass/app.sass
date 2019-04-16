@@ -2,15 +2,6 @@
 @import "settings"
 @import "app-nav"
 
-:root
-  --main: #{ $main }
-  --sub: #{ $sub }
-  
-  --red: #{ $red }
-  --yellow: #{ $yellow }
-  --green: #{ $green }
-  --blue: #{ $blue }
-
 // MAIN WRAPPER
 main
   .has-fixed-nav &
@@ -23,3 +14,16 @@ main
 
   #wpadminbar
     +h( d-none )
+
+
+// PAGE CONTENT
+// Allow full-width Custom block to coexist with Core block
+.page-content
+  +h( mb3 )
+
+  > *
+    +h( mh-auto )
+    max-width: $blog-width
+  
+  .alignfull
+    +h( maxw-none )

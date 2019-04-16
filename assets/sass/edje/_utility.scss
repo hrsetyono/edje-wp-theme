@@ -1,7 +1,7 @@
-
 // ----------------
 // Functional Sass
 //-----------------
+
 
 // Apply styling with given classes
 //
@@ -354,9 +354,10 @@ $_media-sizes: (
 // -----------
 
 @function font-url( $file ) {
-  @return url("../fonts/" + $file);
+  @return url( $image_url + $file);
 }
 
 @function image-url( $file ) {
-  @return url("../images/" + $file);
+  @return url( $font_url + $file);
 }
+

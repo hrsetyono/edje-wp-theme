@@ -1,9 +1,11 @@
+body
+  +h( d-flex fd-column ovx-hidden h100vh )
+  
 .main-nav
   +h( relative bg-white bb1-solid bc-gray z100 pv075 )
 
   .has-fixed-nav &
     +h( fixed w100 )
-
 
 .nav-wrapper
   +h( d-flex ai-center )
@@ -118,21 +120,6 @@ body.dialog-is-active
       +h( d-none )
 
 
-// SEARCH FORM
-.nav-search
-  +h( d-flex relative )
-
-.nav-search [type="search"]
-  +h( absolute top50 left100 pv05 ph0 w0 o0 ) 
-  transform: translateX(-100%) translateY(-50%)
-
-  &:focus
-    +h( o100 pr25 pl05 )
-    width: 250px
-
-  &:focus ~ label
-    +h( d-none )
-
 
 // DIALOG
 .dialog
@@ -150,9 +137,6 @@ body.dialog-is-active
     
 
 ///// MAIN FOOTER /////
-
-body
-  +h( d-flex fd-column ovx-hidden h100vh )
 
 .main-footer
   +h( mt-auto bg-black75 c-white )

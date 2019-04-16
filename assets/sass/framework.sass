@@ -1,5 +1,12 @@
 // Put styles that you might reuse in other projects here
 
+// Framework output settings
+$include-normalize: true;
+$include-grid: true;
+$include-tile: true;
+$include-typography: true;
+$include-visibility: true;
+
 $output-framework: true // this will output the Normalizer, Grid, etc
 @import "settings"
 
@@ -31,19 +38,18 @@ $output-framework: true // this will output the Normalizer, Grid, etc
   &.disabled
     +h( cursor-not-allowed o50 )
 
-
 // passive button
 .button.--passive,
 .button.--loading
   +h( bc-gray bg-gray-light c-body )
 
+
   &:hover
-    +h( c-body )
-    border-color: darken($gray, 10%)
+    +h( bc-gray-dark c-body )
 
 
 .button.--line
-  +h( bg-transparent )
+  +h( bg-transparent c-main )
 
 // loading button
 .button.--loading

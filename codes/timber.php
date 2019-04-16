@@ -26,12 +26,6 @@ class MyTimber extends TimberSite {
     $context['img'] = $context['images']; // alias
     $context['files'] = $root.'/assets/files';
 
-    // if posts page, single post, or category page, use CATEGORIES as nav
-    if( is_home() || is_singular('post') || is_category() ) {
-      $context['blog_url'] = get_post_type_archive_link( 'post' );
-      $context['blog_nav'] = Timber::get_terms( 'category', ['parent' => 0] );
-    }
-
     // ACF Options Page    
     if( function_exists( 'acf_add_options_page' )) {
       $context['options'] = get_fields( 'options' );
@@ -47,13 +41,12 @@ class MyTimber extends TimberSite {
   }
 
   /**
-   * Custom filter for Twig
+   * Add custom filter for Twig
    * @filter get_twig
    */
   function add_to_twig( $twig ) {
     $twig->addExtension( new Twig_Extension_StringLoader() );
 
-    // Custom filter sample
     $twig->addFilter( new Twig_SimpleFilter( 'my_example', [$this, 'filter_my_example'] ) );
 
     return $twig;

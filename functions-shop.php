@@ -1,13 +1,9 @@
 <?php
 require_once 'codes/addon-shop.php';
 
-
 add_action( 'wp_enqueue_scripts', 'shop_enqueue_scripts', 101 );
 add_action( 'after_setup_theme', 'shop_after_setup_theme' );
 add_action( 'init', 'shop_init' );
-
-// Disable WooCommerce default CSS
-add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
 
 /**
  * Register Woocommerce assets here
@@ -33,9 +29,6 @@ function shop_after_setup_theme() {
   add_theme_support( 'wc-product-gallery-zoom' );
   add_theme_support( 'wc-product-gallery-lightbox' );
   add_theme_support( 'wc-product-gallery-slider' );
-
-  add_theme_support( 'h-woocommerce' );
-  add_theme_support( 'h-checkout' );
 }
 
 /**

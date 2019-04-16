@@ -1,6 +1,6 @@
-'use strict';
+(function() { 'use strict';
 
-(function() { 
+if( window.jQuery ) { $ = jQuery; }
 
 $( onReady );
 $( window ).on( 'load', onLoad );

@@ -1,4 +1,6 @@
-(function() {
+(function() { 'use strict';
+
+if( window.jQuery ) { $ = jQuery; }
 
 $( onReady );
 $( window ).on( 'load', onLoad );

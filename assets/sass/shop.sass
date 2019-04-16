@@ -6,7 +6,6 @@ $wc-panel-dark: darken($wc-panel, 5%)
 @import "shop-myaccount"
 @import "shop-cart"
 
-
 ///// GENERAL
 
 .price
@@ -79,6 +78,7 @@ $wc-panel-dark: darken($wc-panel, 5%)
     &:hover
       +h( o70 )
 
+
 ///// CATEGORY LISTING
 
 .shop-categories
@@ -88,7 +88,7 @@ $wc-panel-dark: darken($wc-panel, 5%)
     +h( mb1 fw-body ta-center )
 
 .category-tease
-  a:hover
+  &:hover
     figure
       +h( o80 )
     h3
@@ -103,36 +103,39 @@ $wc-panel-dark: darken($wc-panel, 5%)
   h3
     +h( fs-h5 c-body ta-center )
 
-///// PRODUCT LISTING
 
-.products-tile
-  @media ($below-s)
-    +tile(2, $gap: 10px)
+///// PRODUCTS LISTING
 
-.shop-before-products
+.before-products
   +h( d-flex ai-center mb2 )
 
   p
     +h( mr1 ml-auto fs-s )
 
-.shop-products
+.products
   +h( mv2 mh0 )
+
+.products-tile
+  @media ($below-s)
+    +tile(2, $gap: 10px)
 
 .product-tease
   +h( relative mb15 ta-center )
 
+  a:hover
+    figure
+      +h( o80 )
+    h3
+      +h( td-u )
+
   figure
     +h( mb1 transition )
 
-    &:hover
-      +h( o80 )
+  img
+    +h( brad )
       
   h3
     +h( fs-h5 )
-    a
-      +h( d-block c-body )
-    a:hover
-      +h( td-u )
 
   .price
     +h( d-block )
@@ -156,8 +159,7 @@ $wc-panel-dark: darken($wc-panel, 5%)
     +h( d-none )
 
 
-///// ON SALE LABEL
-
+// On Sale label
 .onsale
   +h( d-inline-block pv0 ph1 b1-dashed bc-white bg-red )
   +h( c-white fw-header fs-s tt-uppercase brad )
@@ -165,8 +167,8 @@ $wc-panel-dark: darken($wc-panel, 5%)
 
   .product-tease &
     +h( absolute )
-    top: 5px
-    right: 15px
+    top: 1em
+    right: 1em
 
   .product-figure &
     +h( absolute z5 )
