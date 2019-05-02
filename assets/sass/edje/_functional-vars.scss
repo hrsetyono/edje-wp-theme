@@ -1,63 +1,5 @@
 $_h-all: (); // store all the Functional variables
 
-// Height
-$h-height: (
-  names: ( h: height ),
-  values: (
-    '-auto': auto,
-    0: 0,
-    25: 25%,
-    33: calc(100% / 3),
-    50: 50%,
-    66: calc(100% / 1.5),
-    75: 75%,
-    100: 100%,
-    100vh: 100vh,
-  )
-);
-
-
-// Width
-$h-width: (
-  names: ( w: width ),
-  values: (
-    '-auto': auto,
-    0: 0,
-    10: 10%,
-    20: 20%,
-    25: 25%,
-    30: 30%,
-    33: calc(100% / 3),
-    40: 40%,
-    50: 50%,
-    60: 60%,
-    66: calc(100% / 1.5),
-    70: 70%,
-    75: 75%,
-    80: 80%,
-    90: 90%,
-    100: 100%,
-    100vw: 100vw,
-  )
-);
-
-
-// Position Move
-$h-position: (
-  names: (
-    top: top,
-    right: right,
-    bottom: bottom,
-    left: left
-  ),
-  values: (
-    0: 0,
-    50: 50%,
-    100: 100%,
-    '-auto': auto,
-  )
-);
-
 
 // Z-Index
 $h-z-index: (
@@ -70,60 +12,6 @@ $h-z-index: (
     10: 10,
     50: 50,
     100: 100,
-  )
-);
-
-
-// Padding
-$h-padding: (
-  names: (
-    p: padding,
-    pv: ( padding-top, padding-bottom ),
-    ph: ( padding-right, padding-left ),
-    pt: padding-top,
-    pr: padding-right,
-    pb: padding-bottom,
-    pl: padding-left,
-  ),
-  values: (
-    0: 0,
-    '025': 0.25rem,
-    '05': 0.5rem,
-    '075': 0.75rem,
-    1: 1rem,
-    125: 1.25rem,
-    15: 1.5rem,
-    2: 2rem,
-    25: 2.5rem,
-    3: 3rem,
-    4: 4rem,
-  ),
-);
-
-// Margin
-$h-margin: (
-  names: (
-    m: margin,
-    mv: ( margin-top, margin-bottom ),
-    mh: ( margin-right, margin-left ),
-    mt: margin-top,
-    mr: margin-right,
-    mb: margin-bottom,
-    ml: margin-left,
-  ),
-  values: (
-    '-auto': auto,
-    0: 0,
-    '025': 0.25rem,
-    '05': 0.5rem,
-    '075': 0.75rem,
-    1: 1rem,
-    125: 1.25rem,
-    15: 1.5rem,
-    2: 2rem,
-    25: 2.5rem,
-    3: 3rem,
-    4: 4rem,
   )
 );
 
@@ -148,45 +36,6 @@ $h-border: (
 );
 
 
-// Border color
-$h-border-color: (
-  names: ( bc-: border-color ),
-  values: (
-    main: $main,
-    main-dark: $main-dark,
-    main-light: $main-light,
-    
-    sub: $sub,
-    sub-dark: $sub-dark,
-    sub-light: $sub-light,
-    'transparent': transparent,
-
-    gray: $gray,
-    gray-dark: $gray-dark,
-    gray-light: $gray-light,
-
-    'red': $red,
-    'green': $green,
-    'blue': $blue,
-    'yellow': $yellow,
-
-    'black': black,
-    black75: rgba(black, .75),
-    black50: rgba(black, .50),
-    black25: rgba(black, .25),
-    black10: rgba(black, .10),
-    black05: rgba(black, .05),
-
-    'white': white,
-    white75: rgba(white, .75),
-    white50: rgba(white, .50),
-    white25: rgba(white, .25),
-    white10: rgba(white, .10),
-    white05: rgba(white, .05),
-  )
-);
-
-
 // Border Radius
 $h-border-radius: (
   br: ( border-radius: $g-radius ), // deprecated
@@ -199,52 +48,6 @@ $h-border-radius: (
   brad-pill: ( border-radius: 999px ),
 );
 
-
-// Background Color
-$h-background-color: (
-  names: ( bg-: background-color ),
-  values: (
-    body: $body-background,
-    'transparent': transparent,
-    'inherit': inherit,
-    
-    main: $main,
-    main75: rgba($main, .75),
-    main50: rgba($main, .50),
-    main25: rgba($main, .25),
-    main10: rgba($main, .10),
-    main05: rgba($main, .05),
-    main-dark: $main-dark,
-    main-light: $main-light,
-    
-    sub: $sub,
-    sub-dark: $sub-dark,
-    sub-light: $sub-light,
-    
-    gray: $gray,
-    gray-dark: $gray-dark,
-    gray-light: $gray-light,
-
-    'red': $red,
-    'blue': $blue,
-    'yellow': $yellow,
-    'green': $green,
-
-    'black': black,
-    black75: rgba(black, .75),
-    black50: rgba(black, .50),
-    black25: rgba(black, .25),
-    black10: rgba(black, .10),
-    black05: rgba(black, .05),
-
-    'white': white,
-    white75: rgba(white, .75),
-    white50: rgba(white, .50),
-    white25: rgba(white, .25),
-    white10: rgba(white, .10),
-    white05: rgba(white, .05),
-  )
-);
 
 
 // Background Image - name can't be duplicate with BG Color
@@ -320,42 +123,6 @@ $h-font-size: (
     body: 1rem,
     s: 0.875em,
     m: 1.125em,
-  ),
-);
-
-
-// Font Color
-$h-color: (
-  names: ( c-: color ),
-  values: (
-    body: $font-color,
-    passive: $font-passive,
-    link: $color-link,
-    inherit: inherit,
-    'transparent': transparent,
-
-    main: $main,
-    main75: rgba($main, .75),
-    main50: rgba($main, .5),
-    main-dark: $main-dark,
-    main-light: $main-light,
-
-    sub: $sub,
-    sub-dark: $sub-dark,
-    sub-light: $sub-light,
-
-    'red': $red,
-    'green': $green,
-    'blue': $blue,
-    'yellow': $yellow,
-
-    'black': black,
-    black75: rgba(black, .75),
-    black50: rgba(black, .5),
-
-    'white': white,
-    white75: rgba(white, .75),
-    white50: rgba(white, .5),
   ),
 );
 
@@ -589,42 +356,6 @@ $_h-display-misc: (
 // LAYOUT
 // -------
 
-$_h-max-height: (
-  names: ( maxh: max-height ),
-  values: (
-    '-none': none,
-    50: 50%,
-    100: 100%
-  )
-);
-
-$_h-min-height: (
-  names: ( minh: min-height ),
-  values: (
-    '-auto': auto,
-    50: 50%,
-    100: 100%
-  )
-);
-
-$_h-max-width: (
-  names: ( maxw: max-width ),
-  values: (
-    '-none': none,
-    50: 50%,
-    100: 100%
-  )
-);
-
-$_h-min-width: (
-  names: ( minw: min-width ),
-  values: (
-    '-auto': auto,
-    50: 50%,
-    100: 100%
-  )
-);
-
 
 // Position
 $_h-position: (
@@ -645,10 +376,10 @@ $_h-float: (
   float-none: ( float: none ),
   clear-both: ( clear: both ),
   clear-none: ( clear: none ),
-  clearfix: (
-    '::before': ( content: " ", display: table ),
-    '::after': ( content: " ", display: table, clear: both )
-  )
+  // clearfix: (
+  //   '::before': ( content: " ", display: table ),
+  //   '::after': ( content: " ", display: table, clear: both )
+  // )
 );
 
 
@@ -790,36 +521,23 @@ $_h-all: map-merge( $_h-all, _merge(
   $_h-cursor,
   $_h-display-misc,
 
-  $h-width,
-  $_h-min-width,
-  $_h-max-width,
-  $h-height,
-  $_h-min-height,
-  $_h-max-height,
   $_h-position,
-  $h-position,
   $h-z-index,
   $_h-float,
 
-  $h-padding,
-  $h-margin,
   $h-border,
-  $h-border-color,
   $h-border-radius,
 
-  $h-background-color,
   $h-background-image,
   $_h-background-position,
   $_h-background-misc,
   $h-shadow,
   $h-opacity,
-  $h-hover,
   $_h-theme-misc,
   $h-transition,
 
   $h-font-size,
   $h-letter-spacing,
-  $h-color,
   $h-font-family,
   $h-line-height,
   $_h-list-style,

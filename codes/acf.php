@@ -13,7 +13,6 @@ class MyACF {
   function format_sample_field( $value, $post_id, $field ) {
     return $value;
   }
-
 }
 
 
@@ -23,7 +22,6 @@ class MyACF {
 class MyBlock {
   function __construct() {
     add_action( 'acf/init', [$this, 'create_blocks'] );
-
     add_action( 'enqueue_block_editor_assets', [$this, 'enqueue_assets'] );
   }
 
@@ -45,7 +43,7 @@ class MyBlock {
    * Enqueue assets that modify Gutenberg while editing
    */
   function enqueue_assets() {
-    if ( !is_admin() ) { return false; }
+    if ( !is_admin() ) { return; }
     
     $css_dir = get_stylesheet_directory_uri() . '/assets/css';
     $js_dir = get_stylesheet_directory_uri() . '/assets/js';

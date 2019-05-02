@@ -1,6 +1,6 @@
 // EDJE Functional Sass
 // - Single-file version
-// - v2.5.0
+// - v3.0.0
 
 @charset "UTF-8";
 
@@ -127,6 +127,40 @@ $blog-font-size: 18px;
 // FUNCTIONAL SASS
 // ----------------
 
+// COLOR PALETTE
+// - Accessible by these shorthand styles: bg, bc, c
+// - You can add transparency by adding underscore and number between 1-99
+// - Example: bg-main, c-black_10
+$h-palette: (
+  main: $main,
+  main-dark: $main-dark,
+  main-light: $main-light,
+
+  sub: $sub,
+  sub-dark: $sub-dark,
+  sub-light: $sub-light,
+
+  link: $color-link,
+
+  'gray': $gray,
+  gray-light: $gray-light,
+  gray-dark: $gray-dark,
+
+  'red': $red,
+  'green': $green,
+  'blue': $blue,
+  'yellow': $yellow,
+
+  'black': black,
+  'white': white,
+
+  body: $font-color,
+  passive: $font-passive,
+  header: $header-color,
+
+  bodyBG: $body-background
+);
+
 
 // If the CSS doesn't fit in any variable, put it here
 $h-custom: (
@@ -134,6 +168,8 @@ $h-custom: (
   content-empty: ( content: '' ), 
 );
 
+
+@import "edje/utility-h";
 @import "edje/utility";
 @import "edje/functional-vars";
 @import "edje/output";

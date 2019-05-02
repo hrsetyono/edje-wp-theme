@@ -1,5 +1,5 @@
 @if $output-framework {
-  /* EDJE Framework 2.4 - hrsetyono.github.io/edje */
+  /* EDJE Framework 3.0 - hrsetyono.github.io/edje */
 }
 
 // ------------
@@ -555,5 +555,13 @@ ol {
 
 
 @if $output-framework {
+  // Root Colors
+  :root {
+    @each $name, $value in $h-palette {
+      --#{ $name }: #{ $value };
+      --#{ $name }RGB: #{ round(red($value)) }, #{ round(green($value)) }, #{ round(blue($value)) }; 
+    }
+  }
+
   /* ----- */
 }

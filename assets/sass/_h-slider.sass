@@ -2,18 +2,18 @@
 // https://github.com/hrsetyono/hSlider
 
 .hSlider
-  +h( relative w100 p0 )
+  +h( relative w100p p0 )
 
 .hSlider-container
-  +h( relative w100 h100 ov-hidden )
+  +h( relative w100p h100p ov-hidden )
 
 .hSlider-slides
-  +h( relative d-flex h100 transition select-none )
+  +h( relative d-flex h100p transition select-none )
   will-change: transform
   -webkit-tap-highlight-color: transparent
 
 .hSlider-slide
-  +h( d-flex ai-start flex1 w100 h100 )
+  +h( d-flex ai-start flex1 w100p h100p )
 
 .hSlider-slide > *
   +h( w100 )
@@ -86,7 +86,7 @@
 
 // Dots
 .hSlider-dots
-  +h( absolute d-flex jc-center ai-center top100 w100 )
+  +h( absolute d-flex jc-center ai-center top100 w100p )
   height: 2rem
 
   button

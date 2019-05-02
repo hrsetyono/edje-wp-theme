@@ -22,8 +22,15 @@ main
   +h( mb3 )
 
   > *
-    +h( mh-auto )
+    +h( mh-auto mb1_5 )
     max-width: $blog-width
+
+  > .woocommerce
+    +h( mh-auto )
+    max-width: $grid-max-width
+
+  a:not([class])
+    +h( td-u )
   
   .alignfull
     +h( maxw-none )

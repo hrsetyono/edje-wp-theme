@@ -2,10 +2,10 @@ body
   +h( d-flex fd-column ovx-hidden h100vh )
   
 .main-nav
-  +h( relative bg-white bb1-solid bc-gray z100 pv075 )
+  +h( relative bg-white bb1-solid bc-gray z100 pv0_75 )
 
   .has-fixed-nav &
-    +h( fixed w100 )
+    +h( fixed w100p )
 
 .nav-wrapper
   +h( d-flex ai-center )
@@ -48,7 +48,7 @@ body.dialog-is-active
   +h( relative )
 
   > a
-    +h( d-block pv075 ph1 c-body transition-none )
+    +h( d-block pv0_75 ph1 c-body transition-none )
 
     &:hover
       +h( o70 )
@@ -73,7 +73,7 @@ body.dialog-is-active
     +h( v-visible o100 )
 
   a
-    +h( d-block pv025 ph05 c-inherit brad )
+    +h( d-block pv0_25 ph0_5 c-inherit brad )
 
   a:hover
     +h( bg-gray )
@@ -82,9 +82,9 @@ body.dialog-is-active
   @media ($below-nav)
     +h( top0 left100 )
     transform: translateX(-10px)
-    
+
     a
-      +h( pv05 ph075 )
+      +h( pv05 ph0_75 )
 
 
 // NAV MOBILE TOGGLE
@@ -109,7 +109,7 @@ body.dialog-is-active
   +h( d-flex order2 ai-center relative )
 
   .button
-    +h( lh1 ml025 )
+    +h( lh1 ml0_25 )
 
   span
     line-height: 20px
@@ -139,11 +139,11 @@ body.dialog-is-active
 ///// MAIN FOOTER /////
 
 .main-footer
-  +h( mt-auto bg-black75 c-white )
+  +h( mt-auto bg-black_75 c-white )
 
 // widgets
 .footer-widgets
-  +h( pv25 c-white50 fs-s )
+  +h( pv25 c-white_50 fs-s )
 
   h-grid
     grid-row-gap: $grid-gap
@@ -153,15 +153,15 @@ body.dialog-is-active
     +column(4)
 
   .widgettitle
-    +h( mb025 c-white75 fs-h5 )
+    +h( mb0_25 c-white_75 fs-h5 )
 
   ul
-    +h( pl125 )
+    +h( pl1_25 )
 
 ///// FOOTER BAR
 
 .footer-bar
-  +h( pv05 bg-main10 c-white50 fs-s )
+  +h( pv05 bg-main_10 c-white_50 fs-s )
 
 .copyright,
 .partners
@@ -173,11 +173,11 @@ body.dialog-is-active
 
 .copyright
   a
-    +h( mr05 )
+    +h( mr0_5 )
 
   @media ($above-s)
     header
-      +h( mr15 )
+      +h( mr1_5 )
 
 // partners
 .partners
@@ -188,13 +188,13 @@ body.dialog-is-active
     width: 32px
 
   a
-    +h( d-block relative mh025 bg-main25 brad-circle transition )
+    +h( d-block relative mh0_25 bg-main_25 brad-circle transition )
     
   a:hover
-    +h( bg-main50 c-white )
+    +h( bg-main_50 c-white )
 
 .partner-caption
-  +h( v-hidden o0 absolute right0 pv05 ph1 bg-main )
+  +h( v-hidden o0 absolute right0 pv0_5 ph1 bg-main )
   +h( c-white ta-center brad transition )
   bottom: calc(100% + 8px)
   transform: translateY(20px)

@@ -49,7 +49,14 @@ function my_enqueue_scripts() {
  * @action after_setup_theme
  */
 function my_after_setup_theme() {
-  $GLOBALS['content_width'] = 650; // Blog width, affect Jetpack Tiled-Gallery size
+  add_theme_support( 'post-thumbnails' );
+  add_theme_support( 'menus' );
+  add_theme_support( 'custom-logo' );
+  add_theme_support( 'title_tag' );
+  add_theme_support( 'html5', ['search-form', 'comment-form', 'gallery', 'caption'] );
+  add_theme_support( 'automatic-feed-links' );
+  add_post_type_support( 'page', 'excerpt' ); // allow page to have excerpt
+  
   add_theme_support( 'widgets' );
 
   // Gutenberg support
@@ -66,7 +73,7 @@ function my_after_setup_theme() {
   //     'slug' => 'sub',
   //     'color' => '#607d8b',
   //   ],
-  // ];
+  // ]);
 
   // Create Nav assignment
   register_nav_menu( 'main-nav', 'Main Nav' );

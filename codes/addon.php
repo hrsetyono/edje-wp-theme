@@ -12,7 +12,7 @@ class MyShortcode {
    *   [example name="$name"] ... [/example]
    */
   function example( $atts, $content = null ) {
-    $atts = shortcode([
+    $atts = shortcode_atts([
       'name' => 'Default value'
     ], $atts);
 
@@ -26,23 +26,14 @@ class MyShortcode {
  */
 class MyFilter {
   function __construct() {
-    add_action( 'after_setup_theme', [$this, 'default_theme_support'] );
+    add_filter( 'sample_filter', [$this, 'sample_filter'] );
   }
 
-
   /**
-   * Default theme_support
-   * @action after_setup_theme
+   * @filter sample_filter
    */
-  function default_theme_support() {
-    add_theme_support( 'post-thumbnails' );
-    add_theme_support( 'menus' );
-    add_theme_support( 'custom-logo' );
-    add_theme_support( 'title_tag' );
-    add_theme_support( 'html5', ['search-form', 'comment-form', 'gallery', 'caption'] );
-    add_theme_support( 'automatic-feed-links' );
+  function sample_filter() {
 
-    add_post_type_support( 'page', 'excerpt' ); // allow page to have excerpt
   }
 }
 

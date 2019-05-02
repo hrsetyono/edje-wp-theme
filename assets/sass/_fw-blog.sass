@@ -12,7 +12,7 @@ article
   letter-spacing: 0.01 * $font-size
 
   h1, h2, h3, h4, h5, h6
-    +h( mb15 )
+    +h( mb1_5 )
     
   a
     +h( u )
@@ -24,14 +24,14 @@ article
   pre,
   table,
   figure
-    +h( mb15 )
+    +h( mb1_5 )
 
   hr
-    +h( d-block b0 bt1-solid bc-gray mv25 p0 )
+    +h( d-block b0 bt1-solid bc-gray mv2_5 p0 )
     height: 1px
 
   ul, ol
-    +h( pl15 )
+    +h( pl1_5 )
 
   ul ul,
   ol ol
@@ -111,7 +111,7 @@ blockquote
 
 ///// TABLE
 
-article table
+table
   +h( w100 )
   border-top: 4px solid $main
 
@@ -119,7 +119,7 @@ article table
     +h( bg-body )
 
   th, td
-    +h( pv025 ph05 b1-solid bc-gray-light ta-left )
+    +h( pv025 ph0_5 b1-solid bc-gray-light ta-left )
 
   th,
   tr:nth-child(odd) td
@@ -140,7 +140,7 @@ pre
   +h( p1 )
 
 code
-  +h( pv0 ph05 )
+  +h( pv0 ph0_5 )
 
 pre code
   +h( p0 b0 bg-transparent )
@@ -151,11 +151,11 @@ pre code
 .wp-caption,
 .wp-block-image,
 .wp-block-embed
-  +h( relative mb15 ta-center )
+  +h( relative mb1_5 ta-center )
   width: auto !important
 
 .wp-caption-text
-  +h( d-inline-block mt05 mb0 mh-auto bb1-solid bc-gray )
+  +h( d-inline-block mt0_5 mb0 mh-auto bb1-solid bc-gray )
   +h( fs-s )
 
 
@@ -202,7 +202,7 @@ ul.wp-block-gallery
   a
     +h( td-none c-inherit )
   figure
-    +h( mb0 ml075 )
+    +h( mb0 ml0_75 )
   
   //
   @media ($below-s)
@@ -222,7 +222,7 @@ ul.wp-block-gallery
   > a:hover h3
     +h( td-u )
   h3
-    +h( m0 mb05 )
+    +h( m0 mb0_5 )
   p
     +h( mb1 )
 
@@ -257,18 +257,18 @@ ul.wp-block-gallery
 
   &::before
     content: ""
-    +h( absolute z2 top0 left0 w100 h100 bg-black50 )
+    +h( absolute z2 top0 left0 w100p h100p bg-black_50 )
 
 
 ///// BLOG NAV
 
 .blog-nav
-  +h( d-flex fw-wrap mv2 pv05 )
+  +h( d-flex fw-wrap mv2 pv0_5 )
   border-bottom: 2px solid $font-color
   border-top: 1px solid $gray
 
   a
-    +h( d-inline-block pv025 ph05 )
+    +h( d-inline-block pv0_25 ph0_5 )
     +h( c-body tt-uppercase fs-s ls25 brad transition )
 
     &:hover
@@ -328,23 +328,23 @@ ul.wp-block-gallery
     +h( c-passive )
 
   .--featured &
-    +h( relative z10 c-white50 )
+    +h( relative z10 c-white_50 )
   
   .post-header &
-    +h( mt05 pv05 )
+    +h( mt0_5 pv0_5 )
     border-top: 1px solid $gray
     border-bottom: 2px solid $font-color
 
 
 .meta-author
-  +h( pr05)
+  +h( pr0_5)
 
 .meta-category
   +h( tt-uppercase )
   
 .meta-date,
 .meta-comments
-  +h( d-inline-block ph05 bl1-solid bc-gray )
+  +h( d-inline-block ph0_5 bl1-solid bc-gray )
   
   @media ($below-s)
     +h( ph05 )
@@ -360,7 +360,7 @@ ul.wp-block-gallery
     +h( d-flex pv2 mt1 bt1-solid bc-gray )
 
     h6
-      +h( mt0 mb05 )
+      +h( mt0 mb0_5 )
     //
     @media ($below-xs)
       +h( fd-column ta-center )
@@ -371,7 +371,7 @@ ul.wp-block-gallery
   // Author image
   .author-image
     img
-      +h( b1-solid bc-gray p025 brad )
+      +h( b1-solid bc-gray p0_25 brad )
       height: 4em
       width: 4em
     .banner-author &
@@ -383,15 +383,15 @@ ul.wp-block-gallery
   // Author text
   .author-text
     .post-author &
-      +h( flex1 pv0 ph075 )
+      +h( flex1 pv0 ph0_75 )
       p
         +h( mb0 fs-s )
 
     .banner-author &
-      +h( mb15 )
+      +h( mb1_5 )
     
     * + p
-      +h( mt05 )
+      +h( mt0_5 )
 
     a
       +h( c-inherit td-none )
@@ -417,7 +417,7 @@ ul.wp-block-gallery
 
 @if $output-related
   .post-footer
-    +h( pt1 bg-black05 )
+    +h( pt1 bg-black_05 )
 
   .post-footer-grid
     +grid(4, $width: $blog-width * 0.9)
@@ -455,7 +455,7 @@ ul.wp-block-gallery
 
     // single item
     div.jp-relatedposts-items .jp-relatedposts-post
-      +h( ov-hidden p1 mh075 w33 o100 bg-white )
+      +h( ov-hidden p1 mh0_75 w33p o100 bg-white )
       +h( shadow0 brad )
 
       // hide underline when hovering the whole box
@@ -515,7 +515,7 @@ ul.wp-block-gallery
         +h( pb0 )
 
         > .jp-relatedposts-post-a
-          +h( float-left mr075 mb0 )
+          +h( float-left mr0_75 mb0 )
           max-width: 150px
 
     // next prev
@@ -562,7 +562,7 @@ ul.wp-block-gallery
   .comments-list
     +h( mt2 )
     > li
-      +h( p125 mb15 bg-body b1-solid bc-black10 brad )
+      +h( p125 mb1_5 bg-body b1-solid bc-black_10 brad )
   
   // Single Comment
   .comment
@@ -573,7 +573,7 @@ ul.wp-block-gallery
       box-shadow: 0 0 0 1px $font-color
 
     .avatar
-      +h( mr075 brad-circle transition )
+      +h( mr0_75 brad-circle transition )
       width: 2.5em
       height: 2.5em
 
@@ -587,7 +587,7 @@ ul.wp-block-gallery
       +h( c-body )
 
     time
-      +h( ml05 fs-s c-passive )
+      +h( ml0_5 fs-s c-passive )
 
   .comment-text
     p
@@ -598,7 +598,7 @@ ul.wp-block-gallery
 
   // Child comments
   .replies-list
-    +h( mt15 pl125 )
+    +h( mt1_5 pl1_25 )
     border-left: 2px solid rgba($font-color, 0.1)
     
     .comment
@@ -608,13 +608,13 @@ ul.wp-block-gallery
       +h( d-none )
 
     > li + li
-      +h( mt15 )
+      +h( mt1_5 )
 
     header
-      +h( mb05 )
+      +h( mb0_5 )
 
     p
-      +h( mb05 )
+      +h( mb0_5 )
 
   // Reply link
   a.comment-reply-link
@@ -644,10 +644,10 @@ ul.wp-block-gallery
     +h( p1 bg-body shadow0 brad )
 
     .comments-list &
-      +h( mt125 shadow1 )
+      +h( mt1_25 shadow1 )
 
     label
-      +h( mb05 tt-uppercase fs-s ls50 )
+      +h( mb0_5 tt-uppercase fs-s ls50 )
 
     p
       +h( mb1 )
@@ -679,7 +679,7 @@ ul.wp-block-gallery
       height: 9em
 
       .comment-form:not(.active) &
-        +h( minh-auto pv05 b-none shadow-none )
+        +h( minh-auto pv0_5 b-none shadow-none )
         height: 2.6em
 
       .comment-form:not(.active):hover &
@@ -687,20 +687,20 @@ ul.wp-block-gallery
           color: $main
 
   .comment-form-author
-    +h( pr05 )
+    +h( pr0_5 )
 
   .comment-form-email
-    +h( pl05 )
+    +h( pl0_5 )
 
   .comment-form-author,
   .comment-form-email
-    +h( d-none float-left w50 )
+    +h( d-none float-left w50p )
 
     .active &
       +h( d-block )
     //
     @media ($below-s)
-      +h( d-block w100 p0 )
+      +h( d-block w100p p0 )
 
   .comment-form-url
     +h( d-none )
@@ -717,10 +717,10 @@ ul.wp-block-gallery
 ///// POST PASSWORD FORM
 @if $output-password-form
   .post-password-form
-    +h( pv2 ph4 bg-black05 brad )
+    +h( pv2 ph4 bg-black_05 brad )
 
     p:last-child
-      +h( d-flex bb1-solid bc-gray pb05 )
+      +h( d-flex bb1-solid bc-gray pb0_5 )
 
     label
       +h( flex1 c-passive )

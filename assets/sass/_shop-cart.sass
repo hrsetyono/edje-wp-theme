@@ -29,10 +29,8 @@
       +h( d-inline-block )
 
   .product-remove a
-    +h( d-inline-block bg-red )
+    +h( d-inline-block bg-red  w1 h1 )
     +h( c-white fs-m fw-header ta-center brad-circle )
-    width: 1em
-    height: 1em
     line-height: 0.9
 
     &:hover
@@ -76,7 +74,7 @@
 // cart button
 .nav-item-cart .button
   b
-    +h( d-inline-block ph05 bg-black25 fs-s brad )
+    +h( d-inline-block ph0_5 bg-black_25 fs-s brad )
     line-height: 1.4
 
 
@@ -84,7 +82,7 @@
   background-color: $wc-panel
   
   h3
-    +h( pt05 pb075 fs-s tt-uppercase ta-center )
+    +h( pt0_5 pb0_75 fs-s tt-uppercase ta-center )
     letter-spacing: 2px
 
   .blockOverlay
@@ -103,13 +101,12 @@
 
 
 .woocommerce-mini-cart-item
-  +h( clearfix d-block relative p05 fs-s )
+  +h( clearfix d-block relative p0_5 fs-s )
   border-bottom: 1px solid $wc-panel-dark
   line-height: 1.5
 
   img
-    +h( float-left mr05 )
-    width: 22%
+    +h( float-left mr0_5 w22p )
   
   figure
     +h( relative )
@@ -123,7 +120,7 @@
       +h( o70 )
 
   .variation
-    +h( mb05 )
+    +h( mb0_5 )
 
   dt, dd
     +h( d-inline-block )
@@ -131,7 +128,7 @@
 
 // Cart Total
 .woocommerce-mini-cart__total
-  +h( flex1 pv1 ph05 )
+  +h( flex1 pv1 ph0_5 )
   line-height: 1.25
   
   .woocommerce-Price-amount
@@ -141,7 +138,7 @@
     +h( fs-s )
 
 .woocommerce-mini-cart__buttons
-  +h( flex1 as-center ta-right ph05 )
+  +h( flex1 as-center ta-right ph0_5 )
  
   // Hide VIEW CART button because we want to go directly to Checkout
   a:first-child
@@ -169,4 +166,4 @@ a.remove_from_cart_button
 
 // Empty Cart
 .woocommerce-mini-cart__empty-message
-  +h( pt15 ph15 pb4 w100 ta-center fs-m )
+  +h( pt1_5 ph1_5 pb4 w100p ta-center fs-m )

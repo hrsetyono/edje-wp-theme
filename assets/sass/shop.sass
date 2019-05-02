@@ -3,7 +3,6 @@
 $wc-panel: $gray-light
 $wc-panel-dark: darken($wc-panel, 5%)
 
-@import "shop-myaccount"
 @import "shop-cart"
 
 ///// GENERAL
@@ -37,41 +36,39 @@ $wc-panel-dark: darken($wc-panel, 5%)
 .woocommerce-info,
 .woocommerce-message,
 .woocommerce-error
-  +h( d-flex fd-column-reverse ai-end events-none )
-  +h( fixed z100 p125 bg-gray-light shadow2 brad backface-hidden )
+  +h( d-flex fd-column-reverse ai-end )
+  +h( fixed z100 p1_25 bg-gray-light shadow2 brad backface-hidden )
   bottom: 1em
   right: 1em
 
   animation: 1s flipInX both
 
   .button
-    +h( events-all mt05 pv025 )
+    +h( mt0_5 pv0_25 )
 
-  &::before
-    content: "×"
 
 .woocommerce-error
   +h( bg-red list-none c-white )
 
-.woocommerce-message-close,
-.woocommerce-info::before,
-.woocommerce-message::before,
-.woocommerce-error::before
-  +h( cursor-pointer absolute top0 left0 )
-  +h( ta-center lh1 fs-h5 fw-header  )
+
+.h-close-toast
+  +h( cursor-pointer absolute top0 left0  bg-red )
+  +h( ta-center c-white lh1 fs-h5 fw-header  brad-circle shadow1 )
   width: 24px
   height: 24px
+  transform: translateX( -50% ) translateY( -50% )
 
   &:hover
-    +h( bg-main10 )
+    +h( o70 )
+
 
 // store-wide notice
 .woocommerce-store-notice
-  +h( fixed bottom0 left0 right0 bg-main pv05 ph1 )
+  +h( fixed bottom0 left0 right0 bg-main pv0_5 ph1 )
   +h( ta-center c-white shadow2 )
   
   a
-    +h( d-inline-block float-right bg-main-dark pv05 ph2 )
+    +h( d-inline-block float-right bg-main-dark pv0_5 ph2 )
     +h( c-white td-u )
     margin: -0.5em -1em
 
@@ -120,7 +117,7 @@ $wc-panel-dark: darken($wc-panel, 5%)
     +tile(2, $gap: 10px)
 
 .product-tease
-  +h( relative mb15 ta-center )
+  +h( relative mb1_5 ta-center )
 
   a:hover
     figure
@@ -142,7 +139,7 @@ $wc-panel-dark: darken($wc-panel, 5%)
 
   // Tease button
   .button
-    +h( mt05 fs-s va-middle )
+    +h( mt0_5 fs-s va-middle )
 
   .button.added
     +h( relative bg-green c-transparent bc-green )
@@ -193,7 +190,7 @@ $wc-panel-dark: darken($wc-panel, 5%)
   +h( mb2 )
 
   .sharedaddy  // Jetpack Sharing
-    +h( pv05 ph0 m0 mt075 bb1-solid bc-gray )
+    +h( pv05 ph0 m0 mt0_75 bb1-solid bc-gray )
 
   .sd-block
     +h( fd-row ai-center )
@@ -208,7 +205,7 @@ $wc-panel-dark: darken($wc-panel, 5%)
     +h( d-iblock mb0 mr1 )
 
     @media ($below-s)
-      +h( d-block mb05 )
+      +h( d-block mb0_5 )
 
 
 
@@ -217,7 +214,7 @@ $wc-panel-dark: darken($wc-panel, 5%)
   +h( relative )
   
   .flex-viewport
-    +h( mb025 b2-solid bc-black05 brad )
+    +h( mb0_25 b2-solid bc-black_05 brad )
 
   @media ($below-s)
     +h( mb2 )
@@ -238,7 +235,7 @@ $wc-panel-dark: darken($wc-panel, 5%)
 
   &::before
     content: "\f504"
-    +h( d-inline-block bg-white p025 )
+    +h( d-inline-block bg-white p0_25 )
     +h( lh1 c-body brad shadow0 )
     font-family: "dashicons"
     font-size: 1.5rem
@@ -258,7 +255,7 @@ $wc-panel-dark: darken($wc-panel, 5%)
   margin: 1em -0.25em 0
 
   li
-    +h( cursor-pointer w25 ph025 )
+    +h( cursor-pointer w25p ph0_25 )
 
   li:hover img
     +h( o100 )
@@ -276,10 +273,10 @@ ul.wc-tabs
   +h(d-flex fw-wrap pl0 list-none )
 
   a
-    +h( d-inline-block pv025 ph05 td-none )
+    +h( d-inline-block pv0_25 ph0_5 td-none )
 
   .active a
-    +h( bg-main25 )
+    +h( bg-main_25 )
 
 .wc-tab
   > h2:first-child
@@ -294,12 +291,12 @@ ul.wc-tabs
     +h( d-flex fw-wrap )
 
   .price
-    +h( d-block bg-main10 p075 b1-solid bc-main-light )
+    +h( d-block bg-main_10 p0_75 b1-solid bc-main-light )
     +h( ta-center brad )
     line-height: 1.15
 
   > .price
-    +h( mb15 )
+    +h( mb1_5 )
 
   .quantity
     +h( flex1 mr1 )
@@ -315,7 +312,7 @@ ul.wc-tabs
 
   //
   @media ($below-s)
-    +h( mb15 )
+    +h( mb1_5 )
 
 ///// PRODUCT RATING
 
@@ -326,10 +323,10 @@ ul.wc-tabs
     +h( list-none pl0 )
 
 .comment-review
-  +h( mb1 b1-solid bc-black05 brad )
+  +h( mb1 b1-solid bc-black_05 brad )
 
 .review-header
-  +h( d-flex ai-center bg-black05 p05 )
+  +h( d-flex ai-center bg-black_05 p0_5 )
   line-height: 1.25
 
   .meta
@@ -342,7 +339,7 @@ ul.wc-tabs
   +h( p05 )
 
   p
-    +h( mb05 )
+    +h( mb0_5 )
 
 
 ///// STAR RATING
@@ -387,7 +384,7 @@ ul.wc-tabs
 
 // PRODUCT VARIATION
 .single-variation-wrap
-  +h( mb15 )
+  +h( mb1_5 )
 
 // Div that appears after selecting variation
 .single_variation
@@ -412,11 +409,11 @@ ul.wc-tabs
   +h( d-flex )
 
 table.variations
-  +h( mt15 w100 )
+  +h( mt1_5 w100p )
 
   label,
   select
-    +h( mb05 )
+    +h( mb0_5 )
 
 
 ///// RELATED PRODUCT
