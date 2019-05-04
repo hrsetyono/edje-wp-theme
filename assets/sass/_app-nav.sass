@@ -48,7 +48,7 @@ body.dialog-is-active
   +h( relative )
 
   > a
-    +h( d-block pv0_75 ph1 c-body transition-none )
+    +h( d-block pv0_75 ph1 c-text transition-none )
 
     &:hover
       +h( o70 )
@@ -143,7 +143,7 @@ body.dialog-is-active
 
 // widgets
 .footer-widgets
-  +h( pv25 c-white_50 fs-s )
+  +h( pv2_5 c-white_50 fs-s )
 
   h-grid
     grid-row-gap: $grid-gap
@@ -161,7 +161,7 @@ body.dialog-is-active
 ///// FOOTER BAR
 
 .footer-bar
-  +h( pv05 bg-main_10 c-white_50 fs-s )
+  +h( pv0_5 bg-main_10 c-white_50 fs-s )
 
 .copyright,
 .partners
@@ -184,7 +184,7 @@ body.dialog-is-active
   +h( jc-end )
 
   img
-    +h( p025 )
+    +h( p0_25 )
     width: 32px
 
   a
@@ -201,9 +201,9 @@ body.dialog-is-active
 
   &::after
     content: ""
-    +h( absolute top100 )
+    +h( absolute top100p )
     right: 10px
-    +triangle(12px, bottom, $main, 5px)
+    +triangle( s, $main, 12px, 5px)
 
   a:hover &
     +h( v-visible o100 )

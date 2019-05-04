@@ -3,8 +3,8 @@
     $prop-key: getPropKey( $b );
     $value-raw: str-slice( $b, str-length( $prop-key ) + 1 );
 
-    $prop: '';
-    $value: '';
+    $prop: false;
+    $value: false;
 
     // If color
     @if map-has-key( $h-props-color, $prop-key ) {
@@ -16,26 +16,34 @@
       $prop: map-get( $h-props-measurement, $prop-key );
       $value: getMeasurementValue( $value-raw );
     }
-    // Other
+    // Else, it's static prop
     @else {
       $prop: map-get( $_h-all, $b );
-    }
 
-    // print the style
-
-    // if non-color, non-measurement bit (Other)
-    @if type-of( $prop ) == map {
-      @each $p, $v in $prop {
-        #{ $p } : $v;
+      @if $prop == null {
+        @warn "The bit '#{ $b }' doesn't exist";
       }
     }
-    // if multiple prop
+
+    // If static prop
+    @if type-of( $prop ) == map {
+      @each $p, $v in $prop {
+        // if first char is %, extend it
+        @if type-of( $v ) == string and str-index( $v, '%') == 1 {
+          @extend #{ $v };
+        }
+        @else {
+          #{ $p } : $v;
+        }
+      }
+    }
+    // if dynamic multiple prop
     @else if type-of( $prop ) == list {
       @each $p in $prop {
         #{ $p } : $value;
       }
     }
-    // if single prop
+    // if dynamic single prop
     @else {
       #{ $prop } : $value;
     }

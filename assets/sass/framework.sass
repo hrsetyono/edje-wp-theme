@@ -6,6 +6,7 @@ $include-grid: true;
 $include-tile: true;
 $include-typography: true;
 $include-visibility: true;
+$include-colors: true;
 
 $output-framework: true // this will output the Normalizer, Grid, etc
 @import "settings"
@@ -22,8 +23,8 @@ $output-framework: true // this will output the Normalizer, Grid, etc
 [type="submit"],
 [type="reset"]
   +h( cursor-pointer ov-hidden d-inline-block )
-  +h( bg-main b1-solid bb2-solid bc-black_10 pv0_25 ph0_75 )
-  +h( fw600 lh-normal va-top c-white td-none  brad transition-none )
+  +h( bg-main b1-solid bb2-solid bc-black_25 pv0_5 ph1_5 )
+  +h( fw600 fs-m  lh-normal va-top c-white td-none  brad-pill transition-none )
   outline: none
   
   &:hover
@@ -41,14 +42,17 @@ $output-framework: true // this will output the Normalizer, Grid, etc
 // passive button
 .button.--passive,
 .button.--loading
-  +h( bg-gray-light c-body )
+  +h( bg-gray-light c-text )
 
   &:hover
-    +h( c-body )
+    +h( c-text )
 
 
-.button.--line
-  +h( bg-transparent c-main )
+.button.--outline
+  +h( bg-transparent c-main bc-inherit )
+
+  &:hover
+    +h( bg-main_10 )
 
 // loading button
 .button.--loading
@@ -98,6 +102,7 @@ select
   +h( brad-circle )
 
 
+
 ///// WORDPRESS General
 
 // Error page
@@ -112,12 +117,12 @@ select
     +h( mb1 tt-uppercase lh1 c-main )
     
   span
-    +h( d-block c-body fs-h2 )
+    +h( d-block c-text fs-h2 )
 
 
 // Contact Form 7
 form.wpcf7-form
-  +h( p_075 mh-auto bg-white shadow1 )
+  +h( p0_75 mh-auto bg-white shadow1 )
   max-width: 570px
   
   br
@@ -140,3 +145,6 @@ div.wpcf7
   .wpcf7-mail-sent-ok,
   .wpcf7-mail-sent-ng
     +h( bg-green_50 bc-green c-green )
+
+
+@import "fw-gutenberg"

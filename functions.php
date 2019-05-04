@@ -37,6 +37,10 @@ function my_enqueue_scripts() {
   // wp_deregister_script( 'jquery' );
   // wp_enqueue_script( 'cash', $js_dir . '-vendor/cash.min.js', [], false, true );
 
+  // Disable Gutenberg CSS
+  wp_dequeue_style( 'wp-block-library' );
+  wp_dequeue_style( 'wp-block-library-theme' );
+
   // JavaScript
   wp_enqueue_script( 'h-lightbox', $js_dir . '-vendor/h-lightbox.min.js', [], false, true );
   wp_enqueue_script( 'h-slider', $js_dir . '-vendor/h-slider.min.js', [], false, true );
@@ -62,18 +66,21 @@ function my_after_setup_theme() {
   // Gutenberg support
   add_theme_support( 'align-wide' );
   add_theme_support( 'responsive-embeds' );
-  // add_theme_support( 'editor-color-palette', [
-  //   [
-  //     'name' => 'Main',
-  //     'slug' => 'main',
-  //     'color' => '#2196f3',
-  //   ],
-  //   [
-  //     'name' => 'Sub',
-  //     'slug' => 'sub',
-  //     'color' => '#607d8b',
-  //   ],
-  // ]);
+  
+  // If you change this, add the slug in variable $my-palette in "_fw-gutenberg.sass" 
+  add_theme_support( 'editor-color-palette', [
+    [ 'name' => 'Main', 'slug' => 'main', 'color' => 'var(--main)'],
+    [ 'name' => 'Sub', 'slug' => 'sub', 'color' => 'var(--sub)' ],
+
+    [ 'name' => 'Red', 'slug' => 'red', 'color' => 'var(--red)' ],
+    [ 'name' => 'Green', 'slug' => 'green', 'color' => 'var(--green)' ],
+    [ 'name' => 'Blue', 'slug' => 'blue', 'color' => 'var(--blue)' ],
+    [ 'name' => 'Yellow', 'slug' => 'yellow', 'color' => 'var(--yellow)' ],
+
+    [ 'name' => 'Black', 'slug' => 'black', 'color' => 'var(--black)' ],
+    [ 'name' => 'White', 'slug' => 'white', 'color' => 'var(--white)' ],
+    [ 'name' => 'Gray', 'slug' => 'gray', 'color' => 'var(--gray)' ],
+  ]);
 
   // Create Nav assignment
   register_nav_menu( 'main-nav', 'Main Nav' );

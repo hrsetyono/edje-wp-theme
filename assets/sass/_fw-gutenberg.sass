@@ -1,0 +1,452 @@
+// GENERAL
+
+article
+  letter-spacing: 0.01 * $font-size
+
+  h1, h2, h3, h4, h5, h6
+    +h( mb1_5 )
+    
+  a
+    +h( u )
+
+  p,
+  ul,
+  ol,
+  blockquote,
+  pre,
+  table,
+  figure
+    +h( mb1_5 )
+
+  ul, ol
+    +h( pl1 )
+
+  ul ul,
+  ol ol,
+  ul ol,
+  ol ul
+    +h( mb0 )
+
+  img
+    +h( brad )
+
+  h1, h2, h3, h4, h5, h6
+    +h( clear-both )
+
+
+///// CUSTOM PALETTE
+
+$my-palette: ( 'main', 'sub', 'red', 'green', 'blue', 'yellow', 'black', 'white', 'gray' )
+@each $name in $my-palette
+  .has-#{ $name }-background-color
+    +h( bg-#{ $name } )
+  
+  .has-#{ $name }-color
+    color: var(--#{ $name }) !important
+
+
+// PAGE CONTENT
+// Allow full-width Custom block to coexist with Core block
+.page-content
+  +h( pv2 )
+
+  > *
+    +h( mh-auto mb1_5 )
+    max-width: $blog-width
+
+  // all woocommerce page become alignwide
+  > .woocommerce
+    +h( mh-auto )
+    max-width: $grid-max-width
+
+  a:not([class])
+    +h( td-u )
+
+// Alignment
+
+.alignright
+  +h( ta-right )
+
+.alignleft
+  +h( ta-left )
+
+.aligncenter
+  +h( ta-center )
+
+.alignwide
+  max-width: $grid-max-width
+
+.alignfull
+  +h( maxw-none )
+
+///// TEXT
+
+.has-small-font-size
+  +h( fs-s )
+
+.has-medium-font-size
+  +h( fs-m )
+
+.has-large-font-size
+  font-size: 2.25rem
+
+.has-huge-font-size
+  font-size: 3rem
+
+
+///// QUOTE
+
+.wp-block-quote
+  +h( p1 bg-gray-light )
+  border-left: 4px solid $font-color
+
+  cite
+    +h( d-block fs-s c-passive )
+
+  &[style="text-align:right"],
+  &[style="text-align: right"]
+    border-left: none
+    border-right: 4px solid $font-color
+
+  &[style="text-align:center"],
+  &[style="text-align: center"]
+    border-left: none
+    border-top: 4px solid $font-color
+
+  &.is-style-large
+    +h( fs-h5 )
+    border-left: none
+    border-top: 4px solid rgba(black, .2)
+    border-bottom: 4px solid rgba(black, .2)
+
+
+///// PULLQUOTE
+
+
+.wp-block-pullquote
+  +h( pv0 )
+
+  blockquote
+    +h( d-flex fd-column ta-left )
+
+    > *
+      +h( order2 )
+
+  p, li
+    +h( ph1 mb0 fs-body h0 ov-hidden  transition )
+
+  cite
+    +h( d-flex order1 cursor-pointer relative pv0_5 ph1 bg-black_05 )
+    +h( fw700 fs-m  transition brad )
+    font-style: normal
+
+    &::before
+      content: "+"
+      +h( d-iblock mr1  ff-monospace )
+
+    &:hover
+      +h( bg-black_10 )
+
+  &.--expanded
+    cite
+      +h( mb1 )
+
+    cite::before
+      content: "-"
+
+    p, li
+      +h( mb1 h-auto )
+
+.wp-block-pullquote.is-style-solid-color
+  +h( brad )
+
+  cite
+    +h( bg-black_25 )
+
+  cite:hover
+    +h( bg-transparent )
+
+///// IMAGE
+
+%figcaption
+  +h( d-iblock p0_5 mh-auto bb1-solid bc-gray )
+  +h( fs-s )
+
+.wp-block-image
+  figcaption
+    @extend %figcaption
+  
+///// COVER
+
+.wp-block-cover
+  +h( d-flex ai-center jc-center  bgs-cover bgp-cc bg-black )
+  +h( mv3 minh400px )
+
+.wp-block-cover__inner-container
+  +h( relative z2 c-white )
+  width: $blog-width
+
+  p
+    +h( mb0 )
+
+.has-background-dim
+  +h( relative )
+
+  &::before
+    content: ""
+    +h( absolute-fill z1 o50 bg-inherit )
+
+.has-background-dim-10::before
+  +h( o10 )
+.has-background-dim-20::before
+  +h( o20 )
+.has-background-dim-30::before
+  +h( o30 )
+.has-background-dim-40::before
+  +h( o40 )
+.has-background-dim-60::before
+  +h( o60 )
+.has-background-dim-70::before
+  +h( o70 )
+.has-background-dim-80::before
+  +h( o80 )
+.has-background-dim-90::before
+  +h( o90 )
+.has-background-dim-100::before
+  +h( o100 )
+
+
+///// GALLERY
+
+.wp-block-gallery
+  +h( d-flex fw-wrap list-none pl0 )
+  max-width: calc(#{ $blog-width } + 1rem)
+
+  &.alignwide
+    max-width: calc(#{ $grid-max-width } + 1rem)
+
+  &.alignfull
+    max-width: 100%
+
+  &.is-cropped img
+    +h( flex1 h100p w100p )
+    object-fit: cover
+
+  figure
+    +h( relative ov-hidden d-flex ai-end jc-start h100p mb0  brad )
+
+  img
+    +h( transition )
+
+  a
+    +h( h100p )
+
+  a:hover img
+    +h( o80 backface-hidden )
+    transform: scale(1.1)
+
+  figcaption
+    +h( absolute bottom0 w100p p0_5  fs-s c-white ta-center )
+    background-image: linear-gradient( 0deg,rgba(0,0,0,.7),rgba(0,0,0,.5) 50%,transparent)
+
+  
+.blocks-gallery-item
+  +h( ph0_5 pb1 )
+  flex-grow: 1
+
+  @media ($above-s)
+    .columns-2 &
+      width: 50%
+    .columns-3 &
+      width: 33.333%
+    .columns-4 &
+      width: 25%
+    .columns- &
+      width: 20%
+
+  @media ($below-s)
+    width: 33.33%
+
+    .columns-2 &
+      width: 50%
+  
+  @media ($below-xs)
+    width: 50%
+
+
+///// AUDIO
+
+.wp-block-audio
+  +h( ta-center )
+
+  audio
+    +h( w100p )
+
+  figcaption
+    @extend %figcaption
+
+///// FILE
+
+.wp-block-file
+  +h( p1_25 bg-gray-light b1-solid bc-black_10  brad )
+
+.wp-block-file__button
+  @extend .button
+  +h( ml1)
+
+
+///// VIDEO
+
+.wp-block-video
+  +h( ta-center )
+
+  figcaption
+    @extend %figcaption
+
+
+///// SPACER
+
+.wp-block-spacer
+  +h( mb0 )
+
+
+///// SEPARATOR
+
+.wp-block-separator
+  +h( d-block bt2-solid bc-gray mv2_5 mh-auto p0  lh1 )
+  width: 120px
+
+  &.is-style-wide
+    width: $blog-width
+
+  &.is-style-dots
+    +h( b0 h-auto w-auto ta-center )
+
+    &::before
+      content: "\00b7 \00b7 \00b7"
+      +h( pl2 ff-monospace c-text fs-m )
+      letter-spacing: 2rem
+
+
+///// TABLE
+
+.wp-block-table
+  +h( w100p mv2_5 )
+  --table: var(--gray)
+  --tableBg: var(--gray-light)
+
+  // become thead
+  tr:first-child 
+    +h( fw700 )
+    border-top: 4px solid var(--table)
+    background-color: var(--tableBg)
+
+    td
+      background-color: var(--tableBg)
+
+  td
+    +h( pv0_5 ph1 b1-solid bc-black_10 )
+
+  td:first-child
+    border-left: 0
+
+  td:last-child
+    border-right: 0
+
+  &.is-style-stripes
+    tr:nth-child(odd)
+      background-color: var(--tableBg)
+
+  &.has-fixed-layout
+    +h( w100p )
+    table-layout: fixed
+
+  // default color palette 
+  &.has-subtle-pale-green-background-color
+    --table: var(--green)
+    --tableBg: rgba(var(--greenRGB), .1)
+
+  &.has-subtle-pale-blue-background-color
+    --table: var(--blue)
+    --tableBg: rgba(var(--blueRGB), .1)
+
+  &.has-subtle-pale-pink-background-color
+    --table: var(--red)
+    --tableBg: rgba(var(--redRGB), .1)
+
+
+///// BUTTON
+
+.wp-block-button
+
+.wp-block-button__link
+  @extend .button
+  
+.is-style-squared
+  a
+    +h( brad )
+
+.is-style-outline
+  a
+    @extend .--outline
+
+  [class='has-background']
+    +h( bg-transparent )
+
+
+///// COLUMNS
+
+.wp-block-columns
+  +h( d-grid )
+  grid-row-gap: $grid-gap
+  grid-column-gap: $grid-gap
+
+.wp-block-column
+  grid-column: span 1
+
+@media ($above-s)
+  .has-2-columns
+    grid-template-columns: repeat(2, 1fr)
+  .has-3-columns
+    grid-template-columns: repeat(3, 1fr)
+  .has-4-columns
+    grid-template-columns: repeat(4, 1fr)
+  .has-5-columns
+    grid-template-columns: repeat(5, 1fr)
+  .has-6-columns
+    grid-template-columns: repeat(6, 1fr)
+
+  .is-style-8-4
+    grid-template-columns: 8fr 4fr
+  .is-style-4-8
+    grid-template-columns: 4fr 8fr
+
+@media ($below-s)
+  .wp-block-columns
+    grid-template-columns: repeat(1, 1fr)
+
+
+///// MEDIA TEXT
+
+.wp-block-media-text
+  +h( d-grid ai-center )
+  grid-row-gap: $grid-gap
+  grid-column-gap: $grid-gap
+  grid-template-columns: repeat(2, 1fr)
+
+  //
+  @media ($below-s)
+    grid-template-columns: repeat(1, 1fr)
+
+.wp-block-media-text__media,
+.wp-block-media-text__content
+  grid-column: span 1
+
+.wp-block-media-text__media
+  +h( mb0 )
+
+  .has-media-on-the-right &
+    +h( order2 )
+
+.wp-block-media-text__content
+  //

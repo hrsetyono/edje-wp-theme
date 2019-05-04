@@ -14,23 +14,3 @@ main
 
   #wpadminbar
     +h( d-none )
-
-
-// PAGE CONTENT
-// Allow full-width Custom block to coexist with Core block
-.page-content
-  +h( mb3 )
-
-  > *
-    +h( mh-auto mb1_5 )
-    max-width: $blog-width
-
-  > .woocommerce
-    +h( mh-auto )
-    max-width: $grid-max-width
-
-  a:not([class])
-    +h( td-u )
-  
-  .alignfull
-    +h( maxw-none )

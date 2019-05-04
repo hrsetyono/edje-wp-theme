@@ -554,14 +554,21 @@ ol {
   } // include-visibility
 
 
-@if $output-framework {
-  // Root Colors
+// ------------
+// ROOT COLORS
+// ------------
+
+@if $output-framework and $include-colors {
   :root {
     @each $name, $value in $h-palette {
       --#{ $name }: #{ $value };
       --#{ $name }RGB: #{ round(red($value)) }, #{ round(green($value)) }, #{ round(blue($value)) }; 
     }
   }
+}
 
+// Separator
+
+@if $output-framework {
   /* ----- */
 }

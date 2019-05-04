@@ -6,129 +6,6 @@ $output-comment: true
 $output-password-form: false
 $output-infinite-scroll: false
 
-///// GENERAL
-
-article
-  letter-spacing: 0.01 * $font-size
-
-  h1, h2, h3, h4, h5, h6
-    +h( mb1_5 )
-    
-  a
-    +h( u )
-
-  p,
-  ul,
-  ol,
-  blockquote,
-  pre,
-  table,
-  figure
-    +h( mb1_5 )
-
-  hr
-    +h( d-block b0 bt1-solid bc-gray mv2_5 p0 )
-    height: 1px
-
-  ul, ol
-    +h( pl1_5 )
-
-  ul ul,
-  ol ol
-    +h( mb0 )
-
-  img
-    +h( brad )
-
-  h1, h2, h3, h4, h5, h6
-    +h( clear-both )
-
-
-// EDITOR ALIGN
-
-.alignleft
-  +h( float-left mr1 )
-
-.alignright
-  +h( float-right ml1 )
-
-.alignleft,
-.alignright
-  +h( mb1 maxw50 )
-
-  @media ($below-s)
-    +h( float-none maxw-none )
-
-.aligncenter
-  +h( d-block mh0 mv-auto clear-both )
-
-.alignfull,
-.alignwide
-  @media ($above-s)
-    margin-right: -5em
-    margin-left: -5em
-
-
-///// BLOCKQUOTE
-
-blockquote
-  +h( relative p1 bg-gray-light )
-  border-left: 4px solid $main
-
-  &::after
-    +h( content-empty absolute bgs-cover bgp-cc )
-    top: -1rem
-    right: -1rem
-    width: 4rem
-    height: 4rem
-    background-image: svg('<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z" fill="#{ rgba($main, .3) }"/><path d="M0 0h24v24H0z" fill="none"/></svg>')
-  
-  p
-    +h( mb0 )
-
-  * + *
-    +h( mt1 mb0 )
-
-  cite
-    +h( d-block fs-s )
-
-  &.alignleft,
-  &.align-right
-    +h( ml0 )
-
-.wp-block-pullquote
-  +h( p0 bg-gray-light ta-center )
-
-  blockquote
-    +h( pv1 b2-solid br0 bl0 bc-main )
-
-  p
-    +h( fs-body )
-
-  cite
-    +h( ta-center )
-
-
-///// TABLE
-
-table
-  +h( w100 )
-  border-top: 4px solid $main
-
-  tr
-    +h( bg-body )
-
-  th, td
-    +h( pv025 ph0_5 b1-solid bc-gray-light ta-left )
-
-  th,
-  tr:nth-child(odd) td
-    +h( bg-gray-light )
-
-  p, ul, ol
-    +h( mb0 )
-
-
 ///// PREFORMATTED & CODE
 
 pre,
@@ -146,29 +23,10 @@ pre code
   +h( p0 b0 bg-transparent )
 
 
-///// CAPTION
-
-.wp-caption,
-.wp-block-image,
-.wp-block-embed
-  +h( relative mb1_5 ta-center )
-  width: auto !important
-
-.wp-caption-text
-  +h( d-inline-block mt0_5 mb0 mh-auto bb1-solid bc-gray )
-  +h( fs-s )
-
-
 ///// EMBED
 
 .wp-embedded-content
   +h( maxw100 )
-
-
-///// MEDIA & GALLERY
-
-ul.wp-block-gallery
-  +h( pl0 )
 
 
 ///// PAGINATION
@@ -269,7 +127,7 @@ ul.wp-block-gallery
 
   a
     +h( d-inline-block pv0_25 ph0_5 )
-    +h( c-body tt-uppercase fs-s ls25 brad transition )
+    +h( c-text tt-uppercase fs-s ls25 brad transition )
 
     &:hover
       +h( c-main )
@@ -437,8 +295,17 @@ ul.wp-block-gallery
 
     // list
     div.jp-relatedposts-items
-      +h( d-flex clearfix )
+      +h( d-flex )
       margin: 0 -125px
+
+      &::before,
+      &::after
+        content: ""
+        display: table
+      
+      &::after
+        clear: both
+
       //
       @media ($below-related-s)
         margin: 0 -5px
@@ -566,7 +433,7 @@ ul.wp-block-gallery
   
   // Single Comment
   .comment
-    +h( relative c-body )
+    +h( relative c-text )
 
     &.bypostauthor .comment-avatar
       padding: 1px
@@ -584,7 +451,7 @@ ul.wp-block-gallery
       +h( d-inline-block lh1 va-middle )
 
     b
-      +h( c-body )
+      +h( c-text )
 
     time
       +h( ml0_5 fs-s c-passive )
@@ -727,7 +594,7 @@ ul.wp-block-gallery
 
     input[type="password"]
       +h( bg-transparent b-none mt1 p0 )
-      +h( fs-h3 c-body ls50 )
+      +h( fs-h3 c-text ls50 )
       
       &:hover,
       &:focus

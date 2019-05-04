@@ -60,6 +60,8 @@ $font-family : -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ub
 
 $font-family-header : "Apple Garamond", "Baskerville", "Times New Roman", "Droid Serif", "Times","Source Serif Pro", serif;
 
+$font-family-monospace: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+
 // Put file in /assets/fonts directory
 $font-faces: (
   // "Open Sans": (
@@ -98,7 +100,7 @@ $ol-child  : lower-alpha;
 // Grid
 $grid-columns : 12;
 $grid-gap     : 20px;
-$grid-rim     : 10px;
+$grid-rim     : 16px;
 $grid-max-width : $size-l;
 
 // Tile
@@ -154,11 +156,11 @@ $h-palette: (
   'black': black,
   'white': white,
 
-  body: $font-color,
+  text: $font-color,
   passive: $font-passive,
   header: $header-color,
 
-  bodyBG: $body-background
+  body-bg: $body-background
 );
 
 
