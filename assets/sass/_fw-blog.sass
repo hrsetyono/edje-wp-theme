@@ -6,28 +6,6 @@ $output-comment: true
 $output-password-form: false
 $output-infinite-scroll: false
 
-///// PREFORMATTED & CODE
-
-pre,
-code
-  +h( b1-solid bc-gray bg-gray-light brad )
-  font-size: 15px
-
-pre
-  +h( p1 )
-
-code
-  +h( pv0 ph0_5 )
-
-pre code
-  +h( p0 b0 bg-transparent )
-
-
-///// EMBED
-
-.wp-embedded-content
-  +h( maxw100 )
-
 
 ///// PAGINATION
 
@@ -137,18 +115,6 @@ pre code
 
 ///// SINGLE POST
 
-.post-content
-  +h( mv0 mh-auto ph1 )
-  font-size: em($blog-font-size)
-  max-width: $blog-width
-
-.post-featured-image
-  +h( ta-center )
-  margin-bottom: 2em
-  
-  img
-    +h( brad )
-
 .post-header
   +h( relative mv2 mh0 )
 
@@ -174,8 +140,9 @@ pre code
 
   a
     +h( c-inherit td-none )
-    &:hover
-      +h( u )
+  
+  a:hover
+    +h( u )
       
   .dashicons-before::before
     +h( fs-body va-middle )
@@ -193,6 +160,8 @@ pre code
     border-top: 1px solid $gray
     border-bottom: 2px solid $font-color
 
+  .wp-block-cover &
+    +h( pv0_5 bt1-solid bb2-solid bc-white )
 
 .meta-author
   +h( pr0_5)
@@ -202,7 +171,7 @@ pre code
   
 .meta-date,
 .meta-comments
-  +h( d-inline-block ph0_5 bl1-solid bc-gray )
+  +h( d-iblock ph0_5 bl1-solid bc-gray )
   
   @media ($below-s)
     +h( ph05 )
@@ -422,57 +391,47 @@ pre code
 ///// COMMENTS
 
 @if $output-comment
+
   .post-comments
     ul
       +h( list-none )
-  
+
   .comments-list
     +h( mt2 )
+
     > li
-      +h( p125 mb1_5 bg-body b1-solid bc-black_10 brad )
-  
+      +h( p1_25 mb1_5 bg-white b1-solid bc-black_10  brad )
+
   // Single Comment
   .comment
-    +h( relative c-text )
+    +h( relative )
 
     &.bypostauthor .comment-avatar
-      padding: 1px
-      box-shadow: 0 0 0 1px $font-color
+      +h( p1px )
 
     .avatar
-      +h( mr0_75 brad-circle transition )
-      width: 2.5em
-      height: 2.5em
+      +h( mr0_75 w2_5em h2_5em )
+
 
   .comment-header
-    +h( mb1 )
-
-    b, time
-      +h( d-inline-block lh1 va-middle )
-
-    b
-      +h( c-text )
+    +h( d-flex fw-wrap ai-center mb1 )
 
     time
       +h( ml0_5 fs-s c-passive )
 
-  .comment-text
-    p
-      +h( mb1 )
 
-    p:last-of-type
-      +h( mb0 )
+  .comment-text
+    p + p
+      +h( mt1 )
+
 
   // Child comments
   .replies-list
     +h( mt1_5 pl1_25 )
-    border-left: 2px solid rgba($font-color, 0.1)
+    border-left: 2px solid rgba(black , .1)
     
     .comment
       +h( fs-s )
-
-    .comment-avatar
-      +h( d-none )
 
     > li + li
       +h( mt1_5 )
@@ -480,105 +439,105 @@ pre code
     header
       +h( mb0_5 )
 
-    p
-      +h( mb0_5 )
+    p + p
+      +h( mt0_5 )
+
 
   // Reply link
   a.comment-reply-link
-    +h( v-hidden o0 absolute )
-    +h( fs-s fw-header c-main td-none tt-uppercase transition )
-    top: 5px
-    right: 0
-
-    .comment:hover &
-      +h( v-visible o100 )
+    +h( absolute top5px right0 ph0_5 bg-main_10  brad )
+    +h( fs-s fw-header ls50  tt-uppercase )
 
     &:hover
-      +h( c-link )
+      +h( bg-main_25 )
+
 
   ///// COMMENT FORM /////
-  .comment-respond
-    +h( mb2 )
-
-    .comments-list &
-      width: 110%
-      margin: 0 -5%
 
   .comment-reply-title
     +h( d-none )
 
-  .comment-form
-    +h( p1 bg-body shadow0 brad )
+  .comment-respond
+    +h( mb2 )
 
-    .comments-list &
-      +h( mt1_25 shadow1 )
+    .comments-list & // if reply
+      width: 110%
+      margin: 0 -5%
+
+
+  .comment-form
+    +h( d-flex fw-wrap p1 bg-white shadow1 brad )
+
+    .comments-list & // if reply
+      +h( mt1_25 )
+
+    p
+      +h( d-flex fd-column w100p mb1 )
 
     label
-      +h( mb0_5 tt-uppercase fs-s ls50 )
-
-    p
-      +h( mb1 )
-
-    p:last-of-type
-      +h( mb0 )
+      +h( cursor-pointer mb0_5 tt-uppercase c-passive ls50 fs-s )
 
     .comment-notes,
     .logged-in-as
-      +h( d-block mb1 c-passive fs-s )
+      +h( d-block c-passive fs-s )
 
-      a
-        +h( c-inherit )
+    
+  // when not active, only show Textarea
+  .comment-form:not(.--active)
+    +h( p0 )
 
-  .comment-form:not(.active)
-    p
-      +h( mb0 )
+    \:not(.comment-form-comment)
+      +h( ov-hidden h0 m0 )
 
-    .comment-notes,
-    .logged-in-as
-      +h( d-none )
 
-  // Field and Submit
+  // Textarea
   .comment-form-comment
     label
-      +h(d-none )
+      +h( d-none )
 
     textarea
-      height: 9em
+      height: 9rem
 
-      .comment-form:not(.active) &
-        +h( minh-auto pv0_5 b-none shadow-none )
-        height: 2.6em
+    .comment-form:not(.--active) &
+      +h( m0 )
 
-      .comment-form:not(.active):hover &
-        +placeholder
-          color: $main
+      textarea
+        +h( cursor-pointer p1_5 b0 bg-main_10 shadow-none )
+        height: 4.5rem
+      
+      textarea:hover
+        +h( bg-transparent )
 
-  .comment-form-author
+
+  p.comment-form-author,
+  p.comment-form-email
+    width: 50%
+
+    @media ($below-xs)
+      width: 100%
+
+  p.comment-form-author
     +h( pr0_5 )
 
-  .comment-form-email
+  p.comment-form-email
     +h( pl0_5 )
 
-  .comment-form-author,
-  .comment-form-email
-    +h( d-none float-left w50p )
-
-    .active &
-      +h( d-block )
-    //
-    @media ($below-s)
-      +h( d-block w100p p0 )
-
-  .comment-form-url
+  p.comment-form-url
     +h( d-none )
 
-  .form-submit
-    +h( d-none clear-both )
+  p.comment-form-cookies-consent
+    +h( fd-row )
 
-    .active &
-      +h( d-block )
+    input
+      +h( mr0_5 mt2px )
 
-// @if $output-comment
+    label
+      +h( d-iblock tt-none )
+
+  p.form-submit
+    +h( ai-center mb0 )
+
+// if $output-comment
 
 
 ///// POST PASSWORD FORM

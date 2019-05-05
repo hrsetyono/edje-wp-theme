@@ -7,7 +7,7 @@ article
     +h( mb1_5 )
     
   a
-    +h( u )
+    +h( td-u )
 
   p,
   ul,
@@ -45,10 +45,10 @@ $my-palette: ( 'main', 'sub', 'red', 'green', 'blue', 'yellow', 'black', 'white'
     color: var(--#{ $name }) !important
 
 
-// PAGE CONTENT
+// THE CONTENT
 // Allow full-width Custom block to coexist with Core block
-.page-content
-  +h( pv2 )
+.the-content
+  +h( mb2 )
 
   > *
     +h( mh-auto mb1_5 )
@@ -59,8 +59,6 @@ $my-palette: ( 'main', 'sub', 'red', 'green', 'blue', 'yellow', 'black', 'white'
     +h( mh-auto )
     max-width: $grid-max-width
 
-  a:not([class])
-    +h( td-u )
 
 // Alignment
 
@@ -78,6 +76,7 @@ $my-palette: ( 'main', 'sub', 'red', 'green', 'blue', 'yellow', 'black', 'white'
 
 .alignfull
   +h( maxw-none )
+
 
 ///// TEXT
 
@@ -100,8 +99,16 @@ $my-palette: ( 'main', 'sub', 'red', 'green', 'blue', 'yellow', 'black', 'white'
   +h( p1 bg-gray-light )
   border-left: 4px solid $font-color
 
+  p,
+  li
+    +h( mb0 )
+
+  p + p,
+  li + li
+    +h( mt1 )
+
   cite
-    +h( d-block fs-s c-passive )
+    +h( d-block mt1 fs-s c-passive )
 
   &[style="text-align:right"],
   &[style="text-align: right"]
@@ -173,6 +180,8 @@ $my-palette: ( 'main', 'sub', 'red', 'green', 'blue', 'yellow', 'black', 'white'
   +h( fs-s )
 
 .wp-block-image
+  +h( ta-center )
+
   figcaption
     @extend %figcaption
   
@@ -182,12 +191,19 @@ $my-palette: ( 'main', 'sub', 'red', 'green', 'blue', 'yellow', 'black', 'white'
   +h( d-flex ai-center jc-center  bgs-cover bgp-cc bg-black )
   +h( mv3 minh400px )
 
+  &:first-child
+    +h( mt0 )
+
+
 .wp-block-cover__inner-container
-  +h( relative z2 c-white )
+  +h( relative z2 c-white ta-center )
   width: $blog-width
 
+  h1, h2, h3, h4, h5, h6
+    +h( c-white )
+
   p
-    +h( mb0 )
+    +h( fs-m )
 
 .has-background-dim
   +h( relative )
@@ -288,7 +304,14 @@ $my-palette: ( 'main', 'sub', 'red', 'green', 'blue', 'yellow', 'black', 'white'
 ///// FILE
 
 .wp-block-file
+  +h( d-flex ai-center jc-center )
   +h( p1_25 bg-gray-light b1-solid bc-black_10  brad )
+
+  &.alignleft
+    +h( jc-start )
+
+  &.alignright
+    +h( jc-end )
 
 .wp-block-file__button
   @extend .button
@@ -298,7 +321,7 @@ $my-palette: ( 'main', 'sub', 'red', 'green', 'blue', 'yellow', 'black', 'white'
 ///// VIDEO
 
 .wp-block-video
-  +h( ta-center )
+  +h( w100p ta-center )
 
   figcaption
     @extend %figcaption
@@ -450,3 +473,92 @@ $my-palette: ( 'main', 'sub', 'red', 'green', 'blue', 'yellow', 'black', 'white'
 
 .wp-block-media-text__content
   //
+
+
+///// CODE & PREFORMATTED
+
+.wp-block-code,
+.wp-block-preformatted
+  +h( p1 b1-solid bc-black_10 bg-gray-light brad )
+  font-size: 15px
+
+  code
+    +h( p0 b0 bg-transparent )
+
+pre,
+code
+  +h( ff-monospace )
+
+code
+  +h( pv0 ph0_5 )
+
+
+///// EMBED
+
+.wp-block-embed
+  +h( mv2 ta-center )
+
+  figcaption
+    @extend %figcaption
+
+
+.wp-block-embed__wrapper
+  +h( d-flex jc-center relative )
+
+  &::before
+    .wp-has-aspect-ratio &,
+    .wp-block-embed-wordpress &
+      +h( content-empty d-block w100p )
+
+    .wp-embed-aspect-21-9 &,
+    .wp-block-embed-wordpress &
+      padding-top: 42.85%
+    .wp-embed-aspect-18-9 &
+      padding-top: 50%
+    .wp-embed-aspect-16-9 &
+      padding-top: 56.25%
+    .wp-embed-aspect-4-3 &
+      padding-top: 75%
+    .wp-embed-aspect-1-1 &
+      padding-top: 100%
+    .wp-embed-aspect-9-6 &
+      padding-top: 66.667%
+    .wp-embed-aspect-1-2 &
+      padding-top: 200%
+    
+
+.wp-has-aspect-ratio,
+.wp-block-embed-wordpress
+  iframe
+    +h( absolute-fill w100p h100p )
+
+
+.wp-block-embed-wordpress
+  blockquote
+    +h( d-none )
+  
+  iframe
+    clip: auto !important
+
+
+///// VERSE
+
+
+///// READ MORE
+
+.h-block-readmore
+  +h( mv2 transition )
+
+  .button
+    +h( d-block pv1 tt-uppercase ta-center )
+
+  ~ *
+    +h( transition )
+
+  // hide all the content after Read More block
+  &:not(.--expanded)
+    ~ *
+      +h( d-block ov-hidden h0 p0 m0 b0 transition )
+
+  &.--expanded
+    +h( ov-hidden h0 p0 m0  )
