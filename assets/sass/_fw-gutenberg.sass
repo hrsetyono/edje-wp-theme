@@ -36,13 +36,19 @@ article
 
 ///// CUSTOM PALETTE
 
+.has-background
+  background-color: var(--bgColor)
+
+.has-text-color
+  color: var(--textColor)
+
 $my-palette: ( 'main', 'sub', 'red', 'green', 'blue', 'yellow', 'black', 'white', 'gray' )
 @each $name in $my-palette
   .has-#{ $name }-background-color
-    +h( bg-#{ $name } )
+    --bgColor: var(--#{ $name })
   
   .has-#{ $name }-color
-    color: var(--#{ $name }) !important
+    --textColor: var(--#{ $name })
 
 
 // THE CONTENT
@@ -50,14 +56,20 @@ $my-palette: ( 'main', 'sub', 'red', 'green', 'blue', 'yellow', 'black', 'white'
 .the-content
   +h( mb2 )
 
-  > *
-    +h( mh-auto mb1_5 )
-    max-width: $blog-width
-
   // all woocommerce page become alignwide
   > .woocommerce
     +h( mh-auto )
     max-width: $grid-max-width
+
+
+div.wp-block-group
+  +h( pv2 mv2_5 )
+
+.the-content > *,
+.wp-block-group > *
+  +h( mh-auto mb1_5 )
+  max-width: $blog-width
+  
 
 
 // Alignment
