@@ -61,8 +61,8 @@ class MyCart {
     global $woocommerce;
     $context = [ 'woo' => $woocommerce ];
 
-    Timber::render( 'woo/_cart-button.twig', $context );
-    $fragments['.cart-button'] = ob_get_clean();
+    Timber::render( 'shop/_cart-button.twig', $context );
+    $fragments['#cart-button'] = ob_get_clean();
 
     return $fragments;
   }
@@ -76,8 +76,7 @@ class MyCart {
 
     if( $products ) {
       $context = [ 'products' => $products ];
-
-      Timber::render( 'woo/_cart-cross-sells.twig', $context );
+      Timber::render( 'shop/_cart-cross-sells.twig', $context );
     }
   }
 

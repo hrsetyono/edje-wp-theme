@@ -6,170 +6,6 @@ $output-comment: true
 $output-password-form: false
 $output-infinite-scroll: false
 
-///// GENERAL
-
-article
-  letter-spacing: 0.01 * $font-size
-
-  h1, h2, h3, h4, h5, h6
-    +h( mb15 )
-    
-  a
-    +h( u )
-
-  p,
-  ul,
-  ol,
-  blockquote,
-  pre,
-  table,
-  figure
-    +h( mb15 )
-
-  hr
-    +h( d-block b0 bt1-solid bc-gray mv25 p0 )
-    height: 1px
-
-  ul, ol
-    +h( pl15 )
-
-  ul ul,
-  ol ol
-    +h( mb0 )
-
-  img
-    +h( brad )
-
-  h1, h2, h3, h4, h5, h6
-    +h( clear-both )
-
-
-// EDITOR ALIGN
-
-.alignleft
-  +h( float-left mr1 )
-
-.alignright
-  +h( float-right ml1 )
-
-.alignleft,
-.alignright
-  +h( mb1 maxw50 )
-
-  @media ($below-s)
-    +h( float-none maxw-none )
-
-.aligncenter
-  +h( d-block mh0 mv-auto clear-both )
-
-.alignfull,
-.alignwide
-  @media ($above-s)
-    margin-right: -5em
-    margin-left: -5em
-
-
-///// BLOCKQUOTE
-
-blockquote
-  +h( relative p1 bg-gray-light )
-  border-left: 4px solid $main
-
-  &::after
-    +h( content-empty absolute bgs-cover bgp-cc )
-    top: -1rem
-    right: -1rem
-    width: 4rem
-    height: 4rem
-    background-image: svg('<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z" fill="#{ rgba($main, .3) }"/><path d="M0 0h24v24H0z" fill="none"/></svg>')
-  
-  p
-    +h( mb0 )
-
-  * + *
-    +h( mt1 mb0 )
-
-  cite
-    +h( d-block fs-s )
-
-  &.alignleft,
-  &.align-right
-    +h( ml0 )
-
-.wp-block-pullquote
-  +h( p0 bg-gray-light ta-center )
-
-  blockquote
-    +h( pv1 b2-solid br0 bl0 bc-main )
-
-  p
-    +h( fs-body )
-
-  cite
-    +h( ta-center )
-
-
-///// TABLE
-
-article table
-  +h( w100 )
-  border-top: 4px solid $main
-
-  tr
-    +h( bg-body )
-
-  th, td
-    +h( pv025 ph05 b1-solid bc-gray-light ta-left )
-
-  th,
-  tr:nth-child(odd) td
-    +h( bg-gray-light )
-
-  p, ul, ol
-    +h( mb0 )
-
-
-///// PREFORMATTED & CODE
-
-pre,
-code
-  +h( b1-solid bc-gray bg-gray-light brad )
-  font-size: 15px
-
-pre
-  +h( p1 )
-
-code
-  +h( pv0 ph05 )
-
-pre code
-  +h( p0 b0 bg-transparent )
-
-
-///// CAPTION
-
-.wp-caption,
-.wp-block-image,
-.wp-block-embed
-  +h( relative mb15 ta-center )
-  width: auto !important
-
-.wp-caption-text
-  +h( d-inline-block mt05 mb0 mh-auto bb1-solid bc-gray )
-  +h( fs-s )
-
-
-///// EMBED
-
-.wp-embedded-content
-  +h( maxw100 )
-
-
-///// MEDIA & GALLERY
-
-ul.wp-block-gallery
-  +h( pl0 )
-
 
 ///// PAGINATION
 
@@ -202,7 +38,7 @@ ul.wp-block-gallery
   a
     +h( td-none c-inherit )
   figure
-    +h( mb0 ml075 )
+    +h( mb0 ml0_75 )
   
   //
   @media ($below-s)
@@ -222,7 +58,7 @@ ul.wp-block-gallery
   > a:hover h3
     +h( td-u )
   h3
-    +h( m0 mb05 )
+    +h( m0 mb0_5 )
   p
     +h( mb1 )
 
@@ -257,19 +93,19 @@ ul.wp-block-gallery
 
   &::before
     content: ""
-    +h( absolute z2 top0 left0 w100 h100 bg-black50 )
+    +h( absolute z2 top0 left0 w100p h100p bg-black_50 )
 
 
 ///// BLOG NAV
 
 .blog-nav
-  +h( d-flex fw-wrap mv2 pv05 )
+  +h( d-flex fw-wrap mv2 pv0_5 )
   border-bottom: 2px solid $font-color
   border-top: 1px solid $gray
 
   a
-    +h( d-inline-block pv025 ph05 )
-    +h( c-body tt-uppercase fs-s ls25 brad transition )
+    +h( d-inline-block pv0_25 ph0_5 )
+    +h( c-text tt-uppercase fs-s ls25 brad transition )
 
     &:hover
       +h( c-main )
@@ -278,18 +114,6 @@ ul.wp-block-gallery
 
 
 ///// SINGLE POST
-
-.post-content
-  +h( mv0 mh-auto ph1 )
-  font-size: em($blog-font-size)
-  max-width: $blog-width
-
-.post-featured-image
-  +h( ta-center )
-  margin-bottom: 2em
-  
-  img
-    +h( brad )
 
 .post-header
   +h( relative mv2 mh0 )
@@ -316,8 +140,9 @@ ul.wp-block-gallery
 
   a
     +h( c-inherit td-none )
-    &:hover
-      +h( u )
+  
+  a:hover
+    +h( u )
       
   .dashicons-before::before
     +h( fs-body va-middle )
@@ -328,23 +153,25 @@ ul.wp-block-gallery
     +h( c-passive )
 
   .--featured &
-    +h( relative z10 c-white50 )
+    +h( relative z10 c-white_50 )
   
   .post-header &
-    +h( mt05 pv05 )
+    +h( mt0_5 pv0_5 )
     border-top: 1px solid $gray
     border-bottom: 2px solid $font-color
 
+  .wp-block-cover &
+    +h( pv0_5 bt1-solid bb2-solid bc-white )
 
 .meta-author
-  +h( pr05)
+  +h( pr0_5)
 
 .meta-category
   +h( tt-uppercase )
   
 .meta-date,
 .meta-comments
-  +h( d-inline-block ph05 bl1-solid bc-gray )
+  +h( d-iblock ph0_5 bl1-solid bc-gray )
   
   @media ($below-s)
     +h( ph05 )
@@ -360,7 +187,7 @@ ul.wp-block-gallery
     +h( d-flex pv2 mt1 bt1-solid bc-gray )
 
     h6
-      +h( mt0 mb05 )
+      +h( mt0 mb0_5 )
     //
     @media ($below-xs)
       +h( fd-column ta-center )
@@ -371,7 +198,7 @@ ul.wp-block-gallery
   // Author image
   .author-image
     img
-      +h( b1-solid bc-gray p025 brad )
+      +h( b1-solid bc-gray p0_25 brad )
       height: 4em
       width: 4em
     .banner-author &
@@ -383,15 +210,15 @@ ul.wp-block-gallery
   // Author text
   .author-text
     .post-author &
-      +h( flex1 pv0 ph075 )
+      +h( flex1 pv0 ph0_75 )
       p
         +h( mb0 fs-s )
 
     .banner-author &
-      +h( mb15 )
+      +h( mb1_5 )
     
     * + p
-      +h( mt05 )
+      +h( mt0_5 )
 
     a
       +h( c-inherit td-none )
@@ -417,7 +244,7 @@ ul.wp-block-gallery
 
 @if $output-related
   .post-footer
-    +h( pt1 bg-black05 )
+    +h( pt1 bg-black_05 )
 
   .post-footer-grid
     +grid(4, $width: $blog-width * 0.9)
@@ -437,8 +264,17 @@ ul.wp-block-gallery
 
     // list
     div.jp-relatedposts-items
-      +h( d-flex clearfix )
+      +h( d-flex )
       margin: 0 -125px
+
+      &::before,
+      &::after
+        content: ""
+        display: table
+      
+      &::after
+        clear: both
+
       //
       @media ($below-related-s)
         margin: 0 -5px
@@ -455,7 +291,7 @@ ul.wp-block-gallery
 
     // single item
     div.jp-relatedposts-items .jp-relatedposts-post
-      +h( ov-hidden p1 mh075 w33 o100 bg-white )
+      +h( ov-hidden p1 mh0_75 w33p o100 bg-white )
       +h( shadow0 brad )
 
       // hide underline when hovering the whole box
@@ -515,7 +351,7 @@ ul.wp-block-gallery
         +h( pb0 )
 
         > .jp-relatedposts-post-a
-          +h( float-left mr075 mb0 )
+          +h( float-left mr0_75 mb0 )
           max-width: 150px
 
     // next prev
@@ -555,179 +391,169 @@ ul.wp-block-gallery
 ///// COMMENTS
 
 @if $output-comment
+
   .post-comments
     ul
       +h( list-none )
-  
+
   .comments-list
     +h( mt2 )
+
     > li
-      +h( p125 mb15 bg-body b1-solid bc-black10 brad )
-  
+      +h( p1_25 mb1_5 bg-white b1-solid bc-black_10  brad )
+
   // Single Comment
   .comment
-    +h( relative c-body )
+    +h( relative )
 
     &.bypostauthor .comment-avatar
-      padding: 1px
-      box-shadow: 0 0 0 1px $font-color
+      +h( p1px )
 
     .avatar
-      +h( mr075 brad-circle transition )
-      width: 2.5em
-      height: 2.5em
+      +h( mr0_75 w2_5em h2_5em )
+
 
   .comment-header
-    +h( mb1 )
-
-    b, time
-      +h( d-inline-block lh1 va-middle )
-
-    b
-      +h( c-body )
+    +h( d-flex fw-wrap ai-center mb1 )
 
     time
-      +h( ml05 fs-s c-passive )
+      +h( ml0_5 fs-s c-passive )
+
 
   .comment-text
-    p
-      +h( mb1 )
+    p + p
+      +h( mt1 )
 
-    p:last-of-type
-      +h( mb0 )
 
   // Child comments
   .replies-list
-    +h( mt15 pl125 )
-    border-left: 2px solid rgba($font-color, 0.1)
+    +h( mt1_5 pl1_25 )
+    border-left: 2px solid rgba(black , .1)
     
     .comment
       +h( fs-s )
 
-    .comment-avatar
-      +h( d-none )
-
     > li + li
-      +h( mt15 )
+      +h( mt1_5 )
 
     header
-      +h( mb05 )
+      +h( mb0_5 )
 
-    p
-      +h( mb05 )
+    p + p
+      +h( mt0_5 )
+
 
   // Reply link
   a.comment-reply-link
-    +h( v-hidden o0 absolute )
-    +h( fs-s fw-header c-main td-none tt-uppercase transition )
-    top: 5px
-    right: 0
-
-    .comment:hover &
-      +h( v-visible o100 )
+    +h( absolute top5px right0 ph0_5 bg-main_10  brad )
+    +h( fs-s fw-header ls50  tt-uppercase )
 
     &:hover
-      +h( c-link )
+      +h( bg-main_25 )
+
 
   ///// COMMENT FORM /////
-  .comment-respond
-    +h( mb2 )
-
-    .comments-list &
-      width: 110%
-      margin: 0 -5%
 
   .comment-reply-title
     +h( d-none )
 
-  .comment-form
-    +h( p1 bg-body shadow0 brad )
+  .comment-respond
+    +h( mb2 )
 
-    .comments-list &
-      +h( mt125 shadow1 )
+    .comments-list & // if reply
+      width: 110%
+      margin: 0 -5%
+
+
+  .comment-form
+    +h( d-flex fw-wrap p1 bg-white shadow1 brad )
+
+    .comments-list & // if reply
+      +h( mt1_25 )
+
+    p
+      +h( d-flex fd-column w100p mb1 )
 
     label
-      +h( mb05 tt-uppercase fs-s ls50 )
-
-    p
-      +h( mb1 )
-
-    p:last-of-type
-      +h( mb0 )
+      +h( cursor-pointer mb0_5 tt-uppercase c-passive ls50 fs-s )
 
     .comment-notes,
     .logged-in-as
-      +h( d-block mb1 c-passive fs-s )
+      +h( d-block c-passive fs-s )
 
-      a
-        +h( c-inherit )
+    
+  // when not active, only show Textarea
+  .comment-form:not(.--active)
+    +h( p0 )
 
-  .comment-form:not(.active)
-    p
-      +h( mb0 )
+    \:not(.comment-form-comment)
+      +h( ov-hidden h0 m0 )
 
-    .comment-notes,
-    .logged-in-as
-      +h( d-none )
 
-  // Field and Submit
+  // Textarea
   .comment-form-comment
     label
-      +h(d-none )
+      +h( d-none )
 
     textarea
-      height: 9em
+      height: 9rem
 
-      .comment-form:not(.active) &
-        +h( minh-auto pv05 b-none shadow-none )
-        height: 2.6em
+    .comment-form:not(.--active) &
+      +h( m0 )
 
-      .comment-form:not(.active):hover &
-        +placeholder
-          color: $main
+      textarea
+        +h( cursor-pointer p1_5 b0 bg-main_10 shadow-none )
+        height: 4.5rem
+      
+      textarea:hover
+        +h( bg-transparent )
 
-  .comment-form-author
-    +h( pr05 )
 
-  .comment-form-email
-    +h( pl05 )
+  p.comment-form-author,
+  p.comment-form-email
+    width: 50%
 
-  .comment-form-author,
-  .comment-form-email
-    +h( d-none float-left w50 )
+    @media ($below-xs)
+      width: 100%
 
-    .active &
-      +h( d-block )
-    //
-    @media ($below-s)
-      +h( d-block w100 p0 )
+  p.comment-form-author
+    +h( pr0_5 )
 
-  .comment-form-url
+  p.comment-form-email
+    +h( pl0_5 )
+
+  p.comment-form-url
     +h( d-none )
 
-  .form-submit
-    +h( d-none clear-both )
+  p.comment-form-cookies-consent
+    +h( fd-row )
 
-    .active &
-      +h( d-block )
+    input
+      +h( mr0_5 mt2px )
 
-// @if $output-comment
+    label
+      +h( d-iblock tt-none )
+
+  p.form-submit
+    +h( ai-center mb0 )
+
+// if $output-comment
 
 
 ///// POST PASSWORD FORM
 @if $output-password-form
   .post-password-form
-    +h( pv2 ph4 bg-black05 brad )
+    +h( pv2 ph4 bg-black_05 brad )
 
     p:last-child
-      +h( d-flex bb1-solid bc-gray pb05 )
+      +h( d-flex bb1-solid bc-gray pb0_5 )
 
     label
       +h( flex1 c-passive )
 
     input[type="password"]
       +h( bg-transparent b-none mt1 p0 )
-      +h( fs-h3 c-body ls50 )
+      +h( fs-h3 c-text ls50 )
       
       &:hover,
       &:focus

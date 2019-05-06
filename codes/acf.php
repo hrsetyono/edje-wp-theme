@@ -13,7 +13,6 @@ class MyACF {
   function format_sample_field( $value, $post_id, $field ) {
     return $value;
   }
-
 }
 
 
@@ -23,7 +22,6 @@ class MyACF {
 class MyBlock {
   function __construct() {
     add_action( 'acf/init', [$this, 'create_blocks'] );
-
     add_action( 'enqueue_block_editor_assets', [$this, 'enqueue_assets'] );
   }
 
@@ -32,10 +30,6 @@ class MyBlock {
    * Create ACF gutenberg blocks
    */
   function create_blocks() {
-    H::register_block( 'free-content', [
-      'icon' => 'admin-page'
-    ] );
-
     H::register_block( 'sample', [
       'icon' => 'welcome-write-blog'
     ] );
@@ -45,12 +39,12 @@ class MyBlock {
    * Enqueue assets that modify Gutenberg while editing
    */
   function enqueue_assets() {
-    if ( !is_admin() ) { return false; }
+    if ( !is_admin() ) { return; }
     
     $css_dir = get_stylesheet_directory_uri() . '/assets/css';
     $js_dir = get_stylesheet_directory_uri() . '/assets/js';
 
-    wp_enqueue_script( 'block-editor', $js_dir . '/block-editor.js', [ 'wp-blocks', 'wp-dom' ] , false, true );
-    wp_enqueue_style( 'block-editor', $css_dir . '/block-editor.css', [ 'wp-edit-blocks' ] );
+    wp_enqueue_script( 'my-gutenberg', $js_dir . '/admin-gutenberg.js', [ 'wp-blocks', 'wp-dom' ] , false, true );
+    wp_enqueue_style( 'my-gutenberg', $css_dir . '/admin-gutenberg.css', [ 'wp-edit-blocks' ] );
   }
 }

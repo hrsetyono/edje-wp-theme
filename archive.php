@@ -14,12 +14,12 @@ if( !class_exists('Jetpack') || !Jetpack::is_module_active('infinite-scroll') ||
 
 
 // If post category
-if( is_category() || is_tax() ) {
+if( is_category() ) {
   $context['term'] = $query; 
   $context['blog_nav'] = new TimberMenu( 'blog-nav' );
 }
 // If custom taxonomy page
-if( is_tax() ) {
+elseif( is_tax() ) {
   $context['term'] = $query;
   array_unshift( $templates, 'archive-' . $query->taxonomy . '.twig' );
 }

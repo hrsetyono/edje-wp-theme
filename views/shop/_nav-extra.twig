@@ -1,4 +1,4 @@
-<a href="/my-account/" class="button --passive">
+<a href="{{ fn('wc_get_account_endpoint_url', '') }}" class="button --passive">
   <i class="dashicons-before dashicons-admin-users"></i> Login
 </a>
 
@@ -6,7 +6,7 @@
   {% include 'shop/_cart-button.twig' %}
 
   <aside class="dialog dialog--cart" id="cart-dialog">
-    <h3>{{ __('Your Cart', 'my') }}</h3>
+    <h3>{{ __('Your Cart') }}</h3>
     {{ fn('the_widget', 'WC_Widget_Cart' ) }}
   </aside>
 </div>

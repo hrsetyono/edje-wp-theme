@@ -1,0 +1,8 @@
+// This styling is applied to Gutenberg editor
+@import "settings"
+
+// Root Colors
+\:root
+  @each $name, $value in $h-palette
+    --#{ $name }: #{ $value }
+    --#{ $name }RGB: #{ round(red($value)) }, #{ round(green($value)) }, #{ round(blue($value)) }

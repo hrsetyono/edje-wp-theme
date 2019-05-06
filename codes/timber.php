@@ -1,6 +1,7 @@
 <?php
-///// TIMBER Global setting /////
-
+/**
+ * TIMBER Global setting
+ */
 class MyTimber extends TimberSite {
 
   function __construct() {
@@ -10,7 +11,7 @@ class MyTimber extends TimberSite {
   }
 
   /**
-   * Global context
+   * Global context. The values here are accessible in all rendered template
    * @filter timber_context
    */
   function add_to_context( array $context ) : array {
@@ -54,9 +55,9 @@ class MyTimber extends TimberSite {
 
   /**
    * Example of custom filter
-   *  {{ post.my_data | my_example( $name ) }}
+   *  {{ post.content | my_example( $name ) }}
    */
-  function filter_my_example( string $text, string $name ) : string {
-    return "<h1>$name</h1> $text";
+  function filter_my_example( string $post_content, string $name ) : string {
+    return "<h1>$name</h1> $post_content";
   }
 }
