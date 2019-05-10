@@ -5,7 +5,7 @@
 <div class="nav-item-cart">
   {% include 'shop/_cart-button.twig' %}
 
-  <aside class="dialog dialog--cart" id="cart-dialog">
+  <aside class="cart-dialog">
     <h3>{{ __('Your Cart') }}</h3>
     {{ fn('the_widget', 'WC_Widget_Cart' ) }}
   </aside>

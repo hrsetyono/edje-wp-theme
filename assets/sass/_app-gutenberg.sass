@@ -1,4 +1,12 @@
-// GENERAL
+///// GUTENBERG COLORS
+
+.has-background
+  background-color: var(--bgColor)
+
+.has-text-color
+  color: var(--textColor)
+
+///// GENERAL
 
 article
   letter-spacing: 0.01 * $font-size
@@ -6,8 +14,12 @@ article
   h1, h2, h3, h4, h5, h6
     +h( mb1_5 )
     
-  a
-    +h( td-u )
+  p a,
+  li a
+    +h( bb1-solid )
+
+    &:hover
+      +h( bg-black_10 )
 
   p,
   ul,
@@ -19,7 +31,7 @@ article
     +h( mb1_5 )
 
   ul, ol
-    +h( pl1 )
+    +h( pl1_5 )
 
   ul ul,
   ol ol,
@@ -33,26 +45,7 @@ article
   h1, h2, h3, h4, h5, h6
     +h( clear-both )
 
-
-///// CUSTOM PALETTE
-
-.has-background
-  background-color: var(--bgColor)
-
-.has-text-color
-  color: var(--textColor)
-
-$my-palette: ( 'main', 'sub', 'red', 'green', 'blue', 'yellow', 'black', 'white', 'gray' )
-@each $name in $my-palette
-  .has-#{ $name }-background-color
-    --bgColor: var(--#{ $name })
-  
-  .has-#{ $name }-color
-    --textColor: var(--#{ $name })
-
-
-// THE CONTENT
-// Allow full-width Custom block to coexist with Core block
+// Main wrapper
 .the-content
   +h( mb2 )
 
@@ -61,19 +54,21 @@ $my-palette: ( 'main', 'sub', 'red', 'green', 'blue', 'yellow', 'black', 'white'
     +h( mh-auto )
     max-width: $grid-max-width
 
+  > *:first-child
+    +h( mt0 )
 
-div.wp-block-group
-  +h( pv2 mv2_5 )
+.the-content,
+.wp-block-group
+  > *
+    +h( mh-auto mb1_5 )
+    max-width: $content-width
 
-.the-content > *,
-.wp-block-group > *
-  +h( mh-auto mb1_5 )
-  max-width: $blog-width
+  @media (below($grid-max-width))
+    padding-right: $grid-rim
+    padding-left: $grid-rim
   
 
-
-// Alignment
-
+// Alignments
 .alignright
   +h( ta-right )
 
@@ -89,8 +84,29 @@ div.wp-block-group
 .alignfull
   +h( maxw-none )
 
+  @media (below($grid-max-width))
+    margin-right: -1 * $grid-rim
+    margin-left: -1 * $grid-rim
 
-///// TEXT
+
+////// GROUP
+  
+.wp-block-group
+  +h( pv2 mv2_5 )
+
+  *:last-child
+    +h( mb0 )
+
+.wp-block-cover,
+.wp-block-group
+  + .wp-block-group
+    +h( mt-2_5 )
+
+
+///// PARAGRAPH
+
+p.has-background
+  +h( p1 brad )
 
 .has-small-font-size
   +h( fs-s )
@@ -201,21 +217,15 @@ div.wp-block-group
 
 .wp-block-cover
   +h( d-flex ai-center jc-center  bgs-cover bgp-cc bg-black )
-  +h( mv3 minh400px )
-
-  &:first-child
-    +h( mt0 )
-
+  +h( mv2_5 minh400px )
 
 .wp-block-cover__inner-container
   +h( relative z2 c-white ta-center )
-  width: $blog-width
+  width: $content-width
 
   h1, h2, h3, h4, h5, h6
     +h( c-white )
 
-  p
-    +h( fs-m )
 
 .has-background-dim
   +h( relative )
@@ -248,7 +258,7 @@ div.wp-block-group
 
 .wp-block-gallery
   +h( d-flex fw-wrap list-none pl0 )
-  max-width: calc(#{ $blog-width } + 1rem)
+  max-width: calc(#{ $content-width } + 1rem)
 
   &.alignwide
     max-width: calc(#{ $grid-max-width } + 1rem)
@@ -270,7 +280,7 @@ div.wp-block-group
     +h( h100p )
 
   a:hover img
-    +h( o80 backface-hidden )
+    +h( backface-hidden )
     transform: scale(1.1)
 
   figcaption
@@ -326,14 +336,16 @@ div.wp-block-group
     +h( jc-end )
 
 .wp-block-file__button
-  @extend .button
-  +h( ml1)
+  +h( ml1 )
 
 
 ///// VIDEO
 
 .wp-block-video
   +h( w100p ta-center )
+
+  video
+    +h( w100p )
 
   figcaption
     @extend %figcaption
@@ -352,7 +364,7 @@ div.wp-block-group
   width: 120px
 
   &.is-style-wide
-    width: $blog-width
+    width: $content-width
 
   &.is-style-dots
     +h( b0 h-auto w-auto ta-center )
@@ -366,7 +378,7 @@ div.wp-block-group
 ///// TABLE
 
 .wp-block-table
-  +h( w100p mv2_5 )
+  +h( w100p bg-white )
   --table: var(--gray)
   --tableBg: var(--gray-light)
 
@@ -381,12 +393,6 @@ div.wp-block-group
 
   td
     +h( pv0_5 ph1 b1-solid bc-black_10 )
-
-  td:first-child
-    border-left: 0
-
-  td:last-child
-    border-right: 0
 
   &.is-style-stripes
     tr:nth-child(odd)
@@ -409,24 +415,17 @@ div.wp-block-group
     --table: var(--red)
     --tableBg: rgba(var(--redRGB), .1)
 
+  //
+  @media ($below-s)
+    td
+      +h( pv0_25 ph0_5 )
+
 
 ///// BUTTON
-
-.wp-block-button
-
-.wp-block-button__link
-  @extend .button
   
 .is-style-squared
   a
     +h( brad )
-
-.is-style-outline
-  a
-    @extend .--outline
-
-  [class='has-background']
-    +h( bg-transparent )
 
 
 ///// COLUMNS
@@ -471,7 +470,7 @@ div.wp-block-group
 
   //
   @media ($below-s)
-    grid-template-columns: repeat(1, 1fr)
+    grid-template-columns: repeat(1, 1fr) !important
 
 .wp-block-media-text__media,
 .wp-block-media-text__content
@@ -551,9 +550,6 @@ code
   
   iframe
     clip: auto !important
-
-
-///// VERSE
 
 
 ///// READ MORE

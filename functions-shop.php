@@ -14,7 +14,6 @@ function shop_enqueue_scripts() {
   $js_dir = get_stylesheet_directory_uri() . '/assets/js';
 
   wp_enqueue_style( 'my-shop', $css_dir . '/shop.css' );
-  wp_enqueue_script( 'my-shop', $js_dir . '/app-shop.js', [], false, true );
 }
 
 /**

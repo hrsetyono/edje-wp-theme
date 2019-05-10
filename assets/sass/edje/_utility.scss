@@ -241,10 +241,24 @@ $_media-sizes: (
 // -----------
 
 @function font-url( $file ) {
-  @return url( $image_url + $file);
+  @return url( $font-url + $file);
 }
 
 @function image-url( $file ) {
-  @return url( $font_url + $file);
+  @return url( $image-url + $file);
 }
 
+
+// CLEARFIX -----
+
+@mixin clearfix() {
+  &::before,
+  &::after {
+    content: "";
+    display: table;
+  }
+
+  &::after {
+    clear: both;
+  }
+}

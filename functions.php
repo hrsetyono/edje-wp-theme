@@ -33,17 +33,20 @@ function my_enqueue_scripts() {
   wp_enqueue_style( 'my-app', $css_dir . '/app.css' );
   wp_enqueue_style( 'dashicons', get_stylesheet_uri(), 'dashicons' ); // WP native icons
 
-  // Replace jQuery with lighter alternative, not recommended if you use WooCommerce
-  // wp_deregister_script( 'jquery' );
-  // wp_enqueue_script( 'cash', $js_dir . '-vendor/cash.min.js', [], false, true );
+  // Replace jQuery with lighter alternative
+  if( !class_exists('WooCommerce') ) {
+    wp_deregister_script( 'jquery' );
+    wp_enqueue_script( 'cash', $js_dir . '-vendor/cash.min.js', [], false, true );
+  }
+  
 
   // Disable Gutenberg CSS
   wp_dequeue_style( 'wp-block-library' );
   wp_dequeue_style( 'wp-block-library-theme' );
 
   // JavaScript
-  wp_enqueue_script( 'h-lightbox', $js_dir . '-vendor/h-lightbox.min.js', [], false, true );
-  wp_enqueue_script( 'h-slider', $js_dir . '-vendor/h-slider.min.js', [], false, true );
+  wp_enqueue_script( 'h-lightbox' ); // registered in Edje WP Library
+  wp_enqueue_script( 'h-slider' );
   wp_enqueue_script( 'my-app', $js_dir . '/app.js', [], false, true );
 }
 
@@ -67,20 +70,25 @@ function my_after_setup_theme() {
   add_theme_support( 'align-wide' );
   add_theme_support( 'responsive-embeds' );
   
-  // If you change this, add the slug in variable $my-palette in "_fw-gutenberg.sass" 
-  add_theme_support( 'editor-color-palette', [
-    [ 'name' => 'Main', 'slug' => 'main', 'color' => 'var(--main)'],
-    [ 'name' => 'Sub', 'slug' => 'sub', 'color' => 'var(--sub)' ],
+  // The color is handled as CSS Variable defined in `$h-colors` in `_settings.scss` 
+  // The slug is used as class name and `var(--$name)`
+  add_theme_support( 'editor-color-palette', H::register_colors([
+    'Red' => 'red', // $label => $slug
+    'Light Red' => 'red-light',
+    'Orange' => 'orange',
+    'Light Orange' => 'orange-light',
+    'Yellow' => 'yellow',
+    'Light Yellow' => 'yellow-light',
+    'Green' => 'green',
+    'Light Green' => 'green-light',
+    'Blue' => 'blue',
+    'Light Blue' => 'blue-light',
 
-    [ 'name' => 'Red', 'slug' => 'red', 'color' => 'var(--red)' ],
-    [ 'name' => 'Green', 'slug' => 'green', 'color' => 'var(--green)' ],
-    [ 'name' => 'Blue', 'slug' => 'blue', 'color' => 'var(--blue)' ],
-    [ 'name' => 'Yellow', 'slug' => 'yellow', 'color' => 'var(--yellow)' ],
-
-    [ 'name' => 'Black', 'slug' => 'black', 'color' => 'var(--black)' ],
-    [ 'name' => 'White', 'slug' => 'white', 'color' => 'var(--white)' ],
-    [ 'name' => 'Gray', 'slug' => 'gray', 'color' => 'var(--gray)' ],
-  ]);
+    'Black' => 'black',
+    'Gray' => 'gray',
+    'Light Gray' => 'gray-light',
+    'White' => 'white'
+  ]) );
 
   // Create Nav assignment
   register_nav_menu( 'main-nav', 'Main Nav' );

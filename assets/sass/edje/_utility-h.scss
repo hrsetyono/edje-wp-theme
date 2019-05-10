@@ -141,7 +141,7 @@ $h-props-measurement: (
   }
 
   // if not in map, return as is
-  @if not map-has-key( $h-palette, $raw ) {
+  @if not map-has-key( $h-colors, $raw ) {
     @return $raw;
   }
 

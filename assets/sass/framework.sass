@@ -1,12 +1,12 @@
 // Put styles that you might reuse in other projects here
 
 // Framework output settings
-$include-normalize: true;
-$include-grid: true;
-$include-tile: true;
-$include-typography: true;
-$include-visibility: true;
-$include-colors: true;
+$include-normalize: true
+$include-grid: true
+$include-tile: true
+$include-typography: true
+$include-visibility: true
+$include-colors: true
 
 $output-framework: true // this will output the Normalizer, Grid, etc
 @import "settings"
@@ -21,9 +21,11 @@ $output-framework: true // this will output the Normalizer, Grid, etc
 
 .button,
 [type="submit"],
-[type="reset"]
+[type="reset"],
+.wp-block-file__button,
+.wp-block-button__link
   +h( cursor-pointer ov-hidden d-inline-block )
-  +h( bg-main b1-solid bb2-solid bc-black_25 pv0_5 ph1_5 )
+  +h( bg-main b1-solid bb2-solid bc-black_25 pv0_5 ph1_5 nowrap )
   +h( fw600 fs-m  lh-normal va-top c-white td-none  brad-pill transition-none )
   outline: none
   
@@ -48,7 +50,8 @@ $output-framework: true // this will output the Normalizer, Grid, etc
     +h( bc-black_25 c-text )
 
 
-.button.--outline
+.button.--outline,
+.is-style-outline .wp-block-button__link,
   +h( bg-transparent c-main bc-inherit )
 
   &:hover
@@ -145,6 +148,3 @@ div.wpcf7
   .wpcf7-mail-sent-ok,
   .wpcf7-mail-sent-ng
     +h( bg-green_50 bc-green c-green )
-
-
-@import "fw-gutenberg"

@@ -16,19 +16,19 @@
   +h( d-flex ai-start flex1 w100p h100p )
 
 .hSlider-slide > *
-  +h( w100 )
+  +h( w100p )
 
   .per-slide-2 &
-    +h( w50 )
+    +h( w50p )
   
   .per-slide-3 &
-    +h( w33 )
+    width: 33.333%
 
   .per-slide-4 &
-    +h( w25 )
+    +h( w25p )
 
   .per-slide-5 &
-    +h( w20 )
+    +h( w20p )
 
   .per-slide-6 &
     width: calc( 100% / 6 )
@@ -86,7 +86,7 @@
 
 // Dots
 .hSlider-dots
-  +h( absolute d-flex jc-center ai-center top100 w100p )
+  +h( absolute d-flex jc-center ai-center top100p w100p )
   height: 2rem
 
   button
@@ -100,14 +100,16 @@
 
   &::before
     content: ''
-    +h( d-block b0 brad-circle )
+    +h( d-block b0 brad-circle bg-main )
     padding: 6px
-    background: $font-color
 
   &:hover,
   &.active
     +h( o100 )
 
   &.active::before
-    border-color: $font-color
-    box-shadow: 0 0 0 2px $font-color
+    +h( bc-main )
+    box-shadow: 0 0 0 2px $main
+
+  &:only-child
+    +h( d-none )

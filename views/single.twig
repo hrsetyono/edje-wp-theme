@@ -4,13 +4,7 @@
 {# Content #}
 <article class="the-content">
   {% if post.thumbnail %}
-    <!-- Featured Image -->
-    <header class="wp-block-cover alignfull has-background-dim" style="background-image:url('{{ post.thumbnail.src('large') }}');">
-      <div class="wp-block-cover__inner-container">
-        <h1>{{ post.title }}</h1>
-        {% include "partials/_post-meta.twig" %}
-      </div>
-    </header>
+    {% include "partials/_featured-image.twig" %}
   {% else %}
     <header class="post-header">
       <h1>{{ post.title }}</h1>

@@ -101,7 +101,7 @@ function _get_categories( int $parent_id = 0 ) : array {
   // get extra data for category
   $parsed_cats = array_map( function( $c ) {
     // get thumbnail image
-    $thumb_id = get_woocommerce_term_meta( $c->term_id, 'thumbnail_id', true );
+    $thumb_id = get_term_meta( $c->term_id, 'thumbnail_id', true );
     $image = wp_get_attachment_image_src( $thumb_id, 'medium' );
     $c->image = $image ? $image[0] : wc_placeholder_img_src();
 

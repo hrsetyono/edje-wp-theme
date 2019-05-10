@@ -12,8 +12,8 @@ body
 
 
 // make body clickable to close the NAV when it's active
-body.nav-is-active,
-body.dialog-is-active
+body.has-active-nav,
+body.has-active-cart
   +h( cursor-pointer )
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0)
 
@@ -38,7 +38,7 @@ body.dialog-is-active
     width: 180px
     transform: translateX(-100%)
 
-  .nav-is-active &
+  .has-active-nav &
     +h( v-visible o100 )
     transform: none
 
@@ -65,8 +65,8 @@ body.dialog-is-active
 
 // NAV ITEM CHILDREN
 .nav-children
-  +h( absolute v-hidden o0 top100 left0 bg-gray-light nowrap )
-  +h( p025 shadow1 brad transition )
+  +h( absolute v-hidden o0 top100p left0 bg-gray-light nowrap )
+  +h( p0_25 shadow1 brad transition )
   width: 200px
 
   .nav-item:hover &
@@ -80,11 +80,11 @@ body.dialog-is-active
 
   //
   @media ($below-nav)
-    +h( top0 left100 )
+    +h( top0 left100p )
     transform: translateX(-10px)
 
     a
-      +h( pv05 ph0_75 )
+      +h( pv0_5 ph0_75 )
 
 
 // NAV MOBILE TOGGLE
@@ -118,22 +118,6 @@ body.dialog-is-active
   @media ($below-s)
     span
       +h( d-none )
-
-
-
-// DIALOG
-.dialog
-  +h( absolute v-hidden o0 top100 right0 bg-body )
-  +h( p025 brad shadow1 transition )
-  width: 300px
-  transform: translateY(-1.5em)
-
-  @media ($below-nav)
-    top: calc(100% + 10px)
-
-  &.dialog--active
-    +h( v-visible o100 )
-    transform: none
     
 
 ///// MAIN FOOTER /////
