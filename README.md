@@ -16,7 +16,6 @@ Stylesheet is compiled with **Node Sass** and using [Edje Framework](https://git
 
 1. [Installation](#installation)
 1. [Useful Links](#useful-links)
-1. [Changelog](https://github.com/hrsetyono/edje-wp-theme/wiki/Changelog)
 
 ## Installation
 
@@ -27,44 +26,53 @@ Stylesheet is compiled with **Node Sass** and using [Edje Framework](https://git
 
 **WITH COMPOSER**
 
-Available in Packagist under the name `pixelstudio/edje-wp-theme`.
+> Available in Packagist under the name `pixelstudio/edje-wp-theme`.
 
-Our recommended **composer.json** that will also download required plugins and WordPress core files:
+This is our workflow for starting new project. This steps will also download WP Core files and other required plugins.
 
-```
-{
-  "name": "pixelstudio/new-site",
-  "description": "Run the command `composer update` to download all plugins and themes.",
-  "authors": [
-    { "name": "Pixel Studio", "email": "info@pixelstudio.id", "homepage": "https://pixelstudio.id" }
-  ],
-  "require": {
-    "pixelstudio/edje-wp-theme": "~4.0",
-    "pixelstudio/advanced-custom-fields": "~5.8",
-    "pixelstudio/edje-wp-library": "~2.0",
-    "pixelstudio/wp-sync-db": "~1.6",
-    "pixelstudio/wp-sync-media": "~1.1",
+1. Create empty directory then create new file named `composer.json`. Put this code below inside it:
 
-    "wpackagist-plugin/jetpack": "*",
-    "wpackagist-plugin/timber-library": "*",
-    "wpackagist-plugin/autodescription": "*",
-    "wpackagist-plugin/contact-form-7": "*",
-    "wpackagist-theme/twentynineteen": "*"
-  },
-  "require-dev": {},
-  "autoload": { "psr-0": { "Acme": "src/" } }
-}
-```
+    ```
+    {
+      "name": "pixelstudio/new-site",
+      "description": "Run the command `composer update` to download all plugins and themes.",
+      "authors": [
+        { "name": "Pixel Studio", "email": "info@pixelstudio.id", "homepage": "https://pixelstudio.id" }
+      ],
+      "require": {
+        "pixelstudio/wordpress": "~5.2",
+        "pixelstudio/edje-wp-theme": "~5.0",
+        "pixelstudio/advanced-custom-fields": "~5.8",
+        "pixelstudio/edje-wp-library": "~2.0",
+        "pixelstudio/wp-sync-db": "~1.6",
+        "pixelstudio/wp-sync-media": "~1.1",
 
-Run `composer update` on empty directory.
+        "wpackagist-plugin/jetpack": "*",
+        "wpackagist-plugin/timber-library": "*",
+        "wpackagist-plugin/autodescription": "*",
+        "wpackagist-plugin/contact-form-7": "*",
+        "wpackagist-theme/twentynineteen": "*"
+      },
+      "require-dev": {},
+      "suggest": {
+        "pixelstudio/edje-wc-library": "~2.0",
+        "wpackagist-plugin/woocommerce": "*",
+        "wpackagist-theme/storefront": "*"
+      },
+      "repositories":[
+        { "type": "composer", "url":"https://wpackagist.org" }
+      ],
+      "autoload": { "psr-0": { "Acme": "src/" } }
+    }
+    ```
 
-For WooCommerce project, add this in `require`:
+1. If you want WooCommerce site, add the value of `suggest` to `require`.
 
-```
-  "wpackagist-plugin/woocommerce": "*",
-  "wpackagist-theme/storefront": "*",
-  "pixelstudio/edje-wc-library": "~2.0"
-```
+1. Run the command `composer update` in that directory.
+
+1. Done! You will find the WP Core files inside `wp-core/` directory. Cut it to root.
+
+1. Recommended: Rename `edje-wp-theme` so it won't be overriden the next time you run `composer update`. Also remove `pixelstudio/wordpress` in JSON file after first installation.
 
 ## Useful Links
 
