@@ -82,7 +82,10 @@ article
   max-width: $grid-max-width
 
 .alignfull
-  +h( maxw-none )
+  +h( maxw-none mv2_5 )
+
+  + .alignfull
+    +h( mt-2_5 )
 
   @media (below($grid-max-width))
     margin-right: -1 * $grid-rim
@@ -92,15 +95,88 @@ article
 ////// GROUP
   
 .wp-block-group
-  +h( pv2 mv2_5 )
+  +h( pv2 )
+
+  &:not(.has-background)
+    +h( p0 )
+
+  &:not(.has-background) + .alignfull
+    +h( mt0 )
 
   *:last-child
     +h( mb0 )
 
-.wp-block-cover,
-.wp-block-group
-  + .wp-block-group
-    +h( mt-2_5 )
+
+///// COVER
+
+.wp-block-cover
+  +h( d-flex ai-center jc-center  bgs-cover bgp-cc bg-black )
+  +h( minh400px )
+
+  &.--for-featured-image
+    +h( ai-end )
+
+    .post-meta
+      +h( pv0_5 c-white_60 )
+      border-top: 1px solid
+      border-bottom: 2px solid
+
+    .post-meta + p
+      +h( mt1_5 )
+
+  &.--for-post-tease
+    +h( ov-hidden ai-end ph2 pb2 brad )
+    max-width: calc(#{ $content-width } + 4rem )
+
+    a:hover h1
+      +h( td-u )
+
+    .post-meta
+      +h( c-white_60 )
+
+
+.wp-block-cover__inner-container
+  +h( relative z2 c-white )
+  width: $content-width
+
+  h1, h2, h3, h4, h5, h6
+    +h( c-white )
+
+  p, li
+    +h( fs-m )
+
+  @media (below($grid-max-width))
+    padding-right: $grid-rim
+    padding-left: $grid-rim
+
+.has-parallax
+  background-attachment: fixed
+
+.has-background-dim
+  +h( relative )
+
+  &::before
+    content: ""
+    +h( absolute-fill z1 o50 bg-inherit )
+
+.has-background-dim-10::before
+  +h( o10 )
+.has-background-dim-20::before
+  +h( o20 )
+.has-background-dim-30::before
+  +h( o30 )
+.has-background-dim-40::before
+  +h( o40 )
+.has-background-dim-60::before
+  +h( o60 )
+.has-background-dim-70::before
+  +h( o70 )
+.has-background-dim-80::before
+  +h( o80 )
+.has-background-dim-90::before
+  +h( o90 )
+.has-background-dim-100::before
+  +h( o100 )
 
 
 ///// PARAGRAPH
@@ -157,7 +233,6 @@ p.has-background
 
 ///// PULLQUOTE
 
-
 .wp-block-pullquote
   +h( pv0 )
 
@@ -213,46 +288,6 @@ p.has-background
   figcaption
     @extend %figcaption
   
-///// COVER
-
-.wp-block-cover
-  +h( d-flex ai-center jc-center  bgs-cover bgp-cc bg-black )
-  +h( mv2_5 minh400px )
-
-.wp-block-cover__inner-container
-  +h( relative z2 c-white ta-center )
-  width: $content-width
-
-  h1, h2, h3, h4, h5, h6
-    +h( c-white )
-
-
-.has-background-dim
-  +h( relative )
-
-  &::before
-    content: ""
-    +h( absolute-fill z1 o50 bg-inherit )
-
-.has-background-dim-10::before
-  +h( o10 )
-.has-background-dim-20::before
-  +h( o20 )
-.has-background-dim-30::before
-  +h( o30 )
-.has-background-dim-40::before
-  +h( o40 )
-.has-background-dim-60::before
-  +h( o60 )
-.has-background-dim-70::before
-  +h( o70 )
-.has-background-dim-80::before
-  +h( o80 )
-.has-background-dim-90::before
-  +h( o90 )
-.has-background-dim-100::before
-  +h( o100 )
-
 
 ///// GALLERY
 
@@ -466,24 +501,57 @@ p.has-background
   +h( d-grid ai-center )
   grid-row-gap: $grid-gap
   grid-column-gap: $grid-gap
-  grid-template-columns: repeat(2, 1fr)
 
+  @media ($above-xs)  
+    grid-template-areas: "media text"
+    grid-template-columns: 6fr 6fr
+
+    &.has-media-on-the-right
+      grid-template-areas: "text media"
+
+    &.is-style-smaller-image,
+    &.is-style-larger-image.has-media-on-the-right
+      grid-template-columns: 4fr 8fr
+
+    &.is-style-larger-image,
+    &.is-style-smaller-image.has-media-on-the-right
+      grid-template-columns: 8fr 4fr
+  
   //
-  @media ($below-s)
-    grid-template-columns: repeat(1, 1fr) !important
+  @media ($below-xs)
+    grid-template-areas: "media" "text"
+    grid-template-columns: repeat(1, 1fr)
 
-.wp-block-media-text__media,
-.wp-block-media-text__content
-  grid-column: span 1
+
+.is-vertically-aligned-top
+  +h( ai-start )
+.is-vertically-aligned-center
+  +h( ai-center )
+.is-vertically-aligned-bottom
+  +h( ai-end )
+
 
 .wp-block-media-text__media
   +h( mb0 )
+  grid-area: media
 
-  .has-media-on-the-right &
-    +h( order2 )
+  @media ($above-xs)
+    .is-image-fill &
+      +h( as-stretch bgr-no bgs-cover brad )
+
+      img
+        +h( d-none )
+
+  @media ($below-xs)
+    .is-image-fill &
+      background-image: none !important
+
 
 .wp-block-media-text__content
-  //
+  grid-area: text
+
+  > *:last-child
+    +h( mb0 )
 
 
 ///// CODE & PREFORMATTED
@@ -511,7 +579,6 @@ code
 
   figcaption
     @extend %figcaption
-
 
 .wp-block-embed__wrapper
   +h( d-flex jc-center relative )

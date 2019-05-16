@@ -9,22 +9,45 @@ if( class_exists('WooCommerce') ) {
   require_once 'functions-shop.php';
 }
 
-add_action( 'wp_enqueue_scripts', 'my_enqueue_scripts', 100 );
+add_action( 'wp_enqueue_scripts', 'my_enqueue_assets', 100 );
 add_action( 'after_setup_theme', 'my_after_setup_theme' );
-add_action( 'init', 'my_init' );
 add_action( 'widgets_init', 'my_widgets' );
 
-new MyFilter();
-new MyACF();
-new MyBlock();
+my_start();
+
 
 /////
+
+/**
+ * Run first
+ */
+function my_start() {
+  new MyShortcode();
+  new MyTimber();
+  new MyFilter();
+  new MyACF();
+  new MyBlock();
+
+  /**
+   * Register custom post type
+   * - Read how at https://github.com/hrsetyono/edje-wp-library/wiki/Custom-Post-Type
+   */
+  // H::register_post_type( 'product', [ 'icon' => 'dashicons-cart' ] );
+  // H::register_taxonomy( 'brand', [ 'post_type' => 'product' ] );
+
+  /**
+   * Create Post Listing block for specified post type
+   */
+  H::register_post_block( 'post' );
+  // H::register_post_block( 'product' );
+}
+
 
 /**
  * Register all your CSS and JS here
  * @action wp_enqueue_scripts 100
  */
-function my_enqueue_scripts() {
+function my_enqueue_assets() {
   $css_dir = get_stylesheet_directory_uri() . '/assets/css';
   $js_dir = get_stylesheet_directory_uri() . '/assets/js';
 
@@ -33,17 +56,14 @@ function my_enqueue_scripts() {
   wp_enqueue_style( 'my-app', $css_dir . '/app.css' );
   wp_enqueue_style( 'dashicons', get_stylesheet_uri(), 'dashicons' ); // WP native icons
 
-  // Replace jQuery with lighter alternative
+ 
+  // if not using WooCommerce, replace jQuery with lighter alternative
   if( !class_exists('WooCommerce') ) {
     wp_deregister_script( 'jquery' );
     wp_enqueue_script( 'cash', $js_dir . '-vendor/cash.min.js', [], false, true );
   }
+
   
-
-  // Disable Gutenberg CSS
-  wp_dequeue_style( 'wp-block-library' );
-  wp_dequeue_style( 'wp-block-library-theme' );
-
   // JavaScript
   wp_enqueue_script( 'h-lightbox' ); // registered in Edje WP Library
   wp_enqueue_script( 'h-slider' );
@@ -70,8 +90,12 @@ function my_after_setup_theme() {
   add_theme_support( 'align-wide' );
   add_theme_support( 'responsive-embeds' );
   
-  // The color is handled as CSS Variable defined in `$h-colors` in `_settings.scss` 
-  // The slug is used as class name and `var(--$name)`
+  /**
+   * Each color will be outputted into 2 classes: `has-x-background-color` and `has-x-color`.
+   * 
+   * The values are turned into CSS Variable, such as `red` becoming `var(--red)`
+   * 
+   */
   add_theme_support( 'editor-color-palette', H::register_colors([
     'Red' => 'red', // $label => $slug
     'Light Red' => 'red-light',
@@ -94,24 +118,13 @@ function my_after_setup_theme() {
   register_nav_menu( 'main-nav', 'Main Nav' );
   register_nav_menu( 'social-nav', 'Social Nav' );
   register_nav_menu( 'blog-nav', 'Blog Nav' );
-}
 
-
-/**
- * After Wordpress has finished loading but no data has been sent
- * @action init 1
- */
-function my_init() {
-  new MyShortcode();
-  new MyTimber();
-
-  // H::register_post_type( 'product' );
-
+  
   // ACF Option page
   if( function_exists( 'acf_add_options_page' ) ) {
     acf_add_options_sub_page( [
   		'page_title' => 'Theme Options',
-  		'parent_slug' => 'options-general.php',
+  		'parent_slug' => 'themes.php',
     ] );
   }
 }

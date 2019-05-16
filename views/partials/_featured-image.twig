@@ -1,16 +1,14 @@
-<header class="wp-block-cover {{ post.thumbnail.width > 1121 ? 'alignfull' : 'alignwide' }} has-background-dim"
+<header class="wp-block-cover {{ post.thumbnail.width > 1121 ? 'alignfull' : 'alignwide' }} has-background-dim has-parallax --for-featured-image"
   style="background-image:url('{{ post.thumbnail.src('large') }}');">
   <div class="wp-block-cover__inner-container">
-    <h1>{{ post.title }}</h1>
+    <h1>{{ post.thumbnail.caption ? post.thumbnail.caption : post.title }}</h1>
 
     {% if post.categories %}
       {% include "partials/_post-meta.twig" %}
     {% endif %}
 
-    {% if post.thumbnail.post_content %}
-      {{ post.thumbnail.post_content | markdown }}
-    {% else %}
-      {{ post.post_excerpt | markdown }}
-    {% endif %}
+    {{ post.thumbnail.post_content ?
+      post.thumbnail.post_content | markdown :
+      post.post_excerpt | markdown }}
   </div>
 </header>

@@ -67,21 +67,6 @@ $output-infinite-scroll: false
       +h( clear-none )
 
 
-// Tease with background-image
-.wp-block-cover.--for-post-tease
-  +h( ov-hidden ai-end ph2 pb2 brad )
-  max-width: calc(#{ $content-width } + 4rem )
-
-  .wp-block-cover__inner-container
-    +h( ta-left )
-
-  .post-meta
-    +h( c-white_50 )
-
-  a:hover h1
-    +h( td-u )
-
-
 ///// BLOG NAV
 
 .blog-nav
@@ -134,14 +119,6 @@ $output-infinite-scroll: false
     +h( fs-body va-middle )
     width: 1em
     height: 1em
-
-  .post-tease &
-    +h( c-passive )
-  
-  .post-header &
-    +h( mt0_5 pv0_5 )
-    border-top: 1px solid
-    border-bottom: 2px solid
 
 
 .meta-author

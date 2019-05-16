@@ -9,6 +9,8 @@ class MyACF {
 
   /**
    * Format the return value of ACF "sample_field"
+   * 
+   * @filter acf/format_value/name=sample_field 10
    */
   function format_sample_field( $value, $post_id, $field ) {
     return $value;
@@ -30,9 +32,16 @@ class MyBlock {
    * Create ACF gutenberg blocks
    */
   function create_blocks() {
+    // You need to create new ACF FieldGroup and set the rules to Block > is equal to > this block's name
     H::register_block( 'sample', [
-      'icon' => 'welcome-write-blog'
+      'title' => 'Sample',
+      'icon' => 'admin-post', // icon from https://developer.wordpress.org/resource/dashicons
+      'post_types' => [ 'page' ]
     ] );
+  }
+
+  function populate_post_types() {
+    add_filter('acf/load_field/name=post_types', 'acf_load_post_type_choices');
   }
 
   /**
