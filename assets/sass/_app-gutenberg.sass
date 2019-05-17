@@ -45,6 +45,7 @@ article
   h1, h2, h3, h4, h5, h6
     +h( clear-both )
 
+
 // Main wrapper
 .the-content
   +h( mb2 )
@@ -90,6 +91,16 @@ article
   @media (below($grid-max-width))
     margin-right: -1 * $grid-rim
     margin-left: -1 * $grid-rim
+
+
+.is-vertically-aligned-top
+  +h( ai-start as-start )
+
+.is-vertically-aligned-center
+  +h( ai-center as-center )
+
+.is-vertically-aligned-bottom
+  +h( ai-end as-end )
 
 
 ////// GROUP
@@ -414,23 +425,26 @@ p.has-background
 
 .wp-block-table
   +h( w100p bg-white )
-  --table: var(--gray)
-  --tableBg: var(--gray-light)
+  --tableBorder: var(--black)
+  --tableHeader: var(--gray-light)
+  --tableBg: rgba(var(--grayRGB), .1)
 
-  // become thead
-  tr:first-child 
-    +h( fw700 )
-    border-top: 4px solid var(--table)
-    background-color: var(--tableBg)
+  thead tr,
+  tfoot tr
+    +h( fw700 ta-left )
+    background-color: var(--tableHeader)
 
-    td
-      background-color: var(--tableBg)
+  thead tr
+    border-bottom: 2px solid var(--tableBorder)
+  tfoot tr
+    border-top: 2px solid var(--tableBorder)
 
+  th,
   td
     +h( pv0_5 ph1 b1-solid bc-black_10 )
 
   &.is-style-stripes
-    tr:nth-child(odd)
+    tr:nth-child(even)
       background-color: var(--tableBg)
 
   &.has-fixed-layout
@@ -439,15 +453,18 @@ p.has-background
 
   // default color palette 
   &.has-subtle-pale-green-background-color
-    --table: var(--green)
+    --tableBorder: var(--green)
+    --tableHeader: var(--green-light)
     --tableBg: rgba(var(--greenRGB), .1)
 
   &.has-subtle-pale-blue-background-color
-    --table: var(--blue)
+    --tableBorder: var(--blue)
+    --tableHeader: var(--blue-light)
     --tableBg: rgba(var(--blueRGB), .1)
 
   &.has-subtle-pale-pink-background-color
-    --table: var(--red)
+    --tableBorder: var(--red)
+    --tableHeader: var(--red-light)
     --tableBg: rgba(var(--redRGB), .1)
 
   //
@@ -466,33 +483,51 @@ p.has-background
 ///// COLUMNS
 
 .wp-block-columns
-  +h( d-grid )
+  +h( d-flex )
   grid-row-gap: $grid-gap
   grid-column-gap: $grid-gap
 
+  @media ($below-s)
+    +h( fw-wrap )
+
 .wp-block-column
-  grid-column: span 1
+  +h( flex1 )
+
+  > *:last-child
+    +h( mb0 )
+
+  @media ($above-s)
+    + .wp-block-column
+      +h( ml1_5 ) 
+
+  @media ($below-s)
+    +h( w100p )
+    flex-basis: 100% !important
+
+    + .wp-block-column
+      +h( mt1_5 )
+
 
 @media ($above-s)
-  .has-2-columns
-    grid-template-columns: repeat(2, 1fr)
-  .has-3-columns
-    grid-template-columns: repeat(3, 1fr)
-  .has-4-columns
-    grid-template-columns: repeat(4, 1fr)
-  .has-5-columns
-    grid-template-columns: repeat(5, 1fr)
-  .has-6-columns
-    grid-template-columns: repeat(6, 1fr)
-
   .is-style-8-4
-    grid-template-columns: 8fr 4fr
+    .wp-block-column:nth-child(1)
+      flex: 2
+    .wp-block-column:nth-child(2)
+      flex: 1
+
   .is-style-4-8
-    grid-template-columns: 4fr 8fr
+    .wp-block-column:nth-child(1)
+      flex: 1
+    .wp-block-column:nth-child(2)
+      flex: 2
 
 @media ($below-s)
-  .wp-block-columns
-    grid-template-columns: repeat(1, 1fr)
+  .is-style-50-50-mobile
+    .wp-block-column
+      flex-basis: 50% !important
+
+    .wp-block-column:nth-child(even)
+      +h( mt0 )
 
 
 ///// MEDIA TEXT
@@ -521,14 +556,6 @@ p.has-background
   @media ($below-xs)
     grid-template-areas: "media" "text"
     grid-template-columns: repeat(1, 1fr)
-
-
-.is-vertically-aligned-top
-  +h( ai-start )
-.is-vertically-aligned-center
-  +h( ai-center )
-.is-vertically-aligned-bottom
-  +h( ai-end )
 
 
 .wp-block-media-text__media
