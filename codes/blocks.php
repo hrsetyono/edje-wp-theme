@@ -1,33 +1,14 @@
 <?php
 /**
- * Customize ACF
+ * Customize Gutenberg Blocks
  */
-class MyACF {
-  function __construct() {
-    add_filter( 'acf/format_value/name=sample_field', [$this, 'format_sample_field'], 10, 3 );
-  }
-
-  /**
-   * Format the return value of ACF "sample_field"
-   * 
-   * @filter acf/format_value/name=sample_field 10
-   */
-  function format_sample_field( $value, $post_id, $field ) {
-    return $value;
-  }
-}
-
-
-/**
- * Customize Gutenberg block
- */
-class MyBlock {
+class MyBlocks {
   function __construct() {
     add_action( 'acf/init', [$this, 'create_blocks'] );
     add_action( 'enqueue_block_editor_assets', [$this, 'enqueue_assets'] );
   }
 
-  
+
   /**
    * Create ACF gutenberg blocks
    */
@@ -35,13 +16,9 @@ class MyBlock {
     // You need to create new ACF FieldGroup and set the rules to Block > is equal to > this block's name
     H::register_block( 'sample', [
       'title' => 'Sample',
-      'icon' => 'admin-post', // icon from https://developer.wordpress.org/resource/dashicons
-      'post_types' => [ 'page' ]
+      'icon' => 'dashicons-admin-post', // icon from https://developer.wordpress.org/resource/dashicons
+      'post_types' => [ 'page', 'post' ]
     ] );
-  }
-
-  function populate_post_types() {
-    add_filter('acf/load_field/name=post_types', 'acf_load_post_type_choices');
   }
 
   /**

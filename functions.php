@@ -1,9 +1,12 @@
 <?php
 
-require_once 'codes/addon.php';
+require_once 'codes/helpers.php';
 if( !MyHelper::has_required_plugins() ) { return false; }
+
 require_once 'codes/timber.php';
-require_once 'codes/acf.php';
+require_once 'codes/shortcodes.php';
+require_once 'codes/hooks.php';
+require_once 'codes/blocks.php';
 
 if( class_exists('WooCommerce') ) {
   require_once 'functions-shop.php';
@@ -11,7 +14,6 @@ if( class_exists('WooCommerce') ) {
 
 add_action( 'wp_enqueue_scripts', 'my_enqueue_assets', 100 );
 add_action( 'after_setup_theme', 'my_after_setup_theme' );
-add_action( 'widgets_init', 'my_widgets' );
 
 my_start();
 
@@ -22,11 +24,10 @@ my_start();
  * Run first
  */
 function my_start() {
-  new MyShortcode();
   new MyTimber();
-  new MyFilter();
-  new MyACF();
-  new MyBlock();
+  new MyShortcodes();
+  new MyHooks();
+  new MyBlocks();
 
   /**
    * Register custom post type
@@ -36,7 +37,7 @@ function my_start() {
   // H::register_taxonomy( 'brand', [ 'post_type' => 'product' ] );
 
   /**
-   * Create Post Listing block for specified post type
+   * Create Gutenberg block for post listing
    */
   H::register_post_block( 'post' );
   // H::register_post_block( 'product' );
@@ -55,19 +56,15 @@ function my_enqueue_assets() {
   wp_enqueue_style( 'my-framework', $css_dir . '/framework.css' );
   wp_enqueue_style( 'my-app', $css_dir . '/app.css' );
   wp_enqueue_style( 'dashicons', get_stylesheet_uri(), 'dashicons' ); // WP native icons
-
- 
-  // if not using WooCommerce, replace jQuery with lighter alternative
-  if( !class_exists('WooCommerce') ) {
-    wp_deregister_script( 'jquery' );
-    wp_enqueue_script( 'cash', $js_dir . '-vendor/cash.min.js', [], false, true );
-  }
-
   
-  // JavaScript
-  wp_enqueue_script( 'h-lightbox' ); // registered in Edje WP Library
+  // Edje Library
+  wp_enqueue_script( 'h-lightbox' );
   wp_enqueue_script( 'h-slider' );
-  wp_enqueue_script( 'my-app', $js_dir . '/app.js', [], false, true );
+  wp_enqueue_style( 'h-lightbox' );
+  wp_enqueue_style( 'h-slider' );
+
+  // Javascript
+  wp_enqueue_script( 'my-app', $js_dir . '/app.js', ['jquery'], false, true );
 }
 
 
@@ -89,14 +86,13 @@ function my_after_setup_theme() {
   // Gutenberg support
   add_theme_support( 'align-wide' );
   add_theme_support( 'responsive-embeds' );
-  
+
   /**
    * Each color will be outputted into 2 classes: `has-x-background-color` and `has-x-color`.
    * 
    * The values are turned into CSS Variable, such as `red` becoming `var(--red)`
-   * 
    */
-  add_theme_support( 'editor-color-palette', H::register_colors([
+  $palette = H::register_colors([
     'Red' => 'red', // $label => $slug
     'Light Red' => 'red-light',
     'Orange' => 'orange',
@@ -112,7 +108,9 @@ function my_after_setup_theme() {
     'Gray' => 'gray',
     'Light Gray' => 'gray-light',
     'White' => 'white'
-  ]) );
+  ]);
+  add_theme_support( 'editor-color-palette', $palette );
+
 
   // Create Nav assignment
   register_nav_menu( 'main-nav', 'Main Nav' );
@@ -127,13 +125,4 @@ function my_after_setup_theme() {
   		'parent_slug' => 'themes.php',
     ] );
   }
-}
-
-
-/**
- * Register widgets
- * @action widgets_init
- */
-function my_widgets() {
-  register_sidebar( [ 'name' => 'My Footer', 'id' => 'my-footer' ] );
 }

@@ -1,6 +1,6 @@
 ///// GUTENBERG COLORS
 
-.has-background
+[class*="-background-color"]
   background-color: var(--bgColor)
 
 .has-text-color
@@ -48,7 +48,6 @@ article
 
 // Main wrapper
 .the-content
-  +h( mb2 )
 
   // all woocommerce page become alignwide
   > .woocommerce
@@ -88,6 +87,9 @@ article
   + .alignfull
     +h( mt-2_5 )
 
+  &:last-child
+    +h( mb0 )
+
   @media (below($grid-max-width))
     margin-right: -1 * $grid-rim
     margin-left: -1 * $grid-rim
@@ -109,7 +111,7 @@ article
   +h( pv2 )
 
   &:not(.has-background)
-    +h( p0 )
+    +h( pv0 )
 
   &:not(.has-background) + .alignfull
     +h( mt0 )
@@ -211,7 +213,7 @@ p.has-background
 ///// QUOTE
 
 .wp-block-quote
-  +h( p1 bg-gray-light )
+  +h( p1 )
   border-left: 4px solid $font-color
 
   p,
@@ -225,6 +227,15 @@ p.has-background
   cite
     +h( d-block mt1 fs-s c-passive )
 
+  &.is-style-large
+    +h( fs-h4 ta-center )
+    border-left: none
+    border-top: 3px solid $font-color
+    border-bottom: 3px solid $font-color
+
+    cite
+      +h( fs-body )
+
   &[style="text-align:right"],
   &[style="text-align: right"]
     border-left: none
@@ -235,17 +246,12 @@ p.has-background
     border-left: none
     border-top: 4px solid $font-color
 
-  &.is-style-large
-    +h( fs-h5 )
-    border-left: none
-    border-top: 4px solid rgba(black, .2)
-    border-bottom: 4px solid rgba(black, .2)
-
 
 ///// PULLQUOTE
 
 .wp-block-pullquote
   +h( pv0 )
+  background-color: var(--bgColor)
 
   blockquote
     +h( d-flex fd-column ta-left )
@@ -266,7 +272,7 @@ p.has-background
       +h( d-iblock mr1  ff-monospace )
 
     &:hover
-      +h( bg-black_10 )
+      +h( bg-black_20 )
 
   &.--expanded
     cite
@@ -282,10 +288,14 @@ p.has-background
   +h( brad )
 
   cite
-    +h( bg-black_25 )
-
-  cite:hover
     +h( bg-transparent )
+  
+  cite:hover
+    +h( bg-white_25 )
+
+  &.--expanded
+    cite
+      +h( bg-transparent )
 
 ///// IMAGE
 
@@ -296,13 +306,30 @@ p.has-background
 .wp-block-image
   +h( ta-center )
 
+  &.alignfull
+    img
+      +h( brad0 )
+
   figcaption
     @extend %figcaption
   
 
+// hover effect
+.wp-block-image a,
+.wp-block-gallery a
+  +h( d-block ov-hidden brad )
+
+  img
+    +h( transition )
+
+  &:hover img
+    +h( backface-hidden )
+    transform: scale(1.1)
+
+
 ///// GALLERY
 
-.wp-block-gallery
+.wp-block-gallery 
   +h( d-flex fw-wrap list-none pl0 )
   max-width: calc(#{ $content-width } + 1rem)
 
@@ -317,22 +344,14 @@ p.has-background
     object-fit: cover
 
   figure
-    +h( relative ov-hidden d-flex ai-end jc-start h100p mb0  brad )
-
-  img
-    +h( transition )
+    +h( relative d-flex ai-end jc-start h100p mb0  brad )
 
   a
     +h( h100p )
 
-  a:hover img
-    +h( backface-hidden )
-    transform: scale(1.1)
-
   figcaption
     +h( absolute bottom0 w100p p0_5  fs-s c-white ta-center )
     background-image: linear-gradient( 0deg,rgba(0,0,0,.7),rgba(0,0,0,.5) 50%,transparent)
-
   
 .blocks-gallery-item
   +h( ph0_5 pb1 )
@@ -342,9 +361,17 @@ p.has-background
     .columns-2 &
       width: 50%
     .columns-3 &
-      width: 33.333%
+      width: calc(100% / 3)
     .columns-4 &
       width: 25%
+    .columns-5 &
+      width: 20%
+    .columns-6 &
+      width: calc(100% / 6)
+    .columns-7 &
+      width: calc(100% / 7)
+    .columns-8 &
+      width: 12.5%
     .columns- &
       width: 20%
 
@@ -356,6 +383,16 @@ p.has-background
   
   @media ($below-xs)
     width: 50%
+
+
+///// GALLERY SLIDER
+
+.is-style-h-slider
+  .blocks-gallery-item
+    flex-grow: initial
+
+  &.is-cropped .hSlider-slide
+    +h( ai-stretch )
 
 
 ///// AUDIO
@@ -474,7 +511,7 @@ p.has-background
 
 
 ///// BUTTON
-  
+
 .is-style-squared
   a
     +h( brad )
@@ -509,20 +546,20 @@ p.has-background
 
 
 @media ($above-s)
-  .is-style-8-4
+  .is-style-h-2-1
     .wp-block-column:nth-child(1)
       flex: 2
     .wp-block-column:nth-child(2)
       flex: 1
 
-  .is-style-4-8
+  .is-style-h-1-2
     .wp-block-column:nth-child(1)
       flex: 1
     .wp-block-column:nth-child(2)
       flex: 2
 
 @media ($below-s)
-  .is-style-50-50-mobile
+  .is-style-h-1-1-mobile
     .wp-block-column
       flex-basis: 50% !important
 
@@ -533,9 +570,12 @@ p.has-background
 ///// MEDIA TEXT
 
 .wp-block-media-text
-  +h( d-grid ai-center )
+  +h( d-grid )
   grid-row-gap: $grid-gap
   grid-column-gap: $grid-gap
+
+  &[class*="-background-color"]
+    +h( p1 brad )
 
   @media ($above-xs)  
     grid-template-areas: "media text"
@@ -544,12 +584,12 @@ p.has-background
     &.has-media-on-the-right
       grid-template-areas: "text media"
 
-    &.is-style-smaller-image,
-    &.is-style-larger-image.has-media-on-the-right
+    &.is-style-h-smaller-image,
+    &.is-style-h-larger-image.has-media-on-the-right
       grid-template-columns: 4fr 8fr
 
-    &.is-style-larger-image,
-    &.is-style-smaller-image.has-media-on-the-right
+    &.is-style-h-larger-image,
+    &.is-style-h-smaller-image.has-media-on-the-right
       grid-template-columns: 8fr 4fr
   
   //
@@ -664,3 +704,8 @@ code
 
   &.--expanded
     +h( ov-hidden h0 p0 m0  )
+
+
+///// ACF POST LIST
+
+.acf-block-post-list

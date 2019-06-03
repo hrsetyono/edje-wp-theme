@@ -1,7 +1,4 @@
-{# This block is registered by Edje WP Library #}
-
 <section class="acf-block-post-list alignwide">
-
   {% if term %}
     <h2 class="aligncenter">
       <a href="{{ term.link }}"> {{ term.name }} </a>
@@ -10,7 +7,7 @@
 
   <h-tile class="tile-3">
     {% for p in posts %}
-      <a class="post-item" href="{{ post.link }}">
+      <a class="post-item" href="{{ p.link }}">
         {% if p.thumbnail %}
           <img src="{{ p.thumbnail.src }}" alt="{{ p.title }}">
         {% endif %}
@@ -19,7 +16,7 @@
         <time>{{ p.post_date | date }}</time>
 
         {% if not p.thumbnail %}
-          {{ p.preview.length(25).read_more(false) | markdown }}
+          {{ p.post_excerpt | markdown }}
         {% endif %}
       </a>
     {% endfor %}

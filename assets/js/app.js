@@ -18,36 +18,47 @@ function onLoad() {
 
 var myApp = {
   init() {
-    // this.slider();
-    // this.lightbox();
+    this.gallerySlider();
+    this.galleryLightbox();
   },
 
   /**
-   * hSlider example
-   * If you don't use this, remove the enqueue_script in functions.php 
+   * Setup Gallery Block with "Slider" style
    * 
    * Read more https://github.com/hrsetyono/hSlider
    */
-  slider() {
-    hSlider( $('.example-slider').get(0), {
-      index: 0,
-      arrows: true,
-      dots: true,
-      itemsPerSlide: 3,
-      responsive: { 767: 2, 480: 1 }
+  gallerySlider() {
+    let $targets = $('.wp-block-gallery.is-style-h-slider');
+
+    $targets.each( function() {
+      let $t = $(this);
+      let perSlide = $t.attr('class').match( /columns-(\d+)/ );
+
+      hSlider( $t.get(0), {
+        index: 0,
+        arrows: true,
+        dots: true,
+        itemsPerSlide: perSlide[1],
+        responsive: { 767: 2, 480: 1 }
+      });
     });
   },
 
+
   /**
-   * hLightbox example
-   * If you don't use this, remove the enqueue_script in functions.php 
+   * Setup Gallery or Image block that has link to an image
    * 
    * Read more at https://github.com/hrsetyono/hLightbox
    */
-  lightbox() {
-    hLightbox( $('.wp-block-button a').get(0), {
-      closeButton: true
-    });
+  galleryLightbox() {
+    let $targets = document.querySelectorAll('.wp-block-gallery a, .wp-block-image a');
+
+    for( let $t of $targets ) {
+      let href = $t.getAttribute( 'href' );
+      if( href.match(/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+(?:png|jpg|jpeg|gif|svg)/) ) {
+        hLightbox( $t, { closeButton: true } );
+      }
+    }
   }
 };
 

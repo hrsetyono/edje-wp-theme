@@ -3,6 +3,23 @@
     "title": "ACF Block - Sample",
     "fields": [
         {
+            "key": "field_5cf1317f3d37a",
+            "label": "Sample Block",
+            "name": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "Added by using H::register_block()",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        },
+        {
             "key": "field_5cd939de04bf1",
             "label": "Title",
             "name": "title",
@@ -11,7 +28,7 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "50",
+                "width": "6",
                 "class": "",
                 "id": ""
             },
@@ -22,30 +39,47 @@
             "maxlength": ""
         },
         {
+            "key": "field_5cf1320e3d37b",
+            "label": "Image",
+            "name": "image",
+            "type": "image",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "6",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "preview_size": "thumbnail",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": ""
+        },
+        {
             "key": "field_5cd93f251af3f",
             "label": "Content",
             "name": "content",
-            "type": "wysiwyg",
+            "type": "textarea",
             "instructions": "",
             "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_5cd939de04bf1",
-                        "operator": "==empty"
-                    }
-                ]
-            ],
+            "conditional_logic": 0,
             "wrapper": {
                 "width": "",
                 "class": "",
                 "id": ""
             },
             "default_value": "",
-            "tabs": "all",
-            "toolbar": "full",
-            "media_upload": 1,
-            "delay": 0
+            "placeholder": "",
+            "maxlength": "",
+            "rows": 4,
+            "new_lines": ""
         }
     ],
     "location": [
@@ -65,5 +99,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1557995870
+    "modified": 1559354091
 }

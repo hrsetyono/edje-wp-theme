@@ -7,7 +7,9 @@ function timber_set_product( $post ) {
   $product = isset( $post->product ) ? $post->product : wc_get_product( $post->ID );
 }
 
-
+/**
+ * Codes for Shop page
+ */
 class MyShop {
   function construct() {
     remove_action( 'woocommerce_after_shop_loop', 'woocommerce_pagination', 10 );

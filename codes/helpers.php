@@ -1,44 +1,5 @@
 <?php
 /**
- * Codes for custom Shortcode
- */
-class MyShortcode {
-  function __construct() {
-    add_shortcode( 'example', [$this, 'example'] );
-  }
-
-  /**
-   * Example of custom shortcode
-   *   [example name="$name"] ... [/example]
-   */
-  function example( $atts, $content = null ) {
-    $atts = shortcode_atts([
-      'name' => 'Default value'
-    ], $atts);
-
-    return "<div class='example'> <h2>${ $atts['name'] }</h2>  $content </div>";
-  }
-}
-
-
-/**
- * Dump any custom Wordpress filter or action here
- */
-class MyFilter {
-  function __construct() {
-    add_filter( 'sample_filter', [$this, 'sample_filter'] );
-  }
-
-  /**
-   * @filter sample_filter
-   */
-  function sample_filter() {
-
-  }
-}
-
-
-/**
  * Reusable functions
  */
 class MyHelper {

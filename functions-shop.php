@@ -1,5 +1,5 @@
 <?php
-require_once 'codes/addon-shop.php';
+require_once 'codes/hooks-shop.php';
 
 add_action( 'wp_enqueue_scripts', 'shop_enqueue_scripts', 101 );
 add_action( 'after_setup_theme', 'shop_after_setup_theme' );
