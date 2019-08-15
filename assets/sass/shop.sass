@@ -109,15 +109,11 @@ $wc-panel-dark: darken($wc-panel, 5%)
   p
     +h( mr1 ml-auto fs-s )
 
-.products
+.shop-products
   +h( mv2 mh0 )
 
-.products-tile
-  @media ($below-s)
-    +tile(2, $gap: 10px)
-
 .product-tease
-  +h( relative mb1_5 ta-center )
+  +h( relative ta-center )
 
   a:hover
     figure
@@ -147,9 +143,9 @@ $wc-panel-dark: darken($wc-panel, 5%)
 
     &::after
       content: "\f147"
-      +h( absolute top50 left50 c-white )
+      +h( absolute top50p left50p c-white fw400 )
       font-family: "dashicons"
-      font-size: 1.25em
+      font-size: 1.5em
       transform: translateX(-50%) translateY(-50%)
   
   .added_to_cart
@@ -269,18 +265,42 @@ $wc-panel-dark: darken($wc-panel, 5%)
 
 ///// PRODUCT TABS
 
+.wc-tabs-wrapper
+  +h( mb1 )
+
 ul.wc-tabs
-  +h(d-flex fw-wrap pl0 list-none )
+  +h( d-flex fw-wrap pl0 mb0 list-none )
 
   a
-    +h( d-inline-block pv0_25 ph0_5 td-none )
+    +h( d-inline-block pv0_25 ph0_5 b0 td-none fs-s )
+    border-radius: $g-radius $g-radius 0 0
 
   .active a
     +h( bg-main_25 )
 
+
 .wc-tab
+  +h( p0_5 )
+  border: 4px solid rgba($main, .25)
+  border-radius: 0 $g-radius $g-radius $g-radius
+
   > h2:first-child
     +h( d-none )
+
+  > *:last-child
+    +h( mb0 )
+
+
+// Attribute tab
+
+table.woocommerce-product-attributes
+  th, td
+    +h( va-middle )
+  th
+    +h( pr1 tt-uppercase ls25 )
+  p
+    +h( mb0 )
+
 
 
 // product purchase
@@ -306,13 +326,18 @@ ul.wc-tabs
 
   label
     +h( fs-s )
+  label[for*="quantity"]
+    +h( d-none )
 
   .single_add_to_cart_button
     +h( as-end )
 
+
+
   //
   @media ($below-s)
     +h( mb1_5 )
+
 
 ///// PRODUCT RATING
 
@@ -391,7 +416,7 @@ ul.wc-tabs
   +h( d-flex fd-column )
 
   .out-of-stock
-    +h( c-red )
+    +h( c-red fw700 )
 
   .woocommerce-variation-price
     +h( order1 mb1 )
@@ -414,6 +439,65 @@ table.variations
   label,
   select
     +h( mb0_5 )
+
+  // CLEAR button
+  .reset_variations
+    +h( d-iblock p0_25 ph1 bg-gray-light brad )
+    +h( tt-uppercase fw700 fs-s ls25 )
+
+    &:hover
+      +h( bg-gray )
+
+
+// Product Meta
+
+.product_meta
+  span
+    +h( mb0_5 fw700 )
+  a
+    +h( d-iblock ph0_5 bg-gray-light brad fw400 c-text )
+  a:hover
+    +h( bg-main-light )
+
+
+///// UPSELL PRODUCT
+
+section.upsells
+  > h2
+    +h( mv1 fs-h5 )
+
+ul.products
+  +h( fw-wrap list-none p0 m0 )
+  display: grid
+  grid-template-columns: repeat( 1, 1fr )
+  grid-column-gap: 0.5rem
+  grid-row-gap: 0.5rem
+
+  li
+    +h( m0 )
+    grid-column: span 1
+
+  a
+    +h( d-flex fd-column fw-wrap ai-start jc-center )
+    +h( ov-hidden h80px b1-solid bc-black_10 brad )
+  a:hover
+    +h( bg-transparent shadow1 )
+
+  a > *
+    flex: 1rem 1rem
+
+  h2
+    +h( fs-h5 fw400 m0 ls25 )
+    width: calc( 100% - 80px )
+
+  img
+    +h( h80px w-auto mr0_5 )
+
+  span
+    +h( fs-s fw700 c-main )
+
+  .add_to_cart_button
+    +h( d-none )
 
 
 ///// RELATED PRODUCT

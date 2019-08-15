@@ -9,21 +9,32 @@
 </h-grid>
 
 <h-grid> <div class="large-12">
+  {{ fn( 'woocommerce_breadcrumb' ) }}
   {% do action("woocommerce_before_main_content") %}
 
   {% if categories %}
     {% include "shop/_categories.twig" with { categories: categories } %}
   {% endif %}
 
+  {# before shop #}
   <section class="before-products">
+    {{ fn( 'woocommerce_output_all_notices' ) }}
+    {{ fn( 'wc_setup_loop' ) }}
+    {{ fn( 'woocommerce_result_count' ) }}
+    {{ fn( 'woocommerce_catalog_ordering' ) }}
     {% do action("woocommerce_before_shop_loop") %}
   </section>
 
+  {# shop #}
   {% if products %}
     {% include "shop/_products.twig" with { products: products } %}
   {% endif %}
 
+  {# after shop #}
+  {{ fn( 'woocommerce_pagination' ) }}
   {% do action("woocommerce_after_shop_loop") %}
+  {{ fn( 'woocommerce_reset_loop' ) }}
+
   {% do action("woocommerce_after_main_content") %}
 
 </div> </h-grid>

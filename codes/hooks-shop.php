@@ -11,7 +11,7 @@ function timber_set_product( $post ) {
  * Codes for Shop page
  */
 class MyShop {
-  function construct() {
+  function __construct() {
     remove_action( 'woocommerce_after_shop_loop', 'woocommerce_pagination', 10 );
     add_action( 'woocommerce_after_shop_loop', [$this, 'custom_woocommerce_pagination'], 10 );
   }

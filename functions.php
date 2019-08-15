@@ -3,15 +3,6 @@
 require_once 'codes/helpers.php';
 if( !MyHelper::has_required_plugins() ) { return false; }
 
-require_once 'codes/timber.php';
-require_once 'codes/shortcodes.php';
-require_once 'codes/hooks.php';
-require_once 'codes/blocks.php';
-
-if( class_exists('WooCommerce') ) {
-  require_once 'functions-shop.php';
-}
-
 add_action( 'wp_enqueue_scripts', 'my_enqueue_assets', 100 );
 add_action( 'after_setup_theme', 'my_after_setup_theme' );
 
@@ -24,16 +15,27 @@ my_start();
  * Run first
  */
 function my_start() {
-  new MyTimber();
-  new MyShortcodes();
-  new MyHooks();
+  require_once 'codes/timber.php';
+  require_once 'codes/hooks.php';
+  require_once 'codes/shortcodes.php';
+  require_once 'codes/blocks.php';
+  require_once 'codes/api.php';
+
+  if( class_exists('WooCommerce') ) {
+    require_once 'functions-shop.php';
+  }
+
+  new MyAPI();
   new MyBlocks();
+  new MyTimber();
+  new MyHooks();
+  new MyShortcodes();
 
   /**
    * Register custom post type
    * - Read how at https://github.com/hrsetyono/edje-wp-library/wiki/Custom-Post-Type
    */
-  // H::register_post_type( 'product', [ 'icon' => 'dashicons-cart' ] );
+  H::register_post_type( 'item', [ 'icon' => 'dashicons-cart' ] );
   // H::register_taxonomy( 'brand', [ 'post_type' => 'product' ] );
 
   /**

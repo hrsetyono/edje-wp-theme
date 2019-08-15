@@ -68,27 +68,44 @@
 ///// NAV CART /////
 
 .nav-item-cart
-  +h( relative )
-
+  +h( fixed z100 bottom1 right1 )
 
 // cart button
 #cart-button
+  +h( shadow1 )
+
   b
     +h( d-inline-block ph0_5 bg-black_25 fs-s brad )
     line-height: 1.4
 
+  &.--cart-active
+    animation: cartBounce 4s 1s infinite
+
+@keyframes cartBounce
+  0%, 10%, 25%, 40%, 50%
+    transform: translateY(0)
+  20%
+    transform: translateY(-10px)
+  30%
+    transform: translateY(-5px) 
+
 
 .cart-dialog
-  +h( absolute v-hidden o0 top100p right0 bg-gray-light )
-  +h( p0_25 ta-center brad shadow1 transition )
+  +h( cursor-default absolute v-hidden z100 o0 bottom100p right0 bg-gray-light )
+  +h( p0_25 ta-center  brad shadow0 transition )
   width: 340px
-  transform: translateY(-1.5em)
+  transform: translateY( 1.5rem )
+
+  &::before
+    content: ""
+    +h( absolute bottom0 right2 w1 h1 bg-gray-light brad )
+    transform: translateY(50%) rotate(45deg)
 
   .has-active-cart &
-    +h( v-visible o100 )
-    transform: none
+    +h( v-visible o100  shadow2 )
+    transform: translateY( -1rem )
   
-  h3
+  .widgettitle
     +h( pt0_5 pb0_75 fs-s tt-uppercase ta-center )
     letter-spacing: 2px
 
@@ -96,9 +113,6 @@
     +h( bgp-cc bgr-no )
     background-color: rgba(white, 0.8) !important
     background-image: url("../../../../../wp-admin/images/spinner.gif")
-
-  .widgettitle
-    +h( d-none )
 
   //
   @media ($below-nav)
@@ -111,25 +125,25 @@
 
 // Item list
 .woocommerce-mini-cart
-  +h( bg-white ovy-auto list-none ta-left )
-  max-height: 311px
+  +h( bg-white ovy-auto w100p maxh240px )
+  +h( list-none ta-left )
 
 
 .woocommerce-mini-cart-item
-  +clearfix
-  +h( relative p0_5 )
+  +h( relative p0_5 fs-s )
   border-bottom: 1px solid $wc-panel-dark
   line-height: 1.5
+  +clearfix
 
   img
-    +h( float-left mr0_5 w22p )
+    +h( float-left mr0_5 w40px )
   
   figure
     +h( relative )
 
   a
     +h( d-block c-inherit fw600 )
-
+ 
   a:hover
     +h( td-u )
     img
@@ -141,20 +155,20 @@
   dt, dd
     +h( d-inline-block )
 
-// Quantity
-.woocommerce-mini-cart-item .quantity
-  +h( fs-s c-passive )
+  .quantity
+    +h( fs-s c-passive fw700 )
+
 
 // Cart Total
 .woocommerce-mini-cart__total
-  +h( flex1 pv1 ph0_5 )
+  +h( flex1 p0_5 )
   line-height: 1.25
   
   .woocommerce-Price-amount
-    +h( fs-m )
+    +h( fw700 )
   
   strong
-    +h( fs-s )
+    +h( fs-s fw400 )
 
   
 .woocommerce-mini-cart__buttons
@@ -173,13 +187,10 @@
 
 // Remove item button on Cart dialog
 a.remove_from_cart_button
-  +h( absolute bg-gray )
-  +h( c-white ta-center lh1  brad )
-  top: 0.25rem
-  right: 0.25rem
-  width: 1.5rem
-  height: 1.5rem
-  font-size: 1.5rem
+  +h( d-flex ai-center jc-center absolute bg-gray-light )
+  +h( top0_25 right0_25 w1_5 h1_5 )
+  +h( c-main-dark ta-center lh1 brad-circle )
+  font-size: 20px
 
   &:hover
     +h( bg-red c-white td-none )

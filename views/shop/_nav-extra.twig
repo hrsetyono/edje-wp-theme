@@ -1,12 +1,17 @@
 <a href="{{ fn('wc_get_account_endpoint_url', '') }}" class="button --passive">
-  <i class="dashicons-before dashicons-admin-users"></i> Login
+  <i class="dashicons-before dashicons-admin-users"></i>
+
+  {% if woo.customer %}
+    Your Profile
+  {% else %}
+    Login
+  {% endif %}
 </a>
 
 <div class="nav-item-cart">
   {% include 'shop/_cart-button.twig' %}
 
   <aside class="cart-dialog">
-    <h3>{{ __('Your Cart') }}</h3>
     {{ fn('the_widget', 'WC_Widget_Cart' ) }}
   </aside>
 </div>

@@ -4,13 +4,14 @@
  */
 class MyHooks {
   function __construct() {
-    add_filter( 'sample_filter', [$this, 'sample_filter'] );
+    add_filter( 'acf/format_value/name=sample', [$this, 'acf_format_sample'], 10, 3 );
   }
 
   /**
-   * @filter sample_filter
+   * Customize the return value of ACF field by the name of 'sample'
+   * @filter acf/format_value/name=sample
    */
-  function sample_filter() {
-
+  function acf_format_sample( $value, $post_id, $field ) {
+    return $value;
   }
 }
