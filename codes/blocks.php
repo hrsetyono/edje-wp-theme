@@ -30,7 +30,7 @@ class MyBlocks {
     $css_dir = get_stylesheet_directory_uri() . '/assets/css';
     $js_dir = get_stylesheet_directory_uri() . '/assets/js';
 
-    wp_enqueue_script( 'my-gutenberg', $js_dir . '/admin-gutenberg.js', [ 'wp-blocks', 'wp-dom' ] , false, true );
-    wp_enqueue_style( 'my-gutenberg', $css_dir . '/admin-gutenberg.css', [ 'wp-edit-blocks' ] );
+    wp_enqueue_script( 'my-block-editor', $js_dir . '/my-block-editor.js', [ 'wp-blocks', 'wp-dom' ] , false, true );
+    wp_enqueue_style( 'my-block-editor', $css_dir . '/my-block-editor.css', [ 'wp-edit-blocks' ] );
   }
 }

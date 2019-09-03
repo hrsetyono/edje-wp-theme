@@ -274,6 +274,18 @@ $_h-align-self: (
   )
 );
 
+$_h-justify-self: (
+  names: (
+    js-: align-self,
+  ),
+  values: (
+    start: flex-start,
+    end: flex-end,
+    center: center,
+    baseline: baseline,
+    stretch: stretch,
+  )
+);
 
 // Overflow
 $_h-overflow: (
@@ -366,7 +378,7 @@ $_h-position: (
   relative: ( position: relative ),
   absolute: ( position: absolute ),
   fixed: ( position: fixed ),
-  sticky: ( '_position': '-webkit-sticky', position: sticky ),
+  sticky: ( position: sticky ),
 
   absolute-fill: ( position: absolute, top: 0, right: 0, left: 0, bottom: 0 ),
 );

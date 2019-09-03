@@ -1,4 +1,4 @@
-@mixin h( $bits ) {
+@mixin h( $bits: () ) {
   @each $b in $bits {
     $prop-key: getPropKey( $b );
     $value-raw: str-slice( $b, str-length( $prop-key ) + 1 );
@@ -57,7 +57,7 @@
 // ---------------
 
 // Property that can use color from $h-palette and allow opacity prefix
-// Example: c-red >>> color: $red
+// EXAMPLE: c-red      >>> color: $red
 //          bg-main_10 >>> background-color: rgba($main, .10)
 $h-props-color: (
   bg: background-color,
@@ -66,8 +66,8 @@ $h-props-color: (
 );
 
 // Property that can accept any number and allow unit prefix
-// Example: p1_5 >>> padding: 1.5rem
-//          h50p >>> height: 50%
+// EXAMPLE: p1_5    >>> padding: 1.5rem
+//          h50p    >>> height: 50%
 //          top70px >>> top: 70px
 $h-props-measurement: (
   top: top,

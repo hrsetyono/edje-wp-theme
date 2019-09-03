@@ -457,13 +457,13 @@ h-tile {
 
 body {
   position: relative;
-  background: $body-background;
+  background: var(--body);
 
   font-size: $font-size;
   font-family: $font-family;
   font-weight: $font-weight;
   line-height: $font-line;
-  color: $font-color;
+  color: var(--text);
 }
 
 p {
@@ -482,7 +482,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: $font-family-header;
   font-weight: $header-weight;
   line-height: $header-line;
-  color: $header-color;
+  color: var(--header);
 
   letter-spacing: $header-spacing;
   text-transform: $header-transform;
@@ -577,10 +577,4 @@ ol {
       }
     }
   }
-}
-
-// Separator
-
-@if $output-framework {
-  /* ----- */
 }

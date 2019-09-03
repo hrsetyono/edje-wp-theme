@@ -9,18 +9,6 @@
 ///// GENERAL
 
 article
-  letter-spacing: 0.01 * $font-size
-
-  h1, h2, h3, h4, h5, h6
-    +h( mb1_5 )
-    
-  p a,
-  li a
-    +h( bb1-solid )
-
-    &:hover
-      +h( bg-black_10 )
-
   p,
   ul,
   ol,
@@ -29,6 +17,10 @@ article
   table,
   figure
     +h( mb1_5 )
+  
+  p a,
+  li a
+    +h( td-u )
 
   ul, ol
     +h( pl1_5 )
@@ -42,12 +34,14 @@ article
   img
     +h( brad )
 
-  h1, h2, h3, h4, h5, h6
-    +h( clear-both )
 
-
-// Main wrapper
 .the-content
+  letter-spacing: 0.01 * $font-size
+
+  h1, h2, h3, h4, h5, h6
+    +h( mb1_5 clear-both )
+    color: var(--textColor)
+
 
   // all woocommerce page become alignwide
   > .woocommerce
@@ -67,15 +61,17 @@ article
     padding-right: $grid-rim
     padding-left: $grid-rim
   
-
 // Alignments
-.alignright
+.alignright,
+.has-text-align-right
   +h( ta-right )
 
-.alignleft
+.alignleft,
+.has-text-align-left
   +h( ta-left )
 
-.aligncenter
+.aligncenter,
+.has-text-align-center
   +h( ta-center )
 
 .alignwide
@@ -152,12 +148,6 @@ article
   +h( relative z2 c-white )
   width: $content-width
 
-  h1, h2, h3, h4, h5, h6
-    +h( c-white )
-
-  p, li
-    +h( fs-m )
-
   @media (below($grid-max-width))
     padding-right: $grid-rim
     padding-left: $grid-rim
@@ -214,7 +204,7 @@ p.has-background
 
 .wp-block-quote
   +h( p1 )
-  border-left: 4px solid $font-color
+  border-left: 4px solid var(--text)
 
   p,
   li
@@ -230,8 +220,8 @@ p.has-background
   &.is-style-large
     +h( fs-h4 ta-center )
     border-left: none
-    border-top: 3px solid $font-color
-    border-bottom: 3px solid $font-color
+    border-top: 3px solid var(--text)
+    border-bottom: 3px solid var(--text)
 
     cite
       +h( fs-body )
@@ -239,12 +229,12 @@ p.has-background
   &[style="text-align:right"],
   &[style="text-align: right"]
     border-left: none
-    border-right: 4px solid $font-color
+    border-right: 4px solid var(--text)
 
   &[style="text-align:center"],
   &[style="text-align: center"]
     border-left: none
-    border-top: 4px solid $font-color
+    border-top: 4px solid var(--text)
 
 
 ///// PULLQUOTE
@@ -460,7 +450,8 @@ p.has-background
 
 ///// TABLE
 
-.wp-block-table
+table.wp-block-table,
+.wp-block-table table
   +h( w100p bg-white )
   --tableBorder: var(--black)
   --tableHeader: var(--gray-light)
@@ -480,6 +471,13 @@ p.has-background
   td
     +h( pv0_5 ph1 b1-solid bc-black_10 )
 
+  //
+  @media ($below-s)
+    td
+      +h( pv0_25 ph0_5 )
+
+// Table styles
+.wp-block-table
   &.is-style-stripes
     tr:nth-child(even)
       background-color: var(--tableBg)
@@ -489,25 +487,20 @@ p.has-background
     table-layout: fixed
 
   // default color palette 
-  &.has-subtle-pale-green-background-color
+  .has-subtle-pale-green-background-color
     --tableBorder: var(--green)
     --tableHeader: var(--green-light)
     --tableBg: rgba(var(--greenRGB), .1)
 
-  &.has-subtle-pale-blue-background-color
+  .has-subtle-pale-blue-background-color
     --tableBorder: var(--blue)
     --tableHeader: var(--blue-light)
     --tableBg: rgba(var(--blueRGB), .1)
 
-  &.has-subtle-pale-pink-background-color
+  .has-subtle-pale-pink-background-color
     --tableBorder: var(--red)
     --tableHeader: var(--red-light)
     --tableBg: rgba(var(--redRGB), .1)
-
-  //
-  @media ($below-s)
-    td
-      +h( pv0_25 ph0_5 )
 
 
 ///// BUTTON

@@ -1,41 +1,75 @@
-// EDJE Functional Sass
-// - Single-file version
-// - v3.0.0
-
+/*!
+  EDJE Functional Sass v3.1.0
+  Documentation: https://github.com/hrsetyono/edje/wiki
+*/
 @charset "UTF-8";
 
-///// COLORS
+/*
+  EDJE COLORS
 
-// Palette
-$red : #d32f2f;
-$red-light: #ffcdd2;
-$yellow : #ffee58;
-$yellow-light: #fff9c4;
-$orange: #fB8c00;
-$orange-light: #ffe0b2;
-$green : #4caf50;
-$green-light: #c8e6c9;
-$blue: #1976d2;
-$blue-light: #bbdefb;
+  - Each item will be outputted as CSS Variable. So you can use them with var().
 
-$gray : #b0bec5;
-$gray-light: #eceff1;
-$gray-dark: #90a4ae;
+      EXAMPLE>>  border: 1px solid var(--red)
 
-// Named colors
-$main : $blue;
-$main-dark : darken($main, 20%);
-$main-light : $blue-light;
+  - In h() mixin, each item can be used alongside these shorthand styles:
+    - bg (background-color)
+    - bc (border-color)
+    - c (color)
+    
+      EXAMPLE>>  +h( bg-red c-blue-light )
 
-$sub: $gray;
-$sub-dark: $gray-dark;
-$sub-light: $gray-light;
+  - You can add transparency by adding underscore and the percentage
+    
+      EXAMPLE>>  +h( bg-main_20, c-black_10 )
+*/
+$h-colors: (
+  // Palette
+  'red': #d32f2f,
+  'red-dark': #b71c1c,
+  'red-light': #ffcdd2,
+  
+  'orange': #fB8c00,
+  'orange-dark': #e65100,
+  'orange-light': #ffe0b2,
 
-$body-background: #fff;
+  'yellow': #ffee58,
+  'yellow-dark': #ffd600,
+  'yellow-light': #fff9c4,
 
+  'green': #4caf50,
+  'green-dark': #2e7d32,
+  'green-light': #c8e6c9,
+  
+  'blue': #1976d2,
+  'blue-dark': #1565c0,
+  'blue-light': #bbdefb,
+
+  'gray': #b0bec5,
+  'gray-dark': #90a4ae,
+  'gray-light': #eceff1,
+
+  'black': black,
+  'white': white,
+
+  // Named color
+  'main': var(--blue),
+  'main-dark': var(--blue-dark),
+  'main-light': var(--blue-light),
+
+  'sub': var(--gray),
+  'sub-dark': var(--gray-dark),
+  'sub-light': var(--gray-light),
+
+  // Typography
+  'text': #222,
+  'passive': #888,
+  'header': var(--text),
+
+  // Other
+  'body': #ffffff
+);
 
 ///// MEDIA QUERY
-
 $size-xs : 480px;
 $size-s  : 767px;
 $size-m  : 960px;
@@ -58,7 +92,6 @@ $landscape: "orientation: landscape";
 $retina: "min-resolution: 192dpi";
 
 ///// TYPOGRAPHY
-
 $font-family : -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 $font-family-header : "Apple Garamond", "Baskerville", "Times New Roman", "Droid Serif", "Times","Source Serif Pro", serif;
 $font-family-monospace: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
@@ -72,17 +105,13 @@ $font-faces: (
   // )
 );
 
-$font-color  : #222;
-$font-passive : #888;
 $font-weight : 400;
 $font-line   : 1.65;
 $font-size : 16px;
-
 $color-link : inherit;
-$color-link-hover : inherit;
+$color-link-hover : var(--blue);
 
 // HEADER
-$header-color   : $font-color;
 $header-weight  : 700;
 $header-line    : 1.25;
 $header-spacing : 0;
@@ -101,9 +130,7 @@ $ul-child  : circle;
 $ol-parent : decimal;
 $ol-child  : lower-alpha;
 
-
 ///// GRID
-
 $grid-columns : 12;
 $grid-gap     : 20px;
 $grid-rim     : 16px;
@@ -116,7 +143,6 @@ $tile-max : 8;
 $tile-gap : 20px;
 
 ///// OTHER
-
 $shadow-z0: 0 0.5px 2px rgba(black, .18), 0 1.5px 6px rgba(black, .08);
 $shadow-z1: 0 1.5px 4px rgba(black, .24), 0 1.5px 6px rgba(black, .12);
 $shadow-z2: 0 3px 12px rgba(black, .23), 0 3px 12px rgba(black, .16);
@@ -129,51 +155,9 @@ $image-url: '../images/';
 $font-url: '../fonts/';
 
 
-// ----------------
-// FUNCTIONAL SASS
-// ----------------
 
-// COLORS for FUNCTIONAL SASS
-// - Accessible by these shorthand styles: bg, bc, c
-// - You can add transparency by adding underscore and number between 1-99
-// - Example: bg-main, c-black_10
-$h-colors: (
-  'main': $main,
-  'main-dark': $main-dark,
-  'main-light': $main-light,
-
-  'sub': $sub,
-  'sub-dark': $sub-dark,
-  'sub-light': $sub-light,
-
-  'red': $red,
-  'red-light': $red-light,
-  'yellow': $yellow,
-  'yellow-light': $yellow-light,
-  'orange': $orange,
-  'orange-light': $orange-light,
-  'green': $green,
-  'green-light': $green-light,
-  'blue': $blue,
-  'blue-light': $blue-light,
-
-  'black': black,
-  'white': white,
-  'gray': $gray,
-  'gray-light': $gray-light,
-  'gray-dark': $gray-dark,
-
-  'text': $font-color,
-  'passive': $font-passive,
-  'header': $header-color,
-
-  'body': $body-background
-);
-
-
-// If the CSS doesn't fit in any variable, put it here
+// Custom bit for Functional Sass
 $h-custom: (
-  m0-auto: ( margin: 0 auto ),
   content-empty: ( content: '' ), 
 );
 

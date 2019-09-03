@@ -39,6 +39,75 @@ $_media-sizes: (
 }
 
 
+// -------
+// COLOR
+// -------
+
+// Override Darken functions to allow CSS Variable from $h-colors
+// 
+//   color: darken( --main, 10% )
+//
+@function darken( $name, $amount ) {
+  $color: _getColorFromMap( $name );
+  @return scale-color( $color, $lightness: -$amount );
+}
+
+// Override lighten function to allow CSS Variable from $h-colors
+//
+//   color: lighten( --red-dark, 20% )
+//
+@function lighten( $name, $amount ) {
+  $color: _getColorFromMap( $name );
+  @return scale-color( $color, $lightness: $amount );
+}
+
+// Similar to rgba() but integrated with $h-colors
+//
+//  color: h-rgba( --text, .5 )
+//
+@function h-rgba( $name, $alpha ) {
+  // if starts with double dash
+  @if str-slice( quote($name), 1, 2 ) == '--' {
+    $var_name: _str-replace( $name, '--', '' );
+    
+    @if( not map-has-key( $h-colors, $var_name ) ) {
+      @warn "The color '#{ $var_name }' does not exist in $h-colors.";
+    }
+
+    @return rgba( var($name#{ 'RGB' }), $alpha );
+  }
+  @else {
+    @return rgba( $name, $alpha );
+  }
+}
+
+//
+
+// Take the value of $h-colors if color starts with double dash
+@function _getColorFromMap( $name, $must_be_hex: true ) {
+  $color: $name;
+
+  // if starts with double-dash
+  @if str-slice( quote($name), 1, 2 ) == '--' {
+    $var_name: _str-replace( $name, '--', '' );
+    $color: map-get( $h-colors, $var_name );
+
+    $count: 0;
+    // if the color is var(), repeat until it found a Hex value. Max 2 times
+    @while $count <= 2 AND str-slice( quote($color), 1,3 ) == 'var' {
+      $var_name: _str-replace( quote($color), 'var(--', '' );
+      $var_name: _str-replace( $var_name, ')', '' );
+      $color: map-get( $h-colors, $var_name );
+
+      $count: $count + 1;
+    }
+  }
+  
+  @return $color;
+}
+
+
+
 // -------------
 // EM CONVERTER
 // -------------
@@ -137,6 +206,11 @@ $_media-sizes: (
   }
 
   @return url("data:image/svg+xml;charset=utf8,#{$encoded}");
+}
+
+// alias
+@function svg( $svg_raw ) {
+  @return svg-encode( $svg_raw );
 }
 
 /// Replace `$search` with `$replace` in `$string`

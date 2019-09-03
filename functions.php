@@ -15,11 +15,11 @@ my_start();
  * Run first
  */
 function my_start() {
+  require_once 'codes/api.php';
+  require_once 'codes/blocks.php';
+  require_once 'codes/shortcodes.php';
   require_once 'codes/timber.php';
   require_once 'codes/hooks.php';
-  require_once 'codes/shortcodes.php';
-  require_once 'codes/blocks.php';
-  require_once 'codes/api.php';
 
   if( class_exists('WooCommerce') ) {
     require_once 'functions-shop.php';
@@ -27,22 +27,22 @@ function my_start() {
 
   new MyAPI();
   new MyBlocks();
+  new MyShortcodes();
   new MyTimber();
   new MyHooks();
-  new MyShortcodes();
 
   /**
    * Register custom post type
    * - Read how at https://github.com/hrsetyono/edje-wp-library/wiki/Custom-Post-Type
    */
-  H::register_post_type( 'item', [ 'icon' => 'dashicons-cart' ] );
-  // H::register_taxonomy( 'brand', [ 'post_type' => 'product' ] );
+  H::register_post_type( 'product', [ 'icon' => 'dashicons-cart' ] );
+  H::register_taxonomy( 'brand', [ 'post_type' => 'product' ] );
 
   /**
    * Create Gutenberg block for post listing
    */
   H::register_post_block( 'post' );
-  // H::register_post_block( 'product' );
+  H::register_post_block( 'product' );
 }
 
 
@@ -91,27 +91,25 @@ function my_after_setup_theme() {
 
   /**
    * Each color will be outputted into 2 classes: `has-x-background-color` and `has-x-color`.
-   * 
-   * The values are turned into CSS Variable, such as `red` becoming `var(--red)`
+   * Format: $class-name => $value
    */
-  $palette = H::register_colors([
-    'Red' => 'red', // $label => $slug
-    'Light Red' => 'red-light',
-    'Orange' => 'orange',
-    'Light Orange' => 'orange-light',
-    'Yellow' => 'yellow',
-    'Light Yellow' => 'yellow-light',
-    'Green' => 'green',
-    'Light Green' => 'green-light',
-    'Blue' => 'blue',
-    'Light Blue' => 'blue-light',
+  add_theme_support( 'editor-color-palette', H::color_palette([
+    'Red'       => 'var(--red)',
+    'Light Red' => 'var(--red-light)',
+    'Orange'       => 'var(--orange)',
+    'Light Orange' => 'var(--orange-light)',
+    'Yellow'       => 'var(--yellow)',
+    'Light Yellow' => 'var(--yellow-light)',
+    'Green'        => 'var(--green)',
+    'Light Green'  => 'var(--green-light)',
+    'Blue'         => 'var(--blue)',
+    'Light Blue'   => 'var(--blue-light)',
 
-    'Black' => 'black',
-    'Gray' => 'gray',
-    'Light Gray' => 'gray-light',
-    'White' => 'white'
-  ]);
-  add_theme_support( 'editor-color-palette', $palette );
+    'Black'      => 'var(--black)',
+    'Gray'       => 'var(--gray)',
+    'Light Gray' => 'var(--gray-light)',
+    'White'      => 'var(--white)',
+  ]) );
 
 
   // Create Nav assignment

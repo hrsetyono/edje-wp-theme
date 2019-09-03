@@ -29,7 +29,7 @@ $social-logos: (
 .sharedaddy {
   margin: 2em 0 2em;
   padding-top: 2em;
-  border-top: 1px solid $gray;
+  border-top: 1px solid var(--gray);
 
   .share-end {
     display: none;

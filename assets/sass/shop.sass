@@ -1,7 +1,7 @@
 @import "settings"
 
-$wc-panel: $gray-light
-$wc-panel-dark: darken($wc-panel, 5%)
+$wc-panel: var(--gray-light)
+$wc-panel-dark: darken( --gray-light, 5%)
 
 @import "shop-cart"
 
@@ -139,7 +139,7 @@ $wc-panel-dark: darken($wc-panel, 5%)
 
   .button.added
     +h( relative bg-green c-transparent bc-green )
-    border-color: darken( $green, 10%) 
+    border-color: darken( --green, 10%) 
 
     &::after
       content: "\f147"
@@ -156,7 +156,7 @@ $wc-panel-dark: darken($wc-panel, 5%)
 .onsale
   +h( d-inline-block pv0 ph1 b1-dashed bc-white bg-red )
   +h( c-white fw-header fs-s tt-uppercase brad )
-  box-shadow: 0 0 0 2px $red
+  box-shadow: 0 0 0 2px var(--red)
 
   .product-tease &
     +h( absolute )
@@ -261,7 +261,7 @@ $wc-panel-dark: darken($wc-panel, 5%)
 
   .flex-active
     +h( o100 )
-    box-shadow: 0 0 0 3px $main
+    box-shadow: 0 0 0 3px var(--main)
 
 ///// PRODUCT TABS
 
@@ -281,7 +281,7 @@ ul.wc-tabs
 
 .wc-tab
   +h( p0_5 )
-  border: 4px solid rgba($main, .25)
+  border: 4px solid h-rgba(--main, .25)
   border-radius: 0 $g-radius $g-radius $g-radius
 
   > h2:first-child
