@@ -2,13 +2,9 @@
 {% block content %}
 
 <article class="the-content">
-  {% if post.thumbnail %}
-    {% include "partials/_featured-image.twig" %}
-  {% else %}
-    <header class="post-header">
-      <h1>{{ post.title }}</h1>
-    </header>
-  {% endif %}
+  <header class="post-header">
+    <h1>{{ post.title }}</h1>
+  </header>
 
   {{ post.content }}
 </article>

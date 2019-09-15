@@ -1,0 +1,703 @@
+  ///// GUTENBERG COLORS
+
+  [class*="-background-color"]
+    background-color: var(--bgColor)
+
+  .has-text-color
+    color: var(--textColor)
+
+  ///// GENERAL
+
+  article
+    p,
+    ul,
+    ol,
+    blockquote,
+    pre,
+    table,
+    figure
+      +h( mb1_5 )
+    
+    p a,
+    li a
+      +h( td-u )
+
+    ul, ol
+      +h( pl1_5 )
+
+    ul ul,
+    ol ol,
+    ul ol,
+    ol ul
+      +h( mb0 )
+
+    img
+      +h( brad )
+
+
+  .the-content
+    letter-spacing: 0.01 * $font-size
+
+    h1, h2, h3, h4, h5, h6
+      +h( mb1_5 clear-both )
+      color: var(--textColor)
+
+
+    // all woocommerce page become alignwide
+    > .woocommerce
+      +h( mh-auto )
+      max-width: $grid-max-width
+
+    > *:first-child
+      +h( mt0 )
+
+  .the-content,
+  .wp-block-group__inner-container,
+  .wp-block-cover__inner-container
+    > *
+      +h( mh-auto mb1_5 )
+      max-width: $content-width
+
+    @media (below($grid-max-width))
+      padding-right: $grid-rim
+      padding-left: $grid-rim
+    
+  // Alignments
+  .alignright,
+  .has-text-align-right
+    +h( ta-right )
+
+  .alignleft,
+  .has-text-align-left
+    +h( ta-left )
+
+  .aligncenter,
+  .has-text-align-center
+    +h( ta-center )
+
+  .alignwide
+    max-width: $grid-max-width
+
+  .alignfull
+    +h( maxw-none mv2_5 )
+
+    + .alignfull
+      +h( mt-2_5 )
+
+    &:last-child
+      +h( mb0 )
+
+    @media (below($grid-max-width))
+      margin-right: -1 * $grid-rim
+      margin-left: -1 * $grid-rim
+
+
+  .is-vertically-aligned-top
+    +h( ai-start as-start )
+
+  .is-vertically-aligned-center
+    +h( ai-center as-center )
+
+  .is-vertically-aligned-bottom
+    +h( ai-end as-end )
+
+
+  ////// GROUP
+    
+  .wp-block-group
+    +h( pv2 )
+
+    &:not(.has-background)
+      +h( pv0 )
+
+    &:not(.has-background) + .alignfull
+      +h( mt0 )
+
+    *:last-child
+      +h( mb0 )
+
+
+  ///// COVER
+
+  .wp-block-cover
+    +h( d-flex ai-center jc-center  bgs-cover bgp-cc bg-black )
+    +h( minh400px )
+
+    &.--for-featured-image
+      +h( ai-end )
+
+      .post-meta
+        +h( pv0_5 c-white_60 )
+        border-top: 1px solid
+        border-bottom: 2px solid
+
+      .post-meta + p
+        +h( mt1_5 )
+
+    &.--for-post-tease
+      +h( ov-hidden ai-end ph2 pb2 brad )
+      max-width: calc(#{ $content-width } + 4rem )
+
+      a:hover h1
+        +h( td-u )
+
+      .post-meta
+        +h( c-white_60 )
+
+
+  .wp-block-cover__inner-container
+    +h( relative z2 c-white )
+    width: $content-width
+
+    @media (below($grid-max-width))
+      padding-right: $grid-rim
+      padding-left: $grid-rim
+
+  .has-parallax
+    background-attachment: fixed
+
+  .has-background-dim
+    +h( relative )
+
+    &::before
+      content: ""
+      +h( absolute-fill z1 o50 bg-inherit )
+
+  .has-background-dim-10::before
+    +h( o10 )
+  .has-background-dim-20::before
+    +h( o20 )
+  .has-background-dim-30::before
+    +h( o30 )
+  .has-background-dim-40::before
+    +h( o40 )
+  .has-background-dim-60::before
+    +h( o60 )
+  .has-background-dim-70::before
+    +h( o70 )
+  .has-background-dim-80::before
+    +h( o80 )
+  .has-background-dim-90::before
+    +h( o90 )
+  .has-background-dim-100::before
+    +h( o100 )
+
+
+  ///// PARAGRAPH
+
+  p.has-background
+    +h( p1 brad )
+
+  .has-small-font-size
+    +h( fs-s )
+
+  .has-medium-font-size
+    +h( fs-m )
+
+  .has-large-font-size
+    font-size: 2.25rem
+
+  .has-huge-font-size
+    font-size: 3rem
+
+
+  ///// QUOTE
+
+  .wp-block-quote
+    +h( p1 )
+    border-left: 4px solid var(--text)
+
+    p,
+    li
+      +h( mb0 )
+
+    p + p,
+    li + li
+      +h( mt1 )
+
+    cite
+      +h( d-block mt1 fs-s c-passive )
+
+    &.is-style-large
+      +h( fs-h4 ta-center )
+      border-left: none
+      border-top: 3px solid var(--text)
+      border-bottom: 3px solid var(--text)
+
+      cite
+        +h( fs-body )
+
+    &[style="text-align:right"],
+    &[style="text-align: right"]
+      border-left: none
+      border-right: 4px solid var(--text)
+
+    &[style="text-align:center"],
+    &[style="text-align: center"]
+      border-left: none
+      border-top: 4px solid var(--text)
+
+
+  ///// PULLQUOTE
+
+  .wp-block-pullquote
+    +h( pv0 )
+    background-color: var(--bgColor)
+
+    blockquote
+      +h( d-flex fd-column ta-left )
+
+      > *
+        +h( order2 )
+
+    p, li
+      +h( ph1 mb0 fs-body h0 ov-hidden  transition )
+
+    cite
+      +h( d-flex order1 cursor-pointer relative pv0_5 ph1 bg-black_05 )
+      +h( fw700 fs-m  transition brad )
+      font-style: normal
+
+      &::before
+        content: "+"
+        +h( d-iblock mr1  ff-monospace )
+
+      &:hover
+        +h( bg-black_20 )
+
+    &.--expanded
+      cite
+        +h( mb1 )
+
+      cite::before
+        content: "-"
+
+      p, li
+        +h( mb1 h-auto )
+
+  .wp-block-pullquote.is-style-solid-color
+    +h( brad )
+
+    cite
+      +h( bg-transparent )
+    
+    cite:hover
+      +h( bg-white_25 )
+
+    &.--expanded
+      cite
+        +h( bg-transparent )
+
+  ///// IMAGE
+
+  %figcaption
+    +h( d-iblock p0_5 mh-auto bb1-solid bc-gray )
+    +h( fs-s )
+
+  .wp-block-image
+    +h( ta-center )
+
+    &.alignfull
+      img
+        +h( brad0 )
+
+    figcaption
+      @extend %figcaption
+    
+
+  // hover effect
+  .wp-block-image a,
+  .wp-block-gallery a
+    +h( d-block ov-hidden brad )
+
+    img
+      +h( transition )
+
+    &:hover img
+      +h( backface-hidden )
+      transform: scale(1.1)
+
+
+  ///// GALLERY
+
+  .wp-block-gallery 
+    +h( d-flex fw-wrap list-none pl0 )
+    max-width: calc(#{ $content-width } + 1rem)
+
+    &.alignwide
+      max-width: calc(#{ $grid-max-width } + 1rem)
+
+    &.alignfull
+      max-width: 100%
+
+    &.is-cropped img
+      +h( flex1 h100p w100p )
+      object-fit: cover
+
+    figure
+      +h( relative d-flex ai-end jc-start h100p mb0  brad )
+
+    a
+      +h( h100p )
+
+    figcaption
+      +h( absolute bottom0 w100p p0_5  fs-s c-white ta-center )
+      background-image: linear-gradient( 0deg,rgba(0,0,0,.7),rgba(0,0,0,.5) 50%,transparent)
+    
+  .blocks-gallery-item
+    +h( ph0_5 pb1 )
+    flex-grow: 1
+
+    @media ($above-s)
+      .columns-2 &
+        width: 50%
+      .columns-3 &
+        width: calc(100% / 3)
+      .columns-4 &
+        width: 25%
+      .columns-5 &
+        width: 20%
+      .columns-6 &
+        width: calc(100% / 6)
+      .columns-7 &
+        width: calc(100% / 7)
+      .columns-8 &
+        width: 12.5%
+      .columns- &
+        width: 20%
+
+    @media ($below-s)
+      width: 33.33%
+
+      .columns-2 &
+        width: 50%
+    
+    @media ($below-xs)
+      width: 50%
+
+
+  ///// GALLERY SLIDER
+
+  .is-style-h-slider
+    .blocks-gallery-item
+      flex-grow: initial
+
+    &.is-cropped .hSlider-slide
+      +h( ai-stretch )
+
+
+  ///// AUDIO
+
+  .wp-block-audio
+    +h( ta-center )
+
+    audio
+      +h( w100p )
+
+    figcaption
+      @extend %figcaption
+
+  ///// FILE
+
+  .wp-block-file
+    +h( d-flex ai-center jc-center )
+    +h( p1_25 bg-gray-light b1-solid bc-black_10  brad )
+
+    &.alignleft
+      +h( jc-start )
+
+    &.alignright
+      +h( jc-end )
+
+  .wp-block-file__button
+    +h( ml1 )
+
+
+  ///// VIDEO
+
+  .wp-block-video
+    +h( w100p ta-center )
+
+    video
+      +h( w100p )
+
+    figcaption
+      @extend %figcaption
+
+
+  ///// SPACER
+
+  .wp-block-spacer
+    +h( mb0 )
+
+
+  ///// SEPARATOR
+
+  .wp-block-separator
+    +h( d-block bt2-solid bc-gray mv2_5 mh-auto p0  lh1 )
+    width: 120px
+
+    &.is-style-wide
+      width: $content-width
+
+    &.is-style-dots
+      +h( b0 h-auto w-auto ta-center )
+
+      &::before
+        content: "\00b7 \00b7 \00b7"
+        +h( pl2 ff-monospace c-text fs-m )
+        letter-spacing: 2rem
+
+
+  ///// TABLE
+
+  table.wp-block-table,
+  .wp-block-table table
+    +h( w100p bg-white )
+    --tableBorder: var(--black)
+    --tableHeader: var(--gray-light)
+    --tableBg: rgba(var(--grayRGB), .1)
+
+    thead tr,
+    tfoot tr
+      +h( fw700 ta-left )
+      background-color: var(--tableHeader)
+
+    thead tr
+      border-bottom: 2px solid var(--tableBorder)
+    tfoot tr
+      border-top: 2px solid var(--tableBorder)
+
+    th,
+    td
+      +h( pv0_5 ph1 b1-solid bc-black_10 )
+
+    //
+    @media ($below-s)
+      td
+        +h( pv0_25 ph0_5 )
+
+  // Table styles
+  .wp-block-table
+    &.is-style-stripes
+      tr:nth-child(even)
+        background-color: var(--tableBg)
+
+    &.has-fixed-layout
+      +h( w100p )
+      table-layout: fixed
+
+    // default color palette 
+    .has-subtle-pale-green-background-color
+      --tableBorder: var(--green)
+      --tableHeader: var(--green-light)
+      --tableBg: rgba(var(--greenRGB), .1)
+
+    .has-subtle-pale-blue-background-color
+      --tableBorder: var(--blue)
+      --tableHeader: var(--blue-light)
+      --tableBg: rgba(var(--blueRGB), .1)
+
+    .has-subtle-pale-pink-background-color
+      --tableBorder: var(--red)
+      --tableHeader: var(--red-light)
+      --tableBg: rgba(var(--redRGB), .1)
+
+
+  ///// BUTTON
+
+  .is-style-squared
+    a
+      +h( brad )
+
+
+  ///// COLUMNS
+
+  .wp-block-columns
+    +h( d-flex )
+
+    @media ($below-s)
+      +h( fw-wrap )
+
+  .wp-block-column
+    +h( flex1 )
+
+    > *:last-child
+      +h( mb0 )
+
+    @media ($above-s)
+      + .wp-block-column
+        +h( ml1_5 ) 
+
+    @media ($below-s)
+      +h( w100p )
+      flex-basis: 100% !important
+
+      + .wp-block-column
+        +h( mt1_5 )
+
+
+  @media ($above-s)
+    .is-style-h-2-1
+      .wp-block-column:nth-child(1)
+        flex: 2
+      .wp-block-column:nth-child(2)
+        flex: 1
+
+    .is-style-h-1-2
+      .wp-block-column:nth-child(1)
+        flex: 1
+      .wp-block-column:nth-child(2)
+        flex: 2
+
+  @media ($below-s)
+    .is-style-h-1-1-mobile
+      .wp-block-column
+        flex-basis: 50% !important
+
+      .wp-block-column:nth-child(even)
+        +h( mt0 )
+
+
+  ///// MEDIA TEXT
+
+  .wp-block-media-text
+    +h( d-grid )
+    grid-row-gap: $grid-gap
+    grid-column-gap: $grid-gap
+
+    &[class*="-background-color"]
+      +h( p1 brad )
+
+    @media ($above-xs)  
+      grid-template-areas: "media text"
+      grid-template-columns: 6fr 6fr
+
+      &.has-media-on-the-right
+        grid-template-areas: "text media"
+
+      &.is-style-h-smaller-image,
+      &.is-style-h-larger-image.has-media-on-the-right
+        grid-template-columns: 4fr 8fr
+
+      &.is-style-h-larger-image,
+      &.is-style-h-smaller-image.has-media-on-the-right
+        grid-template-columns: 8fr 4fr
+    
+    //
+    @media ($below-xs)
+      grid-template-areas: "media" "text"
+      grid-template-columns: repeat(1, 1fr)
+
+
+  .wp-block-media-text__media
+    +h( mb0 )
+    grid-area: media
+
+    @media ($above-xs)
+      .is-image-fill &
+        +h( as-stretch bgr-no bgs-cover brad )
+
+        img
+          +h( d-none )
+
+    @media ($below-xs)
+      .is-image-fill &
+        background-image: none !important
+
+
+  .wp-block-media-text__content
+    grid-area: text
+
+    > *:last-child
+      +h( mb0 )
+
+
+  ///// CODE & PREFORMATTED
+
+  .wp-block-code,
+  .wp-block-preformatted
+    +h( p1 b1-solid bc-black_10 bg-gray-light brad )
+    font-size: 15px
+
+    code
+      +h( p0 b0 bg-transparent )
+
+  pre,
+  code
+    +h( ff-monospace )
+
+  code
+    +h( pv0 ph0_5 )
+
+
+  ///// EMBED
+
+  .wp-block-embed
+    +h( mv2 ta-center )
+
+    figcaption
+      @extend %figcaption
+
+  .wp-block-embed__wrapper
+    +h( d-flex jc-center relative )
+
+    &::before
+      .wp-has-aspect-ratio &,
+      .wp-block-embed-wordpress &
+        +h( content-empty d-block w100p )
+
+      .wp-embed-aspect-21-9 &,
+      .wp-block-embed-wordpress &
+        padding-top: 42.85%
+      .wp-embed-aspect-18-9 &
+        padding-top: 50%
+      .wp-embed-aspect-16-9 &
+        padding-top: 56.25%
+      .wp-embed-aspect-4-3 &
+        padding-top: 75%
+      .wp-embed-aspect-1-1 &
+        padding-top: 100%
+      .wp-embed-aspect-9-6 &
+        padding-top: 66.667%
+      .wp-embed-aspect-1-2 &
+        padding-top: 200%
+      
+
+  .wp-has-aspect-ratio,
+  .wp-block-embed-wordpress
+    iframe
+      +h( absolute-fill w100p h100p )
+
+
+  .wp-block-embed-wordpress
+    blockquote
+      +h( d-none )
+    
+    iframe
+      clip: auto !important
+
+
+  ///// READ MORE
+
+  .h-block-readmore
+    +h( mv2 transition )
+
+    .button
+      +h( d-block pv1 tt-uppercase ta-center )
+
+    ~ *
+      +h( transition )
+
+    // hide all the content after Read More block
+    &:not(.--expanded)
+      ~ *
+        +h( d-block ov-hidden h0 p0 m0 b0 transition )
+
+    &.--expanded
+      +h( ov-hidden h0 p0 m0  )
+
+
+  ///// ACF POST LIST
+
+  .acf-block-post-list

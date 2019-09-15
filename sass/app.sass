@@ -1,0 +1,13 @@
+// Put styles that are unique for this project here
+@import "settings"
+@import "app/nav"
+@import "app/gutenberg"
+
+
+// hide wp admin bar
+@media ( below(782px) )
+  html[lang]
+    margin-top: 0 !important
+
+  #wpadminbar
+    +h( d-none )

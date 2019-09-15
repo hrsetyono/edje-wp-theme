@@ -1,0 +1,86 @@
+///// BUTTON /////
+
+.button,
+[type="submit"],
+[type="reset"],
+.wp-block-file__button,
+.wp-block-button__link
+  +h( cursor-pointer ov-hidden d-inline-block )
+  +h( bg-main b1-solid bb2-solid bc-black_25 pv0_5 ph1_5 nowrap )
+  +h( fw600 fs-m  lh-normal va-top c-white td-none  brad-pill transition-none )
+  outline: none
+  
+  &:hover
+    +h( c-white bc-black_50 )
+  
+  &:active
+    border-top-width: 2px
+    border-bottom-width: 1px
+
+  &[disabled],
+  &.disabled
+    +h( cursor-not-allowed o50 )
+
+
+// passive button
+.button.--passive,
+.button.--loading
+  +h( bg-gray-light bc-black_10 c-text )
+
+  &:hover
+    +h( bc-black_25 c-text )
+
+
+.button.--outline,
+.is-style-outline .wp-block-button__link,
+  +h( bg-transparent c-main bc-inherit )
+
+  &:hover
+    +h( bg-main_10 )
+
+// loading button
+.button.--loading
+  +h( cursor-not-allowed bgp-cc bgr-no )
+  background-image: url("../../../../../wp-admin/images/spinner.gif")
+  color: transparent !important
+
+  
+///// INPUT /////
+
+[type="text"],
+[type="number"],
+[type="tel"],
+[type="password"],
+[type="email"],
+[type="search"],
+[type="url"],
+[type="date"],
+[type="time"],
+textarea,
+select
+  +h( d-block w100p pv0_75 ph0_5 b2-solid bc-gray brad )
+  +h( lh-normal transition )
+  
+  &:focus
+    +h( bc-main )
+    box-shadow: 0 0 0 2px #78dcfa
+
+select
+  border-width: 2px 2px 3px
+
+[type="radio"],
+[type="checkbox"]
+  +h( cursor-pointer b1-solid bc-black_25  w1 h1 )
+  +h( va-bottom transition appearance-none )
+  
+  &:hover
+    +h( bc-main )
+  &:checked
+    +h( bc-main )
+    box-shadow: inset 0 0 0 4.5px var(--main)
+
+[type="checkbox"]
+  +h( brad )
+
+[type="radio"]
+  +h( brad-circle )

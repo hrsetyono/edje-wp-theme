@@ -1,73 +1,45 @@
 <?php
 
-require_once 'codes/helpers.php';
+require_once 'functions/helpers.php';
 if( !MyHelper::has_required_plugins() ) { return false; }
 
-add_action( 'wp_enqueue_scripts', 'my_enqueue_assets', 100 );
+require_once 'functions/api.php';
+require_once 'functions/blocks.php';
+require_once 'functions/shortcodes.php';
+require_once 'functions/timber.php';
+require_once 'functions/hooks.php';
+require_once 'functions/enqueue.php';
+
+if( class_exists('WooCommerce') ) {
+  require_once 'functions/shop-hooks.php';
+  require_once 'functions/shop.php';
+}
+
+my_before_setup_theme();
 add_action( 'after_setup_theme', 'my_after_setup_theme' );
-
-my_start();
-
 
 /////
 
 /**
  * Run first
+ * @action plugins_loaded
  */
-function my_start() {
-  require_once 'codes/api.php';
-  require_once 'codes/blocks.php';
-  require_once 'codes/shortcodes.php';
-  require_once 'codes/timber.php';
-  require_once 'codes/hooks.php';
-
-  if( class_exists('WooCommerce') ) {
-    require_once 'functions-shop.php';
-  }
-
-  new MyAPI();
-  new MyBlocks();
-  new MyShortcodes();
-  new MyTimber();
-  new MyHooks();
-
+function my_before_setup_theme() {
   /**
    * Register custom post type
-   * - Read how at https://github.com/hrsetyono/edje-wp-library/wiki/Custom-Post-Type
+   * - Read more at https://github.com/hrsetyono/edje-wp-library/wiki/Custom-Post-Type
    */
   H::register_post_type( 'product', [ 'icon' => 'dashicons-cart' ] );
   H::register_taxonomy( 'brand', [ 'post_type' => 'product' ] );
 
   /**
-   * Create Gutenberg block for post listing
+   * Create Gutenberg block for post-type listing
    */
-  H::register_post_block( 'post' );
-  H::register_post_block( 'product' );
+  H::register_post_type_block( 'post' );
+  H::register_post_type_block( 'product' );
 }
 
 
-/**
- * Register all your CSS and JS here
- * @action wp_enqueue_scripts 100
- */
-function my_enqueue_assets() {
-  $css_dir = get_stylesheet_directory_uri() . '/assets/css';
-  $js_dir = get_stylesheet_directory_uri() . '/assets/js';
-
-  // Stylesheet
-  wp_enqueue_style( 'my-framework', $css_dir . '/framework.css' );
-  wp_enqueue_style( 'my-app', $css_dir . '/app.css' );
-  wp_enqueue_style( 'dashicons', get_stylesheet_uri(), 'dashicons' ); // WP native icons
-  
-  // Edje Library
-  wp_enqueue_script( 'h-lightbox' );
-  wp_enqueue_script( 'h-slider' );
-  wp_enqueue_style( 'h-lightbox' );
-  wp_enqueue_style( 'h-slider' );
-
-  // Javascript
-  wp_enqueue_script( 'my-app', $js_dir . '/app.js', ['jquery'], false, true );
-}
 
 
 /**

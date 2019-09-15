@@ -1,0 +1,21 @@
+@import "settings"
+
+$wc-panel: var(--gray-light)
+$wc-panel-dark: darken( --gray-light, 5%)
+
+///// GENERAL
+
+.price
+  del
+    +h( d-block o50 fs-s )
+  ins
+    +h( d-block td-none )
+
+.woocommerce-Price-currencySymbol // Change currency to be smaller
+  +h( fw-body fs-s )
+
+
+@import "shop/toast"
+@import "shop/archive"
+@import "shop/single"
+@import "shop/cart"

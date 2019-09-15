@@ -56,7 +56,7 @@ else {
     wc_set_loop_prop( 'total', 0 );
   }
 
-  Timber::render( 'shop/shop.twig', $context );
+  Timber::render( 'shop/archive.twig', $context );
 }
 
 

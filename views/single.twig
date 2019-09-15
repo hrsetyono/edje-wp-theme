@@ -3,30 +3,24 @@
 
 {# Content #}
 <article class="the-content">
-  {% if post.thumbnail %}
-    {% include "partials/_featured-image.twig" %}
-  {% else %}
-    <header class="post-header">
-      <h1>{{ post.title }}</h1>
-      {% include "partials/_post-meta.twig" %}
-    </header>
-  {% endif %}
+  <header class="post-header">
+    <h1>{{ post.title }}</h1>
+    {% include "_post-meta.twig" %}
+  </header>
 
   {{ post.content }}  
 
   <footer class="post-author">
-    {% include "partials/_author-info.twig" with { author: post.author } %}
+    {% include "_author-info.twig" with { author: post.author } %}
   </footer>
 </article>
 
 {# Comments #}
 <footer class="post-footer">
   <h-grid class="post-footer-grid"> <div class="large-4">
-
-    {% include "partials/_related-posts.twig" %}
-    {% include "partials/_comments.twig" %}
+    {% include "_related-posts.twig" %}
+    {% include "_comments.twig" %}
   </div> </h-grid>
 </footer>
-
 
 {% endblock %}
