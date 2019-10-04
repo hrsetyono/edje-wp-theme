@@ -1,0 +1,144 @@
+
+
+///// PULLQUOTE
+
+.wp-block-pullquote
+  +h( pv0 )
+  background-color: var(--bgColor)
+
+  blockquote
+    +h( d-flex fd-column ta-left )
+
+    > *
+      +h( order2 )
+
+  p, li
+    +h( ph1 mb0 fs-body h0 ov-hidden  transition )
+
+  cite
+    +h( d-flex order1 cursor-pointer relative pv0_5 ph1 bg-black_05 )
+    +h( fw700 fs-m  transition brad )
+    font-style: normal
+
+    &::before
+      content: "+"
+      +h( d-iblock mr1  ff-monospace )
+    &:hover
+      +h( bg-black_20 )
+    &:focus
+      outline: 1px dotted #212121
+      outline: 5px auto -webkit-focus-ring-color
+
+  &.--expanded
+    cite
+      +h( mb1 )
+
+    cite::before
+      content: "-"
+
+    p, li
+      +h( mb1 h-auto )
+
+
+.wp-block-pullquote.is-style-solid-color
+  +h( brad )
+
+  cite
+    +h( bg-transparent )
+  
+  cite:hover
+    +h( bg-white_25 )
+
+  &.--expanded
+    cite
+      +h( bg-transparent )
+
+
+///// VERSE
+
+.wp-block-verse
+  +h( ff-body )
+
+
+///// TABLE
+
+.wp-block-table
+  --tableBorder: var(--black)
+  --tableHeader: var(--gray-light)
+  --tableBg: white
+  --tableStripe: #{ h-rgba(--gray, .1) }
+
+  table
+    +h( w100p )
+  tr
+    background-color: var(--tableBg)
+
+  thead tr,
+  tfoot tr
+    +h( fw700 ta-left )
+    background-color: var(--tableHeader)
+  thead tr
+    border-bottom: 2px solid var(--tableBorder)
+  tfoot tr
+    border-top: 2px solid var(--tableBorder)
+
+  th,
+  td
+    +h( pv0_5 ph1 b1-solid bc-black_10 )
+
+  //
+  @media ($below-s)
+    td
+      +h( pv0_25 ph0_5 )
+
+// Table styles
+.wp-block-table
+  &.is-style-stripes
+    tbody tr:nth-child(odd)
+      background-color: var(--tableStripe)
+
+  .has-fixed-layout
+    +h( w100p )
+    table-layout: fixed
+
+  [class*="-background-color"]
+    --tableStripe: white
+
+  .has-subtle-light-gray-background-color
+    --tableBorder: var(--gray)
+    --tableHeader: var(--gray-light)
+    --tableBg: #{ h-rgba(--gray, .1) }
+
+  .has-subtle-pale-green-background-color
+    --tableBorder: var(--green)
+    --tableHeader: var(--green-light)
+    --tableBg: #{ h-rgba(--green, .1) }
+
+  .has-subtle-pale-blue-background-color
+    --tableBorder: var(--blue)
+    --tableHeader: var(--blue-light)
+    --tableBg: #{ h-rgba(--blue, .1) }
+
+  .has-subtle-pale-pink-background-color
+    --tableBorder: var(--red)
+    --tableHeader: var(--red-light)
+    --tableBg: #{ h-rgba(--red, .1) }
+
+
+
+///// CODE & PREFORMATTED
+
+.wp-block-code,
+.wp-block-preformatted
+  +h( p1 b1-solid bc-black_10 bg-gray-light brad )
+  font-size: 15px
+
+  code
+    +h( p0 b0 bg-transparent )
+
+pre,
+code
+  +h( ff-monospace )
+
+code
+  +h( pv0 ph0_5 )

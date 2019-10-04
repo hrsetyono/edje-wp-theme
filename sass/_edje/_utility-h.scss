@@ -16,6 +16,11 @@
       $prop: map-get( $h-props-measurement, $prop-key );
       $value: getMeasurementValue( $value-raw );
     }
+    // If plain number (use number as-is)
+    @else if map-has-key( $h-props-plain-number, $prop-key ) {
+      $prop: map-get( $h-props-plain-number, $prop-key );
+      $value: $value-raw;
+    }
     // Else, it's static prop
     @else {
       $prop: map-get( $_h-all, $b );
@@ -55,56 +60,6 @@
 // ---------------
 // DYNAMIC STYLE
 // ---------------
-
-// Property that can use color from $h-palette and allow opacity prefix
-// EXAMPLE: c-red      >>> color: $red
-//          bg-main_10 >>> background-color: rgba($main, .10)
-$h-props-color: (
-  bg: background-color,
-  bc: border-color,
-  c: color
-);
-
-// Property that can accept any number and allow unit prefix
-// EXAMPLE: p1_5    >>> padding: 1.5rem
-//          h50p    >>> height: 50%
-//          top70px >>> top: 70px
-$h-props-measurement: (
-  top: top,
-  right: right,
-  bottom: bottom,
-  left: left,
-
-  p: padding,
-  pt: padding-top,
-  pr: padding-right,
-  pb: padding-bottom,
-  pl: padding-left,
-  pv: ( padding-top, padding-bottom ),
-  ph: ( padding-right, padding-left ),
-
-  m: margin,
-  mt: margin-top,
-  mr: margin-right,
-  mb: margin-bottom,
-  ml: margin-left,
-  mv: ( margin-top, margin-bottom ),
-  mh: ( margin-right, margin-left ),
-
-  h: height,
-  minh: min-height,
-  maxh: max-height,
-  w: width,
-  minw: min-width,
-  maxw: max-width,
-
-  bw: border-width,
-  btw: border-top-width,
-  brw: border-right-width,
-  bbw: border-bottom-width,
-  blw: border-left-width,
-);
-
 
 // Get property name, indicated by the letters before number or dash
 //

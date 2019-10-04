@@ -1,5 +1,4 @@
-(function() { 'use strict';
-if( window.jQuery ) { $ = jQuery; }
+(function( $ ) { 'use strict';
 
 document.addEventListener( 'DOMContentLoaded', onReady );
 window.addEventListener( 'load', onLoad );
@@ -28,11 +27,11 @@ var myApp = {
    * Read more https://github.com/hrsetyono/hSlider
    */
   gallerySlider() {
-    let $targets = $('.wp-block-gallery.is-style-h-slider');
+    let $targets = $('.wp-block-gallery.is-style-h-slider .blocks-gallery-grid');
 
     $targets.each( function() {
       let $t = $(this);
-      let perSlide = $t.attr('class').match( /columns-(\d+)/ );
+      let perSlide = $t.closest('.wp-block-gallery').attr('class').match( /columns-(\d+)/ );
 
       hSlider( $t.get(0), {
         index: 0,
@@ -122,4 +121,4 @@ var myNav = {
 
 // Browser compatibility, leave this untouched
 if('registerElement' in document) { document.createElement( 'h-grid' ); document.createElement( 'h-tile' ); }
-})();
+})( jQuery );

@@ -1,9 +1,14 @@
 @import "settings"
 
 $wc-panel: var(--gray-light)
-$wc-panel-dark: darken( --gray-light, 5%)
+$wc-panel-dark: h-darken( --gray-light, 5%)
 
 ///// GENERAL
+
+// all woocommerce page become alignwide
+.the-content > .woocommerce
+    +h( mh-auto )
+    max-width: $grid-max-width
 
 .price
   del
@@ -12,7 +17,7 @@ $wc-panel-dark: darken( --gray-light, 5%)
     +h( d-block td-none )
 
 .woocommerce-Price-currencySymbol // Change currency to be smaller
-  +h( fw-body fs-s )
+  +h( fw-text fs-s )
 
 
 @import "shop/toast"

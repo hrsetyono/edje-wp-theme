@@ -10,6 +10,6 @@
   "devDependencies": {},
   "scripts": {
     "sass": "node-sass -w sass -o css --output-style compressed",
-    "bsync": "browser-sync start --proxy \"demo.test\" --files \"assets/css/*.css\""
+    "bsync": "browser-sync start --proxy \"demo.test\" --files \"css/*.css\""
   }
 }

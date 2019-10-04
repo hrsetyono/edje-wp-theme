@@ -1,20 +1,68 @@
 $_h-all: (); // store all the Functional variables
 
+// -------------------
+// DYNAMIC PROPERTIES
+// -------------------
 
-// Z-Index
-$h-z-index: (
-  names: ( z: z-index ),
-  values: (
-    '-1': -1,
-    0: 0,
-    1: 1,
-    2: 2,
-    5: 5,
-    10: 10,
-    50: 50,
-    100: 100,
-  )
+// Properties that can use color from $h-colors and allow opacity prefix
+// EXAMPLE: c-red      >>> color: $red
+//          bg-main_10 >>> background-color: rgba($main, .10)
+$h-props-color: (
+  bg: background-color,
+  bc: border-color,
+  c: color
 );
+
+// Properties that can accept any number and allow unit prefix (default is rem)
+// EXAMPLE: p1_5    >>> padding: 1.5rem
+//          h50p    >>> height: 50%
+//          top70px >>> top: 70px
+$h-props-measurement: (
+  top: top,
+  right: right,
+  bottom: bottom,
+  left: left,
+
+  p: padding,
+  pt: padding-top,
+  pr: padding-right,
+  pb: padding-bottom,
+  pl: padding-left,
+  pv: ( padding-top, padding-bottom ),
+  ph: ( padding-right, padding-left ),
+
+  m: margin,
+  mt: margin-top,
+  mr: margin-right,
+  mb: margin-bottom,
+  ml: margin-left,
+  mv: ( margin-top, margin-bottom ),
+  mh: ( margin-right, margin-left ),
+
+  h: height,
+  minh: min-height,
+  maxh: max-height,
+  w: width,
+  minw: min-width,
+  maxw: max-width,
+
+  bw: border-width,
+  btw: border-top-width,
+  brw: border-right-width,
+  bbw: border-bottom-width,
+  blw: border-left-width,
+);
+
+
+// Properties that accept plain number
+$h-props-plain-number: (
+  z: z-index,
+  flex: flex,
+  order: order,
+);
+
+
+/////
 
 
 // Border width
@@ -39,10 +87,6 @@ $h-border: (
 
 // Border Radius
 $h-border-radius: (
-  br: ( border-radius: $g-radius ), // deprecated
-  br-circle: ( border-radius: 50% ), // deprecated
-  br-pill: ( border-radius: 999px ), // deprecated
-  
   brad0: ( border-radius: 0 ),
   brad: ( border-radius: $g-radius ),
   brad-circle: ( border-radius: 50% ),
@@ -87,20 +131,6 @@ $h-shadow: (
     3: $shadow-z3,
     '-none': none,
   )
-);
-
-
-// Hover Effect
-$h-hover: (
-  hover-dim: (
-    ':hover': ( opacity: .6 ),
-    ':active': ( opacity: .8 ),
-  ),
-  hover-grow: (
-    ':hover': ( '-webkit-transform': scale(1.05), transform: scale(1.05) ),
-    ':active': ( '-webkit-transform': scale(1), transform: scale(1) ),
-  ),
-  hover-u: ( ':hover': ( text-decoration: underline ) ),
 );
 
 
@@ -164,7 +194,7 @@ $h-line-height: (
     0: 0,
     1: 1,
     '-normal': normal,
-    '-body': $font-line,
+    '-text': $font-line,
     '-header': $header-line,
   )
 );
@@ -184,8 +214,8 @@ $_h-display: (
   d-iblock: ( display: inline-block ),
   d-block: ( display: block ),
   d-none: ( display: none ),
-  d-flex: ( '_display': '-webkit-flex', display: flex ),
-  d-grid: ( '_display': '-ms-grid', display: grid ),
+  d-flex: ( _display: -webkit-flex, display: flex ),
+  d-grid: ( _display: -ms-grid, display: grid ),
 );
 
 // Flexbox
@@ -225,38 +255,6 @@ $_h-justify-content: (
     around: space-around,
     between: space-between
   )  
-);
-
-
-// Flex portion
-$_h-flex-portion: (
-  names: (
-    flex: flex,
-  ),
-  values: (
-    0: 0,
-    1: 1,
-    2: 2,
-    3: 3,
-    4: 4,
-    5: 5
-  )
-);
-
-
-// Flex order
-$_h-flex-order: (
-  names: (
-    order: order,
-  ),
-  values: (
-    1: 1,
-    2: 2,
-    3: 3,
-    4: 4,
-    5: 5,
-    '-last': 999
-  ),
 );
 
 
@@ -378,7 +376,7 @@ $_h-position: (
   relative: ( position: relative ),
   absolute: ( position: absolute ),
   fixed: ( position: fixed ),
-  sticky: ( position: sticky ),
+  sticky: ( _position: -webkit-sticky, position: sticky ),
 
   absolute-fill: ( position: absolute, top: 0, right: 0, left: 0, bottom: 0 ),
 );
@@ -391,10 +389,6 @@ $_h-float: (
   float-none: ( float: none ),
   clear-both: ( clear: both ),
   clear-none: ( clear: none ),
-  // clearfix: (
-  //   '::before': ( content: " ", display: table ),
-  //   '::after': ( content: " ", display: table, clear: both )
-  // )
 );
 
 
@@ -489,7 +483,7 @@ $_h-font-weight: (
     600: 600,
     700: 700,
     900: 900,
-    '-body': $font-weight,
+    '-text': $font-weight,
     '-header': $header-weight,
   )
 );
@@ -529,15 +523,12 @@ $_h-all: map-merge( $_h-all, _merge(
   $_h-flex,
   $_h-align-items,
   $_h-justify-content,
-  $_h-flex-order,
-  $_h-flex-portion,
   $_h-align-self,
   $_h-overflow,
   $_h-cursor,
   $_h-display-misc,
 
   $_h-position,
-  $h-z-index,
   $_h-float,
 
   $h-border,

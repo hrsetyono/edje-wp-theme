@@ -1,0 +1,136 @@
+////// GROUP
+  
+.wp-block-group
+  +h( pv2 )
+
+  &:not(.has-background)
+    +h( pv0 )
+  &:not(.has-background) + .alignfull
+    +h( mt0 )
+  *:last-child
+    +h( mb0 )
+  
+///// BUTTON
+
+.wp-block-button
+  &.alignleft a
+    +h( float-left mr1_5 )
+  &.alignright a
+    +h( float-right ml1_5 )
+
+a.wp-block-button__link,
+a.wp-block-file__button
+  +h( td-none )
+
+.is-style-squared a
+  +h( brad )
+
+.is-style-outline .wp-block-button__link
+  +h( bg-transparent bc-inherit )
+  color: var(--textColor)
+
+
+///// COLUMNS
+
+.wp-block-columns
+  +h( d-flex )
+
+  @media ($below-s)
+    +h( fw-wrap )
+
+.wp-block-column
+  +h( flex1 )
+
+  @media ($above-s)
+    + .wp-block-column
+      +h( ml1_5 ) 
+
+  @media ($below-s)
+    +h( w100p )
+    flex-basis: 100% !important
+
+    + .wp-block-column
+      +h( mt1_5 )
+
+
+///// MEDIA TEXT
+
+.wp-block-media-text
+  +h( d-grid )
+  grid-row-gap: $grid-gap
+  grid-column-gap: $grid-gap
+
+  &[class*="-background-color"]
+    +h( p1 brad )
+
+  @media ($above-xs)  
+    grid-template-areas: "media text"
+    grid-template-columns: 6fr 6fr
+
+    &.has-media-on-the-right
+      grid-template-areas: "text media"
+
+    &.is-style-h-smaller-image,
+    &.is-style-h-larger-image.has-media-on-the-right
+      grid-template-columns: 4fr 8fr
+
+    &.is-style-h-larger-image,
+    &.is-style-h-smaller-image.has-media-on-the-right
+      grid-template-columns: 8fr 4fr
+  
+  //
+  @media ($below-xs)
+    grid-template-areas: "media" "text"
+    grid-template-columns: repeat(1, 1fr)
+
+
+.wp-block-media-text__media
+  +h( mb0 )
+  grid-area: media
+
+  @media ($above-xs)
+    .is-image-fill &
+      +h( as-stretch bgr-no bgs-cover brad )
+
+      img
+        +h( d-none )
+
+  @media ($below-xs)
+    .is-image-fill &
+      background-image: none !important
+
+
+.wp-block-media-text__content
+  grid-area: text
+
+  > *:last-child
+    +h( mb0 )
+
+
+///// SPACER
+
+.wp-block-spacer
+  +h( mb0 )
+
+
+///// SEPARATOR
+
+.wp-block-separator
+  +h( d-block bt2-solid mv2_5 mh-auto p0  lh1 )
+  width: 120px
+  border-color: var(--bgColor)
+
+  &.is-style-wide
+    width: $content-width
+
+  &.is-style-dots
+    +h( b0 h-auto w-auto ta-center )
+    background-color: transparent
+
+    &::before
+      content: "\00b7 \00b7 \00b7"
+      +h( pl2 ff-monospace fs-m )
+      font-size: 26px
+      letter-spacing: 1.5rem
+      color: var(--bgColor, var(--text))
+

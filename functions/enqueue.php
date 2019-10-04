@@ -25,6 +25,10 @@ function my_public_assets() {
   wp_enqueue_style( 'h-lightbox' );
   wp_enqueue_style( 'h-slider' );
 
+  // Disable gutenberg default style
+  wp_dequeue_style( 'wp-block-library' );
+  wp_dequeue_style( 'wp-block-library-theme' );
+
   // Javascript
   wp_enqueue_script( 'my-app', $js_dir . '/app.js', ['jquery'], ASSETS_VERSION, true );
 }

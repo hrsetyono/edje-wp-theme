@@ -1,0 +1,91 @@
+
+///// EMBED
+
+.wp-block-embed
+  +h( mv2 ta-center )
+
+  figcaption
+    @extend %figcaption
+
+.wp-block-embed__wrapper
+  +h( d-flex jc-center relative )
+
+  &::before
+    .wp-has-aspect-ratio &,
+    .wp-block-embed-wordpress &
+      +h( content-empty d-block w100p )
+
+    .wp-embed-aspect-21-9 &,
+    .wp-block-embed-wordpress &
+      padding-top: 42.85%
+    .wp-embed-aspect-18-9 &
+      padding-top: 50%
+    .wp-embed-aspect-16-9 &
+      padding-top: 56.25%
+    .wp-embed-aspect-4-3 &
+      padding-top: 75%
+    .wp-embed-aspect-1-1 &
+      padding-top: 100%
+    .wp-embed-aspect-9-6 &
+      padding-top: 66.667%
+    .wp-embed-aspect-1-2 &
+      padding-top: 200%
+    
+
+.wp-has-aspect-ratio,
+.wp-block-embed-wordpress
+  iframe
+    +h( absolute-fill w100p h100p )
+
+
+.wp-block-embed-wordpress
+  blockquote
+    +h( d-none )
+  
+  iframe
+    clip: auto !important
+
+
+
+///// SOCIAL MEDIA
+ul.wp-block-social-links
+  +h( d-flex jc-start fw-wrap pl0 list-none )
+
+  &.aligncenter
+    +h( jc-center )
+
+.wp-social-link a
+  +h( d-flex ai-center jc-center mr0_5 mb0_5  )
+  +h( w42px h42px lh0  transition brad-circle )
+  background-color: var(--color)
+
+  .is-style-logos-only &
+    +h( bg-transparent )
+    svg
+      fill: var(--color)
+
+  .is-style-pill-shape &
+    +h( brad-pill ph1 w-auto )
+
+  &:hover
+    +h( shadow1 )
+    transform: translateY(-2px)
+  &:active
+    +h( transition-none )
+    transform: translateY(-1px)
+ 
+.wp-social-link svg
+  +h( w28px h28px )
+  fill: white
+
+// color
+@each $name, $color in $social-colors
+  .wp-social-link-#{ $name }
+    --color: #{ $color }
+
+.wp-social-link-goodreads,
+.wp-social-link-chain,
+.wp-social-link-feed,
+.wp-social-link-mail
+  svg
+    fill: #382110

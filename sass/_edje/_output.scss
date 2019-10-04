@@ -14,7 +14,7 @@ $output-framework: false !default;
 // ------------
 // NORMALIZER
 // ------------
-// Based on git.io/normalize v3.0.3
+// Based on https://necolas.github.io/normalize.css/8.0.1
 
 @if $output-framework and $include-normalize {
   *,
@@ -26,6 +26,7 @@ $output-framework: false !default;
   }
   
   html {
+    line-height: 1.15;
     font-family: sans-serif;
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
@@ -50,22 +51,10 @@ $output-framework: false !default;
   nav,
   section,
   picture,
-  summary {
-    display: block;
-  }
+  summary { display: block; }
+  [hidden], template { display: none; }
   
-  
-  // Correct `inline-block` display
-  audio,
-  canvas,
-  progress,
-  video {
-    display: inline-block;
-  }
-  audio:not([controls]) {
-    display: none;
-    height: 0;
-  }
+  progress { vertical-align: baseline; }
   
   // Webkit sibling selector fix
   body { -webkit-animation: bugfix infinite 1s; }
@@ -74,48 +63,41 @@ $output-framework: false !default;
     to { padding: 0; }
   }
   
-  // Reset anchor styling
+  // Typography
   a {
     cursor: pointer;
     text-decoration: none;
     background-color: transparent;
-  
-    // &:focus { outline: none; }
-    &:active, &:hover { outline: 0; }
   }
   
-  // Basic typography
   b, strong { font-weight: bold; }
   em { font-style: italic; }
   h1, h2, h3, h4, h5, h6 { margin: 0; }
-  
-  // Media
-  img {
-    border: 0;
-    display: inline-block;
-    vertical-align: middle;
-    -ms-interpolation-mode: bicubic;
+
+  small { font-size: 80%; }
+  sub, sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
   }
-  svg:not(:root) { overflow: hidden; }
-  figure { margin: 0; }
+  sup { top: -0.5em; }
+  sub { bottom: -0.25em; }
+  blockquote cite { display: block; font-style: italic; }
+  address, cite { font-style: normal; }
   
-  // A better looking default horizontal rule
-  hr {
-    -moz-box-sizing: content-box;
-    box-sizing: content-box;
-    display: block;
-    height: 1px;
-    margin: 1em 0;
-    padding: 0;
-    border: 0;
-    border-top: 1px solid #ccc;
+
+  // Other typography
+  abbr[title] {
+    border-bottom: none;
+    text-decoration: underline;
+    text-decoration: underline dotted;
   }
+  dfn { font-style: italic; }
+  mark { background: #ff0; color: #000; }
+  q { quotes: "\201C" "\201D" "\2018" "\2019"; }
   
-  blockquote cite {
-    display: block;
-    font-style: italic;
-  }
-  
+
   // Code block
   pre { overflow: auto; }
   code, kbd, pre, samp {
@@ -123,7 +105,17 @@ $output-framework: false !default;
     font-size: 1em;
   }
   
-  // Embedded content
+
+  // Media
+  img {
+    border-style: none;
+    display: inline-block;
+    vertical-align: middle;
+    -ms-interpolation-mode: bicubic;
+  }
+  svg:not(:root) { overflow: hidden; }
+  figure { margin: 0; }
+  
   img,
   object,
   embed {
@@ -131,108 +123,126 @@ $output-framework: false !default;
     height: auto;
   
     #map_canvas &,
-    .map_canvas & {
-      max-width: none !important;
-    }
+    .map_canvas & { max-width: none !important; }
   }
-  object, embed { height: 100%; }
   
-  // Address styling
-  [hidden], template { display: none; }
-  address, cite { font-style: normal; }
-  abbr[title] { border-bottom: 1px dotted; }
-  dfn { font-style: italic; }
-  mark { background: #ff0; color: #000; }
+
+  // A better looking default horizontal rule
+  hr {
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    display: block;
+    overflow: visible;
+    height: 1px;
+    margin: 1em 0;
+    padding: 0;
+    border: 0;
+    border-top: 1px solid #ccc;
+  }
+
   
-  // Misc inline elements
-  q { quotes: "\201C" "\201D" "\2018" "\2019"; }
-  small { font-size: 80%; }
-  sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; }
-  sup { top: -0.5em; }
-  sub { bottom: -0.25em; }
-  
-  // Form styling -----------
+  ///// FORM
+
   button,
   input,
   optgroup,
   select,
   textarea {
-    outline: none;
     margin: 0;
     color: inherit;
-    font: inherit;
-  }
-  
-  button, input[type="submit"] {
-    overflow: visible;
-    cursor: pointer;
-    outline: none;
-    -webkit-backface-visibility: hidden;
-  
-    &:focus { outline: none; }
-  }
-  
-  button, select { text-transform: none; }
-  optgroup { font-weight: bold; }
-  button, input, label { line-height: normal; }
-  label { display: block; }
-  button, input, select, textarea {
     font-family: inherit;
     font-size: 100%;
-    margin: 0;
+    line-height: 1.15;
   }
-  
+
+  label {
+    display: block;
+    line-height: normal;
+  }
+
+  // Button
   button,
-  html input[type="button"],
-  input[type="reset"],
-  input[type="submit"] {
-    -webkit-appearance: button;
+  [type="button"],
+  [type="reset"],
+  [type="submit"] {
     cursor: pointer;
+    overflow: visible;
+    text-transform: none;
+    line-height: normal;
+    -webkit-appearance: button;
+    -webkit-backface-visibility: hidden;
   }
-  
-  button[disabled],
-  html input[disabled] { cursor: default; }
-  
+
+  ::-webkit-file-upload-button {
+    -webkit-appearance: button;
+    font: inherit;
+  }
+
   button::-moz-focus-inner,
-  input::-moz-focus-inner { border: 0; padding: 0; }
-  
-  input { line-height: normal; }
-  
-  input[type="checkbox"],
-  input[type="radio"] { box-sizing: border-box; padding: 0; }
-  
-  input[type="number"]::-webkit-inner-spin-button,
-  input[type="number"]::-webkit-outer-spin-button {
-    height: auto;
+  [type="button"]::-moz-focus-inner,
+  [type="reset"]::-moz-focus-inner,
+  [type="submit"]::-moz-focus-inner { border-style: none; padding: 0; }
+
+  button:-moz-focusring,
+  [type="button"]:-moz-focusring,
+  [type="reset"]:-moz-focusring,
+  [type="submit"]:-moz-focusring { outline: 1px dotted ButtonText; }
+
+
+  // Input
+  input {
+    overflow: visible;
+    line-height: normal;
   }
   
-  input[type="search"] {
-    -webkit-appearance: textfield;
+  [disabled],
+  input[disabled] { cursor: default; }
+
+  [type="checkbox"],
+  [type="radio"] { box-sizing: border-box; padding: 0; }
+
+  [type="checkbox"],
+  [type="radio"] { box-sizing: border-box; padding: 0; }
   
-    &::-webkit-search-cancel-button,
-    &::-webkit-search-decoration {
-      -webkit-appearance: none;
-    }
+  [type="number"] {
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button { height: auto; }
+  }
+
+  [type="search"] {
+    -webkit-appearance: textfield;
+    outline-offset: -2px;
+    &::-webkit-search-decoration { -webkit-appearance: none; }
   }
   
   // Disable Chrome's datepicker
   input::-webkit-calendar-picker-indicator{ display: none; }
-  input[type="date"]::-webkit-input-placeholder{ visibility: hidden !important; }
+  [type="date"]::-webkit-input-placeholder{ visibility: hidden !important; }
+
   
+  // Textarea
   textarea {
     overflow: auto;
     vertical-align: top;
-    resize: vertical; // only vertical resizing
+    resize: vertical;
     height: auto;
     min-height: 50px;
   }
+
+  // Select
+  select { text-transform: none; }
+  optgroup { font-weight: bold; }
   
-  legend { border: 0; padding: 0; }
-  fieldset {
-    border: 0;
-    margin: 0;
+  fieldset { border: 0; margin: 0; padding: 0; }
+  legend {
+    box-sizing: border-box;
+    display: table;
+    max-width: 100%;
     padding: 0;
+    white-space: normal;
+    color: inherit;
   }
+
   
   // Table
   table {
@@ -242,19 +252,6 @@ $output-framework: false !default;
   td, th { padding: 0; }
   
   .hide { display: none !important; visibility: hidden !important; }
-  
-  .flex-iframe {
-    overflow: hidden; position: relative;
-    height: 0; padding-bottom: 67.5%; padding-top: 1.38889rem;
-  
-    iframe,
-    object,
-    embed,
-    video {
-      position: absolute; top: 0; left: 0;
-      height: 100%; width: 100%; }
-  }
-  
 } // include-normalize
 
 
@@ -458,6 +455,7 @@ h-tile {
 body {
   position: relative;
   background: var(--body);
+  margin: 0;
 
   font-size: $font-size;
   font-family: $font-family;
@@ -500,13 +498,15 @@ h6 { @extend %h6; }
 
 ul {
   list-style-type: $ul-parent;
-
-  ul { list-style-type: $ul-child; }
 }
 
 ol {
   list-style-type: $ol-parent;
+}
 
+ul,
+ol {
+  ul { list-style-type: $ul-child; }
   ol { list-style-type: $ol-child; }
 }
 
@@ -574,6 +574,11 @@ ol {
 
       @if type_of( $value ) == 'color' {  
         --#{ $name }RGB: #{ round(red($value)) }, #{ round(green($value)) }, #{ round(blue($value)) }
+      }
+      // if CSS variable
+      @else if str-slice( quote($value), 1, 3 ) == 'var' {
+        $var_value: str-slice( $value, 5, -2 );
+        --#{ $name }RGB: var(#{ $var_value }RGB);
       }
     }
   }

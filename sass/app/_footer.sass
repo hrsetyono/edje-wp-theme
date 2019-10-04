@@ -1,0 +1,79 @@
+///// MAIN FOOTER /////
+
+.main-footer
+  +h( mt-auto bg-black_75 c-white )
+
+// widgets
+.footer-widgets
+  +h( pv2_5 c-white_50 fs-s )
+
+  h-grid
+    grid-row-gap: $grid-gap
+
+  .widget
+    +h( list-none )
+    +column(4)
+
+  .widgettitle
+    +h( mb0_25 c-white_75 fs-h5 )
+
+  ul
+    +h( pl1_25 )
+
+///// FOOTER BAR
+
+.footer-bar
+  +h( pv0_5 bg-main_10 c-white_50 fs-s )
+
+.copyright,
+.partners
+  +h( d-flex fw-wrap ai-center )
+
+  header
+    +h( fw700 )
+    line-height: 1.4
+
+.copyright
+  a
+    +h( mr0_5 )
+
+  @media ($above-s)
+    header
+      +h( mr1_5 )
+
+// partners
+.partners
+  +h( jc-end )
+
+  img
+    +h( p0_25 )
+    width: 32px
+
+  a
+    +h( d-block relative mh0_25 bg-main_25 brad-circle transition )
+    
+  a:hover
+    +h( bg-main_50 c-white )
+
+.partner-caption
+  +h( v-hidden o0 absolute right0 pv0_5 ph1 bg-main )
+  +h( c-white ta-center brad transition )
+  bottom: calc(100% + 8px)
+  transform: translateY(20px)
+
+  &::after
+    content: ""
+    +h( absolute top100p )
+    right: 10px
+    +triangle( s, var(--main), 12px, 5px)
+
+  a:hover &
+    +h( v-visible o100 )
+    transform: none
+
+  h5
+    +h( fs-s ff-body c-white nowrap )
+
+  p
+    +h( nowrap )
+    font-size: 12px

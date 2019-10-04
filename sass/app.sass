@@ -1,13 +1,11 @@
 // Put styles that are unique for this project here
 @import "settings"
 @import "app/nav"
-@import "app/gutenberg"
+@import "app/footer"
+@import "app/align"
 
-
-// hide wp admin bar
-@media ( below(782px) )
-  html[lang]
-    margin-top: 0 !important
-
-  #wpadminbar
-    +h( d-none )
+@import "app/blocks-common"
+@import "app/blocks-layout"
+@import "app/blocks-formatting"
+@import "app/blocks-widget-embed"
+@import "app/blocks-custom"

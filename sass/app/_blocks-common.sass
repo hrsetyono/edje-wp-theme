@@ -1,0 +1,295 @@
+///// PARAGRAPH
+
+p.has-background
+  +h( p1 brad )
+
+.has-drop-cap:first-letter
+  +h( float-left ff-header fw700 mr0_25 )
+  font-size: 3.5rem
+  line-height: 3.5rem
+
+.has-small-font-size
+  +h( fs-s )
+.has-medium-font-size
+  +h( fs-m )
+.has-large-font-size
+  font-size: 2rem
+  line-height: 1
+.has-huge-font-size
+  font-size: 2.5rem
+  line-height: 1
+
+
+///// IMAGE
+
+.wp-block-image
+  +h( ta-center )
+
+  .alignleft,
+  .alignright
+    +h( maxw50p mb1_5 )
+  .alignleft
+    +h( float-left mr1_5 )
+  .alignright
+    +h( float-right ml1_5 )
+
+  &.alignfull
+    img
+      +h( brad0 )
+
+  figcaption
+    @extend %figcaption
+
+// hover effect
+.wp-block-image > a,
+.wp-block-gallery figure > a
+  +h( d-block ov-hidden brad )
+
+  img
+    +h( transition )
+
+  &:hover img
+    +h( backface-hidden o80 )
+    transform: scale(1.1)
+
+
+///// GALLERY
+
+.wp-block-gallery 
+  figure
+    +h( relative d-flex fd-column ai-end jc-start h100p mb0  brad )
+  a
+    +h( h100p )
+  
+  figcaption
+    @extend %figcaption
+    +h( bb0 ta-center )
+
+
+ul.blocks-gallery-grid
+  +h( d-flex fw-wrap pl0 list-none )
+  max-width: calc(#{ $content-width } + 1rem)
+
+  .alignwide &
+    max-width: calc(#{ $grid-max-width } + 1rem)
+
+
+.wp-block-gallery:not(.is-cropped)
+  figcaption
+    +h( bb0 mt-auto )
+
+.wp-block-gallery.is-cropped
+  img
+    +h( flex1 h100p w100p )
+    object-fit: cover
+  figcaption
+    +h( absolute bottom0 w100p p0_5  fs-s c-white )
+    background-image: linear-gradient( 0deg,rgba(0,0,0,.7),rgba(0,0,0,.5) 50%,transparent)
+  figcaption a:hover
+    +h( c-inherit o60 )
+  
+.blocks-gallery-item
+  +h( ph0_5 pb1 )
+  flex-grow: 1
+
+  @media ($above-s)
+    .columns-2 &
+      width: 50%
+    .columns-3 &
+      width: calc(100% / 3)
+    .columns-4 &
+      width: 25%
+    .columns-5 &
+      width: 20%
+    .columns-6 &
+      width: calc(100% / 6)
+    .columns-7 &
+      width: calc(100% / 7)
+    .columns-8 &
+      width: 12.5%
+    .columns- &
+      width: 20%
+
+  @media ($below-s)
+    width: 33.33%
+
+    .columns-2 &
+      width: 50%
+  
+  @media ($below-xs)
+    width: 50%
+
+
+// Slider
+.is-style-h-slider
+  .blocks-gallery-item
+    flex-grow: initial
+  &.is-cropped .hSlider-slide
+    +h( ai-stretch )
+
+
+///// COVER
+
+.wp-block-cover
+  +h( d-flex ai-center jc-center  bgs-cover bgp-cc bg-black )
+  +h( minh400px )
+  --bgColor: var(--black)
+  background-color: var(--bgColor)
+
+  &.--for-featured-image
+    +h( ai-end )
+
+    .post-meta
+      +h( pv0_5 c-white_60 )
+      border-top: 1px solid
+      border-bottom: 2px solid
+
+    .post-meta + p
+      +h( mt1_5 )
+
+  &.--for-post-tease
+    +h( ov-hidden ai-end ph2 pb2 brad )
+    max-width: calc(#{ $content-width } + 4rem )
+
+    a:hover h1
+      +h( td-u )
+
+    .post-meta
+      +h( c-white_60 )
+
+
+.wp-block-cover__inner-container
+  +h( relative z2 c-white )
+  width: $content-width
+
+  @media (below($grid-max-width))
+    padding-right: $grid-rim
+    padding-left: $grid-rim
+
+.has-parallax
+  background-attachment: fixed
+
+.has-background-dim
+  +h( relative )
+
+  &::before
+    content: ""
+    +h( absolute-fill z1 o50 bg-inherit )
+
+.has-background-dim-10::before
+  +h( o10 )
+.has-background-dim-20::before
+  +h( o20 )
+.has-background-dim-30::before
+  +h( o30 )
+.has-background-dim-40::before
+  +h( o40 )
+.has-background-dim-60::before
+  +h( o60 )
+.has-background-dim-70::before
+  +h( o70 )
+.has-background-dim-80::before
+  +h( o80 )
+.has-background-dim-90::before
+  +h( o90 )
+.has-background-dim-100::before
+  +h( o100 )
+
+
+///// QUOTE
+
+.wp-block-quote
+  +h( relative ph2 pv0_5 fs-m )
+  border-left: 3px solid var(--text)
+
+  p,
+  li
+    +h( mb0 )
+
+  p + p,
+  li + li
+    +h( mt1 )
+
+  cite
+    +h( d-block mt1 fs-s c-passive )
+
+  &::after
+    content: "\f122"
+    font-family: "dashicons"
+    +h( d-flex ai-center jc-center absolute left0 top0 )
+    +h( bg-body w2 h2  c-text brad-circle )
+    transform: translateX(-50%)
+
+  
+  &.is-style-large
+    +h( pv1 mv2_5 fs-h4 ta-center )
+    border-left: none
+    border-top: 3px solid var(--text)
+    border-bottom: 3px solid var(--text)
+
+    cite
+      +h( fs-body )
+    &::after
+      +h( left0 right0 mh-auto w3 )
+      transform: translateY(-50%)
+
+
+  &.has-text-align-right
+    border-left: none
+    border-right: 3px solid var(--text)
+
+    &::after
+      +h( left-auto right0 )
+      transform: translateX(50%)
+
+
+  &.has-text-align-center
+    +h( pv0 )
+    border-left: none
+
+    &::before
+      content: ""
+      +h( d-block mh-auto mb2 h3px w200px bg-text )
+    &::after
+      +h( left0 right0 mh-auto )
+      transform: translateY(-50%)
+  
+
+///// AUDIO
+
+.wp-block-audio
+  +h( ta-center )
+
+  audio
+    +h( w100p )
+
+  figcaption
+    @extend %figcaption
+
+
+///// FILE
+
+.wp-block-file
+  +h( d-flex ai-center jc-center )
+  +h( p1_25 bg-gray-light b1-solid bc-black_10  brad )
+
+  &.alignleft
+    +h( jc-start float-left )
+
+  &.alignright
+    +h( jc-end )
+
+.wp-block-file__button
+  +h( ml1 )
+
+
+///// VIDEO
+
+.wp-block-video
+  +h( w100p ta-center )
+
+  video
+    +h( w100p )
+
+  figcaption
+    @extend %figcaption

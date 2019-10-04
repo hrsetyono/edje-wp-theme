@@ -1,0 +1,110 @@
+///// SHARING
+
+$social-logos: ( twitter: '\f202', facebook: '\f203', pinterest: '\f210', jetpack-whatsapp: '\f608', skype: '\f220', pocket: '\f224', linkedin: '\f207', reddit: '\f222', tumblr: '\f607', telegram: '\f606', youtube: '\f213', instagram: '\f215', print: '\f469', more: '\f415' );
+
+
+///// SHARING
+
+.sharedaddy 
+  +h( mv2 pt2 )
+  border-top: 1px solid var(--gray)
+
+  .share-end
+    +h( d-none ) 
+  .sd-title 
+    +h( mb1 fs-s ls50 tt-uppercase nowrap )
+    &::before
+      +h( d-none ) 
+  .sd-button
+    +h( td-none )
+
+.sharedaddy .sd-content 
+  ul 
+    +h( d-flex fw-wrap list-none pl0 )
+    margin: 0 -4px
+  li 
+    +h( d-flex ai-center ph0_25 mb0_5 )
+
+
+// Button
+.sd-button 
+  --color: #333
+  --colorHover: #{ rgba(#333, .2) }
+  +h( d-iblock ov-hidden brad )
+  border: 1px solid var(--color)
+  border-bottom-width: 2px
+  color: var(--color)
+
+  &:hover
+    color: var(--color)
+    background-color: var(--colorHover)
+  &:active 
+    +h( transition-none )
+    border-top-width: 2px
+    border-bottom-width: 1px
+
+  .sd-social-icon-text &,
+  .sd-social-text &
+    padding: 0px 10px 2px
+
+  .sd-social-icon & 
+    +h( brad-circle )
+    padding: 4px 10px
+
+    &.share-more 
+      +h( pv0 brad )
+    &.share-more::before 
+      +h( mr0_25 )
+      
+  span
+    +h( va-middle ) 
+  .sharing-screen-reader-text 
+    +h( d-none )
+
+
+.sd-button::before
+  +h( d-iblock relative top1px va-middle lh1 ta-center )
+  content: ""
+  font-family: 'social-logos'
+  font-size: 18px
+
+  .sd-social-official & 
+    +h( top-2px )
+  .sd-social-icon & 
+    +h( top0 )
+    font-size: 20px
+  .sd-social-icon-text &
+    +h( mr0_25 ) 
+
+// Social colors
+@each $name, $value in $social-logos
+  @if map-has-key( $social-colors, $name )
+    .social-logo__#{ $name }:hover::before,
+    .sd-button.share-#{ $name }
+      --color: #{ map-get($social-colors , $name) }
+      --colorHover: #{ rgba( map-get($social-colors, $name), .2 ) }
+
+  .social-logo.social-logo__#{ $name }::before,
+  .sd-social-icon-text .sd-button.share-#{ $name }::before,
+  .sd-social-icon .sd-button.share-#{ $name }::before 
+    content: $value
+
+
+// Custom button
+.share-custom 
+  .sd-social-icon-text & 
+    +h( pl6px )
+  span
+    +h( pl1_25 )
+    background: left no-repeat
+    background-size: 1em
+
+
+// SOCIAL LOGO
+// Base CSS and Font are loaded with jetpack
+.social-logo 
+  +h( fw400 lh1 va-top c-black_40 )
+  font-size: 1.5em
+
+  .main-footer & 
+    +h( c-white_40 ) 

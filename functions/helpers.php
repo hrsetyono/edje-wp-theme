@@ -25,7 +25,7 @@ class MyHelper {
       add_action('admin_notices', function() {
         $text = sprintf(
           __('You need to activate WP Edje and Timber. <a href="%s">Activate now »</a>.', 'my'),
-          admin_url('plugins.php')
+          admin_url('plugins.php') . '?s=timber'
         );
         echo '<div class="notice notice-error"><p>' . $text . '</p></div>';
       });
