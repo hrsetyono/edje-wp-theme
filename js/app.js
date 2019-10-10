@@ -77,11 +77,11 @@ var myNav = {
    * Toggle mobile nav
    */
   mobileNav() {
-    $('#nav-toggle').on( 'click', toggle );
+    $('#nav-toggle').on( 'click', _toggle );
     $('.nav-items').on( 'click', this.preventClose );
 
     //
-    function toggle( e ) {
+    function _toggle( e ) {
       e.preventDefault();
       e.stopPropagation();
       $('body').removeClass( 'has-active-cart' ).toggleClass( 'has-active-nav' );

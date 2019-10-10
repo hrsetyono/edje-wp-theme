@@ -191,7 +191,4 @@ $social-colors: (
   youtube: #ff0100,
 );
 
-@import "_edje/utility-h";
-@import "_edje/utility";
-@import "_edje/functional-vars";
-@import "_edje/output";
+@import "_edje/index";

@@ -55,6 +55,8 @@ $output-infinite-scroll: false
 .tease-body
   +h( flex1 )
 
+  > a
+    +h( d-block )
   > a:hover h3
     +h( td-u )
   h3
@@ -75,7 +77,7 @@ $output-infinite-scroll: false
   border-top: 1px solid var(--gray)
 
   a
-    +h( d-inline-block pv0_25 ph0_5 )
+    +h( d-inline-block pv0_25 ph0_5  td-none )
     +h( c-text tt-uppercase fs-s ls25 brad transition )
 
     &:hover
@@ -111,15 +113,17 @@ $output-infinite-scroll: false
 
   a
     +h( c-inherit td-none )
-  
   a:hover
     +h( u )
-      
   .dashicons-before::before
     +h( fs-body va-middle )
     width: 1em
     height: 1em
 
+  body.single &
+    +h( pv0_5 )
+    border-top: 1px solid rgba(black, .2)
+    border-bottom: 2px solid rgba(black, .2)
 
 .meta-author
   +h( pr0_5 )
@@ -200,17 +204,14 @@ $output-infinite-scroll: false
 
 ///// RELATED POSTS
 
-@if $output-related
-  .post-footer
-    +h( pt1 bg-black_05 )
+section.post-extra
+  +h( mb0 bg-black_05 )
 
-  .post-footer-grid
-    +grid(4, $width: $content-width * 0.9)
-  
+@if $output-related
   // heading
   div#jp-relatedposts h3.jp-relatedposts-headline,
   .post-comments h4
-    +h( d-block float-none mv2 )
+    +h( d-block float-none mb1_5 )
     +h( fs-h5 ls50 tt-uppercase )
     //
     @media ($below-s)
@@ -272,7 +273,7 @@ $output-infinite-scroll: false
       &:hover
         +h( td-u )
       a
-        +h( d-block fw-header c-inherit )
+        +h( d-block fw-header c-inherit td-none )
 
       @media ($below-xs)
         +h( fs-body )
@@ -342,13 +343,12 @@ $output-infinite-scroll: false
 ///// COMMENTS
 
 @if $output-comment
-
   .post-comments
     ul
       +h( list-none )
 
   .comments-list
-    +h( mt2 )
+    +h( pl0 mt2 )
 
     > li
       +h( p1_25 mb1_5 bg-white b1-solid bc-black_10  brad )

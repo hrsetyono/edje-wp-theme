@@ -1,14 +1,14 @@
 body
-  +h( d-flex fd-column ovx-hidden h100vh )
+  +h( ovx-hidden )
   
 .main-nav
   +h( relative bg-white bb1-solid bc-gray z100 pv0_75 )
 
-  .has-fixed-nav &
-    +h( fixed w100p )
+  @media ($below-nav)
+    +h( sticky top0 )
 
 .nav-wrapper
-  +h( d-flex ai-center )
+  +h( d-flex ai-center relative )
 
 
 // make body clickable to close the NAV when it's active
@@ -32,26 +32,26 @@ body.has-active-cart
 .nav-items
   +h( d-flex flex1 jc-start fw-wrap transition )
 
-  @media ($below-nav)
-    +h( fd-column v-hidden fixed o0 z100 top0 left0 bottom0 )
-    +h( pt3 pb2 ph0 bg-white transition shadow2 )
-    width: 180px
-    transform: translateX(-100%)
-
   .has-active-nav &
     +h( v-visible o100 )
     transform: none
 
+  @media ($below-nav)
+    +h( fd-column v-hidden fixed o0 z100 )
+    +h( absolute top100p left0 right0 )
+    +h( pv0_5 bg-white transition shadow2 brad )
 
 // NAV ITEM
 .nav-item
   +h( relative )
 
   > a
-    +h( d-block pv0_75 ph1 c-text transition-none )
-
-    &:hover
-      +h( o70 )
+    +h( d-block pv0_75 )
+    +h( ph1 c-text fw700 tt-uppercase ls25 )
+  > a:hover
+    +h( bg-main_10 )
+  > a:active
+    +h( bg-main_20 transition-none )
 
   // current page
   &.current-menu-item,
@@ -62,36 +62,50 @@ body.has-active-cart
     > a
       +h( c-main )
 
+  //
+  @media ($below-nav)
+    > a
+      +h( p0_75 )
+    > a:hover
+      +h( bg-main_10 )
+
 
 // NAV ITEM CHILDREN
 .nav-children
-  +h( absolute v-hidden o0 top100p left0 bg-gray-light nowrap )
-  +h( p0_25 shadow1 brad transition )
-  width: 200px
-
-  .nav-item:hover &
-    +h( v-visible o100 )
-
   a
-    +h( d-block pv0_25 ph0_5 c-inherit brad )
-
+    +h( d-block p0_5 ph0_75 c-inherit )
   a:hover
-    +h( bg-gray )
+    +h( bg-main_10 )
+  a:active
+    +h( bg-main_20 transition-none )
+
+  //
+  @media ($above-nav)
+    +h( absolute v-hidden o0 top100p left0 bg-white nowrap )
+    +h( pv0_5 shadow1 brad transition )
+    width: 200px
+
+    .nav-item:hover &,
+    a:focus + &
+      +h( v-visible o100 )
+    &:focus-within // separated because not supported in IE
+      +h( v-visible o100 )
 
   //
   @media ($below-nav)
-    +h( top0 left100p )
-    transform: translateX(-10px)
-
+    +h( d-flex fw-wrap  )
     a
-      +h( pv0_5 ph0_75 )
+      width: calc(100% / 3)
+  //
+  @media ($below-xs)
+    a
+      +h( w50p )
 
 
 // NAV MOBILE TOGGLE
 .nav-toggle
   i
     +h( lh1 )
-
   i, b
     +h( d-inline-block va-middle )
 
@@ -110,7 +124,6 @@ body.has-active-cart
 
   .button
     +h( lh1 ml0_25 )
-
   span
     line-height: 20px
 

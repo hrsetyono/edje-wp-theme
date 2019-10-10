@@ -202,16 +202,11 @@ ul.blocks-gallery-grid
   +h( relative ph2 pv0_5 fs-m )
   border-left: 3px solid var(--text)
 
-  p,
-  li
-    +h( mb0 )
-
-  p + p,
-  li + li
+  > * + *
     +h( mt1 )
 
   cite
-    +h( d-block mt1 fs-s c-passive )
+    +h( d-block fs-s c-passive )
 
   &::after
     content: "\f122"
@@ -227,8 +222,6 @@ ul.blocks-gallery-grid
     border-top: 3px solid var(--text)
     border-bottom: 3px solid var(--text)
 
-    cite
-      +h( fs-body )
     &::after
       +h( left0 right0 mh-auto w3 )
       transform: translateY(-50%)
@@ -262,7 +255,6 @@ ul.blocks-gallery-grid
 
   audio
     +h( w100p )
-
   figcaption
     @extend %figcaption
 

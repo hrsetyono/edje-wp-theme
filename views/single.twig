@@ -10,17 +10,18 @@
 
   {{ post.content }}  
 
-  <footer class="post-author">
+  <address class="post-author">
     {% include "_author-info.twig" with { author: post.author } %}
-  </footer>
+  </address>
 </article>
 
-{# Comments #}
-<footer class="post-footer">
-  <h-grid class="post-footer-grid"> <div class="large-4">
+{# Related Posts & Comments #}
+<section class="post-extra / wp-block-group alignfull has-background">
+  <div class="wp-block-group__inner-container">
     {% include "_related-posts.twig" %}
     {% include "_comments.twig" %}
-  </div> </h-grid>
-</footer>
+  </div>
+</section>
+
 
 {% endblock %}

@@ -12,85 +12,83 @@
 
 <body class="{{ body_class }}">
 
-<section class="main-nav">
-<h-grid> <div class="large-12 nav-wrapper">
+<header class="main-nav">
+  <h-grid> <div class="large-12 nav-wrapper">
 
-  <div class="nav-logo">
-    {{ fn('the_custom_logo') }}
-  </div>
-
-  <div id="nav-toggle" class="nav-toggle">
-    <a>
-      <i class="dashicons-before dashicons-menu"></i> <b>Menu</b>
-    </a>
-  </div>
-
-  <nav class="nav-items">
-  {% for item in nav.items %}
-    <div class="nav-item {{ item.class }}">
-      <a href="{{ item.url }}"> {{ item.title }} </a>
-
-      {% if item.children %}
-        <div class="nav-children">
-        {% for child in item.children %}
-          <a href="{{ child.url }}">{{ child.title }}</a>
-        {% endfor %}
-        </div>
-      {% endif %}
+    <div class="nav-logo">
+      {{ fn('the_custom_logo') }}
     </div>
-  {% endfor %}
-  </nav>
 
-  <div class="nav-extra">
-    {% if woo %}
-      {% include "shop/_nav-extra.twig" %}
-    {% endif %}
-    
-    {# Store this value in ACF Options or Customizer #}
-    <a href="tel:+1234567890" class="button">
-      <i class="dashicons-before dashicons-phone"></i>
-      <span>+12 3456 7890</span>
-    </a>
-  </div>
+    <div id="nav-toggle" class="nav-toggle">
+      <a>
+        <i class="dashicons-before dashicons-menu"></i> <b>Menu</b>
+      </a>
+    </div>
 
-</div> </h-grid>
-</section>
+    <nav class="nav-items">
+    {% for item in nav.items %}
+      <div class="nav-item {{ item.class }}">
+        <a href="{{ item.url }}"> {{ item.title }} </a>
 
-<main>
-  {% block content %}{% endblock %}
-</main>
+        {% if item.children %}
+          <div class="nav-children">
+          {% for child in item.children %}
+            <a href="{{ child.url }}">{{ child.title }}</a>
+          {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    {% endfor %}
+    </nav>
+
+    <div class="nav-extra">
+      {% if woo %}
+        {% include "shop/_nav-extra.twig" %}
+      {% endif %}
+      
+      {# Store this value in ACF Options or Customizer #}
+      <a href="tel:+1234567890" class="button">
+        <i class="dashicons-before dashicons-phone"></i>
+        <span>+12 3456 7890</span>
+      </a>
+    </div>
+
+  </div> </h-grid>
+</header>
+
+
+{% block content %}{% endblock %}
+
 
 <footer class="main-footer">
-  {% if footer_widgets %}
-    <div class="footer-widgets">
-      <h-grid> {{ footer_widgets }} </h-grid>
+
+
+  <h-grid><div class="footer-credit / large-12">
+
+    <div class="copyright">
+      <strong>Copyright</strong>  &copy; {{ "now" | date("Y") }} {{ site.name }}
+
+      {#
+      {% for i in social_nav.items %}
+        <a href="{{ i.url }}" target="_blank" class="social-logo social-logo__{{ i.title }}"> </a>
+      {% endfor %}
+      #}
     </div>
-  {% endif %}
 
-  <div class="footer-bar">
-    <h-grid>
-      <div class="copyright large-6">
-        <header> Copyright &copy; {{ "now" | date("Y") }} {{ site.name }} </header>
+    <div class="partners">
+      <strong>Created by:</strong>
 
-        {% for i in social_nav.items %}
-          <a href="{{ i.url }}" target="_blank" class="social-logo social-logo__{{ i.title }}"> </a>
-        {% endfor %}
-      </div>
+      <a href="https://pixelstudio.id" target="_blank">
+        <img src="https://cdn.setyono.net/pixelstudio/partner-logo.png">
 
-      <div class="partners large-6">
-        <header>Created by:</header>
-        <a href="https://pixelstudio.id" target="_blank">
-          <img src="https://cdn.setyono.net/pixelstudio/partner-logo.png">
+        <div class="partner-caption">
+          <h5>Pixel Studio</h5>
+          <p>Web &amp; App Design</p>
+        </div>
+      </a>
+    </div>
 
-          <div class="partner-caption">
-            <h5>Pixel Studio</h5>
-            <p>Web & App Design</p>
-          </div>
-        </a>
-      </div>
-
-    </div> </h-grid>
-  </div>
+  </div></h-grid>
 </footer>
 
 {{ wp_footer }}

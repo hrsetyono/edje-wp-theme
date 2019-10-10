@@ -1,59 +1,7 @@
-
-
 ///// PULLQUOTE
 
-.wp-block-pullquote
-  +h( pv0 )
-  background-color: var(--bgColor)
-
-  blockquote
-    +h( d-flex fd-column ta-left )
-
-    > *
-      +h( order2 )
-
-  p, li
-    +h( ph1 mb0 fs-body h0 ov-hidden  transition )
-
-  cite
-    +h( d-flex order1 cursor-pointer relative pv0_5 ph1 bg-black_05 )
-    +h( fw700 fs-m  transition brad )
-    font-style: normal
-
-    &::before
-      content: "+"
-      +h( d-iblock mr1  ff-monospace )
-    &:hover
-      +h( bg-black_20 )
-    &:focus
-      outline: 1px dotted #212121
-      outline: 5px auto -webkit-focus-ring-color
-
-  &.--expanded
-    cite
-      +h( mb1 )
-
-    cite::before
-      content: "-"
-
-    p, li
-      +h( mb1 h-auto )
-
-
-.wp-block-pullquote.is-style-solid-color
-  +h( brad )
-
-  cite
-    +h( bg-transparent )
+// Default CSS is queued by Edje
   
-  cite:hover
-    +h( bg-white_25 )
-
-  &.--expanded
-    cite
-      +h( bg-transparent )
-
-
 ///// VERSE
 
 .wp-block-verse

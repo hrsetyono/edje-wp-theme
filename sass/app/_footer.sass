@@ -1,57 +1,28 @@
 ///// MAIN FOOTER /////
 
 .main-footer
-  +h( mt-auto bg-black_75 c-white )
+  +h( bg-black_75 c-white )
 
-// widgets
-.footer-widgets
-  +h( pv2_5 c-white_50 fs-s )
 
-  h-grid
-    grid-row-gap: $grid-gap
+// Credit
+.footer-credit
+  +h( d-flex ai-center  pv0_5 c-white_50 fs-s )
 
-  .widget
-    +h( list-none )
-    +column(4)
-
-  .widgettitle
-    +h( mb0_25 c-white_75 fs-h5 )
-
-  ul
-    +h( pl1_25 )
-
-///// FOOTER BAR
-
-.footer-bar
-  +h( pv0_5 bg-main_10 c-white_50 fs-s )
-
-.copyright,
-.partners
-  +h( d-flex fw-wrap ai-center )
-
-  header
-    +h( fw700 )
-    line-height: 1.4
+  strong
+    +h( c-white_75 )
 
 .copyright
   a
     +h( mr0_5 )
 
-  @media ($above-s)
-    header
-      +h( mr1_5 )
-
-// partners
 .partners
-  +h( jc-end )
+  +h( d-flex fw-wrap ai-center  ml-auto )
 
   img
     +h( p0_25 )
     width: 32px
-
   a
-    +h( d-block relative mh0_25 bg-main_25 brad-circle transition )
-    
+    +h( d-block relative mh0_25 bg-main_50 brad transition )
   a:hover
     +h( bg-main_50 c-white )
 

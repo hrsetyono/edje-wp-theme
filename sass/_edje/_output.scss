@@ -449,7 +449,6 @@ h-tile {
 %h5 { @include font-sizes( $h5 ); }
 %h6 { @include font-sizes( $h6 ); }
 
-
 @if $output-framework and $include-typography {
 
 body {

@@ -55,28 +55,31 @@ ul.wp-block-social-links
     +h( jc-center )
 
 .wp-social-link a
-  +h( d-flex ai-center jc-center mr0_5 mb0_5  )
-  +h( w42px h42px lh0  transition brad-circle )
+  +h( d-flex ai-center jc-center mr0_75 mb0_75  )
+  +h( w42px h42px b1-solid bc-black_20 bbw2px  lh0  transition brad )
   background-color: var(--color)
+  will-change: opacity
+
+  &:hover
+    +h( o70 )
+  &:active
+    +h( transition-none btw2px bbw1px )
 
   .is-style-logos-only &
-    +h( bg-transparent )
+    +h( bg-transparent bc-transparent mr0_5 )
     svg
       fill: var(--color)
+    &:hover
+      +h( bc-black_20 )
 
   .is-style-pill-shape &
     +h( brad-pill ph1 w-auto )
 
-  &:hover
-    +h( shadow1 )
-    transform: translateY(-2px)
-  &:active
-    +h( transition-none )
-    transform: translateY(-1px)
  
 .wp-social-link svg
   +h( w28px h28px )
   fill: white
+  
 
 // color
 @each $name, $color in $social-colors
@@ -89,3 +92,6 @@ ul.wp-block-social-links
 .wp-social-link-mail
   svg
     fill: #382110
+
+.wp-social-link-snapchat
+  stroke: black

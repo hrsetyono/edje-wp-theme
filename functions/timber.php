@@ -16,11 +16,9 @@ class MyTimber extends TimberSite {
    */
   function add_to_context( array $context ) : array {
     $context['nav'] = new TimberMenu( 'main-nav' );
-    $context['social_nav'] = new TimberMenu( 'social-nav' );
 
     $context['site'] = $this;
     $context['home_url'] = home_url();
-    $context['footer_widgets'] = Timber::get_widgets( 'my-footer' );
 
     $root = get_template_directory_uri();
     $context['images'] = $root.'/assets/images';
