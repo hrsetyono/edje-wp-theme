@@ -1,14 +1,15 @@
 body
-  +h( ovx-hidden )
+  +h( ovx-hidden mt1 )
   
 .main-nav
-  +h( relative bg-white bb1-solid bc-gray z100 pv0_75 )
+  +h( relative bg-white mb2  z100 )
 
   @media ($below-nav)
     +h( sticky top0 )
 
 .nav-wrapper
-  +h( d-flex ai-center relative )
+  +h( d-flex relative  shadow0 brad )
+  border-top: 3px solid var(--main)
 
 
 // make body clickable to close the NAV when it's active
@@ -19,39 +20,45 @@ body.has-active-cart
 
 
 // MAIN LOGO
-.nav-logo
+.custom-logo-link
+  +h( d-flex ai-center ph1 pv0_5 bg-main )
+
+  &:hover
+    +h( bg-main_80 )
   img
     +h( w-auto )
     height: 2.5em
 
-  @media ($below-nav)
-    +h( order1 mv0 mh-auto )
-
 
 // NAV ITEMS WRAPPER
 .nav-items
-  +h( d-flex flex1 jc-start fw-wrap transition )
+  +h( d-flex flex1 jc-start fw-wrap list-none transition )
 
-  .has-active-nav &
+  body.has-active-nav &
     +h( v-visible o100 )
     transform: none
 
+  //
   @media ($below-nav)
     +h( fd-column v-hidden fixed o0 z100 )
     +h( absolute top100p left0 right0 )
-    +h( pv0_5 bg-white transition shadow2 brad )
+    +h( pv0_5 bg-white transition shadow1 )
+
+    border-bottom: 3px solid var(--main)
+    border-radius: 0 0 $g-radius $g-radius
+
 
 // NAV ITEM
 .nav-item
-  +h( relative )
+  +h( relative br1-solid bc-black_05 )
 
   > a
-    +h( d-block pv0_75 )
-    +h( ph1 c-text fw700 tt-uppercase ls25 )
+    +h( d-flex ai-center h100p pv0_75 ph1  lh1 c-text )
   > a:hover
     +h( bg-main_10 )
   > a:active
     +h( bg-main_20 transition-none )
+
 
   // current page
   &.current-menu-item,
@@ -63,9 +70,16 @@ body.has-active-cart
       +h( c-main )
 
   //
+  @media ($above-nav)
+    &.menu-item-has-children > a::after
+      content: ""
+      +h( d-iblock ml0_5 )
+      +triangle( s, inherit, 10px, 6px )
+
+  //
   @media ($below-nav)
     > a
-      +h( p0_75 )
+      +h( p0_75 fw700 tt-uppercase ls25 )
     > a:hover
       +h( bg-main_10 )
 
@@ -82,8 +96,10 @@ body.has-active-cart
   //
   @media ($above-nav)
     +h( absolute v-hidden o0 top100p left0 bg-white nowrap )
-    +h( pv0_5 shadow1 brad transition )
+    +h( shadow1 transition )
     width: 200px
+    border-bottom: 3px solid var(--main)
+    border-radius: 0 0 $g-radius $g-radius
 
     .nav-item:hover &,
     a:focus + &
@@ -95,40 +111,57 @@ body.has-active-cart
   @media ($below-nav)
     +h( d-flex fw-wrap  )
     a
-      width: calc(100% / 3)
+      +h( w50p )
   //
   @media ($below-xs)
-    a
-      +h( w50p )
 
 
 // NAV MOBILE TOGGLE
-.nav-toggle
+.nav-item.--mobile-toggle
   i
-    +h( lh1 )
-  i, b
-    +h( d-inline-block va-middle )
-
-  .dashicons-before::before
+    +h( mr0_25 va-middle )
+  i::before
     +h( fs-m )
     width: 18px
     height: 18px
+  strong
+    +h( tt-uppercase ls25 )
 
+  // change toggle button to "Close"
+  body.has-active-nav &
+    i::before
+      content: "\f158"
+    strong
+      font-size: 0
+    strong::after
+      content: "Close"
+      +h( fs-body )
+
+  //
   @media ($above-nav)
     +h( d-none )
 
 
 // NAV EXTRA
 .nav-extra
-  +h( d-flex order2 ai-center relative )
+  +h( d-flex order2 ml-auto relative )
 
-  .button
-    +h( lh1 ml0_25 )
+  a
+    +h( d-flex ai-center bg-main ph1  lh1 c-white )
+  a:hover
+    +h( bg-main_80 )
   span
+    +h( ml0_5 )
     line-height: 20px
 
   //
-  @media ($below-s)
+  @media ($below-m)
+    a
+      +h( ph0_5 )
+  //
+  @media ($below-nav)
+    a
+      +h( ph1 )
     span
       +h( d-none )
   

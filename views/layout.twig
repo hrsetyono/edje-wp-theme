@@ -12,22 +12,21 @@
 
 <body class="{{ body_class }}">
 
-<header class="main-nav">
-  <h-grid> <div class="large-12 nav-wrapper">
+<nav class="main-nav">
+  <h-grid> <div class="nav-wrapper / large-12">
 
-    <div class="nav-logo">
-      {{ fn('the_custom_logo') }}
-    </div>
+    {{ fn('the_custom_logo') }}
 
-    <div id="nav-toggle" class="nav-toggle">
+    <div id="nav-toggle" class="nav-item --mobile-toggle">
       <a>
-        <i class="dashicons-before dashicons-menu"></i> <b>Menu</b>
+        <i class="dashicons-before dashicons-menu"></i>
+        <strong>Menu</strong>
       </a>
     </div>
 
-    <nav class="nav-items">
+    <ul class="nav-items">
     {% for item in nav.items %}
-      <div class="nav-item {{ item.class }}">
+      <li class="nav-item {{ item.class }}">
         <a href="{{ item.url }}"> {{ item.title }} </a>
 
         {% if item.children %}
@@ -37,9 +36,9 @@
           {% endfor %}
           </div>
         {% endif %}
-      </div>
+      </li>
     {% endfor %}
-    </nav>
+    </ul>
 
     <div class="nav-extra">
       {% if woo %}
@@ -47,14 +46,14 @@
       {% endif %}
       
       {# Store this value in ACF Options or Customizer #}
-      <a href="tel:+1234567890" class="button">
+      <a href="tel:+1234567890">
         <i class="dashicons-before dashicons-phone"></i>
         <span>+12 3456 7890</span>
       </a>
     </div>
 
   </div> </h-grid>
-</header>
+</nav>
 
 
 {% block content %}{% endblock %}
@@ -62,17 +61,10 @@
 
 <footer class="main-footer">
 
-
   <h-grid><div class="footer-credit / large-12">
 
     <div class="copyright">
       <strong>Copyright</strong>  &copy; {{ "now" | date("Y") }} {{ site.name }}
-
-      {#
-      {% for i in social_nav.items %}
-        <a href="{{ i.url }}" target="_blank" class="social-logo social-logo__{{ i.title }}"> </a>
-      {% endfor %}
-      #}
     </div>
 
     <div class="partners">
