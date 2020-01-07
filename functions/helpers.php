@@ -2,7 +2,7 @@
 /**
  * Reusable functions
  */
-class MyHelper {
+class MyHelpers {
   /**
    * Check activation of Edje and Timber plugins
    */

@@ -17,8 +17,8 @@ function shop_before_setup_theme() {
  * @action wp_enqueue_scripts 101
  */
 function shop_enqueue_scripts() {
-  $css_dir = get_stylesheet_directory_uri() . '/css';
-  $js_dir = get_stylesheet_directory_uri() . '/js';
+  $css_dir = get_stylesheet_directory_uri() . '/assets/css';
+  $js_dir = get_stylesheet_directory_uri() . '/assets/js';
 
   wp_enqueue_style( 'my-shop', $css_dir . '/shop.css', [], ASSETS_VERSION );
 }

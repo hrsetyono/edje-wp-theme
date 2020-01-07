@@ -22,10 +22,8 @@ class MyTimber extends TimberSite {
 
     $root = get_template_directory_uri();
     $context['images'] = $root.'/assets/images';
-    $context['img'] = $context['images']; // alias
-    $context['files'] = $root.'/assets/files';
 
-    // ACF Options Page    
+    // ACF Options Page
     if( function_exists( 'acf_add_options_page' )) {
       $context['options'] = get_fields( 'options' );
     }

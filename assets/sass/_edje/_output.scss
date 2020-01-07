@@ -451,12 +451,15 @@ h-tile {
 
 @if $output-framework and $include-typography {
 
+html {
+  font-size: $font-size;
+}
+
 body {
   position: relative;
   background: var(--body);
   margin: 0;
 
-  font-size: $font-size;
   font-family: $font-family;
   font-weight: $font-weight;
   line-height: $font-line;
