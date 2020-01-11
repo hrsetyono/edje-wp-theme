@@ -85,7 +85,7 @@ return wp_parse_args( [ 'other' => [
           ] ),
         ],
 
-        h_option_divider() => '',
+        blocksy_rand_md5() => [ 'type' => 'ct-divider' ],
   
         'top_button_alignment' => [
           'label' => __( 'Alignment' ),
@@ -106,7 +106,7 @@ return wp_parse_args( [ 'other' => [
   
     ],
   
-    h_option_divider() => '',
+    blocksy_rand_md5() => [ 'type' => 'ct-divider' ],
   
     'performance' => [
       'label' => __( 'Performance' ),
@@ -119,7 +119,7 @@ return wp_parse_args( [ 'other' => [
           'desc' => __( 'Disable WordPress emojis script if you don\'t use them in order to improve the performance. ' ),
         ],
   
-        h_option_divider() => '',
+        blocksy_rand_md5() => [ 'type' => 'ct-divider' ],
   
         'has_lazy_load' => [
           'label' => __( 'Lazy Load Images' ),

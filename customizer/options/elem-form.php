@@ -34,7 +34,7 @@ return wp_parse_args( [ 'form' => [
     ],
 
 
-    h_option_title() => __( 'Input' ),
+    blocksy_rand_md5() => [ 'label' => __( 'Input' ), 'type' => 'ct-title' ],
   
     'formBackgroundColor' => [
       'label' => __( 'Background Color' ),
@@ -51,10 +51,10 @@ return wp_parse_args( [ 'form' => [
   
     'formBorder' => [
       'label' => __( 'Border' ),
+      'type' => 'ct-border',
       'desc' => my_css_desc([
         '--formBorder',
       ]),
-      'type' => 'ct-border',
     ],
   
     'formBorderFocusColor' => [
@@ -68,7 +68,7 @@ return wp_parse_args( [ 'form' => [
       ],
     ],
   
-    h_option_title() => __( 'Select Dropdown' ),
+    blocksy_rand_md5() => [ 'label' => __( 'Select Dropdown' ), 'type' => 'ct-title' ],
   
     'selectDropdownTextColor' => [
       'label' => __( 'Dropdown Text Color' ),
@@ -110,7 +110,7 @@ return wp_parse_args( [ 'form' => [
     ],
   
   
-    h_option_title() => __( 'Radio & Checkbox' ),
+    blocksy_rand_md5() => [ 'label' => __( 'Radio & Checkbox' ), 'type' => 'ct-title' ],
   
     'radioCheckboxColor' => [
       'label' => __( 'Color' ),

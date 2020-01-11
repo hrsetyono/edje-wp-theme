@@ -9,7 +9,7 @@
   "dependencies": {},
   "devDependencies": {},
   "scripts": {
-    "sass": "node-sass -w sass -o css --output-style compressed",
+    "sass": "node-sass -w assets/sass -o assets/css --output-style compressed",
     "bsync": "browser-sync start --proxy \"demo.test\" --files \"css/*.css\""
   }
 }

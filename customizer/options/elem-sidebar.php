@@ -61,7 +61,7 @@ return wp_parse_args( [ 'sidebar' => [
 				'condition' => [ 'sidebar_type' => 'type-2 | type-3 | type-4' ],
 				'options' => [
 
-					h_option_divider() => '',
+					blocksy_rand_md5() => [ 'type' => 'ct-divider' ],
 					
 					'sidebarInnerSpacing' => [
 						'label' => __( 'Inner Spacing' ),
@@ -133,7 +133,7 @@ return wp_parse_args( [ 'sidebar' => [
 				],
 			],
 
-			h_option_divider() => '',
+			blocksy_rand_md5() => [ 'type' => 'ct-divider' ],
 
 			'has_sticky_sidebar' => [
 				'label' => __( 'Sticky Sidebar' ),
@@ -161,7 +161,7 @@ return wp_parse_args( [ 'sidebar' => [
 				],
 			],
 
-			h_option_divider() => '',
+			blocksy_rand_md5() => [ 'type' => 'ct-divider' ],
 
 			'sidebar_visibility' => [
 				'label' => __( 'Visibility' ),
@@ -187,7 +187,7 @@ return wp_parse_args( [ 'sidebar' => [
 				'css' => '--sidebarWidgetsSpacing'
 			],
 
-			h_option_title() => __( 'Sidebar Text' ),
+			blocksy_rand_md5() => [ 'label' => __( 'Sidebar Text' ), 'type' => 'ct-title' ],
 
 			'sidebarTitleSize' => [
 				'label' => __( 'Title Size' ),
