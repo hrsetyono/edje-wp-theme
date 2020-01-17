@@ -1,0 +1,17 @@
+<header class="site-header">
+  {% for row in rows %}
+  
+  <div data-row="{{ row.id | replace({ '-row': '' }) }}" class="header-row">
+    <strong>{{ row.id }}</strong>
+
+    <ul>
+    {% for place in row.placements %}
+    <li>
+      {{ place.id }}:
+      {{ place.items | join(', ') }}
+    </li>
+    {% endfor %}
+    </ul>
+  </div>
+  {% endfor %}
+</header>

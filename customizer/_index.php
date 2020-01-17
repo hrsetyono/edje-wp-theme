@@ -1,13 +1,21 @@
 <?php
 
-// DEFAULTS
-require_once __DIR__ . '/defaults.php';
+if( get_theme_support( 'blocksy-customizer' ) ) {
+  // DEFAULTS
+  require_once __DIR__ . '/defaults-core.php';
+  require_once __DIR__ . '/defaults.php';
 
-// OPTIONS
-require_once __DIR__ . '/options/gen-general.php';
-require_once __DIR__ . '/options/gen-typography.php';
+  // RENDER
+  require_once __DIR__ . '/header.php';
+  require_once __DIR__ . '/footer.php';
 
-require_once __DIR__ . '/options/elem-button.php';
-require_once __DIR__ . '/options/elem-sidebar.php';
-require_once __DIR__ . '/options/elem-form.php';
-require_once __DIR__ . '/options/elem-other.php';
+  // OPTIONS
+  // require_once __DIR__ . '/options/sidebar.php';
+
+  require_once __DIR__ . '/options/title-elements.php';
+  require_once __DIR__ . '/options/typography.php';
+  require_once __DIR__ . '/options/grid.php';
+  require_once __DIR__ . '/options/button.php';
+  // require_once __DIR__ . '/options/form.php';
+  // require_once __DIR__ . '/options/other.php';
+}

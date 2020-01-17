@@ -1,0 +1,80 @@
+html
+  font-size: var(--fontSize) // change the "rem" value
+
+body
+  position: relative
+  background: var(--siteBackground)
+  margin: 0
+
+*
+  font-family: var(--fontFamily)
+  font-weight: var(--fontWeight)
+  font-style: var(--fontStyle)
+  font-size: var(--fontSize)
+  
+  line-height: var(--lineHeight)
+  letter-spacing: var(--letterSpacing)
+  text-transform: var(--textTransform)
+  text-decoration: var(--textDecoration)
+  
+  --color: var(--text)
+  color: var(--color)
+
+
+h1, h2, h3, h4, h5, h6
+  --fontFamily: var(--hFontFamily)
+  --fontWeight: var(--hFontWeight)
+  --fontStyle: var(--hFontStyle)
+  
+  --lineHeight: var(--hLineHeight)
+  --letterSpacing: var(--hLetterSpacing)
+  --textTransform: var(--hTextTransform)
+  --textDecoration: var(--hTextDecoration)
+
+  --color: var(--headingColor)
+
+h1
+  --fontSize: var(--h1Size)
+h2
+  --fontSize: var(--h2Size)
+h3
+  --fontSize: var(--h3Size)
+h4
+  --fontSize: var(--h4Size)
+h5
+  --fontSize: var(--h5Size)
+h6
+  --fontSize: var(--h6Size)
+
+p
+  margin-top: 0
+  margin-bottom: 0
+
+a
+  --color: var(--linkColor)
+  transition: $g-transition
+
+  &:hover
+    --color: var(--linkColorHover)
+
+.has-small-font-size
+  --fontSize: var(--smallFontSize)
+.has-medium-font-size
+  --fontSize: var(--mediumFontSize)
+.has-large-font-size
+  --fontSize: var(--largeFontSize)
+.has-huge-font-size
+  --fontSize: var(--hugeFontSize)
+
+ul
+  list-style-type: disc
+
+ol
+  list-style-type: decimal
+
+ul,
+ol
+  ul
+    list-style-type: circle
+  ol
+    list-style-type: lower-alpha

@@ -1,27 +1,4 @@
 /*!
   EDJE Functional Sass v3.1.0
   Documentation: https://github.com/hrsetyono/edje/wiki
-*/:root{--red: #d32f2f;--redRGB: 211, 47, 47
-      ;--red-dark: #b71c1c;--red-darkRGB: 183, 28, 28
-      ;--red-light: #ffcdd2;--red-lightRGB: 255, 205, 210
-      ;--orange: #fB8c00;--orangeRGB: 251, 140, 0
-      ;--orange-dark: #e65100;--orange-darkRGB: 230, 81, 0
-      ;--orange-light: #ffe0b2;--orange-lightRGB: 255, 224, 178
-      ;--yellow: #ffee58;--yellowRGB: 255, 238, 88
-      ;--yellow-dark: #ffd600;--yellow-darkRGB: 255, 214, 0
-      ;--yellow-light: #fff9c4;--yellow-lightRGB: 255, 249, 196
-      ;--green: #4caf50;--greenRGB: 76, 175, 80
-      ;--green-dark: #2e7d32;--green-darkRGB: 46, 125, 50
-      ;--green-light: #c8e6c9;--green-lightRGB: 200, 230, 201
-      ;--blue: #1976d2;--blueRGB: 25, 118, 210
-      ;--blue-dark: #1565c0;--blue-darkRGB: 21, 101, 192
-      ;--blue-light: #bbdefb;--blue-lightRGB: 187, 222, 251
-      ;--gray: #b0bec5;--grayRGB: 176, 190, 197
-      ;--gray-dark: #90a4ae;--gray-darkRGB: 144, 164, 174
-      ;--gray-light: #eceff1;--gray-lightRGB: 236, 239, 241
-      ;--black: #000;--blackRGB: 0, 0, 0
-      ;--white: #fff;--whiteRGB: 255, 255, 255
-      ;--main: var(--blue);--mainRGB: var(--blueRGB);--main-dark: var(--blue-dark);--main-darkRGB: var(--blue-darkRGB);--main-light: var(--blue-light);--main-lightRGB: var(--blue-lightRGB);--sub: var(--gray);--subRGB: var(--grayRGB);--sub-dark: var(--gray-dark);--sub-darkRGB: var(--gray-darkRGB);--sub-light: var(--gray-light);--sub-lightRGB: var(--gray-lightRGB);--text: #222;--textRGB: 34, 34, 34
-      ;--passive: #888;--passiveRGB: 136, 136, 136
-      ;--header: var(--text);--headerRGB: var(--textRGB);--body: #fff;--bodyRGB: 255, 255, 255
-      }
+*/

@@ -15,7 +15,13 @@ class MyTimber extends TimberSite {
    * @filter timber_context
    */
   function add_to_context( array $context ) : array {
-    $context['nav'] = new TimberMenu( 'main-nav' );
+    // $context['nav'] = new TimberMenu( 'main-nav' );
+
+    $header = new Blocksy_Customizer_Builder_Header();
+    $context['header'] = $header->render();
+    
+    $footer = new Blocksy_Customizer_Builder_Footer();
+		$context['footer'] = $footer->render();
 
     $context['site'] = $this;
     $context['home_url'] = home_url();

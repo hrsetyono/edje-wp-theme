@@ -13,6 +13,10 @@
 <body class="{{ body_class }}">
 
 <nav class="main-nav">
+  
+  {{ header }}
+  
+  {#
   <h-grid> <div class="nav-wrapper / large-12">
 
     {{ fn('the_custom_logo') }}
@@ -45,7 +49,6 @@
         {% include "shop/_nav-extra.twig" %}
       {% endif %}
       
-      {# Store this value in ACF Options or Customizer #}
       <a href="tel:+1234567890">
         <i class="dashicons-before dashicons-phone"></i>
         <span>+12 3456 7890</span>
@@ -54,11 +57,14 @@
 
   </div> </h-grid>
 </nav>
+#}
 
 
 {% block content %}{% endblock %}
 
+{{ footer }}
 
+{#
 <footer class="main-footer">
 
   <h-grid><div class="footer-credit / large-12">
@@ -82,6 +88,7 @@
 
   </div></h-grid>
 </footer>
+#}
 
 {{ wp_footer }}
 

@@ -1,16 +1,11 @@
 <?php
 
-add_filter( 'h_customizer_options', function( $sections ) {
-  return wp_parse_args( [ 'general' => [
-    'title' => __( 'General' ),
-    'container' => [ 'priority' => 1 ],
+add_filter( 'custy_sections', function( $sections ) {
+  return wp_parse_args( [ 'grid' => [
+    
+    'title' => __( 'Grid' ),
+    'container' => [ 'priority' => 10 ],
     'options' => [
-
-      'siteBackground' => [
-        'label' => __( 'Site Background' ),
-        'type' => 'ct-background',
-        'css' => '--site$',
-      ],
 
       'siteWidth' => [
         'label' => __( 'Site Width' ),

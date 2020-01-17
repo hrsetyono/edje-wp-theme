@@ -1,10 +1,10 @@
 <?php
 
-add_filter( 'h_customizer_options', function( $sections ) {
+add_filter( 'custy_sections', function( $sections ) {
 return wp_parse_args( [ 'sidebar' => [
 
   'title' => __( 'Sidebar' ),
-	'container' => [ 'priority' => 10 ],
+	'container' => [ 'priority' => 1 ],
   'options' => [
 
     blocksy_rand_md5() => [

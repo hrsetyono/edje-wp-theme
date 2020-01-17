@@ -1,11 +1,11 @@
 <?php
 
-add_filter( 'h_customizer_options', function( $sections ) {
+add_filter( 'custy_sections', function( $sections ) {
 
 return wp_parse_args( [ 'typography' => [
 
   'title' => __( 'Typography' ),
-  'container' => [ 'priority' => 1 ],
+  'container' => [ 'priority' => 10 ],
   'css_selector' => ':root',
   'options' => [
 
@@ -24,12 +24,12 @@ return wp_parse_args( [ 'typography' => [
 
     'headingColor' => [
       'label' => __( 'Heading Color' ),
-      'css' => [
-        '--headingColor' => 'default.color',
-      ],
       'type'  => 'ct-color-picker',
       'pickers' => [
         'default' => __( 'Initial' )
+      ],
+      'css' => [
+        '--headingColor' => 'default.color',
       ],
     ],
 

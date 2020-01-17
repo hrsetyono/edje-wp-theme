@@ -1,15 +1,7 @@
 <?php
 
-add_filter( 'h_customizer_options', function( $sections ) {
-return wp_parse_args( [
-
-blocksy_rand_md5() => [
-  'type' => 'ct-group-title',
-  'title' => __( 'Elements' ),
-  'priority' => 9,
-],
-
-'button' => [
+add_filter( 'custy_sections', function( $sections ) {
+return wp_parse_args( [ 'button' => [
 
   'title' => __( 'Button' ),
   'container' => [ 'priority' => 10 ],
@@ -22,16 +14,16 @@ blocksy_rand_md5() => [
       'css' => '--$',
     ],
 
-    'buttonColor' => [
-      'label' => __( 'Color' ),
+    'buttonBackground' => [
+      'label' => __( 'Background' ),
       'type'  => 'ct-color-picker',
       'pickers' => [
         'default' => __( 'Initial' ),
         'hover' => __( 'Hover' ),
       ],
       'css' => [
-        '--color' => 'default.color',
-        '--colorHover' => 'hover.color'
+        '--buttonBg' => 'default.color',
+        '--buttonBgHover' => 'hover.color'
       ],
     ],
 
@@ -43,8 +35,8 @@ blocksy_rand_md5() => [
         'hover' => __( 'Hover' ),	
       ],
       'css' => [
-        '--buttonTextColor' => 'default.color',
-        '--buttonTextColorHover' => 'hover.color',
+        '--buttonColor' => 'default.color',
+        '--buttonColorHover' => 'hover.color',
       ],
     ],
 

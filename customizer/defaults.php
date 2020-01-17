@@ -1,30 +1,11 @@
 <?php
-
-add_filter( 'h_customizer_defaults', function( $defaults ) {
+/**
+ * Default values for custom settings
+ */
+add_filter( 'custy_default_values', function( $defaults ) {
   return wp_parse_args( [
 
-    // CORE
-    'colorPalette' => [
-      'color1' => [ 'color' => '#1976d2' ],
-      'color2' => [ 'color' => '#0d47a1' ],
-      'color3' => [ 'color' => '#bbdefb' ],
-      'color4' => [ 'color' => '#546e7a' ],
-      'color5' => [ 'color' => '#cfd8dc' ],
-    ],
-    'textColor' => [
-      'default' => [ 'color' => '#2c3e50' ],
-      'invert' => [ 'color' => '#ffffff' ],
-    ],
-    'mobile_media' => '480px',
-    'tablet_media' => '767px',
-
-
-    // GENERAL
-    'siteBackground' => blocksy_background_default_value( [
-      'backgroundColor' => [
-        'default' => [ 'color' => '#f8f9fb' ],
-      ],
-    ] ),
+    // GRID
     'siteWidth' => '1120px',
     'blogWidth' => '650px',
 
@@ -55,15 +36,14 @@ add_filter( 'h_customizer_defaults', function( $defaults ) {
     'buttons' => blocksy_typography_default_values([
       'size' => '18px',
       'line-height' => '1',
-      'text-transform' => 'uppercase'
     ]),
+    'buttonBackground' => [
+      'default' => [ 'color' => 'var(--main)', ],
+      'hover' => [ 'color' => 'var(--mainDark)', ],
+    ],
     'buttonTextColor' => [
       'default' => [ 'color' => 'var(--textInvert)', ],
       'hover' => [ 'color' => 'var(--textInvert)', ],
-    ],
-    'buttonColor' => [
-      'default' => [ 'color' => 'var(--main)', ],
-      'hover' => [ 'color' => 'var(--mainDark)', ],
     ],
     'buttonBorder' => [
       'width' => 1,
@@ -71,10 +51,10 @@ add_filter( 'h_customizer_defaults', function( $defaults ) {
       'color' => [ 'color' => 'var(--mainDark)' ],
     ],
     'buttonPadding' => [
-      'top' => '0.25rem',
-      'left' => '0.25rem',
-      'right' => '0.25rem',
-      'bottom' => '0.25rem',
+      'top' => '0.75rem',
+      'right' => '1.25rem',
+      'bottom' => '0.75rem',
+      'left' => '1.25rem',
     ],
 
 

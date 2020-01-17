@@ -19,6 +19,9 @@ function my_theme_supports() {
   add_theme_support( 'align-wide' );
   add_theme_support( 'responsive-embeds' );
 
+  // Blocksy
+  add_theme_support( 'blocksy-customizer' );
+
   /**
    * Each color will be outputted into 2 classes:
    * 

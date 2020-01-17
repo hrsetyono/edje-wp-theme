@@ -44,6 +44,10 @@ function my_before_setup_theme() {
  */
 function my_after_setup_theme() {
   require_once __DIR__ . '/customizer/_index.php';
+
+  // if( !is_admin() ) {
+  //   var_dump( h_get_mod( 'header_placements' )['sections'][0]['mobile'] );
+  // }
   
   // Create Nav assignment
   register_nav_menus( [

@@ -4,32 +4,26 @@
 $include-normalize: true
 $include-grid: true
 $include-tile: true
-$include-typography: true
 $include-visibility: true
-$include-colors: true
 
 $output-framework: true // this will output the Normalizer, Grid, etc
 @import "settings"
 
-@import "framework/blog"
-@import "framework/jetpack"
-@import "framework/cf7"
+// @import "framework/blog"
+// @import "framework/jetpack"
+// @import "framework/cf7"
 
-*
-  font-family: var(--fontFamily)
-  font-weight: var(--fontWeight)
-  font-size: var(--fontSize)
-  font-style: var(--fontStyle)
-  
-  line-height: var(--lineHeight)
-  letter-spacing: var(--letterSpacing)
-  text-transform: var(--textTransform)
-  text-decoration: var(--textDecoration)
-  
-  color: var(--color)
+@import "framework/core"
+@import "framework/grid"
+@import "framework/footer"
 
-  &:hover
-    color: var(--colorHover)
+
+.the-content
+  max-width: var(--siteWidth)
+  margin: 0 auto
+
+  .post &
+    --siteWidth: var(--blogWidth)
 
 
 ///// BUTTON /////
@@ -40,20 +34,21 @@ $output-framework: true // this will output the Normalizer, Grid, etc
 .wp-block-file__button,
 .wp-block-button__link
   +h( cursor-pointer ov-hidden d-iblock )
-  +h( pv0_5 ph1_5 nowrap )
   +h( va-top brad-pill )
   
-  background-color: var(--buttonColor)
+  padding: var(--buttonPadding)
+  background-color: var(--buttonBg)
   border: var(--buttonBorder)
-  // color: var(--buttonTextColor)
+  color: var(--buttonColor)
+  box-shadow: inset 0 1px 0 rgba(white, .5)
 
   &:hover
-    background-color: var(--buttonColorHover)
-    // color: var(--buttonTextColorHover)
+    --buttonBg: var(--buttonBgHover)
+    --buttonColor: var(--buttonColorHover)
 
   &:active
     +h( transition-none )
-    transform: translateY(1px)
+    box-shadow: inset 0 1px 0 rgba(black, .3)
 
   &[disabled],
   &.disabled

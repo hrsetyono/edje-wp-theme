@@ -15,6 +15,7 @@ function my_public_assets() {
   $js_dir = get_stylesheet_directory_uri() . '/assets/js';
 
   // Stylesheet
+  wp_enqueue_style( 'my-normalize', $css_dir . '/normalize.css', [], ASSETS_VERSION );
   wp_enqueue_style( 'my-framework', $css_dir . '/framework.css', [], ASSETS_VERSION );
   wp_enqueue_style( 'my-app', $css_dir . '/app.css', [], ASSETS_VERSION );
   wp_enqueue_style( 'dashicons', get_stylesheet_uri(), 'dashicons' ); // WP native icons

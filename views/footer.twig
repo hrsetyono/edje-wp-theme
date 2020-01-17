@@ -1,0 +1,12 @@
+<footer class="site-footer">
+  {% for row in rows %}
+    <section class="footer-row --{{ row.id }}">
+      <strong>{{ row.id }}</strong>
+      <ul>
+      {% for column in row.columns %}
+        <li>{{ column | join(', ') }}</li>
+      {% endfor %}
+      </ul>
+    </section>
+  {% endfor %}
+</footer>

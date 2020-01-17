@@ -1,6 +1,6 @@
 <?php
 
-add_filter( 'h_customizer_options', function( $sections ) {
+add_filter( 'custy_sections', function( $sections ) {
 return wp_parse_args( [ 'other' => [
 
   'title' => __( 'Others' ),
@@ -146,7 +146,8 @@ return wp_parse_args( [ 'other' => [
         ],
   
       ],
-    ]
+    ],
+
   ]
 
 ] ], $sections );

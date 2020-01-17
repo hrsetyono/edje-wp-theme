@@ -4,55 +4,6 @@
 */
 @charset "UTF-8";
 
-// EDJE COLORS
-// Read more at https://github.com/hrsetyono/edje/wiki/Colors
-$h-colors: (
-  // Palette
-  'red': #d32f2f,
-  'red-dark': #b71c1c,
-  'red-light': #ffcdd2,
-  
-  'orange': #fB8c00,
-  'orange-dark': #e65100,
-  'orange-light': #ffe0b2,
-
-  'yellow': #ffee58,
-  'yellow-dark': #ffd600,
-  'yellow-light': #fff9c4,
-
-  'green': #4caf50,
-  'green-dark': #2e7d32,
-  'green-light': #c8e6c9,
-  
-  'blue': #1976d2,
-  'blue-dark': #1565c0,
-  'blue-light': #bbdefb,
-
-  'gray': #b0bec5,
-  'gray-dark': #90a4ae,
-  'gray-light': #eceff1,
-
-  'black': black,
-  'white': white,
-
-  // Named color
-  'main': var(--blue),
-  'main-dark': var(--blue-dark),
-  'main-light': var(--blue-light),
-
-  'sub': var(--gray),
-  'sub-dark': var(--gray-dark),
-  'sub-light': var(--gray-light),
-
-  // Typography
-  'text': #222,
-  'passive': #888,
-  'header': var(--text),
-
-  // Other
-  'body': #ffffff
-);
-
 ///// MEDIA QUERY
 $size-xs : 480px;
 $size-s  : 767px;
