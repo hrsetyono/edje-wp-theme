@@ -1,6 +1,6 @@
 <?php
 
-if( get_theme_support( 'blocksy-customizer' ) ) {
+if( class_exists( 'Custy' ) ) {
   // DEFAULTS
   require_once __DIR__ . '/defaults-core.php';
   require_once __DIR__ . '/defaults.php';

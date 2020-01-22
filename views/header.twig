@@ -1,17 +1,26 @@
-<header class="site-header">
-  {% for row in rows %}
-  
-  <div data-row="{{ row.id | replace({ '-row': '' }) }}" class="header-row">
-    <strong>{{ row.id }}</strong>
-
-    <ul>
-    {% for place in row.placements %}
-    <li>
-      {{ place.id }}:
-      {{ place.items | join(', ') }}
-    </li>
-    {% endfor %}
-    </ul>
-  </div>
-  {% endfor %}
+<header class="site-header" data-visible="desktop">
+  {{ _self.header_rows( desktop ) }}
 </header>
+
+<div class="mobile-header" data-visible="mobile">
+  {{ _self.header_rows( mobile ) }}
+</div>
+
+{# Output header rows #}
+{% macro header_rows( rows ) %}
+  {% for row_id, columns in rows if columns | length > 0 %}  
+    <div data-row="{{ row_id }}" class="header-row">
+
+      {% for column_id, items in columns if items | length > 0 %}
+        <div data-column="{{ column_id }}">
+          
+          {% for item_id, item in items %}
+            {% include 'header/_' ~ item_id ~ '.twig' with item only %}
+          {% endfor %}
+
+        </div>
+      {% endfor %}
+
+    </div>
+  {% endfor %}
+{% endmacro %}

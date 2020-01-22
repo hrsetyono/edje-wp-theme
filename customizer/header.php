@@ -1,8 +1,10 @@
 <?php
 
-add_filter( 'h_render_header', function( $content, $header ) {
-  // $header = h_get_header_data( $header );
+add_filter( 'custy_render_header', function( $content, $data ) {
+ 
+  // var_dump( $data['desktop'] );
 
-  // $content = Timber::compile( 'header.twig', $header );
-  // return $content;
-}, 10, 2 );
+  $content = Timber::compile( 'header.twig', $data );
+  return $content;
+
+}, 20, 2 );

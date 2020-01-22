@@ -1,0 +1,18 @@
+<div class="logo">
+  {{ _context | dump }}
+
+  {% if logo_type == 'text' %}
+    
+    {{ blogname }}
+
+  {% elseif logo_type == 'image' %}
+
+    <picture>
+      {% if has_mobile_logo == 'yes' %}
+        <source srcset="{{ mobile_logo.url }}" media="(max-width:767px)">
+      {% endif %}
+      <img src="{{ custom_logo.url }}" alt="{{ blogname }} Logo">
+    </picture>
+
+  {% endif %}
+</div>

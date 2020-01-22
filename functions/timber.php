@@ -29,6 +29,8 @@ class MyTimber extends TimberSite {
     $root = get_template_directory_uri();
     $context['images'] = $root.'/assets/images';
 
+    $context['mods'] = Custy::get_mods();
+
     // ACF Options Page
     if( function_exists( 'acf_add_options_page' )) {
       $context['options'] = get_fields( 'options' );
