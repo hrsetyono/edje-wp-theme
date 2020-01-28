@@ -42,8 +42,7 @@ else {
 
   // if display products
   if( $display_mode === 'both' || $display_mode === 'products' ) {
-    $posts = Timber::get_posts();
-    $context['products'] =  _get_products( $posts );
+    $context['products'] = Timber::get_posts();
   }
 
   // if display categories
@@ -63,12 +62,12 @@ else {
 //
 
 
-/*
-  Get WC_Product data from posts and embed it
-
-  @param $posts
-  @return - Posts with embedded Product data
-*/
+/**
+ * Get WC_Product data from posts and embed it
+ * 
+ * @param $posts
+ * @return - Posts with embedded Product data
+ */
 function _get_products( array $posts ) : array {
   $post_ids = array_reduce($posts, function( $result, $p ) {
     $result[] = $p->id;
@@ -89,12 +88,13 @@ function _get_products( array $posts ) : array {
   return $posts;
 }
 
-/*
-  Get categories / subcategories with attached Thumbnail image and Permalink
 
-  @param $parent_id
-  @return - The formatted categories
-*/
+/**
+ * Get categories / subcategories with attached Thumbnail image and Permalink
+ * 
+ * @param $parent_id
+ * @return - The formatted categories
+ */
 function _get_categories( int $parent_id = 0 ) : array {
   $raw_cats = woocommerce_get_product_subcategories( $parent_id );
 

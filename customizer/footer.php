@@ -1,8 +1,9 @@
 <?php
 
-add_filter( 'h_render_footer', function( $content, $footer ) {
-  // $footer = h_get_builder_data( 'footer' $footer );
-  // var_dump( $footer ); 
-  $content = Timber::compile( 'footer.twig', $footer );
+add_filter( 'custy_render_footer', function( $content, $data ) {
+  
+  // var_dump( $data );
+
+  $content = Timber::compile( 'footer.twig', $data );
   return $content;
 }, 10, 2 );

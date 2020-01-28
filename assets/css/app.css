@@ -1,4 +1,4 @@
 /*!
   EDJE Functional Sass v3.1.0
   Documentation: https://github.com/hrsetyono/edje/wiki
-*/
+*/@media (max-width: 767px){[data-visible="desktop"]{display:none !important}}@media (min-width: 768px){[data-visible="mobile"]{display:none !important}}.header-row{display:grid;grid-template-columns:1fr auto auto auto 1fr;align-items:center}.header-column{display:flex;align-items:center}[data-column="start"]{order:1}[data-column="start-middle"]{order:2}[data-column="middle"]{order:3}[data-column="middle-end"]{order:4}[data-column="end"]{margin-left:auto;order:5}.logo img{max-height:80px}

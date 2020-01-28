@@ -2,9 +2,7 @@
 
 require_once 'functions/helpers.php';
 if( !MyHelpers::has_required_plugins() ) { return false; }
-
 require_once __DIR__ . '/functions/_index.php';
-
 
 if( class_exists('WooCommerce') ) {
   require_once __DIR__ . '/shop/hooks.php';
@@ -26,14 +24,14 @@ function my_before_setup_theme() {
    * Register custom post type
    * - Read more at https://github.com/hrsetyono/edje-wp-library/wiki/Custom-Post-Type
    */
-  H::register_post_type( 'product', [ 'icon' => 'dashicons-cart' ] );
-  H::register_taxonomy( 'brand', [ 'post_type' => 'product' ] );
+  // H::register_post_type( 'product', [ 'icon' => 'dashicons-cart' ] );
+  // H::register_taxonomy( 'brand', [ 'post_type' => 'product' ] );
 
   /**
    * Create Gutenberg block for post-type listing
    */
   H::register_post_type_block( 'post' );
-  H::register_post_type_block( 'product' );
+  // H::register_post_type_block( 'product' );
 }
 
 
@@ -45,10 +43,6 @@ function my_before_setup_theme() {
 function my_after_setup_theme() {
   require_once __DIR__ . '/customizer/_index.php';
 
-  // if( !is_admin() ) {
-  //   var_dump( Custy::get_mod( 'header_placements' )['sections'][0]['mobile'] );
-  // }
-  
   // Create Nav assignment
   register_nav_menus( [
     'nav_1' => __( 'Nav 1' ),
