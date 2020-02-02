@@ -43,6 +43,10 @@ function my_before_setup_theme() {
 function my_after_setup_theme() {
   require_once __DIR__ . '/customizer/_index.php';
 
+  // if( !is_admin() ) {
+  //   var_dump( Custy::get_mod( 'footer_placements' ) );
+  // }
+
   // Create Nav assignment
   register_nav_menus( [
     'nav_1' => __( 'Nav 1' ),

@@ -11,57 +11,15 @@
 </head>
 
 <body class="{{ body_class }}">
+<div id="main-container">
 
-{{ header }}
-
-<nav class="main-nav">
-  {#
-  <h-grid> <div class="nav-wrapper / large-12">
-
-    {{ fn('the_custom_logo') }}
-
-    <div id="nav-toggle" class="nav-item --mobile-toggle">
-      <a>
-        <i class="dashicons-before dashicons-menu"></i>
-        <strong>Menu</strong>
-      </a>
-    </div>
-
-    <ul class="nav-items">
-    {% for item in nav.items %}
-      <li class="nav-item {{ item.class }}">
-        <a href="{{ item.url }}"> {{ item.title }} </a>
-
-        {% if item.children %}
-          <div class="nav-children">
-          {% for child in item.children %}
-            <a href="{{ child.url }}">{{ child.title }}</a>
-          {% endfor %}
-          </div>
-        {% endif %}
-      </li>
-    {% endfor %}
-    </ul>
-
-    <div class="nav-extra">
-      {% if woo %}
-        {% include "shop/_nav-extra.twig" %}
-      {% endif %}
-      
-      <a href="tel:+1234567890">
-        <i class="dashicons-before dashicons-phone"></i>
-        <span>+12 3456 7890</span>
-      </a>
-    </div>
-
-  </div> </h-grid>
-</nav>
-#}
-
+{% include '_header.twig' %}
 
 {% block content %}{% endblock %}
 
-{{ footer }}
+{% include '_footer.twig' %}
+
+</div>
 
 {#
 <footer class="main-footer">

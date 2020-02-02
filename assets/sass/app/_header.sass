@@ -10,9 +10,13 @@
 
 // Header Rows & Columns
 .header-row
-  display: grid
+  background: var(--rowBackground )
+  border-top: var(--borderTop)
+  border-bottom: var(--borderBottom)
+  padding: var(--padding)
+
+.header-columns
   grid-template-columns: 1fr auto auto auto 1fr
-  align-items: center
 
 .header-column
   display: flex
@@ -27,7 +31,7 @@
 [data-column="middle"]
   order: 3
 
-[data-column="middle-end"]
+[data-column="end-middle"]
   order: 4
 
 [data-column="end"]
@@ -39,3 +43,11 @@
 .logo
   img
     max-height: 80px
+
+// BUTTON
+.header-button
+  background-color: var(--background)
+  color: var(--color)
+
+  &:hover
+    --background: var(--backgroundHover)

@@ -1,0 +1,16 @@
+{# Do not change this file name #}
+<footer class="site-footer" id="footer">
+  {% for row in footer.rows %}
+
+    <div data-row="{{ row.id }}" class="footer-row">
+      <strong>{{ row.id }}</strong>
+      
+      {% for items in row.columns %}
+        {% for item_id in items %}
+          {% include 'footer/_' ~ item_id ~ '.twig' with footer.items[item_id] only %}
+        {% endfor %}
+      {% endfor %}
+    </div>
+
+  {% endfor %}
+</footer>

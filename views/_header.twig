@@ -1,0 +1,32 @@
+{# Do not change this file name #}
+
+<header id="header" class="site-header" data-visible="desktop">
+  {{ _self.header_rows( header, 'desktop' ) }}
+</header>
+
+<div class="mobile-header" data-visible="mobile">
+  {{ _self.header_rows( header, 'mobile' ) }}
+</div>
+
+{# Output header rows #}
+{% macro header_rows( header, media ) %}
+  {% for row in header[media] if row.placements | length > 0 %}  
+
+    <div data-row="{{ row.id }}" class="header-row">
+      <h-grid class="header-columns">
+        
+        {% for column in row.placements %}
+          <div data-column="{{ column.id }}" class="header-column">
+            
+            {% for item_id in column.items %}
+              {% include 'header/_' ~ item_id ~ '.twig' with header.items[item_id] only %}
+            {% endfor %}
+
+          </div>
+        {% endfor %}
+      
+      </h-grid>
+    </div>
+
+  {% endfor %}
+{% endmacro %}

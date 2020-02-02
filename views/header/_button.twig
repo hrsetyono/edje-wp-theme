@@ -1,3 +1,8 @@
-<a href="" class="button" data-item="button">
-  Button
+<a href="{{ link }}"
+  class="header-button button"
+  data-id="button"
+  {% if target == 'yes' %} target="_blank" {% endif %}>
+  
+  {{ text }}
+
 </a>

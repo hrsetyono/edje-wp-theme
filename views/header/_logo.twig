@@ -1,7 +1,9 @@
-<div class="logo" data-item="logo">
+<div class="logo" data-id="logo" data-shortcut="drop">
   {% if logo_type == 'text' %}
     
-    {{ blogname }}
+    <p>
+      {{ site_title }}
+    </p>
 
   {% elseif logo_type == 'image' %}
 

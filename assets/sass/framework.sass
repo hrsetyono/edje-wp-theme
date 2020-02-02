@@ -15,7 +15,6 @@ $output-framework: true // this will output the Normalizer, Grid, etc
 
 @import "framework/core"
 @import "framework/grid"
-@import "framework/footer"
 
 
 .the-content
@@ -117,3 +116,24 @@ select
 
   #wpadminbar
     +h( d-none )
+
+// Move this to h-preview in Edje WP Library
+[data-shortcut*="drop"]
+  
+  .ct-customizer-shortcut::before
+    content: "Edit"
+    position: absolute
+    top: 50%
+    right: 0
+    align-self: center
+    display: block
+
+    background-color: var(--main)
+    background-size: contain
+    width: 30px
+    height: 30px
+
+    color: white
+    font-size: 0.875rem
+    border-radius: 4px
+    transform: translateY(-50%) translateX( calc(100% + 0.5rem) )
