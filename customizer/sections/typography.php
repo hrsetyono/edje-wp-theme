@@ -1,9 +1,6 @@
 <?php
 
-add_filter( 'custy_sections', function( $sections ) {
-
-return wp_parse_args( [ 'typography' => [
-
+$section = [
   'title' => __( 'Typography' ),
   'container' => [ 'priority' => 10 ],
   'css_selector' => ':root',
@@ -33,7 +30,7 @@ return wp_parse_args( [ 'typography' => [
       ],
     ],
 
-    blocksy_rand_md5() => [ 'type' => 'ct-divider' ],
+    custy_rand_id() => [ 'type' => 'ct-divider' ],
 
     'blockquote' => [
       'type' => 'ct-typography',
@@ -51,5 +48,4 @@ return wp_parse_args( [ 'typography' => [
     
   ],
 
-] ], $sections );
-} );
+];

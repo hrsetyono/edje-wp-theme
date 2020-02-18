@@ -1,13 +1,11 @@
 <?php
 
-add_filter( 'custy_sections', function( $sections ) {
-return wp_parse_args( [ 'sidebar' => [
-
+$sections = [
   'title' => __( 'Sidebar' ),
 	'container' => [ 'priority' => 1 ],
   'options' => [
 
-    blocksy_rand_md5() => [
+    custy_rand_id() => [
 		'title' => __( 'Layout' ),
 		'type' => 'tab',
 		'css_selector' => '[data-sidebar]',
@@ -56,12 +54,12 @@ return wp_parse_args( [ 'sidebar' => [
 			],
 
 			// Type Options
-			blocksy_rand_md5() => [
+			custy_rand_id() => [
 				'type' => 'ct-condition',
 				'condition' => [ 'sidebar_type' => 'type-2 | type-3 | type-4' ],
 				'options' => [
 
-					blocksy_rand_md5() => [ 'type' => 'ct-divider' ],
+					custy_rand_id() => [ 'type' => 'ct-divider' ],
 					
 					'sidebarInnerSpacing' => [
 						'label' => __( 'Inner Spacing' ),
@@ -79,7 +77,7 @@ return wp_parse_args( [ 'sidebar' => [
 				],
 			],
 
-			blocksy_rand_md5() => [
+			custy_rand_id() => [
 				'type' => 'ct-condition',
 				'condition' => [ 'sidebar_type' => 'type-2' ],
 				'options' => [
@@ -93,7 +91,7 @@ return wp_parse_args( [ 'sidebar' => [
 				],
 			],
 
-			blocksy_rand_md5() => [
+			custy_rand_id() => [
 				'type' => 'ct-condition',
 				'condition' => [ 'sidebar_type' => 'type-2 | type-3' ],
 				'options' => [
@@ -104,7 +102,7 @@ return wp_parse_args( [ 'sidebar' => [
 				],
 			],
 			
-			blocksy_rand_md5() => [
+			custy_rand_id() => [
 				'type' => 'ct-condition',
 				'condition' => [ 'sidebar_type' => 'type-2 | type-4' ],
 				'options' => [
@@ -120,7 +118,7 @@ return wp_parse_args( [ 'sidebar' => [
 				],
 			],
 			
-			blocksy_rand_md5() => [
+			custy_rand_id() => [
 				'type' => 'ct-condition',
 				'condition' => [ 'sidebar_type' => 'type-2' ],
 				'options' => [
@@ -133,14 +131,14 @@ return wp_parse_args( [ 'sidebar' => [
 				],
 			],
 
-			blocksy_rand_md5() => [ 'type' => 'ct-divider' ],
+			custy_rand_id() => [ 'type' => 'ct-divider' ],
 
 			'has_sticky_sidebar' => [
 				'label' => __( 'Sticky Sidebar' ),
 				'type' => 'ct-switch',
 			],
 
-			blocksy_rand_md5() => [
+			custy_rand_id() => [
 				'type' => 'ct-condition',
 				'condition' => [ 'has_sticky_sidebar' => 'yes' ],
 				'options' => [
@@ -161,7 +159,7 @@ return wp_parse_args( [ 'sidebar' => [
 				],
 			],
 
-			blocksy_rand_md5() => [ 'type' => 'ct-divider' ],
+			custy_rand_id() => [ 'type' => 'ct-divider' ],
 
 			'sidebar_visibility' => [
 				'label' => __( 'Visibility' ),
@@ -170,7 +168,7 @@ return wp_parse_args( [ 'sidebar' => [
 
 		] ],
 
-		blocksy_rand_md5() => [
+		custy_rand_id() => [
 		'title' => __( 'Content' ),
 		'type' => 'tab',
 		'css_selector' => '.ct-sidebar',
@@ -187,7 +185,7 @@ return wp_parse_args( [ 'sidebar' => [
 				'css' => '--sidebarWidgetsSpacing'
 			],
 
-			blocksy_rand_md5() => [ 'label' => __( 'Sidebar Text' ), 'type' => 'ct-title' ],
+			custy_rand_id() => [ 'label' => __( 'Sidebar Text' ), 'type' => 'ct-title' ],
 
 			'sidebarTitleSize' => [
 				'label' => __( 'Title Size' ),
@@ -232,6 +230,4 @@ return wp_parse_args( [ 'sidebar' => [
 		] ],
     
   ]
-
-] ], $sections );
-} );
+];

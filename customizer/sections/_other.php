@@ -1,8 +1,6 @@
 <?php
 
-add_filter( 'custy_sections', function( $sections ) {
-return wp_parse_args( [ 'other' => [
-
+$section = [
   'title' => __( 'Others' ),
   'container' => [ 'priority' => 10 ],
   'options' => [
@@ -12,11 +10,6 @@ return wp_parse_args( [ 'other' => [
       'type' => 'ct-panel',
       'switch' => true,
       'inner-options' => [
-  
-        blocksy_rand_md5() => [
-          'type' => 'ct-title',
-          'desc' => my_css_notice('CSS is applied to <code>.ct-back-to-top</code>'),
-        ],
   
         'top_button_type' => [
           'label' => false,
@@ -85,7 +78,7 @@ return wp_parse_args( [ 'other' => [
           ] ),
         ],
 
-        blocksy_rand_md5() => [ 'type' => 'ct-divider' ],
+        custy_rand_id() => [ 'type' => 'ct-divider' ],
   
         'top_button_alignment' => [
           'label' => __( 'Alignment' ),
@@ -106,7 +99,7 @@ return wp_parse_args( [ 'other' => [
   
     ],
   
-    blocksy_rand_md5() => [ 'type' => 'ct-divider' ],
+    custy_rand_id() => [ 'type' => 'ct-divider' ],
   
     'performance' => [
       'label' => __( 'Performance' ),
@@ -119,7 +112,7 @@ return wp_parse_args( [ 'other' => [
           'desc' => __( 'Disable WordPress emojis script if you don\'t use them in order to improve the performance. ' ),
         ],
   
-        blocksy_rand_md5() => [ 'type' => 'ct-divider' ],
+        custy_rand_id() => [ 'type' => 'ct-divider' ],
   
         'has_lazy_load' => [
           'label' => __( 'Lazy Load Images' ),
@@ -127,7 +120,7 @@ return wp_parse_args( [ 'other' => [
           'desc' => __( 'This option will be auto disabled if you have JetPack\'s lazy load option enabled.' ),
         ],
   
-        blocksy_rand_md5() => [
+        custy_rand_id() => [
           'type' => 'ct-condition',
           'condition' => [ 'has_lazy_load' => 'yes' ],
           'options' => [
@@ -149,6 +142,4 @@ return wp_parse_args( [ 'other' => [
     ],
 
   ]
-
-] ], $sections );
-} );
+];

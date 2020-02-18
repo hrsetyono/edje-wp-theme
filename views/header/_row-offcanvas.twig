@@ -1,0 +1,7 @@
+<div class="offcanvas">
+{% for item_id in row.placements[0]['items']  %}
+
+  {% include 'header/_' ~ item_id ~ '.twig' with header.items[item_id] only %}
+
+{% endfor %}
+</div>

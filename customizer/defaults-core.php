@@ -4,9 +4,9 @@
  */
 
 add_filter( 'custy_default_values', function( $defaults ) {
-  return wp_parse_args( [
+  $defaults = wp_parse_args( [
 
-    // CORE > GENERAL
+    // GENERAL
     'colorPalette' => [
       'color1' => [ 'color' => '#1976d2' ],
       'color2' => [ 'color' => '#0d47a1' ],
@@ -26,7 +26,7 @@ add_filter( 'custy_default_values', function( $defaults ) {
     'mobile_media' => '480px',
     'tablet_media' => '767px',
 
-    // CORE > TEXT
+    // TEXT
     'rootTypography' => blocksy_typography_default_values([
       'family' => 'System Default',
       'variation' => 'n4',
@@ -81,7 +81,7 @@ add_filter( 'custy_default_values', function( $defaults ) {
       'desktop' => '18px',
     ],
 
-    // CORE > SHADOWS
+    // SHADOWS
     'shadow0' => [
       'enable' => true,
       'h_offset' => 0,
@@ -133,4 +133,6 @@ add_filter( 'custy_default_values', function( $defaults ) {
     ],// 0 15px 12px rgba(0,0,0,0.22)
 
   ], $defaults );
+  
+  return $defaults;
 } );

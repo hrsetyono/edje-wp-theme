@@ -15,10 +15,8 @@ class MyTimber extends TimberSite {
    * @filter timber_context
    */
   function add_to_context( array $context ) : array {
-    // $context['nav'] = new TimberMenu( 'main-nav' );
-
-    $context['header'] = CustyBuilder::get_values( 'header' );
-  	$context['footer'] = CustyBuilder::get_values( 'footer' );
+    $context['header'] = CustyBuilder::get_header( 'main' );
+    $context['footer'] = CustyBuilder::get_footer( 'main' );
 
     $context['site'] = $this;
     $context['home_url'] = home_url();

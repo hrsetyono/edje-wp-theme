@@ -1,8 +1,6 @@
 <?php
 
-add_filter( 'custy_sections', function( $sections ) {
-return wp_parse_args( [ 'button' => [
-
+$section = [
   'title' => __( 'Button' ),
   'container' => [ 'priority' => 10 ],
   'css_selector' => '.button, .wp-block-file__button, .wp-block-button__link',
@@ -10,7 +8,7 @@ return wp_parse_args( [ 'button' => [
 
     'buttons' => [
       'type' => 'ct-typography',
-      'label' => __( 'Buttons', 'blocksy' ),
+      'label' => __( 'Buttons' ),
       'css' => '--$',
     ],
 
@@ -40,7 +38,7 @@ return wp_parse_args( [ 'button' => [
       ],
     ],
 
-    blocksy_rand_md5() => [ 'type' => 'ct-divider' ],
+    custy_rand_id() => [ 'type' => 'ct-divider' ],
 
     'buttonBorder' => [
       'label' => __( 'Border' ),
@@ -56,5 +54,4 @@ return wp_parse_args( [ 'button' => [
     ],
   ]
 
-] ], $sections );
-} );
+];

@@ -1,8 +1,6 @@
 <?php
 
-add_filter( 'custy_sections', function( $sections ) {
-return wp_parse_args( [ 'form' => [
-
+$section = [
   'title' => __( 'Form' ),
   'container' => [ 'priority' => 10 ],
   'css_selector' => 'form',
@@ -34,7 +32,7 @@ return wp_parse_args( [ 'form' => [
     ],
 
 
-    blocksy_rand_md5() => [ 'label' => __( 'Input' ), 'type' => 'ct-title' ],
+    custy_rand_id() => [ 'label' => __( 'Input' ), 'type' => 'ct-title' ],
   
     'formBackgroundColor' => [
       'label' => __( 'Background Color' ),
@@ -68,7 +66,7 @@ return wp_parse_args( [ 'form' => [
       ],
     ],
   
-    blocksy_rand_md5() => [ 'label' => __( 'Select Dropdown' ), 'type' => 'ct-title' ],
+    custy_rand_id() => [ 'label' => __( 'Select Dropdown' ), 'type' => 'ct-title' ],
   
     'selectDropdownTextColor' => [
       'label' => __( 'Dropdown Text Color' ),
@@ -110,7 +108,7 @@ return wp_parse_args( [ 'form' => [
     ],
   
   
-    blocksy_rand_md5() => [ 'label' => __( 'Radio & Checkbox' ), 'type' => 'ct-title' ],
+    custy_rand_id() => [ 'label' => __( 'Radio & Checkbox' ), 'type' => 'ct-title' ],
   
     'radioCheckboxColor' => [
       'label' => __( 'Color' ),
@@ -127,5 +125,4 @@ return wp_parse_args( [ 'form' => [
 
   ]
 
-] ], $sections );
-} );
+];

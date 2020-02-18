@@ -1,17 +1,36 @@
 <?php
 
-if( class_exists( 'Custy' ) ) {
-  // DEFAULTS
-  require_once __DIR__ . '/defaults-core.php';
-  require_once __DIR__ . '/defaults.php';
+if( !class_exists( 'Custy' ) ) { return; }
 
-  // OPTIONS
-  // require_once __DIR__ . '/options/sidebar.php';
+// DEFAULTS
+require_once __DIR__ . '/defaults-core.php';
+require_once __DIR__ . '/defaults-header.php';
+require_once __DIR__ . '/defaults.php';
 
-  require_once __DIR__ . '/options/title-elements.php';
-  require_once __DIR__ . '/options/typography.php';
-  require_once __DIR__ . '/options/grid.php';
-  require_once __DIR__ . '/options/button.php';
-  // require_once __DIR__ . '/options/form.php';
-  // require_once __DIR__ . '/options/other.php';
-}
+
+/**
+ * Add custom sections to customizer
+ */
+add_filter( 'custy_sections', function( $all_sections ) {
+  $files = glob( __DIR__ . "/sections/*.php" );
+
+  // Require all options
+  foreach( $files as $f ) {
+    $file_name = basename( $f, '.php' );
+    
+    // SKIP if first letter is underscore
+    if( preg_match( '/^_/', $file_name, $matches ) ) { continue; }
+
+    // Get variable $section or $sections from file
+    require $f;
+
+    if( isset( $section ) ) {
+      $all_sections[ $file_name ] = $section;
+    }
+    elseif( isset( $sections ) ) {
+      $all_sections = array_merge( $all_sections, $sections );
+    }
+  }
+
+  return $all_sections;
+} );

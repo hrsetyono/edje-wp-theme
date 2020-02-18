@@ -2,7 +2,7 @@
 add_filter( 'custy_sections', function( $sections ) {
 return wp_parse_args( [
   
-  blocksy_rand_md5() => [
+  custy_rand_id() => [
     'type' => 'ct-group-title',
     'title' => __( 'Elements' ),
     'priority' => 10,

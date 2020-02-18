@@ -19,8 +19,8 @@ add_filter( 'custy_default_values', function( $defaults ) {
       'default' => [ 'color' => 'var(--text)' ],
     ],
     'linkColor' => [
-      'default' => [ 'color' => 'var(--text)', ],
-      'hover' => [ 'color' => 'var(--main)', ],
+      'default' => [ 'color' => 'var(--text)' ],
+      'hover' => [ 'color' => 'var(--main)' ],
     ],
     'blockquote' => blocksy_typography_default_values([
       'size' => '18px',

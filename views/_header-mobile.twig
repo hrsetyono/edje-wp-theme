@@ -1,0 +1,15 @@
+{# Do not change this file name #}
+
+<div class="site-header" data-visible="mobile">
+{% for row in header.mobile if row.placements | length > 0 %}
+
+  {% if row.id == 'offcanvas' %}
+    {% include 'header/_row-offcanvas.twig' %}
+
+  {% else %}
+    {% include 'header/_row.twig' %}
+
+  {% endif %}
+
+{% endfor %}
+</div>

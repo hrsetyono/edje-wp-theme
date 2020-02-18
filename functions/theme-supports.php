@@ -24,14 +24,6 @@ function my_theme_supports() {
    * 
    *   `has-x-background-color` and `has-x-color`.
    */
-  add_theme_support( 'editor-color-palette', H::color_palette([
-    'Main'         => 'var(--main)',
-    'Main Dark'    => 'var(--mainDark)',
-    'Main Light'   => 'var(--mainLight)',
-    'Sub'          => 'var(--sub)',
-    'Sub Light'    => 'var(--subLight)',
-    'Text'         => 'var(--text)',
-    'Text Invert'  => 'var(--textInvert)',
-  ]) );
+  add_theme_support( 'editor-color-palette', Custy::get_editor_color_palette() );
 
 }

@@ -20,6 +20,8 @@ add_action( 'after_setup_theme', 'my_after_setup_theme' );
  * Function that run first
  */
 function my_before_setup_theme() {
+  require_once __DIR__ . '/customizer/_index.php';
+  
   /**
    * Register custom post type
    * - Read more at https://github.com/hrsetyono/edje-wp-library/wiki/Custom-Post-Type
@@ -41,12 +43,6 @@ function my_before_setup_theme() {
  * @action after_setup_theme
  */
 function my_after_setup_theme() {
-  require_once __DIR__ . '/customizer/_index.php';
-
-  // if( !is_admin() ) {
-  //   var_dump( Custy::get_mod( 'footer_placements' ) );
-  // }
-
   // Create Nav assignment
   register_nav_menus( [
     'nav_1' => __( 'Nav 1' ),
