@@ -1,9 +1,50 @@
-{# Do not change this file name #}
-
+<!-- Desktop Header -->
 <header class="site-header" data-visible="desktop">
 {% for row in header.desktop if row.placements | length > 0 %}
 
-  {% include 'header/_row.twig' %}
+  {{ _self.header_row( row, header.items ) }}
 
 {% endfor %}
 </header>
+
+<!-- Mobile Header -->
+<div class="site-header site-header--mobile" data-visible="mobile">
+{% for row in header.mobile if row.placements | length > 0 %}
+
+  {% if row.id == 'offcanvas' %}
+  
+    <div class="offcanvas" data-header-row="offcanvas">
+      {{ _self.header_column( row.placements[0], header.items ) }}
+    </div>
+
+  {% else %}
+    
+    {{ _self.header_row( row, header.items ) }}
+
+  {% endif %}
+
+{% endfor %}
+</div>
+
+
+{# Row #}
+{% macro header_row( row, items_data ) %}
+  <div data-header-row="{{ row.id }}">
+    <h-grid class="header-columns">
+    
+    {% for column in row.placements %}
+      <div data-column="{{ column.id }}" class="header-column">
+        {{ _self.header_column( column, items_data ) }}
+      </div>
+    {% endfor %}
+
+    </h-grid>
+  </div>
+{% endmacro %}
+
+{# Columns #}
+{% macro header_column( column, items_data ) %}
+  {% for item_id in column.items %}
+    {% include 'header/_' ~ item_id ~ '.twig' with items_data[item_id] only %}
+  {% endfor %}
+{% endmacro %}

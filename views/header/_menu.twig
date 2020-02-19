@@ -1,6 +1,7 @@
 {% set menu = menu | h_get_menu_items %}
 
-<nav class="header-nav">
+
+<nav class="header-nav"  id="{{ id ? id : 'menu' }}">
 {% for item in menu.items %}
   <div class="nav-parent {{ item.class }}">
 

@@ -1,8 +1,5 @@
-<a href="{{ link }}"
-  class="header-button button"
-  data-id="button"
+<a href="{{ link }}"  class="header-button button"  data-id="{{ id ? id : 'button' }}"
   {% if target == 'yes' %} target="_blank" {% endif %}>
   
   {{ text }}
-
 </a>
