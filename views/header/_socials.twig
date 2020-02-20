@@ -1,0 +1,18 @@
+<div class="social-buttons social-buttons--{{ icon_style }}" data-id="socials">
+  {% for s in social_links if s.enabled %}
+
+    {% set item = fn( 'custy_get_social_list', s.id ) %}
+
+    <a href="{{ item.value }}"
+      class="social-button {% if show_text %} social-button--has-text {% endif %}"
+      style="{% if icon_color == 'official' %} --iconColor: {{ item.color }}; {% endif %}"
+      title="{{ item.label }}">
+      
+      {{ item.svg }}
+      
+      {% if show_text == 'yes' %}
+        <span>{{ item.label }}</span>
+      {% endif %}
+    </a>
+  {% endfor %}
+</div>

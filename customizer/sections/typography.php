@@ -14,8 +14,8 @@ $section = [
         'hover' => __( 'Hover' ),
       ],
       'css' => [
-        '--linkColor' => 'default.color',
-        '--linkColorHover' => 'hover.color'
+        '--linkColor' => 'default',
+        '--linkColorHover' => 'hover'
       ],
     ],
 
@@ -26,7 +26,7 @@ $section = [
         'default' => __( 'Initial' )
       ],
       'css' => [
-        '--headingColor' => 'default.color',
+        '--headingColor' => 'default',
       ],
     ],
 

@@ -8,12 +8,16 @@
     display: none !important
 
 
-// Header Rows & Columns
-.header-row
+// ROWS & COLUMNS
+[data-header-row]
+  display: flex
+  align-items: center
+  
   background: var(--rowBackground )
   border-top: var(--borderTop)
   border-bottom: var(--borderBottom)
   padding: var(--padding)
+  min-height: var(--rowHeight)
 
 .header-columns
   grid-template-columns: 1fr auto auto auto 1fr
@@ -59,3 +63,63 @@
     background-color: var(--background)
   input:focus
     --background: var(--backgroundFocus)
+
+
+// SOCIALS
+.social-buttons
+  display: flex
+  align-items: center
+
+  path,
+  circle
+    fill: var(--iconColor)
+  
+  a
+    display: flex
+    align-items: center
+    padding: 0.25rem
+    line-height: 1
+  a + a
+    margin-left: 0.5rem
+  a:hover
+    opacity: .75
+    transform: translateY(-2px)
+
+  // if show_text is true
+  span
+    display: inline-block
+    margin-left: 0.25rem
+    line-height: 1
+    font-size: var(--smallFontSize)
+    color: var(--iconColor)
+
+    transform: translateY(-1px)
+
+
+.social-buttons--circle,
+.social-buttons--square
+  path,
+  circle
+    fill: white
+  
+  a
+    padding: 0.375rem
+    background-color: var(--iconColor)
+  svg
+    width: 1rem
+    height: 1rem
+  span
+    color: white
+
+
+.social-buttons--circle
+  a
+    border-radius: 50%
+  a.social-button--has-text
+    padding-right: 0.5rem
+    padding-left: 0.5rem
+    border-radius: 20px
+
+.social-buttons--square
+  a
+    border-radius: $g-radius

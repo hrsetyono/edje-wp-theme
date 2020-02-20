@@ -20,8 +20,8 @@ $section = [
         'hover' => __( 'Hover' ),
       ],
       'css' => [
-        '--buttonBg' => 'default.color',
-        '--buttonBgHover' => 'hover.color'
+        '--buttonBg' => 'default',
+        '--buttonBgHover' => 'hover'
       ],
     ],
 
@@ -33,8 +33,8 @@ $section = [
         'hover' => __( 'Hover' ),	
       ],
       'css' => [
-        '--buttonColor' => 'default.color',
-        '--buttonColorHover' => 'hover.color',
+        '--buttonColor' => 'default',
+        '--buttonColorHover' => 'hover',
       ],
     ],
 
