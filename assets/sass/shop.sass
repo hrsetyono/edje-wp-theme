@@ -7,17 +7,22 @@ $wc-panel-dark: h-darken( --gray-light, 5%)
 
 // all woocommerce page become alignwide
 .the-content > .woocommerce
-    +h( mh-auto )
-    max-width: $grid-max-width
+  margin-right: auto
+  margin-left: auto
+  max-width: $grid-max-width
 
 .price
   del
-    +h( d-block o50 fs-s )
+    display: block
+    opacity: .5
+    font-size: var(--smallFontSize)
   ins
-    +h( d-block td-none )
+    display: block
+    text-decoration: none
 
 .woocommerce-Price-currencySymbol // Change currency to be smaller
-  +h( fw-text fs-s )
+  font-weight: 400
+  font-size: var(--smallFontSize)
 
 
 @import "shop/toast"

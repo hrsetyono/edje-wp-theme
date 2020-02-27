@@ -18,13 +18,9 @@ body
 *
   font-family: var(--fontFamily)
   font-weight: var(--fontWeight)
-  font-style: var(--fontStyle)
   font-size: var(--fontSize)
-  
   line-height: var(--lineHeight)
   letter-spacing: var(--letterSpacing)
-  text-transform: var(--textTransform)
-  text-decoration: var(--textDecoration)
   
   --color: var(--text)
   color: var(--color)
@@ -38,9 +34,7 @@ h1, h2, h3, h4, h5, h6
   --lineHeight: var(--hLineHeight)
   --letterSpacing: var(--hLetterSpacing)
   --textTransform: var(--hTextTransform)
-  --textDecoration: var(--hTextDecoration)
-
-  --color: var(--headingColor)
+  --color: var(--hColor)
 
 h1
   --fontSize: var(--h1Size)
@@ -66,24 +60,21 @@ a
   &:hover
     --color: var(--linkColorHover)
 
-.has-small-font-size
-  --fontSize: var(--smallFontSize)
-.has-medium-font-size
-  --fontSize: var(--mediumFontSize)
-.has-large-font-size
-  --fontSize: var(--largeFontSize)
-.has-huge-font-size
-  --fontSize: var(--hugeFontSize)
-
 ul
-  list-style-type: disc
+  list-style-type: var(--ulStyle)
 
 ol
-  list-style-type: decimal
+  list-style-type: var(--olStyle)
 
 ul,
 ol
   ul
-    list-style-type: circle
+    list-style-type: var(--ulChildStyle)
   ol
-    list-style-type: lower-alpha
+    list-style-type: var(--olChildStyle)
+
+
+pre,
+code
+  font-family: var(--codeFontFamily)
+  font-size: var(--codeFontSize)

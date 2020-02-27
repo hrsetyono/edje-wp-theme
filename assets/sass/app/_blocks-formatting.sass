@@ -5,26 +5,27 @@
 ///// VERSE
 
 .wp-block-verse
-  +h( ff-body )
+  font-family: var(--fontFamily)
 
 
 ///// TABLE
 
 .wp-block-table
-  --tableBorder: var(--black)
-  --tableHeader: var(--gray-light)
+  --tableBorder: black
+  --tableHeader: #{ rgba(black, .1) }
   --tableBg: white
-  --tableStripe: #{ h-rgba(--gray, .1) }
+  --tableStripe: #{ rgba(black, .05) }
 
   table
-    +h( w100p )
+    width: 100%
   tr
     background-color: var(--tableBg)
 
   thead tr,
   tfoot tr
-    +h( fw700 ta-left )
     background-color: var(--tableHeader)
+    font-weight: 700
+    text-align: left
   thead tr
     border-bottom: 2px solid var(--tableBorder)
   tfoot tr
@@ -32,12 +33,14 @@
 
   th,
   td
-    +h( pv0_5 ph1 b1-solid bc-black_10 )
+    padding: 0.5rem 1rem
+    border: 1px solid rgba(black, .1)
 
   //
   @media ($below-s)
     td
-      +h( pv0_25 ph0_5 )
+      padding: 0.25rem 0.5rem
+
 
 // Table styles
 .wp-block-table
@@ -46,31 +49,31 @@
       background-color: var(--tableStripe)
 
   .has-fixed-layout
-    +h( w100p )
+    width: 100%
     table-layout: fixed
 
   [class*="-background-color"]
     --tableStripe: white
 
   .has-subtle-light-gray-background-color
-    --tableBorder: var(--gray)
-    --tableHeader: var(--gray-light)
-    --tableBg: #{ h-rgba(--gray, .1) }
+    --tableBorder: var(--textDim)
+    --tableHeader: #{ h-rgba(--textDim, .1) }
+    --tableBg: #{ h-rgba(--textDim, .05) }
 
   .has-subtle-pale-green-background-color
     --tableBorder: var(--green)
-    --tableHeader: var(--green-light)
-    --tableBg: #{ h-rgba(--green, .1) }
+    --tableHeader: #{ h-rgba(--green, .1) }
+    --tableBg: #{ h-rgba(--green, .05) }
 
   .has-subtle-pale-blue-background-color
     --tableBorder: var(--blue)
-    --tableHeader: var(--blue-light)
-    --tableBg: #{ h-rgba(--blue, .1) }
+    --tableHeader: #{ h-rgba(--blue, .1) }
+    --tableBg: #{ h-rgba(--blue, .05) }
 
   .has-subtle-pale-pink-background-color
     --tableBorder: var(--red)
-    --tableHeader: var(--red-light)
-    --tableBg: #{ h-rgba(--red, .1) }
+    --tableHeader: #{ h-rgba(--red, .1) }
+    --tableBg: #{ h-rgba(--red, .05) }
 
 
 
@@ -78,15 +81,15 @@
 
 .wp-block-code,
 .wp-block-preformatted
-  +h( p1 b1-solid bc-black_10 bg-gray-light brad )
-  font-size: 15px
+  padding: 1rem
+  border: 1px solid rgba(black, .1)
+  border-radius: var(--gRadius)
+  background-color: rgba(black, .05)
 
   code
-    +h( p0 b0 bg-transparent )
-
-pre,
-code
-  +h( ff-monospace )
+    padding: 0
+    border: 0
+    background-color: transparent
 
 code
-  +h( pv0 ph0_5 )
+  padding: 0 0.5rem

@@ -18,41 +18,56 @@ $output-infinite-scroll: false
 ///// PAGINATION
 
 .pagination
-  +h( d-flex mv2 fs-s c-passive ta-center )
+  display: flex
+  margin-top: 2rem
+  margin-bottom: 2rem
+
+  color: var(--textDim)
+  font-size: var(--smallFontSize)
+  text-align: center
 
   a,
   select
-    +h( cursor-pointer w-auto no-appearance )
-
+    cursor: pointer
+    width: auto
+    appearance: none
   a
-    +h( as-center )
-  
+    align-self: center
   a:first-child
-    +h( mr-auto )
-  
+    margin-right: auto  
   a:last-child
-    +h( ml-auto )
+    margin-left: auto
   
   // no href
   a:not([href])
-    +h( v-hidden o0 )
+    visibility: hidden
+    opacity: 0
 
 
 ///// POSTS LISTING
 
 .post-tease
-  +h( d-flex fd-row-reverse relative pb2 mv2 bb1-solid bc-gray )
+  display: flex
+  flex-direction: row-reverse
+  position: relative
 
+  padding-bottom: 2rem
+  margin-top: 2rem
+  margin-bottom: 2rem
+  border-bottom: 1px solid rgba(black, .2)
+  
   a
-    +h( td-none c-inherit )
+    text-decoration: none
+    color: inherit
   figure
-    +h( mb0 ml0_75 )
+    margin-bottom: 0
+    margin-left: 0.75rem
   
   //
   @media ($below-s)
-    +h( d-block )
+    display: block
     figure
-      +h( float-right )
+      float: right
     img
       width: 150px
 
@@ -61,178 +76,222 @@ $output-infinite-scroll: false
       width: 100px
 
 .tease-body
-  +h( flex1 )
+  flex: 1
 
   > a
-    +h( d-block )
+    display: block
   > a:hover h3
-    +h( td-u )
+    text-decoration: underline
   h3
-    +h( m0 mb0_5 )
+    margin: 0
+    margin-bottom: 0.5rem
   p
-    +h( mb1 )
+    margin-bottom: 1rem
 
   @media ($below-s)
     h3
-      +h( clear-none )
+      clear: none
 
 
 ///// BLOG NAV
 
 .blog-nav
-  +h( d-flex fw-wrap mv2 pv0_5 )
+  display: flex
+  flex-wrap: wrap
+  margin-top: 2rem
+  margin-bottom: 2rem
+  padding: 0.5rem 0
   border-bottom: 2px solid var(--text)
-  border-top: 1px solid var(--gray)
+  border-top: 1px solid var(--textDim)
 
   a
-    +h( d-inline-block pv0_25 ph0_5  td-none )
-    +h( c-text tt-uppercase fs-s ls25 brad transition )
+    display: inline-block
+    padding: 0.25rem 0.5rem
+
+    text-transform: uppercase
+    text-decoration: none
+    color: var(--text)
+    font-size: var(--smallFontSize)
+    letter-spacing: 0.025rem
+
+    border-radius: var(--gRadius)
+    transition: var(--gTransition)
 
     &:hover
-      +h( c-main )
+      color: var(--main)
     &.active
-      +h( bg-main c-white )
+      background-color: var(--main)
+      color: var(--textInvert)
 
 
 ///// SINGLE POST
 
 .post-header
-  +h( relative mv2 mh0 )
+  position: relative
+  margin: 2rem 0
 
-  h1, h2
-    +h( mb1 )
-  p
-    +h( mb1 )
+  h1, h2, p
+    margin-bottom: 1rem
   a:hover
-    +h( td-u )
+    text-decoration: underline
 
   .author &
     small
-      +h( d-block fs-body fw-text )
+      display: block
+      font-size: 1rem
+      font-weight: var(--fontWeight)
     img
-      +h( float-right brad )
+      float: right
       width: 70px
+      border-radius: var(--gRadius)
 
 
 ///// POST META
 
 .post-meta
-  +h( relative )
+  position: relative
 
   a
-    +h( c-inherit td-none )
+    color: inherit
+    text-decoration: none
   a:hover
-    +h( u )
+    text-decoration: underline
   .dashicons-before::before
-    +h( fs-body va-middle )
     width: 1em
     height: 1em
+    font-size: 1rem
+    vertical-align: middle
 
   body.single &
-    +h( pv0_5 )
+    padding-top: 0.5rem
+    padding-bottom: 0.5rem
     border-top: 1px solid rgba(black, .2)
     border-bottom: 2px solid rgba(black, .2)
 
 .meta-author
-  +h( pr0_5 )
+  padding-right: 0.5rem
 
 .meta-category
-  +h( tt-uppercase )
+  text-transform: uppercase
   
 .meta-date,
 .meta-comments
-  +h( d-iblock ph0_5 bl1-solid bc-gray )
+  display: inline-block
+  padding: 0 0.5rem
+  border-left: 1px solid var(--textDim)
   
   @media ($below-s)
-    +h( ph05 )
+    padding: 0 0.5rem
   
   @media ($below-xs)
-    +h( w100 )
+    width: 100%
 
 
 ///// AUTHOR
 
 @if $output-author
   .post-author
-    +h( d-flex pv2 mt1 bt1-solid bc-gray )
+    display: flex
+    padding: 2rem 0
+    margin-top: 1rem
+    border-top: 1px solid var(--textDim)
 
     h6
-      +h( mt0 mb0_5 )
+      margin: 0 0 0.5rem
     //
     @media ($below-xs)
-      +h( fd-column ta-center )
+      flex-direction: column
+      text-align: center
 
   .banner-author
-    +h( pv2 ta-center )
+    padding: 2rem 0
+    text-align: center
 
   // Author image
   .author-image
     img
-      +h( b1-solid bc-gray p0_25 brad )
+      border: 1px solid var(--textDim)
+      border-radius: var(--gRadius)
+      padding: 0.25rem
       height: 4em
       width: 4em
     .banner-author &
-      +h( mb1 )
+      margin-bottom: 1rem
     //
     @media ($below-xs)
-      +h( mb1 )
+      margin-bottom: 1rem
 
   // Author text
   .author-text
     .post-author &
-      +h( flex1 pv0 ph0_75 )
+      flex: 1
+      padding: 0 0.75rem
       p
-        +h( mb0 fs-s )
+        margin-bottom: 0
+        font-size: var(--smallFontSize)
 
     .banner-author &
-      +h( mb1_5 )
+      margin-bottom: 1.5rem
     
     * + p
-      +h( mt0_5 )
+      margin-top: 0.5rem
 
     a
-      +h( c-inherit td-none )
-      &:hover
-        +h( c-inherit td-u )
+      color: inherit
+      text-decoration: none
+    a:hover
+      color: inherit
+      text-decoration: underline
 
     b
-      +h( tt-uppercase fw-text fs-s ls50 )
+      text-transform: uppercase
+      font-weight: var(--fontWeight)
+      font-size: var(--smallFontSize)
+      letter-spacing: 0.05em
+
       .post-author &
-        +h( d-none )
+        display: none
 
     .author-url
-      +h( c-passive ) 
+      color: var(--textDim)
+
       .banner-author &
-        +h( c-main )
+        color: var(--main)
     
     //
     @media ($below-xs)
-      +h( mb1 )
+      margin-bottom: 1rem
 
 
 ///// RELATED POSTS
 
 section.post-extra
-  +h( mb0 bg-black_05 )
+  margin-bottom: 0
+  background-color: rgba(black, .05)
 
 @if $output-related
   // heading
   div#jp-relatedposts h3.jp-relatedposts-headline,
   .post-comments h4
-    +h( d-block float-none mb1_5 )
-    +h( fs-h5 ls50 tt-uppercase )
-    //
-    @media ($below-s)
-      +h( fs-m )
+    display: block
+    float: none
+    margin-bottom: 1.5rem
+
+    font-size: var(--h5Size)
+    letter-spacing: 0.05em
+    text-transform: uppercase
+
 
   ///// RELATED POSTS (Jetpack)
   div#jp-relatedposts
-    +h( d-block pt0 mb3 )
+    display: block
+    padding-top: 0
+    margin-bottom: 3rem
 
     // list
     div.jp-relatedposts-items
-      +h( d-flex )
       +clearfix
+      display: flex
       margin: 0 -125px
 
       //
@@ -240,92 +299,119 @@ section.post-extra
         margin: 0 -5px
       //
       @media ($below-s)
-        +h( fd-column m0 )
+        flex-direction: column
+        margin: 0
 
     // main title
     h3.jp-relatedposts-headline
       em
         font-style: normal
       em::before
-        +h( d-none )
+        display: none
 
     // single item
     div.jp-relatedposts-items .jp-relatedposts-post
-      +h( ov-hidden p1 mh0_75 w33p o100 bg-white )
-      +h( shadow0 brad )
+      overflow: hidden
+      padding: 1rem
+      margin-right: 0.75rem
+      margin-left: 0.75rem
+      width: 33.333%
+      
+      opacity: 1
+      background-color: white
+      box-shadow: var(--shadow1)
+      border-radius: var(--gRadius)
 
       // hide underline when hovering the whole box
       &:hover .jp-relatedposts-post-title .jp-relatedposts-post-a
-        +h( td-none )
+        text-decoration: none
       //
       @media ($below-related-s)
-        +h( mh025 )
+        margin-right: 0.25rem
+        margin-left: 0.25rem
       //
       @media ($below-s)
-        +h( w100 m0 mb1 )
+        width: 100%
+        margin: 0
+        margin-bottom: 1rem
 
     // single image
     .jp-relatedposts-post > .jp-relatedposts-post-a
-      +h( ov-hidden d-block )
+      overflow: hidden
+      display: block
       max-height: 160px
       margin: -1em
       margin-bottom: 1em
 
       // underline title when hovering image
       &:hover + .jp-relatedposts-post-title
-        +h( td-u )
+        text-decoration: underline
 
     // single title
     div.jp-relatedposts-items .jp-relatedposts-post .jp-relatedposts-post-title
-      +h( clear-none fs-m ls0 lh-header )
+      clear: none
+      font-size: var(--mediumFontSize)
+      letter-spacing: 0
+      line-height: var(--hLineHeight)
+
       &:hover
-        +h( td-u )
+        text-decoration: underline
       a
-        +h( d-block fw-header c-inherit td-none )
+        display: block
+        font-weight: var(--hFontWeight)
+        color: inherit
+        text-decoration: none
 
       @media ($below-xs)
-        +h( fs-body )
+        font-size: 1rem
 
     // meta
     div.jp-relatedposts-items .jp-relatedposts-post
       p, span
-        +h( ov-visible maxw100 fs-s )
+        overflow: visible
+        max-width: 100%
+        font-size: var(--smallFontSize)
 
       .jp-relatedposts-post-excerpt,
       .jp-relatedposts-post-context
-        +h( d-none )
+        display: none
 
       .jp-relatedposts-post-date
-        +h( d-inline-block o60 )
+        display: inline-block
+        opacity: 0.6
+        
         //
         @media ($below-xs)
-          +h( fs-s )
+          font-size: var(--smallFontSize)
 
     // visual layout
     div.jp-relatedposts-items div.jp-relatedposts-post-thumbs
       //
       @media ($below-related-s)
-        +h( fs-s )
+        font-size: var(--smallFontSize)
       //
       @media ($below-s)
-        +h( pb0 )
+        padding-bottom: 0
 
         > .jp-relatedposts-post-a
-          +h( float-left mr0_75 mb0 )
+          float: left
+          margin-right: 0.75rem
+          margin-bottom: 0
           max-width: 150px
 
     // next prev
     &.jp-next-prev
       div.jp-relatedposts-items
-        +h( fd-row )
+        flex-direction: row
         margin: 0 -10px
 
       div.jp-relatedposts-items .jp-relatedposts-post
-        +h( w50 )
+        width: 50%
         margin: 0 10px
+
         //
         @media ($below-s)
-          +h( p05 )
+          padding: 0.5rem
       
       //
       @media ($below-s)
@@ -335,137 +421,182 @@ section.post-extra
 
       // next prev no thumbnail
       div.jp-relatedposts-items .jp-relatedposts-nothumb
-        +h( d-flex fd-column jc-center ta-center )
-        
+        display: flex
+        flex-direction: column
+        justify-content: center
+
+        text-align: center
+
         .jp-relatedposts-post-title
-          +h( fs-h4 )
+          font-size: var(--h4Size)
+
         .jp-relatedposts-nothumb-excerpt
-          +h( mt1 )
+          margin-top: 1rem
+
           //
           @media ($below-s)
-            +h( d-none )
-        .jp-relatedposts-nothumb-excerpt a
-          +h( d-block )
+            display: none
 
+        .jp-relatedposts-nothumb-excerpt a
+          display: block
 
 ///// COMMENTS
 
 @if $output-comment
   .post-comments
     ul
-      +h( list-none )
+      list-style-type: none
 
   .comments-list
-    +h( pl0 mt2 )
+    padding-left: 0
+    margin-top: 2rem
 
     > li
-      +h( p1_25 mb1_5 bg-white b1-solid bc-black_10  brad )
+      padding: 1.25rem
+      margin-bottom: 1.5rem
+      background-color: white
+      border: 1px solid rgba(black, .1)
+      border-radius: var(--gRadius)
 
   // Single Comment
   .comment
-    +h( relative )
+    position: relative
 
     &.bypostauthor .comment-avatar
-      +h( p1px )
+      padding: 1px
 
     .avatar
-      +h( mr0_75 w2_5em h2_5em )
+      margin-right: 0.75rem
+      width: 2.5em
+      height: 2.5em
 
 
   .comment-header
-    +h( d-flex fw-wrap ai-center mb1 )
+    display: flex
+    flex-wrap: wrap
+    align-items: center
+    margin-bottom: 1rem
 
     time
-      +h( ml0_5 fs-s c-passive )
-
+      margin-left: 0.5rem
+      font-size: var(--smallFontSize)
+      color: var(--textDim)
 
   .comment-text
     p + p
-      +h( mt1 )
+      margin-top: 1rem
 
 
   // Child comments
   .replies-list
-    +h( mt1_5 pl1_25 )
+    margin-top: 1.5rem
+    padding-left: 1.25rem
     border-left: 2px solid rgba(black , .1)
     
     .comment
-      +h( fs-s )
+      font-size: var(--smallFontSize)
 
     > li + li
-      +h( mt1_5 )
-
+      margin-top: 1.5rem
     header
-      +h( mb0_5 )
-
+      margin-bottom: 0.5rem
     p + p
-      +h( mt0_5 )
+      margin-top: 0.5rem
 
 
   // Reply link
   a.comment-reply-link
-    +h( absolute top5px right0 ph0_5 bg-main_10  brad )
-    +h( fs-s fw-header ls50  tt-uppercase )
+    position: absolute
+    top: 5px
+    right: 0
+
+    padding-right: 0.5rem
+    padding-left: 0.5rem
+    border-radius: var(--gRadius)
+    background-color: h-rgba(--main, .1)
+    font-size: var(--smallFontSize)
+    font-weight: var(--hFontWeight)
+    letter-spacing: 0.05em
+    text-transform: uppercase
 
     &:hover
-      +h( bg-main_25 )
+      background-color: h-rgba(--main, .25)
 
 
   ///// COMMENT FORM /////
 
   .comment-reply-title
-    +h( d-none )
+    display: none
 
   .comment-respond
-    +h( mb2 )
+    margin-bottom: 2rem
 
     .comments-list & // if reply
       width: 110%
       margin: 0 -5%
 
-
   .comment-form
-    +h( d-flex fw-wrap p1 bg-white shadow1 brad )
+    display: flex
+    flex-wrap: wrap
+    padding: 1rem
+    background-color: white
+    border-radius: var(--gRadius)
+    box-shadow: var(--shadow1)
 
     .comments-list & // if reply
-      +h( mt1_25 )
+      margin-top: 1.25rem
 
     p
-      +h( d-flex fd-column w100p mb1 )
+      display: flex
+      flex-direction: column
+      width: 100%
+      margin-bottom: 1rem
 
     label
-      +h( cursor-pointer mb0_5 tt-uppercase c-passive ls50 fs-s )
+      cursor: pointer
+      margin-bottom: 0.5rem
+      text-transform: uppercase
+      color: var(--textDim)
+      letter-spacing: 0.05em
+      font-size: var(--smallFontSize)
 
     .comment-notes,
     .logged-in-as
-      +h( d-block c-passive fs-s )
-
+      display: block
+      color: var(--textDim)
+      font-size: var(--smallFontSize)
     
   // when not active, only show Textarea
   .comment-form:not(.--active)
-    +h( p0 )
+    padding: 0
 
     \:not(.comment-form-comment)
-      +h( ov-hidden h0 m0 )
+      overflow: hidden
+      height: 0
+      margin: 0
 
 
   // Textarea
   .comment-form-comment
     label
-      +h( d-none )
+      display: none
 
     textarea
       height: 9rem
 
     .comment-form:not(.--active) &
-      +h( m0 )
+      margin: 0
 
       textarea
-        +h( cursor-pointer p1_5 b0 bg-main_10 shadow-none )
+        cursor: pointer
+        padding: 1.5rem
+        border: 0
+        background-color: h-rgba(--main, .1)
         height: 4.5rem
+        box-shadow: none
       
       textarea:hover
-        +h( bg-transparent )
+        background-color: transparent
 
 
   p.comment-form-author,
@@ -476,25 +607,28 @@ section.post-extra
       width: 100%
 
   p.comment-form-author
-    +h( pr0_5 )
+    padding-right: 0.5rem
 
   p.comment-form-email
-    +h( pl0_5 )
+    padding-left: 0.5rem
 
   p.comment-form-url
-    +h( d-none )
+    display: none
 
   p.comment-form-cookies-consent
-    +h( fd-row )
+    flex-direction: row
 
     input
-      +h( mr0_5 mt2px )
+      margin-top: 2px
+      margin-right: 0.5rem
 
     label
-      +h( d-iblock tt-none )
+      display: inline-block
+      text-transform: none
 
   p.form-submit
-    +h( ai-center mb0 )
+    align-items: center
+    margin-bottom: 0
 
 // if $output-comment
 
@@ -502,33 +636,49 @@ section.post-extra
 ///// POST PASSWORD FORM
 @if $output-password-form
   .post-password-form
-    +h( pv2 ph4 bg-black_05 brad )
+    padding: 2rem 4rem
+    background-color: rgba(black, .05)
+    border-radius: var(--gRadius)
 
     p:last-child
-      +h( d-flex bb1-solid bc-gray pb0_5 )
+      display: flex
+      border-bottom: 1px solid var(--textDim)
+      padding-bottom: 0.5rem
 
     label
-      +h( flex1 c-passive )
+      flex: 1
+      color: var(--textDim)
 
     input[type="password"]
-      +h( bg-transparent b-none mt1 p0 )
-      +h( fs-h3 c-text ls50 )
+      background-color: transparent
+      border: none
+      margin-top: 1rem
+      padding: 0
+
+      font-size: var(--h3Size)
+      color: var(--text)
+      letter-spacing: 0.05em
       
       &:hover,
       &:focus
-        +h( b-none shadow-none )
+        border: none
+        box-shadow: none
 
     input[type="submit"]
-      +h( as-end bg-white ph2 )
+      align-self: flex-end
+      background-color: white
+      padding-right: 2rem
+      padding-left: 2rem
 
 
 ///// INFINITE SCROLL (Jetpack)
 @if $output-infinite-scroll
   body[class^="paged-"] #infinite-footer
-    +h( d-none ) // if infinite-footer is turned on (in theme_support), hide it in paged list.
+    display: none // if infinite-footer is turned on (in theme_support), hide it in paged list.
 
   .infinite-loader
-    +h( mv2 )
+    margin-top: 2rem
+    margin-bottom: 2rem
 
     .spinner
       left: 50% !important

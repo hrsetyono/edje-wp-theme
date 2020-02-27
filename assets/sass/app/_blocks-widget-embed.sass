@@ -2,18 +2,24 @@
 ///// EMBED
 
 .wp-block-embed
-  +h( mv2 ta-center )
+  margin-top: 2rem
+  margin-bottom: 2rem
+  text-align: center
 
   figcaption
     @extend %figcaption
 
 .wp-block-embed__wrapper
-  +h( d-flex jc-center relative )
+  display: flex
+  justify-content: center
+  position: relative
 
   &::before
     .wp-has-aspect-ratio &,
     .wp-block-embed-wordpress &
-      +h( content-empty d-block w100p )
+      content: ""
+      display: block
+      width: 100%
 
     .wp-embed-aspect-21-9 &,
     .wp-block-embed-wordpress &
@@ -35,12 +41,14 @@
 .wp-has-aspect-ratio,
 .wp-block-embed-wordpress
   iframe
-    +h( absolute-fill w100p h100p )
+    +absolute-fill
+    width: 100%
+    height: 100%
 
 
 .wp-block-embed-wordpress
   blockquote
-    +h( d-none )
+    display: none
   
   iframe
     clip: auto !important
@@ -49,35 +57,60 @@
 
 ///// SOCIAL MEDIA
 ul.wp-block-social-links
-  +h( d-flex jc-start fw-wrap pl0 list-none )
+  display: flex
+  justify-content: flex-start
+  flex-wrap: wrap
+  padding-left: 0
+  list-style-type: none
 
   &.aligncenter
-    +h( jc-center )
+    justify-content: center
 
 .wp-social-link a
-  +h( d-flex ai-center jc-center mr0_75 mb0_75  )
-  +h( w42px h42px b1-solid bc-black_20 bbw2px  lh0  transition brad )
+  display: flex
+  align-items: center
+  justify-content: center
+
+  margin-right: 0.75rem
+  margin-bottom: 0.75rem
+  width: 42px
+  height: 42px
+  border: 1px solid rgba(black, .2)
+  border-bottom-width: 2px
+  border-radius: var(--gRadius)
+  
   background-color: var(--color)
+  line-height: 0
+
+  transition: var(--gTransition)
   will-change: opacity
 
   &:hover
-    +h( o70 )
+    opacity: .7
   &:active
-    +h( transition-none btw2px bbw1px )
+    border-top-width: 2px
+    border-bottom-width: 1px
+    transition: none
 
   .is-style-logos-only &
-    +h( bg-transparent bc-transparent mr0_5 )
+    background-color: transparent
+    border-color: transparent
+    margin-right: 0.5rem
+
     svg
       fill: var(--color)
     &:hover
-      +h( bc-black_20 )
+      border-color: rgba(black, .2)
 
   .is-style-pill-shape &
-    +h( brad-pill ph1 w-auto )
-
+    border-radius: 50px
+    padding-left: 1rem
+    padding-right: 1rem
+    width: auto
  
 .wp-social-link svg
-  +h( w28px h28px )
+  width: 28px
+  height: 28px
   fill: white
   
 

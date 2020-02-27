@@ -1,65 +1,71 @@
 ////// GROUP
   
 .wp-block-group
-  +h( pv2 )
+  padding-top: 2rem
+  padding-bottom: 2rem
 
   &:not(.has-background)
-    +h( pv0 )
+    padding-top: 0
+    padding-bottom: 0
   &:not(.has-background) + .alignfull
-    +h( mt0 )
+    margin-top: 0
   
 ///// BUTTON
 
 .wp-block-button
   &.alignleft a
-    +h( float-left mr1_5 )
+    float: left
+    margin-right: 1.5rem
   &.alignright a
-    +h( float-right ml1_5 )
+    float: right
+    margin-left: 1.5rem
 
 a.wp-block-button__link,
 a.wp-block-file__button
-  +h( td-none )
+  text-decoration: none
 
 .is-style-squared a
-  +h( brad )
+  border-radius: var(--gRadius)
 
 .is-style-outline .wp-block-button__link
-  +h( bg-transparent bc-inherit )
+  background-color: transparent
+  border-color: inherit
   color: var(--textColor)
 
 
 ///// COLUMNS
 
 .wp-block-columns
-  +h( d-flex )
+  display: flex
 
   @media ($below-s)
-    +h( fw-wrap )
+    flex-wrap: wrap
 
 .wp-block-column
-  +h( flex1 )
+  flex: 1
 
   @media ($above-s)
     + .wp-block-column
-      +h( ml1_5 ) 
+      margin-left: 1.5rem
 
   @media ($below-s)
-    +h( w100p )
+    width: 100%
     flex-basis: 100% !important
 
     + .wp-block-column
-      +h( mt1_5 )
+      margin-top: 1.5rem
 
 
 ///// MEDIA TEXT
 
 .wp-block-media-text
-  +h( d-grid )
-  grid-row-gap: $grid-gap
-  grid-column-gap: $grid-gap
+  display: grid
+  grid-row-gap: var(--gridGap)
+  grid-column-gap: var(--gridGap)
 
   &[class*="-background-color"]
-    +h( p1 brad )
+    padding: 1rem
+    border-radius: var(--gRadius)
 
   @media ($above-xs)  
     grid-template-areas: "media text"
@@ -83,15 +89,18 @@ a.wp-block-file__button
 
 
 .wp-block-media-text__media
-  +h( mb0 )
   grid-area: media
+  margin-bottom: 0
 
   @media ($above-xs)
     .is-image-fill &
-      +h( as-stretch bgr-no bgs-cover brad )
+      align-self: stretch
+      background-repeat: no-repeat
+      background-size: cover
+      border-radius: var(--gRadius)
 
       img
-        +h( d-none )
+        display: none
 
   @media ($below-xs)
     .is-image-fill &
@@ -105,27 +114,35 @@ a.wp-block-file__button
 ///// SPACER
 
 .wp-block-spacer
-  +h( mv0 )
+  margin-top: 0
+  margin-bottom: 0
 
 
 ///// SEPARATOR
 
 .wp-block-separator
-  +h( d-block bt2-solid mv2_5 mh-auto p0  lh1 )
+  display: block
+  border-top: 2px solid var(--bgColor)
+  margin: 2.5rem auto
+  padding: 0
   width: 120px
-  border-color: var(--bgColor)
+  line-height: 1
 
   &.is-style-wide
-    width: $content-width
+    width: var(--siteWidth)
 
   &.is-style-dots
-    +h( b0 h-auto w-auto ta-center )
+    border: 0
+    height: auto
+    width: auto
     background-color: transparent
+    text-align: center
 
     &::before
       content: "\00b7 \00b7 \00b7"
-      +h( pl2 ff-monospace fs-m )
-      font-size: 26px
+      padding-left: 2rem
+      font-family: var(--codeFontFamily)
+      font-size: var(--largeFontSize)
       letter-spacing: 1.5rem
       color: var(--bgColor, var(--text))
 

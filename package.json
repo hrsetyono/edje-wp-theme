@@ -7,9 +7,15 @@
     "url": "git+https://github.com/username/my-theme.git"
   },
   "dependencies": {},
-  "devDependencies": {},
+  "devDependencies": {
+    "onchange": "^5.2.0",
+    "postcss-cli": "latest",
+    "autoprefixer": "^9.4.2"
+  },
   "scripts": {
+    "prefix": "postcss assets/css/*.css --use=autoprefixer --output=assets/css/*.css",
     "sass": "node-sass -w assets/sass -o assets/css --output-style compressed",
     "bsync": "browser-sync start --proxy \"demo.test\" --files \"assets/css/*.css\""
-  }
+  },
+  "browserslist": [ "last 2 versions" ]
 }

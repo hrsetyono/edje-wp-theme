@@ -13,14 +13,15 @@ article
   letter-spacing: 0.01 * $font-size
 
   ul, ol
-    +h( pl1_25 )
+    padding-left: 1.25rem
   h1, h2, h3, h4, h5, h6
-    +h( clear-both )
+    clear: both
     color: var(--textColor)
   img
-    +h( brad )
+    border-radius: var(--gRadius)
   a
-    +h( td-u )
+    text-decoration: underline
+
 
 .the-content,
 .wp-block-group__inner-container,
@@ -29,61 +30,72 @@ article
 .wp-block-column
   > *
     margin: 0 auto
-    max-width: $content-width
+    max-width: var(--siteWidth)
 
   > * + *
-    +h( mt1_5 )
+    margin-top: 1.5rem
 
-  @media (below($grid-max-width))
-    padding-right: $grid-rim
-    padding-left: $grid-rim
+  @media ($below-l)
+    padding-right: var(--gridRim)
+    padding-left: var(--gridRim)
 
     h-grid &
-      +h( pv0 )
+      padding-top: 0
+      padding-bottom: 0
   
 
 // ALIGNMENT
 .has-text-align-right
-  +h( ta-right )
+  text-align: right
 
 .has-text-align-left
-  +h( ta-left )
+  text-align: left
 
 .aligncenter,
 .has-text-align-center
-  +h( ta-center )
+  text-align: center
 
 .alignwide
-  +h( mv2_5 )
-  max-width: $grid-max-width
+  margin-top: 2.5rem
+  margin-bottom: 2.5rem
+  max-width: var(--siteWidth)
 
   .alignfull &
-    +h( mt0 )
+    margin-top: 0
 
 .alignfull
-  +h( maxw-none mv2_5 )
+  max-width: none
+  margin-top: 2.5rem
+  margin-bottom: 2.5rem
 
   + .alignfull
-    +h( mt-2_5 )
+    margin-top: -2.5rem
 
   &:last-child
-    +h( mb0 )
+    margin-bottom: 0
 
-  @media (below($grid-max-width))
-    margin-right: -1 * $grid-rim
-    margin-left: -1 * $grid-rim
+  @media ($below-l)
+    margin-right: calc(-1 * var(--gridRim) )
+    margin-left: calc(-1 * var(--gridRim) )
 
   
 // VERTICAL ALIGNMENT
 .is-vertically-aligned-top
-  +h( ai-start as-start )
+  align-items: flex-start
+  align-self: flex-start
 
 .is-vertically-aligned-center
-  +h( ai-center as-center )
+  align-items: center
+  align-self: center
 
 .is-vertically-aligned-bottom
-  +h( ai-end as-end )
+  align-items: flex-end
+  align-self: flex-end
 
 %figcaption
-  +h( d-iblock p0_5 mh-auto bb1-solid bc-gray )
-  +h( fs-s )
+  display: inline-block
+  padding: 0.5rem
+  margin-right: auto
+  margin-left: auto
+  border-bottom: 1px solid var(--textDim)
+  font-size: var(--smallFontSize)
