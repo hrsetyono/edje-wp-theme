@@ -3,8 +3,26 @@
   Documentation: https://github.com/hrsetyono/edje/wiki
 */
 @charset "UTF-8";
+@import "_edje/index";
+
+$root-colors: (
+  '--main'      : #1976d2,
+  '--mainDark'  : #0d47a1,
+  '--mainLight' : #bbdefb,
+  '--sub'       : #546e7a,
+  '--subLight'  : #cfd8dc,
+  '--text'       : #2c3e50,
+  '--textInvert' : #ffffff
+
+  // '--extra1' : null,
+  // '--extra2' : null,
+  // '--extra3' : null,
+  // '--extra4' : null,
+  // '--extra5' : null,
+)
 
 ///// MEDIA QUERY
+
 $size-xs : 480px;
 $size-s  : 767px;
 $size-m  : 960px;
@@ -26,12 +44,6 @@ $portrait: "orientation: portrait";
 $landscape: "orientation: landscape";
 $retina: "min-resolution: 192dpi";
 
-///// TYPOGRAPHY
-$font-family : -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-
-$font-family-header : "Apple Garamond", "Baskerville", "Times New Roman", "Droid Serif", "Times","Source Serif Pro", serif;
-
-$font-family-monospace: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
 
 // Put file in /assets/fonts directory
 $font-faces: (
@@ -42,17 +54,8 @@ $font-faces: (
   // )
 );
 
-$font-weight : 400;
-$font-line   : 1.65;
-$font-size : 16px;
 $color-link : inherit;
 $color-link-hover : var(--blue);
-
-// HEADER
-$header-weight  : 700;
-$header-line    : 1.25;
-$header-spacing : 0;
-$header-transform : none;
 
 $h1: (base: 42px, s: 30px);
 $h2: (base: 36px, s: 26px);
@@ -78,15 +81,6 @@ $content-width: var(--blogWidth);
 // Tile
 $tile-max : 8;
 $tile-gap : 20px;
-
-///// OTHER
-$shadow-z0: 0 0.5px 2px rgba(black, .18), 0 1.5px 6px rgba(black, .08);
-$shadow-z1: 0 1.5px 4px rgba(black, .24), 0 1.5px 6px rgba(black, .12);
-$shadow-z2: 0 3px 12px rgba(black, .23), 0 3px 12px rgba(black, .16);
-$shadow-z3: 0 6px 12px rgba(black, .23), 0 10px 40px rgba(black, .19);
-
-$g-radius : 4px;
-$g-transition : all .25s ease-out;
 
 $image-url: '../files/';
 $font-url: '../files/';
@@ -144,4 +138,8 @@ $social-colors: (
   youtube: #ff0100,
 );
 
-@import "_edje/index";
+@import "edje/utility-h";
+@import "edje/utility";
+@import "edje/functional-vars";
+@import "edje/output";
+@import "edje/output-normalize";

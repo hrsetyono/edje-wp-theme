@@ -103,7 +103,7 @@ ul.wc-tabs
 
   a
     +h( d-inline-block pv0_25 ph0_5 b0 td-none fs-s )
-    border-radius: $g-radius $g-radius 0 0
+    border-radius: var(--gRadius) var(--gRadius) 0 0
 
   .active a
     +h( bg-main_25 )
@@ -112,7 +112,7 @@ ul.wc-tabs
 .wc-tab
   +h( p0_5 )
   border: 4px solid h-rgba(--main, .25)
-  border-radius: 0 $g-radius $g-radius $g-radius
+  border-radius: 0 var(--gRadius) var(--gRadius) var(--gRadius)
 
   > h2:first-child
     +h( d-none )

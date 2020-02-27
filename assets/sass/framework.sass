@@ -1,28 +1,85 @@
-// Put styles that you might reuse in other projects here
+/* EDJE Framework 4.0 - hrsetyono.github.io/edje */
 
-// Framework output settings
-$include-normalize: true
-$include-grid: true
-$include-tile: true
-$include-visibility: true
-
-$output-framework: true // this will output the Normalizer, Grid, etc
 @import "settings"
+
+@import "_edje-v4/output-normalize"
+@import "_edje-v4/output-grid"
+@import "_edje-v4/output-typography"
 
 // @import "framework/blog"
 // @import "framework/jetpack"
 // @import "framework/cf7"
 
-@import "framework/core"
-@import "framework/grid"
 
+\:root
+  // COLOR
+  +root-colors() // output $root-colors from _settings.scss
 
-.the-content
-  max-width: var(--siteWidth)
-  margin: 0 auto
+  // SHADOW
+  --shadow0: 0 0.5px 2px rgba(black, .18), 0 1.5px 6px rgba(black, .08)
+  --shadow1: 0 1.5px 4px rgba(black, .24), 0 1.5px 6px rgba(black, .12)
+  --shadow2: 0 3px 12px rgba(black, .23), 0 3px 12px rgba(black, .16)
+  --shadow3: 0 6px 12px rgba(black, .23), 0 10px 40px rgba(black, .19)
 
-  .post &
-    --siteWidth: var(--blogWidth)
+  // TYPOGRAPHY
+  --fontFamily : -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"
+  --fontSize   : 16px
+  --fontWeight : 400
+  --lineHeight : 1.65
+
+  --smallFontSize  : 14px
+  --mediumFontSize : 18px
+  --largeFontSize  : 22px
+  --hugeFontSize   : 32px
+
+  // HEADING
+  --hFontFamily    : "Apple Garamond", "Baskerville", "Times New Roman", "Droid Serif", "Times","Source Serif Pro", serif
+  --hFontWeight    : 700
+  --hLineHeight    : 1.25
+  --hLetterSpacing : 0.05em
+  --hTextTransform : initial
+
+  --h1Size : 46px
+  --h2Size : 38px
+  --h3Size : 30px
+  --h4Size : 24px
+  --h5Size : 20px
+  --h6Size : var(--fontSize)
+
+  // GRID
+  --siteWidth : 1120px
+  --blogWidth : 650px
+  --gridGap   : 20px
+  --gridRim   : 10px
+
+  // OTHER
+  --gRadius: 4px
+  --gTransition: all .25s ease-in-out
+
+  // BUTTON
+  --buttonBg: var(--main)
+  --buttonBgHover: var(--mainDark)
+  --buttonColor: var(--textInvert)
+  --buttonColorHover: var(--textInvert)
+  --buttonBorder: none
+  --buttonFontSize: 18px
+
+// RESPONSIVE
+@media ($below-m)
+  --h1Size : 40px
+  --h2Size : 32px
+  --h3Size : 26px
+  --h4Size : 22px
+  --h5Size : 18px
+  --h6Size : var(--fontSize)
+
+@media ($below-s)
+  --h1Size : 32px
+  --h2Size : 26px
+  --h3Size : 22px
+  --h4Size : 20px
+  --h5Size : 18px
+  --h6Size : var(--fontSize)
 
 
 ///// BUTTON /////
@@ -32,38 +89,89 @@ $output-framework: true // this will output the Normalizer, Grid, etc
 [type="reset"],
 .wp-block-file__button,
 .wp-block-button__link
-  +h( cursor-pointer ov-hidden d-iblock )
-  +h( va-top brad-pill )
+  display: flex
+  align-items: center
+  cursor: pointer
+  overflow: hidden
   
-  padding: var(--buttonPadding)
+  padding: 0.5em 1em
   background-color: var(--buttonBg)
   border: var(--buttonBorder)
+  border-radius: var(--gRadius)
+
+  font-size: var(--buttonFontSize)
   color: var(--buttonColor)
-  box-shadow: inset 0 1px 0 rgba(white, .5)
+  vertical-align: top
+  line-height: 1
+  
+  transition: $g-transition
+
+  // Image or SVG inside a button
+  img,
+  svg
+    margin-left: -0.25em
+    margin-right: 0.5em
+    max-height: 1.25em
+  img:only-child,
+  svg:only-child
+    margin-left: 0
+    margin-right: 0
+  svg
+    height: var(--buttonFontSize)
+  path,
+  circle
+    fill: var(--buttonColor)
 
   &:hover
-    --buttonBg: var(--buttonBgHover)
-    --buttonColor: var(--buttonColorHover)
+    background-color: var(--buttonBgHover)
+    color: var(--buttonColorHover)
+    transform: translateY(-2px)
+
+    path,
+    circle
+      fill: var(--buttonColorHover)
 
   &:active
-    +h( transition-none )
-    box-shadow: inset 0 1px 0 rgba(black, .3)
+    transition: none
+    transform: none
 
   &[disabled],
   &.disabled
-    +h( cursor-not-allowed o50 )
+    cursor: not-allowed
+    opacity: .5
+
+  
+// Button size
+.button--small
+  --buttonFontSize: 14px
+.button--normal
+  // default is normal
+.button--large
+  --buttonFontSize: 22px
+
+
+// Button style
+.button--solid
+  --buttonBorder: none
+.button--outline
+  --buttonBg: transparent
+.button--transparent
+  --buttonBg: transparent
+  --buttonBorder: none
 
 
 // passive button
-.button.--passive,
-.button.--loading
-  +h( bg-gray-light bc-black_10 c-text )
-  &:hover
-    +h( bc-black_25 c-text )
+.button.button--passive,
+.button.button--loading
+  --buttonBg: var(--grayLight)
+  --buttonBorder: #{ rgba(black, .1) }
+  --buttonColor: var(--text)
 
 // loading button
-.button.--loading
-  +h( cursor-not-allowed bgp-cc bgr-no )
+.button.button--loading
+  cursor: not-allowed
+  background-position: center center
+  background-repeat: no-repeat
   background-image: url("../../../../../wp-admin/images/spinner.gif")
   color: transparent !important
 
@@ -117,23 +225,13 @@ select
   #wpadminbar
     +h( d-none )
 
-// Move this to h-preview in Edje WP Library
-[data-shortcut*="drop"]
-  
-  .ct-customizer-shortcut::before
-    content: "Edit"
-    position: absolute
-    top: 50%
-    right: 0
-    align-self: center
-    display: block
 
-    background-color: var(--main)
-    background-size: contain
-    width: 30px
-    height: 30px
+///// VISIBILITY
 
-    color: white
-    font-size: 0.875rem
-    border-radius: 4px
-    transform: translateY(-50%) translateX( calc(100% + 0.5rem) )
+@media ($below-s)
+  [data-visible="desktop"]
+    display: none !important
+
+@media ($above-s)
+  [data-visible="mobile"]
+    display: none !important

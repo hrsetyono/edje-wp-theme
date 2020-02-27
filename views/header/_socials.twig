@@ -1,17 +1,21 @@
-<div class="social-buttons social-buttons--{{ icon_style }}" data-id="socials">
+<div
+  class="social-buttons social-buttons--{{ icon_style }} social-buttons--{{ icon_color }}"
+  data-id="socials">
+
   {% for s in social_links if s.enabled %}
 
     {% set item = fn( 'custy_get_social_list', s.id ) %}
+    {% set label = _context | get_social_label( s.id, item.label ) %}
 
-    <a href="{{ item.value }}"
-      class="social-button {% if show_text %} social-button--has-text {% endif %}"
-      style="{% if icon_color == 'official' %} --iconColor: {{ item.color }}; {% endif %}"
+    <a href="{{ _context[s.id] }}"
+      class="--{{ s.id }} {% if label %} --has-text {% endif %}"
+      style="{% if icon_color == 'official' %} --officialColor: {{ item.color }} {% endif %}"
       title="{{ item.label }}">
       
       {{ item.svg }}
       
-      {% if show_text == 'yes' %}
-        <span>{{ item.label }}</span>
+      {% if label %}
+        <span>{{ label }}</span>
       {% endif %}
     </a>
   {% endfor %}

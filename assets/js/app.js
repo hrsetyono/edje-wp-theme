@@ -6,6 +6,7 @@ window.addEventListener( 'load', onLoad );
 function onReady() {
   myApp.init();
   myNav.init();
+  myHeader.init();
 }
 
 function onLoad() {
@@ -118,6 +119,42 @@ var myNav = {
     e.stopPropagation();
   }
 };
+
+
+///// HEADER
+
+var myHeader = {
+  init() {
+    $( document ).on( 'click', this.closeDialog );
+    
+    $( '.search-form' ).on( 'click', this.preventClose );
+    $( '.search-form [type="submit"]' ).on( 'click', this.onSearchSubmit );
+  },
+
+  closeDialog( e ) {
+    $('.search-form--active').removeClass( 'search-form--active' );
+  },
+
+  onSearchSubmit( e ) {
+    e.stopPropagation();
+    var $form = $(e.currentTarget).closest( '.search-form' );
+
+    // if form is expanding type OR mobile
+    if( $form.hasClass( 'search-form--expanding' ) || window.innerWidth <= 480 ) {
+      // if not active yet
+      if( !$form.hasClass( 'search-form--active' ) ) {        
+        e.preventDefault();
+        $form.addClass( 'search-form--active' );
+        
+        setTimeout( () => { $form.find( 'input' ).focus(); }, 100);
+      }
+    }
+  },
+
+  preventClose( e ) {
+    e.stopPropagation();
+  }
+}
 
 // Browser compatibility, leave this untouched
 if('registerElement' in document) { document.createElement( 'h-grid' ); document.createElement( 'h-tile' ); }

@@ -1,5 +1,13 @@
+$include-normalize: false !default;
+$include-grid: false !default;
+$include-tile: false !default;
+$include-typography: false !default;
+$include-visibility: false !default;
+$include-vars: false !default;
+$output-framework: false !default;
+
 // COLOR
-$h-colors: (
+$root-colors: (
   // Palette
   'red': #d32f2f,
   'red-dark': #b71c1c,
@@ -17,7 +25,7 @@ $h-colors: (
   'green-dark': #2e7d32,
   'green-light': #c8e6c9,
   
-  'blue': #1976d2,
+  'blue': rgba(25, 118, 210, 0.863),
   'blue-dark': #1565c0,
   'blue-light': #bbdefb,
 
@@ -46,6 +54,7 @@ $h-colors: (
   'body': #ffffff
 ) !default;
 
+$h-colors: $root-colors;
 
 // FONT
 $font-family : -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
@@ -119,8 +128,3 @@ $shadow-z2: 0 3px 12px rgba(black, .23), 0 3px 12px rgba(black, .16) !default;
 $shadow-z3: 0 6px 12px rgba(black, .23), 0 10px 40px rgba(black, .19) !default;
 
 $h-custom: () !default;
-
-@import "utility-h";
-@import "utility";
-@import "functional-vars";
-@import "output";

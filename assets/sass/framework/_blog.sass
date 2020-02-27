@@ -6,6 +6,14 @@ $output-comment: true
 $output-password-form: false
 $output-infinite-scroll: false
 
+// WRAPPER
+
+.the-content
+  max-width: var(--siteWidth)
+  margin: 0 auto
+
+  .post &
+    --siteWidth: var(--blogWidth)
 
 ///// PAGINATION
 

@@ -88,7 +88,7 @@ $h-border: (
 // Border Radius
 $h-border-radius: (
   brad0: ( border-radius: 0 ),
-  brad: ( border-radius: $g-radius ),
+  brad: ( border-radius: var(--gRadius) ),
   brad-circle: ( border-radius: 50% ),
   brad-pill: ( border-radius: 999px ),
 );

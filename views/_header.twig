@@ -29,7 +29,9 @@
 
 {# Row #}
 {% macro header_row( row, items_data ) %}
-  <div data-header-row="{{ row.id }}">
+  {% set row_data = items_data[ row.id ] %}
+
+  <div data-header-row="{{ row.id }}" class="header-row header-row--{{ row_data.row_padding }}">
     <h-grid class="header-columns">
     
     {% for column in row.placements %}

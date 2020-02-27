@@ -1,3 +1,12 @@
+// Font Faces
+@each $name, $files in $font-faces
+  @each $file, $weight, $style in $files
+    @font-face
+      src: font-url($file)
+      font-family: $name
+      font-weight: $weight
+      font-style: $style
+  
 html
   font-size: var(--fontSize) // change the "rem" value
 

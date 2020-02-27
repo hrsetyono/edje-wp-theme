@@ -32,32 +32,6 @@ add_filter( 'custy_default_values', function( $defaults ) {
     ]),
 
 
-    // BUTTON
-    'buttons' => blocksy_typography_default_values([
-      'size' => '18px',
-      'line-height' => '1',
-    ]),
-    'buttonBackground' => [
-      'default' => [ 'color' => 'var(--main)', ],
-      'hover' => [ 'color' => 'var(--mainDark)', ],
-    ],
-    'buttonTextColor' => [
-      'default' => [ 'color' => 'var(--textInvert)', ],
-      'hover' => [ 'color' => 'var(--textInvert)', ],
-    ],
-    'buttonBorder' => [
-      'width' => 1,
-      'style' => 'solid',
-      'color' => [ 'color' => 'var(--mainDark)' ],
-    ],
-    'buttonPadding' => [
-      'top' => '0.75rem',
-      'right' => '1.25rem',
-      'bottom' => '0.75rem',
-      'left' => '1.25rem',
-    ],
-
-
     // FORMS
     'forms_type' => 'classic-forms', // @deprecated
     'formTextColor' => [

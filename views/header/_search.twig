@@ -1,3 +1,12 @@
-<div class="header-search" data-id="search">
-  <input type="search" placeholder="{{ search_placeholder }}">
-</div>
+<form class="search-form search-form--{{ search_style }}"
+  method="get" action="{{ fn('get_bloginfo', 'url') }}"
+  data-id="search" >
+
+  <input type="search" name="s"
+    placeholder="{{ search_placeholder }}"
+    value="{{ fn('get_query_var', 's') }}">
+  
+  {% if has_submit_button == 'yes' %}
+    <button type="submit">{{ submit_button_text }}</button>
+  {% endif %}
+</form>

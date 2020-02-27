@@ -47,6 +47,7 @@ class MyTimber extends TimberSite {
   function add_to_twig( $twig ) {
     $twig->addExtension( new Twig_Extension_StringLoader() );
     $twig->addFilter( new Twig_SimpleFilter( 'my_example', [$this, 'filter_my_example'] ) );
+    $twig->addFilter( new Twig_SimpleFilter( 'get_social_label', [$this, 'filter_social_label'] ) );
 
     return $twig;
   }
@@ -57,6 +58,17 @@ class MyTimber extends TimberSite {
    */
   function filter_my_example( string $post_content, string $name ) : string {
     return "<h1>$name</h1> $post_content";
+  }
+
+
+  /**
+   * Get the label of Social Media buttons in Header / Footer
+   */
+  function filter_social_label( $context, $id, $default_label = false ) {
+    if( $context['show_text'] == 'no' ) { return; }
+
+    $label = $context[ "{$id}_label" ] ?? $default_label;
+    return $label;
   }
 }
 
