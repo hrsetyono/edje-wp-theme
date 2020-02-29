@@ -6,6 +6,7 @@
 @import "_edje-v4/mixins";
 @import "_edje-v4/functions";
 
+// Commented colors are already applied using WP CUSTOMIZER
 $root-colors: (
   // '--main'      : #1976d2,
   // '--mainDark'  : #0d47a1,
@@ -16,13 +17,14 @@ $root-colors: (
   // '--textDim'    : #90A4AE,
   // '--textInvert' : #ffffff,
 
-  'red'    : #d32f2f,
-  'orange' : #fB8c00,
-  'yellow' : #ffee58,
-  'green'  : #4caf50,
-  'blue'   : #1976d2,
-  'gray'   : #b0bec5,
+  '--red'    : #d32f2f,
+  '--orange' : #fB8c00,
+  '--yellow' : #ffee58,
+  '--green'  : #4caf50,
+  '--blue'   : #1976d2,
+  '--gray'   : #b0bec5,
 );
+
 
 ///// MEDIA QUERY
 
@@ -57,7 +59,8 @@ $font-faces: (
   // )
 );
 
-// URL
+// ASSET PATH - Relative to the /css folder
+//   for image-url() and font-url()
 $image-url: '../images/';
 $font-url: '../fonts/';
 

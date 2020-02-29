@@ -1,7 +1,12 @@
+
+// WARNING: This file is not yet upgraded to Edje v4 and has error when rendering
+// Mostly due to the removed h() mixin and removed Sass variables
+
 @import "settings"
 
-$wc-panel: var(--gray-light)
-$wc-panel-dark: h-darken( --gray-light, 5%)
+$wc-panel: #f3f6f8;
+$wc-panel-dark: #e3eaee;
+$wc-panel-border: #d3dee5;
 
 ///// GENERAL
 
@@ -27,5 +32,6 @@ $wc-panel-dark: h-darken( --gray-light, 5%)
 
 @import "shop/toast"
 @import "shop/archive"
+@import "shop/my-account"
 @import "shop/single"
 @import "shop/cart"

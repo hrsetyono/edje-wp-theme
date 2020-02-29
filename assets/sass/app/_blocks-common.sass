@@ -90,10 +90,10 @@ ul.blocks-gallery-grid
   flex-wrap: wrap
   padding-left: 0
   list-style-type: none
-  max-width: calc(#{ $content-width } + 1rem)
+  max-width: calc(var(--siteWidth) + 1rem)
 
   .alignwide &
-    max-width: calc(#{ $grid-max-width } + 1rem)
+    max-width: calc(var(--siteWidth) + 1rem)
 
 
 .wp-block-gallery:not(.is-cropped)
@@ -193,7 +193,7 @@ ul.blocks-gallery-grid
     align-items: flex-end
     padding: 0 2rem 2rem
     border-radius: var(--gRadius)
-    max-width: calc(#{ $content-width } + 4rem )
+    max-width: calc(var(--siteWidth) + 4rem )
 
     a:hover h1
       text-decoration: underline
@@ -205,7 +205,7 @@ ul.blocks-gallery-grid
 .wp-block-cover__inner-container
   position: relative
   z-index: 2
-  width: $content-width
+  width: var(--siteWidth)
   color: white
 
   @media ($below-l)
@@ -263,9 +263,19 @@ ul.blocks-gallery-grid
 
   &::after
     content: "\f122"
+    display: flex
+    align-items: center
+    justify-content: center
+
+    position: absolute
+    left: 0
+    top: 0
+    background-color: var(--siteBackgroundColor)
+    width: 2rem
+    height: 2rem
+    color: var(--text)
     font-family: "dashicons"
-    +h( d-flex ai-center jc-center absolute left0 top0 )
-    +h( bg-body w2 h2  c-text brad-circle )
+    border-radius: var(--gRadius)
     transform: translateX(-50%)
 
   

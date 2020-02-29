@@ -127,9 +127,9 @@
 
 
 
-///// SEARCH FORM
+///// SEARCH HEADER
 
-.search-form
+.header-search
   display: flex
   position: relative
 
@@ -183,7 +183,7 @@
       +absolute-fill
       border-radius: 0
 
-    &.search-form--active button
+    &.header-search--active button
       position: absolute
       top: 50%
       right: 0.5rem
@@ -191,7 +191,7 @@
 
 
 
-.search-form--full
+.header-search--full
   @media ($above-xs)    
     input
       visibility: visible
@@ -207,10 +207,19 @@
       padding: 0.25rem 0.5rem
 
 
-.search-form--active
+.header-search--active
   input
     visibility: visible
     opacity: 1
 
-.search-form--hovered
-  box-shadow: var(--shadow1)
+
+///// FREE TEXT
+
+.header-text
+  max-width: var(--textMaxWidth)
+
+  *
+    color: var(--textColor)
+    font-size: var(--textSize)
+  a
+    color: var(--linkColor)

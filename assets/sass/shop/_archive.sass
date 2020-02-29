@@ -1,0 +1,62 @@
+.products
+  +h( mv2 mh0 )
+
+.products-tile
+  @media ($below-s)
+    +tile(2, $gap: 10px)
+
+.product-tease
+  +h( relative mb15 ta-center )
+
+  a:hover
+    figure
+      +h( o80 )
+    h3
+      +h( td-u )
+
+  figure
+    +h( mb1 transition )
+
+  img
+    +h( brad )
+      
+  h3
+    +h( fs-h5 )
+
+  .price
+    +h( d-block )
+
+  // Tease button
+  .button
+    +h( mt05 fs-s va-middle )
+
+  .button.added
+    +h( relative bg-green c-transparent bc-green )
+    border-color: darken( $green, 10%) 
+
+    &::after
+      content: "\f147"
+      +h( absolute top50 left50 c-white )
+      font-family: "dashicons"
+      font-size: 1.25em
+      transform: translateX(-50%) translateY(-50%)
+  
+  .added_to_cart
+    +h( d-none )
+
+
+// On Sale label
+.onsale
+  +h( d-inline-block pv0 ph1 b1-dashed bc-white bg-red )
+  +h( c-white fw-header fs-s tt-uppercase brad )
+  box-shadow: 0 0 0 2px $red
+
+  .product-tease &
+    +h( absolute )
+    top: 1em
+    right: 1em
+
+  .product-figure &
+    +h( absolute z5 )
+    top: 10px
+    left: 10px

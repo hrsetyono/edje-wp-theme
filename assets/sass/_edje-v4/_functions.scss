@@ -30,30 +30,21 @@
 // -------
 
 
-// Add transparency
-@function h-rgba( $name, $alpha ) {
-  $key: str-replace( $name, '--', '' );
-  $has-color: map-has-key( $h-colors, quote($key) );
-
-  @if $has-color {
-    @return rgba( var(#{ $name }RGB), $alpha );
-  }
-  @else {
-    @warn "Color `#{ $name }` not found in $h-colors.";
-  }
+// Add transparency to CSS Variable, but the RGB variable must exist
+// For example --main and --mainRGB
+@function h-rgba( $name, $alpha: 1 ) {
+  @return rgba( var(#{ $name }RGB), $alpha );
 }
 
 // Darken a color by percentage
-@function h-darken( $name, $percentage ) {
-  $color: _get-hcolor-hex-value( $name );
-  @return darken( $color, $percentage );
-}
+// @function h-darken( $name, $percentage, $alpha: 1 ) {
+//   @return hsla( var(#{ $name }HS), calc( var(#{ $name }L) - $percentage ), $alpha );
+// }
 
-// Lighten a color by percentage
-@function h-lighten( $name, $percentage ) {
-  $color: _get-hcolor-hex-value( $name );
-  @return lighten( $color, $percentage );
-}
+// // Lighten a color by percentage
+// @function h-lighten( $name, $percentage, $alpha: 1 ) {
+//   @return hsla( var(#{ $name }HS), calc( var(#{ $name }L) + $percentage ), $alpha );
+// }
 
 
 

@@ -1,4 +1,4 @@
-{% set menu = menu | h_get_menu_items %}
+{% set menu = fn(['H', 'get_timber_menu'], menu) %}
 
 <nav class="mobile-nav">
 {% for item in menu.items %}

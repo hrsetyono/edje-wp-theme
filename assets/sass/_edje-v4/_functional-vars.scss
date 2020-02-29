@@ -136,7 +136,7 @@ $h-shadow: (
 
 // Transition
 $h-transition: (
-  transition: ( transition: $g-transition ),
+  transition: ( transition: var(--gTransition) ),
   transition-none: ( transition: none ),
 );
 

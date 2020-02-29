@@ -127,24 +127,24 @@ var myHeader = {
   init() {
     $( document ).on( 'click', this.closeDialog );
     
-    $( '.search-form' ).on( 'click', this.preventClose );
-    $( '.search-form [type="submit"]' ).on( 'click', this.onSearchSubmit );
+    $( '.header-search' ).on( 'click', this.preventClose );
+    $( '.header-search [type="submit"]' ).on( 'click', this.onSearchSubmit );
   },
 
   closeDialog( e ) {
-    $('.search-form--active').removeClass( 'search-form--active' );
+    $('.header-search--active').removeClass( 'header-search--active' );
   },
 
   onSearchSubmit( e ) {
     e.stopPropagation();
-    var $form = $(e.currentTarget).closest( '.search-form' );
+    var $form = $(e.currentTarget).closest( '.header-search' );
 
     // if form is expanding type OR mobile
-    if( $form.hasClass( 'search-form--expanding' ) || window.innerWidth <= 480 ) {
+    if( $form.hasClass( 'header-search--expanding' ) || window.innerWidth <= 480 ) {
       // if not active yet
-      if( !$form.hasClass( 'search-form--active' ) ) {        
+      if( !$form.hasClass( 'header-search--active' ) ) {        
         e.preventDefault();
-        $form.addClass( 'search-form--active' );
+        $form.addClass( 'header-search--active' );
         
         setTimeout( () => { $form.find( 'input' ).focus(); }, 100);
       }
