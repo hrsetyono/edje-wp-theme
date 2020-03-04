@@ -1,29 +1,27 @@
 <!-- Desktop Header -->
 <header class="site-header" data-visible="desktop">
-{% for row in header.desktop if row.placements | length > 0 %}
+  {% for row in header.desktop if row.placements | length > 0 %}
 
-  {{ _self.header_row( row, header.items ) }}
+    {{ _self.header_row( row, header.items ) }}
 
-{% endfor %}
+  {% endfor %}
 </header>
 
 <!-- Mobile Header -->
-<div class="site-header site-header--mobile" data-visible="mobile">
-{% for row in header.mobile if row.placements | length > 0 %}
+<div class="site-header site-header--mobile" data-visible="tablet mobile">
+  {% for row in header.mobile if row.placements | length > 0 %}
 
-  {% if row.id == 'offcanvas' %}
-  
-    <div class="offcanvas" data-header-row="offcanvas">
-      {{ _self.header_column( row.placements[0], header.items ) }}
-    </div>
+    {% if row.id == 'offcanvas' %}
+      <div class="offcanvas" data-header-row="offcanvas">
+        {{ _self.header_column( row.placements[0], header.items ) }}
+      </div>
 
-  {% else %}
-    
-    {{ _self.header_row( row, header.items ) }}
+    {% else %}
+      {{ _self.header_row( row, header.items ) }}
 
-  {% endif %}
+    {% endif %}
 
-{% endfor %}
+  {% endfor %}
 </div>
 
 
@@ -32,9 +30,9 @@
   {% set row_data = items_data[ row.id ] %}
 
   <div data-header-row="{{ row.id }}" class="header-row header-row--{{ row_data.row_padding }}">
-    <h-grid class="header-columns">
+    <h-grid class="header-columns header-columns--{{ row | h_get_columns_count }}">
     
-    {% for column in row.placements %}
+    {% for column in row.placements if column.items %}
       <div data-column="{{ column.id }}" class="header-column">
         {{ _self.header_column( column, items_data ) }}
       </div>

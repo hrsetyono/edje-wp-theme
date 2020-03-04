@@ -103,6 +103,7 @@
   // --h6Size : var(--fontSize)
 
 
+  
 ///// BUTTON /////
 
 .button,
@@ -144,7 +145,8 @@
     fill: var(--buttonColor)
 
   &:hover
-    color: var(--buttonColor)
+    background-color: var(--buttonBgHover)
+    color: var(--buttonColorHover)
     transform: translateY(-2px)
     box-shadow: var(--shadow1)
 
@@ -177,8 +179,7 @@
 .button--outline,
 .is-style-outline a
   --buttonBg: transparent
-  --buttonBorder: 2px solid
-  --buttonColor: var(--textColor, var(--main))
+  --buttonBorder: 1px solid
 
 .button--transparent,
 .is-style-transparent a
@@ -264,10 +265,14 @@ select
 
 ///// VISIBILITY
 
-@media ($below-s)
-  [data-visible="desktop"]
+@media ($above-s)
+  [data-visible]:not([data-visible~="desktop"])
     display: none !important
 
-@media ($above-s)
-  [data-visible="mobile"]
+@media ($above-xs) and ($below-s)
+  [data-visible]:not([data-visible~="tablet"])
+    display: none !important
+
+@media ($below-xs)
+  [data-visible]:not([data-visible~="mobile"])
     display: none !important

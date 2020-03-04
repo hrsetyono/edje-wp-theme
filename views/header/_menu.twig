@@ -1,18 +1,21 @@
-{% set menu = fn(['H', 'get_timber_menu'], menu) %}
+{% set menu = menu | h_get_timber_menu %}
 
 <nav class="nav-items" data-id="{{ id ? id : 'menu' }}">
 {% for item in menu.items %}
+
   <div class="nav-item {{ item.class }}">
-    <a href="{{ item.url }}"> {{ item.title }} </a>
+    <a href="{{ item.url }}">
+      <span>{{ item.title }}</span>
+    </a>
 
     {% if item.children %}
-      <div class="nav-children">
+      <div class="nav-dropdown">
       {% for child in item.children %}
         <a href="{{ child.url }}">{{ child.title }}</a>
       {% endfor %}
       </div>
     {% endif %}
-
   </div>
+
 {% endfor %}
 </nav>

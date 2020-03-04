@@ -1,18 +1,27 @@
-<div class="logo" data-id="logo" data-shortcut="drop">
-  {% if logo_type == 'text' %}
-    
-    <p>
-      {{ site_title }}
+<div class="header-logo" data-id="logo">
+
+  <a href="{{ fn('home_url') }}">
+
+    {% if logo_type == 'text' %}
+      <h3>{{ text }}</h3>
+
+    {% elseif logo_type == 'image' %}
+      <picture>
+        {% if has_mobile_image == 'yes' %}
+          <source srcset="{{ mobile_image.url }}" media="(max-width:767px)">
+        {% endif %}
+        <img src="{{ image.url }}" alt="{{ text }} Logo">
+      </picture>
+
+    {% elseif logo_type == 'svg' %}
+      {{ svg_code }}
+
+    {% endif %}
+  </a>
+
+  {% if has_tagline == 'yes' %}
+    <p class="logo-tagline" data-visible="{{ tagline_visibility | h_get_visible_attr }}">
+      {{ tagline }}
     </p>
-
-  {% elseif logo_type == 'image' %}
-
-    <picture>
-      {% if has_mobile_logo == 'yes' %}
-        <source srcset="{{ mobile_logo.url }}" media="(max-width:767px)">
-      {% endif %}
-      <img src="{{ custom_logo.url }}" alt="{{ blogname }} Logo">
-    </picture>
-
   {% endif %}
 </div>

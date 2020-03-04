@@ -6,7 +6,5 @@
     placeholder="{{ search_placeholder }}"
     value="{{ fn('get_query_var', 's') }}">
   
-  {% if has_submit_button == 'yes' %}
-    <button type="submit">{{ submit_button_text }}</button>
-  {% endif %}
+  <button class="submit-search" type="submit">{{ submit_button_text }}</button>
 </form>
