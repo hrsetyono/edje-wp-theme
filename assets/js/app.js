@@ -125,14 +125,18 @@ var myNav = {
 
 var myHeader = {
   init() {
-    $( document ).on( 'click', this.closeDialog );
-    
-    $( '.header-search' ).on( 'click', this.preventClose );
-    $( '.header-search [type="submit"]' ).on( 'click', this.onSearchSubmit );
-  },
+    $( document ).on( 'click', this.closeAll.bind( this ) );
 
-  closeDialog( e ) {
-    $('.header-search--active').removeClass( 'header-search--active' );
+    // Search
+    $( '[data-id="search"]' ).on( 'click', this.preventClose );
+    $( '[data-id="search"] [type="submit"]' ).on( 'click', this.onSearchSubmit );
+
+    // Mobile
+    $( '[data-close-offcanvas]' ).on( 'click', this.closeOffCanvas );
+    $( '[data-id="offcanvas"]' ).on( 'click', this.preventClose );
+    $( '[data-id="trigger"]' ).on( 'click', this.toggleOffcanvas );
+
+    $( '[data-mobile-dropdown-toggle]' ).on( 'click', this.toggleMobileDropdown );
   },
 
   onSearchSubmit( e ) {
@@ -149,6 +153,32 @@ var myHeader = {
         setTimeout( () => { $form.find( 'input' ).focus(); }, 100);
       }
     }
+  },
+
+  toggleOffcanvas( e ) {
+    e.preventDefault();
+    e.stopPropagation();
+    $( 'body' ).toggleClass( 'has-active-offcanvas' );
+  },
+
+  toggleMobileDropdown( e ) {
+    var $navItem = $( e.currentTarget ).closest( '.mobile-nav-item' );
+    $navItem.toggleClass( 'mobile-nav-item--toggled' );
+  },
+
+  //
+  closeAll( e ) {
+    this.closeOffCanvas( e );
+    this.closeSearch( e );
+  },
+
+  closeOffCanvas( e ) {
+    e.preventDefault();
+    $('body.has-active-offcanvas').removeClass( 'has-active-offcanvas' );
+  },
+
+  closeSearch( e ) {
+    $('.header-search--active').removeClass( 'header-search--active' );
   },
 
   preventClose( e ) {

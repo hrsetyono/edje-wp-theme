@@ -15,7 +15,7 @@
       {{ item.svg }}
       
       {% if label %}
-        <span data-visible="{{ text_visibility | h_get_visible_attr }}">{{ label }}</span>
+        <span {{ text_visibility | h_get_visible_attr }}>{{ label }}</span>
       {% endif %}
     </a>
   {% endfor %}

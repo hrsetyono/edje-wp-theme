@@ -1,5 +1,5 @@
 <!-- Desktop Header -->
-<header class="site-header" data-visible="desktop">
+<header class="site-header"  data-visible="desktop">
   {% for row in header.desktop if row.placements | length > 0 %}
 
     {{ _self.header_row( row, header.items ) }}
@@ -8,18 +8,10 @@
 </header>
 
 <!-- Mobile Header -->
-<div class="site-header site-header--mobile" data-visible="tablet mobile">
+<div class="site-header site-header--mobile"  data-visible="tablet mobile">
   {% for row in header.mobile if row.placements | length > 0 %}
-
-    {% if row.id == 'offcanvas' %}
-      <div class="offcanvas" data-header-row="offcanvas">
-        {{ _self.header_column( row.placements[0], header.items ) }}
-      </div>
-
-    {% else %}
-      {{ _self.header_row( row, header.items ) }}
-
-    {% endif %}
+    
+    {{ _self.header_row( row, header.items ) }}
 
   {% endfor %}
 </div>
@@ -29,17 +21,29 @@
 {% macro header_row( row, items_data ) %}
   {% set row_data = items_data[ row.id ] %}
 
-  <div data-header-row="{{ row.id }}" class="header-row header-row--{{ row_data.row_padding }}">
-    <h-grid class="header-columns header-columns--{{ row | h_get_columns_count }}">
-    
-    {% for column in row.placements if column.items %}
-      <div data-column="{{ column.id }}" class="header-column">
-        {{ _self.header_column( column, items_data ) }}
+  {% if row.id == 'offcanvas' %}
+    <div class="offcanvas offcanvas--from-{{ row_data.reveal_from }} offcanvas--align-{{ row_data.items_alignment }}"  data-id="{{ row.id }}">
+      <a href="#" data-close-offcanvas>
+        {{ fn('custy_get_svg', row_data.close_button_style) }}
+      </a>
+      <div class="offcanvas-inner-wrapper">
+        {{ _self.header_column( row.placements[0], items_data ) }}
       </div>
-    {% endfor %}
+    </div>
 
-    </h-grid>
-  </div>
+  {% else %}
+    <div class="header-row header-row--{{ row_data.row_padding }}" data-id="{{ row.id }}">
+      <h-grid class="header-columns header-columns--{{ row | h_get_columns_count }}">
+      
+      {% for column in row.placements if column.items %}
+        <div data-column="{{ column.id }}" class="header-column">
+          {{ _self.header_column( column, items_data ) }}
+        </div>
+      {% endfor %}
+
+      </h-grid>
+    </div>
+  {% endif %}
 {% endmacro %}
 
 {# Columns #}

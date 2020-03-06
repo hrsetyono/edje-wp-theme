@@ -1,16 +1,16 @@
-<a href="{{ link }}"
-  class="button button--{{ button_size }} button--{{ button_style }}"
-  target="{% if target == 'yes' %} _blank {% endif %}"
-  data-id="{{ id ? id : 'button' }}">
+<div data-id="{{ id ? id : 'button' }}">
+  <a href="{{ link }}"
+    class="button button--{{ button_size }} button--{{ button_style }}"
+    target="{% if target == 'yes' %} _blank {% endif %}">
 
-  {% if has_icon == 'png' %}
-    <img src="{{ png_icon.url }}">
+    {% if has_icon == 'png' %}
+      <img src="{{ png_icon.url }}">
 
-  {% elseif has_icon == 'svg' %}
-    {{ svg_icon }}
+    {% elseif has_icon == 'svg' %}
+      {{ svg_icon }}
 
-  {% endif %}
+    {% endif %}
 
-  {{ text }}
-
-</a>
+    {{ text }}
+  </a>
+</div>

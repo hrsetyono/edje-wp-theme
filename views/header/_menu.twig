@@ -1,6 +1,6 @@
 {% set menu = menu | h_get_timber_menu %}
 
-<nav class="nav-items" data-id="{{ id ? id : 'menu' }}">
+<nav class="nav" data-id="{{ id ? id : 'menu' }}">
 {% for item in menu.items %}
 
   <div class="nav-item {{ item.class }}">
@@ -8,12 +8,23 @@
       <span>{{ item.title }}</span>
     </a>
 
+    {# 2nd level nav #}
     {% if item.children %}
-      <div class="nav-dropdown">
+    <ul {{ item.children | h_get_dropdown_attr('nav-dropdown') }}>
       {% for child in item.children %}
-        <a href="{{ child.url }}">{{ child.title }}</a>
+        <li>
+          <a href="{{ child.url }}">{{ child.title }}</a>
+
+          {# 3rd level nav #}
+          {% if child.children %}
+            {% for gchild in child.children %}
+              <a href="{{ gchild.url }}">{{ gchild.title }}</a>
+            {% endfor %}
+          {% endif %}
+
+        </li>
       {% endfor %}
-      </div>
+    </ul>
     {% endif %}
   </div>
 

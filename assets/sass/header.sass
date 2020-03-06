@@ -12,6 +12,10 @@
   padding-top: var(--rowPadding)
   padding-bottom: var(--rowPadding)
 
+  // Item gap
+  [data-id] + [data-id]
+    margin-left: 1rem
+
 // Row padding size
 .header-row--none
   --rowPadding: 0
@@ -47,9 +51,83 @@
   order: 3
   text-align: right
 
-// Item gap
-[data-id] + [data-id]
-  margin-left: 1rem
+///// OFFCANVAS /////
+
+.offcanvas
+  display: flex
+  flex-direction: column
+
+  position: fixed
+  z-index: 100
+  top: 0
+  bottom: 0
+  background: var(--offcanvasBackground)
+  box-shadow: var(--shadow3)
+
+  &.offcanvas--from-right
+    right: 0
+    transform: translateX(100%)
+  &.offcanvas--from-left
+    left: 0
+    transform: translateX(-100%)
+
+  &.offcanvas--align-right
+    align-items: flex-end
+    text-align: right
+  &.offcanvas--align-center
+    align-items: center
+    text-align: center
+  &.offcanvas--align-left
+    align-items: flex-start
+
+
+body.has-active-offcanvas
+  cursor: pointer
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0)
+
+  .offcanvas
+    transform: none
+    transition: var(--gTransition)
+
+
+.offcanvas-inner-wrapper
+  overflow-y: auto
+  min-width: 300px
+  max-width: 340px
+  max-height: 100vh
+  padding-bottom: 3rem
+
+  > *
+    padding: 1rem 2rem
+
+  > *:first-child
+    padding-top: 3rem
+
+  //
+  @media ($below-xs)
+    min-width: 240px
+    max-width: 300px
+
+    > *
+      padding-right: 1.5rem
+      padding-left: 1.5rem
+  
+
+[data-close-offcanvas]
+  position: absolute
+  z-index: 10
+  top: 0.5rem
+  right: 1rem
+  width: 2rem
+  height: 2rem
+  border-radius: var(--gRadius)
+
+  path
+    fill: var(--closeButtonColor)
+  &:hover
+    background-color: h-rgba(--textInvert, .2)
+  &:hover path
+    fill: var(--closeButtonColorHover)
 
 
 ///// LOGO
@@ -101,7 +179,7 @@
 
 ///// MENU NAV /////
 
-.nav-items
+.nav
   display: flex
   flex: 1
   flex-wrap: wrap
@@ -123,6 +201,7 @@
     line-height: 1
     letter-spacing: 0.025em
     text-transform: uppercase
+    font-size: var(--parentFontSize)
     color: var(--parentColor)
 
   > a span
@@ -136,8 +215,9 @@
   > a:hover span
     background-color: var(--parentBgHover)
     color: var(--parentColorHover)
+
   > a:active
-    transform: translateY(2px)
+    transform: translateY(1px)
     transition: none
   
   // current page
@@ -161,6 +241,8 @@
 
 // Dropdown
 .nav-dropdown
+  --dropdownColumns: 1
+
   position: absolute
   z-index: 10
   top: calc(100% - 4px)
@@ -168,13 +250,15 @@
   visibility: hidden
   opacity: 0
 
-  max-width: 240px
+  min-width: calc(180px * var(--dropdownColumns))
+  max-width: calc(220px * var(--dropdownColumns))
   padding: 0.75em 0.5em
   border-radius: var(--gRadius)
   background-color: var(--dropdownBg)
 
   text-align: left
   font-size: var(--dropdownFontSize)
+  list-style-type: none
 
   transition: var(--gTransition)
   transform: translateX(-50%)
@@ -195,17 +279,179 @@
     visibility: visible
     opacity: 1
 
+.nav-dropdown--wide
+  display: grid
+  grid-template-columns: repeat(var(--dropdownColumns), minmax(0,1fr))
+  grid-column-gap: 0.5rem
+  grid-row-gap: 0.5rem
+
+  max-width: var(--siteWidth)
+
+  li
+    grid-column: span 1
+    
+  &[data-children="2"]
+    --dropdownColumns: 2
+  &[data-children="3"]
+    --dropdownColumns: 3
+  &[data-children="4"]
+    --dropdownColumns: 4
+  &[data-children="5"]
+    --dropdownColumns: 5
+
+
+.nav-dropdown a
+  display: block
+  padding: 0.375em 0.5em
+  border-radius: var(--gRadius)
+  white-space: nowrap
+  font-size: var(--dropdownFontSize)
+  color: var(--dropdownColor)
+
+  &:hover
+    background-color: var(--dropdownBgHover)
+    color: var(--dropdownColorHover)
+
+  &:active
+    transform: translateY(1px)
+    transition: none
+
+  // 3rd level item
+  + a
+    padding: 0.375em
+
+
+.nav-dropdown--wide a:first-child
+  font-weight: var(--hFontWeight)
+  text-transform: uppercase
+  letter-spacing: 0.05em
+
+
+///// MOBILE NAV /////
+
+.mobile-nav-item
+  --linkColor: var(--mobileMenuColor)
+  --linkColorHover: var(--mobileMenuColorHover)
+
+  display: flex
+  flex-direction: row
+  flex-wrap: wrap
+  align-items: stretch
+  margin-top: 0.5rem
+
+  > a
+    flex: 1
+    display: block
+    margin-right: 1rem
+
+    font-size: var(--parentFontSize)
+    font-weight: 700
+    letter-spacing: 0.025em
+  
+  // current page
+  &.current-menu-item,
+  &.current-page-ancestor,
+  &.current-menu-ancestor,
+  &.current-menu-parent,
+  &.current_page_parent
+    > a
+      color: var(--linkColorHover)
+
+
+[data-mobile-dropdown-toggle]
+  display: flex
+  margin-left: auto
+  border: 1px solid var(--linkColor)
+  border-radius: var(--gRadius)
+  padding: 0 0.75rem
+  background-color: transparent
+
+  transition: var(--gTransition)
+
+  svg
+    width: 1rem
+    height: 1rem
+    transition: var(--gTransition)
+
+    .mobile-nav-item--toggled &
+      transform: rotate(180deg)
+
+  path
+    fill: var(--parentColor)
+    transition: var(--gTransition)
+  
+  &:hover
+    border-color: var(--linkColorHover)
+    path
+      fill: var(--linkColorHover)
+
+
+// MOBILE DROPDOWN
+
+.mobile-nav-dropdown
+  overflow-y: hidden
+  visibility: hidden
+  opacity: 0
+  max-height: 0
+  padding-left: 1.5rem
+  width: 100%
+  color: var(--dropdownColor)
+  
+  transition: var(--gTransition)
+
+  .mobile-nav-item--toggled &
+    visibility: visible
+    opacity: 1
+    margin-top: 0.5rem
+    max-height: none
+
   a
     display: block
-    padding: 0.375em 0.5em
-    border-radius: var(--gRadius)
-    white-space: nowrap
+    padding: 0.25rem 0
     font-size: var(--dropdownFontSize)
     color: var(--dropdownColor)
 
   a:hover
-    background-color: var(--dropdownBgHover)
     color: var(--dropdownColorHover)
+  
+  ul
+    padding-left: 1rem
+    a
+      opacity: .6
+      font-size: 90%  
+    a:hover
+      opacity: 1
+
+
+// COMPACT MOBILE NAV
+.mobile-nav--compact
+  display: grid
+  grid-template-columns: repeat(2, minmax(0, 1fr))
+  grid-column-gap: 0
+  grid-row-gap: 0
+
+  a,
+  select
+    display: block
+    padding: 0.5rem 0.25rem
+    color: var(--parentColor)
+    font-size: var(--smallFontSize)
+    text-transform: uppercase
+
+    &:hover
+      background-color: h-rgba(--textInvert, .1)
+      color: var(--parentColorHover)
+
+
+  select
+    padding-left: 0
+    border: 0
+    background-color: transparent
+    box-shadow: none
+  option
+    background-color: var(--offcanvasBackgroundColor)
+    text-transform: initial
+    color: var(--parentColor)
 
 
 ///// SOCIAL BUTTONS /////
@@ -375,3 +621,20 @@
     font-size: var(--textSize)
   a
     color: var(--linkColor)
+
+
+///// TRIGGER /////
+
+.menu-trigger
+  cursor: pointer
+  width: 40px // 10:7 ratio
+  height: 28px
+
+  path,
+  circle
+    fill: var(--triggerColor)
+
+  &:hover
+    path,
+    circle
+      fill: var(--triggerColorHover)

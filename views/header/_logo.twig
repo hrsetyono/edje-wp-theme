@@ -20,7 +20,7 @@
   </a>
 
   {% if has_tagline == 'yes' %}
-    <p class="logo-tagline" data-visible="{{ tagline_visibility | h_get_visible_attr }}">
+    <p class="logo-tagline" {{ tagline_visibility | h_get_visible_attr }}>
       {{ tagline }}
     </p>
   {% endif %}
