@@ -1,50 +1,153 @@
 @import "settings"
   
 .site-footer
-  background-color: var(--subLight)
 
 
-// Credit
-.footer-credit
-  +h( d-flex ai-center  pv0_5 c-white_50 fs-s )
 
-  strong
-    +h( c-white_75 )
+///// FOOTER ROWS
 
-.copyright
+.footer-row
+  background-color: var(--rowBackground)
+  padding-top: var(--rowPadding)
+  padding-bottom: var(--rowPadding)
+  font-size: var(--rowFontSize)
+
+  *
+    color: var(--rowColor)
+  a:hover
+    color: var(--rowColorHover)
+
+// padding
+.footer-row--none
+  --rowPadding: 0
+.footer-row--small
+  --rowPadding: 0.5rem
+.footer-row--medium
+  --rowPadding: 1rem
+.footer-row--large
+  --rowPadding: 2rem
+
+
+// alignment
+.footer-row--left
+  text-align: left
+.footer-row--center
+  text-align: center
+.footer-row--right
+  text-align: right
+
+
+///// FOOTER COLUMNS
+
+.footer-columns
+  display: grid
+  grid-template-columns: 1fr
+  grid-column-gap: var(--gridGap)
+  grid-row-gap: var(--gridGap)
+
+// responsive columns
+@media ($below-s)
+  .footer-columns--halved
+    grid-template-columns: 1fr 1fr !important
+  .footer-columns--stacked
+    grid-template-columns: 1fr !important
+
+
+///// WIDGETS /////
+
+.footer-widgets
+  h1, h2, h3, h4, h5, h6
+    margin-bottom: 0.5rem
+    font-size: var(--h5Size)
+
+  p, ul, ol
+    margin-bottom: 0.5rem
+
+
+///// FOOTER MENU /////
+
+.footer-nav
+  display: flex
+  flex-wrap: wrap
+
+  .footer-row--center &
+    justify-content: center
+  .footer-row--right &
+    justify-content: flex-end
+
   a
-    +h( mr0_5 )
+    display: inline-block
+    padding: 0.5rem
+
+  a + a
+    margin-left: 0.5rem
+
+
+///// FOOTER SOCIAL
+
+.socials
+  .footer-row--center &
+    justify-content: center
+  .footer-row--right &
+    justify-content: flex-end
+
+//////
 
 .partners
-  +h( d-flex fw-wrap ai-center  ml-auto )
+  display: flex
+  flex-wrap: wrap
+  align-items: center
+  margin-left: auto
 
   img
-    +h( p0_25 )
+    padding: 0.25rem
     width: 32px
   a
-    +h( d-block relative mh0_25 bg-main_50 brad transition )
+    display: block
+    position: relative
+    margin-right: 0.25rem
+    margin-left: 0.25rem
+    background-color: h-rgba(--main, .5)
+    border-radius: var(--gRadius)
+    transition: var(--gTransition)
   a:hover
-    +h( bg-main_50 c-white )
+    background-color: h-rgba(--main, .5)
+    color: var(--textInvert)
 
 .partner-caption
-  +h( v-hidden o0 absolute right0 pv0_5 ph1 bg-main )
-  +h( c-white ta-center brad transition )
+  visibility: hidden
+  opacity: 0
+  position: absolute
+  right: 0
   bottom: calc(100% + 8px)
+
+  padding: 0.5rem 1rem
+  border-radius: var(--gRadius)
+  background-color: var(--main)
+
+  color: var(--textInvert)
+  text-align: center
+  transition: var(--gTransition)
   transform: translateY(20px)
 
   &::after
     content: ""
-    +h( absolute top100p )
+    position: absolute
+    top: 100%
     right: 10px
     +triangle( s, var(--main), 12px, 5px)
 
   a:hover &
-    +h( v-visible o100 )
+    visibility: visible
+    opacity: 1
     transform: none
 
   h5
-    +h( fs-s ff-body c-white nowrap )
+    font-size: var(--smallFontSize)
+    font-family: var(--fontFamily)
+    color: var(--textInvert)
+    white-space: nowrap
 
   p
-    +h( nowrap )
+    white-space: nowrap
     font-size: 12px

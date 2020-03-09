@@ -5,6 +5,7 @@ if( !class_exists( 'Custy' ) ) { return; }
 // DEFAULTS
 // require_once __DIR__ . '/defaults-core.php';
 // require_once __DIR__ . '/defaults-header.php';
+// require_once __DIR__ . '/defaults-footer.php';
 require_once __DIR__ . '/defaults.php';
 
 

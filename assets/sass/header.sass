@@ -329,10 +329,12 @@ body.has-active-offcanvas
 
 ///// MOBILE NAV /////
 
-.mobile-nav-item
+.mobile-nav
   --linkColor: var(--mobileMenuColor)
   --linkColorHover: var(--mobileMenuColorHover)
+  background-color: var(--mobileMenuBackground)
 
+.mobile-nav-item
   display: flex
   flex-direction: row
   flex-wrap: wrap
@@ -377,7 +379,7 @@ body.has-active-offcanvas
       transform: rotate(180deg)
 
   path
-    fill: var(--parentColor)
+    fill: var(--linkColor)
     transition: var(--gTransition)
   
   &:hover
@@ -434,13 +436,12 @@ body.has-active-offcanvas
   select
     display: block
     padding: 0.5rem 0.25rem
-    color: var(--parentColor)
     font-size: var(--smallFontSize)
+    color: var(--linkColor)
     text-transform: uppercase
 
     &:hover
       background-color: h-rgba(--textInvert, .1)
-      color: var(--parentColorHover)
 
 
   select

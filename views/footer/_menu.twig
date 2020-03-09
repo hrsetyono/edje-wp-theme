@@ -1,1 +1,9 @@
-Menu
+{% set menu = menu | h_get_timber_menu %}
+
+<nav class="footer-nav" data-id="footer-menu">
+  {% for item in menu.items %}
+    <a href="{{ item.url }}">
+      {{ item.title }}
+    </a>
+  {% endfor %}
+</nav>

@@ -24,23 +24,17 @@ add_filter( 'custy_default_values', function( $defaults ) {
       [ 'id' => 'top-row', 'placements' => [
         [ 'id' => 'start', 'items' => [] ],
         [ 'id' => 'middle', 'items' => [] ],
-        [ 'id' => 'end', 'items' => [] ],
-        [ 'id' => 'start-middle', 'items' => [] ],
-        [ 'id' => 'end-middle', 'items' => [] ],
+        [ 'id' => 'end', 'items' => [] ]
       ] ],
       [ 'id' => 'middle-row', 'placements' => [
         [ 'id' => 'start', 'items' => [ 'logo' ] ],
         [ 'id' => 'middle', 'items' => [] ],
-        [ 'id' => 'end', 'items' => [ 'menu' ] ],
-        [ 'id' => 'start-middle', 'items' => [] ],
-        [ 'id' => 'end-middle', 'items' => [] ],
+        [ 'id' => 'end', 'items' => [ 'menu' ] ]
       ] ],
       [ 'id' => 'bottom-row', 'placements' => [
         [ 'id' => 'start', 'items' => [] ],
         [ 'id' => 'middle', 'items' => [] ],
-        [ 'id' => 'end', 'items' => [] ],
-        [ 'id' => 'start-middle', 'items' => [] ],
-        [ 'id' => 'end-middle', 'items' => [] ],
+        [ 'id' => 'end', 'items' => [] ]
       ] ],
     ],
     'mobile' => [
@@ -48,22 +42,16 @@ add_filter( 'custy_default_values', function( $defaults ) {
         [ 'id' => 'start', 'items' => [] ],
         [ 'id' => 'middle', 'items' => [] ],
         [ 'id' => 'end', 'items' => [] ],
-        [ 'id' => 'start-middle', 'items' => [] ],
-        [ 'id' => 'end-middle', 'items' => [] ],
       ] ],
       [ 'id' => 'middle-row', 'placements' => [
         [ 'id' => 'start', 'items' => [ 'logo' ] ],
         [ 'id' => 'middle', 'items' => [] ],
         [ 'id' => 'end', 'items' => [ 'trigger' ] ],
-        [ 'id' => 'start-middle', 'items' => [] ],
-        [ 'id' => 'end-middle', 'items' => [] ],
       ] ],
       [ 'id' => 'bottom-row', 'placements' => [
         [ 'id' => 'start', 'items' => [] ],
         [ 'id' => 'middle', 'items' => [] ],
         [ 'id' => 'end', 'items' => [] ],
-        [ 'id' => 'start-middle', 'items' => [] ],
-        [ 'id' => 'end-middle', 'items' => [] ],
       ] ],
       [ 'id' => 'offcanvas', 'placements' => [
         [ 'id' => 'start', 'items' => [ 'mobile-menu' ] ],

@@ -98,7 +98,7 @@ class MyTimber extends TimberSite {
 
     $data_visible = empty( $attr ) ? '' : implode( ' ', $attr );
 
-    return "data-visible='{ $data_visible }'";
+    return "data-visible='{$data_visible}'";
   }
 
 
@@ -138,7 +138,9 @@ class MyTimber extends TimberSite {
 
 
   /**
+   * Get the class for Desktop nav dropdown
    * 
+   * {{ nav_item.children | h_get_dropdown_attr }}
    */
   function _filter_dropdown_attr( $nav_children, $base_class = 'nav-dropdown' ) {
     $class = $base_class;

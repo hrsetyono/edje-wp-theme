@@ -1,2 +1,5 @@
-{% include 'footer/_widget.twig' with { sidebar_id: widget } %}
+{% set widgets = fn( ['Timber', 'get_widgets'], widget ) %}
 
+<div class="footer-widgets" data-id="{{ id ? id : 'widget1' }}">
+  {{ widgets }}
+</div>
