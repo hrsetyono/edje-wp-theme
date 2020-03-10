@@ -1,10 +1,10 @@
-{% set menu = menu | h_get_timber_menu %}
+{% set menu = menu_id | h_get_timber_menu %}
 
-<nav class="mobile-nav mobile-nav--{{ mobile_menu_style }}" data-id="{{ id ? id : 'mobile-menu' }}">
+<nav class="mobile-nav mobile-nav--{{ style }}" data-id="{{ id ? id : 'mobile-menu' }}">
 {% for item in menu.items %}
 
   {# Inline Style #}
-  {% if mobile_menu_style == 'compact' %}
+  {% if stye == 'compact' %}
     {% if item.children %}
       <select data-mobile-dropdown-select>
         <option value="{{ item.url }}"> {{ item.title }}</option>

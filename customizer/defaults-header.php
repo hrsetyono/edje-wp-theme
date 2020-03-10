@@ -4,6 +4,7 @@
  */
 add_filter( 'custy_default_values', function( $defaults ) {
 
+
   // HEADER - Add new header in dropdown
   $defaults['header_placements']['sections'][] = [
     'id' => 'sub',

@@ -4,9 +4,9 @@
   {% for row in footer.rows %}
     {% set row_data = footer.items[ row.id ] %}
 
-    <div class="footer-row footer-row--{{ row_data.row_padding }} footer-row--{{ row_data.row_alignment }}"
+    <div class="footer-row footer-row--{{ row_data.padding }}"
       data-id="footer-{{ row.id }}"
-      {{ row_data.row_visibility | h_get_visible_attr }}>
+      {{ row_data.visibility | h_get_visible_attr }}>
 
       <h-grid class="footer-columns footer-columns--{{ row_data.columns_layout.tablet }}"
         style="grid-template-columns:{{ row_data.columns_layout.desktop }};">

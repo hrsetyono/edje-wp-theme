@@ -1,4 +1,4 @@
-{% set menu = menu | h_get_timber_menu %}
+{% set menu = menu_id | h_get_timber_menu %}
 
 <nav class="nav" data-id="{{ id ? id : 'menu' }}">
 {% for item in menu.items %}

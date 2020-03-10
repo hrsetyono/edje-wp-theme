@@ -1,10 +1,10 @@
-<form class="header-search header-search--{{ search_style }}"
+<form class="header-search header-search--{{ style }}"
   method="get" action="{{ fn('get_bloginfo', 'url') }}"
   data-id="search" >
 
   <input type="search" name="s"
-    placeholder="{{ search_placeholder }}"
+    placeholder="{{ placeholder }}"
     value="{{ fn('get_query_var', 's') }}">
   
-  <button class="submit-search" type="submit">{{ submit_button_text }}</button>
+  <button class="submit-search" type="submit">{{ submit_text }}</button>
 </form>

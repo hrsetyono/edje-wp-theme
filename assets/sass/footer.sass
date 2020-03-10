@@ -7,15 +7,9 @@
 ///// FOOTER ROWS
 
 .footer-row
-  background-color: var(--rowBackground)
+  background: var(--rowBackground)
   padding-top: var(--rowPadding)
   padding-bottom: var(--rowPadding)
-  font-size: var(--rowFontSize)
-
-  *
-    color: var(--rowColor)
-  a:hover
-    color: var(--rowColorHover)
 
 // padding
 .footer-row--none
@@ -56,98 +50,97 @@
 ///// WIDGETS /////
 
 .footer-widgets
+  background: var(--widgetBackground)
+
   h1, h2, h3, h4, h5, h6
     margin-bottom: 0.5rem
-    font-size: var(--h5Size)
+    font-size: var(--titleSize)
+    color: var(--titleColor)
+
+  > li
+    list-style-type: none
 
   p, ul, ol
     margin-bottom: 0.5rem
+    font-size: var(--textSize)
+    color: var(--textColor)
+
+  a:hover
+    color: var(--textColorHover)
 
 
 ///// FOOTER MENU /////
 
 .footer-nav
+  --textSize: var(--fontSize)
+  --textColor: var(--mainLight)
+  --textColorHover: var(--textInvert)
+    
+  --childrenSize: var(--smallFontSize)
+  --childrenColor: var(--textInvert)
+  --childrenColorHover: var(--textInvert)
+
   display: flex
   flex-wrap: wrap
-
-  .footer-row--center &
-    justify-content: center
-  .footer-row--right &
-    justify-content: flex-end
+  margin: 0 -0.5rem
+  list-style-type: none
 
   a
-    display: inline-block
-    padding: 0.5rem
+    display: block
+    padding: 0.25rem 0.5rem
+    border-radius: var(--gRadius)
+    font-size: var(--textSize)
+    color: var(--textColor)
+    
+  a:hover
+    background-color: h-rgba(--textInvert, .2)
+    color: var(--textColorHover)
+    transform: translateY(-2px)
+  a:active
+    transform: none
+    transition: none
 
-  a + a
+.footer-nav--align-center
+  justify-content: center
+.footer-nav--align-right
+  justify-content: flex-end
+
+.footer-nav li
+  > a
+    text-transform: uppercase
+    letter-spacing: 0.025rem
+    font-weight: var(--hFontWeight)
+  > a + a
     margin-left: 0.5rem
+
+  
+.footer-nav--include-children
+  li
+    flex: 1
+  li > a
+    text-decoration: underline
+
+.footer-nav-children
+  --textColor: var(--childrenColor)
+  --textColorHover: var(--childrenColorHover)
+  --textSize: var(--childrenSize)
 
 
 ///// FOOTER SOCIAL
 
-.socials
-  .footer-row--center &
-    justify-content: center
-  .footer-row--right &
-    justify-content: flex-end
+.site-footer .social-link
+  --iconSize: 1.375rem
+  --iconPadding: 0.5rem
 
-//////
 
-.partners
-  display: flex
-  flex-wrap: wrap
-  align-items: center
-  margin-left: auto
+///// COPYRIGHT
 
-  img
-    padding: 0.25rem
-    width: 32px
+.footer-copyright
+  font-size: var(--textSize)
+  color: var(--textColor)
+  text-align: var(--textAlignment)
+
   a
-    display: block
-    position: relative
-    margin-right: 0.25rem
-    margin-left: 0.25rem
-    background-color: h-rgba(--main, .5)
-    border-radius: var(--gRadius)
-    transition: var(--gTransition)
+    text-decoration: underline
   a:hover
-    background-color: h-rgba(--main, .5)
-    color: var(--textInvert)
-
-.partner-caption
-  visibility: hidden
-  opacity: 0
-  position: absolute
-  right: 0
-  bottom: calc(100% + 8px)
-
-  padding: 0.5rem 1rem
-  border-radius: var(--gRadius)
-  background-color: var(--main)
-
-  color: var(--textInvert)
-  text-align: center
-  transition: var(--gTransition)
-  transform: translateY(20px)
-
-  &::after
-    content: ""
-    position: absolute
-    top: 100%
-    right: 10px
-    +triangle( s, var(--main), 12px, 5px)
-
-  a:hover &
-    visibility: visible
-    opacity: 1
-    transform: none
-
-  h5
-    font-size: var(--smallFontSize)
-    font-family: var(--fontFamily)
-    color: var(--textInvert)
-    white-space: nowrap
-
-  p
-    white-space: nowrap
-    font-size: 12px
+    opacity: .75

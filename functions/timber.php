@@ -106,7 +106,7 @@ class MyTimber extends TimberSite {
    * Get the label of Social Media buttons in Header / Footer
    */
   function _filter_social_label( $context, $id, $default_label = false ) {
-    if( $context['has_text'] == 'no' ) { return; }
+    if( $context['has_label'] == 'no' ) { return; }
 
     $label = $context[ "{$id}_label" ] ?? $default_label;
     return $label;

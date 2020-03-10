@@ -32,7 +32,7 @@
     </div>
 
   {% else %}
-    <div class="header-row header-row--{{ row_data.row_padding }}" data-id="header-{{ row.id }}">
+    <div class="header-row header-row--{{ row_data.padding }}" data-id="header-{{ row.id }}">
       <h-grid class="header-columns header-columns--{{ row | h_get_columns_count }}">
       
       {% for column in row.placements if column.items %}

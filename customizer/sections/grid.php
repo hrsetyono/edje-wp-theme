@@ -5,28 +5,9 @@ $section = [
   'container' => [ 'priority' => 10 ],
   'options' => [
 
-    'siteWidth' => [
-      'label' => __( 'Site Width' ),
-      'type' => 'ct-slider',
-      'units' => [
-        'px' => [ 'min' => 960, 'max' => 1600 ],
-      ],
-      'css' => '--siteWidth',
-    ],
-
-    'blogWidth' => [
-      'label' => __( 'Blog Width' ),
-      'type' => 'ct-slider',
-      'units' => [
-        'px' => [ 'min' => 600, 'max' => 960 ],
-      ]
-    ],
-  
-    custy_rand_id() => [ 'label' => __( 'Grid' ), 'type' => 'ct-title' ],
-
     'gridGap' => [
       'label' => __( 'Grid Gap' ),
-      'desc' => __( 'Distance between columns of <code>h-grid</code>' ),
+      'desc' => __( 'Distance between columns' ),
       'type' => 'ct-slider',
       'responsive' => true,
       'units' => [
@@ -38,7 +19,7 @@ $section = [
 
     'gridRim' => [
       'label' => __( 'Grid Rim' ),
-      'desc' => __( 'Minimum distance between edge of screen to content' ),
+      'desc' => __( 'Minimum distance from window to content' ),
       'type' => 'ct-slider',
       'responsive' => true,
       'units' => [

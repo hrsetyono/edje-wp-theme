@@ -1,9 +1,18 @@
 {% set menu = menu | h_get_timber_menu %}
 
-<nav class="footer-nav" data-id="footer-menu">
+<ul class="footer-nav footer-nav--{{ style }} footer-nav--align-{{ alignment }}" data-id="footer-menu">
   {% for item in menu.items %}
-    <a href="{{ item.url }}">
-      {{ item.title }}
-    </a>
+    <li>
+      <a href="{{ item.url }}"> {{ item.title }} </a>
+
+      {% if style == 'include-children' %}
+      <div class="footer-nav-children">
+        {% for c in item.children %}
+          <a href="{{ c.url }}"> {{ c.title }} </a>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+    </li>
   {% endfor %}
-</nav>
+</ul>
