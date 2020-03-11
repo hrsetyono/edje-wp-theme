@@ -129,7 +129,7 @@ var myHeader = {
 
     // Search
     $( '[data-id="search"]' ).on( 'click', this.preventClose );
-    $( '[data-id="search"] [type="submit"]' ).on( 'click', this.onSearchSubmit );
+    $( '[data-id="search"] [data-toggle-search]' ).on( 'click', this.onToggleSearch );
 
     // Mobile
     $( '[data-close-offcanvas]' ).on( 'click', this.closeOffCanvas );
@@ -139,28 +139,31 @@ var myHeader = {
     $( '[data-mobile-dropdown-toggle]' ).on( 'click', this.toggleMobileDropdown );
   },
 
-  onSearchSubmit( e ) {
+  /**
+   * 
+   */
+  onToggleSearch( e ) {
     e.stopPropagation();
-    var $form = $(e.currentTarget).closest( '.header-search' );
+    var $form = $(e.currentTarget).closest( '.search-wrapper' );
+    $form.toggleClass( 'search-wrapper--active' );
 
-    // if form is expanding type OR mobile
-    if( $form.hasClass( 'header-search--expanding' ) || window.innerWidth <= 480 ) {
-      // if not active yet
-      if( !$form.hasClass( 'header-search--active' ) ) {        
-        e.preventDefault();
-        $form.addClass( 'header-search--active' );
-        
-        setTimeout( () => { $form.find( 'input' ).focus(); }, 100);
-      }
+    if( $form.hasClass( 'search-wrapper--active' ) ) {
+      setTimeout( () => { $form.find( 'input' ).focus(); }, 100);
     }
   },
 
+  /**
+   *  
+   */
   toggleOffcanvas( e ) {
     e.preventDefault();
     e.stopPropagation();
     $( 'body' ).toggleClass( 'has-active-offcanvas' );
   },
 
+  /**
+   *  
+   */
   toggleMobileDropdown( e ) {
     var $navItem = $( e.currentTarget ).closest( '.mobile-nav-item' );
     $navItem.toggleClass( 'mobile-nav-item--toggled' );
@@ -178,7 +181,7 @@ var myHeader = {
   },
 
   closeSearch( e ) {
-    $('.header-search--active').removeClass( 'header-search--active' );
+    $('.search-wrapper--active').removeClass( 'search-wrapper--active' );
   },
 
   preventClose( e ) {

@@ -11,24 +11,12 @@
   padding-top: var(--rowPadding)
   padding-bottom: var(--rowPadding)
 
-// padding
-.footer-row--none
-  --rowPadding: 0
-.footer-row--small
+[data-id="footer-top-row"]
   --rowPadding: 0.5rem
-.footer-row--medium
+[data-id="footer-middle-row"]
   --rowPadding: 1rem
-.footer-row--large
-  --rowPadding: 2rem
-
-
-// alignment
-.footer-row--left
-  text-align: left
-.footer-row--center
-  text-align: center
-.footer-row--right
-  text-align: right
+[data-id="footer-bottom-row"]
+  --rowPadding: 0.5rem
 
 
 ///// FOOTER COLUMNS
@@ -38,6 +26,7 @@
   grid-template-columns: 1fr
   grid-column-gap: var(--gridGap)
   grid-row-gap: var(--gridGap)
+  align-items: flex-start
 
 // responsive columns
 @media ($below-s)
@@ -50,8 +39,6 @@
 ///// WIDGETS /////
 
 .footer-widgets
-  background: var(--widgetBackground)
-
   h1, h2, h3, h4, h5, h6
     margin-bottom: 0.5rem
     font-size: var(--titleSize)
@@ -67,6 +54,11 @@
 
   a:hover
     color: var(--textColorHover)
+
+.footer-widgets--has-background
+  background: var(--widgetBackground)
+  padding: 1rem
+  border-radius: var(--gRadius)
 
 
 ///// FOOTER MENU /////
@@ -87,6 +79,7 @@
 
   a
     display: block
+    width: 100%
     padding: 0.25rem 0.5rem
     border-radius: var(--gRadius)
     font-size: var(--textSize)
@@ -96,29 +89,49 @@
     background-color: h-rgba(--textInvert, .2)
     color: var(--textColorHover)
     transform: translateY(-2px)
+
   a:active
     transform: none
     transition: none
 
 .footer-nav--align-center
   justify-content: center
+
 .footer-nav--align-right
   justify-content: flex-end
 
+
 .footer-nav li
+  display: flex
+  position: relative
+
   > a
     text-transform: uppercase
     letter-spacing: 0.025rem
     font-weight: var(--hFontWeight)
-  > a + a
-    margin-left: 0.5rem
 
+
+.footer-nav--only-parent
+  li
+    align-items: center
+
+  li + li
+    margin-left: 1rem
+
+  li + li::before
+    content: "•"
+    position: absolute
+    top: 50%
+    left: -0.75rem
+    transform: translateY(-50%)
+    color: h-rgba(--textInvert, .5)
   
 .footer-nav--include-children
   li
     flex: 1
-  li > a
-    text-decoration: underline
+    justify-content: flex-start
+    flex-direction: column
+
 
 .footer-nav-children
   --textColor: var(--childrenColor)
@@ -136,9 +149,9 @@
 ///// COPYRIGHT
 
 .footer-copyright
-  font-size: var(--textSize)
-  color: var(--textColor)
-  text-align: var(--textAlignment)
+  font-size: var(--smallFontSize)
+  color: var(--textInvert)
+  text-align: center
 
   a
     text-decoration: underline

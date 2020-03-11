@@ -81,9 +81,16 @@
   --buttonBg: var(--main)
   --buttonBgHover: var(--mainDark)
   --buttonColor: var(--textInvert)
-  --buttonColorHover: var(--textInvert)
+  --buttonColorHover: var(--buttonColor)
   --buttonBorder: 1px solid rgba(0,0,0,.2)
   --buttonFontSize: 18px
+
+  // INPUT
+  --inputBg: var(--textInvert)
+  --inputBgFocus: var(--inputBg)
+  --inputColor: var(--text)
+  --placeholderColor: var(--textDim)
+
 
 // RESPONSIVE
 @media ($below-m)
@@ -217,18 +224,21 @@ select
   width: 100%
   padding: 0.5rem
   border: 2px solid rgba(black, .1)
-  background-color: white
+  border-radius: var(--gRadius)
+  background-color: var(--inputBg)
 
   line-height: normal
+  color: var(--inputColor)
   transition: var(--gTransition)
-  border-radius: var(--gRadius)
   
   &:focus
+    background-color: var(--inputBgFocus)
     border-color: var(--main)
     box-shadow: 0 0 0 2px h-rgba(--main, .3)
 
 select
   border-width: 2px 2px 3px
+
 
 [type="radio"],
 [type="checkbox"]

@@ -1,5 +1,6 @@
 {% set widgets = fn( ['Timber', 'get_widgets'], widget ) %}
 
-<div class="footer-widgets" data-id="{{ id ? id : 'widget1' }}">
+<div class="footer-widgets {% if widgetBackground.default.color != 'CT_CSS_SKIP_RULE' %} footer-widgets--has-background {% endif %}"
+  data-id="{{ id ? id : 'widget1' }}">
   {{ widgets }}
 </div>

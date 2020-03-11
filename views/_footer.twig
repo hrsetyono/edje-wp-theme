@@ -4,7 +4,7 @@
   {% for row in footer.rows %}
     {% set row_data = footer.items[ row.id ] %}
 
-    <div class="footer-row footer-row--{{ row_data.padding }}"
+    <div class="footer-row"
       data-id="footer-{{ row.id }}"
       {{ row_data.visibility | h_get_visible_attr }}>
 

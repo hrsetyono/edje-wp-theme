@@ -22,17 +22,20 @@
   {% set row_data = items_data[ row.id ] %}
 
   {% if row.id == 'offcanvas' %}
-    <div class="offcanvas offcanvas--from-{{ row_data.reveal_from }} offcanvas--align-{{ row_data.items_alignment }}"  data-id="{{ row.id }}">
+    <aside class="offcanvas offcanvas--from-{{ row_data.reveal_from }} offcanvas--align-{{ row_data.items_alignment }}"
+      data-id="{{ row.id }}">
+
       <a href="#" data-close-offcanvas>
         {{ fn('custy_get_svg', row_data.close_button_style) }}
       </a>
       <div class="offcanvas-inner-wrapper">
         {{ _self.header_column( row.placements[0], items_data ) }}
       </div>
-    </div>
+
+    </aside>
 
   {% else %}
-    <div class="header-row header-row--{{ row_data.padding }}" data-id="header-{{ row.id }}">
+    <div class="header-row" data-id="header-{{ row.id }}">
       <h-grid class="header-columns header-columns--{{ row | h_get_columns_count }}">
       
       {% for column in row.placements if column.items %}

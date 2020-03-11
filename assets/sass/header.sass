@@ -18,12 +18,12 @@
     margin-left: 1rem
 
 // Row padding size
-.header-row--none
-  --rowPadding: 0
-.header-row--small
+[data-id="header-top-row"]
   --rowPadding: 0.25rem
-.header-row--large
-  --rowPadding: 1.25rem
+[data-id="header-middle-row"]
+  --rowPadding: 0.5rem
+[data-id="header-bottom-row"]
+  --rowPadding: 0.5rem
 
 // Columns
 .header-columns,
@@ -62,6 +62,9 @@
   z-index: 100
   top: 0
   bottom: 0
+
+  visibility: hidden
+  opacity: 0
   background: var(--offcanvasBackground)
   box-shadow: var(--shadow3)
 
@@ -71,6 +74,11 @@
   &.offcanvas--from-left
     left: 0
     transform: translateX(-100%)
+  &.offcanvas--from-above
+    top: 0
+    left: 0
+    right: 0
+    transform: translateY(-100%)
 
   &.offcanvas--align-right
     align-items: flex-end
@@ -83,10 +91,13 @@
 
 
 body.has-active-offcanvas
+  overflow-y: hidden
   cursor: pointer
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0)
 
   .offcanvas
+    visibility: visible
+    opacity: 1
     transform: none
     transition: var(--gTransition)
 
@@ -98,11 +109,17 @@ body.has-active-offcanvas
   max-height: 100vh
   padding-bottom: 3rem
 
+  -webkit-overflow-scrolling: touch
+
   > *
     padding: 1rem 2rem
 
   > *:first-child
     padding-top: 3rem
+
+  .offcanvas--from-above &
+    width: 100%
+    max-width: none
 
   //
   @media ($below-xs)
@@ -288,6 +305,10 @@ body.has-active-offcanvas
     border-radius: var(--gRadius)
 
   .nav-item:hover &
+    visibility: visible
+    opacity: 1
+
+  .nav-item:focus-within &
     visibility: visible
     opacity: 1
 
@@ -540,106 +561,133 @@ body.has-active-offcanvas
   justify-content: flex-end
 
 
-///// SEARCH HEADER
+///// SEARCH
 
-.header-search
-  display: flex
-  position: relative
+.search-wrapper
+  --searchFontSize: var(--smallFontSize)
 
-  input
-    position: absolute
-    visibility: hidden
-    opacity: 0
-    top: -0.25rem
-    right: -0.25rem
-    bottom: -0.25rem
-    width: 200px
+  --inputBg: var(--textInvert)
+  --inputBgFocus: var(--inputBg)
 
-    background-color: var(--searchBg)
-    border: 1px solid var(--submitBg)
-    border-radius: var(--gRadius)
-    padding-top: 0
-    padding-bottom: 0
-    padding-right: 3rem
-    outline: none
+  --buttonBg: var(--text)
+  --buttonBgHover: var(--buttonBg)
 
-    &:focus
-      background-color: var(--searchBgFocus)
-      box-shadow: var(--shadow1)
+  --buttonColor: var(--textInvert)
+  --buttonColorHover: var(--buttonColor)
+  --buttonFontSize: var(--searchFontSize)
 
-    [data-column="start"] &
-      right: auto
-      left: -0.25rem
-      padding-right: 0
-      padding-left: 3rem
-
-  // Make it full width
-  @media ($below-xs)
-    position: static
-
-    input
-      width: 100%
-      +absolute-fill
-      border-radius: 0
-
-
-.header-search--full
-  @media ($above-xs)    
-    input
-      visibility: visible
-      opacity: 1
-      position: static
-      padding: 0.5rem
-      padding-right: 3rem
-    button
-      position: absolute
-      top: 0.25rem
-      right: 0.25rem
-      bottom: 0.25rem
-      padding: 0.25rem 0.5rem
-
-
-.header-search--active
-  input
-    visibility: visible
-    opacity: 1
-
-
-.submit-search
-  --buttonBg: var(--submitBg)
-  --buttonBgHover: var(--submitBgHover)
-  --buttonColor: var(--submitColor)
-  --buttonColorHover: var(--submitColorHover)
-  position: relative
-  z-index: 10
-  padding: 0.5rem
-  font-size: 14px
-  transition: background-color .25s ease-in-out
-  
-  &:hover
-    transform: none
+  --iconColor: var(--textDim)
+  --triggerColor: var(--textInvert)
 
   svg
-    width: 1rem
-  path,
-  circle
-    fill: var(--buttonColor)
-
-  
-  .header-row--small &
-    padding-top: 0.25rem
-    padding-bottom: 0.25rem
+    width: 1em
 
   //
   @media ($below-xs)
-    .header-search--active &
-      position: absolute
-      top: 50%
-      right: 0.5rem
-      transform: translateY(-50%)
+    --inputBg: transparent
+    --inputColor: var(--textInvert)
+
+    --buttonBg: var(--textInvert)
+    --buttonColor: var(--rowBackgroundColor)
 
 
+// FORM
+.search-form
+  display: flex
+  background-color: var(--inputBg)
+  padding: 0.125em
+  border-radius: var(--gRadius)
+
+  font-size: var(--searchFontSize)
+  transition: var(--gTransition)
+
+  &:focus-within
+    outline: #5e9ed7 auto 5px // chrome outline
+    box-shadow: var(--shadow1)
+
+  > * + *
+    margin-left: 0.5em
+
+  @media ($below-xs)
+    +absolute-fill
+    z-index: 10
+    visibility: hidden
+    opacity: 0
+    min-height: 3em
+    
+    background-color: var(--rowBackgroundColor)
+    padding: 0.5em
+
+    .search-wrapper--active &
+      visibility: visible
+      opacity: 1
+
+
+// INPUT
+.search-input
+  width: 10em
+  border: 0
+  border-radius: var(--gRadius)
+  padding: 0
+  outline: none
+  box-shadow: none
+
+  &:focus
+    box-shadow: none
+
+  //
+  @media ($above-xs) and ($below-s)
+    width: 7em
+  //
+  @media ($below-xs)
+    flex: 1
+
+
+// ICON & TRIGGER
+.search-trigger,
+.search-icon
+  display: flex
+  align-items: center
+  padding: 0.25em 0.5em
+
+
+.search-trigger
+  cursor: pointer
+  background: transparent
+  border: 0
+
+  appearance: none
+  -webkit-appearance: none
+  transition: var(--gTransition)
+
+  &:hover
+    opacity: .75
+    transform: translateY(-2px)
+
+  path
+    fill: var(--triggerColor)
+
+  //
+  @media ($above-xs)
+    display: none
+
+
+.search-icon
+  line-height: 1
+  border-radius: var(--gRadius)
+  transition: var(--gTransition)
   
+  path
+    fill: var(--iconColor)
+
+
+// SUBMIT BUTTON
+.search-submit
+  transition: var(--gTransition)
+  display: flex
+  align-items: center
+  padding: 0.25em 0.5em
+
 
 ///// FREE TEXT
 
@@ -659,6 +707,10 @@ body.has-active-offcanvas
   cursor: pointer
   width: 40px // 10:7 ratio
   height: 28px
+  background: transparent
+  border: none
+  appearance: none
+  -webkit-appearance: none
 
   path,
   circle
