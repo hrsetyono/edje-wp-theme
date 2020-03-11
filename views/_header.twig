@@ -1,28 +1,26 @@
 <!-- Desktop Header -->
-<header class="site-header"  data-visible="desktop">
-  {% for row in header.desktop if row.placements | length > 0 %}
+{% for row in header.desktop if row.placements | length > 0 %}
 
-    {{ _self.header_row( row, header.items ) }}
+  {{ _self.header_row( row, header.items, 'desktop' ) }}
 
-  {% endfor %}
-</header>
+{% endfor %}
 
 <!-- Mobile Header -->
-<div class="site-header site-header--mobile"  data-visible="tablet mobile">
-  {% for row in header.mobile if row.placements | length > 0 %}
-    
-    {{ _self.header_row( row, header.items ) }}
+{% for row in header.mobile if row.placements | length > 0 %}
+  
+  {{ _self.header_row( row, header.items, 'tablet mobile' ) }}
 
-  {% endfor %}
-</div>
+{% endfor %}
 
+<!-- End Header -->
 
 {# Row #}
-{% macro header_row( row, items_data ) %}
+{% macro header_row( row, items_data, visibility ) %}
   {% set row_data = items_data[ row.id ] %}
 
   {% if row.id == 'offcanvas' %}
     <aside class="offcanvas offcanvas--from-{{ row_data.reveal_from }} offcanvas--align-{{ row_data.items_alignment }}"
+      data-visible="{{ visibility }}"
       data-id="{{ row.id }}">
 
       <a href="#" data-close-offcanvas>
@@ -35,7 +33,10 @@
     </aside>
 
   {% else %}
-    <div class="header-row" data-id="header-{{ row.id }}">
+    <div class="header-row {{ row_data.is_sticky == 'yes' ? 'header-row--is-sticky' : '' }}"
+      data-id="header-{{ row.id }}"
+      data-visible="{{ visibility }}">
+      
       <h-grid class="header-columns header-columns--{{ row | h_get_columns_count }}">
       
       {% for column in row.placements if column.items %}

@@ -127,6 +127,9 @@ var myHeader = {
   init() {
     $( document ).on( 'click', this.closeAll.bind( this ) );
 
+    // Sticky
+    this.stickyRow();
+
     // Search
     $( '[data-id="search"]' ).on( 'click', this.preventClose );
     $( '[data-id="search"] [data-toggle-search]' ).on( 'click', this.onToggleSearch );
@@ -137,6 +140,38 @@ var myHeader = {
     $( '[data-id="trigger"]' ).on( 'click', this.toggleOffcanvas );
 
     $( '[data-mobile-dropdown-toggle]' ).on( 'click', this.toggleMobileDropdown );
+  },
+
+  /**
+   *  
+   */
+  stickyRow() {
+    var target = '.header-row--is-sticky';
+    var classToToggle = 'header-row--stuck';
+
+    if( !( CSS.supports && CSS.supports( 'position', 'sticky' ) ) ) { return; }
+
+    var $elems = [].slice.call( document.querySelectorAll( target ) );
+
+    // Initial check if already sticky
+    $elems.forEach( _checkStickyState );
+
+    window.addEventListener( 'scroll', (e) => {
+      $elems.forEach( _checkStickyState );
+    } );
+
+    //
+    function _checkStickyState( $elem ) {
+      var currentOffset = $elem.getBoundingClientRect().top;
+      var stickyOffset = parseInt( getComputedStyle( $elem ).top.replace( 'px','' ) );
+      var isStuck = currentOffset <= stickyOffset;
+    
+      if( isStuck ) {
+        $elem.classList.add( classToToggle );
+      } else {
+        $elem.classList.remove( classToToggle );
+      }
+    }
   },
 
   /**

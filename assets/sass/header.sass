@@ -17,13 +17,45 @@
   [data-id] + [data-id]
     margin-left: 1rem
 
-// Row padding size
+
+// Specific row
 [data-id="header-top-row"]
   --rowPadding: 0.25rem
+  height: var(--topRowHeight)
+
 [data-id="header-middle-row"]
   --rowPadding: 0.5rem
+  height: var(--middleRowHeight)
+
 [data-id="header-bottom-row"]
   --rowPadding: 0.5rem
+  height: var(--bottomRowHeight)
+
+
+///// STICKY ROW
+
+.header-row--is-sticky
+  --top: 0
+
+  position: sticky
+  z-index: 100
+  top: var(--top)
+
+  // if top row is also stickied
+  .header-row--is-sticky[data-id="header-top-row"] + &
+    --top: var(--topRowHeight)
+
+  // if middle row is also stickied
+  .header-row--is-sticky[data-id="header-middle-row"] + &
+    --top: var(--middleRowHeight)
+
+  // if top and middle row is also stickied
+  .header-row--is-sticky[data-id="header-top-row"] + .header-row--is-sticky[data-id="header-middle-row"] + &
+    --top: calc( var(--topRowHeight) + var(--middleRowHeight) )
+
+.header-row--stuck
+  box-shadow: var(--shadow1)
+
 
 // Columns
 .header-columns,
