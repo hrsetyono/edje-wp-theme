@@ -5,6 +5,8 @@
 
 {% endfor %}
 
+<hr style="display: none"> {# to split between desktop and mobile so the sticky nav works #}
+
 <!-- Mobile Header -->
 {% for row in header.mobile if row.placements | length > 0 %}
   
