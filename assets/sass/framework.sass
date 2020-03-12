@@ -44,6 +44,7 @@
   // --hLineHeight    : 1.25
   // --hLetterSpacing : 0.05em
   // --hTextTransform  : initial
+  --hColor : var(--text)
 
   // --h1Size : 46px
   // --h2Size : 38px
@@ -51,7 +52,6 @@
   // --h4Size : 24px
   // --h5Size : 20px
   // --h6Size : var(--fontSize)
-  --hColor : var(--text)
 
   // PREFORMATTED -----
   --codeFontFamily : SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace
@@ -70,8 +70,9 @@
   // GRID -----
   // --siteWidth : #{ $size-large }
   // --blogWidth : 650px
-  // --gridGap   : 20px
-  // --gridRim   : 10px
+  --gridGap   : 20px
+  --gridRim   : 10px
+  --tileGap   : var(--gridGap)
 
   // OTHER -----
   // --gRadius: 4px
@@ -90,24 +91,31 @@
   --inputBgFocus: var(--inputBg)
   --inputColor: var(--text)
   --placeholderColor: var(--textDim)
+  
+  // FRAME
+  --frameSize: 10px
+  --frameColor: var(--text)
 
 
 // RESPONSIVE
 @media ($below-m)
-  // --h1Size : 40px
-  // --h2Size : 32px
-  // --h3Size : 26px
-  // --h4Size : 22px
-  // --h5Size : 18px
-  // --h6Size : var(--fontSize)
+  \:root
+    // --h1Size : 40px
+    // --h2Size : 32px
+    // --h3Size : 26px
+    // --h4Size : 22px
+    // --h5Size : 18px
+    // --h6Size : var(--fontSize)
 
 @media ($below-s)
-  // --h1Size : 32px
-  // --h2Size : 26px
-  // --h3Size : 22px
-  // --h4Size : 20px
-  // --h5Size : 18px
-  // --h6Size : var(--fontSize)
+  \:root
+    // --h1Size : 32px
+    // --h2Size : 26px
+    // --h3Size : 22px
+    // --h4Size : 20px
+    // --h5Size : 18px
+    // --h6Size : var(--fontSize)
+    --frameSize: 5px
 
 
   

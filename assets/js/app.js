@@ -18,8 +18,16 @@ function onLoad() {
 
 var myApp = {
   init() {
+    this.backToTop();
+
     this.gallerySlider();
     this.galleryLightbox();
+  },
+
+  backToTop() {
+    $( '[data-back-to-top]' ).on( 'click', ( e ) => {
+      $( '#main-container' ).smoothScroll();
+    } );
   },
 
   /**
@@ -226,4 +234,18 @@ var myHeader = {
 
 // Browser compatibility, leave this untouched
 if('registerElement' in document) { document.createElement( 'h-grid' ); document.createElement( 'h-tile' ); }
+
+// Smooth scroll jQuery
+$.fn.extend({
+  smoothScroll: function( offset ) {
+    var $target = $(this);
+    offset = offset || 0;
+
+    $('html, body').animate({
+      scrollTop: $target.offset().top + offset
+    }, 500 );
+  }
+});
+
 })( jQuery );
+

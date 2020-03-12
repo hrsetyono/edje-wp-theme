@@ -1,20 +1,24 @@
-<div class="header-logo" data-id="logo">
+<div class="logo" data-id="logo">
 
   <a href="{{ fn('home_url') }}">
 
     {% if logo_type == 'text' %}
-      <h3>{{ text }}</h3>
+      <h3 class="logo-text">{{ text }}</h3>
 
     {% elseif logo_type == 'image' %}
-      <picture>
+      <picture class="logo-image">
+        
         {% if has_mobile_image == 'yes' %}
           <source srcset="{{ mobile_image.url }}" media="(max-width:767px)">
         {% endif %}
+
         <img src="{{ image.url }}" alt="{{ text }} Logo">
       </picture>
 
     {% elseif logo_type == 'svg' %}
-      {{ svg_code }}
+      <figure class="logo-svg">
+        {{ svg_code }}
+      </figure>
 
     {% endif %}
   </a>

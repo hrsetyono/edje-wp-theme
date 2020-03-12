@@ -10,7 +10,7 @@
   {{ wp_head }}
 </head>
 
-<body class="{{ body_class }}">
+<body class="{{ body_class }} {{ mods.has_frame == 'yes' ? 'has-frame' : '' }}">
 <div id="main-container">
 
 {% include '_header.twig' %}
@@ -21,31 +21,16 @@
 
 </div>
 
-{#
-<footer class="main-footer">
+{# Back to Top #}
+{% if mods.has_back_to_top == 'yes' %}
+  <a class="back-to-top back-to-top--align-{{ mods.back_to_top_alignment }}"
+    data-back-to-top
+    {{ mods.back_to_top_visibility | h_get_visible_attr }}>
 
-  <h-grid><div class="footer-credit / large-12">
+    {{ fn( 'custy_get_svg', mods.back_to_top_style ) }}
 
-    <div class="copyright">
-      <strong>Copyright</strong>  &copy; {{ "now" | date("Y") }} {{ site.name }}
-    </div>
-
-    <div class="partners">
-      <strong>Created by:</strong>
-
-      <a href="https://pixelstudio.id" target="_blank">
-        <img src="https://cdn.pixelstudio.id/pixelstudio/partner-logo.png">
-
-        <div class="partner-caption">
-          <h5>Pixel Studio</h5>
-          <p>Web &amp; App Design</p>
-        </div>
-      </a>
-    </div>
-
-  </div></h-grid>
-</footer>
-#}
+  </a>
+{% endif %}
 
 {{ wp_footer }}
 

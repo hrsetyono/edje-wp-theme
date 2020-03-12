@@ -1,63 +1,24 @@
 <?php
 /**
- * Default values for Core Settings
+ * Default values for Header Settings
+ * Learn more: https://github.com/hrsetyono/wp-custy/wiki/Default-Value-%E2%80%93-Header
  */
 add_filter( 'custy_default_values', function( $defaults ) {
 
+  // $defaults['header']['button'] = wp_parse_args( [
+  //   'style' => 'solid',
+  // ], $defaults['header']['button'] );
 
-  // HEADER - Add new header in dropdown
-  $defaults['header_placements']['sections'][] = [
-    'id' => 'sub',
-    'label' => 'Sub Header',
-    'mode' => 'placements',
-    'items' => [
-      [ 'id' => 'menu', 'values' => $defaults['header']['menu'] ],
-      [ 'id' => 'logo', 'values' => $defaults['header']['logo'] ],
-      [ 'id' => 'mobile-menu', 'values' => $defaults['header']['mobile-menu'] ],
-      [ 'id' => 'trigger', 'values' => $defaults['header']['trigger'] ],
 
-      [ 'id' => 'top-row', 'values' => $defaults['header']['top-row'] ],
-      [ 'id' => 'middle-row', 'values' => $defaults['header']['middle-row'] ],
-      [ 'id' => 'bottom-row', 'values' => $defaults['header']['bottom-row'] ],
-      [ 'id' => 'offcanvas', 'values' => $defaults['header']['offcanvas'] ],
+  /// CUSTOM ITEM ///
+  $defaults['header']['free-text'] = [
+    'content' => 'Sample Text',
+    'textColor' => [
+      'default' => [ 'color' => 'var(--text)' ],
+      'link' => [ 'color' => 'var(--main)' ],
     ],
-    'desktop' => [
-      [ 'id' => 'top-row', 'placements' => [
-        [ 'id' => 'start', 'items' => [] ],
-        [ 'id' => 'middle', 'items' => [] ],
-        [ 'id' => 'end', 'items' => [] ]
-      ] ],
-      [ 'id' => 'middle-row', 'placements' => [
-        [ 'id' => 'start', 'items' => [ 'logo' ] ],
-        [ 'id' => 'middle', 'items' => [] ],
-        [ 'id' => 'end', 'items' => [ 'menu' ] ]
-      ] ],
-      [ 'id' => 'bottom-row', 'placements' => [
-        [ 'id' => 'start', 'items' => [] ],
-        [ 'id' => 'middle', 'items' => [] ],
-        [ 'id' => 'end', 'items' => [] ]
-      ] ],
-    ],
-    'mobile' => [
-      [ 'id' => 'top-row', 'placements' => [
-        [ 'id' => 'start', 'items' => [] ],
-        [ 'id' => 'middle', 'items' => [] ],
-        [ 'id' => 'end', 'items' => [] ],
-      ] ],
-      [ 'id' => 'middle-row', 'placements' => [
-        [ 'id' => 'start', 'items' => [ 'logo' ] ],
-        [ 'id' => 'middle', 'items' => [] ],
-        [ 'id' => 'end', 'items' => [ 'trigger' ] ],
-      ] ],
-      [ 'id' => 'bottom-row', 'placements' => [
-        [ 'id' => 'start', 'items' => [] ],
-        [ 'id' => 'middle', 'items' => [] ],
-        [ 'id' => 'end', 'items' => [] ],
-      ] ],
-      [ 'id' => 'offcanvas', 'placements' => [
-        [ 'id' => 'start', 'items' => [ 'mobile-menu' ] ],
-      ] ],
-    ],
+    'textSize' => 'var(--smallFontSize)',
+    'textMaxWidth' => '100%',
   ];
 
   return $defaults;

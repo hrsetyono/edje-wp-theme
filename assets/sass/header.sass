@@ -41,17 +41,29 @@
   z-index: 100
   top: var(--top)
 
+  body.has-frame &
+    --top: var(--frameSize)
+
   // if top row is also stickied
   .header-row--is-sticky[data-id="header-top-row"] + &
     --top: var(--topRowHeight)
+
+    body.has-frame &
+      --top: calc(var(--topRowHeight) + var(--frameSize))
 
   // if middle row is also stickied
   .header-row--is-sticky[data-id="header-middle-row"] + &
     --top: var(--middleRowHeight)
 
+    body.has-frame &
+      --top: calc(var(--middleRowHeight) + var(--frameSize))
+
   // if top and middle row is also stickied
   .header-row--is-sticky[data-id="header-top-row"] + .header-row--is-sticky[data-id="header-middle-row"] + &
     --top: calc( var(--topRowHeight) + var(--middleRowHeight) )
+
+    body.has-frame &
+      --top: calc(var(--topRowHeight) + var(--middleRowHeight) + var(--frameSize))
 
 .header-row--stuck
   box-shadow: var(--shadow1)
@@ -182,23 +194,52 @@ body.has-active-offcanvas
 
 ///// LOGO
 
-.header-logo
-  h3, picture, svg
+.logo
+  --logoColor: var(--text)
+  --logoColorHover: var(--main)
+
+  --logoTextSize: var(--mediumFontSize)
+  --logoMaxHeight: 40px
+  --logoMaxWidth: 70px
+
+  --taglineSize: var(--smallFontSize)
+  --taglineColor: var(--textDim)
+  
+  display: flex
+  flex-direction: column
+ 
+  a
     display: inline-block
-    transition: var(--gTransition)
+    line-height: 1
 
-  // logo text
-  h3
-    text-transform: uppercase
-    letter-spacing: -0.5px
-    font-size: var(--textSize)
-    color: var(--logoColor)
+  a:hover
+    transform: translateY(-2px)
 
-  // logo image
+  a:active
+    transform: none
+    transition: none
+
+
+.logo-text
+  padding: 0.25rem 0
+  text-transform: uppercase
+  letter-spacing: -0.5px
+  font-size: var(--logoTextSize)
+  color: var(--logoColor)
+
+  a:hover &
+    color: var(--logoColorHover)
+
+
+.logo-image
   img
     max-height: var(--logoMaxHeight)
+  
+  a:hover &
+    opacity: .8
 
-  // logo svg
+
+.logo-svg
   svg
     width: var(--logoMaxWidth)
     height: var(--logoMaxHeight)
@@ -208,20 +249,11 @@ body.has-active-offcanvas
   circle
     fill: var(--logoColor)
 
-.header-logo a
-  display: inline-block
-  line-height: 1
-
-  &:hover
-    h3,
-      color: var(--logoColorHover)
-    path,
-    circle
+    a:hover &
       fill: var(--logoColorHover)
-    picture
-      opacity: .8
 
 
+// Tagline
 .logo-tagline
   font-size: var(--taglineSize)
   color: var(--taglineColor)
