@@ -1,0 +1,159 @@
+@import "settings"
+  
+.site-footer
+
+
+
+///// FOOTER ROWS
+
+.footer-row
+  background: var(--rowBackground)
+  padding-top: var(--rowPadding)
+  padding-bottom: var(--rowPadding)
+
+[data-id="footer-top-row"]
+  --rowPadding: 0.5rem
+[data-id="footer-middle-row"]
+  --rowPadding: 1rem
+[data-id="footer-bottom-row"]
+  --rowPadding: 0.5rem
+
+
+///// FOOTER COLUMNS
+
+.footer-columns
+  display: grid
+  grid-template-columns: 1fr
+  grid-column-gap: var(--gridGap)
+  grid-row-gap: var(--gridGap)
+  align-items: flex-start
+
+// responsive columns
+@media ($below-s)
+  .footer-columns--halved
+    grid-template-columns: 1fr 1fr !important
+  .footer-columns--stacked
+    grid-template-columns: 1fr !important
+
+
+///// WIDGETS /////
+
+.footer-widgets
+  h1, h2, h3, h4, h5, h6
+    margin-bottom: 0.5rem
+    font-size: var(--titleSize)
+    color: var(--titleColor)
+
+  > li
+    list-style-type: none
+
+  p, ul, ol
+    margin-bottom: 0.5rem
+    font-size: var(--textSize)
+    color: var(--textColor)
+
+  a:hover
+    color: var(--textColorHover)
+
+.footer-widgets--has-background
+  background: var(--widgetBackground)
+  padding: 1rem
+  border-radius: var(--gRadius)
+
+
+///// FOOTER MENU /////
+
+.footer-nav
+  --textSize: var(--fontSize)
+  --textColor: var(--mainLight)
+  --textColorHover: var(--textInvert)
+    
+  --childrenSize: var(--smallFontSize)
+  --childrenColor: var(--textInvert)
+  --childrenColorHover: var(--textInvert)
+
+  display: flex
+  flex-wrap: wrap
+  margin: 0 -0.5rem
+  list-style-type: none
+
+  a
+    display: block
+    width: 100%
+    padding: 0.25rem 0.5rem
+    border-radius: var(--gRadius)
+    font-size: var(--textSize)
+    color: var(--textColor)
+    
+  a:hover
+    background-color: h-rgba(--textInvert, .2)
+    color: var(--textColorHover)
+    transform: translateY(-2px)
+
+  a:active
+    transform: none
+    transition: none
+
+.footer-nav--align-center
+  justify-content: center
+
+.footer-nav--align-right
+  justify-content: flex-end
+
+
+.footer-nav li
+  display: flex
+  position: relative
+
+  > a
+    text-transform: uppercase
+    letter-spacing: 0.025rem
+    font-weight: var(--hFontWeight)
+
+
+.footer-nav--only-parent
+  li
+    align-items: center
+
+  li + li
+    margin-left: 1rem
+
+  li + li::before
+    content: "•"
+    position: absolute
+    top: 50%
+    left: -0.75rem
+    transform: translateY(-50%)
+    color: h-rgba(--textInvert, .5)
+  
+.footer-nav--include-children
+  li
+    flex: 1
+    justify-content: flex-start
+    flex-direction: column
+
+
+.footer-nav-children
+  --textColor: var(--childrenColor)
+  --textColorHover: var(--childrenColorHover)
+  --textSize: var(--childrenSize)
+
+
+///// FOOTER SOCIAL
+
+.site-footer .social-link
+  --iconSize: 1.375rem
+  --iconPadding: 0.5rem
+
+
+///// COPYRIGHT
+
+.footer-copyright
+  font-size: var(--smallFontSize)
+  color: var(--textInvert)
+  text-align: center
+
+  a
+    text-decoration: underline
+  a:hover
+    opacity: .75

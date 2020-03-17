@@ -1,0 +1,163 @@
+// -------------
+// Media Query
+// -------------
+
+// Media query for below or equal the size
+@function below( $size-px ) {
+  @return "max-width: #{$size-px}";
+}
+
+// Media query for above the size
+@function above( $size-px ) {
+  @return "min-width: #{$size-px}";
+}
+
+// -----------
+// ASSET URL
+// -----------
+
+@function font-url( $file ) {
+  @return url( $font-url + $file);
+}
+
+@function image-url( $file ) {
+  @return url( $image-url + $file);
+}
+
+
+// -------
+// COLOR
+// -------
+
+
+// Add transparency to CSS Variable, but the RGB variable must exist
+// For example --main and --mainRGB
+@function h-rgba( $name, $alpha: 1 ) {
+  @return rgba( var(#{ $name }RGB), $alpha );
+}
+
+// Darken a color by percentage
+// @function h-darken( $name, $percentage, $alpha: 1 ) {
+//   @return hsla( var(#{ $name }HS), calc( var(#{ $name }L) - $percentage ), $alpha );
+// }
+
+// // Lighten a color by percentage
+// @function h-lighten( $name, $percentage, $alpha: 1 ) {
+//   @return hsla( var(#{ $name }HS), calc( var(#{ $name }L) + $percentage ), $alpha );
+// }
+
+
+
+// Get the hex value from $h-colors
+@function _get-hcolor-hex-value( $name ) {
+  $key: _str-replace( $name, '--', '' );
+  $color: map-get( $h-colors, $key );
+
+  $count: 0;
+  // if the color is var(), repeat until it found a Hex value. Max 2 times
+  @while $count <= 2 AND str-slice( quote($color), 1,3 ) == 'var' {
+    $var_name: _str-replace( quote($color), 'var(--', '' );
+    $var_name: _str-replace( $var_name, ')', '' );
+    $color: map-get( $h-colors, $var_name );
+
+    $count: $count + 1;
+  }
+  
+  @return $color;
+}
+
+
+
+// -------------
+// EM CONVERTER
+// -------------
+
+// Convert PX value to EM
+//
+// Usage:
+//   font-size: em( 20px );
+//   padding: em( 8px 16px 12px );
+// Result:
+//   font-size: 1.25em;
+//   padding: em( 0.5em 1em 0.75em );
+
+@function em($values, $base: $font-size) {
+  // if only contain single number, convert it directly
+  @if type-of($values) == number {
+    @return _convertToEm($values, $base);
+  }
+
+  // if contains multiple values, loop through it
+  $emValues   : ();
+  @each $val in $values {
+    $emValues: append($emValues, _convertToEm($val, $base) );
+  }
+  @return join((), $emValues, space );
+}
+
+// Strips unit and return plain number
+@function _stripUnit($num) {
+  @return $num / ($num * 0 + 1);
+}
+
+// Convert the number to EM
+@function _convertToEm($value, $base: $font-size) {
+  // if not number, return it as is
+  @if type-of($value) != number { @return $value; }
+
+  $value: _stripUnit($value) / _stripUnit($base) * 1em;
+  // turn 0em into 0
+  @if ($value == 0em) {
+    $value: 0;
+  }
+  @return $value;
+}
+
+
+
+// -----------
+// SVG ENCODE
+// -----------
+
+// Encode SVG data to the format that's compatible with CSS
+//
+// Usage:
+//   background-image: svg-encode('<svg xmlns="http://www.w3.org/2000/svg"> ... </svg>');
+// Result:
+//   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E% ... %3C/svg%3E");
+
+@function svg-encode( $svg ) {
+  $encoded: '';
+  $slice: 2000;
+  $index: 0;
+  $loops: ceil(str-length($svg) / $slice);
+
+  @for $i from 1 through $loops {
+    $chunk: str-slice($svg, $index, $index + $slice - 1);
+    $chunk: _str-replace($chunk, '"', "'");
+    $chunk: _str-replace($chunk, '<', '%3C');
+    $chunk: _str-replace($chunk, '>', '%3E');
+    $chunk: _str-replace($chunk, '&', '%26');
+    $chunk: _str-replace($chunk, '#', '%23');
+    $encoded: #{$encoded}#{$chunk};
+    $index: $index + $slice;
+  }
+
+  @return url("data:image/svg+xml;charset=utf8,#{$encoded}");
+}
+
+// alias
+@function svg( $svg_raw ) {
+  @return svg-encode( $svg_raw );
+}
+
+/// Replace `$search` with `$replace` in `$string`
+@function _str-replace( $string, $search, $replace: '' ) {
+  $index: str-index($string, $search);
+
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace + _str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+
+  @return $string;
+}

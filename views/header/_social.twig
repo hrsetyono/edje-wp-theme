@@ -1,0 +1,22 @@
+<div
+  class="socials socials--{{ shape_style }} socials--color-{{ color_style }} socials--align-{{ alignment }}"
+  data-id="{{ id ? id : 'social' }}">
+
+  {% for link in links if link.enabled %}
+
+    {% set item = fn( 'custy_get_social_list', link.id ) %}
+    {% set label = _context | h_get_social_label( link.id, item.label ) %}
+
+    <a href="{{ _context[link.id] }}"
+      class="social-link social-link--{{ link.id }} {% if label %} social-link--has-text {% endif %}"
+      style="{% if color_style == 'official' %} --officialColor: {{ item.color }} {% endif %}"
+      title="{{ item.label }}">
+      
+      {{ item.svg }}
+      
+      {% if label %}
+        <span {{ label_visibility | h_get_visible_attr }}>{{ label }}</span>
+      {% endif %}
+    </a>
+  {% endfor %}
+</div>

@@ -16,7 +16,9 @@ function my_public_assets() {
 
   // Stylesheet
   wp_enqueue_style( 'my-framework', $css_dir . '/framework.css', [], ASSETS_VERSION );
+  wp_enqueue_style( 'my-header', $css_dir . '/header.css', [], ASSETS_VERSION );
   wp_enqueue_style( 'my-app', $css_dir . '/app.css', [], ASSETS_VERSION );
+  wp_enqueue_style( 'my-footer', $css_dir . '/footer.css', [], ASSETS_VERSION );
   wp_enqueue_style( 'dashicons', get_stylesheet_uri(), 'dashicons' ); // WP native icons
   
   // wp_enqueue_script( 'h-lightbox' );

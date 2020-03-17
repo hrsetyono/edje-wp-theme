@@ -1,41 +1,48 @@
 ///// PARAGRAPH
 
 p.has-background
-  +h( p1 brad )
+  padding: 1rem
+  border-radius: var(--gRadius)
 
 .has-drop-cap:first-letter
-  +h( float-left ff-header fw700 mr0_25 )
+  float: left
+  margin-right: 0.25rem
+  font-family: var(--hFontFamily)
+  font-weight: 700
   font-size: 3.5rem
   line-height: 3.5rem
 
 .has-small-font-size
-  +h( fs-s )
+  font-size: var(--smallFontSize)
 .has-medium-font-size
-  +h( fs-m )
+  font-size: var(--mediumFontSize)
 .has-large-font-size
-  font-size: 2rem
-  line-height: 1
+  font-size: var(--largeFontSize)
+  line-height: var(--hLineHeight)
 .has-huge-font-size
-  font-size: 2.5rem
-  line-height: 1
+  font-size: var(--hugeFontSize)
+  line-height: var(--hLineHeight)
 
 
 ///// IMAGE
 
 .wp-block-image
-  +h( ta-center )
+  text-align: center
 
   .alignleft,
   .alignright
-    +h( maxw50p mb1_5 )
+    max-width: 50%
+    margin-bottom: 1.5rem
   .alignleft
-    +h( float-left mr1_5 )
+    float: left
+    margin-right: 1.5rem
   .alignright
-    +h( float-right ml1_5 )
+    float: right
+    margin-left: 1.5rem
 
   &.alignfull
     img
-      +h( brad0 )
+      border-radius: 0
 
   figcaption
     @extend %figcaption
@@ -43,13 +50,16 @@ p.has-background
 // hover effect
 .wp-block-image > a,
 .wp-block-gallery figure > a
-  +h( d-block ov-hidden brad )
+  display: block
+  overflow: hidden
+  border-radius: var(--gRadius)
 
   img
-    +h( transition )
+    transition: var(--gTransition)
 
   &:hover img
-    +h( backface-hidden o80 )
+    opacity: .8
+    backface-visibility: hidden
     transform: scale(1.1)
 
 
@@ -57,40 +67,64 @@ p.has-background
 
 .wp-block-gallery 
   figure
-    +h( relative d-flex fd-column ai-end jc-start h100p mb0  brad )
+    position: relative
+    display: flex
+    flex-direction: column
+    align-items: flex-end
+    justify-content: flex-start
+
+    height: 100%
+    margin-bottom: 0
+    border-radius: var(--gRadius)
   a
-    +h( h100p )
+    height: 100%
   
   figcaption
     @extend %figcaption
-    +h( bb0 ta-center )
+    border-bottom: none
+    text-align: center
 
 
 ul.blocks-gallery-grid
-  +h( d-flex fw-wrap pl0 list-none )
-  max-width: calc(#{ $content-width } + 1rem)
+  display: flex
+  flex-wrap: wrap
+  padding-left: 0
+  list-style-type: none
+  max-width: calc(var(--siteWidth) + 1rem)
 
   .alignwide &
-    max-width: calc(#{ $grid-max-width } + 1rem)
+    max-width: calc(var(--siteWidth) + 1rem)
 
 
 .wp-block-gallery:not(.is-cropped)
   figcaption
-    +h( bb0 mt-auto )
+    border-bottom: 0
+    margin-top: auto
 
 .wp-block-gallery.is-cropped
   img
-    +h( flex1 h100p w100p )
+    flex: 1
+    height: 100%
+    width: 100%
     object-fit: cover
   figcaption
-    +h( absolute bottom0 w100p p0_5  fs-s c-white )
-    background-image: linear-gradient( 0deg,rgba(0,0,0,.7),rgba(0,0,0,.5) 50%,transparent)
+    position: absolute
+    bottom: 0
+    width: 100%
+    padding: 0.5rem
+    background-image: linear-gradient( 0deg, rgba(black,.7), rgba(black,.5) 50%,transparent)
+
+    font-size: var(--smallFontSize)
+    color: white
+
   figcaption a:hover
-    +h( c-inherit o60 )
+    opacity: .6
+    color: inherit
   
 .blocks-gallery-item
-  +h( ph0_5 pb1 )
   flex-grow: 1
+  padding: 0 0.5rem 1rem
+  
 
   @media ($above-s)
     .columns-2 &
@@ -125,105 +159,144 @@ ul.blocks-gallery-grid
   .blocks-gallery-item
     flex-grow: initial
   &.is-cropped .hSlider-slide
-    +h( ai-stretch )
+    align-items: stretch
 
 
 ///// COVER
 
 .wp-block-cover
-  +h( d-flex ai-center jc-center  bgs-cover bgp-cc bg-black )
-  +h( minh400px )
-  --bgColor: var(--black)
+  --bgColor: black
+  display: flex
+  align-items: center
+  justify-content: center
+
+  background-size: cover
+  background-position: center center
   background-color: var(--bgColor)
+  min-height: 400px
 
   &.--for-featured-image
-    +h( ai-end )
+    align-items: flex-end
 
     .post-meta
-      +h( pv0_5 c-white_60 )
+      padding-top: 0.5rem
+      padding-bottom: 0.5rem
       border-top: 1px solid
       border-bottom: 2px solid
+      color: rgba(white, .6)
 
     .post-meta + p
-      +h( mt1_5 )
+      margin-top: 1.5rem
 
   &.--for-post-tease
-    +h( ov-hidden ai-end ph2 pb2 brad )
-    max-width: calc(#{ $content-width } + 4rem )
+    overflow: hidden
+    align-items: flex-end
+    padding: 0 2rem 2rem
+    border-radius: var(--gRadius)
+    max-width: calc(var(--siteWidth) + 4rem )
 
     a:hover h1
-      +h( td-u )
+      text-decoration: underline
 
     .post-meta
-      +h( c-white_60 )
+      color: rgba(white, .6)
 
 
 .wp-block-cover__inner-container
-  +h( relative z2 c-white )
-  width: $content-width
+  position: relative
+  z-index: 2
+  width: var(--siteWidth)
+  color: white
 
-  @media (below($grid-max-width))
-    padding-right: $grid-rim
-    padding-left: $grid-rim
+  @media ($below-l)
+    padding-right: var(--gridRim)
+    padding-left: var(--gridRim)
 
 .has-parallax
   background-attachment: fixed
 
 .has-background-dim
-  +h( relative )
+  position: relative
 
   &::before
     content: ""
-    +h( absolute-fill z1 o50 bg-inherit )
+    +absolute-fill
+    z-index: 1
+    opacity: .5
+    background-color: inherit
 
 .has-background-dim-10::before
-  +h( o10 )
+  opacity: .1
 .has-background-dim-20::before
-  +h( o20 )
+  opacity: .2
 .has-background-dim-30::before
-  +h( o30 )
+  opacity: .3
 .has-background-dim-40::before
-  +h( o40 )
+  opacity: .4
 .has-background-dim-60::before
-  +h( o60 )
+  opacity: .6
 .has-background-dim-70::before
-  +h( o70 )
+  opacity: .7
 .has-background-dim-80::before
-  +h( o80 )
+  opacity: .8
 .has-background-dim-90::before
-  +h( o90 )
+  opacity: .9
 .has-background-dim-100::before
-  +h( o100 )
+  opacity: 1
 
 
 ///// QUOTE
 
 .wp-block-quote
-  +h( relative ph2 pv0_5 fs-m )
+  position: relative
+  padding: 0.5rem 2rem
+  font-size: var(--mediumFontSize)
   border-left: 3px solid var(--text)
 
   > * + *
-    +h( mt1 )
+    margin-top: 1rem
 
   cite
-    +h( d-block fs-s c-passive )
+    display: block
+    font-size: var(--smallFontSize)
+    color: var(--textDim)
 
   &::after
     content: "\f122"
+    display: flex
+    align-items: center
+    justify-content: center
+
+    position: absolute
+    left: 0
+    top: 0
+    background-color: var(--siteBackgroundColor)
+    width: 2rem
+    height: 2rem
+    color: var(--text)
     font-family: "dashicons"
-    +h( d-flex ai-center jc-center absolute left0 top0 )
-    +h( bg-body w2 h2  c-text brad-circle )
+    border-radius: var(--gRadius)
     transform: translateX(-50%)
 
   
   &.is-style-large
-    +h( pv1 mv2_5 fs-h4 ta-center )
+    padding-top: 1rem
+    padding-bottom: 1rem
+    margin-top: 2.5rem
+    margin-bottom: 2.5rem
     border-left: none
     border-top: 3px solid var(--text)
     border-bottom: 3px solid var(--text)
 
+    font-size: var(--h4Size)
+    text-align: center
+
     &::after
-      +h( left0 right0 mh-auto w3 )
+      left: 0
+      right: 0
+      margin-right: auto
+      margin-left: auto
+      width: 3rem
       transform: translateY(-50%)
 
 
@@ -232,29 +305,38 @@ ul.blocks-gallery-grid
     border-right: 3px solid var(--text)
 
     &::after
-      +h( left-auto right0 )
+      left: auto
+      right: 0
       transform: translateX(50%)
 
 
   &.has-text-align-center
-    +h( pv0 )
+    padding-top: 0
+    padding-bottom: 0
     border-left: none
 
     &::before
       content: ""
-      +h( d-block mh-auto mb2 h3px w200px bg-text )
+      display: block
+      margin: 0 auto 2rem
+      height: 3px
+      width: 200px
+      background-color: var(--text)
     &::after
-      +h( left0 right0 mh-auto )
+      left: 0
+      right: 0
+      margin-right: auto
+      margin-left: auto
       transform: translateY(-50%)
   
 
 ///// AUDIO
 
 .wp-block-audio
-  +h( ta-center )
+  text-align: center
 
   audio
-    +h( w100p )
+    width: 100%
   figcaption
     @extend %figcaption
 
@@ -262,26 +344,33 @@ ul.blocks-gallery-grid
 ///// FILE
 
 .wp-block-file
-  +h( d-flex ai-center jc-center )
-  +h( p1_25 bg-gray-light b1-solid bc-black_10  brad )
+  display: flex
+  align-items: center
+  justify-content: center
+  padding: 1.25rem
+  background-color: rgba(black, .05)
+  border: 1px solid rgba(black, .2)
+  border-radius: var(--gRadius)
 
   &.alignleft
-    +h( jc-start float-left )
+    justify-content: flex-start
+    float: left
 
   &.alignright
-    +h( jc-end )
+    justify-content: flex-end
 
 .wp-block-file__button
-  +h( ml1 )
+  margin-left: 1rem
 
 
 ///// VIDEO
 
 .wp-block-video
-  +h( w100p ta-center )
+  width: 100%
+  text-align: center
 
   video
-    +h( w100p )
+    width: 100%
 
   figcaption
     @extend %figcaption

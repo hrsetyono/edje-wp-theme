@@ -6,6 +6,7 @@ window.addEventListener( 'load', onLoad );
 function onReady() {
   myApp.init();
   myNav.init();
+  myHeader.init();
 }
 
 function onLoad() {
@@ -17,8 +18,16 @@ function onLoad() {
 
 var myApp = {
   init() {
+    this.backToTop();
+
     this.gallerySlider();
     this.galleryLightbox();
+  },
+
+  backToTop() {
+    $( '[data-back-to-top]' ).on( 'click', ( e ) => {
+      $( '#main-container' ).smoothScroll();
+    } );
   },
 
   /**
@@ -119,6 +128,124 @@ var myNav = {
   }
 };
 
+
+///// HEADER
+
+var myHeader = {
+  init() {
+    $( document ).on( 'click', this.closeAll.bind( this ) );
+
+    // Sticky
+    this.stickyRow();
+
+    // Search
+    $( '[data-id="search"]' ).on( 'click', this.preventClose );
+    $( '[data-id="search"] [data-toggle-search]' ).on( 'click', this.onToggleSearch );
+
+    // Mobile
+    $( '[data-close-offcanvas]' ).on( 'click', this.closeOffCanvas );
+    $( '[data-id="offcanvas"]' ).on( 'click', this.preventClose );
+    $( '[data-id="trigger"]' ).on( 'click', this.toggleOffcanvas );
+
+    $( '[data-mobile-dropdown-toggle]' ).on( 'click', this.toggleMobileDropdown );
+  },
+
+  /**
+   *  
+   */
+  stickyRow() {
+    var target = '.header-row--is-sticky';
+    var classToToggle = 'header-row--stuck';
+
+    if( !( CSS.supports && CSS.supports( 'position', 'sticky' ) ) ) { return; }
+
+    var $elems = [].slice.call( document.querySelectorAll( target ) );
+
+    // Initial check if already sticky
+    $elems.forEach( _checkStickyState );
+
+    window.addEventListener( 'scroll', (e) => {
+      $elems.forEach( _checkStickyState );
+    } );
+
+    //
+    function _checkStickyState( $elem ) {
+      var currentOffset = $elem.getBoundingClientRect().top;
+      var stickyOffset = parseInt( getComputedStyle( $elem ).top.replace( 'px','' ) );
+      var isStuck = currentOffset <= stickyOffset;
+    
+      if( isStuck ) {
+        $elem.classList.add( classToToggle );
+      } else {
+        $elem.classList.remove( classToToggle );
+      }
+    }
+  },
+
+  /**
+   * 
+   */
+  onToggleSearch( e ) {
+    e.stopPropagation();
+    var $form = $(e.currentTarget).closest( '.search-wrapper' );
+    $form.toggleClass( 'search-wrapper--active' );
+
+    if( $form.hasClass( 'search-wrapper--active' ) ) {
+      setTimeout( () => { $form.find( 'input' ).focus(); }, 100);
+    }
+  },
+
+  /**
+   *  
+   */
+  toggleOffcanvas( e ) {
+    e.preventDefault();
+    e.stopPropagation();
+    $( 'body' ).toggleClass( 'has-active-offcanvas' );
+  },
+
+  /**
+   *  
+   */
+  toggleMobileDropdown( e ) {
+    var $navItem = $( e.currentTarget ).closest( '.mobile-nav-item' );
+    $navItem.toggleClass( 'mobile-nav-item--toggled' );
+  },
+
+  //
+  closeAll( e ) {
+    this.closeOffCanvas( e );
+    this.closeSearch( e );
+  },
+
+  closeOffCanvas( e ) {
+    e.preventDefault();
+    $('body.has-active-offcanvas').removeClass( 'has-active-offcanvas' );
+  },
+
+  closeSearch( e ) {
+    $('.search-wrapper--active').removeClass( 'search-wrapper--active' );
+  },
+
+  preventClose( e ) {
+    e.stopPropagation();
+  }
+}
+
 // Browser compatibility, leave this untouched
 if('registerElement' in document) { document.createElement( 'h-grid' ); document.createElement( 'h-tile' ); }
+
+// Smooth scroll jQuery
+$.fn.extend({
+  smoothScroll: function( offset ) {
+    var $target = $(this);
+    offset = offset || 0;
+
+    $('html, body').animate({
+      scrollTop: $target.offset().top + offset
+    }, 500 );
+  }
+});
+
 })( jQuery );
+

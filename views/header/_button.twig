@@ -1,0 +1,16 @@
+<div data-id="{{ id ? id : 'button' }}">
+  <a href="{{ link }}"
+    class="button button--{{ size }} button--{{ style }}"
+    target="{% if target == 'yes' %} _blank {% endif %}">
+
+    {% if has_icon == 'png' %}
+      <img src="{{ png_icon.url }}">
+
+    {% elseif has_icon == 'svg' %}
+      {{ svg_icon }}
+
+    {% endif %}
+
+    {{ text }}
+  </a>
+</div>

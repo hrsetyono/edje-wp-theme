@@ -2,12 +2,21 @@
 .contact-form
 
 .grunion-field-wrap
-  +h( relative mb1 )
+  position: relative
+  margin-bottom: 1rem
 
   .grunion-field-label
-    +h( cursor-pointer mb0_25 fw700 c-black_50 fs-s )
+    cursor: pointer
+    margin-bottom: 0.25rem
+    font-weight: 700
+    font-size: var(--smallFontSize)
+    color: rgba(black, .5)
   span
-    +h( d-iblock ml0_5 tt-none fw400 c-red )
+    display: inline-block
+    margin-left: 0.5rem
+    text-transform: initial
+    font-weight: 400
+    color: var(--red)
 
   [type="text"],
   [type="email"],
@@ -15,6 +24,7 @@
   [type="url"],
   textarea,
   select
+    // custom style
   
   textarea
-    +h( maxh8 )
+    max-height: 8rem

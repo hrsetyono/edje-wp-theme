@@ -2,23 +2,12 @@
 
 require_once 'functions/helpers.php';
 if( !MyHelpers::has_required_plugins() ) { return false; }
-
-require_once 'functions/enqueue.php';
-require_once 'functions/hooks.php';
-require_once 'functions/theme-supports.php';
-require_once 'functions/api.php';
-require_once 'functions/blocks.php';
-require_once 'functions/shortcodes.php';
-require_once 'functions/timber.php';
-
+require_once __DIR__ . '/functions/_index.php';
 
 if( class_exists('WooCommerce') ) {
-  require_once 'shop/hooks.php';
-  require_once 'shop/setup.php';
+  require_once __DIR__ . '/shop/hooks.php';
+  require_once __DIR__ . '/shop/setup.php';
 }
-
-require_once 'customizer/defaults.php';
-require_once 'customizer/styles.php';
 
 
 my_before_setup_theme();
@@ -31,18 +20,20 @@ add_action( 'after_setup_theme', 'my_after_setup_theme' );
  * Function that run first
  */
 function my_before_setup_theme() {
+  require_once __DIR__ . '/customizer/_index.php';
+  
   /**
    * Register custom post type
    * - Read more at https://github.com/hrsetyono/edje-wp-library/wiki/Custom-Post-Type
    */
-  H::register_post_type( 'product', [ 'icon' => 'dashicons-cart' ] );
-  H::register_taxonomy( 'brand', [ 'post_type' => 'product' ] );
+  // H::register_post_type( 'product', [ 'icon' => 'dashicons-cart' ] );
+  // H::register_taxonomy( 'brand', [ 'post_type' => 'product' ] );
 
   /**
    * Create Gutenberg block for post-type listing
    */
   H::register_post_type_block( 'post' );
-  H::register_post_type_block( 'product' );
+  // H::register_post_type_block( 'product' );
 }
 
 
@@ -51,7 +42,7 @@ function my_before_setup_theme() {
  * 
  * @action after_setup_theme
  */
-function my_after_setup_theme() { 
+function my_after_setup_theme() {
   // Create Nav assignment
   register_nav_menus( [
     'nav_1' => __( 'Nav 1' ),

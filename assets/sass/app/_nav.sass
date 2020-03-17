@@ -19,17 +19,6 @@ body.has-active-cart
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0)
 
 
-// MAIN LOGO
-.custom-logo-link
-  +h( d-flex ai-center ph1 pv0_5 bg-main )
-
-  &:hover
-    +h( bg-main_80 )
-  img
-    +h( w-auto )
-    height: 2.5em
-
-
 // NAV ITEMS WRAPPER
 .nav-items
   +h( d-flex flex1 jc-start fw-wrap list-none transition )
@@ -45,7 +34,7 @@ body.has-active-cart
     +h( pv0_5 bg-white transition shadow1 )
 
     border-bottom: 3px solid var(--main)
-    border-radius: 0 0 $g-radius $g-radius
+    border-radius: 0 0 var(--gRadius) var(--gRadius)
 
 
 // NAV ITEM
@@ -99,7 +88,7 @@ body.has-active-cart
     +h( shadow1 transition )
     width: 200px
     border-bottom: 3px solid var(--main)
-    border-radius: 0 0 $g-radius $g-radius
+    border-radius: 0 0 var(--gRadius) var(--gRadius)
 
     .nav-item:hover &,
     a:focus + &

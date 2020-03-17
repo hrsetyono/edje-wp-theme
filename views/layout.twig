@@ -10,78 +10,27 @@
   {{ wp_head }}
 </head>
 
-<body class="{{ body_class }}">
+<body class="{{ body_class }} {{ mods.has_frame == 'yes' ? 'has-frame' : '' }}">
+<div id="main-container">
 
-<nav class="main-nav">
-  <h-grid> <div class="nav-wrapper / large-12">
-
-    {{ fn('the_custom_logo') }}
-
-    <div id="nav-toggle" class="nav-item --mobile-toggle">
-      <a>
-        <i class="dashicons-before dashicons-menu"></i>
-        <strong>Menu</strong>
-      </a>
-    </div>
-
-    <ul class="nav-items">
-    {% for item in nav.items %}
-      <li class="nav-item {{ item.class }}">
-        <a href="{{ item.url }}"> {{ item.title }} </a>
-
-        {% if item.children %}
-          <div class="nav-children">
-          {% for child in item.children %}
-            <a href="{{ child.url }}">{{ child.title }}</a>
-          {% endfor %}
-          </div>
-        {% endif %}
-      </li>
-    {% endfor %}
-    </ul>
-
-    <div class="nav-extra">
-      {% if woo %}
-        {% include "shop/_nav-extra.twig" %}
-      {% endif %}
-      
-      {# Store this value in ACF Options or Customizer #}
-      <a href="tel:+1234567890">
-        <i class="dashicons-before dashicons-phone"></i>
-        <span>+12 3456 7890</span>
-      </a>
-    </div>
-
-  </div> </h-grid>
-</nav>
-
+{% include '_header.twig' %}
 
 {% block content %}{% endblock %}
 
+{% include '_footer.twig' %}
 
-<footer class="main-footer">
+</div>
 
-  <h-grid><div class="footer-credit / large-12">
+{# Back to Top #}
+{% if mods.has_back_to_top == 'yes' %}
+  <a class="back-to-top back-to-top--align-{{ mods.back_to_top_alignment }}"
+    data-back-to-top
+    {{ mods.back_to_top_visibility | h_get_visible_attr }}>
 
-    <div class="copyright">
-      <strong>Copyright</strong>  &copy; {{ "now" | date("Y") }} {{ site.name }}
-    </div>
+    {{ fn( 'custy_get_svg', mods.back_to_top_style ) }}
 
-    <div class="partners">
-      <strong>Created by:</strong>
-
-      <a href="https://pixelstudio.id" target="_blank">
-        <img src="https://cdn.pixelstudio.id/pixelstudio/partner-logo.png">
-
-        <div class="partner-caption">
-          <h5>Pixel Studio</h5>
-          <p>Web &amp; App Design</p>
-        </div>
-      </a>
-    </div>
-
-  </div></h-grid>
-</footer>
+  </a>
+{% endif %}
 
 {{ wp_footer }}
 

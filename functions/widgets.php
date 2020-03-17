@@ -18,12 +18,12 @@ function my_widgets_init() {
 
   for ( $i = 1; $i <= $number_of_sidebars; $i++ ) {
     register_sidebar( [
-      'id'            => 'ct-footer-sidebar-' . $i,
-      'name'          => "Footer Column $i",
-      'before_widget' => '<div class="ct-widget %2$s">',
-      'after_widget'  => '</div>',
-      'before_title'  => '<h2 class="widget-title">',
-      'after_title'   => '</h2>',
+      'id'            => 'footer-widget-' . $i,
+      'name'          => "Footer Widget $i",
+      // 'before_widget' => '<div class="ct-widget %2$s">',
+      // 'after_widget'  => '</div>',
+      // 'before_title'  => '<h2 class="widget-title">',
+      // 'after_title'   => '</h2>',
 		] );
 	}
 }

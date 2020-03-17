@@ -1,0 +1,96 @@
+// Position
+@mixin absolute-fill() {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+
+// Apply to the wrapper of float elements so its height is fixed.
+@mixin clearfix() {
+  &::before,
+  &::after {
+    content: "";
+    display: table;
+  }
+
+  &::after {
+    clear: both;
+  }
+}
+
+
+
+// Create triangle shape using border. Mostly applied in ::before or ::after
+//
+// Usage:
+//   @include triangle( n, #333, 20px, 12px );
+//
+@mixin triangle(
+  $direction, // Compass direction, possible values: n / e / s / w / ne / se / sw / nw
+  $color,
+  $width,
+  $height: false) {
+
+  // If height is not specified, make the triangle equalateral
+  @if not $height {
+    @if $direction in (n, e, s, w) {
+      $height : ($width / 2) * 1.732;
+    }
+    @else if $direction in (ne, se, sw, nw) {
+      $height : $width;
+    }
+  }
+
+  width: 0;
+  height: 0;
+  font-size: 0;
+  line-height: 0%;
+  border-style: solid;
+  border-color: transparent;
+
+
+  @if $direction == n {
+    border-width: 0 $width/2 $height $width/2;
+    border-bottom-color: $color;
+  }
+  @else if $direction == e {
+    border-width: $width/2 0 $width/2 $height;
+    border-left-color : $color;
+  }
+  @else if $direction == s {
+    border-width: $height $width/2 0 $width/2;
+    border-top-color: $color;
+  }
+  @else if $direction == w {
+    border-width: $width/2 $height $width/2 0;
+    border-right-color: $color;
+  }
+
+  @else if $direction == ne {
+    border-width: 0 $width $height 0;
+    border-right-color: $color;
+  }
+  @else if $direction == se {
+    border-width: 0 0 $height $width;
+    border-bottom-color: $color;
+  }
+  @else if $direction == sw {
+    border-width: $height 0 0 $width;
+    border-left-color: $color;
+  }
+  @else if $direction == nw {
+    border-width: $height $width 0 0;
+    border-top-color: $color;
+  }
+}
+
+// Output all colors from $root-colors variable. Also add the RGB version
+@mixin root-colors() {
+  @each $name, $hex in $root-colors {
+    #{ $name }: #{ $hex };
+    #{ $name }RGB: #{ red($hex) }, #{ green($hex) }, #{ blue($hex) };
+  }
+}

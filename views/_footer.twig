@@ -1,0 +1,25 @@
+{# Do not change this file name #}
+
+<footer class="site-footer" id="footer">
+  {% for row in footer.rows %}
+    {% set row_data = footer.items[ row.id ] %}
+
+    <div class="footer-row"
+      data-id="footer-{{ row.id }}"
+      {{ row_data.visibility | h_get_visible_attr }}>
+
+      <h-grid class="footer-columns footer-columns--{{ row_data.columns_layout.tablet }}"
+        style="grid-template-columns:{{ row_data.columns_layout.desktop }};">
+        
+        {% for items in row.columns %}
+          {% for item_id in items %}
+            {% include 'footer/_' ~ item_id ~ '.twig' with footer.items[item_id] only %}
+          {% endfor %}
+        {% endfor %}
+
+      </h-grid>
+      
+    </div>
+
+  {% endfor %}
+</footer>

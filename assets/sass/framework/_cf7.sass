@@ -1,25 +1,35 @@
 // Contact Form 7
 form.wpcf7-form
-  +h( p0_75 mh-auto bg-white shadow1 )
-  max-width: 570px
+  padding: 0.75rem
+  margin-right: auto
+  margin-left: auto
+  background-color: white
+  box-shadow: var(--shadow1)
   
   br
-    +h( d-none )
-
+    display: none
   label
-    +h( d-block fs-s fw600 ls50 tt-uppercase )
+    display: block
 
 div.wpcf7
   span.wpcf7-not-valid-tip
-    +h( c-red fs-s )
+    color: var(--red)
+    font-size: var(--smallFontSize)
 
   div.wpcf7-response-output
-    +h( m0 mt1 ta-center brad )
+    margin: 0
+    margin-top: 1rem
     border-width: 1px
-  
+    border-radius: var(--gRadius)
+    text-align: center 
+
   .wpcf7-validation-errors
-    +h( bg-red_20 bc-red c-red )
+    background-color: h-rgba(--red, .2)
+    border-color: var(--red)
+    color: var(--red)
   
   .wpcf7-mail-sent-ok,
   .wpcf7-mail-sent-ng
-    +h( bg-green_50 bc-green c-green )
+    background-color: h-rgba(--green, .3)
+    border-color: var(--green)
+    color: var(--green)
