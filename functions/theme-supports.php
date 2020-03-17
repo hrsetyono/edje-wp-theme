@@ -19,11 +19,9 @@ function my_theme_supports() {
   add_theme_support( 'align-wide' );
   add_theme_support( 'responsive-embeds' );
 
-  /**
-   * Each color will be outputted into 2 classes:
-   * 
-   *   `has-x-background-color` and `has-x-color`.
-   */
-  add_theme_support( 'editor-color-palette', Custy::get_editor_color_palette() );
+  if( class_exists( 'Custy' ) ) {
+    // Apply color from Customizer to editor palette
+    add_theme_support( 'editor-color-palette', Custy::get_editor_color_palette() );
+  }
 
 }

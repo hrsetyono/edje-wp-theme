@@ -50,7 +50,10 @@ $section = [ 'title' => __( 'Features' ), 'container' => [ 'priority' => 10 ], '
 
   'has_frame' => [
     'label' => __( 'Has Frame?' ),
-    'type' => 'ct-switch',
+    'type' => 'ct-panel',
+    'switch' => true,
+    'inner-options' => [
+    ],
   ],
 
 ] ];

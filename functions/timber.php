@@ -16,8 +16,12 @@ class MyTimber extends TimberSite {
    * @filter timber_context
    */
   function add_to_context( array $context ) : array {
-    $context['header'] = CustyBuilder::get_header( 'main' );
-    $context['footer'] = CustyBuilder::get_footer( 'main' );
+
+    if( class_exists( 'Custy' ) ) {
+      $context['header'] = CustyBuilder::get_header( 'main' );
+      $context['footer'] = CustyBuilder::get_footer( 'main' );
+      $context['mods'] = Custy::get_mods();
+    }
 
     $context['site'] = $this;
     $context['home_url'] = home_url();
@@ -25,8 +29,7 @@ class MyTimber extends TimberSite {
     $root = get_template_directory_uri();
     $context['images'] = $root.'/assets/images';
 
-    $context['mods'] = Custy::get_mods();
-
+  
     // ACF Options Page
     if( function_exists( 'acf_add_options_page' )) {
       $context['options'] = get_fields( 'options' );
