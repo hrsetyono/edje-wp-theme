@@ -9,6 +9,7 @@ ClientBin/
 *.[Pp]ublish.xml
 *.pfx
 *.publishsettings
+package-lock.json
 
 # RIA/Silverlight projects
 Generated_Code/

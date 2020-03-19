@@ -54,7 +54,6 @@ class MyTimber extends TimberSite {
     
     $twig->addFilter( new Twig_SimpleFilter( 'h_get_timber_menu', [$this, '_filter_get_timber_menu'] ) );
     $twig->addFilter( new Twig_SimpleFilter( 'h_get_visible_attr', [$this, '_filter_get_visible_attr'] ) );
-    $twig->addFilter( new Twig_SimpleFilter( 'h_get_social_label', [$this, '_filter_social_label'] ) );
     $twig->addFilter( new Twig_SimpleFilter( 'h_get_columns_count', [$this, '_filter_columns_count'] ) );
     $twig->addFilter( new Twig_SimpleFilter( 'h_get_dropdown_attr', [$this, '_filter_dropdown_attr'] ) );
 
@@ -102,17 +101,6 @@ class MyTimber extends TimberSite {
     $data_visible = empty( $attr ) ? '' : implode( ' ', $attr );
 
     return "data-visible='{$data_visible}'";
-  }
-
-
-  /**
-   * Get the label of Social Media buttons in Header / Footer
-   */
-  function _filter_social_label( $context, $id, $default_label = false ) {
-    if( $context['has_label'] == 'no' ) { return; }
-
-    $label = $context[ "{$id}_label" ] ?? $default_label;
-    return $label;
   }
 
 

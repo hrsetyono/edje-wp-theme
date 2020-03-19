@@ -30,9 +30,9 @@ function my_before_setup_theme() {
   // H::register_taxonomy( 'brand', [ 'post_type' => 'product' ] );
 
   /**
-   * Create Gutenberg block for post-type listing
+   * Create ACF Gutenberg block for post-type listing
    */
-  H::register_post_type_block( 'post' );
+  // H::register_post_type_block( 'post' );
   // H::register_post_type_block( 'product' );
 }
 

@@ -45,6 +45,9 @@ $above-l: "min-width:#{ $size-large + 1px }";
 $below-nav: $below-s; // small navigation breakpoint
 $above-nav: $above-s;
 
+$below-adminbar: "max-width:782px";
+$above-adminbar: "min-width:783px";
+
 $portrait: "orientation: portrait";
 $landscape: "orientation: landscape";
 $retina: "min-resolution: 192dpi";

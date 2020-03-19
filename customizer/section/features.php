@@ -53,6 +53,28 @@ $section = [ 'title' => __( 'Features' ), 'container' => [ 'priority' => 10 ], '
     'type' => 'ct-panel',
     'switch' => true,
     'inner-options' => [
+
+      'frameSize' => [
+        'label' => __( 'Frame Size' ),
+        'type' => 'ct-slider',
+        'responsive' => true,
+        'units' => [
+          'px' => [ 'min' => 0, 'max' => 20 ],
+        ],
+        'css' => '--frameSize'
+      ],
+
+      'frameColor' => [
+        'label' => __( 'Frame Color' ),
+        'type'  => 'ct-color-picker',
+        'pickers' => [
+          'default' => __( 'Default' ),
+        ],
+        'css' => [
+          '--frameColor' => 'default',
+        ]
+      ],
+
     ],
   ],
 

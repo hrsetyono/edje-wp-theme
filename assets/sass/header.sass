@@ -35,35 +35,33 @@
 ///// STICKY ROW
 
 .header-row--is-sticky
-  --top: 0
+  --top: 0px
+  --topAddon: 0px
 
   position: sticky
   z-index: 100
-  top: var(--top)
+  top: calc( var(--top) + var(--topAddon) )
+
 
   body.has-frame &
-    --top: var(--frameSize)
+    --topAddon: var(--frameSize)
+  body.admin-bar &
+    --topAddon: var(--adminBarSize)
+  body.has-frame.admin-bar &
+    --topAddon: var(--adminBarSize)
 
   // if top row is also stickied
   .header-row--is-sticky[data-id="header-top-row"] + &
     --top: var(--topRowHeight)
 
-    body.has-frame &
-      --top: calc(var(--topRowHeight) + var(--frameSize))
-
   // if middle row is also stickied
   .header-row--is-sticky[data-id="header-middle-row"] + &
     --top: var(--middleRowHeight)
 
-    body.has-frame &
-      --top: calc(var(--middleRowHeight) + var(--frameSize))
-
   // if top and middle row is also stickied
   .header-row--is-sticky[data-id="header-top-row"] + .header-row--is-sticky[data-id="header-middle-row"] + &
-    --top: calc( var(--topRowHeight) + var(--middleRowHeight) )
+    --top: var(--topRowHeight) + var(--middleRowHeight)
 
-    body.has-frame &
-      --top: calc(var(--topRowHeight) + var(--middleRowHeight) + var(--frameSize))
 
 .header-row--stuck
   box-shadow: var(--shadow1)

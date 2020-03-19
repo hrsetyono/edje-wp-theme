@@ -55,6 +55,6 @@
 {# Columns #}
 {% macro header_column( column, items_data ) %}
   {% for item_id in column.items %}
-    {% include 'header/_' ~ item_id ~ '.twig' with items_data[item_id] only %}
+    {% include 'header/' ~ item_id ~ '.twig' with items_data[item_id] only %}
   {% endfor %}
 {% endmacro %}

@@ -28,8 +28,10 @@
   left: var(--offset)
 
 
+
 // VIEWPORT FRAME
 body.has-frame
+  
   &::before,
   &::after
     content: ""
@@ -45,20 +47,34 @@ body.has-frame
   &::after
     bottom: 0
 
-#main-container
-  padding: var(--frameSize)
-
-  &::before,
-  &::after
-    content: ""
-    position: fixed
-    top: 0
-    z-index: 1000
-    width: var(--frameSize)
-    height: 100%
+  #wpadminbar
     background-color: var(--frameColor)
 
-  &::before
-    left: 0
-  &::after
-    right: 0
+  // If has adminbar, recolor it and hide the top frame
+  @media ($above-adminbar)
+    &.admin-bar::before
+      display: none
+
+
+#main-container
+  body.has-frame &
+    padding: var(--frameSize)
+
+    &::before,
+    &::after
+      content: ""
+      position: fixed
+      top: 0
+      z-index: 1000
+      width: var(--frameSize)
+      height: 100%
+      background-color: var(--frameColor)
+
+    &::before
+      left: 0
+    &::after
+      right: 0
+
+  @media ($above-adminbar)
+    body.has-frame.admin-bar &
+      padding-top: 0

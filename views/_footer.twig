@@ -13,7 +13,7 @@
         
         {% for items in row.columns %}
           {% for item_id in items %}
-            {% include 'footer/_' ~ item_id ~ '.twig' with footer.items[item_id] only %}
+            {% include 'footer/' ~ item_id ~ '.twig' with footer.items[item_id] only %}
           {% endfor %}
         {% endfor %}
 

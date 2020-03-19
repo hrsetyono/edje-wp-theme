@@ -29,6 +29,14 @@ add_filter( 'custy_default_values', function( $defaults ) {
     ],
 
     'has_frame' => 'yes',
+    'frameSize' => [
+      'desktop' => '10px',
+      'tablet' => '8px',
+      'mobile' => '5px',
+    ],
+    'frameColor' => [
+      'default' => [ 'color' => 'var(--text)' ]
+    ],
 
 
 

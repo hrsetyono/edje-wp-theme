@@ -93,8 +93,11 @@
   --placeholderColor: var(--textDim)
   
   // FRAME
-  --frameSize: 10px
-  --frameColor: var(--text)
+  // --frameSize: 10px
+  // --frameColor: var(--text)
+
+  // OTHER
+  --adminBarSize: 32px
 
 
 // RESPONSIVE
@@ -107,6 +110,10 @@
     // --h5Size : 18px
     // --h6Size : var(--fontSize)
 
+@media ($below-adminbar)
+  \:root
+    --adminBarSize: 0px
+
 @media ($below-s)
   \:root
     // --h1Size : 32px
@@ -115,7 +122,6 @@
     // --h4Size : 20px
     // --h5Size : 18px
     // --h6Size : var(--fontSize)
-    --frameSize: 5px
 
 
   
@@ -273,7 +279,7 @@ select
 
 ///// ADMIN BAR
 
-@media ( below(782px) )
+@media ($below-adminbar)
   html[lang]
     margin-top: 0 !important
 
