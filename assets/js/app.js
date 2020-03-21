@@ -219,7 +219,6 @@ var myHeader = {
   },
 
   closeOffCanvas( e ) {
-    e.preventDefault();
     $('body.has-active-offcanvas').removeClass( 'has-active-offcanvas' );
   },
 

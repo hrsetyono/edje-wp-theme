@@ -6,7 +6,9 @@
 @import "_edje-v4/output-grid"
 @import "_edje-v4/output-typography"
 
-@import "framework/blog"
+@import "framework/post"
+@import "framework/post-single"
+@import "framework/post-archive"
 @import "framework/jetpack"
 @import "framework/cf7"
 
@@ -84,7 +86,7 @@
   --buttonColor: var(--textInvert)
   --buttonColorHover: var(--buttonColor)
   --buttonBorder: 1px solid rgba(0,0,0,.2)
-  --buttonFontSize: 18px
+  --buttonFontSize: 16px
 
   // INPUT
   --inputBg: var(--textInvert)
@@ -98,6 +100,7 @@
 
   // OTHER
   --adminBarSize: 32px
+  // --postsPerRow: 3
 
 
 // RESPONSIVE
@@ -123,6 +126,12 @@
     // --h5Size : 18px
     // --h6Size : var(--fontSize)
 
+    // --postsPerRow: 2
+
+@media ($below-xs)
+  \:root
+    // --postsPerRow: 1
+
 
   
 ///// BUTTON /////
@@ -142,6 +151,9 @@
   border-radius: var(--gRadius)
 
   text-decoration: none
+  text-transform: uppercase
+  letter-spacing: 0.025em
+  font-weight: var(--hFontWeight)
   font-size: var(--buttonFontSize)
   color: var(--buttonColor)
   vertical-align: top
@@ -200,24 +212,38 @@
 .button--outline,
 .is-style-outline a
   --buttonBg: transparent
-  --buttonBorder: 1px solid
+  --buttonBgHover: transparent
+  --buttonBorder: 2px solid
+  --buttonColor: var(--main)
+  --buttonColorHover: var(--main)
 
 .button--transparent,
 .is-style-transparent a
   --buttonBg: transparent
+  --buttonBgHover: var(--main)
   --buttonBorder: none
+  --buttonColor: var(--main)
+  --buttonColorHover: var(--textInvert)
+  
+  margin-left: -0.5rem
+  padding-right: 0.5rem
+  padding-left: 0.5rem
 
 
 // loading button
+.button--passive,
 .button--loading
   --buttonBg: var(--textDim)
   --buttonBorder: 1px solid
-  --buttonColor: var(--textDim)
+  --buttonColor: var(--textInvert)
 
+
+.button--loading
   cursor: not-allowed
   background-position: center center
   background-repeat: no-repeat
   background-image: image-url("spinner.gif")
+  
   color: transparent !important
 
   

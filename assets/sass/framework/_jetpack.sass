@@ -1,3 +1,214 @@
+///// RELATED POSTS
+
+
+// heading
+div#jp-relatedposts h3.jp-relatedposts-headline,
+.post-comments h4
+  display: block
+  float: none
+  margin-bottom: 1.5rem
+
+  font-size: var(--h5Size)
+  letter-spacing: 0.05em
+  text-transform: uppercase
+
+div#jp-relatedposts
+  display: block
+  padding-top: 0
+  margin-bottom: 3rem
+
+  // list
+  div.jp-relatedposts-items
+    +clearfix
+    display: flex
+    margin: 0 -125px
+
+    //
+    @media ($below-related-s)
+      margin: 0 -5px
+    //
+    @media ($below-s)
+      flex-direction: column
+      margin: 0
+
+  // main title
+  h3.jp-relatedposts-headline
+    em
+      font-style: normal
+    em::before
+      display: none
+
+  // single item
+  div.jp-relatedposts-items .jp-relatedposts-post
+    overflow: hidden
+    padding: 1rem
+    margin-right: 0.75rem
+    margin-left: 0.75rem
+    width: 33.333%
+    
+    opacity: 1
+    background-color: white
+    box-shadow: var(--shadow1)
+    border-radius: var(--gRadius)
+
+    // hide underline when hovering the whole box
+    &:hover .jp-relatedposts-post-title .jp-relatedposts-post-a
+      text-decoration: none
+    //
+    @media ($below-related-s)
+      margin-right: 0.25rem
+      margin-left: 0.25rem
+    //
+    @media ($below-s)
+      width: 100%
+      margin: 0
+      margin-bottom: 1rem
+
+  // single image
+  .jp-relatedposts-post > .jp-relatedposts-post-a
+    overflow: hidden
+    display: block
+    max-height: 160px
+    margin: -1em
+    margin-bottom: 1em
+
+    // underline title when hovering image
+    &:hover + .jp-relatedposts-post-title
+      text-decoration: underline
+
+  // single title
+  div.jp-relatedposts-items .jp-relatedposts-post .jp-relatedposts-post-title
+    clear: none
+    font-size: var(--mediumFontSize)
+    letter-spacing: 0
+    line-height: var(--hLineHeight)
+
+    &:hover
+      text-decoration: underline
+    a
+      display: block
+      font-weight: var(--hFontWeight)
+      color: inherit
+      text-decoration: none
+
+    @media ($below-xs)
+      font-size: 1rem
+
+  // meta
+  div.jp-relatedposts-items .jp-relatedposts-post
+    p, span
+      overflow: visible
+      max-width: 100%
+      font-size: var(--smallFontSize)
+
+    .jp-relatedposts-post-excerpt,
+    .jp-relatedposts-post-context
+      display: none
+
+    .jp-relatedposts-post-date
+      display: inline-block
+      opacity: 0.6
+      
+      //
+      @media ($below-xs)
+        font-size: var(--smallFontSize)
+
+  // visual layout
+  div.jp-relatedposts-items div.jp-relatedposts-post-thumbs
+    //
+    @media ($below-related-s)
+      font-size: var(--smallFontSize)
+    //
+    @media ($below-s)
+      padding-bottom: 0
+
+      > .jp-relatedposts-post-a
+        float: left
+        margin-right: 0.75rem
+        margin-bottom: 0
+        max-width: 150px
+
+  // next prev
+  &.jp-next-prev
+    div.jp-relatedposts-items
+      flex-direction: row
+      margin: 0 -10px
+
+    div.jp-relatedposts-items .jp-relatedposts-post
+      width: 50%
+      margin: 0 10px
+
+      //
+      @media ($below-s)
+        padding: 0.5rem
+    
+    //
+    @media ($below-s)
+      .jp-relatedposts-post > .jp-relatedposts-post-a
+        margin: -0.5em
+        margin-bottom: 0.5em
+
+    // next prev no thumbnail
+    div.jp-relatedposts-items .jp-relatedposts-nothumb
+      display: flex
+      flex-direction: column
+      justify-content: center
+
+      text-align: center
+
+      .jp-relatedposts-post-title
+        font-size: var(--h4Size)
+
+      .jp-relatedposts-nothumb-excerpt
+        margin-top: 1rem
+
+        //
+        @media ($below-s)
+          display: none
+
+      .jp-relatedposts-nothumb-excerpt a
+        display: block
+
+
+///// BREADCRUMB
+
+.entry-breadcrumbs
+  margin-bottom: 1rem
+
+  [itemprop="itemListElement"]
+    display: inline-block
+    padding: 0.25rem 0.5rem
+    background-color: var(--textInvert)
+
+  [itemprop="itemListElement"]:nth-child(n+2)::before
+    content: "»"
+    display: inline-block
+    transform: translateX(-0.5rem)
+
+
+  [itemprop="name"]
+    display: inline-block
+    padding: 0.25rem 0.5rem
+    border-radius: var(--gRadius)
+
+    color: var(--textDim)
+    text-transform: uppercase
+    letter-spacing: 0.025em
+
+    transition: var(--gTransition)
+
+  a:hover [itemprop="name"]
+    background-color: var(--mainLight)
+    color: var(--main)
+  
+  a:active [itemprop="name"]
+    transition: none
+    transform: translateY(1px)
+
+  .current-category [itemprop="name"]
+    color: var(--text)
+
+  
 ///// SHARING
 
 $social-logos: ( twitter: '\f202', facebook: '\f203', pinterest: '\f210', jetpack-whatsapp: '\f608', skype: '\f220', pocket: '\f224', linkedin: '\f207', reddit: '\f222', tumblr: '\f607', telegram: '\f606', youtube: '\f213', instagram: '\f215', print: '\f469', more: '\f415' );
@@ -5,12 +216,7 @@ $social-logos: ( twitter: '\f202', facebook: '\f203', pinterest: '\f210', jetpac
 
 ///// SHARING
 
-.sharedaddy 
-  margin-top: 2rem
-  margin-bottom: 2rem
-  padding-top: 2rem
-  border-top: 1px solid var(--textDim)
-
+.sharedaddy
   .share-end
     display: none
   .sd-title

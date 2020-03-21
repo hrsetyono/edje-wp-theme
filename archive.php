@@ -16,7 +16,6 @@ if( !class_exists('Jetpack') || !Jetpack::is_module_active('infinite-scroll') ||
 // If post category
 if( is_category() ) {
   $context['term'] = $query; 
-  $context['blog_nav'] = new TimberMenu( 'blog-nav' );
 }
 // If custom taxonomy page
 elseif( is_tax() ) {
@@ -29,9 +28,7 @@ elseif( is_post_type_archive() ) {
 }
 // If author page
 elseif( is_author() ) {
-  $avatar_url = get_avatar_url( $query->ID );
-  $context['title'] = "<img src='{$avatar_url}'> <small>Posts by</small> {$query->display_name}";
-  $context['description'] = "{$context['description']} \n \n {$query->user_url}";
+  $context['author'] = new Timber\User( $query->ID );
 }
 
 

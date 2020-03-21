@@ -7,7 +7,7 @@
     {% set item = fn( 'custy_get_social_list', link.id ) %}
 
     <a href="{{ link.link }}"
-      class="social-link social-link--{{ link.id }} {% if link.label %} social-link--has-text {% endif %}"
+      class="social-link social-link--{{ link.id }} {% if link.label %} social-link--has-label {% endif %}"
       style="{% if color_style == 'official' %} --officialColor: {{ item.color }} {% endif %}"
       title="{{ item.label }}">
       

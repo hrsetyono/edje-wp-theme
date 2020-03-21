@@ -1,25 +1,37 @@
 {% extends "layout.twig" %}
 {% block content %}
 
-<article class="the-content" id="content">
+<h-grid class="archive-grid">
 
-  <header class="post-header">
-    <h1>{{ title }}</h1>
-    {{ description | markdown }}
-  </header>
+  <main class="archive-column {{ sidebar ? 'archive-column--has-sidebar' : 'archive-column--no-sidebar' }}">
+    {% if fn('function_exists', 'jetpack_breadcrumbs') %}
+      {{ fn( 'jetpack_breadcrumbs' ) }}
+    {% endif %}
 
-  {# Blog Nav #}
-  <nav class="blog-nav">
-    {% for item in blog_nav.items %}
-      <a href="{{ item.url }}" {% if "current-menu-item" in item.class %} class="active" {% endif %}>
-        {{ item.title }}
-      </a>
-    {% endfor %}
-  </nav>
+    {% if title %}
+      <header class="archive-header">
+        <h1>{{ title }}</h1>
+        {{ description | h_markdown }}
+      </header>
+    {% endif %}
 
-  {% include "_posts.twig" %}
-  {% include "_pagination.twig" %}
+    {% if author %}
+      {% include "_author-info.twig" with { author: author, element: { show_avatar: 'yes', show_social_media: 'yes' } } %}
+    {% endif %}
 
-</article>
+    {% include "_posts.twig" %}
+    {% include "_pagination.twig" %}
+  </main>
+
+  {% if sidebar %}
+    <aside class="sidebar sidebar--{{ mods.archive_sidebar_position }}">
+      {{ sidebar }}
+    </aside>
+  {% endif %}
+
+
+</h-grid>
+
+
 
 {% endblock %}

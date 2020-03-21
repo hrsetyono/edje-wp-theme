@@ -2,26 +2,104 @@
 {% block content %}
 
 {# Content #}
-<article class="the-content">
-  <header class="post-header">
-    <h1>{{ post.title }}</h1>
-    {% include "_post-meta.twig" %}
-  </header>
 
-  {{ post.content }}  
+<h-grid class="post-grid  {{ not sidebar ? 'post-grid--alignfull' : '' }}">
 
-  <address class="post-author">
-    {% include "_author-info.twig" with { author: post.author } %}
-  </address>
-</article>
+  <main class="post-column  {{ sidebar ? 'post-column--has-sidebar' : 'post-column--no-sidebar' }}">
+    {% for e in mods.post_elements if e.enabled %}
+      
+      {# Post Title #}
+      {% if e.id == 'title' %}
+        <header class="post-header">
+          <h1>{{ post.title }}</h1>
+          {% include "_post-meta.twig" with { element: e, post: post } %}
+        </header>
 
-{# Related Posts & Comments #}
-<section class="post-extra / wp-block-group alignfull has-background">
-  <div class="wp-block-group__inner-container">
-    {% include "_related-posts.twig" %}
-    {% include "_comments.twig" %}
-  </div>
-</section>
+      {# Featured Image #}
+      {% elseif e.id == 'featured_image' %}
+        <div class="post-banner post-banner--{{ e.style }}">
+          <picture class="image-fit {% if e.style == 'narrow' %} image-fit--{{ e.ratio }} {% endif %}">
+            <source srcset="{{ post.thumbnail.src('medium') }}" media="(max-width: 480px)">
+            <img src="{{ post.thumbnail.src('large') }}" alt="{{ post.title }} Banner">
+          </picture>
+        </div>
 
+      {# Post Content #}
+      {% elseif e.id == 'content' %}
+        <article class="the-content">
+          {{ post.content }}
+        </article>
+
+      {# Sharing buttons #}
+      {% elseif e.id == 'share' and fn( 'function_exists', 'sharing_display' ) %}
+        {% filter shortcodes %} [h-jetpack-sharing] {% endfilter %}
+
+      {# Author Box #}
+      {% elseif e.id == 'author-box' %}
+        {% include "_author-info.twig" with { author: post.author, element: e } %}
+
+      {# Next / Prev Post #}
+      {% elseif e.id == 'next-prev-post' %}
+        <nav class="post-nav">
+          Next / Prev
+        </nav>
+
+      {# Related Posts #}
+      {% elseif e.id == 'related-posts' %}
+        <footer class="related-posts">
+          {% if fn('class_exists', 'Jetpack_RelatedPosts') and e.use_jetpack == 'yes' %}
+            {% filter shortcodes %} [jetpack-related-posts] {% endfilter %}
+          
+          {% else %}
+            <h3 class="related-title"> {{ __('Related Posts') }}</h3>
+            {% filter shortcodes %} [h-related-posts count="{{ mods.postsPerRow }}"] {% endfilter %}
+
+          {% endif %}
+        </footer>
+
+      {# Comments #}
+      {% elseif e.id == 'comments' %}
+        {% include "_comments.twig" %}
+
+      {% endif %}
+    {% endfor %}
+  </main>
+
+  
+  {% if sidebar %}
+    <aside class="sidebar sidebar--{{ mods.post_style == 'right-sidebar' ? 'right' : 'left' }}">
+      {{ sidebar }}
+    </aside>
+  {% endif %}
+</h-grid>
+
+{# Post Footer Elements #}
+<h-grid class="post-grid post-grid--alignfull">
+  <footer class="post-column post-column--no-sidebar">
+  {% for e in mods.post_footer_elements if e.enabled %}
+    
+    {# Related Posts #}
+    {% if e.id == 'related-posts' %}
+
+      <div class="related-posts">
+        {% if fn('class_exists', 'Jetpack_RelatedPosts') and e.use_jetpack == 'yes' %}
+          {% filter shortcodes %} [jetpack-related-posts] {% endfilter %}
+        
+        {% else %}
+          <h3 class="related-title"> {{ __('Related Posts') }}</h3>
+          {% filter shortcodes %} [h-related-posts count="{{ mods.postsPerRow }}"] {% endfilter %}
+
+        {% endif %}
+      </div>
+
+    {# Comments #}
+    {% elseif e.id == 'comments' %}
+
+      {% include "_comments.twig" %}
+
+    {% endif %}
+  {% endfor %}
+  </footer>
+</h-grid>
 
 {% endblock %}

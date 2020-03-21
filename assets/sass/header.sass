@@ -1,6 +1,5 @@
 @import "settings"
 
-
 ///// ROWS & COLUMNS /////
 
 .header-row
@@ -16,6 +15,13 @@
   // Item gap
   [data-id] + [data-id]
     margin-left: 1rem
+
+  // active effect
+  a
+    display: inline-block
+  a:active
+    transition: none
+    transform: translateY(1px)
 
 
 // Specific row
@@ -207,15 +213,7 @@ body.has-active-offcanvas
   flex-direction: column
  
   a
-    display: inline-block
     line-height: 1
-
-  a:hover
-    transform: translateY(-2px)
-
-  a:active
-    transform: none
-    transition: none
 
 
 .logo-text
@@ -306,10 +304,6 @@ body.has-active-offcanvas
   > a:hover span
     background-color: var(--parentBgHover)
     color: var(--parentColorHover)
-
-  > a:active
-    transform: translateY(1px)
-    transition: none
   
   // current page
   &.current-menu-item,
@@ -406,10 +400,6 @@ body.has-active-offcanvas
   &:hover
     background-color: var(--dropdownBgHover)
     color: var(--dropdownColorHover)
-
-  &:active
-    transform: translateY(1px)
-    transition: none
 
   // 3rd level item
   + a
@@ -574,7 +564,6 @@ body.has-active-offcanvas
 
   &:hover
     opacity: .75
-    transform: translateY(-2px)
 
   svg
     width: var(--iconSize)

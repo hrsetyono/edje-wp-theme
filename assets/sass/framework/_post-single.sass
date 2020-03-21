@@ -1,0 +1,418 @@
+
+///// SINGLE HEADER
+
+.post-header
+  h1, h2
+    margin-bottom: 0.5rem
+
+
+///// POST BANNER
+
+.post-banner
+  display: flex
+  align-items: center
+  padding: 0
+
+  picture
+    overflow: hidden
+    max-width: none
+
+  img
+    margin-right: auto
+    margin-left: auto
+
+.post-banner--narrow
+  picture
+    width: var(--blogWidth)
+    border-radius: var(--gRadius)
+  
+  .image-fit--custom
+    --fitHeight: var(--postImageHeight)
+
+.post-banner--wide,
+.post-banner--full
+
+  &:first-child
+    margin-top: calc(var(--postContentOffset) * -1)
+
+  .image-fit
+    --fitHeight: var(--postImageHeight)
+
+.post-banner--wide
+  picture
+    width: calc(var(--blogWidth) + 200px)
+    max-width: 100%
+
+.post-banner--full
+  picture
+    width: 100%
+
+
+///// SINGLE AUTHOR  
+
+.post-author
+
+  a:active
+    transition: none
+    transform: translateY(1px)
+
+
+.author-inner-wrapper
+  max-width: var(--blogWidth)
+  margin: 0 auto
+  padding: 1rem
+  background-color: var(--textInvert)
+  box-shadow: 0px 50px 90px rgba(210, 213, 218, 0.4)
+
+  body.archive &
+    background-color: transparent
+    box-shadow: none
+
+  //
+  @media ($above-xs)
+    display: grid
+    grid-template-columns: auto 1fr
+    grid-template-rows: auto auto
+    grid-column-gap: 1.5rem
+    grid-row-gap: 0.5rem
+
+
+// Avatar
+.author-avatar
+  grid-row: span 2
+
+  img
+    border-radius: 50%
+    background-color: var(--siteBackgroundColor)
+    height: 4em
+    width: 4em
+    box-shadow: var(--shadow1)
+
+  //
+  @media ($below-xs)
+    float: right
+
+
+// Author text
+.author-bio
+  grid-column: 2 / span 1
+  font-size: var(--smallFontSize)
+  
+  * + *
+    margin-top: 0.5rem
+
+  a
+    display: inline-block
+    color: inherit
+    text-decoration: none
+
+  a:hover
+    color: inherit
+    text-decoration: underline
+
+  label
+    margin-bottom: -0.5rem
+    color: var(--textDim)
+
+  h5, h6
+    text-transform: uppercase
+    letter-spacing: 0.025em
+
+
+// Social media links
+.author-links
+  --linkColor: var(--textDim)
+
+  display: flex
+  flex-wrap: wrap
+  grid-column: 2 / span 1
+
+  margin: 0.5rem -0.5rem 0
+  font-size: var(--smallFontSize)
+
+  a
+    display: flex
+    align-items: center
+    padding: 0 0.5rem
+
+  a:hover
+    --linkColor: var(--main)
+
+  svg
+    width: 1rem
+    margin-right: 0.25rem
+  path
+    fill: var(--linkColor)
+    transition: var(--gTransition)
+
+
+///// RELATED POSTS
+
+.related-posts
+  --padding: 3rem
+  --blogWidth: var(--siteWidth)
+
+  padding: var(--padding) 0
+  background-color: #eff1f5
+
+  .related-title
+    margin-bottom: var(--padding)
+    font-weight: var(--fontWeight)
+    text-align: center
+    color: var(--textDim)
+
+  .post-archives
+    max-width: var(--siteWidth)
+    padding: 0 calc(var(--gridGap) / 2)
+
+  .post-archive
+    background-color: var(--siteBackgroundColor)
+
+  //
+  @media ($below-s)
+    --padding: 2rem
+
+
+///// COMMENTS
+
+.post-comments
+  padding: 0 calc( var(--gridGap) / 2 )
+  ul
+    list-style-type: none
+
+.comments-list
+  padding-left: 0
+  margin-top: 2rem
+
+  > li
+    padding: 1.25rem
+    margin-bottom: 1.5rem
+    background-color: white
+    border: 1px solid rgba(black, .1)
+    border-radius: var(--gRadius)
+
+// Single Comment
+.comment
+  position: relative
+
+  &.bypostauthor .comment-avatar
+    padding: 1px
+
+  .avatar
+    margin-right: 0.75rem
+    width: 2.5em
+    height: 2.5em
+
+
+.comment-header
+  display: flex
+  flex-wrap: wrap
+  align-items: center
+  margin-bottom: 1rem
+
+  time
+    margin-left: 0.5rem
+    font-size: var(--smallFontSize)
+    color: var(--textDim)
+
+.comment-text
+  p + p
+    margin-top: 1rem
+
+
+// Child comments
+.replies-list
+  margin-top: 1.5rem
+  padding-left: 1.25rem
+  border-left: 2px solid rgba(black , .1)
+  
+  .comment
+    font-size: var(--smallFontSize)
+
+  > li + li
+    margin-top: 1.5rem
+  header
+    margin-bottom: 0.5rem
+  p + p
+    margin-top: 0.5rem
+
+
+// Reply link
+a.comment-reply-link
+  position: absolute
+  top: 5px
+  right: 0
+
+  padding-right: 0.5rem
+  padding-left: 0.5rem
+  border-radius: var(--gRadius)
+  background-color: h-rgba(--main, .1)
+  font-size: var(--smallFontSize)
+  font-weight: var(--hFontWeight)
+  letter-spacing: 0.05em
+  text-transform: uppercase
+
+  &:hover
+    background-color: h-rgba(--main, .25)
+
+
+///// COMMENT FORM /////
+
+.comment-reply-title
+  display: none
+
+.comment-respond
+  margin-bottom: 2rem
+
+  .comments-list & // if reply
+    width: 110%
+    margin: 0 -5%
+
+.comment-form
+  display: flex
+  flex-wrap: wrap
+  padding: 1rem
+  background-color: white
+  border-radius: var(--gRadius)
+  box-shadow: var(--shadow0)
+
+  .comments-list & // if reply
+    margin-top: 1.25rem
+
+  p
+    display: flex
+    flex-direction: column
+    width: 100%
+    margin-bottom: 1rem
+
+  label
+    cursor: pointer
+    margin-bottom: 0.5rem
+    text-transform: uppercase
+    color: var(--textDim)
+    letter-spacing: 0.05em
+    font-size: var(--smallFontSize)
+
+  .comment-notes,
+  .logged-in-as
+    display: block
+    color: var(--textDim)
+    font-size: var(--smallFontSize)
+  
+// when not active, only show Textarea
+.comment-form:not(.--active)
+  padding: 0
+
+  \:not(.comment-form-comment)
+    overflow: hidden
+    height: 0
+    margin: 0
+
+
+// Textarea
+.comment-form-comment
+  label
+    display: none
+
+  textarea
+    height: 9rem
+
+  .comment-form:not(.--active) &
+    margin: 0
+
+    textarea
+      cursor: pointer
+      padding: 1.5rem
+      border: 0
+      background-color: h-rgba(--main, .1)
+      height: 4.5rem
+      box-shadow: none
+    
+    textarea:hover
+      background-color: transparent
+
+
+p.comment-form-author,
+p.comment-form-email
+  width: 50%
+
+  @media ($below-xs)
+    width: 100%
+
+p.comment-form-author
+  padding-right: 0.5rem
+
+p.comment-form-email
+  padding-left: 0.5rem
+
+p.comment-form-url
+  display: none
+
+p.comment-form-cookies-consent
+  flex-direction: row
+
+  input
+    margin-top: 2px
+    margin-right: 0.5rem
+
+  label
+    display: inline-block
+    text-transform: none
+
+p.form-submit
+  align-items: center
+  margin-bottom: 0
+
+
+///// POST PASSWORD FORM
+@if $output-password-form
+  .post-password-form
+    padding: 2rem 4rem
+    background-color: rgba(black, .05)
+    border-radius: var(--gRadius)
+
+    p:last-child
+      display: flex
+      border-bottom: 1px solid var(--textDim)
+      padding-bottom: 0.5rem
+
+    label
+      flex: 1
+      color: var(--textDim)
+
+    input[type="password"]
+      background-color: transparent
+      border: none
+      margin-top: 1rem
+      padding: 0
+
+      font-size: var(--h3Size)
+      color: var(--text)
+      letter-spacing: 0.05em
+      
+      &:hover,
+      &:focus
+        border: none
+        box-shadow: none
+
+    input[type="submit"]
+      align-self: flex-end
+      background-color: white
+      padding-right: 2rem
+      padding-left: 2rem
+
+
+///// INFINITE SCROLL (Jetpack)
+@if $output-infinite-scroll
+  body[class^="paged-"] #infinite-footer
+    display: none // if infinite-footer is turned on (in theme_support), hide it in paged list.
+
+  .infinite-loader
+    margin-top: 2rem
+    margin-bottom: 2rem
+
+    .spinner
+      left: 50% !important
+      transform: translateX(-50%)
+
+

@@ -21,6 +21,17 @@ class MyTimber extends TimberSite {
       $context['header'] = CustyBuilder::get_header( 'main' );
       $context['footer'] = CustyBuilder::get_footer( 'main' );
       $context['mods'] = Custy::get_mods();
+
+      // check for sidebar
+      $is_archive = ( is_archive() || is_author() || is_category() || is_home() || is_tag() ) && 'post' == get_post_type();
+      $is_single = is_single() && 'post' == get_post_type();
+
+      $is_archive_has_sidebar = $is_archive && $context['mods']['archive_has_sidebar'] == 'yes';
+      $is_single_has_sidebar =  $is_single && in_array( $context['mods']['post_style'], [ 'right-sidebar', 'left-sidebar' ] );
+
+      if( $is_archive_has_sidebar || $is_single_has_sidebar ) {
+        $context['sidebar'] = Timber::get_widgets( 'sidebar' );
+      }
     }
 
     $context['site'] = $this;
