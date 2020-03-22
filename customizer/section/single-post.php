@@ -7,18 +7,13 @@ $section = [ 'title' => __( 'Single Post' ), 'container' => [ 'priority' => 8, '
 		'type' => 'ct-image-picker',
 		'attr' => [ 'data-type' => 'background' ],
 		'choices' => [
-
 			'narrow' => [
 				'src'   => custy_get_svg( 'post-narrow' ),
-				'title' => __( 'Centered' ),
+				'title' => __( 'Narrow' ),
       ],
-      'left-sidebar' => [
-				'src'   => custy_get_svg( 'post-left-sidebar' ),
-				'title' => __( 'Left Sidebar' ),
-      ],
-      'right-sidebar' => [
+      'has-sidebar' => [
 				'src'   => custy_get_svg( 'post-right-sidebar' ),
-				'title' => __( 'Right Sidebar' ),
+				'title' => __( 'Has Sidebar' ),
 			],
 
 		],
@@ -33,6 +28,34 @@ $section = [ 'title' => __( 'Single Post' ), 'container' => [ 'priority' => 8, '
     'settings' => [
 
       'title' => [ 'label' => __( 'Title' ), 'options' => [
+
+        'style' => [
+          'label' => __( 'Style' ),
+          'desc' => __( 'If Banner style, it will always be placed first.' ),
+          'type' => 'ct-image-picker',
+          'attr' => [ 'data-type' => 'background' ],
+          'choices' => [
+            'default' => [
+              'src'   => custy_get_svg( 'post-title-default' ),
+              'title' => __( 'Default' ),
+            ],
+            'hero' => [
+              'src'   => custy_get_svg( 'post-title-hero' ),
+              'title' => __( 'Hero' ),
+            ],
+          ],
+        ],
+        
+        custy_rand_id() => [ 'condition' => [ 'style' => 'banner' ], 'options' => [
+          'banner_style' => [
+            'label' => __( 'Banner Style' ),
+            'type' => 'ct-radio',
+            'choices' => [
+              'color' => __( 'Color' ),
+              'featured-image' => __( 'Featured Image' ),
+            ],
+          ],
+        ] ],
           
         'meta' => [
           'label' => __( 'Meta' ),

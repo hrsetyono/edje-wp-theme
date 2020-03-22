@@ -1,14 +1,47 @@
 
-///// SINGLE HEADER
+///// TITLE
 
-.post-header
+.post-title
   h1, h2
     margin-bottom: 0.5rem
 
+// Banner Title
 
-///// POST BANNER
+.post-hero
+  display: flex
+  align-items: flex-end
 
-.post-banner
+  position: relative
+  min-height: 250px
+  padding-bottom: 2rem
+  background-color: var(--postHeroBg)
+
+  picture
+    +absolute-fill
+
+  picture::after
+    content: ""
+    +absolute-fill
+    z-index: 5
+    background-color: rgba(white, .5)
+
+.hero-column
+  position: relative
+  z-index: 10
+  grid-column: span 8
+
+.hero-column--narrow
+  grid-column: span 12
+
+  > *
+    max-width: var(--blogWidth)
+    margin-right: auto
+    margin-left: auto
+
+
+///// POST FEATURED IMAGE
+
+.featured-image
   display: flex
   align-items: center
   padding: 0
@@ -21,7 +54,7 @@
     margin-right: auto
     margin-left: auto
 
-.post-banner--narrow
+.featured-image--narrow
   picture
     width: var(--blogWidth)
     border-radius: var(--gRadius)
@@ -29,35 +62,26 @@
   .image-fit--custom
     --fitHeight: var(--postImageHeight)
 
-.post-banner--wide,
-.post-banner--full
 
-  &:first-child
-    margin-top: calc(var(--postContentOffset) * -1)
+.featured-image--wide,
+.featured-image--full
 
   .image-fit
     --fitHeight: var(--postImageHeight)
 
-.post-banner--wide
+.featured-image--wide
   picture
     width: calc(var(--blogWidth) + 200px)
     max-width: 100%
 
-.post-banner--full
+.featured-image--full
   picture
     width: 100%
 
 
-///// SINGLE AUTHOR  
+///// SINGLE AUTHOR
 
 .post-author
-
-  a:active
-    transition: none
-    transform: translateY(1px)
-
-
-.author-inner-wrapper
   max-width: var(--blogWidth)
   margin: 0 auto
   padding: 1rem
@@ -66,7 +90,12 @@
 
   body.archive &
     background-color: transparent
+    margin-bottom: 2rem
     box-shadow: none
+
+  a:active
+    transition: none
+    transform: translateY(1px)
 
   //
   @media ($above-xs)
@@ -146,24 +175,72 @@
     transition: var(--gTransition)
 
 
+///// POST NAV
+
+.post-nav
+  display: flex
+  
+  a
+    display: flex
+    flex: 1
+    align-items: center
+    padding: 0.5rem 0
+
+  a:hover
+    opacity: .75
+  a:active
+    transition: none
+    transform: translateY(1px)
+
+  img
+    width: 70px
+    height: 70px
+    margin-right: 0.5rem
+    background-color: var(--textDim)
+    border-radius: 50%
+
+  span
+    flex: 1
+    font-weight: var(--hFontWeight)
+
+  em
+    display: block
+
+    text-transform: uppercase
+    font-size: var(--xsmallFontSize)
+    font-style: normal
+    font-weight: 400
+
+  //
+  @media ($below-xs)
+    flex-wrap: wrap
+
+    a
+      flex: auto
+      width: 100%
+
+.nav-next
+  flex-direction: row-reverse
+  text-align: right
+
+  img
+    margin-right: 0
+    margin-left: 0.5rem
+
+
+
 ///// RELATED POSTS
 
 .related-posts
-  --padding: 3rem
   --blogWidth: var(--siteWidth)
 
-  padding: var(--padding) 0
-  background-color: #eff1f5
+  padding-top: 2rem
+  padding-bottom: 2rem
+  background-color: var(--postRelatedBg)
 
   .related-title
-    margin-bottom: var(--padding)
+    margin-bottom: 2rem
     font-weight: var(--fontWeight)
-    text-align: center
-    color: var(--textDim)
-
-  .post-archives
-    max-width: var(--siteWidth)
-    padding: 0 calc(var(--gridGap) / 2)
 
   .post-archive
     background-color: var(--siteBackgroundColor)
@@ -172,6 +249,7 @@
   @media ($below-s)
     --padding: 2rem
 
+  
 
 ///// COMMENTS
 

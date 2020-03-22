@@ -35,14 +35,13 @@ article
   > * + *
     margin-top: 1.5rem
 
+.wp-block-group__inner-container,
+.wp-block-cover__inner-container,
+.wp-block-media-text__content,
+.wp-block-column
   @media ($below-l)
     padding-right: var(--gridRim)
     padding-left: var(--gridRim)
-
-    h-grid &
-      padding-top: 0
-      padding-bottom: 0
-  
 
 // ALIGNMENT
 .has-text-align-right
@@ -60,23 +59,44 @@ article
   margin-bottom: 2.5rem
   max-width: var(--siteWidth)
 
-  .alignfull &
-    margin-top: 0
+  &:last-child
+    margin-bottom: 0
+
+  .post-column--has-sidebar &
+    padding-right: var(--gridGap)
+    padding-left: var(--gridGap)
+
+    // nested alignwide
+    .alignwide
+      padding-right: 0
+      padding-left: 0
+
 
 .alignfull
   max-width: none
+  width: calc(100vw - var(--gridRim) - var(--gridRim))
+  margin-left: calc(-50vw + 50% + var(--gridRim))
+  margin-right: calc(-50vw + 50% + var(--gridRim))
   margin-top: 2.5rem
   margin-bottom: 2.5rem
 
   + .alignfull
     margin-top: -2.5rem
 
+  .post-column--has-sidebar &
+    width: 100%
+    margin-left: 0
+    margin-right: 0
+    padding-right: var(--gridGap)
+    padding-left: var(--gridGap)
+
+    // nested alignfull
+    .alignfull
+      padding-right: 0
+      padding-left: 0
+
   &:last-child
     margin-bottom: 0
-
-  @media ($below-l)
-    margin-right: calc(-1 * var(--gridRim) )
-    margin-left: calc(-1 * var(--gridRim) )
 
   
 // VERTICAL ALIGNMENT

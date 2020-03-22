@@ -69,19 +69,22 @@ add_filter( 'custy_default_values', function( $defaults ) {
     'post_style' => 'narrow',
 
     'post_elements' => [
+      [ 'id' => 'title', 'enabled' => true,
+        'style' => 'hero',
+        'banner_style' => 'color',
+        'meta' => [
+          'categories' => true,
+          'author' => true,
+          'date' => true,
+          'comments' => true,
+          'tags' => true,
+        ]
+      ],
       [ 'id' => 'featured_image', 'enabled' => true,
         'style' => 'wide',
         'ratio' => '3:1',
         'height' => [ 'desktop' => '250px', 'tablet' => '300px', 'mobile' => '300px' ]
       ],
-      [ 'id' => 'title', 'enabled' => true, 'meta' => [
-        'categories' => true,
-        'author' => true,
-        'date' => true,
-        'comments' => true,
-        'tags' => true,
-      ] ],
-      
       [ 'id' => 'content', 'enabled' => true ],
       [ 'id' => 'share', 'enabled' => true ],
       [ 'id' => 'author-box', 'enabled' => true, 'show_avatar' => 'yes', 'show_social_media' => 'yes' ],

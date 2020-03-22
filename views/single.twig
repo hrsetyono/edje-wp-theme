@@ -1,23 +1,46 @@
 {% extends "layout.twig" %}
 {% block content %}
 
-{# Content #}
+{# If Title has Banner style #}
+{% for e in mods.post_elements if e.enabled %}
+  {% if e.id == 'title' and e.style == 'hero' %}
+    <header class="post-hero">
+      
+      {% if e.banner_style == 'featured-image' %}
+        <picture class="image-fit">
+          <source srcset="{{ post.thumbnail.src('medium') }}" media="(max-width: 480px)">
+          <img src="{{ post.thumbnail.src('large') }}" alt="{{ post.title }} Banner">
+        </picture>
+      {% endif %}
 
-<h-grid class="post-grid  {{ not sidebar ? 'post-grid--alignfull' : '' }}">
+      <h-grid>
+        <div class="hero-column {{ not sidebar ? 'hero-column--narrow' : '' }}">
+          <h1>{{ post.title }}</h1>
+          {% include "_post-meta.twig" with { element: e, post: post } %}
+        </div>
+      </h-grid>
+    </header>
+  {% endif %}
+{% endfor %}
+
+{# Content #}
+<h-grid>
+ 
 
   <main class="post-column  {{ sidebar ? 'post-column--has-sidebar' : 'post-column--no-sidebar' }}">
     {% for e in mods.post_elements if e.enabled %}
       
       {# Post Title #}
-      {% if e.id == 'title' %}
-        <header class="post-header">
+      {% if e.id == 'title' and e.style == 'default' %}
+        <header class="post-title">
           <h1>{{ post.title }}</h1>
           {% include "_post-meta.twig" with { element: e, post: post } %}
         </header>
 
       {# Featured Image #}
-      {% elseif e.id == 'featured_image' %}
-        <div class="post-banner post-banner--{{ e.style }}">
+      {% elseif e.id == 'featured_image' and post.thumbnail %}
+
+        <div class="featured-image featured-image--{{ e.style }}">
           <picture class="image-fit {% if e.style == 'narrow' %} image-fit--{{ e.ratio }} {% endif %}">
             <source srcset="{{ post.thumbnail.src('medium') }}" media="(max-width: 480px)">
             <img src="{{ post.thumbnail.src('large') }}" alt="{{ post.title }} Banner">
@@ -40,49 +63,46 @@
 
       {# Next / Prev Post #}
       {% elseif e.id == 'next-prev-post' %}
-        <nav class="post-nav">
-          Next / Prev
-        </nav>
-
-      {# Related Posts #}
-      {% elseif e.id == 'related-posts' %}
-        <footer class="related-posts">
-          {% if fn('class_exists', 'Jetpack_RelatedPosts') and e.use_jetpack == 'yes' %}
-            {% filter shortcodes %} [jetpack-related-posts] {% endfilter %}
-          
-          {% else %}
-            <h3 class="related-title"> {{ __('Related Posts') }}</h3>
-            {% filter shortcodes %} [h-related-posts count="{{ mods.postsPerRow }}"] {% endfilter %}
-
+        <div> <nav class="post-nav">
+          {% if post.prev %}
+            <a href="{{ post.prev.link }}" class="nav-prev">
+              <img src="{{ post.prev.thumbnail.src('thumbnail') }}">
+              <span>
+                <em>{{ __('Previous Post') }}</em>
+                {{ post.prev.title }}
+              </span>
+            </a>
           {% endif %}
-        </footer>
 
-      {# Comments #}
-      {% elseif e.id == 'comments' %}
-        {% include "_comments.twig" %}
+          {% if post.next %}
+            <a href="{{ post.next.link }}" class="nav-next">
+              <img src="{{ post.next.thumbnail.src('thumbnail') }}">
+              <span>
+                <em>{{ __('Next Post') }}</em>
+                {{ post.next.title }}
+              </span>
+            </a>
+          {% endif %}
+        </nav> </div>
 
       {% endif %}
     {% endfor %}
   </main>
 
-  
   {% if sidebar %}
-    <aside class="sidebar sidebar--{{ mods.post_style == 'right-sidebar' ? 'right' : 'left' }}">
+    <aside class="sidebar">
       {{ sidebar }}
     </aside>
   {% endif %}
 </h-grid>
 
 {# Post Footer Elements #}
-<h-grid class="post-grid post-grid--alignfull">
-  <footer class="post-column post-column--no-sidebar">
-  {% for e in mods.post_footer_elements if e.enabled %}
-    
-    {# Related Posts #}
-    {% if e.id == 'related-posts' %}
-
-      <div class="related-posts">
-        {% if fn('class_exists', 'Jetpack_RelatedPosts') and e.use_jetpack == 'yes' %}
+{% for e in mods.post_footer_elements if e.enabled %}
+  
+  {% if e.id == 'related-posts' %}
+    <aside class="related-posts">
+      <h-grid> <div class="large-12">
+        {% if e.use_jetpack == 'yes' and fn('class_exists', 'Jetpack_RelatedPosts') %}
           {% filter shortcodes %} [jetpack-related-posts] {% endfilter %}
         
         {% else %}
@@ -90,16 +110,18 @@
           {% filter shortcodes %} [h-related-posts count="{{ mods.postsPerRow }}"] {% endfilter %}
 
         {% endif %}
+      </div> </h-grid>
+    </aside>
+  
+  {% elseif e.id == 'comments' %}
+    <h-grid>
+      <div class="post-column post-column--no-sidebar">
+        {% include "_comments.twig" %}
       </div>
+    </h-grid>
+    
+  {% endif %}
 
-    {# Comments #}
-    {% elseif e.id == 'comments' %}
-
-      {% include "_comments.twig" %}
-
-    {% endif %}
-  {% endfor %}
-  </footer>
-</h-grid>
+{% endfor %}
 
 {% endblock %}

@@ -7,7 +7,6 @@ $section = [ 'title' => __( 'Blog Posts' ), 'container' => [ 'priority' => 8 ], 
 		'type' => 'ct-image-picker',
 		'attr' => [ 'data-type' => 'background' ],
 		'choices' => [
-
 			'default' => [
 				'src'   => custy_get_svg( 'posts-default' ),
 				'title' => __( 'Default' ),
@@ -16,9 +15,15 @@ $section = [ 'title' => __( 'Blog Posts' ), 'container' => [ 'priority' => 8 ], 
 				'src'   => custy_get_svg( 'posts-grid' ),
 				'title' => __( 'Grid' ),
 			],
-
 		],
-	],
+  ],
+  
+  'archive_has_sidebar' => [
+    'label' => __( 'Archive Has Sidebar?' ),
+    'desc' => __( 'To edit it, go to Widget section > Sidebar' ),
+    'type' => 'ct-switch',
+  ],
+
 
   custy_rand_id() => [ 'condition' => [ 'archive_style' => 'grid' ], 'options' => [
 
@@ -136,34 +141,4 @@ $section = [ 'title' => __( 'Blog Posts' ), 'container' => [ 'priority' => 8 ], 
     ],
   ],
   
-  custy_rand_id() => [ 'divider' => '' ],
-  
-  'archive_has_sidebar' => [
-    'label' => __( 'Archive Has Sidebar?' ),
-    'desc' => __( 'To edit it, go to Widget section > Sidebar' ),
-    'type' => 'ct-switch',
-  ],
-
-  custy_rand_id() => [ 'condition' => [ 'archive_has_sidebar' => 'yes' ], 'options' => [
-    
-    'archive_sidebar_position' => [
-      'label' => __( 'Archive Sidebar Position' ),
-      'type' => 'ct-image-picker',
-      'attr' => [ 'data-type' => 'background' ],
-      'choices' => [
-  
-        'left' => [
-          'src'   => custy_get_svg( 'sidebar-left' ),
-          'title' => __( 'Left' ),
-        ],        
-        'right' => [
-          'src'   => custy_get_svg( 'sidebar-right' ),
-          'title' => __( 'Right' ),
-        ],
-  
-      ],
-    ],
-
-  ] ]
-
 ] ];

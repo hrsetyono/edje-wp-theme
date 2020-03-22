@@ -1,8 +1,7 @@
 {% extends "layout.twig" %}
 {% block content %}
 
-<h-grid class="archive-grid">
-
+<h-grid>
   <main class="archive-column {{ sidebar ? 'archive-column--has-sidebar' : 'archive-column--no-sidebar' }}">
     {% if fn('function_exists', 'jetpack_breadcrumbs') %}
       {{ fn( 'jetpack_breadcrumbs' ) }}
@@ -24,7 +23,7 @@
   </main>
 
   {% if sidebar %}
-    <aside class="sidebar sidebar--{{ mods.archive_sidebar_position }}">
+    <aside class="sidebar">
       {{ sidebar }}
     </aside>
   {% endif %}
