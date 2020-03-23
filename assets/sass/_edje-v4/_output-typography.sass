@@ -24,6 +24,15 @@ body
   // text-transform: var(--textTransform)
   color: var(--text)
 
+  // Webkit sibling selector fix
+  -webkit-animation: bugfix infinite 1s
+
+@-webkit-keyframes bugfix
+  from
+    padding: 0
+  to
+    padding: 0
+
 
 h1, h2, h3, h4, h5, h6
   font-family: var(--hFontFamily)

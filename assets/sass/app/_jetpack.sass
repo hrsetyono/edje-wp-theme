@@ -1,0 +1,37 @@
+///// BREADCRUMB
+
+.entry-breadcrumbs
+  margin-bottom: 1rem
+
+  [itemprop="itemListElement"]
+    display: inline-block
+    padding: 0.25rem 0.5rem
+    background-color: var(--textInvert)
+
+  [itemprop="itemListElement"]:nth-child(n+2)::before
+    content: "»"
+    display: inline-block
+    transform: translateX(-0.5rem)
+
+
+  [itemprop="name"]
+    display: inline-block
+    padding: 0.25rem 0.5rem
+    border-radius: var(--gRadius)
+
+    color: var(--textDim)
+    text-transform: uppercase
+    letter-spacing: 0.025em
+
+    transition: var(--gTransition)
+
+  a:hover [itemprop="name"]
+    background-color: var(--mainLight)
+    color: var(--main)
+  
+  a:active [itemprop="name"]
+    transition: none
+    transform: translateY(1px)
+
+  .current-category [itemprop="name"]
+    color: var(--text)

@@ -1,7 +1,7 @@
 <?php
 /**
  * for H::GET() and H::POST()
- * IMPORTANT - This should be defined on `wp-config.php` so it can vary between local / live
+ * IMPORTANT - This should be defined on `wp-config.php` so it can vary between LOCAL and LIVE
  */
 define( 'API_URL', 'https://yoursite.com/wp-json/my/v1' );
 
@@ -10,7 +10,7 @@ define( 'API_URL', 'https://yoursite.com/wp-json/my/v1' );
  */
 class MyAPI {
   function __construct() {
-    add_action( 'rest_api_init', [$this, 'rest_api_init'] );
+    // add_action( 'rest_api_init', [$this, 'rest_api_init'] );
   }
 
   /**
@@ -48,7 +48,9 @@ class MyAPI {
    */
   function sample_post( $request ) {
     $params = $request->get_params();
-    return $params;
+    $id = $params['id'];
+    
+    return 'post request';
   }
 }
 

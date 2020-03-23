@@ -12,7 +12,7 @@
       <a href="{{ author.link }}" title="See all posts by {{ author.display_name }}"> {{ author.display_name }} </a>
     </h5>
 
-    {{ author.description | markdown }}
+    {{ author.description | h_markdown }}
   </div>
 
   {# Website and social media #}

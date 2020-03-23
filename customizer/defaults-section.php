@@ -5,7 +5,7 @@
  */
 add_filter( 'custy_default_values', function( $defaults ) {
 
-  ///  CORE SECTION  ///
+  ///  BUILT-IN SECTION  ///
   $defaults = wp_parse_args( [
     'colorPalette' => [
       'color1' => [ 'color' => '#1976d2' ],
@@ -18,6 +18,7 @@ add_filter( 'custy_default_values', function( $defaults ) {
   ], $defaults );
 
   /// CUSTOM SECTION ///
+
   $defaults = wp_parse_args( [
     // FEATURES
     'has_back_to_top' => 'no',
@@ -38,64 +39,6 @@ add_filter( 'custy_default_values', function( $defaults ) {
     'frameColor' => [
       'default' => [ 'color' => 'var(--text)' ]
     ],
-
-    // BLOG POSTS
-    'archive_style' => 'default',
-    'postsPerRow' => [
-      'desktop' => 3,
-      'tablet' => 2,
-      'mobile' => 1
-    ],
-
-    'archive_elements' => [
-      [ 'id' => 'title', 'enabled' => true ],
-      [ 'id' => 'featured_image', 'enabled' => true, 'ratio' => '2:1', 'height' => '50%' ],
-      [ 'id' => 'excerpt', 'enabled' => true, 'word_count' => 30 ],
-      [ 'id' => 'read_more_button', 'enabled' => false, 'style' => 'transparent', 'text' => __( 'Read More' ) ],
-      [ 'id' => 'post_meta', 'enabled' => true, 'meta' => [
-        'categories' => true,
-        'author' => true,
-        'date' => true,
-        'comments' => true,
-        'tags' => true,
-      ] ],
-    ],
-
-    'archive_has_sidebar' => 'no',
-    'archive_sidebar_position' => 'right',
-
-
-    // SINGLE POST
-    'post_style' => 'narrow',
-
-    'post_elements' => [
-      [ 'id' => 'title', 'enabled' => true,
-        'style' => 'hero',
-        'banner_style' => 'color',
-        'meta' => [
-          'categories' => true,
-          'author' => true,
-          'date' => true,
-          'comments' => true,
-          'tags' => true,
-        ]
-      ],
-      [ 'id' => 'featured_image', 'enabled' => true,
-        'style' => 'wide',
-        'ratio' => '3:1',
-        'height' => [ 'desktop' => '250px', 'tablet' => '300px', 'mobile' => '300px' ]
-      ],
-      [ 'id' => 'content', 'enabled' => true ],
-      [ 'id' => 'share', 'enabled' => true ],
-      [ 'id' => 'author-box', 'enabled' => true, 'show_avatar' => 'yes', 'show_social_media' => 'yes' ],
-      [ 'id' => 'next-prev-post', 'enabled' => true ],
-    ],
-
-    'post_footer_elements' => [
-      [ 'id' => 'related-posts', 'enabled' => true, 'use_jetpack' => 'yes' ],
-      [ 'id' => 'comments', 'enabled' => true ],
-    ],
-
 
   ], $defaults );
 

@@ -98,7 +98,8 @@
 
 {# Post Footer Elements #}
 {% for e in mods.post_footer_elements if e.enabled %}
-  
+
+  {# Rleated Posts #}
   {% if e.id == 'related-posts' %}
     <aside class="related-posts">
       <h-grid> <div class="large-12">
@@ -112,8 +113,9 @@
         {% endif %}
       </div> </h-grid>
     </aside>
-  
-  {% elseif e.id == 'comments' %}
+
+  {# Comments #}
+  {% elseif e.id == 'comments' and post.comment_status != 'closed' %}
     <h-grid>
       <div class="post-column post-column--no-sidebar">
         {% include "_comments.twig" %}

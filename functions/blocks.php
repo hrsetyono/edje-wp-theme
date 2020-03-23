@@ -24,7 +24,6 @@ class MyBlocks {
       'render_template' => 'acf-blocks.php',
       'category' => 'formatting',
       'icon' => 'admin-comments',
-      'keywords' => [ 'testimonial', 'quote' ],
     ]);
   }
 
@@ -37,8 +36,9 @@ class MyBlocks {
     return $value;
   }
 
+  
   /**
-   * 
+   * Register custom style to existing block
    */
   function register_block_styles() {
     // register_block_style( 'core/table', [
@@ -49,6 +49,5 @@ class MyBlocks {
     // ] );
   }
 }
-
 
 new MyBlocks();

@@ -1,5 +1,5 @@
 <?php
-define( 'ASSETS_VERSION', '2020.01.07' ); // update this to force delete browser's cache
+define( 'ASSETS_VERSION', '2020.03.23' ); // update this to force delete browser's cache
 
 add_action( 'wp_enqueue_scripts', 'my_public_assets', 100 );
 add_action( 'admin_enqueue_scripts', 'my_admin_assets', 100 );
@@ -20,6 +20,12 @@ function my_public_assets() {
   wp_enqueue_style( 'my-app', $css_dir . '/app.css', [], ASSETS_VERSION );
   wp_enqueue_style( 'my-footer', $css_dir . '/footer.css', [], ASSETS_VERSION );
   wp_enqueue_style( 'dashicons', get_stylesheet_uri(), 'dashicons' ); // WP native icons
+
+  // If inside blog
+  if( ( is_archive() || is_author() || is_category() || is_single() || is_home() || is_tag() ) && 'post' == get_post_type() ) {
+    wp_enqueue_style( 'my-blog', $css_dir . '/blog.css', [], ASSETS_VERSION );
+  }
+  
   
   // wp_enqueue_script( 'h-lightbox' );
   // wp_enqueue_script( 'h-slider' );
@@ -44,8 +50,7 @@ function my_admin_assets() {
   $js_dir = get_stylesheet_directory_uri() . '/assets/js';
 
   // Stylesheet
-  wp_enqueue_style( 'my-admin', $css_dir . '/my-admin.css' );
-
+  wp_enqueue_style( 'my-admin', $css_dir . '/my-admin.css', [], ASSETS_VERSION );
 }
 
 

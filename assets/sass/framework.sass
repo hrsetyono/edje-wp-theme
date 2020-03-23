@@ -1,16 +1,9 @@
 /* EDJE Framework 4.0 - hrsetyono.github.io/edje */
 
 @import "settings"
-
 @import "_edje-v4/output-normalize"
 @import "_edje-v4/output-grid"
 @import "_edje-v4/output-typography"
-
-@import "framework/post"
-@import "framework/post-single"
-@import "framework/post-archive"
-@import "framework/jetpack"
-@import "framework/cf7"
 
 ///// ROOT VARIABLES /////
 // All the commented variables will be set via WP CUSTOMIZER
@@ -336,3 +329,41 @@ select
 @media ($below-xs)
   [data-visible]:not([data-visible~="mobile"])
     display: none !important
+
+
+///// IMAGE FIT - use this in image wrapper
+
+.image-fit
+  --fitHeight: 50%
+
+  position: relative
+  display: flex
+  overflow: hidden
+
+  &::before
+    content: ""
+    display: block
+    width: 100%
+    height: 0
+    padding-bottom: var(--fitHeight)
+
+  img
+    position: absolute
+    top: 0
+    left: 0
+    height: 100%
+    width: 100%
+    border-radius: 0
+    object-fit: cover
+    object-position: center center
+
+.image-fit--1\:1
+  --fitHeight: 100%
+.image-fit--4\:3
+  --fitHeight: 75%
+.image-fit--16\:9
+  --fitHeight: 56.25%
+.image-fit--2\:1
+  --fitHeight: 50%
+.image-fit--3\:1
+  --fitHeight: 33.333%

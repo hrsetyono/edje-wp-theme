@@ -1,4 +1,3 @@
-{% if post.comment_status != 'closed' %}
 <section class="post-comments" id="comments">
 
   {% if post.comment_count %}
@@ -16,7 +15,6 @@
   </ul>
 
 </section>
-{% endif %} {# if open #}
 
 
 {# ///// #}
@@ -35,7 +33,7 @@
     </header>
 
     <div class="comment-text">
-      {{ c.comment_content | markdown }}
+      {{ c.comment_content | h_markdown }}
     </div>
 
     {% if fn('get_option', 'thread_comments') and fn('get_option', 'thread_comments_depth') > c.depth + 1 %}

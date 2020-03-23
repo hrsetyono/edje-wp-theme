@@ -1,3 +1,62 @@
+
+// ARCHIVE LAYOUT
+
+.archive-column
+  grid-column: span 12
+
+  padding-top: 2rem
+  padding-bottom: 2rem
+  
+  > * + *
+    margin-top: 2rem
+
+.archive-column--has-sidebar
+  @media ($above-s)
+    grid-column: span 8
+
+
+///// SIDEBAR
+
+.sidebar
+  order: 1
+  grid-column: span 4
+  align-self: flex-start
+
+  display: grid
+  grid-template-columns: 1fr
+  grid-row-gap: 2rem
+  grid-column-gap: 2rem
+
+  padding-top: 2rem
+  padding-left: 3rem
+
+  .widget
+    grid-column: span 1
+    list-style-type: none
+
+  .widget * + *
+    margin-top: 0.5rem
+
+  .widgettitle
+    font-size: var(--h4Size)
+
+  //
+  @media ($below-m)
+    padding-left: 1.5rem
+
+  @media ($below-s)
+    order: 1
+    grid-column: span 12
+
+    grid-template-columns: repeat(2, minmax(0,1fr))
+    padding-top: 0
+    padding-left: 0
+    margin-bottom: 2rem
+
+  @media ($below-xs)
+    grid-template-columns: auto
+
+
 ///// ARCHIVES (Post Listing)
 
 .archive-header
@@ -127,3 +186,64 @@
       width: 100%
       height: calc( 100% + var(--archivePadding) + var(--archivePadding) )
       margin: var(--margin) 0
+
+
+
+///// PAGINATION
+
+.pagination
+  display: flex
+  justify-content: center
+
+  color: var(--textDim)
+  font-size: var(--smallFontSize)
+
+  a,
+  select
+    display: flex
+    align-items: center
+    cursor: pointer
+
+    background-color: transparent
+    border: 2px solid var(--textDim)
+    border-radius: 0
+    width: auto
+
+    color: var(--textDim)
+    -webkit-appearance: none
+    appearance: none
+
+    &:hover
+      background-color: h-rgba(--text, .1)
+    &:active
+      transition: none
+      transform: translateY(1px)
+
+  select
+    padding-right: 1rem
+    padding-left: 1rem
+    font-weight: var(--hFontWeight)
+    text-transform: uppercase
+
+  a
+    padding-right: 0.25rem
+    padding-left: 0.25rem
+
+  a:nth-of-type(1)
+    border-right: 0
+    border-top-left-radius: var(--gRadius)
+    border-bottom-left-radius: var(--gRadius)
+
+  a:nth-of-type(2)
+    border-left: 0
+    border-top-right-radius: var(--gRadius)
+    border-bottom-right-radius: var(--gRadius)
+
+
+  path
+    fill: h-rgba(--textDim, .7)
+
+  // no href
+  a:not([href])
+    visibility: hidden
+    opacity: 0

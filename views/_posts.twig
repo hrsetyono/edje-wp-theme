@@ -22,6 +22,7 @@
     {% elseif e.id == 'post_meta' %}
       {% include '_post-meta.twig' with { element: e, post: post }  %}
 
+    {# Read More #}
     {% elseif e.id == 'read_more_button' %}
       <a href="{{ post.link }}" class="button button--{{ e.style }}">
         {{ e.text }}

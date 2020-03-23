@@ -1,14 +1,11 @@
 <?php
 
-add_action( 'widgets_init', 'my_widgets_init' );
-
-
-function my_widgets_init() {
+add_action( 'widgets_init', function() {
 
   register_sidebar( [
     'name' => __( 'Sidebar' ),
     'id' => 'sidebar',
-    'description' => __( 'Widgets for Blog and Single Post page. You must enable it in Customizer > Blog Posts' ),
+    'description' => __( 'Widgets for Blog and Single Post page. You must enable it via Customizer.' ),
     'before_widget' => '<div id="%1$s" class="widget %2$s">',
     'after_widget' => '</div>',
 	] );
@@ -20,5 +17,6 @@ function my_widgets_init() {
       'id' => 'footer-widget-' . $i,
       'name' => "Footer Widget $i",
 		] );
-	}
-}
+  }
+  
+} );

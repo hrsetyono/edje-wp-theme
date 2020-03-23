@@ -9,7 +9,6 @@ if( $blog_page_id ) {
 }
 
 $context['posts'] = Timber::get_posts();
-$context['blog_nav'] = new TimberMenu( 'blog-nav' );
 
 // if infinite scroll not active, add Pagination
 if(!class_exists('Jetpack') || !Jetpack::is_module_active('infinite-scroll') || is_paged() ) {
