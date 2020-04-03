@@ -15,7 +15,7 @@
   "scripts": {
     "prefix": "postcss assets/css/*.css --use=autoprefixer --output=assets/css/*.css",
     "sass": "node-sass -w assets/sass -o assets/css --output-style compressed",
-    "bsync": "browser-sync start --proxy \"demo.test\" --files \"assets/css/*.css\""
+    "bsync": "browser-sync start --proxy \"lab.test\" --files \"assets/css/*.css\""
   },
   "browserslist": [ "last 2 versions" ]
 }

@@ -1,3 +1,47 @@
+// EDJE FAQ
+
+.wp-block-h-faq
+  --faqTitleBg: #e5e5e5
+  --faqTitleColor: inherit
+
+  border: 2px solid var(--faqTitleBg)
+  border-radius: var(--gRadius)
+
+.h-faq-question
+  display: flex
+  align-items: center
+
+  cursor: pointer
+  padding: 0.75rem 1rem
+  background-color: var(--faqTitleBg)
+  font-size: var(--h5Size)
+  color: var(--faqTitleColor)
+  line-height: 1
+
+  transition: var(--gTransition)
+
+  &:hover
+    opacity: .8
+  &:active
+    transition: none
+    box-shadow: var(--shadow0)
+    transform: translateY(1px)
+  
+  [open] &
+    opacity: 1
+
+  &::-webkit-details-marker
+    margin-right: 0.5rem
+    font-size: var(--smallFontSize)
+
+
+.h-faq-answer
+  padding: 1rem 1.5rem
+
+  p + p
+    margin-top: 1rem
+
+  
 // Jetpack Contact Form
 .contact-form
 

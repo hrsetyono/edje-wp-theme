@@ -25,7 +25,6 @@
 
 {# Content #}
 <h-grid>
- 
 
   <main class="post-column  {{ sidebar ? 'post-column--has-sidebar' : 'post-column--no-sidebar' }}">
     {% for e in mods.post_elements if e.enabled %}
@@ -105,10 +104,10 @@
       <h-grid> <div class="large-12">
         {% if e.use_jetpack == 'yes' and fn('class_exists', 'Jetpack_RelatedPosts') %}
           {% filter shortcodes %} [jetpack-related-posts] {% endfilter %}
-        
+
         {% else %}
           <h3 class="related-title"> {{ __('Related Posts') }}</h3>
-          {% filter shortcodes %} [h-related-posts count="{{ mods.postsPerRow }}"] {% endfilter %}
+          {% filter shortcodes %} [h-related-posts count="{{ mods.postsPerRow.desktop }}"] {% endfilter %}
 
         {% endif %}
       </div> </h-grid>
