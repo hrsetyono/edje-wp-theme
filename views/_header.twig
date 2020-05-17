@@ -24,7 +24,7 @@
   {% if row.id == 'offcanvas' %}
     <aside class="offcanvas offcanvas--from-{{ row_data.reveal_from }} offcanvas--align-{{ row_data.items_alignment }}"
       data-visible="{{ visibility }}"
-      data-id="{{ row.id }}">
+      data-header="{{ row.id }}">
 
       <a href="#" data-close-offcanvas>
         {{ fn('custy_get_svg', row_data.close_button_style) }}
@@ -37,8 +37,8 @@
 
   {# Other Row #}
   {% else %}
-    <div class="header-row {{ row_data.is_sticky == 'yes' ? 'header-row--is-sticky' : '' }}"
-      data-id="header-{{ row.id }}"
+    <div class="header-row header-row--{{ row_data.style }} header-row--{{ row_data.width_style }}"
+      data-header="{{ row.id }}"
       data-visible="{{ visibility }}">
       
       <h-grid class="header-columns header-columns--{{ row | h_get_columns_count }}">

@@ -1,6 +1,6 @@
 {% set menu = menu_id | h_get_timber_menu %}
 
-<nav class="mobile-nav mobile-nav--{{ style }}" data-id="{{ id ? id : 'mobile-menu' }}">
+<nav class="mobile-nav mobile-nav--{{ style }}" data-header="{{ id ? id : 'mobile-menu' }}">
 {% for item in menu.items %}
 
   {# Inline Style #}

@@ -1,6 +1,6 @@
 {% set menu = menu | h_get_timber_menu %}
 
-<ul class="footer-nav footer-nav--{{ style }} footer-nav--align-{{ alignment }}" data-id="footer-menu">
+<ul class="footer-nav footer-nav--{{ style }} footer-nav--align-{{ alignment }}" data-footer="menu">
   {% for item in menu.items %}
     <li>
       <a href="{{ item.url }}"> {{ item.title }} </a>

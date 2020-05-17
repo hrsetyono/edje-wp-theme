@@ -7,6 +7,24 @@
   left: 0;
 }
 
+// Add styling to input's placeholder
+@mixin placeholder() {
+  &::-webkit-input-placeholder {
+    @content;
+  }
+  &::-moz-placeholder {
+    @content;
+  }
+
+  &:-ms-input-placeholder {
+    @content;
+  }
+
+  &:-moz-placeholder {
+    @content;
+  }
+}
+
 
 // Apply to the wrapper of float elements so its height is fixed.
 @mixin clearfix() {

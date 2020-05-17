@@ -4,137 +4,7 @@
 @import "_edje-v4/output-normalize"
 @import "_edje-v4/output-grid"
 @import "_edje-v4/output-typography"
-
-///// ROOT VARIABLES /////
-// All the commented variables will be set via WP CUSTOMIZER
-
-\:root
-  // COLOR -----
-  +root-colors()
-  // --siteBackground      : #f8f9fb
-  // --siteBackgroundColor : #f8f9fb
-
-  // SHADOW -----
-  // --shadow0: 0 0.5px 2px rgba(black, .18), 0 1.5px 6px rgba(black, .08)
-  // --shadow1: 0 1.5px 4px rgba(black, .24), 0 1.5px 6px rgba(black, .12)
-  // --shadow2: 0 3px 12px rgba(black, .23), 0 3px 12px rgba(black, .16)
-  // --shadow3: 0 6px 12px rgba(black, .23), 0 10px 40px rgba(black, .19)
-
-  // TEXT -----
-  // --fontFamily : -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"
-  // --fontWeight : 400
-  // --lineHeight : 1.65
-  // --letterSpacing  : 0
-
-  // --fontSize       : 16px
-  --xsmallFontSize  : 12px
-  // --smallFontSize  : 14px
-  // --mediumFontSize : 18px
-  // --largeFontSize  : 22px
-  // --hugeFontSize   : 32px
-
-  // HEADING -----
-  // --hFontFamily    : "Apple Garamond", "Baskerville", "Times New Roman", "Droid Serif", "Times","Source Serif Pro", serif
-  // --hFontStyle     : normal
-  // --hFontWeight    : 700
-  // --hLineHeight    : 1.25
-  // --hLetterSpacing : 0.05em
-  // --hTextTransform  : initial
-  --hColor : var(--text)
-
-  // --h1Size : 46px
-  // --h2Size : 38px
-  // --h3Size : 30px
-  // --h4Size : 24px
-  // --h5Size : 20px
-  // --h6Size : var(--fontSize)
-
-  // PREFORMATTED -----
-  --codeFontFamily : SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace
-  --codeFontSize   : var(--smallFontSize)
-
-  // LINK -----
-  --linkColor      : inherit
-  --linkColorHover : var(--main)
-
-  // LIST -----
-  --ulStyle      : disc
-  --ulChildStyle : circle
-  --olStyle      : decimal
-  --olChildStyle : lower-alpha
-
-  // GRID -----
-  // --siteWidth : #{ $size-large }
-  // --blogWidth : 650px
-  --gridGap   : 20px
-  --gridRim   : 10px
-  --tileGap   : var(--gridGap)
-
-  // OTHER -----
-  // --gRadius: 4px
-  // --gTransition: all .25s ease-in-out
-
-  // BUTTON
-  --buttonBg: var(--main)
-  --buttonBgHover: var(--mainDark)
-  --buttonColor: var(--textInvert)
-  --buttonColorHover: var(--buttonColor)
-  --buttonBorder: 1px solid rgba(0,0,0,.2)
-  --buttonFontSize: 16px
-
-  // INPUT
-  --inputBg: var(--textInvert)
-  --inputBgFocus: var(--inputBg)
-  --inputColor: var(--text)
-  --placeholderColor: var(--textDim)
-  
-  // FRAME
-  // --frameSize: 10px
-  // --frameColor: var(--text)
-
-  // OTHER
-  --adminBarSize: 32px
-  
-  // BLOG
-  // --postsPerRow: 3
-  --archiveBg: white
-  --archivePadding: 1.5rem
-  // --archiveImageHeight: 50%
-  // --postImageHeight: 250px
-
-  --postHeroBg: #eff1f5
-  --postRelatedBg: #eff1f5
-
-
-// RESPONSIVE
-@media ($below-m)
-  \:root
-    // --h1Size : 40px
-    // --h2Size : 32px
-    // --h3Size : 26px
-    // --h4Size : 22px
-    // --h5Size : 18px
-    // --h6Size : var(--fontSize)
-
-@media ($below-adminbar)
-  \:root
-    --adminBarSize: 0px
-
-@media ($below-s)
-  \:root
-    // --h1Size : 32px
-    // --h2Size : 26px
-    // --h3Size : 22px
-    // --h4Size : 20px
-    // --h5Size : 18px
-    // --h6Size : var(--fontSize)
-
-    // --postsPerRow: 2
-
-@media ($below-xs)
-  \:root
-    // --postsPerRow: 1
-
+@import "vars"
 
   
 ///// BUTTON /////
@@ -150,7 +20,6 @@
   
   padding: 0.5em 1em
   background-color: var(--buttonBg)
-  border: var(--buttonBorder)
   border-radius: var(--gRadius)
 
   text-decoration: none
@@ -181,18 +50,12 @@
     fill: var(--buttonColor)
 
   &:hover
-    background-color: var(--buttonBgHover)
-    color: var(--buttonColorHover)
-    transform: translateY(-2px)
-    box-shadow: var(--shadow1)
-
-    path,
-    circle
-      fill: var(--buttonColorHover)
+    opacity: .75
+    color: var(--buttonColor)
 
   &:active
     transition: none
-    transform: none
+    transform: translateY(1px)
 
   &[disabled],
   &.disabled
@@ -215,22 +78,20 @@
 .button--outline,
 .is-style-outline a
   --buttonBg: transparent
-  --buttonBgHover: transparent
-  --buttonBorder: 2px solid
   --buttonColor: var(--main)
-  --buttonColorHover: var(--main)
+  border: 2px solid
 
 .button--transparent,
 .is-style-transparent a
   --buttonBg: transparent
-  --buttonBgHover: var(--main)
-  --buttonBorder: none
   --buttonColor: var(--main)
-  --buttonColorHover: var(--textInvert)
   
   margin-left: -0.5rem
   padding-right: 0.5rem
   padding-left: 0.5rem
+
+  &:hover
+    background-color: rgba(var(--mainRGB), .2)
 
 
 // loading button

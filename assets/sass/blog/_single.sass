@@ -4,31 +4,20 @@ $output-infinite-scroll: false
 // SINGLE POST LAYOUT
 
 .post-column
-  --postContentOffset: 2rem
-
   grid-column: span 12
-  padding-top: var(--postContentOffset)
-  padding-bottom: var(--postContentOffset)
+  padding-top: var(--groupSpacing)
+  padding-bottom: var(--groupSpacing)
 
   > * + *
-    margin-top: 2rem
+    margin-top: var(--groupSpacing)
 
 .post-column--has-sidebar
   --blogWidth: 100%
-
   grid-column: span 8
 
   //
   @media ($below-s)
     grid-column: span 12
-
-
-.post-column--no-sidebar
-  > * > *
-    width: 100%
-    max-width: var(--blogWidth)
-    margin-right: auto
-    margin-left: auto
 
 
 ///// TITLE
@@ -202,7 +191,8 @@ $output-infinite-scroll: false
 
 .post-author
   max-width: var(--blogWidth)
-  margin: 0 auto
+  margin-right: auto
+  margin-left: auto
   padding: 1rem
   background-color: var(--textInvert)
   box-shadow: 0px 50px 90px rgba(210, 213, 218, 0.4)
@@ -298,7 +288,10 @@ $output-infinite-scroll: false
 
 .post-nav
   display: flex
-  
+  max-width: var(--blogWidth)
+  margin-right: auto
+  margin-left: auto
+
   a
     display: flex
     flex: 1

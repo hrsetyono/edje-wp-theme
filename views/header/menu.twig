@@ -1,6 +1,6 @@
 {% set menu = menu_id | h_get_timber_menu %}
 
-<nav class="nav" data-id="{{ id ? id : 'menu' }}">
+<nav class="nav" data-header="{{ id ? id : 'menu' }}">
 {% for item in menu.items %}
 
   <div class="nav-item {{ item.class }}">

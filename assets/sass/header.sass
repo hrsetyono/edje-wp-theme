@@ -13,7 +13,7 @@
   padding-bottom: var(--rowPadding)
 
   // Item gap
-  [data-id] + [data-id]
+  [data-header] + [data-header]
     margin-left: 1rem
 
   // active effect
@@ -25,22 +25,27 @@
 
 
 // Specific row
-[data-id="header-top-row"]
+[data-header="top-row"]
   --rowPadding: 0.25rem
   height: var(--topRowHeight)
 
-[data-id="header-middle-row"]
+[data-header="middle-row"]
   --rowPadding: 0.5rem
   height: var(--middleRowHeight)
 
-[data-id="header-bottom-row"]
+[data-header="bottom-row"]
   --rowPadding: 0.5rem
   height: var(--bottomRowHeight)
 
 
-///// STICKY ROW
+// AUTO-HEIGHT NAV
+.header-row--auto-height
+  height: auto
 
-.header-row--is-sticky
+
+// STICKY NAV
+
+.header-row--sticky
   --top: 0px
   --topAddon: 0px
 
@@ -51,26 +56,36 @@
 
   body.has-frame &
     --topAddon: var(--frameSize)
-  body.admin-bar &
-    --topAddon: var(--adminBarSize)
-  body.has-frame.admin-bar &
-    --topAddon: var(--adminBarSize)
+
+  @media ($above-adminbar)
+    body.admin-bar &
+      --topAddon: var(--adminBarHeight)
 
   // if top row is also stickied
-  .header-row--is-sticky[data-id="header-top-row"] + &
+  .header-row--is-sticky[data-header="top-row"] + &
     --top: var(--topRowHeight)
 
   // if middle row is also stickied
-  .header-row--is-sticky[data-id="header-middle-row"] + &
+  .header-row--is-sticky[data-header="middle-row"] + &
     --top: var(--middleRowHeight)
 
   // if top and middle row is also stickied
-  .header-row--is-sticky[data-id="header-top-row"] + .header-row--is-sticky[data-id="header-middle-row"] + &
+  .header-row--is-sticky[data-header="top-row"] + .header-row--is-sticky[data-header="middle-row"] + &
     --top: var(--topRowHeight) + var(--middleRowHeight)
 
 
 .header-row--stuck
   box-shadow: var(--shadow1)
+
+
+// FULL WIDTH
+
+.header-row--full-width
+  padding: 0
+  
+  h-grid
+    max-width: none
+    padding: 0
 
 
 // Columns
@@ -258,16 +273,10 @@ body.has-active-offcanvas
 ///// MENU NAV /////
 
 .nav
-  --parentBgHover: var(--mainLight)
-  --parentColor: var(--text)
-  --parentColorHover: var(--main)
-  --parentSize: var(--fontSize)
-
   --dropdownBg: var(--text)
   --dropdownBgHover: var(--main)
   --dropdownColor: var(--textInvert)
   --dropdownColorHover: var(--textInvert)
-  --dropdownSize: var(--smallFontSize)
 
   display: flex
   flex: 1
@@ -286,12 +295,10 @@ body.has-active-offcanvas
     align-items: center
     height: 100%
     padding: calc(0.5rem + var(--rowPadding)) 0.5rem
-    background-color: var(--parentBg, transparent)
     line-height: 1
     letter-spacing: 0.025em
     text-transform: uppercase
-    font-size: var(--parentFontSize)
-    color: var(--parentColor)
+    color: inherit
 
   > a span
     display: flex
@@ -302,8 +309,7 @@ body.has-active-offcanvas
     transition: var(--gTransition)
 
   > a:hover span
-    background-color: var(--parentBgHover)
-    color: var(--parentColorHover)
+    background-color: var(--mainLight)
   
   // current page
   &.current-menu-item,
@@ -312,7 +318,7 @@ body.has-active-offcanvas
   &.current-menu-parent,
   &.current_page_parent
     > a span
-      background-color: var(--parentBgHover)
+      background-color: var(--mainLight)
 
 
 .menu-item-has-children

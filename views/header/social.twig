@@ -1,6 +1,6 @@
 <div
   class="socials socials--{{ shape_style }} socials--color-{{ color_style }} socials--align-{{ alignment }}"
-  data-id="{{ id ? id : 'social' }}">
+  data-{{ type ? type : 'header' }}="social">
 
   {% for link in links if link.enabled %}
 

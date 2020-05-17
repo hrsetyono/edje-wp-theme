@@ -23,8 +23,23 @@ function my_theme_supports() {
   add_theme_support( 'h-faq-block' );
 
   if( class_exists( 'Custy' ) ) {
-    // Apply color from Customizer to editor palette
     add_theme_support( 'editor-color-palette', Custy::get_editor_color_palette() );
+    add_theme_support( 'editor-font-sizes', Custy::get_editor_font_sizes() );
+
+    // Add @font-face in custy.css and append these fonts in Customizer dropdown
+    $font_dir = get_stylesheet_directory_uri() . '/assets/fonts';
+
+    add_theme_support( 'custy-fonts', [
+      'Source Sans Pro' => [
+        '400' => $font_dir . '/sourcesanspro-regular.woff2',
+        '400i' => $font_dir . '/sourcesanspro-italic.woff2',
+        '700' => $font_dir . '/sourcesanspro-bold.woff2',
+      ],
+      'Noto Serif' => [
+        '700' => $font_dir . '/notoserif-bold.woff2',
+      ],
+    ] );
+
   }
 
 }

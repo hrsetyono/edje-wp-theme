@@ -139,13 +139,13 @@ var myHeader = {
     this.stickyRow();
 
     // Search
-    $( '[data-id="search"]' ).on( 'click', this.preventClose );
-    $( '[data-id="search"] [data-toggle-search]' ).on( 'click', this.onToggleSearch );
+    $( '[data-header="search"]' ).on( 'click', this.preventClose );
+    $( '[data-header="search"] [data-toggle-search]' ).on( 'click', this.onToggleSearch );
 
     // Mobile
     $( '[data-close-offcanvas]' ).on( 'click', this.closeOffCanvas );
-    $( '[data-id="offcanvas"]' ).on( 'click', this.preventClose );
-    $( '[data-id="trigger"]' ).on( 'click', this.toggleOffcanvas );
+    $( '[data-header="offcanvas"]' ).on( 'click', this.preventClose );
+    $( '[data-header="trigger"]' ).on( 'click', this.toggleOffcanvas );
 
     $( '[data-mobile-dropdown-toggle]' ).on( 'click', this.toggleMobileDropdown );
   },

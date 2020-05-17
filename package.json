@@ -13,9 +13,9 @@
     "autoprefixer": "^9.4.2"
   },
   "scripts": {
-    "prefix": "postcss assets/css/*.css --use=autoprefixer --output=assets/css/*.css",
+    "prefix": "postcss assets/css/*.css --dir assets/css --use autoprefixer --no-map",
     "sass": "node-sass -w assets/sass -o assets/css --output-style compressed",
     "bsync": "browser-sync start --proxy \"lab.test\" --files \"assets/css/*.css\""
   },
-  "browserslist": [ "last 2 versions" ]
+  "browserslist": [ "last 1 version" ]
 }

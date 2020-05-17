@@ -62,7 +62,7 @@
 
       {# Next / Prev Post #}
       {% elseif e.id == 'next-prev-post' %}
-        <div> <nav class="post-nav">
+        <nav class="post-nav">
           {% if post.prev %}
             <a href="{{ post.prev.link }}" class="nav-prev">
               <img src="{{ post.prev.thumbnail.src('thumbnail') }}">
@@ -82,7 +82,7 @@
               </span>
             </a>
           {% endif %}
-        </nav> </div>
+        </nav>
 
       {% endif %}
     {% endfor %}

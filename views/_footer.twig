@@ -5,7 +5,7 @@
     {% set row_data = footer.items[ row.id ] %}
 
     <div class="footer-row"
-      data-id="footer-{{ row.id }}"
+      data-footer="{{ row.id }}"
       {{ row_data.visibility | h_get_visible_attr }}>
 
       <h-grid class="footer-columns footer-columns--{{ row_data.columns_layout.tablet }}"

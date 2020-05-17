@@ -1,7 +1,7 @@
 <?php
 $item = [
   'title' => __( 'Free Text' ),
-  'css_selector' => '[data-id="free-text"]',
+  'css_selector' => '[data-header="free-text"]',
   'options' => [
 
     'content' => [

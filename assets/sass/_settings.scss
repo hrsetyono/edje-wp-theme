@@ -30,7 +30,7 @@ $root-colors: (
 
 $size-xsmall : 480px;
 $size-small  : 768px;
-$size-medium  : 960px;
+$size-medium : 960px;
 $size-large  : 1120px;
 
 $below-xs: "max-width:#{ $size-xsmall }";
@@ -51,16 +51,6 @@ $above-adminbar: "min-width:783px";
 $portrait: "orientation: portrait";
 $landscape: "orientation: landscape";
 $retina: "min-resolution: 192dpi";
-
-
-// Put file in /assets/fonts directory
-$font-faces: (
-  // "Open Sans": (
-  //   ( "opensans.woff", 400 ),
-  //   ( "opensans-italic.woff", 400, italic ),
-  //   ( "opensans-bold.woff", 700 )
-  // )
-);
 
 // ASSET PATH - Relative to the /css folder
 //   for image-url() and font-url()
