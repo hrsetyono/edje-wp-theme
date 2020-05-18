@@ -1,7 +1,13 @@
 <?php
 
-require_once 'functions/helpers.php';
-if( !MyHelpers::has_required_plugins() ) { return false; }
+// Check for required plugins
+if( !class_exists( 'Timber' ) || !class_exists( 'H' ) || !class_exists( 'Custy' ) ) {
+  add_action('admin_notices', function() {
+    $text = sprintf(  __('You need to activate all Library plugins. <a href="%s">Activate now »</a>.' ), admin_url('plugins.php') . '?s=library' );
+    echo '<div class="notice notice-error"><p>' . $text . '</p></div>';
+  });
+}
+
 require_once __DIR__ . '/functions/_index.php';
 
 if( class_exists('WooCommerce') ) {
@@ -28,12 +34,6 @@ function my_before_setup_theme() {
    */
   // H::register_post_type( 'product', [ 'icon' => 'dashicons-cart' ] );
   // H::register_taxonomy( 'brand', [ 'post_type' => 'product' ] );
-
-  /**
-   * Create ACF Gutenberg block for post-type listing
-   */
-  // H::register_post_type_block( 'post' );
-  // H::register_post_type_block( 'product' );
 }
 
 

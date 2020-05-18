@@ -66,20 +66,20 @@
           {% if post.prev %}
             <a href="{{ post.prev.link }}" class="nav-prev">
               <img src="{{ post.prev.thumbnail.src('thumbnail') }}">
-              <span>
+              <p>
                 <em>{{ __('Previous Post') }}</em>
-                {{ post.prev.title }}
-              </span>
+                <span>{{ post.prev.title }}</span>
+              </p>
             </a>
           {% endif %}
 
           {% if post.next %}
             <a href="{{ post.next.link }}" class="nav-next">
               <img src="{{ post.next.thumbnail.src('thumbnail') }}">
-              <span>
+              <p>
                 <em>{{ __('Next Post') }}</em>
-                {{ post.next.title }}
-              </span>
+                <span>{{ post.next.title }}</span>
+              </p>
             </a>
           {% endif %}
         </nav>
@@ -98,7 +98,7 @@
 {# Post Footer Elements #}
 {% for e in mods.post_footer_elements if e.enabled %}
 
-  {# Rleated Posts #}
+  {# Related Posts #}
   {% if e.id == 'related-posts' %}
     <aside class="related-posts">
       <h-grid> <div class="large-12">

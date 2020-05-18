@@ -11,6 +11,12 @@ $output-infinite-scroll: false
   > * + *
     margin-top: var(--groupSpacing)
 
+.the-content ~ *
+  max-width: var(--blogWidth)
+  margin-left: auto
+  margin-right: auto
+
+
 .post-column--has-sidebar
   --blogWidth: 100%
   grid-column: span 8
@@ -25,6 +31,7 @@ $output-infinite-scroll: false
 .post-title
   h1, h2
     margin-bottom: 0.5rem
+
 
 // Banner Title
 
@@ -190,9 +197,6 @@ $output-infinite-scroll: false
 ///// SINGLE AUTHOR
 
 .post-author
-  max-width: var(--blogWidth)
-  margin-right: auto
-  margin-left: auto
   padding: 1rem
   background-color: var(--textInvert)
   box-shadow: 0px 50px 90px rgba(210, 213, 218, 0.4)
@@ -288,18 +292,18 @@ $output-infinite-scroll: false
 
 .post-nav
   display: flex
-  max-width: var(--blogWidth)
-  margin-right: auto
-  margin-left: auto
 
   a
     display: flex
     flex: 1
     align-items: center
     padding: 0.5rem 0
+    color: var(--text)
 
   a:hover
     opacity: .75
+    span
+      text-decoration: underline
   a:active
     transition: none
     transform: translateY(1px)
@@ -311,7 +315,7 @@ $output-infinite-scroll: false
     background-color: var(--textDim)
     border-radius: 50%
 
-  span
+  p
     flex: 1
     font-weight: var(--hFontWeight)
 
@@ -322,6 +326,9 @@ $output-infinite-scroll: false
     font-size: var(--xsmallFontSize)
     font-style: normal
     font-weight: 400
+
+  span
+    font-family: var(--hFontFamily)
 
   //
   @media ($below-xs)
@@ -374,6 +381,9 @@ $output-infinite-scroll: false
 
 .post-comments
   padding: 0 calc( var(--gridGap) / 2 )
+  max-width: var(--blogWidth)
+  margin-left: auto
+  margin-right: auto
 
   ul
     list-style-type: none
@@ -605,131 +615,3 @@ p.form-submit
       background-color: white
       padding-right: 2rem
       padding-left: 2rem
-
-
-///// INFINITE SCROLL (Jetpack)
-
-@if $output-infinite-scroll
-  body[class^="paged-"] #infinite-footer
-    display: none // if infinite-footer is turned on (in theme_support), hide it in paged list.
-
-  .infinite-loader
-    margin-top: 2rem
-    margin-bottom: 2rem
-
-    .spinner
-      left: 50% !important
-      transform: translateX(-50%)
-
-///// SHARING
-
-$social-logos: ( twitter: '\f202', facebook: '\f203', pinterest: '\f210', jetpack-whatsapp: '\f608', skype: '\f220', pocket: '\f224', linkedin: '\f207', reddit: '\f222', tumblr: '\f607', telegram: '\f606', youtube: '\f213', instagram: '\f215', print: '\f469', more: '\f415' );
-
-.sharedaddy
-  .share-end
-    display: none
-  .sd-title
-    margin-bottom: 1rem
-    white-space: nowrap
-    font-size: var(--fontSize)
-    letter-spacing: 0.05em
-    text-transform: uppercase
-    
-    &::before
-      display: none
-  .sd-button
-    text-decoration: none
-
-.sharedaddy .sd-content 
-  ul
-    display: flex
-    flex-wrap: wrap
-    list-style-type: none
-    padding-left: 0
-    margin: 0 -4px
-  li 
-    display: flex
-    align-items: center
-    padding: 0 0.25rem
-    margin-bottom: 0.5rem
-
-// Button
-.sd-button 
-  --color: #333
-  --colorHover: #{ rgba(#333, .2) }
-  display: inline-block
-  overflow: hidden
-  border: 1px solid var(--color)
-  border-bottom-width: 2px
-  border-radius: var(--gRadius)
-  color: var(--color)
-
-  &:hover
-    color: var(--color)
-    background-color: var(--colorHover)
-  &:active 
-    border-top-width: 2px
-    border-bottom-width: 1px
-    transition: none
-
-  .sd-social-icon-text &,
-  .sd-social-text &
-    padding: 0px 10px 2px
-
-  .sd-social-icon & 
-    padding: 4px 10px
-    border-radius: 50%
-
-    &.share-more 
-      padding-top: 0
-      padding-bottom: 0
-      border-radius: var(--gRadius)
-    &.share-more::before 
-      margin-right: 0.25rem
-      
-  span
-    vertical-align: middle
-  .sharing-screen-reader-text 
-    display: none
-
-
-.sd-button::before
-  content: ""
-  display: inline-block
-  position: relative
-  top: 1px
-
-  vertical-align: middle
-  line-height: 1
-  text-align: center
-  font-family: 'social-logos'
-  font-size: 18px
-
-  .sd-social-official & 
-    top: -2px
-  .sd-social-icon & 
-    top: 0
-    font-size: 20px
-  .sd-social-icon-text &
-    margin-right: 0.25rem
-
-// Social colors
-@each $name, $value in $social-logos
-  @if map-has-key( $social-colors, $name )
-    .sd-button.share-#{ $name }
-      --color: #{ map-get($social-colors , $name) }
-      --colorHover: #{ rgba( map-get($social-colors, $name), .2 ) }
-
-  .sd-social-icon-text .sd-button.share-#{ $name }::before,
-  .sd-social-icon .sd-button.share-#{ $name }::before 
-    content: $value
-
-
-// Custom button
-.share-custom 
-  .sd-social-icon-text & 
-    padding-left: 6px
-  span
-    padding-left: 1.25rem
-    background: left no-repeat
-    background-size: 1em

@@ -26,6 +26,18 @@
     transition: none
     box-shadow: var(--shadow0)
     transform: translateY(1px)
+
+  &::-webkit-details-marker
+    display: none
+
+  &::before
+    content: "+"
+    display: inline-block
+    margin-right: 0.75rem
+    font-family: var(--codeFontFamily)
+
+    [open] &
+      content: "-"
   
   [open] &
     opacity: 1

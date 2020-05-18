@@ -1,3 +1,128 @@
+///// INFINITE SCROLL
+
+body[class^="paged-"] #infinite-footer
+  display: none // if infinite-footer is turned on (in theme_support), hide it in paged list.
+
+.infinite-loader
+  margin-top: 2rem
+  margin-bottom: 2rem
+
+  .spinner
+    left: 50% !important
+    transform: translateX(-50%)
+
+
+///// SHARING
+
+.sharedaddy
+  
+  .share-end
+    display: none
+
+  .sd-title
+    margin-bottom: 1rem
+    white-space: nowrap
+    font-size: var(--fontSize)
+    font-family: var(--fontFamily)
+    letter-spacing: 0.05em
+    text-transform: uppercase
+    
+    &::before
+      display: none
+
+  .sd-button
+    text-decoration: none
+
+.sharedaddy .sd-content 
+  ul
+    display: flex
+    flex-wrap: wrap
+    list-style-type: none
+    padding-left: 0
+    margin: 0 -4px
+
+  li
+    display: flex
+    align-items: center
+    padding: 0 0.25rem
+    margin-bottom: 0.5rem
+
+  li:not([class]),
+  li.share-end
+    padding: 0
+
+
+// Button
+.sd-button 
+  --color: #333333
+
+  display: inline-block
+  overflow: hidden
+  border: 1px solid
+  border-bottom-width: 2px
+  border-radius: var(--gRadius)
+  color: var(--color)
+
+  &:hover
+    color: var(--color)
+    box-shadow: var(--shadow1)
+
+  &:active 
+    border-top-width: 2px
+    border-bottom-width: 1px
+    transition: none
+
+  span
+    display: flex
+    align-items: center
+  svg
+    max-height: 1rem
+  b
+    margin-left: 0.25rem
+    font-weight: var(--fontWeight)
+  path,
+  circle
+    fill: var(--color)
+
+  .sd-social-icon-text &,
+  .sd-social-text &
+    padding: 0px 10px 2px
+
+  .sd-social-icon & 
+    padding: 9px 10px
+    border-radius: 50%
+
+    &.share-more::before 
+      margin-right: 0.25rem
+
+    svg
+      max-height: 1.5rem
+
+  .sharing-screen-reader-text b
+    display: none
+
+  // more button
+  &.share-more
+    margin-left: 0.25rem
+
+    // stays as box even when style is Icon Only
+    .sd-social-icon &
+      padding-top: 0
+      padding-bottom: 0
+      border-radius: var(--gRadius)
+
+
+
+// Custom button
+.share-custom 
+  .sd-social-icon-text & 
+    padding-left: 6px
+  span
+    padding-left: 1.25rem
+    background: left no-repeat
+    background-size: 1em
+
+  
 ///// BREADCRUMB
 
 .entry-breadcrumbs

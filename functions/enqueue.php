@@ -1,5 +1,5 @@
 <?php
-define( 'ASSETS_VERSION', '2020.03.23' ); // update this to force delete browser's cache
+define( 'ASSETS_VERSION', '2020.05.18' ); // update this to force delete browser's cache
 
 add_action( 'wp_enqueue_scripts', 'my_public_assets', 100 );
 add_action( 'admin_enqueue_scripts', 'my_admin_assets', 100 );
