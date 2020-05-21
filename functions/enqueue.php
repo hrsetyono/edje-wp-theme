@@ -1,7 +1,7 @@
 <?php
 define( 'ASSETS_VERSION', '2020.05.18' ); // update this to force delete browser's cache
 
-add_action( 'wp_enqueue_scripts', 'my_public_assets', 100 );
+add_action( 'wp_enqueue_scripts', 'my_public_assets', 99 );
 add_action( 'admin_enqueue_scripts', 'my_admin_assets', 100 );
 add_action( 'enqueue_block_editor_assets', 'my_editor_assets', 100 );
 

@@ -41,12 +41,12 @@ class MyBlocks {
    * Register custom style to existing block
    */
   function register_block_styles() {
-    // register_block_style( 'core/table', [
-    //   'name' => 'sample',
-    //   'label' => __( 'Sample Style' ),
-    //   'style' => '', // name of registered CSS to be enqueued
-    //   'inline_style' => '',
-    // ] );
+    register_block_style( 'core/table', [
+      'name' => 'sample',
+      'label' => __( 'Sample Style' ),
+      'style' => '', // name of registered CSS to be enqueued
+      'inline_style' => '',
+    ] );
   }
 }
 

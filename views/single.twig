@@ -115,11 +115,7 @@
 
   {# Comments #}
   {% elseif e.id == 'comments' and post.comment_status != 'closed' %}
-    <h-grid>
-      <div class="post-column post-column--no-sidebar">
-        {% include "_comments.twig" %}
-      </div>
-    </h-grid>
+    {% include "_comments.twig" %}
     
   {% endif %}
 

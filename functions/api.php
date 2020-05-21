@@ -4,7 +4,7 @@
  */
 class MyAPI {
   function __construct() {
-    // add_action( 'rest_api_init', [$this, 'rest_api_init'] );
+    add_action( 'rest_api_init', [$this, 'rest_api_init'] );
   }
 
   /**

@@ -382,11 +382,7 @@ $output-infinite-scroll: false
 .post-comments
   padding: 0 calc( var(--gridGap) / 2 )
   max-width: var(--blogWidth)
-  margin-left: auto
-  margin-right: auto
-
-  ul
-    list-style-type: none
+  margin: var(--groupSpacing) auto
 
   h4
     margin-bottom: 1rem
@@ -395,6 +391,7 @@ $output-infinite-scroll: false
 .comments-list
   padding-left: 0
   margin-top: 2rem
+  list-style-type: none
 
   > li
     padding: 1.25rem
@@ -420,7 +417,7 @@ $output-infinite-scroll: false
   display: flex
   flex-wrap: wrap
   align-items: center
-  margin-bottom: 1rem
+  margin-bottom: 0.5rem
 
   time
     margin-left: 0.5rem
@@ -428,8 +425,31 @@ $output-infinite-scroll: false
     color: var(--textDim)
 
 .comment-text
-  p + p
+  > * + *
     margin-top: 1rem
+
+  ul, ol
+    padding-left: 1.5rem
+
+  ul
+    list-style-type: var(--ulStyle)
+  ol
+    list-style-type: var(--olStyle)
+  a
+    text-decoration: underline
+
+  h1, h2, h3
+    font-size: var(--h5Size)
+
+  code
+    background-color: rgba(black, .05)
+
+  pre code
+    display: block
+    padding: 0.5rem
+
+
+  
 
 
 // Child comments
@@ -437,6 +457,7 @@ $output-infinite-scroll: false
   margin-top: 1.5rem
   padding-left: 1.25rem
   border-left: 2px solid rgba(black , .1)
+  list-style-type: none
   
   .comment
     font-size: var(--smallFontSize)
@@ -514,15 +535,6 @@ a.comment-reply-link
     color: var(--textDim)
     font-size: var(--smallFontSize)
   
-// when not active, only show Textarea
-.comment-form:not(.--active)
-  padding: 0
-
-  \:not(.comment-form-comment)
-    overflow: hidden
-    height: 0
-    margin: 0
-
 
 // Textarea
 .comment-form-comment
@@ -530,22 +542,8 @@ a.comment-reply-link
     display: none
 
   textarea
-    height: 9rem
-
-  .comment-form:not(.--active) &
-    margin: 0
-
-    textarea
-      cursor: pointer
-      padding: 1.5rem
-      border: 0
-      background-color: h-rgba(--main, .1)
-      height: 4.5rem
-      box-shadow: none
-    
-    textarea:hover
-      background-color: transparent
-
+    height: 12rem
+    border-radius: 0 var(--gRadius) var(--gRadius) 0
 
 p.comment-form-author,
 p.comment-form-email
@@ -567,7 +565,7 @@ p.comment-form-cookies-consent
   flex-direction: row
 
   input
-    margin-top: 2px
+    margin-top: 1px
     margin-right: 0.5rem
 
   label

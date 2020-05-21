@@ -5,10 +5,11 @@
   {% endif %}
 
   {# Form #}
-  {{ post.comment_form }}
+  {{ fn('comment_form') }}
 
   {# Comments #}
   <ul class="comments-list">
+    {{ fn( 'wp_list_comments', comment_args ) }}
     {% for c in post.comments %}
       <li> {{ _self.comment(c, post) }} </li>
     {% endfor %}
@@ -33,7 +34,7 @@
     </header>
 
     <div class="comment-text">
-      {{ c.comment_content | h_markdown }}
+      {{ fn( 'apply_filters', 'comment_text', c.comment_content ) }}
     </div>
 
     {% if fn('get_option', 'thread_comments') and fn('get_option', 'thread_comments_depth') > c.depth + 1 %}
