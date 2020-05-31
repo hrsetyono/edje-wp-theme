@@ -76,8 +76,6 @@ This is our workflow for starting new project. This steps will also download WP 
 
 ## Used In
 
-## 6. Used In
-
 Here are some websites that uses this theme:
 
 - [WordPress Tips - Advanced Tutorial](https://wptips.dev)
