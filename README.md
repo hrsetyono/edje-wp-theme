@@ -74,6 +74,24 @@ This is our workflow for starting new project. This steps will also download WP 
 
 1. Recommended: Rename `edje-wp-theme` so it won't be overriden the next time you run `composer update`. Also remove `pixelstudio/wordpress` in JSON file after first installation.
 
+## Used In
+
+## 6. Used In
+
+Here are some websites that uses this theme:
+
+- [WordPress Tips - Advanced Tutorial](https://wptips.dev)
+- [Angela Chung - Fashion Designer](https://angela-chung.com)
+- [Briliant Glass - Glassware Factory](https://briliant.glass)
+- [Fitnation - Premium Gym](https://fitnation.co.id)
+- [Istana Mie - Restaurant Franchise](https://istanamie.com)
+- [LTL School - Learn Mandarin in China](https://ltl-school.com)
+- [GES13 - Refrigeration Distributor](https://ges13.com)
+- [Paritama - Garden Architecture](https://paritama.com)
+- [Pandarin - Mandarin Learning Center](https://pandarin.net)
+- [Pixel Studio - Web Designer](https://pixelstudio.id)
+- [Premiera Skincare](https://premieraskincare.com/)
+
 ## Useful Links
 
 1. [What is Edje Sass?](https://github.com/hrsetyono/edje/wiki)
