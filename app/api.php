@@ -1,31 +1,30 @@
 <?php
 /**
- * Handles registering new route and do GET / POST request
+ * Codes related to WP API
  */
 class MyAPI {
   function __construct() {
-    add_action( 'rest_api_init', [$this, 'rest_api_init'] );
+    add_action( 'rest_api_init', [$this, 'init'] );
   }
 
-  /**
-   * @action rest_api_init
-   */
-  function rest_api_init() {
+  function init() {
     $namespace = 'my/v1';
 
+    // sample-get/:id
     register_rest_route( $namespace, '/sample-get/(?P<id>\d+)', [
       'methods' => 'GET',
-      'callback' => [$this, 'sample_get'],
+      'callback' => [$this, 'sample_get']
     ] );
 
+    // sample-post/:id
     register_rest_route( $namespace, '/sample-post/(?P<id>\d+)', [
       'methods' => 'POST',
-      'callback' => [$this, 'sample_post'],
+      'callback' => [$this, 'sample_post']
     ] );
   }
 
   /**
-   * @get my/v1/sample-get/:id
+   * @get /sample-get/:id
    */
   function sample_get( $params ) {
     $id = $params['id'];
@@ -33,7 +32,7 @@ class MyAPI {
   }
 
   /**
-   * @post my/v1/sample-post/:id
+   * @post /sample-post/:id
    */
   function sample_post( $request ) {
     $params = $request->get_params();

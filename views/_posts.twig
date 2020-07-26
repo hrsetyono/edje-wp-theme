@@ -1,4 +1,4 @@
-<ul class="post-archives post-archives--{{ style ? style : mods.archive_style }}">
+<ul class="post-archives post-archives--{{ style ? style : mods.archive_style }}" id="content">
 {% for post in posts %}
 
   <li class="post-archive">
@@ -33,7 +33,7 @@
   </li>
   
   
-{% else %}
+{% else %} 
   <li class="content-error">
     <h1>Sorry</h1>
     <p>We couldn’t find any posts.</p>

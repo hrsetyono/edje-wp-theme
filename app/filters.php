@@ -1,18 +1,20 @@
 <?php
+
 /**
- * Custom Shortcode
- * @deprecated: try not to use this if possible, it's hard for client to understand
+ * Customize many parts of Wordpress
  */
-class MyShortcodes {
+class MyFilters {
   function __construct() {
-    add_shortcode( 'example', [$this, 'example'] );
+    add_shortcode( 'example', [$this, 'shortcode_example'] );
   }
 
+
+  
   /**
    * Example of custom shortcode
    *   [example name="$name"] ... [/example]
    */
-  function example( $atts, $content = null ) {
+  function shortcode_example( $atts, $content = null ) {
     $atts = shortcode_atts([
       'name' => 'Default value'
     ], $atts);
@@ -21,5 +23,4 @@ class MyShortcodes {
   }
 }
 
-
-new MyShortcodes();
+new MyFilters();

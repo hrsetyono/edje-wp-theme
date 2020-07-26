@@ -30,7 +30,7 @@ class MyTimber extends TimberSite {
       $is_single_has_sidebar =  $is_single && $context['mods']['post_style'] == 'has-sidebar';
 
       if( $is_archive_has_sidebar || $is_single_has_sidebar ) {
-        $context['sidebar'] = Timber::get_widgets( 'sidebar' );
+        $context['sidebar'] = Timber::get_widgets( 'header-top-row' );
       }
     }
 

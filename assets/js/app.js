@@ -5,8 +5,8 @@ window.addEventListener( 'load', onLoad );
 
 function onReady() {
   myApp.init();
-  myNav.init();
   myHeader.init();
+  myJetpack.init();
 }
 
 function onLoad() {
@@ -19,7 +19,6 @@ function onLoad() {
 var myApp = {
   init() {
     this.backToTop();
-
     this.gallerySlider();
     this.galleryLightbox();
   },
@@ -67,64 +66,6 @@ var myApp = {
         hLightbox( $t, { closeButton: true } );
       }
     }
-  }
-};
-
-
-///// NAVIGATION
-
-var myNav = {
-  init() {
-    this.mobileNav();
-    this.cartNav();
-
-    $(document).on( 'click', this.closeNav );
-  },
-
-
-  /**
-   * Toggle mobile nav
-   */
-  mobileNav() {
-    $('#nav-toggle').on( 'click', _toggle );
-    $('.nav-items').on( 'click', this.preventClose );
-
-    //
-    function _toggle( e ) {
-      e.preventDefault();
-      e.stopPropagation();
-      $('body').removeClass( 'has-active-cart' ).toggleClass( 'has-active-nav' );
-    }
-  },
-
-
-  /**
-   * Toggle cart nav
-   */
-  cartNav() {
-    if( $( '#cart-button' ).length == 0 ) { return; }
-
-    $( document ).on( 'click', '#cart-button', toggle );
-    $( document ).on( 'click', '.cart-dialog', this.preventClose );
-
-    //
-    function toggle( e ) {
-      e.preventDefault();
-      e.stopPropagation();
-
-      $( 'body' ).removeClass( 'has-active-nav' ).toggleClass( 'has-active-cart' );
-    }
-  },
-
-  // Close all nav when clicking outside
-  closeNav( e ) {
-    $('body').removeClass( 'has-active-nav has-active-cart' );
-  },
-
-
-  // Prevent nav closed when clicking this part
-  preventClose( e ) {
-    e.stopPropagation();
   }
 };
 
@@ -230,6 +171,44 @@ var myHeader = {
     e.stopPropagation();
   }
 }
+
+
+/**
+ * Handle Jetpack modules
+ */
+var myJetpack = {
+  init() {
+    this.sharingMoreButton();
+  },
+
+  /**
+   * Move the hidden sharing buttons to main list when MORE is clicked
+   */
+  sharingMoreButton() {
+    if( document.querySelector('.sharedaddy') == null ) { return; }
+
+    let $moreButtons = document.querySelectorAll( '.share-more' );
+    for( let $mb of $moreButtons ) {
+      $mb.addEventListener( 'click', (e) => {
+        e.preventDefault();
+        let $shareButtons = e.currentTarget.closest('ul');
+        let $shareWrapper = e.currentTarget.closest('.sd-content');
+
+        // remove More button
+        e.currentTarget.closest('li').removeChild( e.currentTarget );
+
+        // get hidden links and append it to main list
+        let $shareHidden = $shareWrapper.querySelector( '.sharing-hidden' )
+        for( let $button of $shareHidden.querySelectorAll('ul li') ) {
+          $shareButtons.appendChild( $button );
+        }
+
+        // remove hidden share
+        $shareHidden.parentElement.removeChild( $shareHidden );
+      } );
+    }
+  }
+};
 
 // Browser compatibility, leave this untouched
 if('registerElement' in document) { document.createElement( 'h-grid' ); document.createElement( 'h-tile' ); }
