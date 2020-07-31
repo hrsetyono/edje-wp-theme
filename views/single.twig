@@ -1,124 +1,92 @@
 {% extends "layout.twig" %}
 {% block content %}
 
-{# If Title has Banner style #}
-{% for e in mods.post_elements if e.enabled %}
-  {% if e.id == 'title' and e.style == 'hero' %}
-    <header class="post-hero">
-      
-      {% if e.banner_style == 'featured-image' %}
-        <picture class="image-fit">
-          <source srcset="{{ post.thumbnail.src('medium') }}" media="(max-width: 480px)">
-          <img src="{{ post.thumbnail.src('large') }}" alt="{{ post.title }} Banner">
-        </picture>
-      {% endif %}
 
-      <h-grid>
-        <div class="hero-column {{ not sidebar ? 'hero-column--narrow' : '' }}">
-          <h1>{{ post.title }}</h1>
-          {% include "_post-meta.twig" with { element: e, post: post } %}
-        </div>
-      </h-grid>
-    </header>
-  {% endif %}
-{% endfor %}
+<section class="post-hero">
+  <h-grid>
+    <div class="hero-column {{ not sidebar ? 'hero-column--narrow' : '' }}">
+      <h1>{{ post.title }}</h1>
+      {% include "_post-meta.twig" %}
+    </div>
+  </h-grid>
+</section>
 
 {# Content #}
 <h-grid>
 
-  <main class="post-column  {{ sidebar ? 'post-column--has-sidebar' : 'post-column--no-sidebar' }}">
-    {% for e in mods.post_elements if e.enabled %}
-      
-      {# Post Title #}
-      {% if e.id == 'title' and e.style == 'default' %}
-        <header class="post-title">
-          <h1>{{ post.title }}</h1>
-          {% include "_post-meta.twig" with { element: e, post: post } %}
-        </header>
+<main class="post-column  {{ sidebar ? 'post-column--has-sidebar' : 'post-column--no-sidebar' }}">
 
-      {# Featured Image #}
-      {% elseif e.id == 'featured_image' and post.thumbnail %}
-
-        <div class="featured-image featured-image--{{ e.style }}">
-          <picture class="image-fit {% if e.style == 'narrow' %} image-fit--{{ e.ratio }} {% endif %}">
-            <source srcset="{{ post.thumbnail.src('medium') }}" media="(max-width: 480px)">
-            <img src="{{ post.thumbnail.src('large') }}" alt="{{ post.title }} Banner">
-          </picture>
-        </div>
-
-      {# Post Content #}
-      {% elseif e.id == 'content' %}
-        <article class="the-content">
-          {{ post.content }}
-        </article>
-
-      {# Sharing buttons #}
-      {% elseif e.id == 'share' and fn( 'function_exists', 'sharing_display' ) %}
-        {% filter shortcodes %} [h-jetpack-sharing] {% endfilter %}
-
-      {# Author Box #}
-      {% elseif e.id == 'author-box' %}
-        {% include "_author-info.twig" with { author: post.author, element: e } %}
-
-      {# Next / Prev Post #}
-      {% elseif e.id == 'next-prev-post' %}
-        <nav class="post-nav">
-          {% if post.prev %}
-            <a href="{{ post.prev.link }}" class="nav-prev">
-              <img src="{{ post.prev.thumbnail.src('thumbnail') }}">
-              <p>
-                <em>{{ __('Previous Post') }}</em>
-                <span>{{ post.prev.title }}</span>
-              </p>
-            </a>
-          {% endif %}
-
-          {% if post.next %}
-            <a href="{{ post.next.link }}" class="nav-next">
-              <img src="{{ post.next.thumbnail.src('thumbnail') }}">
-              <p>
-                <em>{{ __('Next Post') }}</em>
-                <span>{{ post.next.title }}</span>
-              </p>
-            </a>
-          {% endif %}
-        </nav>
-
-      {% endif %}
-    {% endfor %}
-  </main>
-
-  {% if sidebar %}
-    <aside class="sidebar">
-      {{ sidebar }}
-    </aside>
+  {# Featured Image #}
+  {% if post.thumbnail %}
+    <div class="featured-image">
+      <picture data-image-fit="2:1">
+        <source srcset="{{ post.thumbnail.src('medium') }}" media="(max-width: 480px)">
+        <img src="{{ post.thumbnail.src('large') }}" alt="{{ post.title }} Banner">
+      </picture>
+    </div>
   {% endif %}
+
+  <article class="the-content">
+    {{ post.content }}
+  </article>
+
+  {# Sharing buttons #}
+  {% if fn( 'function_exists', 'sharing_display' ) %}
+    {% filter shortcodes %} [h-jetpack-sharing] {% endfilter %}
+  {% endif %}
+
+  {# Author Box #}
+  {% include "_author-info.twig" with { author: post.author } %}
+
+  {# Next / Prev Post #}
+  <nav class="post-nav">
+    {% if post.prev %}
+      <a href="{{ post.prev.link }}" class="nav-prev">
+        <img src="{{ post.prev.thumbnail.src('thumbnail') }}">
+        <p>
+          <em>{{ __('Previous Post') }}</em>
+          <span>{{ post.prev.title }}</span>
+        </p>
+      </a>
+    {% endif %}
+
+    {% if post.next %}
+      <a href="{{ post.next.link }}" class="nav-next">
+        <img src="{{ post.next.thumbnail.src('thumbnail') }}">
+        <p>
+          <em>{{ __('Next Post') }}</em>
+          <span>{{ post.next.title }}</span>
+        </p>
+      </a>
+    {% endif %}
+  </nav>
+</main>
+
+{% if sidebar %}
+  <aside class="sidebar">
+    {{ sidebar }}
+  </aside>
+{% endif %}
 </h-grid>
 
-{# Post Footer Elements #}
-{% for e in mods.post_footer_elements if e.enabled %}
 
-  {# Related Posts #}
-  {% if e.id == 'related-posts' %}
-    <aside class="related-posts">
-      <h-grid> <div class="large-12">
-        {% if e.use_jetpack == 'yes' and fn('class_exists', 'Jetpack_RelatedPosts') %}
-          {% filter shortcodes %} [jetpack-related-posts] {% endfilter %}
+{# Related Posts #}
+<aside class="related-posts">
+  <h-grid> <div class="large-12">
+    {% if fn('class_exists', 'Jetpack_RelatedPosts') %}
+      {% filter shortcodes %} [jetpack-related-posts] {% endfilter %}
 
-        {% else %}
-          <h3 class="related-title"> {{ __('Related Posts') }}</h3>
-          {% filter shortcodes %} [h-related-posts count="{{ mods.postsPerRow.desktop }}"] {% endfilter %}
+    {% else %}
+      <h3 class="related-title"> {{ __('Related Posts') }}</h3>
+      {% filter shortcodes %} [h-related-posts count="3"] {% endfilter %}
 
-        {% endif %}
-      </div> </h-grid>
-    </aside>
+    {% endif %}
+  </div> </h-grid>
+</aside>
 
-  {# Comments #}
-  {% elseif e.id == 'comments' and post.comment_status != 'closed' %}
-    {% include "_comments.twig" %}
-    
-  {% endif %}
-
-{% endfor %}
+{# Comments #}
+{% if post.comment_status != 'closed' %}
+  {% include "_comments.twig" %}
+{% endif %}
 
 {% endblock %}

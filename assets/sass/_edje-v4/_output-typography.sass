@@ -5,15 +5,13 @@ html
 body
   position: relative
   overflow-x: hidden
-  background: var(--siteBackground)
+  background: var(--siteBg)
   margin: 0
   font-family: var(--fontFamily)
-  // font-weight: var(--fontWeight)
+  font-weight: var(--fontWeight)
   font-size: var(--fontSize)
-  // font-style: var(--fontStyle)
   line-height: var(--lineHeight)
-  // letter-spacing: var(--letterSpacing)
-  // text-transform: var(--textTransform)
+  letter-spacing: var(--letterSpacing)
   color: var(--text)
 
   // Webkit sibling selector fix
@@ -62,17 +60,16 @@ a
     color: var(--linkColorHover)
 
 ul
-  list-style-type: var(--ulStyle)
-
+  list-style-type: disc
 ol
-  list-style-type: var(--olStyle)
+  list-style-type: decimal
 
 ul,
 ol
   ul
-    list-style-type: var(--ulChildStyle)
+    list-style-type: circle
   ol
-    list-style-type: var(--olChildStyle)
+    list-style-type: lower-alpha
 
 
 pre,

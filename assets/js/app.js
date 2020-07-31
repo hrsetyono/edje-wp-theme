@@ -74,19 +74,13 @@ var myApp = {
 
 var myHeader = {
   init() {
-    $( document ).on( 'click', this.closeAll.bind( this ) );
+    $( document ).on( 'click', this.closeOffcanvas );
 
     // Sticky
     this.stickyRow();
 
-    // Search
-    $( '[data-header="search"]' ).on( 'click', this.preventClose );
-    $( '[data-header="search"] [data-toggle-search]' ).on( 'click', this.onToggleSearch );
-
-    // Mobile
-    $( '[data-close-offcanvas]' ).on( 'click', this.closeOffCanvas );
-    $( '[data-header="offcanvas"]' ).on( 'click', this.preventClose );
-    $( '[data-header="trigger"]' ).on( 'click', this.toggleOffcanvas );
+    $( '[href="#menu"]' ).on( 'click', this.toggleOffcanvas );
+    $( '.offcanvas .menu-item-has-children' ).on( 'click', this.toggleMobileChildren );
 
     $( '[data-mobile-dropdown-toggle]' ).on( 'click', this.toggleMobileDropdown );
   },
@@ -95,8 +89,8 @@ var myHeader = {
    *  
    */
   stickyRow() {
-    var target = '.header-row--is-sticky';
-    var classToToggle = 'header-row--stuck';
+    var target = '.header--mid-row';
+    var classToToggle = 'header--stuck';
 
     if( !( CSS.supports && CSS.supports( 'position', 'sticky' ) ) ) { return; }
 
@@ -146,30 +140,21 @@ var myHeader = {
   },
 
   /**
-   *  
+   * Close offcanvas when clicking outside it 
    */
-  toggleMobileDropdown( e ) {
-    var $navItem = $( e.currentTarget ).closest( '.mobile-nav-item' );
-    $navItem.toggleClass( 'mobile-nav-item--toggled' );
-  },
-
-  //
-  closeAll( e ) {
-    this.closeOffCanvas( e );
-    this.closeSearch( e );
-  },
-
   closeOffCanvas( e ) {
-    $('body.has-active-offcanvas').removeClass( 'has-active-offcanvas' );
+    $( 'body' ).removeClass( 'has-active-offcanvas' );
   },
 
-  closeSearch( e ) {
-    $('.search-wrapper--active').removeClass( 'search-wrapper--active' );
-  },
 
-  preventClose( e ) {
-    e.stopPropagation();
-  }
+  /**
+   * Toggle dropdown menu in offcanvas 
+   */
+  toggleMobileChildren( e ) {
+    e.preventDefault();
+
+    $( e.currentTarget ).closest( '.menu-item' ).toggleClass( 'menu-item--toggled' );
+  },
 }
 
 

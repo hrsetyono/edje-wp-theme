@@ -1,0 +1,135 @@
+
+///// SIDEBAR
+
+.sidebar
+  order: 1
+  grid-column: span 4
+  align-self: flex-start
+
+  display: grid
+  grid-template-columns: 1fr
+  grid-row-gap: 2rem
+  grid-column-gap: 2rem
+
+  padding: 2rem 0 2rem 3rem
+
+  .widget
+    grid-column: span 1
+    list-style-type: none
+
+
+  //
+  @media ($below-m)
+    padding-left: 1.5rem
+
+  @media ($below-s)
+    order: 1
+    grid-column: span 12
+
+    grid-template-columns: repeat(2, minmax(0,1fr))
+    padding-top: 0
+    padding-left: 0
+    margin-bottom: 2rem
+
+  @media ($below-xs)
+    grid-template-columns: auto
+
+
+
+.widgettitle
+  margin-bottom: 1rem
+  font-size: var(--h5Size)
+
+
+///// WIDGET: Recent Posts
+
+.widget_h_recent_posts
+  ul
+    list-style-type: none
+
+  li
+    display: flex
+    flex-direction: column
+
+  li a
+    display: flex
+    align-items: center
+
+  li + li
+    margin-top: 1rem
+  
+  img
+    width: 60px
+    margin-right: 0.5rem
+    border-radius: 50%
+
+  h6
+    font-weight: var(--fontWeight)
+
+  .post-date
+    align-self: flex-end
+    font-size: var(--smallFontSize)
+    color: var(--textDim)
+
+
+///// WIDGET: Categories
+
+.widget_categories
+  ul
+    display: flex
+    flex-wrap: wrap
+    list-style-type: none
+
+  li
+    margin-right: 0.5rem
+    margin-bottom: 0.5rem
+
+  a
+    display: inline-block
+    padding: 0.25rem 0.5rem
+    border: 1px solid rgba(black, .2)
+    border-radius: var(--gRadius)
+
+    text-transform: uppercase
+    transition: var(--gTransition)
+
+  a:hover
+    border-color: var(--main)
+    background-color: var(--mainLight)
+
+  a:active
+    transform: translateY(1px)
+    transition: none
+
+
+///// WIDGET: Image
+
+
+.widget_media_image
+  img
+    transition: var(--gTransition)
+
+  a
+    display: block
+    overflow: hidden
+    border-radius: var(--gRadius)
+
+  a:hover
+    img
+      transform: scale(1.05)
+      opacity: .75
+
+
+///// WIDGET: Text
+
+.widget_text
+  p, ul, ol
+    margin-bottom: 0.5rem
+    font-size: var(--textSize)
+    color: var(--textColor)
+
+  ul, ol
+    padding-left: 1rem
+
+  a
+    text-decoration: underline

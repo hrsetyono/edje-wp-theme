@@ -3,6 +3,7 @@
 my_before_setup_theme();
 add_action( 'after_setup_theme', 'my_after_setup_theme' );
 add_action( 'wp_enqueue_scripts', 'my_public_assets', 99 );
+add_action( 'widgets_init', 'my_widgets_init' );
 
 
 /////
@@ -37,33 +38,36 @@ function my_after_setup_theme() {
   add_theme_support( 'widgets' );
   add_theme_support( 'customize-selective-refresh-widgets' );
 
-  // Gutenberg support
-  add_theme_support( 'align-wide' );
-  add_theme_support( 'responsive-embeds' );
 
   // Edje Support
   add_theme_support( 'h-faq-block' );
   add_theme_support( 'h-comment-editor' );
 
+  // Gutenberg support
+  add_theme_support( 'align-wide' );
+  add_theme_support( 'responsive-embeds' );
   
-  if( class_exists( 'Custy' ) ) {
-    add_theme_support( 'editor-color-palette', Custy::get_editor_color_palette() );
-    add_theme_support( 'editor-font-sizes', Custy::get_editor_font_sizes() );
+  add_theme_support( 'editor-color-palette', [
+    [ 'name' => 'Text',        'slug' => 'text',        'color' => 'var(--text)' ],
+    [ 'name' => 'Text Dim',    'slug' => 'text-dim',    'color' => 'var(--textDim)' ],
+    [ 'name' => 'Text Invert', 'slug' => 'text-invert', 'color' => 'var(--textInvert)' ],
 
-    // Add @font-face in custy.css and append these fonts in Customizer dropdown
-    $font_dir = get_stylesheet_directory_uri() . '/assets/fonts';
+    [ 'name' => 'Main',       'slug' => 'main',       'color' => 'var(--main)' ],
+    [ 'name' => 'Main Dark',  'slug' => 'main-dark',  'color' => 'var(--mainDark)' ],
+    [ 'name' => 'Main Light', 'slug' => 'main-light', 'color' => 'var(--mainLight)' ],
 
-    add_theme_support( 'custy-fonts', [
-      'Source Sans Pro' => [
-        '400' => $font_dir . '/sourcesanspro-regular.woff2',
-        '400i' => $font_dir . '/sourcesanspro-italic.woff2',
-        '700' => $font_dir . '/sourcesanspro-bold.woff2',
-      ],
-      'Noto Serif' => [
-        '700' => $font_dir . '/notoserif-bold.woff2',
-      ],
-    ] );
-  }
+    [ 'name' => 'Sub',        'slug' => 'sub',       'color' => 'var(--sub)' ],
+    [ 'name' => 'Sub Dark',   'slug' => 'sub-dark',  'color' => 'var(--subDark)' ],
+    [ 'name' => 'Sub Light',  'slug' => 'sub-light', 'color' => 'var(--subLight)' ],
+  ] );
+
+  add_theme_support( 'editor-font-sizes', [
+    [ 'name' => 'Small', 'slug' => 'small', 'size' => 14 ],
+    [ 'name' => 'Regular', 'slug' => 'regular', 'size' => 16 ],
+    [ 'name' => 'Medium', 'slug' => 'medium', 'size' => 20 ],
+    [ 'name' => 'Large', 'slug' => 'large', 'size' => 24 ],
+    [ 'name' => 'Huge', 'slug' => 'huge', 'size' => 32 ],
+  ] );
 
   /**
    * ACF Options page
@@ -87,9 +91,8 @@ function my_public_assets() {
 
   // Stylesheet
   wp_enqueue_style( 'my-framework', $css_dir . '/framework.css', [], THEME_VERSION );
-  wp_enqueue_style( 'my-header', $css_dir . '/header.css', [], THEME_VERSION );
+  wp_enqueue_style( 'my-header-footer', $css_dir . '/header-footer.css', [], THEME_VERSION );
   wp_enqueue_style( 'my-app', $css_dir . '/app.css', [], THEME_VERSION );
-  wp_enqueue_style( 'my-footer', $css_dir . '/footer.css', [], THEME_VERSION );
   wp_enqueue_style( 'dashicons', get_stylesheet_uri(), 'dashicons' ); // WP native icons
 
   // If inside blog
@@ -109,4 +112,16 @@ function my_public_assets() {
 
   // Javascript
   wp_enqueue_script( 'my-app', $js_dir . '/app.js', ['jquery'], THEME_VERSION, true );
+}
+
+
+/**
+ * @action widgets_init
+ */
+function my_widgets_init() {
+  register_sidebar([
+    'name' => 'Sidebar',
+    'id' => 'sidebar',
+    'description' => 'Appear besides post'
+  ] );
 }

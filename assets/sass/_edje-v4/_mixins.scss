@@ -104,11 +104,3 @@
     border-top-color: $color;
   }
 }
-
-// Output all colors from $root-colors variable. Also add the RGB version
-@mixin root-colors() {
-  @each $name, $hex in $root-colors {
-    #{ $name }: #{ $hex };
-    #{ $name }RGB: #{ red($hex) }, #{ green($hex) }, #{ blue($hex) };
-  }
-}

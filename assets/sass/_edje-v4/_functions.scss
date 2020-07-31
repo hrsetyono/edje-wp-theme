@@ -147,6 +147,9 @@
 }
 
 // alias
+@function svg( $svg_raw ) {
+  @return svg-encode( $svg_raw );
+}
 @function svg-url( $svg_raw ) {
   @return svg-encode( $svg_raw );
 }

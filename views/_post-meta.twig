@@ -1,44 +1,34 @@
 <div class="post-meta">
-  {% for id, meta_enabled in element.meta if meta_enabled %}
 
-    {% if id == 'categories' %}
-      <span class="meta-categories">
-        {% for c in post.categories %}
-          <a href="{{ c.link }}"> {{ c.name }} </a>  
-        {% endfor %}
-      </span>
+  <span class="meta-categories">
+    {% for c in post.categories %}
+      <a href="{{ c.link }}"> {{ c.name }} </a>  
+    {% endfor %}
+  </span>
 
-    {% elseif id == 'author' %}
-      <span class="meta-author">
-        By {{ post.author.display_name }}
-      </span>
+  <span class="meta-author">
+    By {{ post.author.display_name }}
+  </span>
 
-    {% elseif id == 'date' %}
-      <time class="meta-date" datetime="{{ post.post_date | date('Y-m-d') }}">
-        <i class="dashicons-before dashicons-calendar-alt"></i>
-        {{ post.post_date | date }}
-      </time>
+  <time class="meta-date" datetime="{{ post.post_date | date('Y-m-d') }}">
+    <i class="dashicons-before dashicons-calendar-alt"></i>
+    {{ post.post_date | date }}
+  </time>
 
-    {% elseif id == 'comments' and post.comment_count > 0 %}
-      <span class="meta-comments">
-        <i class="dashicons-before dashicons-admin-comments"></i>
-        <a href="{{ post.link }}#comments" class=""> {{ post.comment_count }} Comments </a>
-      </span>
+  {% if post.comment_count > 0 %}
+    <span class="meta-comments">
+      <i class="dashicons-before dashicons-admin-comments"></i>
+      <a href="{{ post.link }}#comments" class=""> {{ post.comment_count }} Comments </a>
+    </span>
+  {% endif %}
 
-    {% elseif id == 'tags' and post.tags %}
-      <span class="meta-tags">
-        <i class="dashicons-before dashicons-tag"></i>
-        {% for tag in post.tags %}
-          <a href="{{ tag.link }}">{{ tag.name }}</a>
-        {% endfor %}
-      </span>
-
-    {% endif %}
-
-  {% endfor %}
-
-
-  
-  
+  {% if post.tags %}
+    <span class="meta-tags">
+      <i class="dashicons-before dashicons-tag"></i>
+      {% for tag in post.tags %}
+        <a href="{{ tag.link }}">{{ tag.name }}</a>
+      {% endfor %}
+    </span>
+  {% endif %}
 
 </div>

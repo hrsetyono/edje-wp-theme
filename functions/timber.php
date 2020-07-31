@@ -16,30 +16,31 @@ class MyTimber extends TimberSite {
    * @filter timber_context
    */
   function add_to_context( array $context ) : array {
+    // Header
+    $context['header'] = [
+      'top-row' => H::dynamic_sidebar( 'header-top' ),
+      'mid-row' => H::dynamic_sidebar( 'header-mid' ),
+      'top-row-mobile' => H::dynamic_sidebar( 'header-top-mobile' ),
+      'mid-row-mobile' => H::dynamic_sidebar( 'header-mid-mobile' ),
+    ];
 
-    if( class_exists( 'Custy' ) ) {
-      $context['header'] = CustyBuilder::get_header( 'main' );
-      $context['footer'] = CustyBuilder::get_footer( 'main' );
-      $context['mods'] = Custy::get_mods();
+    $context['offcanvas'] = H::dynamic_sidebar( 'header-offcanvas' );
 
-      // check for sidebar
-      $is_archive = ( is_archive() || is_author() || is_category() || is_home() || is_tag() ) && 'post' == get_post_type();
-      $is_single = is_single() && 'post' == get_post_type();
+    // Footer
+    $context['footer'] = [
+      'top-row' => H::dynamic_sidebar( 'footer-top' ),
+      'mid-row' => H::dynamic_sidebar( 'footer-mid' ),
+      'bottom-row' => H::dynamic_sidebar( 'footer-bottom' ),
+    ];
 
-      $is_archive_has_sidebar = $is_archive && $context['mods']['archive_has_sidebar'] == 'yes';
-      $is_single_has_sidebar =  $is_single && $context['mods']['post_style'] == 'has-sidebar';
+    // Sidebar
+    $context['sidebar'] = Timber::get_widgets( 'sidebar' );
 
-      if( $is_archive_has_sidebar || $is_single_has_sidebar ) {
-        $context['sidebar'] = Timber::get_widgets( 'header-top-row' );
-      }
-    }
-
+    // Other
     $context['site'] = $this;
     $context['home_url'] = home_url();
-
     $root = get_template_directory_uri();
     $context['images'] = $root.'/assets/images';
-
   
     // ACF Options Page
     if( function_exists( 'acf_add_options_page' )) {

@@ -1,6 +1,6 @@
-/* EDJE Framework 4.0 - hrsetyono.github.io/edje */
+/*! EDJE Framework 4.0 - hrsetyono.github.io/edje */
 
-@import "settings"
+@import "edje"
 @import "_edje-v4/output-normalize"
 @import "_edje-v4/output-grid"
 @import "_edje-v4/output-typography"
@@ -14,6 +14,10 @@
 [type="reset"],
 .wp-block-file__button,
 .wp-block-button__link
+  --buttonBg: var(--main)
+  --buttonBgHover: var(--mainDark)
+  --buttonColor: var(--textInvert)
+
   display: inline-block
   cursor: pointer
   overflow: hidden
@@ -27,7 +31,6 @@
   text-transform: uppercase
   letter-spacing: 0.025em
   font-weight: var(--hFontWeight)
-  font-size: var(--buttonFontSize)
   color: var(--buttonColor)
   vertical-align: top
   line-height: 1
@@ -37,7 +40,6 @@
   // Image or SVG inside a button
   img,
   svg
-    margin-left: -0.25em
     margin-right: 0.5em
     max-height: 1.25em
   img:only-child,
@@ -45,7 +47,7 @@
     margin-left: 0
     margin-right: 0
   svg
-    height: var(--buttonFontSize)
+    height: 1em
   path,
   circle
     fill: var(--buttonColor)
@@ -125,6 +127,11 @@
 [type="time"],
 textarea,
 select
+  --inputBg: var(--textInvert)
+  --inputBgFocus: var(--inputBg)
+  --inputColor: var(--text)
+  --placeholderColor: var(--textDim)
+
   display: block
   width: 100%
   padding: 0.5rem
@@ -196,7 +203,7 @@ select
 
 ///// IMAGE FIT - use this in image wrapper
 
-.image-fit
+[data-image-fit]
   --fitHeight: 50%
 
   position: relative
@@ -220,13 +227,13 @@ select
     object-fit: cover
     object-position: center center
 
-.image-fit--1\:1
+[data-image-fit="1:2"]
   --fitHeight: 100%
-.image-fit--4\:3
+[data-image-fit="4:3"]
   --fitHeight: 75%
-.image-fit--16\:9
+[data-image-fit="16:9"]
   --fitHeight: 56.25%
-.image-fit--2\:1
+[data-image-fit="2:1"]
   --fitHeight: 50%
-.image-fit--3\:1
+[data-image-fit="3:1"]
   --fitHeight: 33.333%

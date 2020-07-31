@@ -2,7 +2,7 @@
 {% block content %}
 
 <h-grid>
-  <main class="archive-column {{ sidebar ? 'archive-column--has-sidebar' : 'archive-column--no-sidebar' }}">
+  <main class="archive-column">
     {% if fn('function_exists', 'jetpack_breadcrumbs') %}
       {{ fn( 'jetpack_breadcrumbs' ) }}
     {% endif %}
@@ -15,19 +15,12 @@
     {% endif %}
 
     {% if author %}
-      {% include "_author-info.twig" with { author: author, element: { show_avatar: 'yes', show_social_media: 'yes' } } %}
+      {% include "_author-info.twig" with { author: author } %}
     {% endif %}
 
     {% include "_posts.twig" %}
     {% include "_pagination.twig" %}
   </main>
-
-  {% if sidebar %}
-    <aside class="sidebar">
-      {{ sidebar }}
-    </aside>
-  {% endif %}
-
 
 </h-grid>
 

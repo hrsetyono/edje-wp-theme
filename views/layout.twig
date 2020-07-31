@@ -10,27 +10,46 @@
   {{ wp_head }}
 </head>
 
-<body class="{{ body_class }} {{ mods.has_frame == 'yes' ? 'has-frame' : '' }}">
+<body class="{{ body_class }}">
 <div id="main-container">
 
-{% include '_header.twig' %}
+{# HEADER #}
+{% for id, h in header if h.widgets %}
+  <header class="header header--{{ id }}" data-columns="{{ h.columns }}" role="navigation">
+    <div class="widget-row">
+      <ul class="widget-column"> {{ h.widgets }} </ul>
+    </div>
+  </header>
+{% endfor %}
+
+{% if offcanvas %}
+  <div class="offcanvas" role="navigation">
+    <ul class="offcanvas-inner-wrapper">
+      {{ offcanvas.widgets }}
+    </ul>
+
+    <a href="#menu">
+      <svg xmlns="http://www.w3.org/2000/svg" width="50" height="30" viewBox="0 0 320 512"><path d="M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z"/></svg>
+      <span>Close</span>
+    </a>
+  </div>
+{% endif %}
+
 
 {% block content %}{% endblock %}
 
-{% include '_footer.twig' %}
+
+<footer class="main-footer">
+  {% for id, f in footer if f.widgets %}
+    <div class="footer footer--{{ id }}" data-columns="{{ f.columns }}">
+      <div class="widget-row">
+        <ul class="widget-column"> {{ f.widgets }} </ul>
+      </div>
+    </div>
+  {% endfor %}
+</footer>
 
 </div>
-
-{# Back to Top #}
-{% if mods.has_back_to_top == 'yes' %}
-  <a class="back-to-top back-to-top--align-{{ mods.back_to_top_alignment }}"
-    data-back-to-top
-    {{ mods.back_to_top_visibility | h_get_visible_attr }}>
-
-    {{ fn( 'custy_get_svg', mods.back_to_top_style ) }}
-
-  </a>
-{% endif %}
 
 {{ wp_footer }}
 

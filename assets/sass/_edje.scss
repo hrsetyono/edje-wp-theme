@@ -1,28 +1,17 @@
-/*!
-  EDJE Functional Sass v3.1.0
-  Documentation: https://github.com/hrsetyono/edje/wiki
-*/
 @charset "UTF-8";
 @import "_edje-v4/mixins";
 @import "_edje-v4/functions";
 
-// Commented colors are already applied using WP CUSTOMIZER
-$root-colors: (
-  // '--main'      : #1976d2,
-  // '--mainDark'  : #0d47a1,
-  // '--mainLight' : #bbdefb,
-  // '--sub'       : #4caf50,
-  // '--subLight'  : #c8e6c9,
-  // '--text'       : #2c3e50,
-  // '--textDim'    : #90A4AE,
-  // '--textInvert' : #ffffff,
-
-  '--red'    : #d32f2f,
-  '--orange' : #fB8c00,
-  '--yellow' : #ffee58,
-  '--green'  : #4caf50,
-  '--blue'   : #1976d2,
-  '--gray'   : #b0bec5,
+$palette-colors: (
+  'text'       : #2c3e50,
+  'textDim'    : #90A4AE,
+  'textInvert' : #ffffff,
+  'main'       : #1976d2,
+  'mainDark'   : #0d47a1,
+  'mainLight'  : #bbdefb,
+  'sub'        : #4caf50,
+  'subDark'    : #2E7D32,
+  'subLight'   : #c8e6c9,
 );
 
 

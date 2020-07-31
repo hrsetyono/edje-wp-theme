@@ -1,35 +1,22 @@
-<ul class="post-archives post-archives--{{ style ? style : mods.archive_style }}" id="content">
+<ul class="post-archives" id="content">
 {% for post in posts %}
 
   <li class="post-archive">
-  {% for e in mods.archive_elements if e.enabled %}
 
     {# Post title #}
-    {% if e.id == 'title' %}
-      <h3><a href="{{ post.link }}">{{ post.title }}</a></h3>
+    <h3><a href="{{ post.link }}">{{ post.title }}</a></h3>
 
-    {# Featured image #}
-    {% elseif e.id == 'featured_image' and post.thumbnail %}
-      <a href="{{ post.link }}" class="archive-figure  image-fit image-fit--{{ e.ratio }}" tabindex="-1">
+    {% if post.thumbnail %}
+      <a href="{{ post.link }}" class="archive-figure" tabindex="-1" data-image-fit="2:1">
         <img src="{{ post.thumbnail.src('medium') }}" alt="{{ post.title }}">
       </a>
-
-    {# Excerpt #}
-    {% elseif e.id == 'excerpt' %}
-      <p>{{ post.preview.length( e.word_count ).read_more('') }}</p>
-
-    {# Post Meta #}
-    {% elseif e.id == 'post_meta' %}
-      {% include '_post-meta.twig' with { element: e, post: post }  %}
-
-    {# Read More #}
-    {% elseif e.id == 'read_more_button' %}
-      <a href="{{ post.link }}" class="button button--{{ e.style }}">
-        {{ e.text }}
-      </a>
-
     {% endif %}
-  {% endfor %}
+
+    {% if post.preview %}
+      <p>{{ post.preview.length(30).read_more('') }}</p>
+    {% endif %}
+
+    {% include '_post-meta.twig' %}
   </li>
   
   

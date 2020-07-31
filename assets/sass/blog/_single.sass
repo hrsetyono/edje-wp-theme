@@ -42,7 +42,7 @@ $output-infinite-scroll: false
   position: relative
   min-height: 250px
   padding-bottom: 2rem
-  background-color: var(--postHeroBg)
+  background-color: var(--panelBg)
 
   picture
     +absolute-fill
@@ -163,35 +163,12 @@ $output-infinite-scroll: false
 
   picture
     overflow: hidden
-    max-width: none
+    width: 100%
 
   img
     margin-right: auto
     margin-left: auto
-
-.featured-image--narrow
-  picture
-    width: var(--blogWidth)
     border-radius: var(--gRadius)
-  
-  .image-fit--custom
-    --fitHeight: var(--postImageHeight)
-
-
-.featured-image--wide,
-.featured-image--full
-
-  .image-fit
-    --fitHeight: var(--postImageHeight)
-
-.featured-image--wide
-  picture
-    width: calc(var(--blogWidth) + 200px)
-    max-width: 100%
-
-.featured-image--full
-  picture
-    width: 100%
 
 
 ///// SINGLE AUTHOR
@@ -225,7 +202,7 @@ $output-infinite-scroll: false
 
   img
     border-radius: 50%
-    background-color: var(--siteBackgroundColor)
+    background-color: var(--siteBgColor)
     height: 4em
     width: 4em
     box-shadow: var(--shadow1)
@@ -298,6 +275,7 @@ $output-infinite-scroll: false
     flex: 1
     align-items: center
     padding: 0.5rem 0
+    max-width: 50%
     color: var(--text)
 
   a:hover
@@ -337,6 +315,7 @@ $output-infinite-scroll: false
     a
       flex: auto
       width: 100%
+      max-width: 100%
 
 .nav-next
   flex-direction: row-reverse
@@ -356,14 +335,14 @@ $output-infinite-scroll: false
 
   padding-top: 2rem
   padding-bottom: 2rem
-  background-color: var(--postRelatedBg)
+  background-color: var(--panelBg)
 
   .related-title
     margin-bottom: 2rem
     font-weight: var(--fontWeight)
 
   .post-archive
-    background-color: var(--siteBackgroundColor)
+    background-color: var(--siteBgColor)
 
   //
   @media ($below-m)
@@ -534,6 +513,12 @@ a.comment-reply-link
     display: block
     color: var(--textDim)
     font-size: var(--smallFontSize)
+
+  .h-comment-notification-consent
+    flex-direction: row
+
+    input
+      margin-right: 0.5rem
   
 
 // Textarea

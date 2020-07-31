@@ -1,0 +1,710 @@
+@import "edje"
+
+///// MAIN HEADER /////
+
+.header
+  --headerBg: white
+  --headerPadding: 0.5rem
+  --headerGridTemplate: auto
+  --headerColor: var(--text)
+  --headerFontSize: var(--fontSize)
+
+  position: relative
+  background: var(--headerBg )
+  padding-top: var(--headerPadding)
+  padding-bottom: var(--headerPadding)
+  color: var(--headerColor)
+  font-size: var(--headerFontSize)
+
+  transition: var(--gTransition)
+
+  &[data-columns="2"]
+    --headerGridTemplate: auto auto
+
+  &[data-columns="3"]
+    --headerGridTemplate: 1fr auto 1fr
+
+
+  .widget + .widget
+    margin-left: 1rem
+
+  .widgettitle
+    font-size: var(--h5Size)
+
+  // active effect
+  a:active
+    transition: none
+    transform: translateY(1px)
+
+
+.header--top-row,
+.header--top-row-mobile
+  --headerPadding: 0.25rem
+  --headerBg: var(--main)
+  --headerColor: var(--textInvert)
+  --headerFontSize: var(--smallFontSize)
+
+.header--top-row,
+.header--mid-row,
+.header--bot-row
+  @media ($below-nav)
+    display: none
+
+.header--mid-row
+  position: sticky
+  top: var(--adminBarHeight)
+  z-index: 100
+
+  &.header--stuck
+    --headerPadding: 0
+    box-shadow: var(--shadow1)
+
+.header--top-row-mobile,
+.header--mid-row-mobile,
+.header--bot-row-mobile
+  @media ($above-nav)
+    display: none
+
+
+// STICKY NAV
+.header--sticky
+  --top: 0px
+  --topAddon: 0px
+
+  position: sticky
+  z-index: 100
+  top: calc( var(--top) + var(--topAddon) )
+
+  @media ($above-adminbar)
+    body.admin-bar &
+      --topAddon: var(--adminBarHeight)
+
+
+.header--stuck
+  box-shadow: var(--shadow1)
+
+
+
+// WIDGET WRAPPER
+
+.widget-row
+  width: 100%
+  max-width: var(--siteWidth)
+  margin: 0 auto
+
+  .header &
+    display: grid
+    grid-template-columns: var(--headerGridTemplate)
+
+  .footer &
+    display: flex
+
+  @media ($below-l)
+    padding: 0 var(--gridRim)
+
+
+.widget-column
+  display: flex
+  flex-wrap: wrap
+  align-items: center
+  padding: 0
+  list-style-type: none
+
+  .header &
+    &:last-child:not(:first-child)
+      justify-content: flex-end
+
+  .footer &
+    width: var(--columnSize)
+
+    &:not([style])
+      flex: 1
+
+
+
+///// WIDGET: Logo
+
+.widget_h_logo
+  --logoColor: var(--text)
+  --logoColorHover: var(--main)
+
+  --logoTextSize: var(--mediumFontSize)
+  --logoMaxHeight: 40px
+  --logoMaxWidth: 70px
+
+  --taglineSize: var(--smallFontSize)
+  --taglineColor: var(--text)
+  
+  display: flex
+  flex-direction: column
+
+  img
+    width: auto
+    max-height: var(--logoMaxHeight)
+
+  &:hover
+    img
+      opacity: .75
+
+  // tagline
+  span
+    font-size: var(--taglineSize)
+    color: var(--taglineColor)
+
+
+///// WIDGET: Button
+
+.widget_h_button
+  .button
+    display: flex
+    align-items: center
+
+    .header--top-row &,
+    .header--top-row-mobile &
+      --buttonBg: var(--textInvert)
+      --buttonColor: var(--main)
+      
+      padding: 0.25rem 0.5rem
+  
+
+///// WIDGET: Navigation
+
+.header .widget_nav_menu
+  --itemPadding: 0.5rem
+  --itemBgHover: var(--mainLight)
+  --itemFontSize: var(--fontSize)
+
+  --dropdownBg: var(--text)
+  --dropdownBgHover: var(--main)
+  --dropdownColor: var(--textInvert)
+  --dropdownColorHover: var(--textInvert)
+
+.header--top-row .widget_nav_menu
+  --itemPadding: 0.25rem 0.5rem
+  --itemBgHover: var(--mainDark)
+
+
+.header .menu
+  display: flex
+  flex-wrap: wrap
+  list-style-type: none
+  transition: var(--gTransition)
+
+.header .menu-item
+  position: relative
+
+  > a
+    display: flex
+    align-items: center
+    height: 100%
+    padding: var(--itemPadding)
+
+    font-size: var(--itemFontSize)
+    line-height: 1
+    letter-spacing: 0.025em
+    text-transform: uppercase
+    color: inherit
+  
+  > a:hover
+    background-color: var(--itemBgHover)
+    opacity: .75
+
+  &.current-menu-item,
+  &.current-page-ancestor,
+  &.current-menu-ancestor,
+  &.current-menu-parent,
+  &.current_page_parent
+    > a
+      background-color: var(--itemBgHover)
+      opacity: 1
+
+
+// Down arrow for item that has children
+.child-indicator
+  display: flex
+  align-items: center
+  margin-left: 0.5rem
+
+  path
+    fill: currentcolor
+  svg
+    transition: var(--gTransition)
+
+
+// Dropdown
+.header .sub-menu
+  --dropdownColumns: 1
+
+  position: absolute
+  z-index: 10
+  top: calc(100% + 4px)
+  left: 50%
+  visibility: hidden
+  opacity: 0
+
+  min-width: calc(180px * var(--dropdownColumns))
+  max-width: calc(220px * var(--dropdownColumns))
+  padding: 0.75em 0.5em
+  border-radius: var(--gRadius)
+  background-color: var(--dropdownBg)
+
+  text-align: left
+  font-size: var(--dropdownSize)
+  list-style-type: none
+
+  transition: var(--gTransition)
+  transform: translateX(-50%)
+  box-shadow: var(--shadow2)
+
+  &::before
+    content: ""
+    position: absolute
+    top: 1px
+    left: 50%
+    width: 0.75em
+    height: 0.75em
+    background-color: var(--dropdownBg)
+    transform: translateY(-50%) translateX(-50%) rotate(45deg)
+    border-radius: var(--gRadius)
+
+  a
+    display: block
+    padding: 0.5em 0.75em
+    border-radius: var(--gRadius)
+    white-space: nowrap
+    font-size: var(--dropdownFontSize)
+    color: var(--dropdownColor)
+
+    &:hover
+      background-color: var(--dropdownBgHover)
+      color: var(--dropdownColorHover)
+
+  a + a
+    padding: 0.375em
+
+
+.header .menu-item:hover .sub-menu
+  visibility: visible
+  opacity: 1
+.header .menu-item:focus-within .sub-menu
+  visibility: visible
+  opacity: 1
+
+
+//// WIDGET: Navigation Offcanvas
+
+.offcanvas .widget_nav_menu
+  --itemPadding: 0.5rem
+  --itemBgHover: rgba(255,255,255, .1)
+  --itemFontSize: var(--largeFontSize)
+
+  width: 100%
+
+.offcanvas .menu
+  display: flex
+  flex-direction: column
+  flex-wrap: wrap
+  list-style-type: none
+  transition: var(--gTransition)
+
+
+.offcanvas .menu-item
+  > a
+    display: flex
+    align-items: center
+    height: 100%
+    padding: var(--itemPadding)
+
+    font-weight: 700
+    font-size: var(--itemFontSize)
+    line-height: 1
+    letter-spacing: 0.025em
+    color: inherit
+
+  > a:hover
+    background-color: var(--itemBgHover)
+    opacity: .75
+
+  &.current-menu-item,
+  &.current-page-ancestor,
+  &.current-menu-ancestor,
+  &.current-menu-parent,
+  &.current_page_parent
+    > a
+      background-color: var(--itemBgHover)
+      opacity: 1
+
+
+.offcanvas .sub-menu
+  overflow: hidden
+  opacity: 0
+  visibility: hidden
+  height: 0
+  
+  padding-left: 1rem
+  list-style-type: none
+  transition: var(--gTransition)
+
+  a
+    font-size: var(--fontSize)
+    font-weight: var(--fontWeight)
+
+.menu-item--toggled .sub-menu
+  visibility: visible
+  opacity: 1
+  height: auto
+  margin-bottom: 1rem
+
+
+.offcanvas .child-indicator
+  svg
+    width: 0.75rem
+    height: 0.75rem
+
+.menu-item--toggled .child-indicator
+  svg
+    transform: rotate(180deg)
+  
+
+
+///// WIDGET: Social Buttons
+
+.widget_h_socials
+  --iconSize: 1rem
+  --iconPadding: 0.375rem
+  --iconGap: 0.25rem
+
+  display: flex
+  align-items: center
+
+  
+  //
+  .footer &,
+  .sidebar &
+    --iconSize: 1.25rem
+    --iconPadding: 0.5rem
+    --iconGap: 0.5rem
+
+.social-icon
+  display: flex
+  align-items: center
+  padding: var(--iconPadding)
+  background-color: var(--iconColor)
+  line-height: 1
+  border-radius: var(--gRadius)
+  color: inherit
+
+  + .social-icon
+    margin-left: var(--iconGap)
+
+  &:hover
+    opacity: .75
+    color: inherit
+
+  svg
+    width: var(--iconSize)
+    height: var(--iconSize)
+
+  path,
+  circle
+    fill: white
+
+.social-icon--has-label
+  padding-right: 0.5rem
+  padding-left: 0.5rem
+
+  span
+    display: inline-block
+    white-space: nowrap
+    margin-left: 0.25rem
+    line-height: 1
+    font-size: var(--smallFontSize)
+
+    transform: translateY(-1px)
+
+
+///// WIDGET: Search
+
+.widget_search
+  --searchPadding: 0.25rem
+  --searchBg: var(--panelBg)
+  --searchInputPadding: 0.25rem 0.5rem
+
+  .screen-reader-text
+    display: none
+
+  svg
+    width: 1em
+
+  .header--top-row &
+    --searchPadding: 0.125rem
+    --searchBg: var(--textInvert)
+    --searchInputPadding: 0 0.375rem
+
+  .sidebar &
+    --searchPadding: 0.5rem
+    --searchInputPadding: 0.5rem 0.75rem
+
+
+// FORM
+.search-form
+  display: flex
+  background-color: var(--searchBg)
+  padding: var(--searchPadding)
+
+  border-radius: var(--gRadius)
+  transition: var(--gTransition)
+
+  &:focus-within
+    outline: auto
+    box-shadow: var(--shadow1)
+
+  label
+    display: flex
+    width: 100%
+
+  //
+  @media ($below-xs)
+    +absolute-fill
+    z-index: 10
+    visibility: hidden
+    opacity: 0
+    min-height: 3em
+    
+    background-color: var(--rowBackgroundColor)
+    padding: 0.5em
+
+    .search-wrapper--active &
+      visibility: visible
+      opacity: 1
+
+
+// INPUT
+.search-field
+  width: 100%
+  border: 0
+  border-radius: var(--gRadius)
+  background-color: transparent
+  padding: var(--searchInputPadding)
+  outline: none
+  box-shadow: none
+
+  &:focus
+    background-color: transparent
+    box-shadow: none
+
+  //
+  @media ($above-xs) and ($below-s)
+    width: 7em
+  //
+  @media ($below-xs)
+    flex: 1
+
+
+// SUBMIT BUTTON
+.search-submit
+  display: flex
+  align-items: center
+  padding: 0.25em 1em
+  background-image: svg('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="white" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>')
+  background-size: auto 65%
+  background-repeat: no-repeat
+  background-position: center center
+
+  color: transparent
+  letter-spacing: -1em
+
+  &:hover
+    color: transparent
+  
+  .sidebar &
+    padding: 0.25em 1.25em
+
+
+
+///// WIDGET: Toggle Off canvas
+
+.widget_h_toggle a
+  --toggleColor: var(--text)
+
+  display: flex
+  align-items: center
+  padding: 0.25rem 0.5rem
+  color: var(--toggleColor)
+
+  border-radius: var(--gRadius)
+
+  &:hover
+    --toggleColor: var(--main)
+    background-color: var(--mainLight)
+
+  svg
+    height: 1.125rem
+  span
+    text-transform: uppercase
+
+  path,
+  circle
+    fill: var(--toggleColor)
+
+  // alignment
+  .header[data-columns="2"] .widget-column:nth-child(2) &,
+  .header[data-columns="3"] .widget-column:nth-child(3) &
+    flex-direction: row-reverse
+
+
+
+///// OFFCANVAS /////
+
+.offcanvas
+  --offcanvasBg: var(--text)
+  --offcanvasWidth: 420px
+
+  cursor: default
+  position: fixed
+  z-index: 100
+  top: 0
+  bottom: 0
+  right: 0
+
+  visibility: hidden
+  opacity: 0
+  background: var(--offcanvasBg)
+  width: var(--offcanvasWidth)
+  max-width: var(--offcanvasWidth)
+
+  color: var(--textInvert)
+  font-size: var(--mediumFontSize)
+
+  box-shadow: var(--shadow3) 
+  transform: translateX(100%)
+
+  .widget + .widget
+    margin-top: 2rem
+
+  @media ($below-xs)
+    --offcanvasWidth: 320px
+
+
+body.has-active-offcanvas
+  overflow-y: hidden
+  cursor: pointer
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0)
+
+  .offcanvas
+    visibility: visible
+    opacity: 1
+    transform: none
+    transition: var(--gTransition)
+
+
+.offcanvas-inner-wrapper
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: flex-start
+
+  overflow-y: auto
+  height: 100%
+  padding: 2.5rem 2rem
+  list-style-type: none
+
+  -webkit-overflow-scrolling: touch
+
+  @media ($below-s)
+    padding-right: 1rem
+    padding-left: 1rem
+ 
+
+// Close button
+.offcanvas > a[href="#menu"]
+  position: absolute
+  z-index: 10
+  top: 0.5rem
+  right: 1rem
+
+  display: flex
+  align-items: center
+  justify-content: center
+
+  width: 2rem
+  height: 2rem
+  border-radius: var(--gRadius)
+  font-size: 0
+  color: transparent
+
+  path
+    fill: var(--textInvert)
+  &:hover
+    background-color: h-rgba(--textInvert, .2)
+
+
+
+///// FOOTER /////
+
+
+.main-footer
+  background-color: var(--text)
+
+.footer
+  --footerPadding: 2rem
+  --footerBg: transparent
+
+  padding-top: var(--footerPadding)
+  padding-bottom: var(--footerPadding)
+  background: var(--footerBg)
+  color: var(--textInvert)
+
+  &.footer--top-row
+    --footerPadding: 1.5rem
+  &.footer--bottom-row
+    --footerPadding: 0.5rem
+
+  .widget + .widget
+    margin-top: 1.5rem
+
+
+
+////// WIDGET: Footer Navigation
+
+.footer .widget_nav_menu
+  --itemPadding: 0.25rem 0.5rem
+  --itemBgHover: rgba(255,255,255, .1)
+  --itemFontSize: var(--fontSize)
+
+.footer .menu
+  display: flex
+  flex-wrap: wrap
+  list-style-type: none
+
+.footer .menu-item
+  > a
+    display: flex
+    align-items: center
+    height: 100%
+    padding: var(--itemPadding)
+
+    font-size: var(--itemFontSize)
+    line-height: 1
+    letter-spacing: 0.025em
+    text-transform: uppercase
+    color: inherit
+    background-color: transparent
+
+  > a:hover
+    background-color: rgba(white, .2)
+
+// hide children
+.footer
+  .child-indicator
+    display: none
+  .sub-menu
+    display: none
+
+
+// Bottom row is  Copyright
+.footer--bottom-row
+  font-size: var(--smallFontSize)
+
+  .widget-column
+    justify-content: center
