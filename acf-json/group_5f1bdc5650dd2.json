@@ -1,0 +1,67 @@
+{
+    "key": "group_5f1bdc5650dd2",
+    "title": "Edje Widget - Separator",
+    "fields": [
+        {
+            "key": "field_5f1bdc5a0e2d9",
+            "label": "",
+            "name": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "Separate the widgets.\r\nIn Header, it's for left \/ center \/ right positioning.\r\nIn Footer, it's for splitting the grid.",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        },
+        {
+            "key": "field_5f1bdd230e2da",
+            "label": "Footer Size",
+            "name": "footer_size",
+            "type": "button_group",
+            "instructions": "The size of next div",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "auto": "auto",
+                "1\/4": "1\/4",
+                "1\/3": "1\/3",
+                "1\/2": "1\/2",
+                "2\/3": "2\/3",
+                "3\/4": "3\/4"
+            },
+            "allow_null": 0,
+            "default_value": "Auto",
+            "layout": "horizontal",
+            "return_format": "value"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "widget",
+                "operator": "==",
+                "value": "h_separator"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1595750032
+}

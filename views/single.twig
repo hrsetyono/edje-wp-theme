@@ -21,7 +21,7 @@
     <div class="featured-image">
       <picture data-image-fit="2:1">
         <source srcset="{{ post.thumbnail.src('medium') }}" media="(max-width: 480px)">
-        <img src="{{ post.thumbnail.src('large') }}" alt="{{ post.title }} Banner">
+        <img src="{{ post.thumbnail.src('large') }}" alt="{{ post.title }} Banner" loading="lazy">
       </picture>
     </div>
   {% endif %}

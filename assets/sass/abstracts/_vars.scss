@@ -1,0 +1,44 @@
+// This file has SCSS format to make writing List and Array easier
+
+$palette-colors: (
+  'text'       : #2c3e50,
+  'textDim'    : #90A4AE,
+  'textInvert' : #ffffff,
+  'main'       : #1976d2,
+  'mainDark'   : #0d47a1,
+  'mainLight'  : #bbdefb,
+  'sub'        : #4caf50,
+  'subDark'    : #2E7D32,
+  'subLight'   : #c8e6c9,
+);
+
+///// MEDIA QUERY
+
+$size-xsmall : 480px;
+$size-small  : 768px;
+$size-medium : 960px;
+$size-large  : 1120px;
+
+$below-xs: "max-width:#{ $size-xsmall }";
+$above-xs: "min-width:#{ $size-xsmall + 1px }";
+$below-s: "max-width:#{ $size-small }";
+$above-s: "min-width:#{ $size-small + 1px }";
+$below-m: "max-width:#{ $size-medium }";
+$above-m: "min-width:#{ $size-medium + 1px }";
+$below-l: "max-width:#{ $size-large }";
+$above-l: "min-width:#{ $size-large + 1px }";
+
+$below-nav: $below-s; // small navigation breakpoint
+$above-nav: $above-s;
+
+$below-adminbar: "max-width:782px";
+$above-adminbar: "min-width:783px";
+
+$portrait: "orientation: portrait";
+$landscape: "orientation: landscape";
+$retina: "min-resolution: 192dpi";
+
+// ASSET PATH - Relative to the /css folder
+//   for image-url() and font-url()
+$image-url: '../images/';
+$font-url: '../fonts/';

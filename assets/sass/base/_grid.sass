@@ -1,0 +1,63 @@
+[data-grid]
+  display: -ms-grid
+  display: grid
+  grid-template-columns: repeat( 12, minmax(0, 1fr) )
+  grid-column-gap: var(--gridGap)
+  grid-row-gap: var(--gridGap)
+
+  max-width: calc( var(--siteWidth) + var(--gridRim) * 2 )
+  padding: 0 var(--gridRim)
+  margin: 0 auto
+  width: 100%
+
+  [data-grid]
+    margin: 0
+    padding: 0
+
+[data-column]
+  --span: 12
+  grid-column: span var(--span)
+
+
+// Column
+@for $i from 1 through 12
+  [data-column="#{$i}"]
+    --span: #{$i}
+
+// Small column
+@media ($below-s)
+  [data-column]
+    --span: 12
+
+  @for $i from 1 through 12
+    [data-column*="-#{$i}"]
+      --span: #{$i}
+
+
+///// TILE
+
+[data-tile]
+  --columns: 3
+  display: -ms-grid
+  display: grid
+  grid-template-columns: repeat( var(--columns), 1fr )
+  grid-column-gap: var(--tileGap)
+  grid-row-gap: var(--tileGap)
+
+  > *
+    grid-column: span 1
+
+
+// Large tile
+@for $i from 1 through 10
+  [data-tile="#{$i}"]
+    --columns: #{$i}
+
+// Small tile
+@media ($below-s)
+  [data-tile]
+    --columns: 1
+
+  @for $i from 1 through 5
+    [data-tile*="-#{$i}"]
+      --columns: #{$i}

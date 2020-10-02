@@ -3,7 +3,7 @@
 $context = [
   '_name' => str_replace( 'acf/', '', $block['name'] ),
   '_align' => $block['align'],
-  '_className' => $block['className'],
+  '_className' => $block['className'] ?? '',
 ];
 
 // Parse the custom field values

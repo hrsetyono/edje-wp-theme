@@ -1,0 +1,68 @@
+///// FOOTER /////
+
+
+.main-footer
+  background-color: var(--text)
+
+.footer
+  --footerPadding: 2rem
+  --footerBg: transparent
+
+  padding-top: var(--footerPadding)
+  padding-bottom: var(--footerPadding)
+  background: var(--footerBg)
+  color: var(--textInvert)
+
+  &.footer--top-row
+    --footerPadding: 1.5rem
+  &.footer--bottom-row
+    --footerPadding: 0.5rem
+
+  .widget + .widget
+    margin-top: 1.5rem
+
+
+
+////// WIDGET: Footer Navigation
+
+.footer .widget_nav_menu
+  --itemPadding: 0.25rem 0.5rem
+  --itemBgHover: rgba(255,255,255, .1)
+  --itemFontSize: var(--fontSize)
+
+.footer .menu
+  display: flex
+  flex-wrap: wrap
+  list-style-type: none
+
+.footer .menu-item
+  > a
+    display: flex
+    align-items: center
+    height: 100%
+    padding: var(--itemPadding)
+
+    font-size: var(--itemFontSize)
+    line-height: 1
+    letter-spacing: 0.025em
+    text-transform: uppercase
+    color: inherit
+    background-color: transparent
+
+  > a:hover
+    background-color: rgba(white, .2)
+
+// hide children
+.footer
+  .child-indicator
+    display: none
+  .sub-menu
+    display: none
+
+
+// Bottom row is  Copyright
+.footer--bottom-row
+  font-size: var(--smallFontSize)
+
+  .widget-column
+    justify-content: center

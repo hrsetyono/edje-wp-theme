@@ -13,44 +13,29 @@ define( 'THEME_VERSION', $THEME->get( 'Version' ) );
 
 
 
-require_once __DIR__ . '/functions/helpers.php';
-require_once __DIR__ . '/functions/setup.php';
-require_once __DIR__ . '/functions/filters.php';
+$inc = __DIR__ . '/inc';
+
+require_once $inc . '/_helpers.php';
+require_once $inc . '/_setup.php';
+require_once $inc . '/gutenberg.php';
 
 if( is_admin() ) {
-  require_once __DIR__ . '/functions/admin.php';
+  require_once $inc . '/admin.php';
 } else {
-  require_once __DIR__ . '/functions/api.php';
-  require_once __DIR__ . '/functions/timber.php';
+  require_once $inc . '/api.php';
+  require_once $inc . '/timber.php';
+  require_once $inc . '/frontend.php';
 }
 
 if( class_exists('WooCommerce') ) {
-  require_once __DIR__ . '/shop/hooks.php';
-  require_once __DIR__ . '/shop/setup.php';
-}
+  require_once $inc . '/shop-setup.php';
+  require_once $inc . '/shop-filters.php';
 
-
-add_filter( 'widget_posts_args', '_h_modify_widget_recent_posts' );
-
-/**
- * Add thumbnail to Recent Posts widget
- * 
- * @filter widget_posts_args
- */
-function _h_modify_widget_recent_posts( $args ) {
-  add_filter( 'the_title', '_h_modify_widget_recent_posts_title', 10, 2 );
-
-  add_action( 'loop_end', function() {
-    remove_filter( current_filter(), __FUNCTION__ );
-    remove_filter( 'the_title', '_h_modify_widget_recent_posts_title', 10 );
-  } );
-
-  return $args;
-}
-
-function _h_modify_widget_recent_posts_title( $title, $post_id ) {
-  if( has_post_thumbnail( $post_id ) ) {
-    $title = get_the_post_thumbnail( $post_id, 'thumbnail' ) . '<h6>' . $title . '</h6>';
+  /**
+   * Assign global $product object in Timber
+   */
+  function timber_set_product( $post ) {
+    global $product;
+    $product = isset( $post->product ) ? $post->product : wc_get_product( $post->ID );
   }
-  return $title;
 }

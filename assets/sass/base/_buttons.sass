@@ -1,0 +1,104 @@
+
+.button,
+[type="submit"],
+[type="reset"],
+.wp-block-file__button,
+.wp-block-button__link
+  --buttonBg: var(--main)
+  --buttonBgHover: var(--mainDark)
+  --buttonColor: var(--textInvert)
+
+  display: inline-block
+  cursor: pointer
+  overflow: hidden
+  
+  padding: 0.5em 1em
+  background-color: var(--buttonBg)
+  border: none
+  border-radius: var(--gRadius)
+
+  text-decoration: none
+  text-transform: uppercase
+  letter-spacing: 0.025em
+  font-weight: var(--hFontWeight)
+  color: var(--buttonColor)
+  vertical-align: top
+  line-height: 1
+  
+  transition: var(--gTransition)
+
+  // Image or SVG inside a button
+  img,
+  svg
+    margin-right: 0.5em
+    max-height: 1.25em
+  img:only-child,
+  svg:only-child
+    margin-left: 0
+    margin-right: 0
+  svg
+    height: 1em
+  path,
+  circle
+    fill: var(--buttonColor)
+
+  &:hover
+    opacity: .75
+    color: var(--buttonColor)
+
+  &:active
+    transition: none
+    transform: translateY(1px)
+
+  &[disabled],
+  &.disabled
+    cursor: not-allowed
+    opacity: .5
+
+  
+// Button size
+.button--small
+  --buttonFontSize: 14px
+.button--normal
+  // default is normal
+.button--large
+  --buttonFontSize: 22px
+
+// Button style
+.button--solid
+  --buttonBorder: none
+
+.button--outline,
+.is-style-outline a
+  --buttonBg: transparent
+  --buttonColor: var(--main)
+  border: 2px solid
+
+.button--transparent,
+.is-style-transparent a
+  --buttonBg: transparent
+  --buttonColor: var(--main)
+  
+  margin-left: -0.5rem
+  padding-right: 0.5rem
+  padding-left: 0.5rem
+
+  &:hover
+    background-color: rgba(var(--mainRGB), .2)
+
+
+// loading button
+.button--passive,
+.button--loading
+  --buttonBg: var(--textDim)
+  --buttonBorder: 1px solid
+  --buttonColor: var(--textInvert)
+
+
+.button--loading
+  cursor: not-allowed
+  background-position: center center
+  background-repeat: no-repeat
+  background-image: image-url("spinner.gif")
+  
+  color: transparent !important

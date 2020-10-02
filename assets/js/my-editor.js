@@ -1,3 +1,5 @@
+import '../sass/my-editor.sass';
+
 wp.domReady( () => {
   
   // wp.blocks.registerBlockStyle( 'core/button', {

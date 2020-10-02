@@ -8,7 +8,7 @@
 
     {% if post.thumbnail %}
       <a href="{{ post.link }}" class="archive-figure" tabindex="-1" data-image-fit="2:1">
-        <img src="{{ post.thumbnail.src('medium') }}" alt="{{ post.title }}">
+        <img src="{{ post.thumbnail.src('medium') }}" alt="{{ post.title }}" loading="lazy">
       </a>
     {% endif %}
 
