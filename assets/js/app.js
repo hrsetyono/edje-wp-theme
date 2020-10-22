@@ -1,4 +1,6 @@
-(function( $ ) { 'use strict';
+import '../sass/app.sass';
+
+(function() { 'use strict';
 
 document.addEventListener( 'DOMContentLoaded', onReady );
 window.addEventListener( 'load', onLoad );
@@ -18,55 +20,8 @@ function onLoad() {
 
 var myApp = {
   init() {
-    this.backToTop();
-    this.gallerySlider();
-    this.galleryLightbox();
   },
 
-  backToTop() {
-    $( '[data-back-to-top]' ).on( 'click', ( e ) => {
-      $( '#main-container' ).smoothScroll();
-    } );
-  },
-
-  /**
-   * Setup Gallery Block with "Slider" style
-   * 
-   * Read more https://github.com/hrsetyono/hSlider
-   */
-  gallerySlider() {
-    let $targets = $('.wp-block-gallery.is-style-h-slider .blocks-gallery-grid');
-
-    $targets.each( function() {
-      let $t = $(this);
-      let perSlide = $t.closest('.wp-block-gallery').attr('class').match( /columns-(\d+)/ );
-
-      hSlider( $t.get(0), {
-        index: 0,
-        arrows: true,
-        dots: true,
-        itemsPerSlide: perSlide[1],
-        responsive: { 767: 2, 480: 1 }
-      });
-    });
-  },
-
-
-  /**
-   * Setup Gallery or Image block that has link to an image
-   * 
-   * Read more at https://github.com/hrsetyono/hLightbox
-   */
-  galleryLightbox() {
-    let $targets = document.querySelectorAll('.wp-block-gallery a, .wp-block-image a');
-
-    for( let $t of $targets ) {
-      let href = $t.getAttribute( 'href' );
-      if( href.match(/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+(?:png|jpg|jpeg|gif|svg)/) ) {
-        hLightbox( $t, { closeButton: true } );
-      }
-    }
-  }
 };
 
 
@@ -74,19 +29,25 @@ var myApp = {
 
 var myHeader = {
   init() {
-    $( document ).on( 'click', this.closeOffcanvas );
-
-    // Sticky
     this.stickyRow();
 
-    $( '[href="#menu"]' ).on( 'click', this.toggleOffcanvas );
-    $( '.offcanvas .menu-item-has-children' ).on( 'click', this.toggleMobileChildren );
+    document.addEventListener( 'click', this.closeOffcanvas );
 
-    $( '[data-mobile-dropdown-toggle]' ).on( 'click', this.toggleMobileDropdown );
+    // toggle offcanvas menu
+    let $menuLinks = document.querySelectorAll( '[href="#menu"]' );
+    for( let $l of $menuLinks ) {
+      $l.addEventListener( 'click', this.toggleOffcanvas );
+    }
+
+    // toggle offcanvas children
+    let $offcanvasParentLinks = document.querySelectorAll( '.offcanvas .menu-item-has-children' );
+    for( let $l of $offcanvasParentLinks ) {
+      $l.addEventListener( 'click', this.toggleMobileChildren );
+    }
   },
 
   /**
-   *  
+   *  Add extra class to Sticky header when it's on sticky state
    */
   stickyRow() {
     var target = '.header--mid-row';
@@ -118,32 +79,19 @@ var myHeader = {
   },
 
   /**
-   * 
-   */
-  onToggleSearch( e ) {
-    e.stopPropagation();
-    var $form = $(e.currentTarget).closest( '.search-wrapper' );
-    $form.toggleClass( 'search-wrapper--active' );
-
-    if( $form.hasClass( 'search-wrapper--active' ) ) {
-      setTimeout( () => { $form.find( 'input' ).focus(); }, 100);
-    }
-  },
-
-  /**
    *  
    */
   toggleOffcanvas( e ) {
     e.preventDefault();
     e.stopPropagation();
-    $( 'body' ).toggleClass( 'has-active-offcanvas' );
+    document.querySelector( 'body' ).classList.toggle( 'has-active-offcanvas' );
   },
 
   /**
    * Close offcanvas when clicking outside it 
    */
   closeOffCanvas( e ) {
-    $( 'body' ).removeClass( 'has-active-offcanvas' );
+    document.querySelector( 'body' ).classList.remove( 'has-active-offcanvas' );
   },
 
 
@@ -152,8 +100,7 @@ var myHeader = {
    */
   toggleMobileChildren( e ) {
     e.preventDefault();
-
-    $( e.currentTarget ).closest( '.menu-item' ).toggleClass( 'menu-item--toggled' );
+    e.currentTarget.closest( '.menu-item' ).classList.toggle( 'menu-item--toggled' );
   },
 }
 
@@ -195,20 +142,5 @@ var myJetpack = {
   }
 };
 
-// Browser compatibility, leave this untouched
-if('registerElement' in document) { document.createElement( 'h-grid' ); document.createElement( 'h-tile' ); }
-
-// Smooth scroll jQuery
-$.fn.extend({
-  smoothScroll: function( offset ) {
-    var $target = $(this);
-    offset = offset || 0;
-
-    $('html, body').animate({
-      scrollTop: $target.offset().top + offset
-    }, 500 );
-  }
-});
-
-})( jQuery );
+})();
 

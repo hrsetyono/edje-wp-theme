@@ -4,8 +4,7 @@
 .archive-column
   grid-column: span 12
 
-  padding-top: 2rem
-  padding-bottom: 2rem
+  padding: var(--groupSpacing) 0
   
   > * + *
     margin-top: 2rem
@@ -37,14 +36,8 @@
   --archiveBg: white
   --archivePadding: 1.5rem
   --archiveImageHeight: 50%
-  --postsPerRow: 3
 
-  display: grid
-  grid-template-columns: repeat( var(--postsPerRow), minmax(0,1fr) )
-  grid-column-gap: 1rem
-  grid-row-gap: 1rem
   padding-left: 0
-  list-style-type: none
 
   a:active
     transition: none
@@ -53,12 +46,6 @@
   //
   @media ($below-m)
     --archivePadding: 1rem
-
-  @media ($below-s)
-    --postsPerRow: 2
-
-  @media ($below-xs)
-    --postsPerRow: 1
 
 
 // SINGLE ARCHIVE
@@ -129,7 +116,7 @@
   display: flex
   justify-content: center
 
-  color: var(--textDim)
+  color: var(--text)
   font-size: var(--smallFontSize)
 
   a,
@@ -139,19 +126,22 @@
     cursor: pointer
 
     background-color: transparent
-    border: 2px solid var(--textDim)
+    border: 2px solid var(--text)
     border-radius: 0
     width: auto
 
-    color: var(--textDim)
+    color: var(--text)
     -webkit-appearance: none
     appearance: none
 
     &:hover
-      background-color: h-rgba(--text, .1)
+      background-color: rgba(--text, .1)
+      transform: translateY(-1px)
+      box-shadow: var(--shadow1)
     &:active
       transition: none
-      transform: translateY(1px)
+      transform: none
+      box-shadow: var(--shadow0)
 
   select
     padding-right: 1rem
@@ -173,9 +163,11 @@
     border-top-right-radius: var(--gRadius)
     border-bottom-right-radius: var(--gRadius)
 
+  svg
+    height: 1rem
 
   path
-    fill: h-rgba(--textDim, .7)
+    fill: var(--text)
 
   // no href
   a:not([href])

@@ -3,8 +3,15 @@ $output-infinite-scroll: false
 
 // SINGLE POST LAYOUT
 
+.post-grid
+  --blogWidth: auto
+  column-gap: 5rem
+
 .post-column
-  grid-column: span 12
+  --fontSize: 1.125rem
+  --lineHeight: 1.7
+  --blockSpacing: 1.75rem
+  
   padding-top: var(--groupSpacing)
   padding-bottom: var(--groupSpacing)
 
@@ -15,15 +22,6 @@ $output-infinite-scroll: false
   max-width: var(--blogWidth)
   margin-left: auto
   margin-right: auto
-
-
-.post-column--has-sidebar
-  --blogWidth: 100%
-  grid-column: span 8
-
-  //
-  @media ($below-s)
-    grid-column: span 12
 
 
 ///// TITLE
@@ -42,7 +40,7 @@ $output-infinite-scroll: false
   position: relative
   min-height: 250px
   padding-bottom: 2rem
-  background-color: var(--panelBg)
+  background-color: var(--mainLight)
 
   picture
     +absolute-fill
@@ -57,6 +55,10 @@ $output-infinite-scroll: false
   position: relative
   z-index: 10
   grid-column: span 8
+
+  @media ($below-m)
+    grid-column: span 12
+
 
 .hero-column--narrow
   grid-column: span 12
@@ -99,11 +101,16 @@ $output-infinite-scroll: false
     transform: translateY(1px)
 
   i::before
-    width: 1em
-    height: 1em
-    font-size: 1rem
-    vertical-align: middle
-    transform: translateY(-2px)
+    content: ''
+    display: inline-block
+    opacity: .5
+    background-image: var(--iconSVG)
+    background-repeat: no-repeat
+    background-position: center center
+    background-size: contain
+    width: 1rem
+    height: 1rem
+    vertical-align: sub
 
   .post-title &
     padding-top: 0.5rem
@@ -111,15 +118,17 @@ $output-infinite-scroll: false
     border-top: 1px solid rgba(black, .2)
     border-bottom: 2px solid rgba(black, .2)
 
-  .post-hero &
-    color: var(--text)
-
   .post-archive &
     &:last-child
       margin-top: auto
 
 
-.meta-author
+.meta-date
+  --iconSVG: url('../svg/calendar-alt.svg')
+
+.meta-comments
+  --iconSVG: url('../svg/comments-alt.svg')
+
 
 .meta-categories,
 .meta-tags
@@ -131,10 +140,20 @@ $output-infinite-scroll: false
 
     color: var(--buttonColor)
 
-  a:hover
-    background-color: var(--buttonBgHover)
-    color: var(--buttonColorHover)
+    .post-hero &
+      background-color: var(--main)
+      color: white
 
+  a:hover
+    transform: translateY(-2px)
+    box-shadow: var(--shadow1)
+
+  a:active
+    transition: none
+    transform: none
+    box-shadow: var(--shadow0)
+
+  
 .meta-categories
   --buttonBg: var(--mainLight)
   --buttonBgHover: var(--mainLight)
@@ -147,11 +166,14 @@ $output-infinite-scroll: false
     text-transform: uppercase
     letter-spacing: 0.025em
 
+
 .meta-tags
-  --buttonBg: #{ h-rgba(--text, .075) }
-  --buttonBgHover: #{ h-rgba(--text, .15) }
+  --buttonBg: rgba(--text, .075)
+  --buttonBgHover: rgba(--text, .15)
   --buttonColor: var(--textDim)
   --buttonColorHover: var(--text)
+
+  --iconSVG: url('../svg/tags.svg')
 
 
 ///// POST FEATURED IMAGE
@@ -458,14 +480,14 @@ a.comment-reply-link
   padding-right: 0.5rem
   padding-left: 0.5rem
   border-radius: var(--gRadius)
-  background-color: h-rgba(--main, .1)
+  background-color: rgba(--main, .1)
   font-size: var(--smallFontSize)
   font-weight: var(--hFontWeight)
   letter-spacing: 0.05em
   text-transform: uppercase
 
   &:hover
-    background-color: h-rgba(--main, .25)
+    background-color: rgba(--main, .25)
   &:active
     transition: none
     transform: translateY(1px)

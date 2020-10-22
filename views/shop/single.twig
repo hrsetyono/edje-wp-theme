@@ -3,7 +3,7 @@
   {{ fn('the_post') }}
   
 
-<h-grid> <div class="large-12">
+<div data-grid> <div data-column="12">
 
   <div class="before-product">
     {{ fn('woocommerce_output_all_notices') }}
@@ -14,29 +14,29 @@
     {% do action("woocommerce_before_single_product") %}
   </div>
 
-  <h-grid>
+  <div data-grid>
     {# Gallery #}
-    <figure class="product-figure / large-4">
+    <figure class="product-figure" data-column="4">
       {{ fn('woocommerce_show_product_sale_flash') }}
       {{ fn('woocommerce_show_product_images') }}
       {% do action("woocommerce_before_single_product_summary") %}
     </figure>
 
     {# Price & Buy button #}
-    <aside class="product-purchase / large-3">
+    <aside class="product-purchase" data-column="3">
       {{ fn('woocommerce_template_single_price') }}
       {{ fn('woocommerce_template_single_add_to_cart') }}
       {% do action("woocommerce_after_single_product_summary") %}
     </aside>
 
     {# Summary tab #}
-    <article class="product-article / large-5">
+    <article class="product-article" data-column="5">
       {{ fn( 'woocommerce_output_product_data_tabs' ) }}
       {{ fn( 'woocommerce_template_single_meta' ) }}
       {{ fn( 'woocommerce_upsell_display' ) }}
       {% do action("woocommerce_single_product_summary") %}
     </article>
-  </h-grid>
+  </div>
   
   {% do action("woocommerce_after_single_product") %}
 
@@ -46,6 +46,6 @@
     {% include "shop/_products.twig" with { products: related_products } %}
   </section>
 
-</div> </h-grid>
+</div> </div>
 
 {% endblock %}

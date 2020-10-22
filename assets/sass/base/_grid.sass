@@ -21,7 +21,7 @@
 
 // Column
 @for $i from 1 through 12
-  [data-column="#{$i}"]
+  [data-column^="#{$i}"]
     --span: #{$i}
 
 // Small column
@@ -40,9 +40,10 @@
   --columns: 3
   display: -ms-grid
   display: grid
-  grid-template-columns: repeat( var(--columns), 1fr )
+  grid-template-columns: repeat( var(--columns), minmax(0,1fr) )
   grid-column-gap: var(--tileGap)
   grid-row-gap: var(--tileGap)
+  list-style-type: none
 
   > *
     grid-column: span 1
@@ -50,7 +51,7 @@
 
 // Large tile
 @for $i from 1 through 10
-  [data-tile="#{$i}"]
+  [data-tile^="#{$i}"]
     --columns: #{$i}
 
 // Small tile
@@ -59,5 +60,11 @@
     --columns: 1
 
   @for $i from 1 through 5
-    [data-tile*="-#{$i}"]
+    [data-tile*="-#{$i}-"]
+      --columns: #{$i}
+
+// XSmall tile
+@media ($below-xs)
+  @for $i from 1 through 5
+    [data-tile$="-#{$i}"]
       --columns: #{$i}

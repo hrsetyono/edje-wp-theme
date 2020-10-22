@@ -1,16 +1,50 @@
 // This file has SCSS format to make writing List and Array easier
 
 $palette-colors: (
-  'text'       : #2c3e50,
-  'textDim'    : #90A4AE,
-  'textInvert' : #ffffff,
-  'main'       : #1976d2,
-  'mainDark'   : #0d47a1,
-  'mainLight'  : #bbdefb,
-  'sub'        : #4caf50,
-  'subDark'    : #2E7D32,
-  'subLight'   : #c8e6c9,
+  'black' : #2c3e50,
+  'gray'  : #90A4AE,
+  'white' : #ffffff,
+
+  // 'red'     : #d32f2f
+  // 'orange'  : #fB8c00
+  // 'yellow'  : #ffee58
+  // 'green'   : #4caf50
+  // 'blue'    : #1976d2
+  // 'gray'    : #b0bec5
+
+  'red'     : #a76266,
+  'brown'   : #a48265,
+  'yellow'  : #cec3a1,
+  'green'   : #72ac99,
+  'blue'    : #6590a4,
+  
+  'redDark'    : #83494c,
+  'brownDark'  : #81644b,
+  'yellowDark' : #b9a979,
+  'greenDark'  : #4b816f,
+  'blueDark'   : #446474,
+
+  'redLight'    : #e5d1d2,
+  'brownLight'  : #e4dad1,
+  'yellowLight' : #eeeade,
+  'greenLight'  : #d1e4de,
+  'blueLight'   : #d1dee4,
 );
+
+$alias-colors: (
+  'text'       : --black,
+  'textDim'    : --gray,
+  'textInvert' : --white,
+
+  'main'      : --blue,
+  'mainDark'  : --blueDark,
+  'mainLight' : --blueLight,
+
+  'sub'      : --green,
+  'subDark'  : --greenDark,
+  'subLight' : --greenLight,
+);
+
 
 ///// MEDIA QUERY
 

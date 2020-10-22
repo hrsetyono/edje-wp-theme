@@ -1,4 +1,4 @@
-<ul class="post-archives" id="content">
+<ul class="post-archives" id="content" data-tile="3-2-1">
 {% for post in posts %}
 
   <li class="post-archive">
@@ -13,7 +13,7 @@
     {% endif %}
 
     {% if post.preview %}
-      <p>{{ post.preview.length(30).read_more('') }}</p>
+      <p>{{ post.preview.length(20).read_more('') }}</p>
     {% endif %}
 
     {% include '_post-meta.twig' %}

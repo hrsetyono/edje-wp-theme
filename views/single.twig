@@ -3,19 +3,18 @@
 
 
 <section class="post-hero">
-  <h-grid>
+  <div data-grid>
     <div class="hero-column {{ not sidebar ? 'hero-column--narrow' : '' }}">
       <h1>{{ post.title }}</h1>
       {% include "_post-meta.twig" %}
     </div>
-  </h-grid>
+  </div>
 </section>
 
 {# Content #}
-<h-grid>
+<div class="post-grid" data-grid>
 
-<main class="post-column  {{ sidebar ? 'post-column--has-sidebar' : 'post-column--no-sidebar' }}">
-
+<main class="post-column" data-column="8-12">
   {# Featured Image #}
   {% if post.thumbnail %}
     <div class="featured-image">
@@ -63,16 +62,18 @@
 </main>
 
 {% if sidebar %}
-  <aside class="sidebar">
-    {{ sidebar }}
+  <aside class="sidebar" data-column="4-12">
+    <div class="sidebar-inner">
+      {{ sidebar }}
+    </div>
   </aside>
 {% endif %}
-</h-grid>
+</div> {# grid #}
 
 
 {# Related Posts #}
 <aside class="related-posts">
-  <h-grid> <div class="large-12">
+  <div data-grid> <div data-column="12">
     {% if fn('class_exists', 'Jetpack_RelatedPosts') %}
       {% filter shortcodes %} [jetpack-related-posts] {% endfilter %}
 
@@ -81,7 +82,7 @@
       {% filter shortcodes %} [h-related-posts count="3"] {% endfilter %}
 
     {% endif %}
-  </div> </h-grid>
+  </div> </div>
 </aside>
 
 {# Comments #}

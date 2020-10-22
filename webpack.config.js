@@ -28,10 +28,9 @@ const jsPath = './assets/js';
 
 module.exports = {
   entry: {
-    'bundle': jsPath + '/app.js',
+    'app': jsPath + '/app.js',
     'my-editor': jsPath + '/my-editor.js',
-    'style': cssPath + '/style.sass',
-    'blog': cssPath + '/blog.sass',
+    'post': cssPath + '/post.sass',
     'my-admin': cssPath + '/my-admin.sass',
   },
   output: {
@@ -69,7 +68,7 @@ module.exports = {
       },
       {
         test: /\.(jpg|jpeg|png|gif|woff|woff2|eot|ttf|svg)$/i,
-        use: 'url-loader?limit=100'
+        use: 'url-loader?limit=1024'
       }
     ]
   },

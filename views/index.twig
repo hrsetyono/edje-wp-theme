@@ -1,7 +1,7 @@
 {% extends "layout.twig" %}
 {% block content %}
 
-<h-grid>
+<div data-grid>
   <main class="archive-column">
     {% if fn('function_exists', 'jetpack_breadcrumbs') %}
       {{ fn( 'jetpack_breadcrumbs' ) }}
@@ -22,7 +22,7 @@
     {% include "_pagination.twig" %}
   </main>
 
-</h-grid>
+</div>
 
 
 

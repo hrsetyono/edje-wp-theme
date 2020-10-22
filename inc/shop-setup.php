@@ -5,6 +5,15 @@ add_action( 'wp_enqueue_scripts', 'my_enqueue_shop_assets', 101 );
 
 
 /**
+ * Set global $product object
+ */
+function timber_set_product( $post ) {
+  global $product;
+  $product = isset( $post->product ) ? $post->product : wc_get_product( $post->ID );
+}
+
+
+/**
  * Register Woocommerce assets here
  * @action wp_enqueue_scripts 101
  */

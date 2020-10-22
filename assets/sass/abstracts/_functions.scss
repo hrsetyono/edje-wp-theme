@@ -1,3 +1,20 @@
+//
+// Override rgba() to allow CSS variable to have transparency
+//
+@function rgba( $r, $g, $b: false, $a: false ) {
+  @if type-of( $r ) == string {
+    @return rgbA(var($r + 'RGB'), $g);
+  }
+
+  @if type-of( $r ) == color {
+    @return rgbA( red($r), green($r), blue($r), $g );
+  }
+
+  @if $b and $a {
+    @return rgbA( $r, $g, $b, $a );
+  }
+}
+
 // -------------
 // Media Query
 // -------------

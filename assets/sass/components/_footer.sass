@@ -8,6 +8,8 @@
   --footerPadding: 2rem
   --footerBg: transparent
 
+  display: flex
+  justify-content: center
   padding-top: var(--footerPadding)
   padding-bottom: var(--footerPadding)
   background: var(--footerBg)
@@ -20,6 +22,50 @@
 
   .widget + .widget
     margin-top: 1.5rem
+
+  .widgettitle
+    margin-bottom: 0.5rem
+    font-size: var(--h4Size)
+
+// GRID
+
+.widget-row
+  --footerGap: var(--gridGap)
+
+  .footer &
+    display: flex
+    max-width: calc(var(--siteWidth) + var(--footerGap))
+
+    @media ($below-l)
+      --footerGap: 0.75rem
+    
+    @media ($below-s)
+      flex-wrap: wrap
+
+
+.widget-column
+  .footer &
+    flex-direction: column
+    align-items: flex-start
+    width: var(--columnSize)
+    padding: 0 var(--footerGap)
+
+    &:not([style])
+      flex: 1
+
+    @media ($above-s)
+      &:last-child:not(:first-child)
+        align-items: flex-end
+
+    @media ($below-s)
+      width: 100%
+      align-items: center
+
+      + .widget-column
+        margin-top: var(--blockSpacing)
+
+  .footer--bottom-row &
+    justify-content: center      
 
 
 
@@ -51,6 +97,7 @@
 
   > a:hover
     background-color: rgba(white, .2)
+    text-decoration: underline
 
 // hide children
 .footer
@@ -64,5 +111,10 @@
 .footer--bottom-row
   font-size: var(--smallFontSize)
 
-  .widget-column
-    justify-content: center
+
+///// LOGO
+
+.widget_h_logo
+  .footer &
+    justify-content: flex-start
+    width: 100%

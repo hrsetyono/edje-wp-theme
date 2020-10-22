@@ -160,3 +160,60 @@ body[class^="paged-"] #infinite-footer
 
   .current-category [itemprop="name"]
     color: var(--text)
+
+
+///// CONTACT FORM
+
+form.contact-form
+  input[type='text'],
+  input[type='email'],
+  input[type='tel'],
+  input[type='url'],
+  textarea
+    margin-bottom: 0
+
+
+///// WHATSAPP BUTTON
+
+div div.wp-block-jetpack-whatsapp-button
+  a.whatsapp-block__button
+    display: flex
+    align-items: center
+
+    &:hover
+      transform: translateY(-2px)
+      box-shadow: var(--shadow1)
+    &:active
+      transition: none
+      transform: none
+      box-shadow: var(--shadow0)
+
+
+///// SLIDESHOW
+
+.wp-block-jetpack-slideshow
+  img.wp-block-jetpack-slideshow_image
+    width: 100%
+    object-fit: cover
+
+
+///// STAR RATING
+
+.wp-block-jetpack-rating-star
+  display: flex
+  align-items: center
+
+  [itemprop="ratingValue"]
+    display: none
+
+.screen-reader-text
+  border: 0
+  clip: rect(1px, 1px, 1px, 1px)
+  clip-path: inset(50%)
+  height: 1px
+  margin: -1px
+  overflow: hidden
+  padding: 0
+  position: absolute
+  width: 1px
+  word-wrap: normal !important

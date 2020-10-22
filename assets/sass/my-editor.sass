@@ -4,7 +4,58 @@
 @import "abstracts/functions"
 @import "abstracts/mixins"
 
-@import "css-vars"
+@import "css-vars-and-fonts"
 
 .wp-block
-  max-width: 600px
+  max-width: var(--blogWidth)
+
+.wp-block[data-align="wide"]
+  max-width: calc(var(--blogWidth) + 200px)
+
+
+
+///// TABLE
+
+.wp-block-table
+  --tableBorder: var(--text)
+  --tableHeader: #{ rgba(black, .1) }
+  --tableBg: white
+
+  thead tr,
+  tfoot tr
+    background-color: var(--tableHeader)
+    font-weight: 700
+    text-align: left
+    
+  thead tr
+    border-bottom: 3px solid var(--tableBorder)
+  tfoot tr
+    border-top: 3px solid var(--tableBorder)
+  th, td
+    border: 1px solid rgba(black, .2)
+
+  .has-subtle-pale-green-background-color
+    --tableBorder: var(--green)
+    --tableBg: rgba(--green, .1)
+    --tableHeader: rgba(--green, .2)
+
+  .has-subtle-pale-blue-background-color
+    --tableBorder: var(--blue)
+    --tableBg: rgba(--blue, .1)
+    --tableHeader: rgba(--blue, .2)
+
+  .has-subtle-pale-pink-background-color
+    --tableBorder: var(--red)
+    --tableBg: rgba(--red, .1)
+    --tableHeader: rgba(--red, .2)
+
+
+// Table stripes
+.wp-block-table.is-style-stripes
+  border-collapse: collapse
+
+  th, td
+    border: 1px solid rgba(black, .2)
+
+  tbody tr:nth-child(odd)
+    background-color: white

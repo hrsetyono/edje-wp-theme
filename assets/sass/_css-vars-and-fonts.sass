@@ -1,23 +1,24 @@
 ///// ROOT VARIABLES
 
+
 \:root
-  // Change the palette colors in abstracts/_vars.scss
+  // Change the colors variable in abstracts/_vars.scss
   // 
-  // The RGB version is for transparency. For example:
-  //   
-  //   background-color: rgba(var(--mainRGB), .5)
-  // 
+  // To use color variable, use the function color()
+  //
+  //    background-color: color(--main, .1)
+  //    color: color(--main)
+  //
   @each $name, $hex in $palette-colors
     --#{ $name } : #{ $hex }
     --#{ $name }RGB : #{ red($hex) }, #{ green($hex) }, #{ blue($hex) }
 
-  --red     : #d32f2f
-  --orange  : #fB8c00
-  --yellow  : #ffee58
-  --green   : #4caf50
-  --blue    : #1976d2
-  --gray    : #b0bec5
-  
+  @each $alias, $origin in $alias-colors
+    --#{ $alias } : var(#{ $origin })
+    --#{ $alias }RGB : var(#{ $origin }RGB)
+
+
+  // Other colors
   --siteBg      : #f8f9fb
   --siteBgColor : #f8f9fb
   --panelBg     : #eff1f5
@@ -75,7 +76,7 @@
   --tileGap   : 20px
 
   
-  // GLOBAL -----
+  // GLOBAL
   --gRadius: 4px
   --gTransition: all .25s ease-in-out
 

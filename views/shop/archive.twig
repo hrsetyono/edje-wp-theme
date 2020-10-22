@@ -1,14 +1,14 @@
 {% extends "layout.twig" %}
 {% block content %}
 
-<h-grid>
-  <section class="shop-title large-8">
+<div data-grid>
+  <section class="shop-title" data-column="8">
     <h1>{{ title }}</h1>
     {{ content }}
   </section>
-</h-grid>
+</div>
 
-<h-grid> <div class="large-12">
+<div data-grid> <div data-column="12">
   {{ fn( 'woocommerce_breadcrumb' ) }}
   {% do action("woocommerce_before_main_content") %}
 
@@ -37,6 +37,6 @@
 
   {% do action("woocommerce_after_main_content") %}
 
-</div> </h-grid>
+</div> </div>
 
 {% endblock %}

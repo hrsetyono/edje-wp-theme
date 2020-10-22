@@ -1,7 +1,7 @@
 <section class="shop-categories">
   <h2> {{ __('Category') }} </h2>
 
-  <h-tile class="tile-3 small-tile-2">
+  <div data-tile="3-2">
     {% for c in categories %}
     
     <a class="category-tease" href="{{ c.link }}">
@@ -12,5 +12,5 @@
     </a>
 
     {% endfor %}
-  </h-tile>
+  </div>
 </section>

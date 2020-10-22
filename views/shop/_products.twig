@@ -1,6 +1,6 @@
 <section class="shop-products">
 
-  <h-tile class="tile-{{ fn('wc_get_loop_prop', 'columns') }} small-tile-2">
+  <div data-tile="3-2">
     {% for p in products %}
       {{ fn("timber_set_product", p) }} {# set context #}
 
@@ -24,19 +24,19 @@
       </div>
 
     {% endfor %}
-  </h-tile>
+  </div>
 
 
   {% if not products %}
-    <h-grid>
-      <div class="large-4"></div>
-      <article class="large-4 content-error">
+    <div data-grid>
+      <div data-column="4"></div>
+      <article class="content-error" data-column="4">
         <h1>Product <span>Not Found</span></h1>
         <p>
           Sorry, there is no product listed here yet
         </p>
       </article>
-    </h-grid>
+    </div>
   {% endif %}
 
 </section>
