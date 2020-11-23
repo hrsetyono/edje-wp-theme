@@ -1,24 +1,30 @@
-
 .button,
 [type="submit"],
 [type="reset"],
 .wp-block-file__button,
+.wp-block-button
+  --bgColor: var(--main)
+  --textColor: var(--textInvert)
+
+.button,
+[type="submit"],
+[type="reset"],
+.wp-block-file .wp-block-file__button,
 .wp-block-button .wp-block-button__link
-  --defaultColor: var(--textInvert)
   display: inline-block
   cursor: pointer
   overflow: hidden
   
-  padding: 0.5em 1em
-  background-color: var(--bgColor, var(--main))
-  border: none
-  border-radius: var(--gRadius)
+  padding: 0.75em 1em
+  background-color: var(--bgColor)
+  border: 2px solid transparent
+  border-radius: 24px
 
   text-decoration: none
   text-transform: uppercase
   letter-spacing: 0.025em
   font-weight: var(--hFontWeight)
-  color: var(--textColor, var(--defaultColor))
+  color: var(--textColor)
   vertical-align: top
   line-height: 1
   
@@ -41,7 +47,7 @@
 
   &:hover
     opacity: .9
-    transform: translateY(-1px)
+    transform: translateY(-2px)
     box-shadow: var(--shadow1)
 
   &:active
@@ -68,14 +74,16 @@
   --buttonBorder: none
 
 .button--outline,
-.wp-block-button.is-style-outline a
+.wp-block-button.is-style-outline
   --bgColor: transparent
-  --defaultColor: var(--main)
+  --textColor: var(--main)
   
-  border: 2px solid
+  a
+    border-color: inherit
+    color: var(--textColor)
 
 .button--transparent,
-.wp-block-button.is-style-transparent a
+.wp-block-button.is-style-h-transparent a
   --bgColor: transparent
   
   margin-left: -0.5rem

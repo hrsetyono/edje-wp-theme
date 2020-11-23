@@ -38,12 +38,6 @@ var myHeader = {
     for( let $l of $menuLinks ) {
       $l.addEventListener( 'click', this.toggleOffcanvas );
     }
-
-    // toggle offcanvas children
-    let $offcanvasParentLinks = document.querySelectorAll( '.offcanvas .menu-item-has-children' );
-    for( let $l of $offcanvasParentLinks ) {
-      $l.addEventListener( 'click', this.toggleMobileChildren );
-    }
   },
 
   /**
@@ -92,15 +86,6 @@ var myHeader = {
    */
   closeOffCanvas( e ) {
     document.querySelector( 'body' ).classList.remove( 'has-active-offcanvas' );
-  },
-
-
-  /**
-   * Toggle dropdown menu in offcanvas 
-   */
-  toggleMobileChildren( e ) {
-    e.preventDefault();
-    e.currentTarget.closest( '.menu-item' ).classList.toggle( 'menu-item--toggled' );
   },
 }
 

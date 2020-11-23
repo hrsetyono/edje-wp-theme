@@ -10,52 +10,154 @@
   max-width: var(--blogWidth)
 
 .wp-block[data-align="wide"]
-  max-width: calc(var(--blogWidth) + 200px)
+  max-width: calc(var(--siteWidth) - 100px)
 
+.styles-wrapper
+  background-color: var(--siteBg)
+
+
+///// TYPOGRAPHY
+
+.editor-styles-wrapper > *
+  font-family: var(--fontFamily)
+  font-weight: var(--fontWeight)
+
+.editor-post-title__block .editor-post-title__input,
+.editor-styles-wrapper h1.wp-block,
+.editor-styles-wrapper h2.wp-block,
+.editor-styles-wrapper h3.wp-block,
+.editor-styles-wrapper h4.wp-block,
+.editor-styles-wrapper h5.wp-block,
+.editor-styles-wrapper h6.wp-block,
+.editor-styles-wrapper .has-drop-cap:not(:focus)::first-letter
+  font-family: var(--hFontFamily)
+  font-weight: var(--hFontWeight)
+  text-transform: var(--hTextTransform)
+
+.editor-styles-wrapper h1.wp-block
+  font-size: var(--h1Size)
+
+.editor-styles-wrapper h2.wp-block
+  font-size: var(--h2Size)
+
+.editor-styles-wrapper h3.wp-block
+  font-size: var(--h3Size)
+
+.editor-styles-wrapper h4.wp-block
+  font-size: var(--h4Size)
+
+.editor-styles-wrapper h5.wp-block
+  font-size: var(--h5Size)
+
+.editor-styles-wrapper h6.wp-block
+  font-size: var(--h6Size)
+
+
+///// QUOTE
+
+.wp-block-quote
+
+.wp-block-quote.has-text-align-center
+  padding-top: 1rem
+  
+  &::before
+    content: ""
+    position: absolute
+    top: 0
+    width: 100px
+    height: 3px
+    background-color: var(--text)
+    transform: translateX(-50%)
+
+.wp-block-quote.is-style-large
+  padding: 1rem 0
+  border-top: 3px solid var(--text)
+  border-bottom: 3px solid var(--text)
+  text-align: center
+  font-size: var(--largeFontSize)
+
+  p
+    font-style: normal
 
 
 ///// TABLE
 
 .wp-block-table
-  --tableBorder: var(--text)
   --tableHeader: #{ rgba(black, .1) }
   --tableBg: white
+  --tableBorder: black
 
   thead tr,
   tfoot tr
     background-color: var(--tableHeader)
     font-weight: 700
     text-align: left
-    
+  tbody
+    background-color: var(--tableBg)
   thead tr
     border-bottom: 3px solid var(--tableBorder)
   tfoot tr
     border-top: 3px solid var(--tableBorder)
   th, td
     border: 1px solid rgba(black, .2)
+    
+  .has-subtle-light-gray-background-color
+    --tableHeader: #{ rgba(--textDim, .1) }
+    --tableBg: #{ rgba(--textDim, .05) }
+    --tableBorder: var(--textDim)
 
   .has-subtle-pale-green-background-color
+    --tableHeader: #{ rgba(--green, .2) }
+    --tableBg: #{ rgba(--green, .1) }
     --tableBorder: var(--green)
-    --tableBg: rgba(--green, .1)
-    --tableHeader: rgba(--green, .2)
 
   .has-subtle-pale-blue-background-color
+    --tableHeader: #{ rgba(--blue, .4) }
+    --tableBg: #{ rgba(--blue, .2) }
     --tableBorder: var(--blue)
-    --tableBg: rgba(--blue, .1)
-    --tableHeader: rgba(--blue, .2)
 
   .has-subtle-pale-pink-background-color
+    --tableHeader: #{ rgba(--red, .2) }
+    --tableBg: #{ rgba(--red, .1) }
     --tableBorder: var(--red)
-    --tableBg: rgba(--red, .1)
-    --tableHeader: rgba(--red, .2)
 
 
 // Table stripes
 .wp-block-table.is-style-stripes
+  --tableBg: #{ rgba(--textDim, .05) }
   border-collapse: collapse
-
-  th, td
-    border: 1px solid rgba(black, .2)
 
   tbody tr:nth-child(odd)
     background-color: white
+  th, td
+    border: 1px solid rgba(black, .2)
+
+
+///// BUTTON
+
+.wp-block-button__link
+  background-color: var(--main)
+
+  .is-style-outline &
+    background-color: transparent !important
+    border-color: auto
+    color: var(--main)
+
+  .is-style-h-transparent &
+    background-color: transparent !important
+    border: none
+    color: var(--main)
+    text-transform: uppercase
+    letter-spacing: 0.05em
+
+    &:focus
+      box-shadow: none
+
+
+///// CODE
+
+pre.wp-block-code
+  background-color: rgba(black, 0.05)
+
+  code
+    background-color: transparent

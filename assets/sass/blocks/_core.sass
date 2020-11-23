@@ -1,11 +1,4 @@
 // Styles for core Gutenberg blocks
-  
-[class*="-background-color"]
-  background-color: var(--bgColor)
-
-.has-text-color
-  color: var(--textColor, var(--text))
-
 
 %figcaption
   display: inline-block
@@ -16,112 +9,20 @@
   font-size: var(--smallFontSize)
 
 
-///// WRAPPER
-
-.the-content
-  letter-spacing: calc(0.01 * var(--fontSize))
-
-  > .alignfull.has-background:first-child
-    margin-top: calc(-1 * var(--groupSpacing))
-
-  ul, ol
-    padding-left: 1.25rem
-
-  h1, h2, h3, h4, h5, h6
-    clear: both
-    color: var(--textColor)
-  
-  img
-    border-radius: var(--gRadius)
-  
-  a
-    text-decoration: underline
-
-
-.the-content,
-.wp-block-group__inner-container,
-.wp-block-cover__inner-container,
-  > *
-    margin: 0 auto
-    max-width: var(--blogWidth)
-
-.the-content,
-.wp-block-group__inner-container,
-.wp-block-cover__inner-container,
-.wp-block-media-text__content,
-.wp-block-column
-  > * + *
-    margin-top: var(--blockSpacing)
-
-
-.wp-block-group__inner-container,
-.wp-block-cover__inner-container,
-.wp-block-media-text__content
-  @media ($below-l)
-    padding-right: var(--gridRim)
-    padding-left: var(--gridRim)
-
-.wp-block-group__inner-container
-  body.single-post &
-    padding-right: 1rem
-    padding-left: 1rem
-
-
-///// ALIGNMENT
-
-.aligncenter
-  text-align: center
-.alignright
-  text-align: right
-
-.alignwide
-  max-width: var(--siteWidth)
-
-  .post-column--has-sidebar &
-
-    @media ($above-l)
-      margin-right: -2rem
-      margin-left: -2rem
-
-    // nested alignwide
-    .alignwide
-      padding-right: 0
-      padding-left: 0
-      margin-right: 0
-      margin-left: 0
-
-
-.alignfull
-  max-width: none
-  margin-top: var(--groupSpacing)
-
-  + *
-    margin-top: var(--groupSpacing)
-
-  + .alignfull
-    margin-top: 0
-
-  .post-column--no-sidebar &
-    width: 100vw
-    margin-right: calc(-50vw + 50% + var(--gridRim))
-    margin-left: calc(-50vw + 50% + var(--gridRim) - 2px)
-
-  .post-column--has-sidebar &
-    @media ($above-l)
-      margin-right: -2rem
-      margin-left: -2rem
-      width: calc(100% + 4rem)
-
-    // nested alignfull
-    .alignfull
-      padding-right: 0
-      padding-left: 0
-
-  &:last-child
-    margin-bottom: 0
-
 
 ///// PARAGRAPH
+
+p.has-background
+  padding: 1rem
+  border-radius: var(--gRadius)
+
+.has-drop-cap:first-letter
+  float: left
+  margin-right: 0.25rem
+  font-family: var(--hFontFamily)
+  font-weight: 700
+  font-size: 3.5rem
+  line-height: 3.5rem
 
 .has-small-font-size
   font-size: var(--smallFontSize)
@@ -138,27 +39,272 @@
   line-height: var(--hLineHeight)
 
 
+
+///// HEADING
+
+h1, h2, h3, h4, h5, h6
+  &.has-background
+    padding: 1rem 2rem
+
+    @media ($below-s)
+      padding: 0.5rem 1rem
+
+
+///// BUTTONS
+
+.wp-block-buttons
+  display: flex
+  align-items: center
+  flex-wrap: wrap
+
+  &.aligncenter
+    justify-content: center
+
+.wp-block-button
+  a
+    text-decoration: none
+
+  + .wp-block-button
+    margin-left: 1rem
+
+
+
 ///// IMAGE
 
 .wp-block-image
-  figcaption
-    color: var(--textDim)
-    font-size: var(--smallFontSize)
-    text-align: center
+  text-align: center
 
-  .alignleft figcaption
+  .alignleft,
+  .alignright
+    max-width: 50%
+    margin-bottom: 1.5rem
+
+  .alignleft
+    float: left
+    margin-right: 1.5rem
     text-align: left
 
-  .alignright figcaption
+  .alignright
+    float: right
+    margin-left: 1.5rem
     text-align: right
+
+  &.alignfull
+    img
+      border-radius: 0
+
+  figcaption
+    @extend %figcaption
+
+
+
+// hover effect
+.wp-block-image > a,
+.wp-block-gallery figure > a
+  display: block
+  overflow: hidden
+  border-radius: var(--gRadius)
+
+  img
+    transition: var(--gTransition)
+
+  &:hover img
+    opacity: .8
+    backface-visibility: hidden
+    transform: scale(1.1)
+
+
+
+///// GALLERY
+
+.wp-block-gallery
+  display: flex
+  flex-direction: column
+
+  figure
+    position: relative
+    display: flex
+    flex-direction: column
+    align-items: flex-end
+    justify-content: flex-start
+
+    height: 100%
+    margin-bottom: 0
+    border-radius: var(--gRadius)
+
+  a
+    height: 100%
+
+  .blocks-gallery-item__caption
+    @extend %figcaption
+    border-bottom: 0
+    padding-bottom: 0
+    border-radius: var(--gRadius)
+
+  .blocks-gallery-caption
+    @extend %figcaption
+
+
+ul.blocks-gallery-grid
+  display: flex
+  flex-wrap: wrap
+  padding-left: 0
+  margin-right: -0.5rem
+  margin-left: -0.5rem
+  list-style-type: none
+  max-width: calc(var(--siteWidth) + 1rem)
+
+  .alignwide &
+    max-width: calc(var(--siteWidth) + 1rem)
+
+
+.wp-block-gallery.is-cropped
+  img
+    flex: 1
+    height: 100%
+    width: 100%
+    object-fit: cover
+
+  .blocks-gallery-item__caption
+    position: absolute
+    bottom: 0
+    width: 100%
+    padding: 0.5rem
+    background-image: linear-gradient( 0deg, rgba(black,.7), rgba(black,.5) 50%,transparent)
+
+    text-align: center
+    color: white
+
+  .blocks-gallery-item__caption a:hover
+    opacity: .6
+    color: inherit
+  
+
+.blocks-gallery-item
+  flex-grow: 1
+  padding: 0 0.5rem 1rem
+  
+  @media ($above-s)
+    .columns-2 &
+      width: 50%
+    .columns-3 &
+      width: calc(100% / 3)
+    .columns-4 &
+      width: 25%
+    .columns-5 &
+      width: 20%
+    .columns-6 &
+      width: calc(100% / 6)
+    .columns-7 &
+      width: calc(100% / 7)
+    .columns-8 &
+      width: 12.5%
+    .columns- &
+      width: 20%
+
+  @media ($below-s)
+    width: 33.33%
+
+    .columns-2 &
+      width: 50%
+
+    .columns-1 &
+      width: 100%
+  
+  @media ($below-xs)
+    width: 50%
+
+
+
+
+///// COVER
+
+.wp-block-cover
+  --bgColor: black
+  --alignX: center
+  --alignY: center
+
+  display: flex
+  align-items: stretch
+  justify-content: center
+
+  background-size: cover
+  background-position: center center
+  background-color: var(--bgColor)
+  min-height: 400px
+  padding: var(--blockSpacing) 0
+
+  &[class*="is-position-top-"]
+    --alignY: flex-start
+
+  &[class*="is-position-bottom-"]
+    --alignY: flex-end
+
+  &[class$="-right"]
+    --alignX: flex-end
+
+  &[class$="-left"]
+    --alignX: flex-start
+
+
+.wp-block-cover__inner-container
+  display: flex
+  flex-direction: column
+  align-items: var(--alignX)
+  justify-content: var(--alignY)
+
+  position: relative
+  z-index: 2
+  width: var(--siteWidth)
+  color: white
+
+  > *
+    max-width: var(--blogWidth)
+    width: 100%
+
+  .alignwide
+    max-width: var(--siteWidth)
+
+
+.has-parallax
+  background-attachment: fixed
+
+.has-background-dim
+  position: relative
+
+  &::before
+    content: ""
+    +absolute-fill
+    z-index: 1
+    opacity: .5
+    background-color: inherit
+
+.has-background-dim-10::before
+  opacity: .1
+.has-background-dim-20::before
+  opacity: .2
+.has-background-dim-30::before
+  opacity: .3
+.has-background-dim-40::before
+  opacity: .4
+.has-background-dim-60::before
+  opacity: .6
+.has-background-dim-70::before
+  opacity: .7
+.has-background-dim-80::before
+  opacity: .8
+.has-background-dim-90::before
+  opacity: .9
+.has-background-dim-100::before
+  opacity: 1
 
 
 ///// QUOTE
 
 .wp-block-quote
   position: relative
-  padding: 0 1.5rem
-  border-left: 5px solid var(--text)
+  padding: 0.5rem 2rem
+  border-left: 3px solid var(--text)
 
   > * + *
     margin-top: 1rem
@@ -167,10 +313,31 @@
     display: block
     font-size: var(--smallFontSize)
     color: var(--textDim)
+  
+  &.is-style-large
+    padding-top: 1rem
+    padding-bottom: 1rem
+    margin-top: 2.5rem
+    margin-bottom: 2.5rem
+    border-left: none
+    border-top: 3px solid var(--text)
+    border-bottom: 3px solid var(--text)
+
+    font-size: var(--h4Size)
+    text-align: center
+
+    &::after
+      left: 0
+      right: 0
+      margin-right: auto
+      margin-left: auto
+      width: 3rem
+      transform: translateY(-50%)
+
 
   &.has-text-align-right
     border-left: none
-    border-right: 5px solid var(--text)
+    border-right: 3px solid var(--text)
 
   &.has-text-align-center
     padding-top: 1.5rem
@@ -186,86 +353,101 @@
       background-color: var(--text)
       transform: translateX(-50%)
 
-  
-.wp-block-quote.is-style-large
-  padding-top: 1rem
-  padding-bottom: 1rem
-  margin: 2.5rem auto
-  border-left: none
-  border-top: 3px solid var(--text)
-  border-bottom: 3px solid var(--text)
 
-  font-size: var(--h4Size)
-  text-align: center
-
-  &::before
-    display: none
-
-  cite
-    text-align: inherit
-
-
-///// GALLERY
-
-.wp-block-gallery
-  justify-content: center
-
-  .blocks-gallery-grid
-    padding-left: 0
-
-  .blocks-gallery-caption
-    color: var(--textDim)
-    font-size: var(--smallFontSize)
-
-
-.wp-block-gallery.is-style-h-bottom-caption
-  figure
-    flex-wrap: wrap
-  figure figcaption
-    position: static
-    width: 100%
-    padding: 0.5rem 0.5rem 0
-    background: transparent
-    color: var(--text)
 
 
 ///// MEDIA TEXT
 
 .wp-block-media-text
-  column-gap: var(--gridGap)
+  --mediaColumn: minmax(0,1fr)
+  --contentColumn: minmax(0,1fr)
+  --contentPadding: 0
+  --columnGap: 2rem
 
-  * + &
-    margin-top: var(--groupSpacing)
-    margin-bottom: var(--groupSpacing)
+  display: grid
+  row-gap: var(--columnGap)
+  column-gap: var(--columnGap)
+  grid-template-areas: "media text"
+  grid-template-columns: var(--mediaColumn) var(--contentColumn)
 
-  .wp-block-media-text__content
+  &.has-media-on-the-right
+    grid-template-areas: "text media"
+    grid-template-columns: var(--contentColumn) var(--mediaColumn)
+
+  &:not([class*="is-vertically-aligned-"])
+    align-items: center
+
+  &.is-style-h-larger-image
+    --mediaColumn: 3fr
+    --contentColumn: 2fr
+
+  &.is-style-h-smaller-image
+    --mediaColumn: 2fr
+    --contentColumn: 3fr 
+    
+  @media ($below-l)
     padding: 0
+    margin-right: var(--gridRim)
+    margin-left: var(--gridRim)
+
+  @media ($below-s)
+    --columnGap: 1rem
+
+  @media ($below-xs)
+    &.is-stacked-on-mobile
+      grid-template-areas: "media" "text"
+      grid-template-columns: minmax(0, 1fr)
+    
 
 
-///// SEPARATOR
+.wp-block-media-text.has-background
+  --contentPadding: 2rem
+  border-radius: var(--gRadius)
 
-.wp-block-separator
-  margin: 2.5rem auto
+  @media ($below-m)
+    --contentPadding: 1.5rem
 
-.wp-block-separator:not(.is-style-dots)
-  display: block
-  border-top: 1px solid var(--textDim)
-  padding: 0
-  width: 120px
-  line-height: 1
+  @media ($below-s)
+    --contentPadding: 1rem
 
-  &.is-style-wide
-    width: 100%
+  @media ($below-xs)
+    --contentPadding: 0 1rem 1rem 1rem
+
+
+
+
+.wp-block-media-text__media
+  grid-area: media
+  margin-bottom: 0
+
+  @media ($above-xs)
+    .is-image-fill &
+      align-self: stretch
+      background-repeat: no-repeat
+      background-size: cover
+      border-radius: var(--gRadius)
+      min-height: 150px
+
+      img
+        display: none
+
+  @media ($below-xs)
+    .is-image-fill &
+      background-image: none !important
+
+
+.wp-block-media-text__content
+  grid-area: text
+  padding: var(--contentPadding)
+    
 
 
 ///// TABLE
-
   
 .wp-block-table
-  --tableBorder: black
   --tableHeader: #{ rgba(black, .1) }
   --tableBg: white
-  --tableStripe: #{ rgba(black, .025) }
+  --tableBorder: black
 
   display: flex
   flex-direction: column
@@ -273,12 +455,17 @@
 
   table
     width: 100%
+    border: 1px solid rgba(black, .1)
+
+  tbody
+    background-color: var(--tableBg)
 
   thead tr,
   tfoot tr
     background-color: var(--tableHeader)
     font-weight: 700
     text-align: left
+
   thead tr
     border-bottom: 2px solid var(--tableBorder)
   tfoot tr
@@ -303,44 +490,31 @@
 // Table styles
 .wp-block-table
   &.is-style-stripes
-    tbody tr:nth-child(even)
-      background-color: var(--tableStripe)
+    --tableBg: #{ rgba(--textDim, .05) }
+
     tbody tr:nth-child(odd)
-      background-color: var(--tableBg)
+      background-color: white
 
   .has-fixed-layout
     width: 100%
     table-layout: fixed
 
   .has-subtle-light-gray-background-color
+    --tableHeader: #{ rgba(--textDim, .1) }
+    --tableBg: #{ rgba(--textDim, .05) }
     --tableBorder: var(--textDim)
-    --tableHeader: rgba(--textDim, .1)
 
   .has-subtle-pale-green-background-color
+    --tableHeader: #{ rgba(--green, .2) }
+    --tableBg: #{ rgba(--green, .1) }
     --tableBorder: var(--green)
-    --tableHeader: rgba(--green, .2)
-    --tableStripe: rgba(--green, .1)
 
   .has-subtle-pale-blue-background-color
+    --tableHeader: #{ rgba(--blue, .4) }
+    --tableBg: #{ rgba(--blue, .2) }
     --tableBorder: var(--blue)
-    --tableHeader: rgba(--blue, .2)
-    --tableStripe: rgba(--blue, .1)
 
   .has-subtle-pale-pink-background-color
+    --tableHeader: #{ rgba(--red, .2) }
+    --tableBg: #{ rgba(--red, .1) }
     --tableBorder: var(--red)
-    --tableHeader: rgba(--red, .2)
-    --tableStripe: rgba(--red, .1)
-
-
-////// GROUP
-  
-.wp-block-group
-  padding: var(--groupSpacing) 0
-
-  &:not(.has-background)
-    margin-top: 0
-
-  &.has-background
-    .post-column--has-sidebar &
-      padding-right: 1rem
-      padding-left: 1rem
