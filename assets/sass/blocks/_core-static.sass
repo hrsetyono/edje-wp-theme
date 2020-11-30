@@ -12,10 +12,6 @@
   letter-spacing: calc(0.01 * var(--fontSize))
   overflow-wrap: break-word
 
-
-  > .alignfull.has-background:first-child
-    margin-top: calc(-1 * var(--groupSpacing))
-
   ul, ol
     padding-left: 1.25rem
 
@@ -36,7 +32,8 @@
     margin: 0 auto
     max-width: var(--blogWidth)
 
-.the-content,
+// Add rim to the side
+body:not(.single-post) .the-content,
 .has-background .wp-block-group__inner-container,
 .wp-block-cover__inner-container
   @media ($below-l)
@@ -215,6 +212,7 @@
   padding: 0
   width: 120px
   line-height: 1
+  clear: both
 
   &.is-style-wide
     width: var(--siteWidth)

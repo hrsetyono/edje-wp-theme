@@ -23,34 +23,30 @@
   font-weight: var(--fontWeight)
 
 .editor-post-title__block .editor-post-title__input,
-.editor-styles-wrapper h1.wp-block,
-.editor-styles-wrapper h2.wp-block,
-.editor-styles-wrapper h3.wp-block,
-.editor-styles-wrapper h4.wp-block,
-.editor-styles-wrapper h5.wp-block,
-.editor-styles-wrapper h6.wp-block,
+.editor-styles-wrapper h1,
+.editor-styles-wrapper h2,
+.editor-styles-wrapper h3,
+.editor-styles-wrapper h4,
+.editor-styles-wrapper h5,
+.editor-styles-wrapper h6,
 .editor-styles-wrapper .has-drop-cap:not(:focus)::first-letter
   font-family: var(--hFontFamily)
   font-weight: var(--hFontWeight)
   text-transform: var(--hTextTransform)
 
-.editor-styles-wrapper h1.wp-block
-  font-size: var(--h1Size)
-
-.editor-styles-wrapper h2.wp-block
-  font-size: var(--h2Size)
-
-.editor-styles-wrapper h3.wp-block
-  font-size: var(--h3Size)
-
-.editor-styles-wrapper h4.wp-block
-  font-size: var(--h4Size)
-
-.editor-styles-wrapper h5.wp-block
-  font-size: var(--h5Size)
-
-.editor-styles-wrapper h6.wp-block
-  font-size: var(--h6Size)
+.editor-styles-wrapper
+  h1
+    font-size: var(--h1Size)
+  h2
+    font-size: var(--h2Size)
+  h3
+    font-size: var(--h3Size)
+  h4
+    font-size: var(--h4Size)
+  h5
+    font-size: var(--h5Size)
+  h6
+    font-size: var(--h6Size)
 
 
 ///// QUOTE
@@ -112,8 +108,8 @@
     --tableBorder: var(--green)
 
   .has-subtle-pale-blue-background-color
-    --tableHeader: #{ rgba(--blue, .4) }
-    --tableBg: #{ rgba(--blue, .2) }
+    --tableHeader: #{ rgba(--blue, .2) }
+    --tableBg: #{ rgba(--blue, .1) }
     --tableBorder: var(--blue)
 
   .has-subtle-pale-pink-background-color
