@@ -19,38 +19,46 @@ Then uncomment all commented lines below
 */
 
 // const { VueLoaderPlugin } = require('vue-loader');
+const DependencyExtractionWebpackPlugin = require( '@wordpress/dependency-extraction-webpack-plugin' );
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 var path = require('path');
 
 const cssPath = './assets/sass';
 const jsPath = './assets/js';
+const outputPath = 'assets/dist';
+const localDomain = 'http://lab.test/';
+const entryPoints = {
+  'app': jsPath + '/app.js',
+  'my-editor': jsPath + '/my-editor.js',
+  'post': cssPath + '/post.sass',
+  'my-admin': cssPath + '/my-admin.sass',
+
+  // 'block-custom': './assets/block-custom/index.jsx',
+};
 
 module.exports = {
-  entry: {
-    'app': jsPath + '/app.js',
-    'my-editor': jsPath + '/my-editor.js',
-    'post': cssPath + '/post.sass',
-    'my-admin': cssPath + '/my-admin.sass',
-  },
+  entry: entryPoints,
   output: {
-    path: path.resolve(__dirname, 'assets/dist'),
+    path: path.resolve(__dirname, outputPath),
     filename: '[name].js',
   },
   plugins: [
     // new VueLoaderPlugin(),
     
     new BrowserSyncPlugin({
-      proxy: 'http://lab.test', // Change this to your local domain
-      files: [ 'assets/dist/*.css' ],
+      proxy: localDomain,
+      files: [ outputPath + '/*.css' ],
       injectCss: true,
-    }, {
-      reload: false,
-    }),
+    }, { reload: false, }),
 
     new MiniCssExtractPlugin({
       filename: '[name].css',
     }),
+
+    new DependencyExtractionWebpackPlugin( {
+      injectPolyfill: true
+    } ),
   ],
   module: {
     rules: [
@@ -69,6 +77,23 @@ module.exports = {
       {
         test: /\.(jpg|jpeg|png|gif|woff|woff2|eot|ttf|svg)$/i,
         use: 'url-loader?limit=1024'
+      },
+      {
+        test: /\.jsx$/i,
+        use: [
+					require.resolve( 'thread-loader' ),
+					{
+						loader: require.resolve( 'babel-loader' ),
+						options: {
+              cacheDirectory:	process.env.BABEL_CACHE_DIRECTORY || true,
+              babelrc: false,
+              configFile: false,
+              presets: [
+                require.resolve( '@wordpress/babel-preset-default' ),
+              ],
+						},
+					},
+				],
       }
     ]
   },

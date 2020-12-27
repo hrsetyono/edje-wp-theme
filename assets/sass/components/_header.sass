@@ -145,6 +145,7 @@
     width: auto
     max-height: var(--logoMaxHeight)
     transition: var(--gTransition)
+    will-change: transform
 
   &:hover
     img
@@ -361,9 +362,6 @@
     font-weight: var(--fontWeight)
 
 
-.offcanvas .child-indicator
-  
-
 
 .menu-item--toggled .child-indicator
   svg
@@ -398,6 +396,8 @@
   border-radius: var(--gRadius)
   color: inherit
 
+  will-change: transform
+
   + .social-icon
     margin-left: var(--iconGap)
 
@@ -431,7 +431,6 @@
     margin-left: 0.25rem
     line-height: 1
     font-size: var(--smallFontSize)
-
     transform: translateY(-1px)
 
 

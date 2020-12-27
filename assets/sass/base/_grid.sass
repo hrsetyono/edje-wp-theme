@@ -11,27 +11,45 @@
   width: 100%
 
   [data-grid]
-    margin: 0
     padding: 0
 
 [data-column]
   --span: 12
+  --width: 100%
   grid-column: span var(--span)
+
+[data-grid="centered"]
+  display: block
+
+  [data-column]
+    width: var(--width)
+    margin-right: auto
+    margin-left: auto
 
 
 // Column
 @for $i from 1 through 12
   [data-column^="#{$i}"]
     --span: #{$i}
+    --width: #{ percentage($i / 12) }
 
-// Small column
+// Tablet and mobile size
 @media ($below-s)
   [data-column]
     --span: 12
+    --width: 100%
 
   @for $i from 1 through 12
-    [data-column*="-#{$i}"]
+    [data-column$="-#{$i}"]
       --span: #{$i}
+      --width: #{ percentage($i / 12) }
+
+// Only tablet size
+@media ($above-xs) and ($below-s)
+  @for $i from 1 through 12
+    [data-column*="-#{$i}-"]
+      --span: #{$i}
+      --width: #{ percentage($i / 12) }
 
 
 ///// TILE
@@ -54,17 +72,17 @@
   [data-tile^="#{$i}"]
     --columns: #{$i}
 
-// Small tile
+// Small and XSmall tile
 @media ($below-s)
   [data-tile]
     --columns: 1
 
   @for $i from 1 through 5
-    [data-tile*="-#{$i}-"]
+    [data-tile$="-#{$i}"]
       --columns: #{$i}
 
-// XSmall tile
-@media ($below-xs)
+// Small only tile
+@media ($above-xs) and ($below-s)
   @for $i from 1 through 5
-    [data-tile$="-#{$i}"]
+    [data-tile*="-#{$i}-"]
       --columns: #{$i}

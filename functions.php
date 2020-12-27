@@ -16,7 +16,9 @@ add_action( 'widgets_init', 'my_widgets_init' );
 require_once $inc . '/enqueue.php';
 require_once $inc . '/gutenberg.php';
 
-if( !is_admin() ) {
+if( is_admin() ) {
+  require_once $inc . '/admin.php';
+} else {
   // require_once $inc . '/api.php';
   require_once $inc . '/timber.php';
   require_once $inc . '/frontend.php';

@@ -51,8 +51,6 @@
 
 ///// QUOTE
 
-.wp-block-quote
-
 .wp-block-quote.has-text-align-center
   padding-top: 1rem
   
@@ -157,3 +155,22 @@ pre.wp-block-code
 
   code
     background-color: transparent
+
+
+///// EMBEDS
+// Disable all except Embed, Youtube, and Twitter
+
+.block-editor-inserter__panel-content [aria-label="Embeds"]
+  .block-editor-block-types-list__list-item
+    display: none
+  .block-editor-block-types-list__list-item:nth-child(1),
+  .block-editor-block-types-list__list-item:nth-child(2),
+  .block-editor-block-types-list__list-item:nth-child(3)
+    display: block
+
+.components-autocomplete__results [id*="-block-core/embed-"]
+  display: none
+
+.components-autocomplete__results [id*="-block-core/embed-youtube"],
+.components-autocomplete__results [id*="-block-core/embed-twitter"]
+  display: flex

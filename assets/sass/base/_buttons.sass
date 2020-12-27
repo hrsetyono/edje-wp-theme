@@ -10,7 +10,7 @@
 [type="submit"],
 [type="reset"],
 .wp-block-file .wp-block-file__button,
-.wp-block-button .wp-block-button__link
+.wp-block-button a
   display: inline-block
   cursor: pointer
   overflow: hidden
@@ -29,6 +29,7 @@
   line-height: 1
   
   transition: var(--gTransition)
+  will-change: transform, opacity
 
   // Image or SVG inside a button
   img,
