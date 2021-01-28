@@ -69,18 +69,6 @@ body:not(.single-post) .the-content,
   @media ($below-l)
     max-width: 100%
 
-  .post-column--has-sidebar &
-    @media ($above-l)
-      margin-right: -2rem
-      margin-left: -2rem
-
-    // nested alignwide
-    .alignwide
-      padding-right: 0
-      padding-left: 0
-      margin-right: 0
-      margin-left: 0
-
 
 .alignfull
   max-width: none
@@ -98,22 +86,6 @@ body:not(.single-post) .the-content,
 
   + .alignfull
     margin-top: 0
-
-  .post-column--no-sidebar &
-    width: 100vw
-    margin-right: calc(-50vw + 50% + var(--gridRim))
-    margin-left: calc(-50vw + 50% + var(--gridRim) - 2px)
-
-  .post-column--has-sidebar &
-    @media ($above-l)
-      margin-right: -2rem
-      margin-left: -2rem
-      width: calc(100% + 4rem)
-
-    // nested alignfull
-    .alignfull
-      padding-right: 0
-      padding-left: 0
 
   &:last-child
     margin-bottom: 0
@@ -174,10 +146,6 @@ body:not(.single-post) .the-content,
 
   &.has-background
     padding: var(--groupSpacing) 0
-
-    .post-column--has-sidebar &
-      padding-right: 1rem
-      padding-left: 1rem
 
 
 ///// CODE & PREFORMATTED

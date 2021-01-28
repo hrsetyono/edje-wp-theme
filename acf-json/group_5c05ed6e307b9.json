@@ -1,6 +1,6 @@
 {
     "key": "group_5c05ed6e307b9",
-    "title": "ACF Block - Sample",
+    "title": "ACF Block - Example",
     "fields": [
         {
             "key": "field_5dcf624f60a97",
@@ -46,7 +46,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/sample"
+                "value": "acf\/acf-example"
             }
         ]
     ],
@@ -58,5 +58,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1584506983
+    "modified": 1611841582
 }

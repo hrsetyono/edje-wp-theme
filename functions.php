@@ -14,7 +14,7 @@ add_action( 'widgets_init', 'my_widgets_init' );
 
 // Other modules
 require_once $inc . '/enqueue.php';
-require_once $inc . '/gutenberg.php';
+
 
 if( is_admin() ) {
   require_once $inc . '/admin.php';
@@ -28,6 +28,13 @@ if( class_exists('WooCommerce') ) {
   require_once $inc . '/shop-setup.php';
   require_once $inc . '/shop-filters.php';
 }
+
+
+// GUTENBERG
+require_once 'gutenberg/acf-blocks.php';
+require_once 'gutenberg/custom-styles.php';
+require_once 'gutenberg/patterns.php';
+require_once 'gutenberg/example/_index.php';
 
 
 /////
@@ -67,6 +74,7 @@ function my_after_setup_theme() {
 
   // Edje Support
   add_theme_support( 'h-faq-block' );
+  add_theme_support( 'h-icon-block' );
   add_theme_support( 'h-comment-editor' );
 
   // Gutenberg support

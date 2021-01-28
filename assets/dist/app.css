@@ -2019,6 +2019,133 @@ ul.blocks-gallery-grid {
   --tableBorder: var(--red);
 }
 
+.wp-block-h-icon {
+  --iconSize: 60px;
+  --iconPadding: 1rem;
+  display: flex;
+  align-items: flex-start;
+  background-color: var(--bgColor, rgbA(0, 0, 0, 0.1));
+  color: var(--textColor, inherit);
+  border-radius: 4px;
+}
+.wp-block-h-icon.has-background {
+  padding: 0.75rem;
+}
+.wp-block-h-icon figure {
+  min-width: var(--iconSize);
+  max-width: var(--iconSize);
+  width: var(--iconSize);
+  height: var(--iconSize);
+  margin: 0;
+  padding: var(--iconPadding);
+  background-color: rgbA(0, 0, 0, 0.1);
+  border-radius: 50%;
+}
+.wp-block-h-icon.has-icon-position-left figure {
+  margin-right: 1rem;
+}
+.wp-block-h-icon.has-icon-position-right figure {
+  order: 1;
+  margin-left: 1rem;
+}
+.wp-block-h-icon.has-icon-position-top {
+  flex-wrap: wrap;
+}
+.wp-block-h-icon.has-icon-position-top figure {
+  margin-bottom: 0.5rem;
+}
+.wp-block-h-icon.has-icon-position-top dl {
+  flex: auto;
+}
+.wp-block-h-icon.has-text-align-center {
+  justify-content: center;
+}
+.wp-block-h-icon.has-text-align-right {
+  justify-content: flex-end;
+}
+.wp-block-h-icon path,
+.wp-block-h-icon rect {
+  fill: currentColor;
+}
+.wp-block-h-icon svg {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+a.wp-block-h-icon {
+  text-decoration: none;
+  will-change: transform;
+}
+a.wp-block-h-icon:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+a.wp-block-h-icon:hover dt {
+  text-decoration: underline;
+}
+a.wp-block-h-icon:active {
+  transform: none;
+  transition: none;
+}
+
+.wp-block-h-icon:not(.has-description) {
+  align-items: center;
+}
+.wp-block-h-icon dl, .wp-block-h-icon dt, .wp-block-h-icon dd, .wp-block-h-icon dd p {
+  margin: 0;
+}
+.wp-block-h-icon dl {
+  flex: 1;
+  width: 100%;
+}
+.wp-block-h-icon dt {
+  margin-bottom: 0.5rem;
+  font-family: var(--hFontFamily);
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+.wp-block-h-icon dd p + p {
+  margin-top: 0.5rem;
+}
+
+.wp-block-h-icon.is-style-smaller,
+.wp-block-h-icon.is-style-smaller-color-icon-only {
+  --iconSize: 50px;
+  --iconPadding: 0.75rem;
+  align-items: center;
+  padding: 0;
+}
+.wp-block-h-icon.is-style-smaller.has-background,
+.wp-block-h-icon.is-style-smaller-color-icon-only.has-background {
+  padding: 0.5rem;
+}
+.wp-block-h-icon.is-style-smaller.has-description,
+.wp-block-h-icon.is-style-smaller-color-icon-only.has-description {
+  align-items: flex-start;
+}
+.wp-block-h-icon.is-style-smaller dt,
+.wp-block-h-icon.is-style-smaller-color-icon-only dt {
+  margin-bottom: 0;
+  font-size: 1.125rem;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.wp-block-h-icon.is-style-color-icon-only,
+.wp-block-h-icon.is-style-smaller-color-icon-only {
+  background-color: transparent;
+  padding: 0;
+  color: inherit;
+}
+.wp-block-h-icon.is-style-color-icon-only figure,
+.wp-block-h-icon.is-style-smaller-color-icon-only figure {
+  background-color: var(--bgColor);
+}
+.wp-block-h-icon.is-style-color-icon-only path,
+.wp-block-h-icon.is-style-smaller-color-icon-only path {
+  fill: var(--textColor);
+}
+
 .wp-block-h-faq {
   --faqTitleBg: #e5e5e5;
   --faqTitleColor: inherit;

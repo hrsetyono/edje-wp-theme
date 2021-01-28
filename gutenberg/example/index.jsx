@@ -2,7 +2,7 @@ import './style.sass';
 import { registerBlockType } from '@wordpress/blocks';
 import edit from './edit.jsx';
 
-registerBlockType( 'my/block', {
+registerBlockType( 'my/example', {
   title: 'Custom Block',
   description: 'Example of a custom block',
   icon: 'id',

@@ -26,7 +26,10 @@ var path = require('path');
 
 const cssPath = './assets/sass';
 const jsPath = './assets/js';
+const blockPath = './gutenberg';
+
 const outputPath = 'assets/dist';
+
 const localDomain = 'http://lab.test/';
 const entryPoints = {
   'app': jsPath + '/app.js',
@@ -34,7 +37,7 @@ const entryPoints = {
   'post': cssPath + '/post.sass',
   'my-admin': cssPath + '/my-admin.sass',
 
-  // 'block-custom': './assets/block-custom/index.jsx',
+  'block-example': blockPath + '/example/index.jsx',
 };
 
 module.exports = {

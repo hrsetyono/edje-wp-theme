@@ -22,4 +22,4 @@ foreach( $block['data'] as $key => $raw_value ) {
   $context[ $name ] = get_field( $key );
 }
 
-Timber::render( "acf-blocks/{$context['_name']}.twig", $context );
+Timber::render( "blocks/acf-{$context['_name']}.twig", $context );
