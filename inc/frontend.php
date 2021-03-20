@@ -1,21 +1,24 @@
 <?php
 
-add_shortcode( 'example', 'my_shortcode_example' );
+add_shortcode( 'current-year', 'shortcode_current_year' );
+
 add_filter( 'wp_nav_menu_objects', 'my_nav_markup' );
 
 
   
 /**
- * Example of custom shortcode
- *   [example name="$name"] ... [/example]
+ * Output current year
+ *   [current-year]
  */
-function my_shortcode_example( $atts, $content = null ) {
-  $atts = shortcode_atts([
-    'name' => 'Default value'
-  ], $atts);
+function shortcode_current_year( $atts, $content = null ) {
+  // $atts = shortcode_atts([
+  //   'name' => 'Default value'
+  // ], $atts);
 
-  return "<div class='example'> <h2>{$atts['name']}</h2> $content </div>";
+  return date('Y');
 }
+
+
 
 /**
  * Change the navigation markup

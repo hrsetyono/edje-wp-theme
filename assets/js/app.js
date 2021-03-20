@@ -84,7 +84,7 @@ var myHeader = {
   /**
    * Close offcanvas when clicking outside it 
    */
-  closeOffCanvas( e ) {
+  closeOffcanvas( e ) {
     document.querySelector( 'body' ).classList.remove( 'has-active-offcanvas' );
   },
 }

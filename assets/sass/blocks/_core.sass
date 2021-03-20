@@ -227,19 +227,20 @@ ul.blocks-gallery-grid
 ///// COVER
 
 .wp-block-cover
-  --bgColor: black
-  --alignX: center
-  --alignY: center
-
   display: flex
   align-items: stretch
   justify-content: center
 
   background-size: cover
   background-position: center center
-  background-color: var(--bgColor)
+  background-color: var(--bgColor, black)
   min-height: 400px
   padding: var(--blockSpacing) 0
+
+
+.has-custom-content-position
+  --alignX: center
+  --alignY: center
 
   &[class*="is-position-top-"]
     --alignY: flex-start
@@ -247,18 +248,18 @@ ul.blocks-gallery-grid
   &[class*="is-position-bottom-"]
     --alignY: flex-end
 
-  &[class$="-right"]
+  &[class*="-right"]
     --alignX: flex-end
 
-  &[class$="-left"]
+  &[class*="-left"]
     --alignX: flex-start
 
 
 .wp-block-cover__inner-container
   display: flex
   flex-direction: column
-  align-items: var(--alignX)
-  justify-content: var(--alignY)
+  align-items: var(--alignX, center)
+  justify-content: var(--alignY, center)
 
   position: relative
   z-index: 2
@@ -266,8 +267,8 @@ ul.blocks-gallery-grid
   color: white
 
   > *
-    max-width: var(--blogWidth)
     width: 100%
+    max-width: var(--blogWidth)
 
   .alignwide
     max-width: var(--siteWidth)

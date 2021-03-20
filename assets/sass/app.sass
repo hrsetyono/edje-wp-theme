@@ -1,24 +1,23 @@
 /*! Theme Name: Edje Basic Theme */
-@import "abstracts/vars"
-@import "abstracts/functions"
-@import "abstracts/mixins"
+@import "framework/vars"
+@import "framework/functions"
+@import "framework/mixins"
+@import "framework/vars-css"
 
-@import "css-vars-and-fonts"
+@import "framework/normalize"
+@import "framework/typography"
+@import "framework/utilities"
 
-@import "base/normalize"
-@import "base/grid"
-@import "base/typography"
-@import "base/buttons"
-@import "base/fields"
-@import "base/utilities"
-
+@import "components/grid"
+@import "components/buttons"
+@import "components/fields"
+@import "components/header"
+@import "components/footer"
 
 @import "blocks/core-static"
 @import "blocks/core"
 @import "blocks/custom"
 
-@import "components/header"
-@import "components/footer"
-
+// 3rd party plugins
 @import "plugins/jetpack"
 @import "plugins/cf7"

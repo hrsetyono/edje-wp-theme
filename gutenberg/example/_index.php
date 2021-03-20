@@ -3,19 +3,7 @@
  * EXAMPLE Block
  */
 
-add_action( 'enqueue_block_editor_assets', 'my_assets_block_example', 110 );
 add_action( 'init', 'my_register_block_example' );
-
-
-/**
- * @action enqueue_block_editor_assets
- */
-function my_assets_block_example() {
-  $dist = get_stylesheet_directory_uri() . '/assets/dist';
-
-  wp_register_script( 'block-example', $dist . '/block-example.js', [ 'wp-blocks', 'wp-dom' ] , '1.0', true );
-  wp_register_style( 'block-example', $dist . '/block-example.css', [ 'wp-edit-blocks' ], '1.0' );
-}
 
 /**
  * Register a custom block type
@@ -25,6 +13,11 @@ function my_assets_block_example() {
 function my_register_block_example() {
   // if Gutenberg is not active
   if ( !function_exists( 'register_block_type' ) ) { return; }
+
+  $dist = get_stylesheet_directory_uri() . '/assets/dist';
+
+  wp_register_script( 'block-example', $dist . '/block-example.js', [ 'wp-blocks', 'wp-dom' ] , '1.0', true );
+  wp_register_style( 'block-example', $dist . '/block-example.css', [ 'wp-edit-blocks' ], '1.0' );
 
   // Setup attributes
   $default_attributes = [
@@ -38,6 +31,8 @@ function my_register_block_example() {
   wp_localize_script( 'block-example', 'localizeBC', [ 'attributes' => $default_attributes ] );
 
   register_block_type( 'my/example', [
+    'editor_script' => 'block-example',
+    'editor_style' => 'block-example',
     'render_callback' => function( $atts ) use ( $default_attributes ) {
       return my_render_block_example( $atts, $default_attributes );
     }

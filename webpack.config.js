@@ -35,7 +35,7 @@ const entryPoints = {
   'app': jsPath + '/app.js',
   'my-editor': jsPath + '/my-editor.js',
   'post': cssPath + '/post.sass',
-  'my-admin': cssPath + '/my-admin.sass',
+  'my-admin': jsPath + '/my-admin.js',
 
   'block-example': blockPath + '/example/index.jsx',
 };

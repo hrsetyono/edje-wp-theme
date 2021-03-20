@@ -87,16 +87,11 @@ function my_after_setup_theme() {
     [ 'name' => 'Text Invert', 'slug' => 'text-invert', 'color' => 'var(--textInvert)' ],
 
     [ 'name' => 'Main',       'slug' => 'main',       'color' => 'var(--main)' ],
+    [ 'name' => 'Main Dark', 'slug' => 'main-dark', 'color' => 'var(--mainDark)' ],
     [ 'name' => 'Main Light', 'slug' => 'main-light', 'color' => 'var(--mainLight)' ],
 
     [ 'name' => 'Sub',        'slug' => 'sub',       'color' => 'var(--sub)' ],
     [ 'name' => 'Sub Light',  'slug' => 'sub-light', 'color' => 'var(--subLight)' ],
-
-    [ 'name' => 'Red',       'slug' => 'red',       'color' => 'var(--red)' ],
-    [ 'name' => 'Red Light', 'slug' => 'red-light', 'color' => 'var(--redLight)' ],
-
-    [ 'name' => 'Yellow',       'slug' => 'yellow',       'color' => 'var(--yellow)' ],
-    [ 'name' => 'Yellow Light', 'slug' => 'yellow-light', 'color' => 'var(--yellowLight)' ],
   ] );
 
   add_theme_support( 'editor-font-sizes', [

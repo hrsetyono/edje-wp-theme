@@ -1,10 +1,10 @@
 // This styling is applied to Gutenberg editor
 
-@import "abstracts/vars"
-@import "abstracts/functions"
-@import "abstracts/mixins"
-
-@import "css-vars-and-fonts"
+@import "framework/vars"
+@import "framework/functions"
+@import "framework/mixins"
+@import "framework/fonts"
+@import "framework/vars-css"
 
 .wp-block
   max-width: var(--blogWidth)
@@ -12,7 +12,7 @@
 .wp-block[data-align="wide"]
   max-width: calc(var(--siteWidth) - 100px)
 
-.styles-wrapper
+.editor-styles-wrapper
   background-color: var(--siteBg)
 
 

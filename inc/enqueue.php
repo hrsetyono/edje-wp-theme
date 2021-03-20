@@ -43,7 +43,7 @@ function my_public_assets() {
 function my_admin_assets() {
   $dist = get_template_directory_uri() . '/assets/dist';
 
-  wp_enqueue_script( 'my-admin', $dist . '/my-admin.css', [], THEME_VERSION , true);
+  wp_enqueue_script( 'my-admin', $dist . '/my-admin.js', [], THEME_VERSION , true);
   wp_enqueue_style( 'my-admin', $dist . '/my-admin.css', [], THEME_VERSION );
 }
 

@@ -2,7 +2,7 @@
 
 
 \:root
-  // Change the colors variable in abstracts/_vars.scss
+  // Change the colors variable in framework/_vars.scss
   // 
   // To use color variable, use the function color()
   //
@@ -85,14 +85,8 @@
   --blockSpacing   : 1.5rem
   --groupSpacing   : 3rem
 
-
-body.admin-bar
-  --adminBarHeight : 32px
-
-
-// RESPONSIVE
-@media ($below-m)
-  \:root
+  
+  @media ($below-m)
     --h1Size : 40px
     --h2Size : 32px
     --h3Size : 26px
@@ -100,14 +94,7 @@ body.admin-bar
     --h5Size : 18px
     --h6Size : var(--fontSize)
 
-
-@media ($below-adminbar)
-  \:root
-    --adminBarHeight: 0px
-
-
-@media ($below-s)
-  \:root
+  @media ($below-s)
     --h1Size : 32px
     --h2Size : 26px
     --h3Size : 22px
@@ -117,37 +104,13 @@ body.admin-bar
 
     --groupSpacing: 2.5rem
 
-@media ($below-xs)
-  \:root
+  @media ($below-xs)
     --blockSpacing: 1rem
 
 
-///// FONT FACES
-  
-@font-face
-  src: font-url('sourcesanspro-regular.woff2')
-  font-family: 'Source Sans Pro'
-  font-weight: 400
 
-@font-face
-  src: font-url('sourcesanspro-italic.woff2')
-  font-family: 'Source Sans Pro'
-  font-weight: 400
-  font-style: italic
+body.admin-bar
+  --adminBarHeight : 32px
 
-@font-face
-  src: font-url('sourcesanspro-bold.woff2')
-  font-family: 'Source Sans Pro'
-  font-weight: 700
-
-@font-face
-  src: font-url('notoserif-regular.woff2')
-  font-family: 'Noto Serif'
-  font-weight: 400
-
-@font-face
-  src: font-url('notoserif-bold.woff2')
-  font-family: 'Noto Serif'
-  font-weight: 700
-
-
+  @media ($below-adminbar)
+    --adminBarHeight : 0px
