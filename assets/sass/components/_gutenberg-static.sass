@@ -52,12 +52,12 @@ body:not(.single-post) .the-content,
 
 ///// ALIGNMENT
 
+.alignleft,
 .has-text-align-right
   text-align: right
-
+.alignright,
 .has-text-align-left
   text-align: left
-
 .aligncenter,
 .has-text-align-center
   text-align: center
@@ -93,15 +93,27 @@ body:not(.single-post) .the-content,
 .is-vertically-aligned-top
   align-items: flex-start
   align-self: flex-start
-
 .is-vertically-aligned-center
   align-items: center
   align-self: center
-
 .is-vertically-aligned-bottom
   align-items: flex-end
   align-self: flex-end
 
+// @since WP 5.7.0
+.is-content-justification-left
+  --flexAlign: flex-start
+.is-content-justification-center
+  --flexAlign: center
+.is-content-justification-right
+  --flexAlign: flex-end
+
+[class*="is-content-justification-"]
+  justify-content: var(--flexAlign)
+
+  &.is-vertical
+    justify-content: normal
+    align-items: var(--flexAlign)
 
 
 ///// COLUMNS
@@ -139,7 +151,6 @@ body:not(.single-post) .the-content,
 ////// GROUP
   
 .wp-block-group
-  
   &:not(.has-background)
     margin: var(--groupSpacing) 0
 

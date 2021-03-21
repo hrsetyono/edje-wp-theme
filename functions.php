@@ -1,6 +1,6 @@
 <?php
 
-$inc = __DIR__ . '/inc';
+$inc = __DIR__ . '/functions';
 require_once $inc . '/_helpers.php';
 
 // Abort if required plugins is inactive
@@ -75,7 +75,7 @@ function my_after_setup_theme() {
   // Edje Support
   add_theme_support( 'h-faq-block' );
   add_theme_support( 'h-icon-block' );
-  add_theme_support( 'h-comment-editor' );
+  // add_theme_support( 'h-comment-editor' ); // Enable this if you allow comment in the website
 
   // Gutenberg support
   add_theme_support( 'align-wide' );
@@ -87,7 +87,7 @@ function my_after_setup_theme() {
     [ 'name' => 'Text Invert', 'slug' => 'text-invert', 'color' => 'var(--textInvert)' ],
 
     [ 'name' => 'Main',       'slug' => 'main',       'color' => 'var(--main)' ],
-    [ 'name' => 'Main Dark', 'slug' => 'main-dark', 'color' => 'var(--mainDark)' ],
+    [ 'name' => 'Main Dark',  'slug' => 'main-dark', 'color' => 'var(--mainDark)' ],
     [ 'name' => 'Main Light', 'slug' => 'main-light', 'color' => 'var(--mainLight)' ],
 
     [ 'name' => 'Sub',        'slug' => 'sub',       'color' => 'var(--sub)' ],

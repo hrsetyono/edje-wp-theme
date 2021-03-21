@@ -53,6 +53,7 @@ h1, h2, h3, h4, h5, h6
 ///// BUTTONS
 
 .wp-block-buttons
+  --buttonGap: 1rem
   display: flex
   align-items: center
   flex-wrap: wrap
@@ -66,12 +67,19 @@ h1, h2, h3, h4, h5, h6
   &.alignleft
     justify-content: flex-start
 
+  &.is-vertical
+    flex-direction: column
+
 .wp-block-button
   a
     text-decoration: none
 
   + .wp-block-button
-    margin-left: 1rem
+    margin-left: var(--buttonGap)
+
+    .is-vertical &
+      margin-left: 0
+      margin-top: var(--buttonGap)
 
 
 
