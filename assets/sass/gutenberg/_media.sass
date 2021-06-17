@@ -1,0 +1,371 @@
+///// IMAGE
+
+.wp-block-image
+  text-align: center
+
+  .alignleft,
+  .alignright
+    max-width: 50%
+    margin-bottom: 1.5rem
+
+  .alignleft
+    float: left
+    margin-right: 1.5rem
+    text-align: left
+
+  .alignright
+    float: right
+    margin-left: 1.5rem
+    text-align: right
+
+  &.alignfull
+    img
+      border-radius: 0
+
+  figcaption
+    @extend %figcaption
+
+
+
+// hover effect
+.wp-block-image > a,
+.wp-block-gallery figure > a
+  display: block
+  overflow: hidden
+  border-radius: var(--gRadius)
+
+  img
+    transition: var(--gTransition)
+
+  &:hover img
+    opacity: .8
+    backface-visibility: hidden
+    transform: scale(1.1)
+
+
+
+///// GALLERY
+
+.wp-block-gallery
+  display: flex
+  flex-direction: column
+
+  figure
+    position: relative
+    display: flex
+    flex-direction: column
+    align-items: flex-end
+    justify-content: flex-start
+
+    height: 100%
+    margin-bottom: 0
+    border-radius: var(--gRadius)
+
+  a
+    height: 100%
+    width: 100%
+
+  .blocks-gallery-item__caption
+    @extend %figcaption
+    border-bottom: 0
+    padding-bottom: 0
+    border-radius: var(--gRadius)
+
+  .blocks-gallery-caption
+    @extend %figcaption
+
+
+ul.blocks-gallery-grid
+  display: flex
+  flex-wrap: wrap
+  padding-left: 0
+  margin-right: -0.5rem
+  margin-left: -0.5rem
+  list-style-type: none
+  max-width: calc(var(--siteWidth) + 1rem)
+
+  .alignwide &
+    max-width: calc(var(--siteWidth) + 1rem)
+
+
+.wp-block-gallery.is-cropped
+  img
+    flex: 1
+    height: 100%
+    width: 100%
+    object-fit: cover
+
+  .blocks-gallery-item__caption
+    position: absolute
+    bottom: 0
+    width: 100%
+    padding: 0.5rem
+    background-image: linear-gradient( 0deg, rgba(black,.7), rgba(black,.5) 50%,transparent)
+
+    text-align: center
+    color: white
+
+  .blocks-gallery-item__caption a:hover
+    opacity: .6
+    color: inherit
+  
+
+.blocks-gallery-item
+  flex-grow: 1
+  padding: 0 0.5rem 1rem
+  
+  @media ($above-s)
+    .columns-2 &
+      width: 50%
+    .columns-3 &
+      width: calc(100% / 3)
+    .columns-4 &
+      width: 25%
+    .columns-5 &
+      width: 20%
+    .columns-6 &
+      width: calc(100% / 6)
+    .columns-7 &
+      width: calc(100% / 7)
+    .columns-8 &
+      width: 12.5%
+    .columns- &
+      width: 20%
+
+  @media ($below-s)
+    width: 33.33%
+
+    .columns-2 &
+      width: 50%
+
+    .columns-1 &
+      width: 100%
+  
+  @media ($below-xs)
+    width: 50%
+
+
+
+
+///// COVER
+
+.wp-block-cover
+  display: flex
+  align-items: stretch
+  justify-content: center
+
+  background-size: cover
+  background-position: center center
+  background-color: var(--bgColor, black)
+  min-height: 400px
+  padding: var(--blockSpacing) 0
+
+
+.has-custom-content-position
+  --alignX: center
+  --alignY: center
+
+  &[class*="is-position-top-"]
+    --alignY: flex-start
+
+  &[class*="is-position-bottom-"]
+    --alignY: flex-end
+
+  &[class*="-right"]
+    --alignX: flex-end
+
+  &[class*="-left"]
+    --alignX: flex-start
+
+.wp-block-cover__image-background
+  position: absolute
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  
+  border: none
+  border-radius: 0
+  padding: 0
+  margin: 0
+  width: 100%
+  height: 100%
+  max-width: none
+  max-height: none
+  
+  object-fit: cover
+  object-position: center center
+  box-shadow: none
+
+
+.wp-block-cover__inner-container
+  display: flex
+  flex-direction: column
+  align-items: var(--alignX, center)
+  justify-content: var(--alignY, center)
+
+  position: relative
+  z-index: 2
+  width: var(--siteWidth)
+  color: white
+
+  > *
+    width: 100%
+    max-width: var(--blogWidth)
+
+  .alignwide
+    max-width: var(--siteWidth)
+
+
+.has-parallax
+  background-attachment: fixed
+
+.has-background-dim
+  position: relative
+
+  &::before
+    content: ""
+    +absolute-fill
+    z-index: 1
+    opacity: .5
+    background-color: inherit
+
+.has-background-dim-10::before
+  opacity: .1
+.has-background-dim-20::before
+  opacity: .2
+.has-background-dim-30::before
+  opacity: .3
+.has-background-dim-40::before
+  opacity: .4
+.has-background-dim-60::before
+  opacity: .6
+.has-background-dim-70::before
+  opacity: .7
+.has-background-dim-80::before
+  opacity: .8
+.has-background-dim-90::before
+  opacity: .9
+.has-background-dim-100::before
+  opacity: 1
+
+
+///// MEDIA TEXT
+
+.wp-block-media-text
+  --columnMedia: minmax(0, 1fr)
+  --columnContent: minmax(0, 1fr)
+
+  display: grid
+  row-gap: var(--columnGap, 2rem)
+  column-gap: var(--columnGap, 2rem)
+  grid-template-columns: var(--columnMedia) var(--columnContent)
+
+  &.has-media-on-the-right
+    grid-template-columns: var(--columnContent) var(--columnMedia)
+
+  &:not([class*="is-vertically-aligned-"])
+    align-items: center
+
+  &.is-style-h-larger-image
+    --columnMedia: 3fr
+    --columnContent: 2fr
+
+  &.is-style-h-smaller-image
+    --columnMedia: 2fr
+    --columnContent: 3fr 
+
+  &.has-background
+    border-radius: var(--gRadius)
+
+  @media ($below-s)
+    --columnGap: 1rem
+
+  @media ($below-xs)
+    &.is-stacked-on-mobile
+      --columnsMedia: 1fr
+      --columnsContent: 1fr
+
+      grid-template-columns: minmax(0, 1fr)
+
+
+.wp-block-media-text__media
+  margin-bottom: 0
+
+  .is-image-fill &
+    align-self: stretch
+    background-repeat: no-repeat
+    background-size: cover
+    border-radius: var(--gRadius)
+    min-height: 150px
+    height: 100%
+
+    img
+      display: none 
+
+  @media ($above-xs)
+    .has-media-on-the-right &
+      order: 1
+
+
+.wp-block-media-text__content
+  padding: var(--contentPadding, 0)
+
+  .wp-block-media-text.has-background &
+    --contentPadding: 3rem
+
+    @media ($below-m)
+      --contentPadding: 1.5rem
+
+    @media ($below-s)
+      --contentPadding: 1rem
+
+    @media ($below-xs)
+      --contentPadding: 0 1rem 1rem 1rem
+    
+
+///// AUDIO
+
+.wp-block-audio
+  text-align: center
+
+  audio
+    width: 100%
+  figcaption
+    @extend %figcaption
+
+
+///// FILE
+
+.wp-block-file
+  display: flex
+  align-items: center
+  justify-content: center
+  padding: 1.25rem
+  background-color: rgba(black, .05)
+  border: 1px solid rgba(black, .2)
+  border-radius: var(--gRadius)
+
+  &.alignleft
+    justify-content: flex-start
+    float: left
+
+  &.alignright
+    justify-content: flex-end
+
+.wp-block-file__button
+  margin-left: 1rem
+
+
+///// VIDEO
+
+.wp-block-video
+  width: 100%
+  text-align: center
+
+  video
+    width: 100%
+  
+
+  figcaption
+    @extend %figcaption

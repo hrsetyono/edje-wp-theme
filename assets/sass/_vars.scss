@@ -1,0 +1,44 @@
+// This file is using .scss format to make it easier to write Maps & List
+
+$colors: (
+  ( var: '--text',       slug: 'text',        hex: #2c3e50 ),
+  ( var: '--textDim',    slug: 'text-dim',    hex: #90a4ae ),
+  ( var: '--textInvert', slug: 'text-invert', hex: #ffffff ),
+
+  ( var: '--main',      slug: 'main',       hex: #3498db ),
+  ( var: '--mainDark',  slug: 'main-dark',  hex: #2573A7 ),
+  ( var: '--mainLight', slug: 'main-light', hex: #DEEDF8 ),
+
+  ( var: '--sub',      slug: 'sub',       hex: #2ecc71 ),
+  ( var: '--subDark',  slug: 'sub-dark',  hex: #26A65B ),
+  ( var: '--subLight', slug: 'sub-light', hex: #DEF7E8 ),
+
+  ( var: '--extra', slug: 'extra', hex: #e74c3c ),
+  ( var: '--extraLight', slug: 'extraLight', hex: #FBDEDB ),
+);
+
+///// MEDIA QUERY
+
+$size-xsmall : 480px;
+$size-small  : 768px;
+$size-medium : 960px;
+$size-large  : 1120px;
+
+$below-xs: "max-width:#{ $size-xsmall }";
+$above-xs: "min-width:#{ $size-xsmall + 1px }";
+$below-s: "max-width:#{ $size-small }";
+$above-s: "min-width:#{ $size-small + 1px }";
+$below-m: "max-width:#{ $size-medium }";
+$above-m: "min-width:#{ $size-medium + 1px }";
+$below-l: "max-width:#{ $size-large }";
+$above-l: "min-width:#{ $size-large + 1px }";
+
+$below-nav: $below-s; // small navigation breakpoint
+$above-nav: $above-s;
+
+$below-adminbar: "max-width:782px";
+$above-adminbar: "min-width:783px";
+
+$portrait: "orientation: portrait";
+$landscape: "orientation: landscape";
+$retina: "min-resolution: 192dpi";

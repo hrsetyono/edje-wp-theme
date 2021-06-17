@@ -1,6 +1,6 @@
 <?php
 
-$inc = __DIR__ . '/functions';
+$inc = __DIR__ . '/inc';
 require_once $inc . '/_helpers.php';
 
 // Abort if required plugins is inactive
@@ -12,9 +12,10 @@ my_before_setup_theme();
 add_action( 'after_setup_theme', 'my_after_setup_theme' );
 add_action( 'widgets_init', 'my_widgets_init' );
 
-// Other modules
+// Modules
 require_once $inc . '/enqueue.php';
-
+require_once $inc . '/gutenberg.php';
+require_once $inc . '/acf.php';
 
 if( is_admin() ) {
   require_once $inc . '/admin.php';
@@ -28,13 +29,6 @@ if( class_exists('WooCommerce') ) {
   require_once $inc . '/shop-setup.php';
   require_once $inc . '/shop-filters.php';
 }
-
-
-// GUTENBERG
-require_once 'gutenberg/acf-blocks.php';
-require_once 'gutenberg/custom-styles.php';
-require_once 'gutenberg/patterns.php';
-require_once 'gutenberg/example/_index.php';
 
 
 /////
@@ -61,7 +55,7 @@ function my_after_setup_theme() {
   add_theme_support( 'post-thumbnails' );
   add_theme_support( 'menus' );
   add_theme_support( 'custom-logo' );
-  add_theme_support( 'title_tag' );
+  add_theme_support( 'title-tag' );
   add_theme_support( 'html5', [
     'search-form', 'comment-form', 'comment-list', 'gallery', 'caption', 'navigation-widgets', 'style', 'script'
   ] );
@@ -75,12 +69,13 @@ function my_after_setup_theme() {
   // Edje Support
   add_theme_support( 'h-faq-block' );
   add_theme_support( 'h-icon-block' );
-  // add_theme_support( 'h-comment-editor' ); // Enable this if you allow comment in the website
+  add_theme_support( 'h-comment-editor' ); // Enable this if you allow comment in the website
 
   // Gutenberg support
   add_theme_support( 'align-wide' );
   add_theme_support( 'responsive-embeds' );
   
+  // Make sure to sync this with the $colors variable in assets/sass/framework/vars.scss
   add_theme_support( 'editor-color-palette', [
     [ 'name' => 'Text',        'slug' => 'text',        'color' => 'var(--text)' ],
     [ 'name' => 'Text Dim',    'slug' => 'text-dim',    'color' => 'var(--textDim)' ],
@@ -90,8 +85,11 @@ function my_after_setup_theme() {
     [ 'name' => 'Main Dark',  'slug' => 'main-dark', 'color' => 'var(--mainDark)' ],
     [ 'name' => 'Main Light', 'slug' => 'main-light', 'color' => 'var(--mainLight)' ],
 
-    [ 'name' => 'Sub',        'slug' => 'sub',       'color' => 'var(--sub)' ],
-    [ 'name' => 'Sub Light',  'slug' => 'sub-light', 'color' => 'var(--subLight)' ],
+    [ 'name' => 'Sub',       'slug' => 'sub',       'color' => 'var(--sub)' ],
+    [ 'name' => 'Sub Light', 'slug' => 'sub-light', 'color' => 'var(--subLight)' ],
+
+    [ 'name' => 'Extra',       'slug' => 'extra',       'color' => 'var(--extra)' ],
+    [ 'name' => 'Extra Light', 'slug' => 'extra-light', 'color' => 'var(--extraLight)' ],
   ] );
 
   add_theme_support( 'editor-font-sizes', [
@@ -127,7 +125,7 @@ function my_widgets_init() {
     'description' => 'Appear besides post',
     'before_widget' => '<div id="%1$s" class="widget %2$s">',
     'after_widget'  => '</div>',
-    'before_title'  => '<h3 class="widget-title">',
+    'before_title'  => '<h3 class="widgettitle">',
     'after_title'   => '</h3>',
   ] );
 }

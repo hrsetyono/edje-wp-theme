@@ -33,6 +33,9 @@ var myHeader = {
 
     document.addEventListener( 'click', this.closeOffcanvas );
 
+    let $offcanvas = document.querySelector( '.offcanvas' );
+    $offcanvas && $offcanvas.addEventListener( 'click', this.preventClose );
+
     // toggle offcanvas menu
     let $menuLinks = document.querySelectorAll( '[href="#menu"]' );
     for( let $l of $menuLinks ) {
@@ -87,6 +90,10 @@ var myHeader = {
   closeOffcanvas( e ) {
     document.querySelector( 'body' ).classList.remove( 'has-active-offcanvas' );
   },
+  
+  preventClose( e ) {
+    e.stopPropagation();
+  }
 }
 
 

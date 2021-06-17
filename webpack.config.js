@@ -26,18 +26,18 @@ var path = require('path');
 
 const cssPath = './assets/sass';
 const jsPath = './assets/js';
-const blockPath = './gutenberg';
+const blockPath = './inc';
 
 const outputPath = 'assets/dist';
 
 const localDomain = 'http://lab.test/';
 const entryPoints = {
   'app': jsPath + '/app.js',
+  'gutenberg': cssPath + '/gutenberg.sass',
   'my-editor': jsPath + '/my-editor.js',
-  'post': cssPath + '/post.sass',
   'my-admin': jsPath + '/my-admin.js',
 
-  'block-example': blockPath + '/example/index.jsx',
+  'my-block': blockPath + '/my-block/index.jsx',
 };
 
 module.exports = {

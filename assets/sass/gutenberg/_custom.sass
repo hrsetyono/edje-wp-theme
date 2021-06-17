@@ -1,0 +1,216 @@
+///// EDJE ICON
+
+.wp-block-h-icon
+  --iconSize: 60px
+  --iconPadding: 1rem
+  display: flex
+  align-items: flex-start
+  background-color: var(--bgColor, rgba(black, .1))
+
+  color: var(--textColor, inherit)
+  border-radius: 4px
+
+  &.has-background
+    padding: 0.75rem
+
+  figure
+    min-width: var(--iconSize)
+    max-width: var(--iconSize)
+    width: var(--iconSize)
+    height: var(--iconSize)
+    margin: 0
+    padding: var(--iconPadding)
+    background-color: rgba(black, .1)
+    border-radius: 50%
+
+
+  // toolbar option
+  &.has-icon-position-left
+    figure
+      margin-right: 1rem
+
+  &.has-icon-position-right
+    figure
+      order: 1
+      margin-left: 1rem
+
+  &.has-icon-position-top
+    flex-wrap: wrap
+
+    figure
+      margin-bottom: 0.5rem
+    dl
+      flex: auto
+
+  &.has-text-align-center
+    justify-content: center
+
+  &.has-text-align-right
+    justify-content: flex-end
+
+  path,
+  rect
+    fill: currentColor
+
+  svg
+    max-width: 100%
+    max-height: 100%
+
+a.wp-block-h-icon
+  text-decoration: none
+  will-change: transform
+
+  &:hover
+    opacity: .9
+    transform: translateY(-2px)
+
+    dt
+      text-decoration: underline
+  
+  &:active
+    transform: none
+    transition: none
+
+
+
+///// Description
+
+.wp-block-h-icon
+  &:not(.has-description)
+    align-items: center
+
+  dl, dt, dd, dd p
+    margin: 0
+  dl
+    flex: 1
+    width: 100%
+  dt
+    font-family: var(--hFontFamily)
+    font-weight: 700
+    font-size: 1.5rem
+  
+  dd p + p
+    margin-top: 0.5rem
+
+
+///// STYLE
+
+.wp-block-h-icon.is-style-smaller,
+.wp-block-h-icon.is-style-smaller-color-icon-only
+  --iconSize: 50px
+  --iconPadding: 0.75rem
+  align-items: center
+  padding: 0
+
+  &.has-background
+    padding: 0.5rem
+  &.has-description
+    align-items: flex-start
+
+  dt
+    font-size: 1.125rem
+    text-transform: none
+    letter-spacing: 0
+
+
+.wp-block-h-icon.is-style-color-icon-only,
+.wp-block-h-icon.is-style-smaller-color-icon-only
+  background-color: transparent
+  padding: 0
+  color: inherit
+
+  figure
+    background-color: var(--bgColor)
+  path
+    fill: var(--textColor)
+  
+
+///// EDJE FAQ
+
+.wp-block-h-faq
+  --faqTitleBg: #e5e5e5
+  --faqTitleColor: inherit
+
+  border: 2px solid var(--faqTitleBg)
+  border-radius: var(--gRadius)
+
+  &:not([open])
+    background-color: var(--faqTitleBg)
+
+.h-faq-question
+  position: relative
+  cursor: pointer
+  padding: 0.75rem 1rem 0.75rem 2rem
+  background-color: var(--faqTitleBg)
+  font-size: var(--h5Size)
+  color: var(--faqTitleColor)
+  line-height: 1.25
+
+  transition: var(--gTransition)
+
+  &:hover
+    opacity: .8
+  &:active
+    transition: none
+    box-shadow: var(--shadow0)
+    transform: translateY(1px)
+
+  &::-webkit-details-marker
+    display: none
+  &::marker
+    display: none
+    font-size: 0
+
+  &::before
+    content: "+"
+    position: absolute
+    left: 0.75rem
+    display: inline-block
+    margin-right: 0.75rem
+    font-family: var(--codeFontFamily)
+
+    [open] &
+      content: "-"
+  
+  [open] &
+    opacity: 1
+
+
+.h-faq-answer
+  padding: 1rem 1.5rem
+
+  p + p
+    margin-top: 1rem
+
+  
+// Jetpack Contact Form
+
+.grunion-field-wrap
+  position: relative
+  margin-bottom: 1rem
+
+  .grunion-field-label
+    cursor: pointer
+    margin-bottom: 0.25rem
+    font-weight: 700
+    font-size: var(--smallFontSize)
+    color: rgba(black, .5)
+  span
+    display: inline-block
+    margin-left: 0.5rem
+    text-transform: initial
+    font-weight: 400
+    color: var(--red)
+
+  [type="text"],
+  [type="email"],
+  [type="tel"],
+  [type="url"],
+  textarea,
+  select
+    // custom style
+  
+  textarea
+    max-height: 8rem
+
+

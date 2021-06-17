@@ -1,0 +1,125 @@
+\:root
+  @each $c in $colors
+    $var: map-get($c, 'var')
+    $hex: map-get($c, 'hex')
+
+    #{ $var } : #{ $hex }
+    // RGB version for transparency, use it like this:
+    // `rgba(--main, .5)` which will output `rgba(var(--mainRGB), .5)`
+    #{ $var }RGB : #{ red($hex) }, #{ green($hex) }, #{ blue($hex) }
+    
+
+  // Other colors
+  --siteBg      : #f8f9fb
+  --siteBgColor : #f8f9fb
+  --panelBg     : #eff1f5
+
+  // SHADOW -----
+  --shadow0: 0 0.5px 2px rgba(0,0,0, .18), 0 1.5px 6px rgba(0,0,0, .08)
+  --shadow1: 0 1.5px 4px rgba(0,0,0, .24), 0 1.5px 6px rgba(0,0,0, .12)
+  --shadow2: 0 3px 12px rgba(0,0,0, .23), 0 3px 12px rgba(0,0,0, .16)
+  --shadow3: 0 6px 12px rgba(0,0,0, .23), 0 10px 40px rgba(0,0,0, .19)
+  --shadow4: 0 10px 20px rgba(0,0,0, .19), 0 6px 6px rgba(0,0,0, .23)
+  
+  // TEXT -----
+  --fontFamily : "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"
+  --fontWeight : 400
+  --lineHeight : 1.65
+  --letterSpacing  : 0
+
+  --fontSize       : 16px
+  --xsmallFontSize : 12px
+  --smallFontSize  : 14px
+  --mediumFontSize : 20px
+  --largeFontSize  : 24px
+  --hugeFontSize   : 32px
+
+  // HEADING -----
+  --hFontFamily    : "Noto Serif", "Apple Garamond", "Baskerville", "Times New Roman", "Droid Serif", "Times","Source Serif Pro", serif
+  --hFontStyle     : normal
+  --hFontWeight    : 700
+  --hLineHeight    : 1.25
+  --hLetterSpacing : 0.025em
+  --hTextTransform : initial
+  --hColor         : inherit
+
+  --h1Size : 46px
+  --h2Size : 38px
+  --h3Size : 30px
+  --h4Size : 24px
+  --h5Size : 20px
+  --h6Size : var(--fontSize)
+
+  // PREFORMATTED -----
+  --codeFontFamily : SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace
+  --codeFontSize   : var(--smallFontSize)
+
+  // LINK -----
+  --linkColor      : inherit
+  --linkColorHover : var(--main)
+
+
+  // GRID -----
+  --siteWidth : #{ $size-large }
+  --blogWidth : 650px
+  --gridGap   : 20px
+  --gridRim   : 1rem
+  --tileGap   : 20px
+
+  
+  // GLOBAL
+  --gRadius: 4px
+  --gTransition: all .25s ease-in-out
+
+  // INPUT
+  --inputColor : var(--text)
+  --inputPlaceholderColor: var(--textDim)
+  --inputBg      : var(--textInvert)
+  --inputBgFocus : var(--textInvert)
+
+  // WP
+  --adminBarHeight : 0px
+  --blockSpacing   : 1.5rem
+  --groupSpacing   : 3rem
+
+  
+  @media ($below-m)
+    --h1Size : 40px
+    --h2Size : 32px
+    --h3Size : 26px
+    --h4Size : 22px
+    --h5Size : 18px
+    --h6Size : var(--fontSize)
+
+  @media ($below-s)
+    --h1Size : 32px
+    --h2Size : 26px
+    --h3Size : 22px
+    --h4Size : 20px
+    --h5Size : 18px
+    --h6Size : var(--fontSize)
+
+    --groupSpacing: 2.5rem
+
+  @media ($below-xs)
+    --blockSpacing: 1rem
+
+body.admin-bar
+  --adminBarHeight : 32px
+
+  @media ($below-adminbar)
+    --adminBarHeight : 0px
+
+
+///// GUTENBERG COLORS
+
+@each $c in $colors
+  $var: map-get($c, 'var')
+  $slug: map-get($c, 'slug')
+
+  .has-#{ $slug }-background-color
+    --bgColor: var(#{ $var })
+    --bgColorRGB: var(#{ $var }RGB)
+  .has-#{ $slug }-color
+    --textColor: var(#{ $var })
+    --textColorRGB: var(#{ $var }RGB)

@@ -1,5 +1,4 @@
-
-///// INPUT /////
+///// INPUT
 
 [type="text"],
 [type="number"],
@@ -12,26 +11,24 @@
 [type="time"],
 textarea,
 select
-  --inputBg: var(--textInvert)
-  --inputBgFocus: var(--inputBg)
-  --inputColor: var(--text)
-  --placeholderColor: var(--textDim)
-
   display: block
   width: 100%
   padding: 0.5rem
   border: 2px solid rgba(black, .1)
   border-radius: var(--gRadius)
-  background-color: var(--inputBg)
+  background-color: var(--inputBg, var(--textInvert))
 
   line-height: normal
-  color: var(--inputColor)
+  color: var(--inputColor, var(--text))
   transition: var(--gTransition)
   
   &:focus
-    background-color: var(--inputBgFocus)
+    background-color: var(--inputBgFocus, var(--textInvert))
     border-color: var(--main)
     box-shadow: 0 0 0 2px rgba(--main, .3)
+
+  +placeholder
+    color: var(--inputPlaceholder, var(--textDim))
 
 select
   border-width: 2px 2px 3px

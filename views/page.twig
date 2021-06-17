@@ -1,12 +1,8 @@
 {% extends "layout.twig" %}
 {% block content %}
 
-<article class="the-content">
-  <header class="post-title">
-    <h1>{{ post.title }}</h1>
-  </header>
-
+<main role="main">
   {{ post.content }}
-</article>
+</main>
 
 {% endblock %}

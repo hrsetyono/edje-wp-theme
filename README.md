@@ -1,36 +1,38 @@
 # Edje WordPress Theme
 
-A WordPress starter theme for developer using Timber Library and ACF Pro. Also supports WooCommerce.
+A WordPress starter theme built with Timber.
 
-Stylesheet is compiled with **Node Sass** and using [Edje Framework](https://github.com/hrsetyono/edje). Visit that link to know how to compile Sass.
+Stylesheet is compiled with **Node Sass**. Visit that link to know how to compile Sass.
 
 **REQUIREMENTS**
 
-- PHP 7.0+
-- WordPress 5.0+
+- PHP 7.3+
+- WordPress 5.7+
 - [Composer 1.8](https://getcomposer.org/)
-- [Timber 1.8.0+](https://wordpress.org/plugins/timber-library/)
-- [ACF Pro 5.8](https://www.advancedcustomfields.com/)
+- Node JS
 
 **TABLE OF CONTENTS**
 
 1. [Installation](#installation)
+1. [Compiling Sass](#compiling-sass)
 1. [Useful Links](#useful-links)
 
 ## Installation
 
 **MANUAL**
 
-1. Copy this repo to your WordPress theme directory
-1. Download the required plugins, they are: [Timber](https://wordpress.org/plugins/timber-library/), [ACF Pro](https://www.advancedcustomfields.com/pro/) (Paid), and [Edje WP Library](https://github.com/hrsetyono/edje-wp-library)
+1. Copy this repo to your WordPress theme directory.
+1. Download [Edje WP Library](https://github.com/hrsetyono/edje-wp-library) plugin and put it into your Plugin directory.
 
 **WITH COMPOSER**
 
 > Available in Packagist under the name `pixelstudio/edje-wp-theme`.
 
-This is our workflow for starting new project. This steps will also download WP Core files and other required plugins.
+This is our workflow for starting a new project:
 
-1. Create empty directory then create new file named `composer.json`. Put this code below inside it:
+1. Create a directory, put WP Core files in it.
+
+1. In the root path (where `wp-config` resides), create new file named `composer.json`. Put this code below:
 
     ```
     {
@@ -40,25 +42,17 @@ This is our workflow for starting new project. This steps will also download WP 
         { "name": "Pixel Studio", "email": "info@pixelstudio.id", "homepage": "https://pixelstudio.id" }
       ],
       "require": {
-        "pixelstudio/wordpress": "~5.2",
-        "pixelstudio/edje-wp-theme": "~5.0",
-        "pixelstudio/advanced-custom-fields": "~5.8",
-        "pixelstudio/edje-wp-library": "~2.0",
-        "pixelstudio/wp-sync-db": "~1.6",
-        "pixelstudio/wp-sync-media": "~1.1",
+        "pixelstudio/edje-wp-theme": "~9.0",
+        "pixelstudio/edje-wp-library": "~5.2.0",
+        "pixelstudio/wp-sync-db": "~1.8",
 
         "wpackagist-plugin/jetpack": "*",
-        "wpackagist-plugin/timber-library": "*",
         "wpackagist-plugin/autodescription": "*",
         "wpackagist-plugin/contact-form-7": "*",
-        "wpackagist-theme/twentynineteen": "*"
+        "wpackagist-theme/twentytwentyone": "*"
       },
       "require-dev": {},
-      "suggest": {
-        "pixelstudio/edje-wc-library": "~2.0",
-        "wpackagist-plugin/woocommerce": "*",
-        "wpackagist-theme/storefront": "*"
-      },
+      "suggest": {},
       "repositories":[
         { "type": "composer", "url":"https://wpackagist.org" }
       ],
@@ -66,13 +60,17 @@ This is our workflow for starting new project. This steps will also download WP 
     }
     ```
 
-1. If you want WooCommerce site, add the value of `suggest` to `require`.
-
 1. Run the command `composer update` in that directory.
 
-1. Done! You will find the WP Core files inside `wp-core/` directory. Cut it to root.
+1. After first run, rename `edje-wp-theme` so it won't be overriden the next time you run `composer update`. Also remove `pixelstudio/edje-wp-theme` in your Composer JSON.
 
-1. Recommended: Rename `edje-wp-theme` so it won't be overriden the next time you run `composer update`. Also remove `pixelstudio/wordpress` in JSON file after first installation.
+## Compiling Sass
+
+1. Install Node JS if you don't have it yet.
+1. Run `npm update` in this directory to download all modules.
+1. Open `webpack.config.js` and change the variable `localDomain` to fit your localhost domain.
+1. Run `npm run dev` to watch the Sass files and launch Browser Sync that refreshes the CSS everytime you save.
+1. Before pushing to live, run `npm run prod` to minify all CSS and JS.
 
 ## Used In
 

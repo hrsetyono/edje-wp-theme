@@ -12,10 +12,9 @@ if( !class_exists('Jetpack') || !Jetpack::is_module_active('infinite-scroll') ||
   $context['pagination'] = Timber::get_pagination();
 }
 
-
 // If post category
 if( is_category() ) {
-  $context['term'] = $query; 
+  $context['term'] = $query;
 }
 // If custom taxonomy page
 elseif( is_tax() ) {

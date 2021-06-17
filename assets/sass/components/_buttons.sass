@@ -1,11 +1,5 @@
-.button,
-[type="submit"],
-[type="reset"],
-.wp-block-file__button,
-.wp-block-button
-  --bgColor: var(--main)
-  --textColor: var(--textInvert)
-
+///// BUTTON
+  
 .button,
 [type="submit"],
 [type="reset"],
@@ -16,7 +10,7 @@
   overflow: hidden
   
   padding: 0.75em 1em
-  background-color: var(--bgColor)
+  background-color: var(--bgColor, var(--main))
   border: 2px solid transparent
   border-radius: 24px
 
@@ -24,7 +18,7 @@
   text-transform: uppercase
   letter-spacing: 0.025em
   font-weight: var(--hFontWeight)
-  color: var(--textColor)
+  color: var(--textColor, var(--textInvert))
   vertical-align: top
   line-height: 1
   
@@ -48,6 +42,7 @@
 
   &:hover
     opacity: .9
+    color: var(--textColor, var(--textInvert))
     transform: translateY(-2px)
     box-shadow: var(--shadow1)
 
@@ -62,28 +57,15 @@
     opacity: .5
 
   
-// Button size
-.button--small
-  --buttonFontSize: 14px
-.button--normal
-  // default is normal
-.button--large
-  --buttonFontSize: 22px
-
-// Button style
-.button--solid
-  --buttonBorder: none
-
-.button--outline,
+// Outline Button
 .wp-block-button.is-style-outline
   --bgColor: transparent
-  --textColor: var(--main)
+  --textColor: var(--text)
   
   a
     border-color: inherit
-    color: var(--textColor)
 
-.button--transparent,
+// Transparent Button
 .wp-block-button.is-style-h-transparent a
   --bgColor: transparent
   
@@ -93,18 +75,13 @@
   color: var(--textColor, var(--main))
 
 
-// loading button
-.button--passive,
-.button--loading
-  --buttonBg: var(--textDim)
-  --buttonBorder: 1px solid
-  --buttonColor: var(--textInvert)
+// Loading Button
+.wp-block-button.is-loading
+  --bgColor: var(--textDim)
+  --textColor: transparent
 
-
-.button--loading
   cursor: not-allowed
+  pointer-events: none
   background-position: center center
   background-repeat: no-repeat
   background-image: url("../images/spinner.gif")
-  
-  color: transparent !important

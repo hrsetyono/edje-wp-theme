@@ -1,0 +1,15 @@
+<footer class="main-footer">
+  {% for id, f in footers if f.widgets %}
+    <div class="footer footer--{{ id }}" data-columns="{{ f.columns }}">
+      <div class="widget-row">
+        <ul class="widget-column"> {{ f.widgets }} </ul>
+      </div>
+    </div>
+  {% endfor %}
+</footer>
+</div> {# main-container #}
+
+{{ wp_footer }}
+
+</body>
+</html>

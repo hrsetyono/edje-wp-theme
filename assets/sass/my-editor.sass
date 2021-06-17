@@ -1,10 +1,8 @@
 // This styling is applied to Gutenberg editor
-
-@import "framework/vars"
-@import "framework/functions"
-@import "framework/mixins"
-@import "framework/fonts"
-@import "framework/vars-css"
+@import "vars"
+@import "vars-root"
+@import "functions-mixins"
+@import "components/fonts"
 
 .wp-block
   max-width: var(--blogWidth)
@@ -21,6 +19,7 @@
 .editor-styles-wrapper > *
   font-family: var(--fontFamily)
   font-weight: var(--fontWeight)
+  line-height: var(--lineHeight)
 
 .editor-post-title__block .editor-post-title__input,
 .editor-styles-wrapper h1,
@@ -68,7 +67,6 @@
   border-top: 3px solid var(--text)
   border-bottom: 3px solid var(--text)
   text-align: center
-  font-size: var(--largeFontSize)
 
   p
     font-style: normal
@@ -101,19 +99,19 @@
     --tableBorder: var(--textDim)
 
   .has-subtle-pale-green-background-color
-    --tableHeader: #{ rgba(--green, .2) }
-    --tableBg: #{ rgba(--green, .1) }
-    --tableBorder: var(--green)
+    --tableHeader: var(--mainLight)
+    --tableBg: var(--mainLight)
+    --tableBorder: var(--main)
 
   .has-subtle-pale-blue-background-color
-    --tableHeader: #{ rgba(--blue, .2) }
-    --tableBg: #{ rgba(--blue, .1) }
-    --tableBorder: var(--blue)
+    --tableHeader: var(--subLight)
+    --tableBg: var(--subLight)
+    --tableBorder: var(--sub)
 
   .has-subtle-pale-pink-background-color
-    --tableHeader: #{ rgba(--red, .2) }
-    --tableBg: #{ rgba(--red, .1) }
-    --tableBorder: var(--red)
+    --tableHeader: var(--extraLight)
+    --tableBg: var(--extraLight)
+    --tableBorder: var(--extra)
 
 
 // Table stripes
@@ -125,6 +123,32 @@
     background-color: white
   th, td
     border: 1px solid rgba(black, .2)
+
+// Change Table's color palette
+.components-circular-option-picker__option
+  &[aria-label*="Color: Subtle"]
+    background-color: var(--color) !important
+    color: var(--color) !important
+
+  &[aria-label*="Subtle light gray"]
+    --color: var(--textDim)
+  &[aria-label*="Subtle pale green"]
+    --color: var(--mainLight)
+  &[aria-label*="Subtle pale blue"]
+    --color: var(--subLight)
+  &[aria-label*="Subtle pale pink"]
+    --color: var(--extraLight)
+
+.component-color-indicator
+  &[style*="rgb(243, 244, 245);"]
+    background-color: var(--textDim) !important
+  &[style*="rgb(233, 251, 229);"]
+    background-color: var(--mainLight) !important
+  &[style*="rgb(231, 245, 254);"]
+    background-color: var(--subLight) !important
+  &[style*="rgb(252, 240, 239);"]
+    background-color: var(--extraLight) !important
+    
 
 
 ///// BUTTON
@@ -158,19 +182,97 @@ pre.wp-block-code
 
 
 ///// EMBEDS
-// Disable all except Embed, Youtube, and Twitter
 
+// Hide all except Embed, Youtube, and Twitter
 .block-editor-inserter__panel-content [aria-label="Embeds"]
-  .block-editor-block-types-list__list-item
+  > div:nth-child(n+2)
     display: none
-  .block-editor-block-types-list__list-item:nth-child(1),
-  .block-editor-block-types-list__list-item:nth-child(2),
-  .block-editor-block-types-list__list-item:nth-child(3)
+
+
+///// LATEST POSTS
+
+.edit-post-visual-editor ul.wp-block-latest-posts
+  display: grid
+  grid-template-columns: repeat(var(--postsColumns, 1), 1fr)
+  column-gap: var(--postsGap, 1.5rem)
+  row-gap: var(--postsGap, 1.5rem)
+
+  list-style-type: none
+  padding-left: 0
+  clear: both
+
+  // the top spacing should follow Group sizing
+  &.alignwide,
+  &.alignfull
+    --blockSpacing: var(--groupSpacing)
+
+  li
+    clear: both
+    width: 100%
+    margin: 0
+
+  a
     display: block
+    pointer-events: none
 
-.components-autocomplete__results [id*="-block-core/embed-"]
-  display: none
+  li > a
+    font-family: var(--hFontFamily)
+    font-size: var(--postsFontSize, var(--h5Size))
 
-.components-autocomplete__results [id*="-block-core/embed-youtube"],
-.components-autocomplete__results [id*="-block-core/embed-twitter"]
-  display: flex
+  &.columns-1
+    --postsColumns: 1
+  &.columns-2
+    --postsColumns: 2
+  &.columns-3
+    --postsColumns: 3
+  &.columns-4
+    --postsColumns: 4
+  &.columns-5
+    --postsColumns: 5
+  &.columns-6
+    --postsColumns: 6
+
+  &.columns-4,
+  &.columns-5,
+  &.columns-6
+    --postsGap: 1rem
+    --postsFontSize: var(--h6Size)
+
+.wp-block-latest-posts__post-author,
+.wp-block-latest-posts__post-date
+  display: inline-block
+  color: var(--textDim)
+  font-size: var(--smallFontSize)
+
+.wp-block-latest-posts__post-author
+  margin-right: 1rem
+
+.wp-block-latest-posts__featured-image
+  margin-bottom: 0.5rem
+
+  a:hover
+    opacity: .75
+
+  &.alignleft,
+  &.alignright
+    max-width: 50%
+
+    .is-grid &
+      max-width: 40%
+
+  &.alignleft
+    float: left
+    margin-right: 1rem
+
+  &.alignright
+    float: right
+    margin-left: 1rem
+  
+  &.aligncenter,
+  .is-grid &
+    max-width: none
+
+    img
+      width: 100%
+      max-height: 150px
+      object-fit: cover

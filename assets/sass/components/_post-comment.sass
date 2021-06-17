@@ -1,0 +1,201 @@
+///// COMMENTS
+
+.post-comments
+  padding: 0 calc( var(--gridGap) / 2 )
+  max-width: var(--blogWidth)
+  margin: var(--groupSpacing) auto
+
+  h4
+    margin-bottom: 1rem
+    text-align: center
+
+.comments-list
+  padding-left: 0
+  margin-top: 2rem
+  list-style-type: none
+
+  > li
+    padding: 1.25rem
+    margin-bottom: 1.5rem
+    background-color: white
+    border: 1px solid rgba(black, .1)
+    border-radius: var(--gRadius)
+
+// Single Comment
+.comment
+  position: relative
+
+  &.bypostauthor .comment-avatar
+    padding: 1px
+
+  .avatar
+    margin-right: 0.75rem
+    width: 2.5em
+    height: 2.5em
+
+
+.comment-header
+  display: flex
+  flex-wrap: wrap
+  align-items: center
+  margin-bottom: 0.5rem
+
+  time
+    margin-left: 0.5rem
+    font-size: var(--smallFontSize)
+    color: var(--textDim)
+
+.comment-text
+  > * + *
+    margin-top: 1rem
+
+  ul, ol
+    padding-left: 1.5rem
+
+  ul
+    list-style-type: var(--ulStyle)
+  ol
+    list-style-type: var(--olStyle)
+  a
+    text-decoration: underline
+
+  h1, h2, h3
+    font-size: var(--h5Size)
+
+  code
+    background-color: rgba(black, .05)
+
+  pre code
+    display: block
+    padding: 0.5rem
+
+
+// Child comments
+.replies-list
+  margin-top: 1.5rem
+  padding-left: 1.25rem
+  border-left: 2px solid rgba(black , .1)
+  list-style-type: none
+  
+  .comment
+    font-size: var(--smallFontSize)
+
+  > li + li
+    margin-top: 1.5rem
+  header
+    margin-bottom: 0.5rem
+  p + p
+    margin-top: 0.5rem
+
+
+// Reply link
+a.comment-reply-link
+  position: absolute
+  top: 5px
+  right: 0
+
+  padding-right: 0.5rem
+  padding-left: 0.5rem
+  border-radius: var(--gRadius)
+  background-color: rgba(--main, .1)
+  font-size: var(--smallFontSize)
+  font-weight: var(--hFontWeight)
+  letter-spacing: 0.05em
+  text-transform: uppercase
+
+  &:hover
+    background-color: rgba(--main, .25)
+  &:active
+    transition: none
+    transform: translateY(1px)
+
+
+///// COMMENT FORM /////
+
+.comment-reply-title
+  display: none
+
+.comment-respond
+  margin-bottom: 2rem
+
+  .comments-list & // if reply
+    width: 110%
+    margin: 0 -5%
+
+.comment-form
+  display: flex
+  flex-wrap: wrap
+  padding: 1rem
+  border-radius: var(--gRadius)
+
+  .comments-list & // if reply
+    margin-top: 1.25rem
+    background-color: var(--textInvert)
+    border: 1px solid rgba(--text, .2)
+    box-shadow: var(--shadow0)
+
+  p
+    display: flex
+    flex-direction: column
+    width: 100%
+    margin-bottom: 0.5rem
+
+  label
+    cursor: pointer
+    margin-bottom: 0.5rem
+    color: var(--textDim)
+    letter-spacing: 0.05em
+    font-size: var(--smallFontSize)
+
+  .comment-notes,
+  .logged-in-as
+    display: block
+    color: var(--textDim)
+    font-size: var(--smallFontSize)
+
+  .h-comment-notification-consent
+    flex-direction: row
+
+    input
+      margin-right: 0.5rem
+  
+
+// Textarea
+.comment-form-comment
+  label
+    display: none
+
+  textarea
+    height: 12rem
+    border-radius: 0 var(--gRadius) var(--gRadius) 0
+
+p.comment-form-author,
+p.comment-form-email
+  width: 50%
+
+  @media ($below-xs)
+    width: 100%
+
+p.comment-form-author
+  padding-right: 0.5rem
+
+p.comment-form-email
+  padding-left: 0.5rem
+
+p.comment-form-url
+  display: none
+
+p.comment-form-cookies-consent
+  flex-direction: row
+
+  input
+    margin-top: 1px
+    margin-right: 0.5rem
+
+  label
+    display: inline-block
+    text-transform: none
+
+p.form-submit
+  align-items: flex-end
+  margin-bottom: 0

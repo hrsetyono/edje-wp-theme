@@ -1,28 +1,21 @@
 {% extends "layout.twig" %}
 {% block content %}
 
-<div data-grid>
-  <main class="archive-column">
-    {% if fn('function_exists', 'jetpack_breadcrumbs') %}
-      {{ fn( 'jetpack_breadcrumbs' ) }}
-    {% endif %}
+<main role="main">
+  <div class="wp-block-cover has-background-dim has-main-light-background-color alignfull" style="min-height:200px;">
+    <div class="wp-block-cover__inner-container">
+      <h1 class="has-color has-text-color has-text-align-center">{{ title }}</h1>
+      {{ description | h_markdown }}
+    </div>
+  </div>
 
-    {% if title %}
-      <header class="archive-header">
-        <h1>{{ title }}</h1>
-        {{ description | h_markdown }}
-      </header>
-    {% endif %}
+  {% if author %}
+    {% include "_author-info.twig" with { author: author } %}
+  {% endif %}
 
-    {% if author %}
-      {% include "_author-info.twig" with { author: author } %}
-    {% endif %}
-
-    {% include "_posts.twig" %}
-    {% include "_pagination.twig" %}
-  </main>
-
-</div>
+  {% include "_posts.twig" %}
+  {% include "_pagination.twig" %}
+</main>
 
 
 
