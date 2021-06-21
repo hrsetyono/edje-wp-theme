@@ -12,14 +12,14 @@ add_filter( 'acf/format_value/name=sample', 'my_acf_format_sample', 10, 3 );
  * @action acf/init
  */
 function my_acf_create_blocks() {
-  acf_register_block_type([
-    'name' => 'acf-example',
-    'title' => __('ACF Example'),
-    'description' => __('A custom ACF Block'),
-    'category' => 'design',
-    'icon' => 'admin-comments',
-    'render_callback' => '_my_render_acf_example'
-  ]);
+  // acf_register_block_type([
+  //   'name' => 'acf-example',
+  //   'title' => __('ACF Example'),
+  //   'description' => __('A custom ACF Block'),
+  //   'category' => 'design',
+  //   'icon' => 'admin-comments',
+  //   'render_callback' => '_my_render_acf_example'
+  // ]);
 }
 
 

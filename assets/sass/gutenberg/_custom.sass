@@ -3,15 +3,14 @@
 .wp-block-h-icon
   --iconSize: 60px
   --iconPadding: 1rem
+
+  --bgColor: #e5e5e5
+  --textColor: inherit
+
   display: flex
   align-items: flex-start
-  background-color: var(--bgColor, rgba(black, .1))
-
-  color: var(--textColor, inherit)
+  color: var(--textColor)
   border-radius: 4px
-
-  &.has-background
-    padding: 0.75rem
 
   figure
     min-width: var(--iconSize)
@@ -20,8 +19,18 @@
     height: var(--iconSize)
     margin: 0
     padding: var(--iconPadding)
-    background-color: rgba(black, .1)
+    background-color: var(--bgColor)
     border-radius: 50%
+  
+  &.is-style-boxed
+    --iconPadding: 0
+    --iconSize: 28px
+
+    padding: 0.75rem
+    background-color: var(--bgColor)
+
+    figure
+      background-color: transparent
 
 
   // toolbar option
@@ -50,7 +59,7 @@
 
   path,
   rect
-    fill: currentColor
+    fill: var(--iconColor, currentColor)
 
   svg
     max-width: 100%
@@ -63,6 +72,7 @@ a.wp-block-h-icon
   &:hover
     opacity: .9
     transform: translateY(-2px)
+    color: var(--textColor)
 
     dt
       text-decoration: underline
@@ -76,7 +86,7 @@ a.wp-block-h-icon
 ///// Description
 
 .wp-block-h-icon
-  &:not(.has-description)
+  &.has-no-description
     align-items: center
 
   dl, dt, dd, dd p
@@ -88,15 +98,11 @@ a.wp-block-h-icon
     font-family: var(--hFontFamily)
     font-weight: 700
     font-size: 1.5rem
-  
   dd p + p
     margin-top: 0.5rem
 
 
-///// STYLE
-
-.wp-block-h-icon.is-style-smaller,
-.wp-block-h-icon.is-style-smaller-color-icon-only
+.wp-block-h-icon.is-small-size
   --iconSize: 50px
   --iconPadding: 0.75rem
   align-items: center
@@ -112,38 +118,26 @@ a.wp-block-h-icon
     text-transform: none
     letter-spacing: 0
 
-
-.wp-block-h-icon.is-style-color-icon-only,
-.wp-block-h-icon.is-style-smaller-color-icon-only
-  background-color: transparent
-  padding: 0
-  color: inherit
-
-  figure
-    background-color: var(--bgColor)
-  path
-    fill: var(--textColor)
   
 
 ///// EDJE FAQ
 
 .wp-block-h-faq
-  --faqTitleBg: #e5e5e5
-  --faqTitleColor: inherit
+  --bgColor: #e5e5e5
+  --textColor: var(--text, #191e23)
 
-  border: 2px solid var(--faqTitleBg)
+  border: 2px solid var(--bgColor)
   border-radius: var(--gRadius)
 
-  &:not([open])
-    background-color: var(--faqTitleBg)
-
-.h-faq-question
+.wp-block-h-faq__question
   position: relative
   cursor: pointer
   padding: 0.75rem 1rem 0.75rem 2rem
-  background-color: var(--faqTitleBg)
+  margin: -1px
+  background-color: var(--bgColor)
+
   font-size: var(--h5Size)
-  color: var(--faqTitleColor)
+  color: var(--textColor)
   line-height: 1.25
 
   transition: var(--gTransition)
@@ -176,14 +170,14 @@ a.wp-block-h-icon
     opacity: 1
 
 
-.h-faq-answer
+.wp-block-h-faq__answer
   padding: 1rem 1.5rem
 
   p + p
     margin-top: 1rem
 
   
-// Jetpack Contact Form
+///// Jetpack Contact Form
 
 .grunion-field-wrap
   position: relative

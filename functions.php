@@ -67,7 +67,7 @@ function my_after_setup_theme() {
 
 
   // Edje Support
-  add_theme_support( 'h-faq-block' );
+  add_theme_support( 'h-faq-block-v2' );
   add_theme_support( 'h-icon-block' );
   add_theme_support( 'h-comment-editor' ); // Enable this if you allow comment in the website
 
@@ -77,7 +77,7 @@ function my_after_setup_theme() {
   
   // Make sure to sync this with the $colors variable in assets/sass/framework/vars.scss
   add_theme_support( 'editor-color-palette', [
-    [ 'name' => 'Text',        'slug' => 'text',        'color' => 'var(--text)' ],
+    [ 'name' => 'Text',        'slug' => 'text-base',   'color' => 'var(--text)' ],
     [ 'name' => 'Text Dim',    'slug' => 'text-dim',    'color' => 'var(--textDim)' ],
     [ 'name' => 'Text Invert', 'slug' => 'text-invert', 'color' => 'var(--textInvert)' ],
 

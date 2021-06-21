@@ -49,7 +49,7 @@ function my_disallowed_blocks( $blocks ) {
     'core/categories',
 
     // full-site editing
-    'core/site-logo',
+    // 'core/site-logo',
     'core/site-tagline',
     'core/site-title',
     'core/query',

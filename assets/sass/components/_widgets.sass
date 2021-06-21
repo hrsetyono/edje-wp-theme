@@ -214,83 +214,60 @@
 ///// WIDGET: Button
 
 .widget_h_button
-  .button
-    display: flex
-    align-items: center
-
-    .header--top-row &,
-    .header--top-row-mobile &
-      --buttonColor: var(--textInvert)
-      
-      padding: 0.375rem 0.5rem
-
-  path
-    fill: currentColor
+  .wp-block-button__link
+    padding-top: 0.375rem
+    padding-bottom: 0.375rem
+  
+  .is-style-outline .wp-block-button__link
+    --textColor: inherit
 
 
 ///// WIDGET: Social Buttons
 
-.widget_h_socials
-  --iconSize: 1rem
-  --iconPadding: 0.375rem
-  --iconGap: 0.25rem
+.widget .wp-block-social-links
+  --iconSize: 1.25rem
+  --iconPadding: 0.25em
 
-  display: flex
-  align-items: center
+  &.has-small-icon-size
+    --iconSize: 1rem
+  &.has-large-icon-size
+    --iconSize: 1.75rem
+  &.has-huge-icon-size
+    --iconSize: 2.5rem
 
-  
-  //
-  .footer &,
-  .sidebar &
-    --iconSize: 1.25rem
-    --iconPadding: 0.5rem
-    --iconGap: 0.5rem
+  &.is-style-pill-shape
+    .has-label
+      --iconPadding: 0.375em 0.5em
+      border-radius: 15px
 
-.social-icon
-  display: flex
-  align-items: center
-  padding: var(--iconPadding)
-  background-color: var(--iconColor)
-  line-height: 1
-  border-radius: var(--gRadius)
-  color: inherit
-
-  will-change: transform
-
-  + .social-icon
-    margin-left: var(--iconGap)
-
-  &:hover
-    opacity: .75
-    color: inherit
+  &.has-monotone-color
+    .wp-social-link
+      background-color: var(--main)
     
-    transform: translateY(-2px)
-    box-shadow: var(--shadow1)
-  
-  &:active
-    transition: none
-    transform: none
-    box-shadow: var(--shadow0)
+    &.is-style-logos-only
+      .wp-social-link
+        background-color: transparent
+        color: inherit
 
-  svg
-    width: var(--iconSize)
-    height: var(--iconSize)
-
-  path,
-  circle
-    fill: white
-
-.social-icon--has-label
-  padding-right: 0.5rem
-  padding-left: 0.5rem
+.widget .wp-social-link
+  margin-bottom: 0
 
   span
+    display: block
+    margin-left: .25rem
+
+.wp-social-link.has-label
+  span
     display: inline-block
-    white-space: nowrap
     margin-left: 0.25rem
     line-height: 1
     font-size: var(--smallFontSize)
-    transform: translateY(-1px)
+
+.wp-social-link-email,
+.wp-social-link-phone,
+.wp-social-link-location,
+.wp-social-link-faq
+  --color: var(--main)
 
 
 
@@ -312,80 +289,39 @@
 ///// WIDGET: Search
 
 .widget_search
-  --searchPadding: 0.25rem
-  --searchBg: var(--panelBg)
-  --searchInputPadding: 0.25rem 0.5rem
-
-  .screen-reader-text
-    display: none
-
-  svg
-    width: 1em
-
-  .header--top-row &
-    --searchPadding: 0.125rem
-    --searchBg: var(--textInvert)
-    --searchInputPadding: 0 0.375rem
-
-  .sidebar &
-    --searchPadding: 0.5rem
-    --searchInputPadding: 0.5rem 0.75rem
-
 
 // FORM
 .search-form
   display: flex
-  background-color: var(--searchBg)
-  padding: var(--searchPadding)
-
-  border-radius: var(--gRadius)
-  transition: var(--gTransition)
-
-  &:focus-within
-    outline: auto
-    box-shadow: var(--shadow1)
-
-.search-form label
-  display: flex
-  width: 100%
-
-  @media ($below-xs)
-    .header &
-      display: none
+  
+  label
+    display: flex
+    flex: 1
 
 
 // INPUT
 .search-field
-  width: 100%
-  border: 0
-  border-radius: var(--gRadius)
-  background-color: transparent
-  padding: var(--searchInputPadding)
-  outline: none
-  box-shadow: none
+  padding-top: 0.25rem
+  padding-bottom: 0.25rem
 
-  &:focus
-    background-color: transparent
-    box-shadow: none
+  border-radius: var(--gRadius) 0 0 var(--gRadius)
 
-  //
-  @media ($above-xs) and ($below-s)
-    width: 7em
-  //
-  @media ($below-xs)
-    flex: 1
+  .sidebar &
+    padding-top: 0.5rem
+    padding-bottom: 0.5rem
 
 
 // SUBMIT BUTTON
-.search-submit
+input.search-submit
   display: flex
   align-items: center
   padding: 0.25em 1em
-  background: var(--text) url('../svg/search.svg') no-repeat center center
+  background: var(--main) url('../svg/search.svg') no-repeat center center
   background-size: auto 65%
 
   color: transparent
   letter-spacing: -1em
+  border-radius: 0 var(--gRadius) var(--gRadius) 0
 
   &:hover
     color: transparent

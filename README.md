@@ -42,8 +42,8 @@ This is our workflow for starting a new project:
         { "name": "Pixel Studio", "email": "info@pixelstudio.id", "homepage": "https://pixelstudio.id" }
       ],
       "require": {
-        "pixelstudio/edje-wp-theme": "~9.0",
-        "pixelstudio/edje-wp-library": "~5.2.0",
+        "pixelstudio/edje-wp-theme": "~9.1",
+        "pixelstudio/edje-wp-library": "~6.0.0",
         "pixelstudio/wp-sync-db": "~1.8",
 
         "wpackagist-plugin/jetpack": "*",
