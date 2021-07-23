@@ -5,16 +5,16 @@ $colors: (
   ( var: '--textDim',    slug: 'text-dim',    hex: #90a4ae ),
   ( var: '--textInvert', slug: 'text-invert', hex: #ffffff ),
 
-  ( var: '--main',      slug: 'main',       hex: #3498db ),
-  ( var: '--mainDark',  slug: 'main-dark',  hex: #2573A7 ),
-  ( var: '--mainLight', slug: 'main-light', hex: #DEEDF8 ),
+  ( var: '--color1',      slug: 'color1',       hex: #3498db ),
+  ( var: '--color1Dark',  slug: 'color1-dark',  hex: #2573A7 ),
+  ( var: '--color1Light', slug: 'color1-light', hex: #DEEDF8 ),
 
-  ( var: '--sub',      slug: 'sub',       hex: #2ecc71 ),
-  ( var: '--subDark',  slug: 'sub-dark',  hex: #26A65B ),
-  ( var: '--subLight', slug: 'sub-light', hex: #DEF7E8 ),
+  ( var: '--color2',      slug: 'color2',       hex: #2ecc71 ),
+  ( var: '--color2Dark',  slug: 'color2-dark',  hex: #26A65B ),
+  ( var: '--color2Light', slug: 'color2-light', hex: #DEF7E8 ),
 
-  ( var: '--extra', slug: 'extra', hex: #e74c3c ),
-  ( var: '--extraLight', slug: 'extraLight', hex: #FBDEDB ),
+  ( var: '--color3',      slug: 'color3',       hex: #e74c3c ),
+  ( var: '--color3Light', slug: 'color3-light', hex: #FBDEDB ),
 );
 
 ///// MEDIA QUERY

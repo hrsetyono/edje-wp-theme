@@ -25,7 +25,7 @@ function my_register_block_example() {
     'description' => [ 'type' => 'array', 'default' => '' ],
     'toolbar' => [ 'type' => 'string', 'default' => 'left' ],
     'textColor' => [ 'type' => 'string', 'defeault' => 'var(--text)' ],
-    'bgColor' => [ 'type' => 'string', 'default' => 'var(--main)' ],
+    'bgColor' => [ 'type' => 'string', 'default' => 'var(--color1)' ],
   ];
 
   wp_localize_script( 'block-example', 'localizeBC', [ 'attributes' => $default_attributes ] );

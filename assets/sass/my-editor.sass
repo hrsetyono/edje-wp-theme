@@ -13,6 +13,21 @@
 .editor-styles-wrapper
   background-color: var(--siteBg)
 
+[class*="-background-color"]
+  background-color: var(--bgColor)
+
+.has-text-color
+  color: var(--textColor, var(--text))
+
+.has-background-dim
+  position: relative
+
+  &::before
+    content: ""
+    +absolute-fill
+    z-index: 1
+    opacity: .5
+    background-color: inherit
 
 ///// TYPOGRAPHY
 
@@ -99,19 +114,19 @@
     --tableBorder: var(--textDim)
 
   .has-subtle-pale-green-background-color
-    --tableHeader: var(--mainLight)
-    --tableBg: var(--mainLight)
-    --tableBorder: var(--main)
+    --tableHeader: var(--color1Light)
+    --tableBg: var(--color1Light)
+    --tableBorder: var(--color1)
 
   .has-subtle-pale-blue-background-color
-    --tableHeader: var(--subLight)
-    --tableBg: var(--subLight)
-    --tableBorder: var(--sub)
+    --tableHeader: var(--color2Light)
+    --tableBg: var(--color2Light)
+    --tableBorder: var(--color2)
 
   .has-subtle-pale-pink-background-color
-    --tableHeader: var(--extraLight)
-    --tableBg: var(--extraLight)
-    --tableBorder: var(--extra)
+    --tableHeader: var(--color3Light)
+    --tableBg: var(--color3Light)
+    --tableBorder: var(--color3)
 
 
 // Table stripes
@@ -133,38 +148,38 @@
   &[aria-label*="Subtle light gray"]
     --color: var(--textDim)
   &[aria-label*="Subtle pale green"]
-    --color: var(--mainLight)
+    --color: var(--color1Light)
   &[aria-label*="Subtle pale blue"]
-    --color: var(--subLight)
+    --color: var(--color2Light)
   &[aria-label*="Subtle pale pink"]
-    --color: var(--extraLight)
+    --color: var(--color3Light)
 
 .component-color-indicator
   &[style*="rgb(243, 244, 245);"]
     background-color: var(--textDim) !important
   &[style*="rgb(233, 251, 229);"]
-    background-color: var(--mainLight) !important
+    background-color: var(--color1Light) !important
   &[style*="rgb(231, 245, 254);"]
-    background-color: var(--subLight) !important
+    background-color: var(--color2Light) !important
   &[style*="rgb(252, 240, 239);"]
-    background-color: var(--extraLight) !important
+    background-color: var(--color3Light) !important
     
 
 
 ///// BUTTON
 
 .wp-block-button__link
-  background-color: var(--main)
+  background-color: var(--color1)
 
   .is-style-outline &
     background-color: transparent !important
     border-color: auto
-    color: var(--main)
+    color: var(--color1)
 
   .is-style-h-transparent &
     background-color: transparent !important
     border: none
-    color: var(--main)
+    color: var(--color1)
     text-transform: uppercase
     letter-spacing: 0.05em
 

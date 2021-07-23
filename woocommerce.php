@@ -17,28 +17,26 @@ if( is_singular( 'product' ) ) {
   Timber::render( 'shop/single.twig', $context );
 }
 
-// if SHOP or CATEGORY page
-else {
+// If SHOP page
+elseif( is_shop() ) {
+  $post = Timber::get_post( get_option( 'woocommerce_shop_page_id' ) );
+  $context['post'] = $post;
+  $context['products'] = Timber::get_posts();
+
+  return Timber::render( 'shop/shop.twig', $context );
+}
+
+// if CATEGORY page
+elseif( is_product_category() || is_product_tag() ) {
   $display_mode = woocommerce_get_loop_display_mode();
   $parent_term_id = 0;
 
-  // if CATEGORY page
-  if( is_product_category() || is_product_tag() ) {
-    $term_raw = get_queried_object();
-    $term = new TimberTerm( $term_raw->term_id );
-    $parent_term_id = $term_raw->term_id;
+  $term_raw = get_queried_object();
+  $term = new TimberTerm( $term_raw->term_id );
+  $parent_term_id = $term_raw->term_id;
 
-    $context['title'] = $term->name;
-    $context['content'] = wpautop( $term->description );
-  }
-  // if SHOP page
-  else {
-    $post = Timber::get_post( get_option( 'woocommerce_shop_page_id' ) );
-
-    $context['title'] = $post->title;
-    $context['content'] = $post->content;
-  }
-
+  $context['title'] = $term->name;
+  $context['content'] = wpautop( $term->description );
 
   // if display products
   if( $display_mode === 'both' || $display_mode === 'products' ) {

@@ -81,19 +81,19 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./assets/sass/gutenberg.sass");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./assets/sass/shop/shop.sass");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./assets/sass/gutenberg.sass":
+/***/ "./assets/sass/shop/shop.sass":
 /*!************************************!*\
-  !*** ./assets/sass/gutenberg.sass ***!
+  !*** ./assets/sass/shop/shop.sass ***!
   \************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./assets/sass/gutenberg.sass?");
+eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./assets/sass/shop/shop.sass?");
 
 /***/ })
 

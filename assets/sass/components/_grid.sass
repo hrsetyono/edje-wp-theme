@@ -1,3 +1,5 @@
+@use "sass:math"
+  
 [data-grid]
   display: -ms-grid
   display: grid
@@ -31,7 +33,7 @@
 @for $i from 1 through 12
   [data-column^="#{$i}"]
     --span: #{$i}
-    --width: #{ percentage($i / 12) }
+    --width: #{ percentage(math.div($i, 12)) }
 
 // Tablet and mobile size
 @media ($below-s)
@@ -42,14 +44,14 @@
   @for $i from 1 through 12
     [data-column$="-#{$i}"]
       --span: #{$i}
-      --width: #{ percentage($i / 12) }
+      --width: #{ percentage(math.div($i, 12)) }
 
 // Only tablet size
 @media ($above-xs) and ($below-s)
   @for $i from 1 through 12
     [data-column*="-#{$i}-"]
       --span: #{$i}
-      --width: #{ percentage($i / 12) }
+      --width: #{ percentage(math.div($i, 12)) }
 
 
 ///// TILE

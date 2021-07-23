@@ -30,12 +30,15 @@ const blockPath = './inc';
 
 const outputPath = 'assets/dist';
 
-const localDomain = 'http://lab.test/';
+const localDomain = 'http://shop.test/';
 const entryPoints = {
   'app': jsPath + '/app.js',
   'gutenberg': cssPath + '/gutenberg.sass',
   'my-editor': jsPath + '/my-editor.js',
   'my-admin': jsPath + '/my-admin.js',
+
+  'shop': cssPath + '/shop/shop.sass',
+  'shop-editor': cssPath + '/shop/shop-editor.sass',
 
   'my-block': blockPath + '/my-block/index.jsx',
 };

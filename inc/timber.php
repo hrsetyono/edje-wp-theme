@@ -45,12 +45,6 @@ class MyTimber extends TimberSite {
       $context['options'] = get_fields( 'options' );
     }
 
-    // WOOCOMMERCE
-    // if( class_exists('WooCommerce') ) {
-    //   global $woocommerce;
-    //   $context['woo'] = $woocommerce;
-    // }
-
     return $context;
   }
 

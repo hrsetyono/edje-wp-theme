@@ -31,7 +31,7 @@ function my_custom_block_styles() {
  * @filter h_disallowed_blocks
  */
 function my_disallowed_blocks( $blocks ) {
-  return [
+  $disabled_blocks = [
     'core/video',
     'core/pullquote',
     'core/nextpage',
@@ -63,24 +63,35 @@ function my_disallowed_blocks( $blocks ) {
     'core/page-list',
     'core/query-title',
     'core/post-terms',
-    'core/legacy-widget',
-
-    // jetpack
-    'jetpack/contact-info',
-    'jetpack/business-hours',
-    'jetpack/calendly',
-    'jetpack/eventbrite',
-    'jetpack/gif',
-    'jetpack/markdown',
-    'jetpack/opentable',
-    'jetpack/google-calendar',
-    'jetpack/podcast-player',
-    'jetpack/map',
-    'jetpack/pinterest',
-    'jetpack/revue',
-    'jetpack/repeat-visitor',
-    'jetpack/story',
+    'core/legacy-widget'
   ];
+
+  if( class_exists('Jetpack') ) {
+    $disabled_blocks = array_merge( $disabled_blocks, [
+      'jetpack/contact-info',
+      'jetpack/business-hours',
+      'jetpack/calendly',
+      'jetpack/eventbrite',
+      'jetpack/gif',
+      'jetpack/markdown',
+      'jetpack/opentable',
+      'jetpack/google-calendar',
+      'jetpack/podcast-player',
+      'jetpack/map',
+      'jetpack/pinterest',
+      'jetpack/revue',
+      'jetpack/repeat-visitor',
+      'jetpack/story',
+    ] );
+  }
+
+  if( class_exists('WooCommerce')) {
+    $disabled_blocks = array_merge( $disabled_blocks, [
+      'woocommerce/price-filter',
+      'woocommerce/product-search'
+    ] );
+  }
+  return $disabled_blocks;
 }
 
 

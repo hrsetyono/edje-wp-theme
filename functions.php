@@ -65,11 +65,11 @@ function my_after_setup_theme() {
   add_theme_support( 'widgets' );
   add_theme_support( 'customize-selective-refresh-widgets' );
 
-
   // Edje Support
   add_theme_support( 'h-faq-block-v2' );
   add_theme_support( 'h-icon-block' );
   add_theme_support( 'h-comment-editor' ); // Enable this if you allow comment in the website
+  add_theme_support( 'h-classic-widgets' );
 
   // Gutenberg support
   add_theme_support( 'align-wide' );
@@ -81,23 +81,23 @@ function my_after_setup_theme() {
     [ 'name' => 'Text Dim',    'slug' => 'text-dim',    'color' => 'var(--textDim)' ],
     [ 'name' => 'Text Invert', 'slug' => 'text-invert', 'color' => 'var(--textInvert)' ],
 
-    [ 'name' => 'Main',       'slug' => 'main',       'color' => 'var(--main)' ],
-    [ 'name' => 'Main Dark',  'slug' => 'main-dark', 'color' => 'var(--mainDark)' ],
-    [ 'name' => 'Main Light', 'slug' => 'main-light', 'color' => 'var(--mainLight)' ],
+    [ 'name' => 'Primary',       'slug' => 'color1',       'color' => 'var(--color1)' ],
+    [ 'name' => 'Primary Dark',  'slug' => 'color1-dark',  'color' => 'var(--color1Dark)' ],
+    [ 'name' => 'Primary Light', 'slug' => 'color1-light', 'color' => 'var(--color1Light)' ],
 
-    [ 'name' => 'Sub',       'slug' => 'sub',       'color' => 'var(--sub)' ],
-    [ 'name' => 'Sub Light', 'slug' => 'sub-light', 'color' => 'var(--subLight)' ],
+    [ 'name' => 'Secondary',       'slug' => 'color2',       'color' => 'var(--color2)' ],
+    [ 'name' => 'Secondary Light', 'slug' => 'color2-light', 'color' => 'var(--color2Light)' ],
 
-    [ 'name' => 'Extra',       'slug' => 'extra',       'color' => 'var(--extra)' ],
-    [ 'name' => 'Extra Light', 'slug' => 'extra-light', 'color' => 'var(--extraLight)' ],
+    [ 'name' => 'Tertiary',       'slug' => 'color3',       'color' => 'var(--color3)' ],
+    [ 'name' => 'Tertiary Light', 'slug' => 'color3-light', 'color' => 'var(--color3Light)' ],
   ] );
 
   add_theme_support( 'editor-font-sizes', [
     [ 'name' => 'Small', 'slug' => 'small', 'size' => 14 ],
     [ 'name' => 'Regular', 'slug' => 'regular', 'size' => 16 ],
-    [ 'name' => 'Medium', 'slug' => 'medium', 'size' => 20 ],
-    [ 'name' => 'Large', 'slug' => 'large', 'size' => 24 ],
-    [ 'name' => 'Huge', 'slug' => 'huge', 'size' => 32 ],
+    [ 'name' => 'Medium', 'slug' => 'medium', 'size' => 18 ],
+    [ 'name' => 'Large', 'slug' => 'large', 'size' => 22 ],
+    [ 'name' => 'Huge', 'slug' => 'huge', 'size' => 30 ],
   ] );
 
   remove_theme_support( 'core-block-patterns' );

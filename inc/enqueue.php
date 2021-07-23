@@ -13,11 +13,11 @@ add_action( 'enqueue_block_editor_assets', 'my_editor_assets', 100 );
  * @action wp_enqueue_scripts 100
  */
 function my_public_assets() {
-  $dist = get_template_directory_uri() . '/assets/dist';
+  $dir = get_template_directory_uri() . '/assets/dist';
 
-  wp_enqueue_style( 'my-app', $dist . '/app.css', [], THEME_VERSION );
-  wp_enqueue_style( 'my-gutenberg', $dist . '/gutenberg.css', [], THEME_VERSION );
-
+  wp_enqueue_style( 'my-app', $dir . '/app.css', [], THEME_VERSION );
+  wp_enqueue_style( 'my-gutenberg', $dir . '/gutenberg.css', [], THEME_VERSION );
+  
   // wp_enqueue_script( 'h-lightbox' );
   // wp_enqueue_script( 'h-slider' );
   // wp_enqueue_style( 'h-lightbox' );
@@ -28,7 +28,7 @@ function my_public_assets() {
   wp_dequeue_style( 'wp-block-library-theme' );
 
   // Javascript
-  wp_enqueue_script( 'my-app', $dist . '/app.js', [], THEME_VERSION, true );
+  wp_enqueue_script( 'my-app', $dir . '/app.js', [], THEME_VERSION, true );
 }
 
 
@@ -37,10 +37,10 @@ function my_public_assets() {
  * @action admin_enqueue_scripts 100
  */
 function my_admin_assets() {
-  $dist = get_template_directory_uri() . '/assets/dist';
+  $dir = get_template_directory_uri() . '/assets/dist';
 
-  wp_enqueue_script( 'my-admin', $dist . '/my-admin.js', [], THEME_VERSION , true);
-  wp_enqueue_style( 'my-admin', $dist . '/my-admin.css', [], THEME_VERSION );
+  wp_enqueue_script( 'my-admin', $dir . '/my-admin.js', [], THEME_VERSION , true);
+  wp_enqueue_style( 'my-admin', $dir . '/my-admin.css', [], THEME_VERSION );
 }
 
 
@@ -51,8 +51,8 @@ function my_admin_assets() {
 function my_editor_assets() {
   if ( !is_admin() ) { return; }
   
-  $dist = get_template_directory_uri() . '/assets/dist';
+  $dir = get_template_directory_uri() . '/assets/dist';
 
-  wp_enqueue_script( 'my-editor', $dist . '/my-editor.js', [ 'wp-blocks', 'wp-dom' ] , THEME_VERSION, true );
-  wp_enqueue_style( 'my-editor', $dist . '/my-editor.css', [ 'wp-edit-blocks' ], THEME_VERSION );
+  wp_enqueue_script( 'my-editor', $dir . '/my-editor.js', [ 'wp-blocks', 'wp-dom' ] , THEME_VERSION, true );
+  wp_enqueue_style( 'my-editor', $dir . '/my-editor.css', [ 'wp-edit-blocks' ], THEME_VERSION );
 }

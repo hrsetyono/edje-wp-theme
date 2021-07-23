@@ -5,7 +5,7 @@
 
     #{ $var } : #{ $hex }
     // RGB version for transparency, use it like this:
-    // `rgba(--main, .5)` which will output `rgba(var(--mainRGB), .5)`
+    // `rgba(--color1, .5)` which will output `rgba(var(--color1RGB), .5)`
     #{ $var }RGB : #{ red($hex) }, #{ green($hex) }, #{ blue($hex) }
     
 
@@ -30,9 +30,9 @@
   --fontSize       : 16px
   --xsmallFontSize : 12px
   --smallFontSize  : 14px
-  --mediumFontSize : 20px
-  --largeFontSize  : 24px
-  --hugeFontSize   : 32px
+  --mediumFontSize : 18px
+  --largeFontSize  : 22px
+  --hugeFontSize   : 30px
 
   // HEADING -----
   --hFontFamily    : "Noto Serif", "Apple Garamond", "Baskerville", "Times New Roman", "Droid Serif", "Times","Source Serif Pro", serif
@@ -56,7 +56,7 @@
 
   // LINK -----
   --linkColor      : inherit
-  --linkColorHover : var(--main)
+  --linkColorHover : var(--color1)
 
 
   // GRID -----
@@ -81,6 +81,19 @@
   --adminBarHeight : 0px
   --blockSpacing   : 1.5rem
   --groupSpacing   : 3rem
+
+
+  // Backward compatibility for old variable naming
+  --main: var(--color1)
+  --mainDark: var(--color1Dark)
+  --mainLight: var(--color1Light)
+
+  --sub: var(--color2)
+  --subDark: var(--color2Dark)
+  --subLight: var(--color2Light)
+  
+  --extra: var(--color3)
+  --extraLight: var(--color3Light)
 
   
   @media ($below-m)

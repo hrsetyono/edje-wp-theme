@@ -17,41 +17,4 @@
 .woocommerce-info,
 .woocommerce-message,
 .woocommerce-error
-  +h( d-flex fd-column-reverse ai-end )
-  +h( fixed z100 p1_25 bg-gray-light shadow2 brad backface-hidden )
-  bottom: 1em
-  right: 1em
-
   animation: 1s flipInX both
-
-  .button
-    +h( mt0_5 pv0_25 )
-
-
-.woocommerce-error
-  +h( bg-red list-none c-white )
-
-
-.h-close-toast
-  +h( cursor-pointer absolute top0 left0  bg-red )
-  +h( ta-center c-white lh1 fs-h5 fw-header  brad-circle shadow1 )
-  width: 24px
-  height: 24px
-  transform: translateX( -50% ) translateY( -50% )
-
-  &:hover
-    +h( o70 )
-
-
-// store-wide notice
-.woocommerce-store-notice
-  +h( fixed bottom0 left0 right0 bg-main pv0_5 ph1 )
-  +h( ta-center c-white shadow2 )
-  
-  a
-    +h( d-inline-block float-right bg-main-dark pv0_5 ph2 )
-    +h( c-white td-u )
-    margin: -0.5em -1em
-
-    &:hover
-      +h( o70 )

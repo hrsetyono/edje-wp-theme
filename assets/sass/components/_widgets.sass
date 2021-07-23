@@ -140,8 +140,8 @@
     transition: var(--gTransition)
 
   a:hover
-    border-color: var(--main)
-    background-color: var(--mainLight)
+    border-color: var(--color1)
+    background-color: var(--color1Light)
 
   a:active
     transform: translateY(1px)
@@ -242,7 +242,7 @@
 
   &.has-monotone-color
     .wp-social-link
-      background-color: var(--main)
+      background-color: var(--color1)
     
     &.is-style-logos-only
       .wp-social-link
@@ -267,7 +267,7 @@
 .wp-social-link-phone,
 .wp-social-link-location,
 .wp-social-link-faq
-  --color: var(--main)
+  --color: var(--color1)
 
 
 
@@ -287,8 +287,6 @@
     
   
 ///// WIDGET: Search
-
-.widget_search
 
 // FORM
 .search-form
@@ -316,7 +314,7 @@ input.search-submit
   display: flex
   align-items: center
   padding: 0.25em 1em
-  background: var(--main) url('../svg/search.svg') no-repeat center center
+  background: var(--color1) url('../svg/search.svg') no-repeat center center
   background-size: auto 65%
 
   color: transparent
@@ -344,8 +342,8 @@ input.search-submit
   border-radius: var(--gRadius)
 
   &:hover
-    --toggleColor: var(--main)
-    background-color: var(--mainLight)
+    --toggleColor: var(--color1)
+    background-color: var(--color1Light)
 
   svg
     height: 1.125rem
