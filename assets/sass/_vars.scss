@@ -1,20 +1,31 @@
 // This file is using .scss format to make it easier to write Maps & List
-
+// Use this for the Filter value https://codepen.io/sosuke/pen/Pjoqqp
 $colors: (
-  ( var: '--text',       slug: 'text-base',   hex: #2c3e50 ),
-  ( var: '--textDim',    slug: 'text-dim',    hex: #90a4ae ),
-  ( var: '--textInvert', slug: 'text-invert', hex: #ffffff ),
+  ( var: '--text',       slug: 'text-base',   hex: #2c3e50,
+    filter: invert(18%) sepia(12%) saturate(1870%) hue-rotate(169deg) brightness(94%) contrast(83%) ),
+  ( var: '--textDim',    slug: 'text-dim',    hex: #90a4ae,
+    filter: invert(71%) sepia(7%) saturate(716%) hue-rotate(155deg) brightness(90%) contrast(88%) ),
+  ( var: '--textInvert', slug: 'text-invert', hex: #ffffff,
+    filter: invert(100%) sepia(10%) saturate(7462%) hue-rotate(173deg) brightness(117%) contrast(108%) ),
 
-  ( var: '--color1',      slug: 'color1',       hex: #3498db ),
-  ( var: '--color1Dark',  slug: 'color1-dark',  hex: #2573A7 ),
-  ( var: '--color1Light', slug: 'color1-light', hex: #DEEDF8 ),
+  ( var: '--color1',      slug: 'color1',       hex: #3498db,
+    filter: invert(59%) sepia(80%) saturate(2621%) hue-rotate(178deg) brightness(91%) contrast(87%) ),
+  ( var: '--color1Dark',  slug: 'color1-dark',  hex: #2573A7,
+    filter: invert(39%) sepia(9%) saturate(4187%) hue-rotate(163deg) brightness(95%) contrast(86%) ),
+  ( var: '--color1Light', slug: 'color1-light', hex: #DEEDF8,
+    filter: invert(87%) sepia(18%) saturate(184%) hue-rotate(170deg) brightness(105%) contrast(95%) ),
 
-  ( var: '--color2',      slug: 'color2',       hex: #2ecc71 ),
-  ( var: '--color2Dark',  slug: 'color2-dark',  hex: #26A65B ),
-  ( var: '--color2Light', slug: 'color2-light', hex: #DEF7E8 ),
+  ( var: '--color2',      slug: 'color2',       hex: #2ecc71,
+    filter: invert(64%) sepia(63%) saturate(493%) hue-rotate(92deg) brightness(90%) contrast(90%) ),
+  ( var: '--color2Dark',  slug: 'color2-dark',  hex: #26A65B,
+    filter: invert(49%) sepia(22%) saturate(1352%) hue-rotate(92deg) brightness(103%) contrast(90%) ),
+  ( var: '--color2Light', slug: 'color2-light', hex: #DEF7E8,
+    filter: invert(98%) sepia(67%) saturate(213%) hue-rotate(65deg) brightness(100%) contrast(95%) ),
 
-  ( var: '--color3',      slug: 'color3',       hex: #e74c3c ),
-  ( var: '--color3Light', slug: 'color3-light', hex: #FBDEDB ),
+  ( var: '--color3',      slug: 'color3',       hex: #e74c3c,
+    filter: invert(59%) sepia(98%) saturate(5598%) hue-rotate(343deg) brightness(99%) contrast(83%) ),
+  ( var: '--color3Light', slug: 'color3-light', hex: #FBDEDB,
+    filter: invert(96%) sepia(66%) saturate(482%) hue-rotate(292deg) brightness(101%) contrast(97%) ),
 );
 
 ///// MEDIA QUERY

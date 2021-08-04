@@ -2,11 +2,13 @@
   @each $c in $colors
     $var: map-get($c, 'var')
     $hex: map-get($c, 'hex')
+    $filter: map-get($c, 'filter')
 
     #{ $var } : #{ $hex }
     // RGB version for transparency, use it like this:
     // `rgba(--color1, .5)` which will output `rgba(var(--color1RGB), .5)`
     #{ $var }RGB : #{ red($hex) }, #{ green($hex) }, #{ blue($hex) }
+    #{ $var }Filter: #{ $filter }
     
 
   // Other colors
@@ -136,3 +138,4 @@ body.admin-bar
   .has-#{ $slug }-color
     --textColor: var(#{ $var })
     --textColorRGB: var(#{ $var }RGB)
+    --filterColor: var(#{ $var }Filter)

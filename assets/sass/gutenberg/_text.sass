@@ -3,7 +3,8 @@
 [class*="-background-color"]
   background-color: var(--bgColor)
 
-.has-text-color
+.has-text-color,
+.has-inline-color
   color: var(--textColor, var(--text))
 
 ///// GENERAL & ALIGNMENT
@@ -36,7 +37,7 @@ main,
 
 // Add rim to the side
 body:not(.single-post) main,
-.has-background .wp-block-group__inner-container,
+.wp-block-group__inner-container,
 .wp-block-cover__inner-container
   @media ($below-l)
     padding-right: var(--gridRim)

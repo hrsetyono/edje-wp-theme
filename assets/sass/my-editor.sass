@@ -16,7 +16,8 @@
 [class*="-background-color"]
   background-color: var(--bgColor)
 
-.has-text-color
+.has-text-color,
+.has-inline-color
   color: var(--textColor, var(--text))
 
 .has-background-dim
@@ -173,7 +174,7 @@
 
   .is-style-outline &
     background-color: transparent !important
-    border-color: auto
+    border: 2px solid currentColor
     color: var(--color1)
 
   .is-style-h-transparent &
