@@ -63,6 +63,32 @@
   h6
     font-size: var(--h6Size)
 
+///// LIST
+
+[data-type="core/list"]
+  ol
+    list-style-type: lower-alpha
+
+  &.has-background
+    padding: 1rem 1.5rem
+    padding-left: 2.5rem
+
+///// HEADING
+
+[data-type="core/heading"]
+  &.has-background
+    padding: 1rem 1.5rem
+
+  strong
+    font-weight: var(--fontWeight)
+
+  sub,
+  sup
+    text-transform: uppercase
+    letter-spacing: 0.05em
+    font-size: 50%
+    font-weight: 400
+
 
 ///// QUOTE
 
@@ -91,79 +117,52 @@
 ///// TABLE
 
 .wp-block-table
-  --tableHeader: #{ rgba(black, .1) }
-  --tableBg: white
-  --tableBorder: black
 
-  thead tr,
-  tfoot tr
-    background-color: var(--tableHeader)
+  margin-top: var(--blockSpacing)
+  margin-bottom: var(--blockSpacing)
+
+  table
+    --theadBg: var(--bgColor, var(--textInvert))
+    --theadColor: var(--textColor, var(--text))
+    --tbodyBg: var(--textInvert)
+    --tbodyColor: var(--text)
+    border-collapse: collapse
+    border-spacing: 0
+
+  &.is-style-h-full-color table
+    --tbodyBg: var(--theadBg)
+    --tbodyColor: var(--theadColor)
+
+  &.is-style-stripes
+    th, td
+      border: 1px solid rgba(black, .5)
+    tbody tr:nth-child(odd)
+      background: none
+    tbody tr:nth-child(even)
+      background-color: var(--theadBg)
+      color: var(--theadColor)
+
+  thead,
+  tfoot
+    background-color: var(--theadBg)
+    color: var(--theadColor)
     font-weight: 700
     text-align: left
+  thead
+    border-bottom: 2px solid var(--text)
+  tfoot
+    border-top: 2px solid var(--text)
+
   tbody
-    background-color: var(--tableBg)
-  thead tr
-    border-bottom: 3px solid var(--tableBorder)
-  tfoot tr
-    border-top: 3px solid var(--tableBorder)
+    background-color: var(--tbodyBg)
+    color: var(--tbodyColor)
+
+  tr
+    border: none
+
   th, td
-    border: 1px solid rgba(black, .2)
+    border: 1px solid rgba(black, .5)
     
-  .has-subtle-light-gray-background-color
-    --tableHeader: #{ rgba(--textDim, .1) }
-    --tableBg: #{ rgba(--textDim, .05) }
-    --tableBorder: var(--textDim)
-
-  .has-subtle-pale-green-background-color
-    --tableHeader: var(--color1Light)
-    --tableBg: var(--color1Light)
-    --tableBorder: var(--color1)
-
-  .has-subtle-pale-blue-background-color
-    --tableHeader: var(--color2Light)
-    --tableBg: var(--color2Light)
-    --tableBorder: var(--color2)
-
-  .has-subtle-pale-pink-background-color
-    --tableHeader: var(--color3Light)
-    --tableBg: var(--color3Light)
-    --tableBorder: var(--color3)
-
-
-// Table stripes
-.wp-block-table.is-style-stripes
-  --tableBg: #{ rgba(--textDim, .05) }
-  border-collapse: collapse
-
-  tbody tr:nth-child(odd)
-    background-color: white
-  th, td
-    border: 1px solid rgba(black, .2)
-
-// Change Table's color palette
-.components-circular-option-picker__option
-  &[aria-label*="Color: Subtle"]
-    background-color: var(--color) !important
-    color: var(--color) !important
-
-  &[aria-label*="Subtle light gray"]
-    --color: var(--textDim)
-  &[aria-label*="Subtle pale green"]
-    --color: var(--color1Light)
-  &[aria-label*="Subtle pale blue"]
-    --color: var(--color2Light)
-  &[aria-label*="Subtle pale pink"]
-    --color: var(--color3Light)
-
-.component-color-indicator
-  &[style*="rgb(243, 244, 245);"]
-    background-color: var(--textDim) !important
-  &[style*="rgb(233, 251, 229);"]
-    background-color: var(--color1Light) !important
-  &[style*="rgb(231, 245, 254);"]
-    background-color: var(--color2Light) !important
-  &[style*="rgb(252, 240, 239);"]
-    background-color: var(--color3Light) !important
     
 
 
@@ -171,21 +170,35 @@
 
 .wp-block-button__link
   background-color: var(--color1)
+  text-transform: uppercase
+  font-weight: var(--hFontWeight)
 
   .is-style-outline &
-    background-color: transparent !important
     border: 2px solid currentColor
     color: var(--color1)
 
-  .is-style-h-transparent &
-    background-color: transparent !important
-    border: none
-    color: var(--color1)
-    text-transform: uppercase
-    letter-spacing: 0.05em
+    &:not(:hover)
+      background-color: transparent !important
 
-    &:focus
-      box-shadow: none
+    &:hover
+      background-color: var(--bgColor, transparent)
+
+  .is-style-h-transparent &
+    border: none
+    color: var(--textColor, var(--text))
+
+    &:not(:hover)
+      background-color: transparent !important
+
+    &:hover
+      background-color: var(--bgColor, transparent)
+
+
+///// COLUMN
+
+.wp-block-column.has-background
+  padding: 1rem
+  border-radius: var(--gRadius)
 
 
 ///// CODE

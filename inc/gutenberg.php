@@ -49,7 +49,7 @@ function my_disallowed_blocks( $blocks ) {
     'core/categories',
 
     // full-site editing
-    // 'core/site-logo',
+    'core/site-logo',
     'core/site-tagline',
     'core/site-title',
     'core/query',
@@ -70,6 +70,10 @@ function my_disallowed_blocks( $blocks ) {
     $disabled_blocks = array_merge( $disabled_blocks, [
       'jetpack/contact-info',
       'jetpack/business-hours',
+      'jetpack/slideshow',
+      'jetpack/image-compare',
+      'jetpack/rating-star',
+      'jetpack/send-a-message',
       'jetpack/calendly',
       'jetpack/eventbrite',
       'jetpack/gif',

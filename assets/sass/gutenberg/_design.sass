@@ -19,8 +19,6 @@
 
 // General Button
 .wp-block-button
-  --bgColor: var(--color1)
-
   + .wp-block-button
     margin-left: 0.75rem
 
@@ -95,18 +93,22 @@
   align-items: center
 
   .is-style-outline &
-    --bgColor: transparent
-    --textColor: currentColor
-
     border-color: inherit
+    background-color: transparent
+    color: var(--textColor, var(--text))
+
+    &:hover
+      background-color: var(--bgColor, transparent)
 
   .is-style-h-transparent &
-    --bgColor: transparent
-    --textColor: currentColor
-    
     margin-left: -0.5rem
     padding-right: 0.5rem
     padding-left: 0.5rem
+    background-color: transparent
+    color: var(--textColor, var(--text))
+
+    &:hover
+      background-color: var(--bgColor, transparent)
 
 
 ///// COLUMNS
@@ -129,6 +131,11 @@
   &[style*="flex-basis"]
     flex-grow: 0
 
+  &.has-background
+    padding: var(--blockSpacing)
+    border-radius: var(--gRadius)
+
+
   @media ($above-s)
     + .wp-block-column
       margin-left: 1.5rem
@@ -150,6 +157,10 @@
 
   &.has-background
     padding: var(--groupSpacing) 0
+
+  &:not(.alignfull)
+    padding: var(--blockSpacing)
+    border-radius: var(--gRadius)
 
 
 

@@ -30,7 +30,7 @@ const blockPath = './inc';
 
 const outputPath = 'assets/dist';
 
-const localDomain = 'http://shop.test/';
+const localDomain = 'http://lab.test/';
 const entryPoints = {
   'app': jsPath + '/app.js',
   'gutenberg': cssPath + '/gutenberg.sass',

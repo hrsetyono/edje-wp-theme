@@ -20,7 +20,12 @@
 
   &.alignfull
     img
+      width: 100%
       border-radius: 0
+    
+  &.alignwide
+    img
+      width: 100%
 
   figcaption
     @extend %figcaption
@@ -160,8 +165,6 @@ ul.blocks-gallery-grid
   background-color: var(--bgColor, black)
   min-height: 400px
   padding: var(--blockSpacing) 0
-
-  text-align: center
 
 
 .has-custom-content-position
