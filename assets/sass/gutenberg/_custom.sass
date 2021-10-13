@@ -3,6 +3,7 @@
 .wp-block-h-icon
   --iconSize: 60px
   --iconPadding: 1rem
+  --iconGap: 1rem
 
   --bgColor: #e5e5e5
   --textColor: inherit
@@ -10,39 +11,56 @@
   display: flex
   align-items: flex-start
   color: var(--textColor)
-  border-radius: 4px
-  
+  border-radius: var(--gRadius)
+
   &.is-style-boxed
     --iconPadding: 0
     --iconSize: 28px
 
-    padding: 0.75rem
+    padding: 0.5rem
     background-color: var(--bgColor)
+    box-shadow: var(--shadow0)
 
+  &.use-image
+     --iconSize: 60px 
 
-  // toolbar option
-  &.has-icon-position-left
-    figure
-      margin-right: 1rem
-
-  &.has-icon-position-right
-    figure
-      order: 1
-      margin-left: 1rem
+  &.use-image.is-style-boxed
+    @media ($above-s) and ($below-m)
+      --iconSize: 45px
+    @media ($above-xs) and ($below-s)
+      --iconSize: 35px
 
   &.has-icon-position-top
     flex-wrap: wrap
-
-    figure
-      margin-bottom: 0.5rem
-    dl
-      flex: auto
 
   &.has-text-align-center
     justify-content: center
 
   &.has-text-align-right
     justify-content: flex-end
+
+  &.has-no-description
+    align-items: center
+
+  @media ($below-m)
+    --iconGap: 0.75rem
+
+// if has link
+a.wp-block-h-icon
+  text-decoration: none
+  will-change: transform
+
+  &:hover
+    opacity: .9
+    transform: translateY(-2px)
+    color: var(--textColor)
+
+    dt
+      text-decoration: underline
+  
+  &:active
+    transform: none
+    transition: none
 
 
 .wp-block-h-icon__figure
@@ -61,9 +79,19 @@
 
   .is-style-boxed &
     background-color: transparent
+
+  .has-icon-position-left &
+    margin-right: var(--iconGap)
+
+  .has-icon-position-right &
+    order: 1
+    margin-left: var(--iconGap)
+
+  .has-icon-position-top &
+    margin-bottom: var(--iconGap)
+
   
   .use-image &
-    --iconSize: 60px
     padding: 0
     background-color: transparent
 
@@ -76,61 +104,31 @@
     max-height: 100%
 
 
-a.wp-block-h-icon
-  text-decoration: none
-  will-change: transform
+.wp-block-h-icon__content
+  flex: 1
+  width: 100%
 
-  &:hover
-    opacity: .9
-    transform: translateY(-2px)
-    color: var(--textColor)
+  .has-icon-position-top &
+    flex: auto
 
-    dt
-      text-decoration: underline
-  
-  &:active
-    transform: none
-    transition: none
-
-
-
-///// Description
-
-.wp-block-h-icon
-  &.has-no-description
-    align-items: center
-
-  dl, dt, dd, dd p
-    margin: 0
-  dl
-    flex: 1
-    width: 100%
   dt
     font-family: var(--hFontFamily)
     font-weight: 700
-    font-size: 1.5rem
+    font-size: var(--h4Size)
     line-height: var(--hLineHeight)
+
+    .is-style-boxed &
+      font-weight: 500
+      font-family: var(--fontFamily)
+      font-size: var(--h5Size)
+
+      @media ($below-m)
+        font-size: var(--h6Size)
+
   dd
     margin-top: 0.75rem
   dd p + p
     margin-top: 0.5rem
-
-
-.wp-block-h-icon.is-small-size
-  --iconSize: 50px
-  --iconPadding: 0.75rem
-  align-items: center
-  padding: 0
-
-  &.has-background
-    padding: 0.5rem
-  &.has-description
-    align-items: flex-start
-
-  dt
-    font-size: 1.125rem
-    text-transform: none
-    letter-spacing: 0
 
   
 
