@@ -59,11 +59,9 @@ function my_disallowed_blocks( $blocks ) {
     'core/post-excerpt',
     'core/post-featured-image',
     'core/loginout',
-    'core/posts-list',
     'core/page-list',
     'core/query-title',
     'core/post-terms',
-    'core/legacy-widget'
   ];
 
   if( class_exists('Jetpack') ) {

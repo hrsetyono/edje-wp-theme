@@ -26,8 +26,8 @@ if( is_admin() ) {
 }
 
 if( class_exists('WooCommerce') ) {
-  require_once $inc . '/shop-setup.php';
-  require_once $inc . '/shop-filters.php';
+  require_once __DIR__ . '/inc-shop/shop-setup.php';
+  require_once __DIR__ . '/inc-shop/shop-filters.php';
 }
 
 

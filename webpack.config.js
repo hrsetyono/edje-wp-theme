@@ -19,28 +19,30 @@ Then uncomment all commented lines below
 */
 
 // const { VueLoaderPlugin } = require('vue-loader');
-const DependencyExtractionWebpackPlugin = require( '@wordpress/dependency-extraction-webpack-plugin' );
+const DependencyExtractionWebpackPlugin = require('@wordpress/dependency-extraction-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
-var path = require('path');
+const path = require('path');
 
 const cssPath = './assets/sass';
 const jsPath = './assets/js';
+const shopPath = './assets/sass-shop';
+
 const blockPath = './inc';
 
 const outputPath = 'assets/dist';
 
 const localDomain = 'http://lab.test/';
 const entryPoints = {
-  'app': jsPath + '/app.js',
-  'gutenberg': cssPath + '/gutenberg.sass',
-  'my-editor': jsPath + '/my-editor.js',
-  'my-admin': jsPath + '/my-admin.js',
+  app: `${jsPath}/app.js`,
+  gutenberg: `${cssPath}/gutenberg.sass`,
+  'my-editor': `${jsPath}/my-editor.js`,
+  'my-admin': `${jsPath}/my-admin.js`,
 
-  'shop': cssPath + '/shop/shop.sass',
-  'shop-editor': cssPath + '/shop/shop-editor.sass',
+  shop: `${shopPath}/shop.sass`,
+  'shop-editor': `${shopPath}/shop-editor.sass`,
 
-  'my-block': blockPath + '/my-block/index.jsx',
+  'my-block': `${blockPath}/my-block/index.jsx`,
 };
 
 module.exports = {
@@ -51,20 +53,20 @@ module.exports = {
   },
   plugins: [
     // new VueLoaderPlugin(),
-    
+
     new BrowserSyncPlugin({
       proxy: localDomain,
-      files: [ outputPath + '/*.css' ],
+      files: [`${outputPath}/*.css`],
       injectCss: true,
-    }, { reload: false, }),
+    }, { reload: false }),
 
     new MiniCssExtractPlugin({
       filename: '[name].css',
     }),
 
-    new DependencyExtractionWebpackPlugin( {
-      injectPolyfill: true
-    } ),
+    new DependencyExtractionWebpackPlugin({
+      injectPolyfill: true,
+    }),
   ],
   module: {
     rules: [
@@ -78,30 +80,29 @@ module.exports = {
           MiniCssExtractPlugin.loader,
           'css-loader',
           'sass-loader',
-        ]
+        ],
       },
       {
         test: /\.(jpg|jpeg|png|gif|woff|woff2|eot|ttf|svg)$/i,
-        use: 'url-loader?limit=1024'
+        use: 'url-loader?limit=1024',
       },
       {
         test: /\.jsx$/i,
         use: [
-					require.resolve( 'thread-loader' ),
-					{
-						loader: require.resolve( 'babel-loader' ),
-						options: {
-              cacheDirectory:	process.env.BABEL_CACHE_DIRECTORY || true,
+          require.resolve('thread-loader'),
+          {
+            loader: require.resolve('babel-loader'),
+            options: {
+              cacheDirectory: process.env.BABEL_CACHE_DIRECTORY || true,
               babelrc: false,
               configFile: false,
               presets: [
-                require.resolve( '@wordpress/babel-preset-default' ),
+                require.resolve('@wordpress/babel-preset-default'),
               ],
-						},
-					},
-				],
-      }
-    ]
+            },
+          },
+        ],
+      },
+    ],
   },
-  
 };

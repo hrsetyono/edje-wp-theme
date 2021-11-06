@@ -2,6 +2,7 @@
 
 add_filter( 'timber_context', 'my_add_shop_context' );
 
+add_action( 'init', 'my_shop_init' );
 add_action( 'after_setup_theme', 'my_shop_support' );
 add_action( 'wp_enqueue_scripts', 'my_enqueue_shop_assets' );
 add_action( 'enqueue_block_editor_assets', 'my_editor_shop_assets', 100 );
@@ -32,6 +33,25 @@ function timber_set_product( $post ) {
   $product = isset( $post->product ) ? $post->product : wc_get_product( $post->ID );
 }
 
+/**
+ * Remove image sizes
+ */
+function my_shop_init() {
+  // remove all woocommerce image sizes
+  $wc_image_sizes = [
+    'woocommerce_thumbnail',
+    'woocommerce_single',
+    'woocommerce_gallery_thumbnail',
+    'shop_catalog',
+    'shop_single',
+    'shop_thumbnail'
+  ];
+
+  foreach( $wc_image_sizes as $s ) {
+    remove_image_size( $s );
+  }
+}
+
 
 /**
  * Register Woocommerce assets here
@@ -44,6 +64,8 @@ function my_enqueue_shop_assets() {
   
   wp_deregister_style( 'wc-block-vendors-style' );
   wp_deregister_style( 'wc-block-style' );
+  wp_deregister_style( 'wc-blocks-vendors-style' );
+  wp_deregister_style( 'wc-blocks-style' );
 }
 
 /**
@@ -60,7 +82,10 @@ function my_editor_shop_assets() {
 
   wp_deregister_style( 'wc-block-vendors-style' );
   wp_deregister_style( 'wc-block-style' );  
-  wp_deregister_style( 'wc-block-editor' ); 
+  wp_deregister_style( 'wc-block-editor' );
+  wp_deregister_style( 'wc-blocks-vendors-style' );
+  wp_deregister_style( 'wc-blocks-style' );  
+  wp_deregister_style( 'wc-blocks-editor' ); 
 }
 
 

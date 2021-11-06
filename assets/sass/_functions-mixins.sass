@@ -1,3 +1,5 @@
+@use "sass:math"
+
 ///// FUNCTIONS
 
 //
@@ -63,11 +65,12 @@
 //   @include triangle( n, #333, 20px, 12px );
 //
 @mixin triangle( $direction, $color, $width, $height: false)
+  $half-width: math.div($width, 2)
 
   // If height is not specified, make the triangle equalateral
   @if not $height
     @if $direction in (n, e, s, w)
-      $height : ($width / 2) * 1.732
+      $height : ($half-width) * 1.732
     @else if $direction in (ne, se, sw, nw)
       $height : $width
 
@@ -78,17 +81,18 @@
   border-style: solid
   border-color: transparent
 
+
   @if $direction == n
-    border-width: 0 $width/2 $height $width/2
+    border-width: 0 $half-width $height $half-width
     border-bottom-color: $color
   @else if $direction == e
-    border-width: $width/2 0 $width/2 $height
+    border-width: $half-width 0 $half-width $height
     border-left-color : $color
   @else if $direction == s 
-    border-width: $height $width/2 0 $width/2
+    border-width: $height $half-width 0 $half-width
     border-top-color: $color
   @else if $direction == w
-    border-width: $width/2 $height $width/2 0
+    border-width: $half-width $height $half-width 0
     border-right-color: $color
 
   @else if $direction == ne

@@ -136,37 +136,53 @@
 
 .wc-block-grid__product
   position: relative
+  text-align: center
 
-.wc-block-grid__product-link
+.wc-block-grid__product-link,
+.wc-block-grid__product-title a
   display: block
   text-decoration: none
+  color: var(--textDim)
 
   &:hover
     text-decoration: underline
+    color: var(--textDim)
 
+// Product Thumbnail
 .wc-block-grid__product-image
   margin-bottom: 1rem
 
   img
     width: 100%
+    transition: var(--gTransition)
+
+a:hover .wc-block-grid__product-image img,
+.wc-block-grid__product-image a:hover img
+  transform: translateY(-2px)
+  box-shadow: var(--shadow1)
+
+a:active .wc-block-grid__product-image img,
+.wc-block-grid__product-image a:active img
+  transform: none
+  transition: none
+  box-shadow: var(--shadow0)
 
 // Product Name
-h2.wc-block-grid__product-title
-  font-family: var(--hFontFamily)
-  font-weight: 700
-  font-size: var(--mediumFontSize)
-
-  a
-    text-decoration: none
-  a:hover
-    text-decoration: underline
+.wc-block-grid__product-title
+  font-family: var(--fontFamily)
+  font-weight: var(--fontWeight)
+  font-size: var(--fontSize)
+  
 
 // Price
 .wc-block-grid__product-price,
 .price
   display: flex
-  font-size: var(--mediumFontSize)
-  color: #504e4a
+  justify-content: center
+  margin-top: 0.5rem
+  font-weight: 700
+  font-size: var(--fontSize)
+  color: var(--textDim)
 
   ins
     text-decoration: none
@@ -199,17 +215,24 @@ h2.wc-block-grid__product-title
 // Add to Cart button
 .wp-block-button.wc-block-grid__product-add-to-cart
   display: flex
+  justify-content: center
   
 .wc-block-grid__product-add-to-cart .wp-block-button__link,
 a.add_to_cart_button
   background-color: var(--text)
   padding: 0.5rem 0.75rem
   margin-top: 1rem
+  border: none
+
   text-transform: none
   font-weight: normal
   font-size: var(--smallFontSize)
+  color: var(--textInvert)
 
   border-radius: var(--gRadius)
+
+  &:hover
+    color: var(--textInvert)
 
 // sorting
 .woocommerce-ordering
@@ -223,6 +246,14 @@ a.add_to_cart_button
 
   select
     width: auto
+
+.wc-block-product-sort-select
+  display: flex
+  align-items: center
+
+  .woocommerce-ordering
+    margin-left: auto
+    margin-bottom: 0
 
 
 ///// PAGINATION (on All Products block)
@@ -314,7 +345,6 @@ a.add_to_cart_button
 
   path
     fill: currentColor
-
 
 ///// REVIEWS
 
