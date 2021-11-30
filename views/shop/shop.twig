@@ -1,14 +1,16 @@
 {% extends "layout.twig" %}
 {% block content %}
 
-{% do action("woocommerce_before_main_content") %} {# This will add <main> wrapper #}
+<main>
+{% do action("woocommerce_before_main_content") %}
 
-  {{ post.content }}
+{{ post.content }}
 
-  {% do action("woocommerce_before_shop_loop") %}
-  {% include "shop/_products.twig" %}
-  {% do action("woocommerce_after_shop_loop") %}
+{% do action("woocommerce_before_shop_loop") %}
+{% include "shop/_products.twig" %}
+{% do action("woocommerce_after_shop_loop") %}
 
 {% do action("woocommerce_after_main_content") %}
+</main>
 
 {% endblock %}

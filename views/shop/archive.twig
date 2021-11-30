@@ -8,6 +8,7 @@
   </div>
 </header>
 
+<main>
 {% if categories %}
   {% include "shop/_categories.twig" with { categories: categories } %}
 {% endif %}
@@ -15,5 +16,6 @@
 {% if products %}
   {% include "shop/_products.twig" with { products: products } %}
 {% endif %}
+</main>
 
 {% endblock %}
