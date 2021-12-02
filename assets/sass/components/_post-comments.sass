@@ -18,39 +18,67 @@
     padding: 1.25rem
     margin-bottom: 1.5rem
     background-color: white
-    border: 1px solid rgba(black, .1)
+    border: 1px solid rgba(--text, .1)
     border-radius: var(--gRadius)
 
 // Single Comment
 .comment
   position: relative
 
-  &.bypostauthor .comment-avatar
-    padding: 1px
-
-  .avatar
-    margin-right: 0.75rem
-    width: 2.5em
-    height: 2.5em
-
-
-.comment-header
+.comment-meta
   display: flex
   flex-wrap: wrap
   align-items: center
-  margin-bottom: 0.5rem
+
+  line-height: 1
+
+  .avatar
+    margin-right: 0.5rem
+    width: 2rem
+    height: 2rem
+    border-radius: 50%
+    border: 1px solid rgba(--text, .1)
+
+  b
+    display: inline-block
+    font-size: var(--sFontSize)
+
+  br
+    flex-basis: 100%
+    height: 0
 
   time
+    flex-grow: 1
+    display: inline-block
     margin-left: 0.5rem
-    font-size: var(--smallFontSize)
+    
+    font-size: var(--xsFontSize)
     color: var(--textDim)
 
-.comment-text
+// Reply link
+a.comment-reply-link
+  padding: 0.25rem 0.5rem
+  background-color: rgba(--color1, .2)
+  border-radius: var(--gRadius)
+  
+  font-size: var(--xsFontSize)
+  letter-spacing: 0.05em
+  text-transform: uppercase
+
+  &:hover
+    background-color: rgba(--color1, .35)
+  &:active
+    transition: none
+    transform: translateY(1px)
+
+.comment-content
+  margin-top: 0.5rem
+
   > * + *
-    margin-top: 1rem
+    margin-top: 0.75rem
 
   ul, ol
-    padding-left: 1.5rem
+    padding-left: 1rem
 
   ul
     list-style-type: var(--ulStyle)
@@ -58,10 +86,8 @@
     list-style-type: var(--olStyle)
   a
     text-decoration: underline
-
   h1, h2, h3
     font-size: var(--h5Size)
-
   code
     background-color: rgba(black, .05)
 
@@ -71,43 +97,18 @@
 
 
 // Child comments
-.replies-list
-  margin-top: 1.5rem
-  padding-left: 1.25rem
-  border-left: 2px solid rgba(black , .1)
+.comment .children
+  margin-top: 1rem
+  padding-left: 1rem
+  border-left: 2px solid rgba(--text, .1)
   list-style-type: none
   
   .comment
-    font-size: var(--smallFontSize)
+    margin-bottom: 0
+    font-size: var(--sFontSize)
 
   > li + li
     margin-top: 1.5rem
-  header
-    margin-bottom: 0.5rem
-  p + p
-    margin-top: 0.5rem
-
-
-// Reply link
-a.comment-reply-link
-  position: absolute
-  top: 5px
-  right: 0
-
-  padding-right: 0.5rem
-  padding-left: 0.5rem
-  border-radius: var(--gRadius)
-  background-color: rgba(--color1, .1)
-  font-size: var(--smallFontSize)
-  font-weight: var(--hFontWeight)
-  letter-spacing: 0.05em
-  text-transform: uppercase
-
-  &:hover
-    background-color: rgba(--color1, .25)
-  &:active
-    transition: none
-    transform: translateY(1px)
 
 
 ///// COMMENT FORM /////
@@ -145,13 +146,13 @@ a.comment-reply-link
     margin-bottom: 0.5rem
     color: var(--textDim)
     letter-spacing: 0.05em
-    font-size: var(--smallFontSize)
+    font-size: var(--sFontSize)
 
   .comment-notes,
   .logged-in-as
     display: block
     color: var(--textDim)
-    font-size: var(--smallFontSize)
+    font-size: var(--sFontSize)
 
   .h-comment-notification-consent
     flex-direction: row

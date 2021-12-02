@@ -193,10 +193,6 @@
     margin-bottom: -0.5rem
     color: var(--textDim)
 
-  h5, h6
-    text-transform: uppercase
-    letter-spacing: 0.025em
-
 
 // Social media links
 .author-links
@@ -229,6 +225,7 @@
 
 .post-nav
   display: flex
+  column-gap: 2rem
 
   a
     display: flex
@@ -256,17 +253,18 @@
   p
     flex: 1
     font-weight: var(--hFontWeight)
+    font-family: var(--hFontFamily)
+    line-height: 1.25
 
   em
     display: block
+    margin-bottom: 0.25rem
 
     text-transform: uppercase
+    font-family: var(--fontFamily)
     font-size: var(--xsmallFontSize)
     font-style: normal
     font-weight: 400
-
-  span
-    font-family: var(--hFontFamily)
 
   //
   @media ($below-xs)
@@ -277,7 +275,7 @@
       width: 100%
       max-width: 100%
 
-.nav-next
+.post-nav a[rel="next"]
   flex-direction: row-reverse
   text-align: right
 

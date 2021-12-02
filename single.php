@@ -1,15 +1,19 @@
 <?php
-$context = Timber::get_context();
-$context['post'] = Timber::get_post();
+global $post;
+$args = [
+  // Related posts
+  'post' => $post,
+  'posts' => new WP_Query([
+    'post_type' => 'post',
+    'posts_per_page' => '3',
+    'post__not_in' => [ $post->ID ],
+    'orderby' => 'rand',
+    // 'category__in' => array_map(function($term) {
+    //   return $term->term_id;
+    // }, get_the_category()),
+  ]),
+];
 
-$context['related_posts'] = Timber::get_posts([
-  'post_type' => 'post',
-  'posts_per_page' => '3',
-  'post__not_in' => [ $context['post']->ID ],
-  // 'category__in' => $context['post']->categories,
-  'orderby' => 'rand'
-]);
-
-$context['sidebar'] = Timber::get_widgets( 'sidebar' );
-
-Timber::render( ['single-' . $post->post_type . '.twig', 'single.twig'], $context );
+get_header();
+get_template_part('views/single', $post->post_type, $args);
+get_footer();

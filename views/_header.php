@@ -1,32 +1,39 @@
 <!DOCTYPE html>
-<html {{ fn('language_attributes') }}>
+<html <?php language_attributes(); ?>>
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  {{ wp_head }}
+  <?php wp_head(); ?>
 </head>
-<body class="{{ body_class }}">
-{{ fn( 'wp_body_open' ) }}
+<body <?php body_class(); ?>>
+<?php wp_body_open(); ?>
 
 <div id="main-container">
-{# HEADER #}
-{% for id, h in headers if h.widgets %}
-  <header class="header header--{{ id }}" data-columns="{{ h.columns }}" role="navigation">
-    <div class="widget-row">
-      <ul class="widget-column"> {{ h.widgets }} </ul>
-    </div>
-  </header>
-{% endfor %}
+<?php foreach ($args['headers'] as $id => $header): ?>
+  <?php if ($header['widgets']): ?>
+    <header
+      class="header header--<?php echo $id; ?>"
+      data-columns="<?php echo $header['columns']; ?>"
+      role="navigation"
+    >
+      <div class="widget-row">
+        <ul class="widget-column">
+          <?php echo $header['widgets']; ?>
+        </ul>
+      </div>
+    </header>
+  <?php endif; ?>
+<?php endforeach; ?>
 
-{% if offcanvas.widgets %}
+<?php if ($args['offcanvas']): ?>
   <div class="offcanvas" role="navigation">
     <ul class="offcanvas-inner-wrapper">
-      {{ offcanvas.widgets }}
+      <?php echo $args['offcanvas']['widgets']; ?>
     </ul>
     <a href="#menu">
       <svg xmlns="http://www.w3.org/2000/svg" width="50" height="30" viewBox="0 0 320 512"><path d="M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z"/></svg>
       <span>Close</span>
     </a>
   </div>
-{% endif %}
+<?php endif; ?>

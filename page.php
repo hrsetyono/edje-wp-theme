@@ -1,5 +1,7 @@
 <?php
-$context = Timber::get_context();
-$context['post'] = Timber::get_post();
+global $post;
+$args = [];
 
-Timber::render(['page-' . $post->post_name . '.twig', 'page.twig'], $context);
+get_header();
+get_template_part('views/page', $post->post_name, $args);
+get_footer();

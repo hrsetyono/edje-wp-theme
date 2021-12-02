@@ -30,11 +30,18 @@
   --letterSpacing  : 0
 
   --fontSize       : 16px
-  --xsmallFontSize : 12px
-  --smallFontSize  : 14px
-  --mediumFontSize : 18px
-  --largeFontSize  : 22px
-  --hugeFontSize   : 30px
+  --xsFontSize : 12px
+  --sFontSize  : 14px
+  --mFontSize : 18px
+  --lFontSize  : 22px
+  --xlFontSize   : 30px
+
+  // deprecated, use the above instead
+  --xsmallFontSize : var(--xsFontSize)
+  --smallFontSize  : var(--sFontSize)
+  --mediumFontSize : var(--mFontSize)
+  --largeFontSize  : var(--lFontSize)
+  --hugeFontSize   : var(--xlFontSize)
 
   // HEADING -----
   --hFontFamily    : "Noto Serif", "Apple Garamond", "Baskerville", "Times New Roman", "Droid Serif", "Times","Source Serif Pro", serif
@@ -54,7 +61,7 @@
 
   // PREFORMATTED -----
   --codeFontFamily : SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace
-  --codeFontSize   : var(--smallFontSize)
+  --codeFontSize   : var(--sFontSize)
 
   // LINK -----
   --linkColor      : inherit

@@ -36,7 +36,7 @@ function my_acf_format_sample( $value, $post_id, $field ) {
  * @render acf-example
  */
 function _my_render_acf_example( $block, $content='', $is_preview=false, $post_id=0) {
-  $context = [
+  $args = [
     'id' => $block['id'],
     'className' => $block['className'] ?? '',
     'align' => $block['align'] ?? '',
@@ -45,6 +45,6 @@ function _my_render_acf_example( $block, $content='', $is_preview=false, $post_i
     'title' => get_field('title'),
     'content' => get_field('content'),
   ];
-  
-  Timber::render('blocks/acf-sample.twig', $context);
+
+  get_template_part('views-acf/example', '', $args);
 }
