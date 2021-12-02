@@ -1,12 +1,12 @@
 <?php
-$context = Timber::get_context();
-$context['posts'] = Timber::get_posts();
+global $wp_query;
 
-$context['title'] = 'Blog';
+$args = [
+  'title' => 'Blog',
+  'posts' => $wp_query,
+  'pagination' => H::get_pagination(),
+];
 
-// if infinite scroll not active, add Pagination
-if(!class_exists('Jetpack') || !Jetpack::is_module_active('infinite-scroll') || is_paged() ) {
-  $context['pagination'] = Timber::get_pagination();
-}
-
-Timber::render('index.twig', $context);
+get_header();
+get_template_part('views/index', '', $args);
+get_footer();

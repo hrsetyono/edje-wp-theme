@@ -1,4 +1,7 @@
 <?php
+/**
+ * @todo - convert this from Timber to pure WP
+ */
 $context = Timber::get_context();
 
 // SINGLE PRODUCT

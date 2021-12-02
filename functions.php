@@ -15,7 +15,7 @@ if( is_admin() ) {
   require_once $inc . '/admin.php';
 } else {
   // require_once $inc . '/api.php';
-  require_once $inc . '/timber.php';
+  // require_once $inc . '/timber.php';
   require_once $inc . '/frontend.php';
 }
 
@@ -69,7 +69,7 @@ function my_after_setup_theme() {
   // Edje Support
   add_theme_support( 'h-faq-block-v2' );
   add_theme_support( 'h-icon-block' );
-  // add_theme_support( 'h-comment-editor' ); // Enable this if you allow comment in the website
+  add_theme_support( 'h-comment-editor' ); // Enable this if you allow comment in the website
   add_theme_support( 'h-classic-widgets' );
 
   // Gutenberg support
