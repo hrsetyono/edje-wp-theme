@@ -1,0 +1,293 @@
+body.woocommerce-account main > .woocommerce
+  display: flex
+  align-items: flex-start
+  column-gap: 3rem
+  row-gap: 2rem
+  max-width: var(--siteWidth)
+
+  @media ($below-m)
+    column-gap: 2rem
+
+  @media ($below-s)
+    flex-wrap: wrap
+
+
+.woocommerce-MyAccount-navigation
+  overflow: hidden
+  width: 250px
+  background-color: var(--textInvert)
+  border-radius: var(--gRadius)
+
+  ul
+    padding: 0
+    list-style-type: none
+
+  @media ($below-m)
+    width: 220px
+
+  @media ($below-s)
+    width: 100%
+
+.woocommerce-MyAccount-navigation-link
+  border-bottom: 2px solid var(--siteBg)
+
+  a
+    display: flex
+    align-items: center
+    padding: 0.75rem 1rem
+
+    text-decoration: none
+    font-weight: 500
+
+  a::before
+    content: ""
+    display: inline-block
+    width: 1rem
+    height: 1rem
+    margin-right: 0.75rem
+    background-image: var(--iconSvg, url('../images/user.svg'))
+    background-repeat: no-repeat
+    background-position: center center
+    background-size: contain
+
+    filter: var(--iconFilter)
+
+  a:hover
+    --iconFilter: var(--color1Filter)
+    background-color: var(--color1Light)
+
+  &.is-active a
+    --iconFilter: var(--textInvertFilter)
+    background-color: var(--color1)
+    color: var(--textInvert)
+
+.woocommerce-MyAccount-navigation-link--orders
+  --iconSvg: url('../images/shopping-bag.svg')
+
+.woocommerce-MyAccount-navigation-link--edit-address
+  --iconSvg: url('../images/map-marker-alt.svg')
+
+.woocommerce-MyAccount-navigation-link--edit-account
+  --iconSvg: url('../images/user.svg')
+
+.woocommerce-MyAccount-navigation-link--customer-logout
+  --iconSvg: url('../images/sign-out.svg')
+
+.woocommerce-MyAccount-content
+  flex: 1
+
+///// GENERAL FORM
+
+.woocommerce-form
+  display: flex
+  flex-direction: column
+  flex-wrap: wrap
+  row-gap: 1rem
+  column-gap: 1rem
+
+  body.woocommerce-account &
+    background-color: var(--textInvert)
+    margin: 0 auto
+    padding: 1.5rem
+    border: 2px solid rgba(--text, .1)
+    border-radius: var(--gRadius)
+
+  .clear
+    display: none
+
+///// ORDER HISTORY
+
+.woocommerce-MyAccount-orders
+  td
+    text-align: center
+
+///// ADDRESS
+
+.woocommerce-Address
+  margin-top: 1rem
+
+  header
+    display: flex
+    align-items: center
+    column-gap: 0.5rem
+    margin-bottom: 1rem
+
+  h3
+    font-size: var(--h4Size)
+
+  a
+    display: inline-block
+    padding: 0.125rem 0.5rem
+    border: 1px solid var(--color1)
+    border-bottom-width: 2px
+    border-radius: var(--gRadius)
+
+    color: var(--color1)
+    letter-spacing: 0.05em
+    font-weight: 700
+    font-size: var(--xsFontSize)
+    text-transform: uppercase
+    text-decoration: none
+
+  a:hover
+    transform: translateY(-1px)
+    box-shadow: var(--shadow0)
+
+  a:active
+    transform: none
+    transition: none
+
+.woocommerce-address-fields__field-wrapper
+  display: grid
+  row-gap: 1rem
+  column-gap: 1rem
+  margin: var(--blockSpacing) 0
+
+
+///// ACCOUNT FORM
+
+.woocommerce-EditAccountForm
+  display: grid
+  grid-template-columns: 1fr 1fr
+  column-gap: 1rem
+  row-gap: 1rem
+
+  .clear
+    display: none
+  
+  em
+    display: block
+    margin-top: 0.5rem
+    font-size: var(--xsFontSize)
+    line-height: 1.25
+
+  .form-row
+    grid-column: span 1
+
+    @media ($below-xs)
+      grid-column: span 2
+
+  // submit wrapper
+  > p:last-child
+    grid-column: span 2
+
+// password change
+.woocommerce-EditAccountForm fieldset
+  grid-column: span 2
+  display: flex
+  flex-wrap: wrap
+  column-gap: 1rem
+  row-gap: 1rem
+
+  padding: 1rem
+  border: 1px solid rgba(--text, .1)
+  border-radius: var(--gRadius)
+
+  legend
+    flex: 1
+    font-size: var(--h5Size)
+    font-family: var(--hFontFamily)
+    font-weight: var(--hFontWeight)
+
+  .form-row
+    width: calc(50% - 0.5rem)
+
+    @media ($below-s)
+      width: 100%
+
+  // current password
+  .form-row:nth-child(2)
+    width: 100%
+
+///// LOGIN & REGISTER
+
+#customer_login
+  h2
+    margin: var(--blockSpacing) 0
+    font-size: var(--h2Size)
+    text-align: center
+
+.woocommerce-form-login
+  max-width: 360px
+
+  // the button wrapper
+  p[class="form-row"]
+    display: flex
+
+  button
+    order: 1
+    margin-left: auto
+
+  .lost_password
+    flex-basis: 100%
+    font-size: var(--xsFontSize)
+
+.woocommerce-form-register
+  display: grid
+  grid-template-columns: repeat(12, 1fr)
+  width: 100%
+  max-width: 720px
+
+  .woocommerce-privacy-policy-text
+    grid-column: span 12
+    font-size: var(--sFontSize)
+
+
+///// Hide login / register form
+
+.h-toggle-buttons
+  margin-top: 1rem
+  opacity: .5
+
+  .wp-block-button
+    position: relative
+
+  a::before
+    content: ""
+    display: inline-block
+    width: 0.875rem
+    height: 0.875rem
+    position: absolute
+    top: 50%
+    transform: translateY(-50%)
+  
+    background-repeat: no-repeat
+    background-position: center center
+    background-size: auto 90%
+
+  .wp-block-button:first-child
+    a
+      padding-left: 2rem
+    a::before
+      left: 0.5rem
+      background-image: url('../images/chevron-left.svg')
+
+  .wp-block-button:last-child
+    a
+      padding-right: 2rem
+    a::before
+      right: 0.5rem
+      background-image: url('../images/chevron-right.svg')
+
+#customer_login
+  // initially hide register form and "Back to Login" button
+  .col-1,
+  .wp-block-button:nth-child(1)
+    display: none
+
+  .col-1:target
+    display: block
+
+    ~ .col-2
+      display: none
+
+    ~ .wp-block-buttons .wp-block-button:nth-child(2)
+      display: none
+    ~ .wp-block-buttons .wp-block-button:nth-child(1)
+      display: block
+
+  .col-2:target
+    display: block
+
+    ~ .wp-block-buttons .wp-block-button:nth-child(1)
+      display: none

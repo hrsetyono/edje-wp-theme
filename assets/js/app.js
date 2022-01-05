@@ -80,48 +80,9 @@ const myHeader = {
   },
 };
 
-/**
- * Handle Jetpack modules
- */
-const myJetpack = {
-  init() {
-    this.sharingMoreButton();
-  },
-
-  /**
-   * Move the hidden sharing buttons to main list when MORE is clicked
-   */
-  sharingMoreButton() {
-    if (document.querySelector('.sharedaddy') === null) { return; }
-
-    const $moreButtons = document.querySelectorAll('.share-more');
-    [...$moreButtons].forEach(($mb) => {
-      $mb.addEventListener('click', (e) => {
-        e.preventDefault();
-        const $shareButtons = e.currentTarget.closest('ul');
-        const $shareWrapper = e.currentTarget.closest('.sd-content');
-
-        // remove More button
-        e.currentTarget.closest('li').removeChild(e.currentTarget);
-
-        // get hidden links and append it to main list
-        const $shareHidden = $shareWrapper.querySelector('.sharing-hidden');
-
-        [...$shareHidden.querySelectorAll('ul li')].forEach(($button) => {
-          $shareButtons.appendChild($button);
-        });
-
-        // remove hidden share
-        $shareHidden.parentElement.removeChild($shareHidden);
-      });
-    });
-  },
-};
-
 function onReady() {
   myApp.init();
   myHeader.init();
-  myJetpack.init();
 }
 
 function onLoad() {

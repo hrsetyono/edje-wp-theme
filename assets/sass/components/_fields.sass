@@ -14,7 +14,7 @@ select
   display: block
   width: 100%
   padding: 0.5rem
-  border: 2px solid rgba(black, .1)
+  border: 2px solid rgba(--text, .1)
   border-radius: var(--gRadius)
   background-color: var(--inputBg, var(--textInvert))
 
@@ -22,11 +22,6 @@ select
   color: var(--inputColor, var(--text))
   transition: var(--gTransition)
   
-  &:focus
-    background-color: var(--inputBgFocus, var(--textInvert))
-    border-color: var(--color1)
-    box-shadow: 0 0 0 2px rgba(--color1, .3)
-
   +placeholder
     color: var(--inputPlaceholder, var(--textDim))
 

@@ -3,7 +3,7 @@ global $post;
 $args = [
   // Related posts
   'post' => $post,
-  'posts' => new WP_Query([
+  'posts' => get_posts([
     'post_type' => 'post',
     'posts_per_page' => '3',
     'post__not_in' => [ $post->ID ],

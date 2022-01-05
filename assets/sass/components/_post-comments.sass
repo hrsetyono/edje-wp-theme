@@ -9,7 +9,8 @@
     margin-bottom: 1rem
     text-align: center
 
-.comments-list
+.comments-list,
+.commentlist
   padding-left: 0
   margin-top: 2rem
   list-style-type: none
@@ -25,7 +26,8 @@
 .comment
   position: relative
 
-.comment-meta
+.comment-meta,
+.h-review-header
   display: flex
   flex-wrap: wrap
   align-items: center
@@ -71,7 +73,8 @@ a.comment-reply-link
     transition: none
     transform: translateY(1px)
 
-.comment-content
+.comment-content,
+.review-text
   margin-top: 0.5rem
 
   > * + *
@@ -141,12 +144,15 @@ a.comment-reply-link
     width: 100%
     margin-bottom: 0.5rem
 
+  
   label
     cursor: pointer
     margin-bottom: 0.5rem
-    color: var(--textDim)
+    color: var(--text)
+    font-weight: 700
+    font-size: var(--xsFontSize)
+    text-transform: uppercase
     letter-spacing: 0.05em
-    font-size: var(--sFontSize)
 
   .comment-notes,
   .logged-in-as
@@ -178,10 +184,12 @@ p.comment-form-email
     width: 100%
 
 p.comment-form-author
-  padding-right: 0.5rem
+  @media ($above-s)
+    padding-right: 0.5rem
 
 p.comment-form-email
-  padding-left: 0.5rem
+  @media ($above-s)
+    padding-left: 0.5rem
 
 p.comment-form-url
   display: none

@@ -182,18 +182,12 @@
     &:not(:hover)
       background-color: transparent !important
 
-    &:hover
-      background-color: var(--bgColor, transparent)
-
   .is-style-h-transparent &
     border: none
     color: var(--textColor, var(--text))
 
     &:not(:hover)
       background-color: transparent !important
-
-    &:hover
-      background-color: var(--bgColor, transparent)
 
 
 ///// COLUMN
@@ -202,6 +196,13 @@
   padding: 1rem
   border-radius: var(--gRadius)
 
+
+///// cover
+
+.wp-block-cover.has-custom-content-position.has-custom-content-position
+  .wp-block-cover__inner-container
+    min-width: var(--blogWidth)
+    width: 100%
 
 ///// CODE
 

@@ -3,7 +3,7 @@ global $wp_query;
 
 $args = [
   'title' => 'Blog',
-  'posts' => $wp_query,
+  'posts' => $wp_query->get_posts(),
   'pagination' => H::get_pagination(),
 ];
 

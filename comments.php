@@ -1,7 +1,7 @@
 <section class="post-comments" id="comments">
   <?php if (get_comments_number()): ?>
     <h4>
-      <?php echo get_comments_number() . ' ' . __('comments'); ?>
+      <?php echo sprintf(__('%d comments'), get_comments_number()); ?>
     </h4>
   <?php endif; ?>
 

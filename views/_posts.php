@@ -1,7 +1,7 @@
-<?php if ($args['posts']->have_posts()): ?>
+<?php if (count($args['posts']) > 0): ?>
   <ul class="wp-block-latest-posts wp-block-latest-posts__list is-grid columns-3 has-dates has-author alignwide">
-  <?php while ($args['posts']->have_posts()): ?>
-    <?php $args['posts']->the_post(); ?>
+  <?php foreach ($args['posts'] as $post): ?>
+    <?php setup_postdata($post); ?>
 
     <li>
       <?php if (has_post_thumbnail()): ?>
@@ -26,7 +26,7 @@
         <?php the_excerpt(); ?>
       </div>
     </li>
-  <?php endwhile; ?>
+  <?php endforeach; ?>
   </ul>
 
 <?php else: ?>

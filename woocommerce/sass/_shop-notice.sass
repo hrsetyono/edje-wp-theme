@@ -1,0 +1,121 @@
+.woocommerce-notices-wrapper
+  max-width: var(--blogWidth)
+
+  body.woocommerce-checkout &
+    margin-bottom: 1rem
+
+  body.woocommerce-account &
+    display: flex
+    justify-content: center
+    margin: 0 auto
+
+
+@keyframes flipInX
+  from
+    transform: perspective(400px) rotate3d(1, 0, 0, 90deg)
+    animation-timing-function: ease-in
+  40%
+    transform: perspective(400px) rotate3d(1, 0, 0, -20deg)
+    animation-timing-function: ease-in
+  60%
+    transform: perspective(400px) rotate3d(1, 0, 0, 10deg)
+  80%
+    transform: perspective(400px) rotate3d(1, 0, 0, -5deg)
+  to
+    transform: perspective(400px)
+
+.woocommerce-message,
+.woocommerce-info,
+.woocommerce-error
+  display: flex
+  align-items: center
+
+  padding: 0.75rem
+  border-radius: var(--gRadius)
+  background-color: rgba(black, .1)
+
+  list-style-type: none
+  box-shadow: var(--shadow0)
+  animation: 1s flipInX both
+
+  &::before
+    content: ""
+    display: inline-block
+    flex-shrink: 0
+    transform: translateY(1px)
+    opacity: .5
+
+    width: 1.25rem
+    height: 1.25rem
+    margin-right: 1rem
+
+    background-repeat: no-repeat
+    background-position: center center
+    background-size: contain
+
+  a
+    display: inline-block
+    order: 1
+    flex-shrink: 0
+  
+    background-color: rgba(--text, .1)
+    padding: 0.5rem 0.625rem
+    margin-left: auto
+
+    border: 1px solid rgba(--text, .1)
+    border-bottom-width: 2px
+    border-radius: var(--gRadius)
+
+    font-size: var(--xsFontSize)
+    font-weight: 700
+    letter-spacing: 0.05em
+    line-height: 1
+    color: inherit
+
+    text-align: center
+    text-transform: uppercase
+    text-decoration: none
+
+  a:hover
+    transform: translateY(-1px)
+    box-shadow: var(--shadow0)
+    background-color: rgba(--text, .25)
+    color: inherit
+
+  a:active
+    transform: none
+    transition: none
+
+.woocommerce-message,
+.woocommerce-info
+  &::before
+    background-image: url('../images/bell.svg')
+
+.woocommerce-info::before
+  .woocommerce-form-login-toggle &
+    background-image: url('../images/user.svg')
+
+  .woocommerce-form-coupon-toggle &
+    background-image: url('../images/ticket-alt.svg')
+
+.woocommerce-message
+  .h-before-checkout + &
+    display: inline-flex
+    margin-top: 1rem
+
+.woocommerce-error
+  flex-direction: column
+  align-items: flex-start
+  background-color: var(--colorAlertLight)
+  padding-left: 2.5rem
+
+  &::before
+    position: absolute
+    top: 0.875rem
+    left: 0.75rem
+    background-image: url('../images/exclamation-circle.svg')
+
+.woocommerce-NoticeGroup-checkout
+  grid-column: span 2
+  max-width: 50%
+  font-size: var(--sFontSize)

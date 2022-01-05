@@ -1,29 +1,4 @@
-///// SINGLE POST LAYOUT
-
-.post-grid
-  --blogWidth: auto
-  column-gap: 5rem
-
-  @media ($below-l)
-    column-gap: 2.5rem
-  @media ($below-m)
-    column-gap: 1rem
-  @media ($below-s)
-    column-gap: 0
-
-.post-column
-  --fontSize: 1.125rem
-  --lineHeight: 1.7
-  --blockSpacing: 1.75rem
-  
-  padding-top: var(--groupSpacing)
-  padding-bottom: var(--groupSpacing)
-
-  > * + *
-    margin-top: var(--groupSpacing)
-
-
-///// POST META
+///// POST HERO
 
 .post-meta
   --metaGap: 0.5rem
@@ -95,10 +70,6 @@
     color: var(--buttonColor)
     will-change: transform
 
-    .post-hero &
-      background-color: var(--color1)
-      color: white
-
   a:hover
     transform: translateY(-2px)
     box-shadow: var(--shadow1)
@@ -129,6 +100,19 @@
   --buttonColorHover: var(--text)
 
   --iconSVG: url('../svg/tags.svg')
+
+///// POST CONTENT
+
+.post-columns
+  --blogWidth: auto
+  column-gap: 5rem
+
+  @media ($below-l)
+    column-gap: 2.5rem
+  @media ($below-m)
+    column-gap: 1rem
+  @media ($below-s)
+    column-gap: 0
 
 
 ///// SINGLE AUTHOR
@@ -227,18 +211,26 @@
   display: flex
   column-gap: 2rem
 
+  img
+    transition: var(--gTransition)
+
   a
     display: flex
     flex: 1
     align-items: center
     padding: 0.5rem 0
     max-width: 50%
+    text-decoration: none
     color: var(--text)
 
   a:hover
-    opacity: .75
-    span
-      text-decoration: underline
+    opacity: .9
+    color: var(--text)
+    transform: translateY(-2px)
+
+    img
+      box-shadow: var(--shadow1)
+
   a:active
     transition: none
     transform: translateY(1px)
@@ -284,16 +276,6 @@
     margin-left: 0.5rem
 
 
-
-///// RELATED POSTS
-
-.related-posts
-  padding-top: var(--groupSpacing)
-  padding-bottom: var(--groupSpacing)
-  background-color: var(--color1Light)
-
-  h3
-    margin-bottom: var(--blockSpacing)
 
 
 ///// PAGINATION
@@ -367,7 +349,7 @@
 
 .sidebar
   order: 1
-  padding: var(--groupSpacing) 0
+  padding-bottom: var(--groupSpacing)
 
   @media ($below-s)
     order: 1

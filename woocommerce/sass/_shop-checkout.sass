@@ -1,0 +1,400 @@
+body.woocommerce-checkout main > .woocommerce
+  max-width: var(--siteWidth)
+
+form.checkout
+  display: grid
+  align-items: flex-start
+  grid-template-columns: 4fr 3fr
+  column-gap: 3rem
+  row-gap: 2rem
+
+  margin-top: var(--groupSpacing)
+  max-width: var(--siteWidth)
+
+  @media ($below-m)
+    column-gap: 1.5rem
+
+  @media ($below-s)
+    grid-template-columns: 1fr
+
+///// BEFORE CHECKOUT: Login + Coupon
+
+.h-before-checkout
+  @media ($above-s)
+    .wp-block-column:nth-child(2)
+      text-align: right
+
+  .woocommerce-error
+    display: inline-block
+
+.woocommerce-form-coupon-toggle,
+.woocommerce-form-login-toggle
+  display: inline-block
+
+  a
+    margin-left: 0.5rem
+
+body.has-checkout-form-open
+  cursor: pointer
+
+  &::before
+    content: ""
+    display: block
+    position: fixed
+    z-index: 200
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+
+    background-color: rgba(black, .5)
+    height: 100vh
+
+.h-before-checkout form
+  cursor: default
+  position: fixed
+  top: 50%
+  left: 50%
+  z-index: 200
+  
+  display: flex !important
+
+  visibility: hidden
+  opacity: 0
+  background-color: var(--textInvert)
+  transform: translateY(calc(-50% + 1rem)) translateX(-50%)
+  transition: var(--gTransition)
+
+  width: 400px
+  padding: 1rem
+  box-shadow: var(--shadow1)
+
+  @media ($below-s)
+    width: calc(100% - 1rem)
+
+  > p:first-child
+    font-size: var(--sFontSize)
+    text-align: left
+
+  &.is-open
+    visibility: visible
+    opacity: 1
+    transform: translateY(-50%) translateX(-50%)
+
+.h-before-checkout .woocommerce-form-coupon
+  .form-row input
+    padding-top: 0.5rem
+
+  button
+    height: 100%
+    font-size: var(--xsFontSize)
+
+
+
+///// BILLING FORM
+
+.woocommerce-billing-fields__field-wrapper,
+.woocommerce-shipping-fields__field-wrapper
+  display: grid
+  grid-template-columns: repeat(12, minmax(0,1fr))
+  column-gap: 1rem
+  row-gap: 1rem
+
+  @media ($below-m)
+    column-gap: 0.75rem
+
+  @media ($below-xs)
+    column-gap: 0.5rem
+
+.woocommerce-billing-fields
+  h3
+    margin-bottom: 1rem
+    font-size: var(--h4Size)
+
+.woocommerce-shipping-fields
+  margin: var(--blockSpacing) 0
+
+  h3
+    font-size: var(--h6Size)
+    font-family: var(--fontFamily)
+
+  .shipping_address
+    margin-top: var(--blockSpacing)
+
+.form-row
+  grid-column: span var(--span, 6)
+  position: relative
+
+  label
+    position: absolute
+    z-index: 2
+    top: 0.25rem
+    left: 0.625rem
+    font-size: var(--xsFontSize)
+    color: var(--textDim)
+
+  input,
+  textarea
+    padding-top: 1.5rem
+
+  select
+    padding: 1.5rem 0.25rem 0.25rem
+
+  &[id*="email"]
+    --span: 12
+
+  &[id*="company_field"]
+    display: none
+  
+  &[id*="address_1_field"]
+    --span: 8
+
+    @media ($below-xs)
+      --span: 12
+
+  &[id*="address_2_field"]
+    --span: 4
+
+    @media ($below-xs)
+      --span: 12
+
+  &[id*="country"],
+  &[id*="postcode"],
+  &[id*="state"]
+    --span: 4
+
+    @media ($below-s)
+      --span: 6
+
+    .woocommerce-form-register &
+      --span: 6
+
+  &[id*="phone"]
+    @media ($below-xs)
+      --span: 12
+
+  &[id*="city"]
+    .woocommerce-form-register &
+      --span: 6
+
+      @media ($below-xs)
+        --span: 12
+
+.form-row .woocommerce-form__label
+  position: static
+  display: flex
+  align-items: center
+  cursor: pointer
+  padding: 0.5rem 0
+
+  span
+    display: inline-block
+    transition: var(--gTransition)
+
+    text-transform: uppercase
+    font-size: var(--sFontSize)
+    font-weight: 700
+    letter-spacing: 0.025em
+
+  input
+    padding-top: 0
+    margin-right: 0.5rem
+
+.select2-container
+  display: block
+  background-color: var(--textInvert)
+
+  .select2-selection
+    padding-top: 1.5rem
+    height: auto
+    border: 2px solid rgba(black, .1)
+
+  &.select2-container--open .select2-selection
+    border-color: black
+
+  .select2-selection--single .select2-selection__arrow
+    top: auto
+    bottom: 0.25rem
+
+
+.woocommerce-additional-fields
+  h3
+    margin-bottom: 1rem
+    font-size: var(--h4Size)
+
+// Create Account toggle
+.woocommerce-account-fields
+  margin-top: var(--blockSpacing)
+
+.form-row.create-account 
+  label
+    position: static
+
+div.create-account
+  display: flex
+  column-gap: 1rem
+  row-gap: 1rem
+
+  .form-row
+    flex-basis: 50%
+
+    @media ($below-xs)
+      flex-basis: 100%
+
+  .clear
+    display: none
+
+///// ORDER REVIEW
+
+.h-order-review__wrapper
+  background-color: var(--textInvert)
+  padding: 2rem
+  border: 2px solid rgba(--text, .1)
+  border-radius: var(--gRadius)
+
+  #order_review_heading
+    display: none
+
+  @media ($below-m)
+    padding: 1rem
+
+.woocommerce-checkout-review-order-table
+  margin-bottom: 1rem
+
+  thead
+    display: none
+ 
+  td
+    padding: 0.5rem 0
+
+  td:last-child
+    text-align: right
+
+  tfoot tr:last-child
+    th,
+    td
+      border-bottom: none
+
+  .amount
+    font-size: var(--sFontSize)
+
+
+.h-order-review__figure
+  display: flex
+  align-items: center
+  column-gap: 0.5rem
+  line-height: 1.25
+
+  img
+    max-width: 2.5rem
+
+    body.woocommerce-order-received &
+      max-width: 4.5rem
+
+  strong
+    display: block
+    font-size: var(--xsFontSize)
+
+///// ORDER REVIEW: SHIPPING
+
+.woocommerce-shipping-methods
+  list-style-type: none
+  padding-left: 0
+  text-align: left
+
+  li
+    display: flex
+    align-items: center
+    justify-content: flex-start
+    position: relative
+
+  label
+    flex: 1
+    display: flex
+
+    cursor: pointer
+    transition: var(--gTransition)
+
+    border: 1px solid transparent
+    border-radius: var(--gRadius)
+
+    padding: 0.5rem 0.5rem
+    padding-left: 2rem
+    font-size: var(--sFontSize)
+    
+  label:hover
+    border-color: rgba(--text, .1)
+
+  input:checked ~ label
+    // border-color: rgba(--text, .1)
+    background-color: var(--color1Light)
+
+  input
+    position: absolute
+    top: 50%
+    left: 0.5rem
+    transform: translateY(-50%)
+
+  .amount
+    margin-left: auto
+
+///// ORDER REVIEW: PAYMENT
+
+.wc_payment_methods
+  padding-left: 0
+  border: 2px solid rgba(--text, .1)
+  border-radius: var(--gRadius)
+
+  font-size: var(--sFontSize)
+  list-style-type: none
+
+.wc_payment_method
+  display: flex
+  flex-wrap: wrap
+  align-items: center
+  column-gap: 0.5rem
+  row-gap: 0.5rem
+
+  position: relative
+  padding: 0.75rem
+  border-bottom: 1px dashed rgba(--text, .1)
+
+  &:last-child
+    border-bottom: none
+
+  label
+    flex: 1
+    cursor: pointer
+    opacity: .4
+    font-weight: 700
+    transition: var(--gTransition)
+
+  label:hover
+    opacity: .8
+
+  input:checked ~ label
+    opacity: 1
+
+  .payment_box
+    flex-basis: 100%
+
+
+///// ORDER REVIEW: FOOTER
+
+.woocommerce-terms-and-conditions-wrapper
+  margin: 1rem 0
+  font-size: var(--xsFontSize)
+
+.place-order
+  button[type="submit"]
+    width: 100%
+
+
+///// LEGAL
+
+.h-checkout-legal
+  margin-top: 2rem
+  padding-top: 1rem
+  border-top: 1px solid rgba(--text, .1)
+  color: var(--textDim)
+  font-size: var(--xsFontSize)

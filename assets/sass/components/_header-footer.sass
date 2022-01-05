@@ -15,7 +15,6 @@
 .header--top-row-mobile
   --headerPadding: 0.25rem
 
-  z-index: 101
   background-color: var(--text)
   font-size: var(--smallFontSize)
   color: var(--textInvert)
@@ -153,17 +152,23 @@ body.has-active-offcanvas
 .footer
   display: flex
   justify-content: center
-  padding-top: var(--footerPadding, 2rem)
-  padding-bottom: var(--footerPadding, 2rem)
+  padding-top: 2rem
+  padding-bottom: 2rem
   background-color: transparent
   color: var(--textInvert)
 
+  @media ($below-l)
+    padding-left: var(--gridRim)
+    padding-right: var(--gridRim)
+
 
 .footer--top-row
-  --footerPadding: 1.5rem
+  padding-top: 1.5rem
+  padding-bottom: 1.5rem
 
 .footer--bottom-row
-  --footerPadding: 0.25rem
+  padding-top: 0.25rem
+  padding-bottom: 0.25rem
   font-size: var(--smallFontSize)
 
   .textwidget p

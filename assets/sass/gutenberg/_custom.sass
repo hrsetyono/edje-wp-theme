@@ -4,8 +4,8 @@
   --iconSize: 60px
   --iconPadding: 1rem
   --iconGap: 1rem
+  --iconBg: var(--bgColor, rgba(0,0,0,.1))
 
-  --bgColor: #e5e5e5
   --textColor: inherit
 
   display: flex
@@ -16,13 +16,16 @@
   &.is-style-boxed
     --iconPadding: 0
     --iconSize: 28px
+    --iconBg: transparent
 
     padding: 0.5rem
     background-color: var(--bgColor)
     box-shadow: var(--shadow0)
 
   &.use-image
-     --iconSize: 60px 
+    --iconPadding: 0
+    --iconSize: 60px
+    --iconBg: transparent
 
   &.use-image.is-style-boxed
     @media ($above-s) and ($below-m)
@@ -74,11 +77,8 @@ a.wp-block-h-icon
   height: var(--iconSize)
   margin: 0
   padding: var(--iconPadding)
-  background-color: var(--bgColor)
+  background-color: var(--iconBg)
   border-radius: 50%
-
-  .is-style-boxed &
-    background-color: transparent
 
   .has-icon-position-left &
     margin-right: var(--iconGap)
@@ -89,11 +89,6 @@ a.wp-block-h-icon
 
   .has-icon-position-top &
     margin-bottom: var(--iconGap)
-
-  
-  .use-image &
-    padding: 0
-    background-color: transparent
 
   path,
   rect

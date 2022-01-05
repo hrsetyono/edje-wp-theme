@@ -11,18 +11,18 @@ require_once $inc . '/enqueue.php';
 require_once $inc . '/gutenberg.php';
 require_once $inc . '/acf.php';
 
-if( is_admin() ) {
+if (is_admin()) {
   require_once $inc . '/admin.php';
 } else {
   // require_once $inc . '/api.php';
-  // require_once $inc . '/timber.php';
   require_once $inc . '/frontend.php';
 }
 
-if( class_exists('WooCommerce') ) {
-  require_once __DIR__ . '/inc-shop/shop-setup.php';
-  require_once __DIR__ . '/inc-shop/shop-filters.php';
-  require_once __DIR__ . '/inc-shop/shop-views.php';
+if (class_exists('WooCommerce')) {
+  $wc_dir = __DIR__ . '/woocommerce';
+  require_once $wc_dir . '/shop-setup.php';
+  require_once $wc_dir . '/shop-frontend.php';
+  require_once $wc_dir . '/shop-admin.php';
 }
 
 
@@ -42,8 +42,8 @@ function my_before_setup_theme() {
    * Register custom post type
    * - Read more at https://github.com/hrsetyono/edje-wp-library/wiki/Custom-Post-Type
    */
-  // H::register_post_type( 'product', [ 'icon' => 'dashicons-cart' ] );
-  // H::register_taxonomy( 'brand', [ 'post_type' => 'product' ] );
+  // H::register_post_type( 'product', [ 'menu_icon' => 'dashicons-cart' ] );
+  // H::register_taxonomy( 'brand', 'product', [] );
 }
 
 

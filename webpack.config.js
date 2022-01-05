@@ -26,10 +26,9 @@ const path = require('path');
 
 const cssPath = './assets/sass';
 const jsPath = './assets/js';
-const shopPath = './assets/sass-shop';
+const shopPath = './woocommerce/sass';
 
 const blockPath = './inc';
-
 const outputPath = 'assets/dist';
 
 const localDomain = 'http://lab.test/';

@@ -1,0 +1,271 @@
+body.woocommerce-cart
+  main > .woocommerce
+    display: grid
+    grid-template-columns: repeat(12, minmax(0, 1fr))
+    column-gap: 2rem
+    row-gap: 2rem
+    align-items: flex-start
+    max-width: var(--siteWidth)
+  
+  .woocommerce-notices-wrapper
+    grid-column: span 12
+
+///// CART TABLE
+
+.woocommerce-cart-form
+  grid-column: span 8
+
+  @media ($below-s)
+    grid-column: span 12
+
+// Table for Cart and Checkout
+.shop_table
+  width: 100%
+
+  thead th
+    border-bottom: 2px solid rgba(--text, .1)
+    padding-bottom: 1rem
+
+  tbody th,
+  tfoot th
+    text-align: left
+    font-size: var(--xsFontSize)
+
+  th, td
+    border-bottom: 1px dashed rgba(--text, .1)
+
+  tr
+    position: relative
+    transform: scale(1)
+
+  th
+    font-size: var(--sFontSize)
+    letter-spacing: 0.05em
+    text-transform: uppercase
+
+  td
+    padding: 0.75rem 0
+
+td.product-thumbnail
+  width: 100px
+  padding-right: 0.75rem
+
+  @media ($below-m)
+    width: 80px
+
+th.product-name
+  text-align: left
+
+td.product-name
+  text-align: left
+  
+  @media ($below-s)
+    font-size: var(--sFontSize)
+
+  a
+    display: block
+    font-weight: 700
+
+td.product-name,
+td.product-subtotal
+  .amount
+    @media ($below-xs)
+      font-size: var(--xsFontSize)
+
+td.product-quantity
+  width: 120px
+  text-align: center
+
+  @media ($below-m)
+    width: auto
+
+  @media ($below-xs)
+    padding-bottom: 1.5rem
+
+th.product-subtotal
+  @media ($below-xs)
+    width: 0
+    padding: 0
+    font-size: 0
+    color: transparent
+
+td.product-subtotal
+  width: 120px
+  text-align: center
+
+  @media ($below-m)
+    width: auto
+
+  @media ($below-xs)
+    position: absolute
+    bottom: 0
+    right: 0.5rem
+    padding: 0
+
+// delete from cart
+td.product-remove
+  width: 2.5rem
+  padding-left: 0.5rem
+
+  @media ($below-xs)
+    width: 0
+    padding: 0
+
+a.remove_from_cart_button,
+a.remove
+  display: flex
+  align-items: center
+  justify-content: center
+  cursor: pointer
+
+  background-color: var(--textInvert)
+  background: var(--textInvert) url('../images/trash.svg') no-repeat center center
+  background-size: 40% auto
+
+  border: 1px solid rgba(--text, .1)
+  border-bottom-width: 2px
+  border-radius: var(--gRadius)
+  width: 2rem
+  height: 2rem
+
+  line-height: 1
+  color: transparent
+
+  &:hover
+    color: transparent
+    text-decoration: none
+    transform: translateY(-1px)
+    box-shadow: var(--shadow1)
+
+  &:active
+    transform: none
+    transition: none
+    box-shadow: var(--shadow0)
+
+  .widget_shopping_cart &
+    position: absolute
+    z-index: 2
+    top: 0
+    right: 0
+    width: 1.75rem
+    height: 1.75rem
+    background-size: 50% auto
+    font-weight: 700
+
+  @media ($below-xs)
+    td.product-remove &
+      position: absolute
+      top: 0.25rem
+      left: -0.5rem
+
+// Last row
+td.actions
+  border-bottom: none
+  padding-top: var(--blockSpacing)
+  padding-bottom: 0
+  text-align: right
+
+// Action Row
+.coupon
+  display: flex
+  column-gap: 0.5rem
+  float: left
+
+  label
+    display: none
+
+  input
+    width: 150px
+
+  button
+    --textColor: var(--text)
+    background-color: transparent
+    font-size: var(--xsFontSize)
+
+.coupon + [type="submit"]
+  @media ($below-xs)
+    margin-top: 1rem
+
+
+///// Empty Cart Message
+
+.cart-empty
+  grid-column: span 12
+  font-size: var(--mFontSize)
+  text-align: center
+  max-width: var(--blogWidth)
+  margin: 0 auto
+
+.return-to-shop
+  grid-column: span 12
+  text-align: center
+
+
+///// CART TOTAL
+
+.cart-collaterals
+  grid-column: span 4
+  background-color: var(--textInvert)
+  padding: 2rem
+  border: 2px solid rgba(--text, .1)
+  border-radius: var(--gRadius)
+
+  @media ($below-m)
+    padding: 1rem
+
+  @media ($below-s)
+    grid-column: span 12
+
+  h2
+    display: none
+
+  table
+    margin-bottom: var(--blockSpacing)
+
+  th,
+  td
+    padding: 0.5rem 0
+
+  td
+    text-align: right
+
+  .button
+    width: 100%
+    text-align: center
+
+  .cart-subtotal
+    border-bottom: 1px dashed rgba(--text, .1)
+
+.cart-collaterals__h-footnote
+  margin-top: 0.5rem
+  font-size: var(--xsFontSize)
+
+.woocommerce-remove-coupon
+  font-size: var(--xsFontSize)
+
+// Shipping
+.woocommerce-shipping-totals
+  td
+    padding-left: 1rem
+
+.woocommerce-shipping-destination
+  display: inline-block
+  background-color: var(--siteBg)
+
+  padding: 0.5rem
+  margin-top: 1rem
+  border: 1px solid rgba(--text, .1)
+  border-radius: var(--gRadius)
+
+  color: var(--textDim)
+  font-size: var(--xsFontSize)
+
+///// CART Cross Sell
+
+.cross-sells
+  grid-column: span 12
+  margin-top: var(--groupSpacing)
+
+  h3
+    margin-bottom: var(--blockSpacing)
+    font-size: var(--h4Size)

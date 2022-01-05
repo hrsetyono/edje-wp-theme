@@ -16,11 +16,11 @@
       <?php foreach ($pagination['pages'] as $page): ?>
         <?php if (isset($page['link'])): ?>
           <option value="<?php echo $page['link']; ?>">
-            <?php echo __('Page') . ' ' . $page['title']; ?>
+            <?php echo sprintf(__('Page %s'), $page['title']); ?>
           </option>
         <?php else: ?>
           <option selected disabled>
-            <?php echo __('Page') . ' ' . $page['title'] . ' / ' . $pagination['total']; ?>
+            <?php echo sprintf(__('Page %s / %s'), $page['title'], $pagination['total']); ?>
           </option>
         <?php endif ?>
       <?php endforeach; ?>

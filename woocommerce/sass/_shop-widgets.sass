@@ -1,0 +1,325 @@
+///// PRODUCT LIST
+  
+.product_list_widget
+  display: flex
+  flex-direction: column
+  row-gap: 1rem
+  list-style-type: none
+  padding-left: 0
+
+  .is-style-default &
+    max-height: 300px
+    overflow-y: auto
+    padding: var(--cartPadding, 1rem)
+
+  .is-style-offcanvas &
+    flex: 1
+    overflow-y: auto
+    padding: var(--cartPadding, 1.5rem)
+
+  li
+    display: flex
+    flex-direction: column
+    justify-content: center
+    position: relative
+    padding-left: 5.5rem
+    min-height: 60px
+
+    .widget_shopping_cart &
+      padding-right: 2rem
+
+    .is-style-offcanvas &
+      min-height: 75px
+
+  img
+    position: absolute
+    top: 0
+    left: 0
+    bottom: 0
+    width: 4.5rem
+    height: 100%
+    object-fit: cover
+    object-position: center center
+
+  a
+    display: block
+    width: 100%
+    font-family: var(--hFontFamily)
+    font-weight: 700
+  
+  a:hover
+    text-decoration: underline
+
+  li::before
+    content: ""
+    order: 3
+    flex-basis: 100%
+    
+  .star-rating
+    order: 4
+
+  .quantity,
+  .amount
+    font-size: var(--xsFontSize)
+
+  ins
+    order: 1
+    text-decoration: none
+    font-weight: 700
+
+  del
+    order: 2
+    margin-left: 0.5rem
+    color: var(--textDim)
+    font-weight: 400
+    font-size: var(--xsFontSize)
+
+  .reviewer
+    font-size: var(--sFontSize)
+    color: var(--textDim)
+  
+
+///// PRODUCT SEARCH
+
+.woocommerce-product-search
+  display: flex
+
+  .search-field
+    flex: 1
+    width: auto
+
+  button
+    padding: 0 0.375rem
+    border-radius: 0 var(--gRadius) var(--gRadius) 0
+    font-size: var(--sFontSize)
+
+
+///// PRODUCT CATEGORIES
+
+.widget_product_categories
+  ul
+    padding-left: 1.5rem
+
+  a
+    text-decoration: underline
+  a:hover
+    color: var(--color1)
+
+
+
+///// MINI CART
+
+.widget_h_cart
+  position: relative
+
+  body.woocommerce-cart &,
+  body.woocommerce-checkout &
+    display: none
+
+  .widgettitle
+    display: none
+
+.h-cart
+  --cartPadding: 1rem
+
+  &.is-style-offcanvas
+    --cartPadding: 1.5rem
+
+    &::before
+      content: ""
+      transition: var(--gTransition)
+
+  &.is-style-offcanvas.is-active::before
+    content: ""
+    position: fixed
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+    z-index: 105
+    background-color: rgba(black, .5)
+
+.h-widget-button
+  display: flex
+  align-items: center
+
+  cursor: pointer
+  padding: 0.25rem 0.5rem
+  border: 1px solid rgba(--text, .2)
+  border-bottom-width: 2px
+  border-radius: var(--gRadius)
+
+  color: var(--text)
+  font-family: var(--fontFamily)
+  font-size: var(--fontSize)
+  font-weight: var(--fontWeight)
+  text-align: center
+  letter-spacing: 0
+
+  @media ($below-m)
+    font-size: var(--sFontSize)
+
+  &.is-cart-filled
+    background-color: var(--color1)
+    color: var(--textInvert)
+    animation: bounce 4s 2s infinite
+
+    &:hover
+      background-color: var(--color1Dark)
+
+    path
+      fill: var(--textInvert)
+
+  &:hover
+    background-color: rgba(--text, .1)
+
+  &:active
+    border-top-width: 2px
+    border-bottom-width: 1px
+    transition: none
+
+  * + *
+    margin-left: 0.25rem
+
+  svg
+    width: 1rem
+    height: 1rem
+  
+  path
+    fill: currentColor
+
+  b
+    display: flex
+    align-items: center
+    justify-content: center
+    width: 1.25rem
+    height: 1.25rem
+    
+    background-color: var(--textInvert)
+    border-radius: 50%
+
+    line-height: 1
+    color: var(--color1)
+    font-weight: normal
+    font-size: var(--xsFontSize)
+
+  span
+    display: inline-block
+
+
+.widget_shopping_cart
+  visibility: hidden
+  opacity: 0
+  will-change: opacity, transform
+
+  position: absolute
+  z-index: 10
+  top: calc(100% + 0.5rem)
+  right: 0
+  transform: translateX(1rem)
+  transition: none
+
+  background-color: var(--textInvert)
+  width: 320px
+
+  box-shadow: var(--shadow1)
+  border-radius: var(--gRadius)
+
+  @media ($below-xs)
+    padding: 0.75rem
+    width: calc(100vw - var(--gridRim) - var(--gridRim))
+
+  .is-style-offcanvas &
+    position: fixed
+    z-index: 110
+    top: 0
+    right: 0
+    bottom: 0
+
+    width: 380px
+    border-radius: 0
+
+  .h-cart.is-active &
+    visibility: visible
+    opacity: 1
+    transform: none
+    transition: var(--gTransition)
+
+  .remove_from_cart_button
+    position: absolute
+    z-index: 2
+    top: 0
+    right: 0
+    width: auto
+    font-weight: 700
+
+@keyframes bounce
+  0%,10%,25%,40%,50%
+    transform: translateY(0)
+  20%
+    transform: translateY(-4px)
+  30%
+    transform: translateY(-2px)
+
+
+.widget_shopping_cart_content
+  display: flex
+  flex-direction: column
+  height: 100%
+
+.woocommerce-mini-cart__empty-message
+  padding: var(--blockSpacing) 0
+  text-align: center
+
+
+// total price
+.woocommerce-mini-cart__total
+  display: flex
+  align-items: center
+  border-top: 1px solid rgba(--text, .1)
+  text-align: center
+  padding: 0.75rem var(--cartPadding)
+
+  strong
+    display: block
+    line-height: 1
+    font-size: var(--xsFontSize)
+    letter-spacing: 0.05em
+
+  .amount
+    margin-left: auto
+    font-size: var(--mediumFontSize)
+
+  .is-style-offcanvas &
+    margin-top: auto
+    margin-bottom: 1rem
+
+    strong
+      font-size: var(--sFontSize)
+
+.woocommerce-mini-cart__buttons
+  display: flex
+  padding: 0 var(--cartPadding) var(--cartPadding)
+
+  a
+    display: flex
+    align-items: center
+    padding: 0.5rem 0.75rem
+
+  a:first-child
+    background-color: transparent
+    font-size: var(--xsFontSize)
+    color: var(--text)
+
+  a:last-child
+    margin-left: auto
+
+  .is-style-offcanvas &
+    flex-direction: column
+    row-gap: 1rem
+
+    a
+      justify-content: center
+      margin: 0
+      padding: 0.75rem
+      font-size: var(--sFontSize)

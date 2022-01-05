@@ -1,0 +1,423 @@
+.product-columns
+  column-gap: 4rem
+
+  @media ($below-m)
+    column-gap: 2rem
+  
+///// GALLERY
+
+.product-figure
+  position: relative
+
+div.woocommerce-product-gallery
+  margin-top: 0
+
+  img
+    width: 100%
+
+.woocommerce-product-gallery__wrapper
+  cursor: zoom-in
+
+.woocommerce-product-gallery__trigger
+  position: absolute
+  z-index: 2
+  top: 0.5rem
+  right: 0.5rem
+
+  display: inline-block
+  width: 2.5rem
+  height: 2.5rem
+  border: 1px solid rgba(black, .1)
+  border-bottom-width: 2px
+  
+  background: var(--textInvert) url('../images/expand-arrows-alt.svg') no-repeat center center
+  background-size: 50% auto
+
+  color: transparent
+
+  &:hover
+    color: transparent
+    transform: translateY(-2px)
+    box-shadow: var(--shadow0)
+
+  &:active
+    transform: none
+    transition: none
+
+// Gallery slider nav
+.flex-control-nav
+  display: flex
+  flex-wrap: wrap
+  column-gap: 0.75rem
+  row-gap: 0.75rem
+
+  padding-left: 0
+  margin-top: 0.75rem
+  list-style-type: none
+
+  li
+    cursor: pointer
+    max-width: 20%
+
+  img
+    opacity: .5
+    width: 100%
+    transition: var(--gTransition)
+
+  img:hover
+    opacity: .75
+    transform: translateY(-2px)
+    box-shadow: var(--shadow0)
+
+  img.flex-active
+    opacity: 1
+    box-shadow: 0 0 0 1px var(--text), var(--shadow1)
+    transform: none
+    transition: none
+
+
+
+///// SUMMARY
+
+.product-summary
+  h1
+    font-size: var(--h2Size)
+
+  .price
+    display: flex
+    justify-content: flex-start
+    margin-top: var(--blockSpacing)
+    font-size: var(--h4Size)
+    color: var(--text)
+
+  .stock
+    font-weight: 700
+    font-size: var(--mFontSize)
+
+  del
+    font-size: var(--h5Size)
+
+  
+
+form.cart
+  display: flex
+  column-gap: 1rem
+  padding: var(--blockSpacing) 0
+  border-top: 1px solid rgba(black, .1)
+  border-bottom: 1px solid rgba(black, .1)
+
+  &.variations_form
+    flex-direction: column
+
+// Quantity Spinner for SingleProduct and Cart
+.quantity
+  position: relative
+  width: 140px
+  font-size: var(--mFontSize)
+
+  td &
+    margin: 0 auto
+
+    @media ($below-xs)
+      margin-left: auto
+      margin-right: 0
+
+  @media ($below-m)
+    width: 100px
+    font-size: var(--fontSize)
+
+  input[type="number"]
+    width: 100%
+    padding: 0.5rem 2rem
+    text-align: center
+
+  input[type="number"]
+    -moz-appearance: textfield
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button
+      -webkit-appearance: none
+      margin: 0
+
+  .quantity__h-spin
+    display: flex
+    align-items: center
+    justify-content: center
+
+    position: absolute
+    z-index: 2
+    top: 50%
+    transform: translateY(-50%)
+    // transition: var(--gTransition)
+  
+    background-color: transparent
+    border: 1px solid rgba(black, .1)
+    border-bottom-width: 2px
+    border-radius: var(--gRadius)
+    padding: 0
+    width: 1.75rem
+    height: 1.75rem
+
+    font-family: var(--codeFontFamily)
+    line-height: 1
+
+    @media ($below-m)
+      width: 1.5rem
+      height: 1.5rem
+
+    &:hover
+      background-color: var(--color1Light)
+    &:active
+      transition: none
+      border-top-width: 2px
+      border-bottom-width: 1px
+
+  .is-minus
+    left: 0.5rem
+  .is-plus
+    right: 0.5rem
+  .is-hidden
+    visibility: hidden
+
+// Add to Cart VARIATIONS
+.woocommerce-variation-add-to-cart
+  display: flex
+  column-gap: 1rem
+
+table.variations
+  margin-bottom: 1rem
+
+  .label
+    font-weight: 700
+    font-size: var(--sFontSize)
+    text-transform: uppercase
+    letter-spacing: 0.05em
+
+  select
+    display: inline-block
+    width: auto
+    max-width: 200px
+
+a.reset_variations
+  display: inline-block
+  margin-left: 0.5rem
+  padding: 0rem 0.25rem
+  border: 1px solid rgba(black, .1)
+  border-bottom-width: 2px
+  border-radius: var(--gRadius)
+
+  font-weight: 700
+  font-size: var(--xsFontSize)
+  letter-spacing: 0.025em
+  text-transform: uppercase
+  text-decoration: none
+
+  &:hover
+    transform: translateY(-1px)
+    box-shadow: var(--shadow0)
+    color: inherit
+
+  &:active
+    transform: none
+    transition: none
+
+.woocommerce-variation
+  display: flex
+  align-items: center
+  flex-wrap: wrap
+  margin-bottom: 1rem
+
+  .woocommerce-variation-description
+    flex-basis: 100%
+    font-size: var(--sFontSize)
+
+    *
+      margin-bottom: 0.5rem
+
+  .price
+    margin: 0
+    font-size: var(--mFontSize)
+
+  .stock
+    padding: 0 0.5rem
+    border-radius: var(--gRadius)
+    margin-left: 1rem
+    background-color: rgba(--text, .2)
+    font-weight: var(--fontWeight)
+    font-size: var(--sFontSize)
+
+  .out-of-stock
+    background-color: var(--colorAlertLight)
+
+
+///// REVIEWS
+
+div.woocommerce-product-rating
+  display: flex
+  align-items: center
+  margin-top: 0.5rem
+
+  .woocommerce-review-link
+    margin-left: 0.5rem
+    font-size: var(--sFontSize)
+
+.woocommerce-product-details__short-description
+  > * + *
+    margin-top: 1rem
+
+// Category
+.product_meta
+  font-size: var(--xsFontSize)
+  font-weight: 700
+  text-transform: uppercase
+
+  .posted_in,
+  .tagged_as
+    display: block
+
+  a
+    font-weight: 400
+  a:hover
+    text-decoration: underline
+
+
+///// TAB
+
+.woocommerce-tabs
+  max-width: var(--siteWidth)
+
+.wc-tabs
+  display: flex
+  align-items: flex-end
+  column-gap: 0.5rem
+  overflow: hidden
+
+  padding-left: 0
+  margin: var(--groupSpacing) 0 var(--blockSpacing)
+  border-bottom: 1px solid rgba(black, .1)
+  list-style-type: none
+
+  li
+    @media ($below-s)
+      flex: 1
+
+  a
+    display: block
+    padding: 0.75rem 1rem
+    border: 1px solid rgba(black, .1)
+    border-bottom: none
+    border-radius: var(--gRadius) var(--gRadius) 0 0
+
+    background-color: rgba(black, .1)
+    transform: translateY(0.25rem)
+
+    text-decoration: none
+    color: var(--textDim)
+
+    @media ($below-s)
+      padding: 0.5rem
+      font-size: var(--sFontSize)
+
+  a:hover
+    color: inherit
+
+  .active a
+    background-color: var(--siteBg)
+    box-shadow: inset 0 2px var(--color1)
+    transform: none
+
+    color: var(--text)
+
+.wc-tab
+  h2:first-child
+    display: none
+
+.woocommerce-Tabs-panel--description
+  @media ($above-m)
+    max-width: 70%
+
+  * + *
+    margin-top: var(--blockSpacing)
+
+// Attributes Table
+.woocommerce-product-attributes
+  width: 100%
+  margin-top: var(--blockSpacing)
+  text-align: left
+
+  @media ($above-m)
+    max-width: 70%
+
+  tr
+    border-bottom: 1px solid rgba(black, .1)
+
+  th,
+  td
+    border: 1px solid rgba(black, .1)
+
+  th
+    padding: 0.75rem
+    width: 150px
+    text-transform: uppercase
+    font-size: var(--sFontSize)
+
+    @media ($below-s)
+      padding: 0.5rem
+      width: 100px
+
+  td
+    padding: 0.75rem
+
+// REVIEWS (most of the styling is in /assets/sass/_post-comments.sass)
+.woocommerce-Reviews
+  display: grid
+  grid-template-columns: 1fr 1fr
+  column-gap: 3rem
+
+  @media ($below-s)
+    grid-template-columns: 1fr
+    row-gap: 2.5rem
+
+  h2.woocommerce-Reviews-title
+    display: block
+    font-size: var(--h4Size)
+
+  .comment-form
+    padding: 0
+
+  .comment-respond
+    margin-bottom: 0
+
+.h-review-header
+  margin-bottom: 1rem
+
+.comment-form-rating
+  display: flex
+  align-items: center
+  column-gap: 1rem
+  margin-top: 0.5rem
+  width: 100%
+
+  .stars
+    flex: 1
+
+  a
+    display: inline-block
+    font-size: 0
+    text-decoration: none
+    line-height: 1
+
+  a::before
+    content: "☆"
+    display: block
+    font-size: 1.5rem
+    color: #fda256
+
+  .selected a::before
+    content: "★"
+
+  .active ~ a::before
+    content: "☆"
+
+  a + a
+    margin-left: 0.25rem

@@ -13,6 +13,15 @@ main
   letter-spacing: calc(0.01 * var(--fontSize))
   overflow-wrap: break-word
 
+  > *:first-child:not(.alignfull)
+    padding-top: var(--blockSpacing)
+
+    body.single-post &
+      padding-top: 0
+  
+  > *:last-child:not(.alignfull)
+    margin-bottom: var(--groupSpacing)
+
   h1, h2, h3, h4, h5, h6
     clear: both
     color: var(--textColor)
@@ -42,7 +51,7 @@ main,
 
 // Add rim to the side
 body:not(.single-post) main,
-.wp-block-group__inner-container,
+.wp-block-group.alignfull .wp-block-group__inner-container,
 .wp-block-cover__inner-container
   @media ($below-l)
     padding-right: var(--gridRim)

@@ -1,14 +1,15 @@
 <?php the_post(); ?>
 
-<section class="wp-block-cover is-style-post-hero / has-background-dim has-color-1-light-background-color alignfull"
+<main role="main">
+<header class="post-hero / wp-block-cover has-background-dim has-color-1-light-background-color alignfull"
   style="min-height:250px;">
   <div class="wp-block-cover__inner-container">
 
-    <h1 class="has-color has-text-color">
+    <h1 class="alignwide has-color has-text-color">
       <?php the_title(); ?>
     </h1>
 
-    <div class="post-meta">
+    <div class="post-meta / alignwide">
       <span class="meta-categories">
         <?php foreach (get_the_category() as $term): ?>
           <a href="<?php echo get_category_link($term); ?>">
@@ -30,7 +31,7 @@
         <span class="meta-comments">
           <i></i>
           <a href="#comments">
-            <?php echo get_comments_number() . ' ' . __('Comments'); ?>
+            <?php echo sprintf(__('%d Comments'), get_comments_number()); ?>
           </a>
         </span>
       <?php endif; ?>
@@ -48,26 +49,24 @@
     </div>
 
   </div>
-</section>
+</header>
 
-<div class="post-grid" data-grid>
-  <article class="post-column" data-column="8-12">
+<div class="post-columns / wp-block-columns alignwide">
+  <article class="wp-block-column" style="flex-basis:66.66%">
 
-    <main role="main">
-      <?php if (has_post_thumbnail()): ?>
-        <div class="featured-image">
-          <picture data-image-fit="2:1">
-            <source
-              srcset="<?php echo get_the_post_thumbnail_url(null, 'medium'); ?>"
-              media="(max-width: 480px)"
-            >
-            <?php the_post_thumbnail('large'); ?>
-          </picture>
-        </div>
-      <?php endif; ?>
+    <?php if (has_post_thumbnail()): ?>
+      <div class="featured-image">
+        <picture data-image-fit="2:1">
+          <source
+            srcset="<?php echo get_the_post_thumbnail_url(null, 'medium'); ?>"
+            media="(max-width: 480px)"
+          >
+          <?php the_post_thumbnail('large'); ?>
+        </picture>
+      </div>
+    <?php endif; ?>
 
-      <?php the_content(); ?>
-    </main>
+    <?php the_content(); ?>
 
     <?php if (function_exists('sharing_display')) {
       do_shortcode('[h-jetpack-sharing]');
@@ -82,7 +81,7 @@
   </article>
 
   <?php if (is_active_sidebar('sidebar')): ?>
-    <aside class="sidebar" data-column="4-12">
+    <aside class="sidebar / wp-block-column" style="flex-basis:33.33%">
       <div class="sidebar-inner">
         <?php dynamic_sidebar('sidebar'); ?>
       </div>
@@ -90,14 +89,15 @@
   <?php endif; ?>
 </div>
 
-<aside class="related-posts">
-  <div data-grid> <div data-column="12">
-    <h3>
-      <?php echo __('Related Posts'); ?>
-    </h3>
-    <?php get_template_part('views/_posts', '', $args); ?>
-  </div> </div>
-</aside>
+  <footer class="wp-block-group has-background has-color-1-light-background-color alignfull">
+    <div class="wp-block-group__inner-container">
+      <h3 class="alignwide">
+        <?php _e('Related Posts'); ?>
+      </h3>
+      <?php get_template_part('views/_posts', '', $args); ?>
+    </div>
+  </footer>
+</main>
 
 <?php
   if (comments_open() || get_comments_number()) {

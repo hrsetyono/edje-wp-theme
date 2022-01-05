@@ -1,0 +1,83 @@
+.woocommerce-order
+  display: grid
+  grid-template-columns: repeat(12, minmax(0, 1fr))
+  column-gap: 3rem
+  row-gap: 2rem
+  align-items: flex-start
+  max-width: var(--siteWidth)
+
+  @media ($below-m)
+    column-gap: 2rem
+
+.h-order-overview
+  grid-column: span 5
+  background-color: var(--textInvert)
+  padding: 2rem
+  border: 2px solid rgba(--text, .1)
+  border-radius: var(--gRadius)
+
+  @media ($below-s)
+    grid-column: span 12
+
+  // pay with cash on delivery
+  > p:last-child
+    margin-top: 1rem
+    padding: 1rem
+    border: 1px dashed rgba(--text, .2)
+    border-radius: var(--gRadius)
+    background-color: var(--siteBg)
+
+.woocommerce-order-details
+  grid-column: span 7
+
+  body.woocommerce-account &
+    margin: var(--blockSpacing) 0
+ 
+  @media ($below-s)
+    grid-column: span 12
+
+  h2
+    margin-bottom: 1rem
+    font-size: var(--h4Size)
+
+  th.product-total,
+  td:last-child
+    text-align: right
+
+.woocommerce-order-overview
+  margin-top: 0.5rem
+  font-size: var(--sFontSize)
+
+.woocommerce-bacs-bank-details
+  margin-top: var(--blockSpacing)
+
+  h2
+    margin-bottom: 1rem
+    font-size: var(--h5Size)
+
+  h3
+    margin-top: 1rem
+    padding: 1rem
+    padding-bottom: 0.5rem
+    border: 1px dashed rgba(--text, .2)
+    border-bottom: none
+
+    border-radius: var(--gRadius) var(--gRadius) 0 0
+    background-color: var(--siteBg)
+    font-size: var(--h6Size)
+  
+  ul
+    padding: 0 1rem 1rem 2rem
+    border: 1px dashed rgba(--text, .2)
+    border-top: none
+    border-radius: 0 0 var(--gRadius) var(--gRadius)
+    background-color: var(--siteBg)
+
+    font-size: var(--sFontSize)
+
+.woocommerce-customer-details
+  grid-column: span 12
+
+  h2
+    margin-bottom: 1rem
+    font-size: var(--h4Size)

@@ -11,12 +11,12 @@ $tsf = get_the_author_meta('autodescription-user-settings');
 
   <div class="author-bio">
     <label>
-      <?php echo __('Written by'); ?>
+      <?php _e('Written by'); ?>
     </label>
     <h5>
       <a
         href="<?php echo esc_url(get_author_posts_url($author_id)); ?>"
-        title="<?php echo __('See all posts by this author'); ?>"
+        title="<?php _e('See all posts by this author'); ?>"
       >
         <?php echo get_the_author(); ?>
       </a>

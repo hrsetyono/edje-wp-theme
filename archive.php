@@ -7,7 +7,7 @@ $args = [
   'title' => $query->name,
   'description' => $query->description,
   'term' => $query,
-  'posts' => $wp_query,
+  'posts' => $wp_query->get_posts(),
   'pagination' => H::get_pagination(),
 ];
 
