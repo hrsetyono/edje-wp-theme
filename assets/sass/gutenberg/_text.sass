@@ -214,27 +214,6 @@ h1, h2, h3, h4, h5, h6
     display: block
     font-size: var(--sFontSize)
     color: var(--textDim)
-  
-  &.is-style-large
-    padding-top: 1rem
-    padding-bottom: 1rem
-    margin-top: 2.5rem
-    margin-bottom: 2.5rem
-    border-left: none
-    border-top: 3px solid var(--text)
-    border-bottom: 3px solid var(--text)
-
-    font-size: var(--h4Size)
-    text-align: center
-
-    &::after
-      left: 0
-      right: 0
-      margin-right: auto
-      margin-left: auto
-      width: 3rem
-      transform: translateY(-50%)
-
 
   &.has-text-align-right
     border-left: none
@@ -253,6 +232,35 @@ h1, h2, h3, h4, h5, h6
       height: 3px
       background-color: var(--text)
       transform: translateX(-50%)
+
+
+  
+.wp-block-quote.is-style-large
+  padding-top: 1rem
+  padding-bottom: 1rem
+  margin-top: 2.5rem
+  margin-bottom: 2.5rem
+  border-left: none
+  border-right: none
+  border-top: 3px solid var(--textDim)
+  border-bottom: 3px solid var(--textDim)
+
+  font-size: var(--h5Size)
+
+  &::before,
+  &::after
+    display: none
+
+  cite
+    text-align: right
+    font-size: var(--sFontSize)
+
+  &.has-text-align-center cite
+    text-align: center
+
+  &.has-text-align-right cite
+    text-align: left
+  
 
 
 ///// TABLE

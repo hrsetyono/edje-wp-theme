@@ -109,12 +109,26 @@
 
 .wp-block-quote.is-style-large
   padding: 1rem 0
-  border-top: 3px solid var(--text)
-  border-bottom: 3px solid var(--text)
-  text-align: center
+  border-top: 3px solid var(--textDim)
+  border-bottom: 3px solid var(--textDim)
+  font-size: var(--h5Size)
+
+  &::before
+    display: none
 
   p
+    font-size: 1em
     font-style: normal
+
+  cite
+    text-align: right
+    font-size: var(--sFontSize)
+
+  &.has-text-align-center cite
+    text-align: center
+
+  &.has-text-align-right cite
+    text-align: left
 
 
 ///// TABLE
