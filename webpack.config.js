@@ -29,7 +29,7 @@ const jsPath = './assets/js';
 const shopPath = './woocommerce/sass';
 
 const blockPath = './inc';
-const outputPath = 'assets/dist';
+const outputPath = 'dist';
 
 const localDomain = 'http://lab.test/';
 const entryPoints = {

@@ -13,7 +13,7 @@ add_action('enqueue_block_editor_assets', 'my_editor_assets', 100);
  * @action wp_enqueue_scripts 100
  */
 function my_public_assets() {
-  $dir = get_template_directory_uri() . '/assets/dist';
+  $dir = get_template_directory_uri() . '/dist';
 
   wp_enqueue_style('my-app', $dir . '/app.css', [], THEME_VERSION);
   wp_enqueue_style('my-gutenberg', $dir . '/gutenberg.css', [], THEME_VERSION);
@@ -37,7 +37,7 @@ function my_public_assets() {
  * @action admin_enqueue_scripts 100
  */
 function my_admin_assets() {
-  $dir = get_template_directory_uri() . '/assets/dist';
+  $dir = get_template_directory_uri() . '/dist';
 
   wp_enqueue_script('my-admin', $dir . '/my-admin.js', [], THEME_VERSION , true);
   wp_enqueue_style('my-admin', $dir . '/my-admin.css', [], THEME_VERSION);
@@ -51,7 +51,7 @@ function my_admin_assets() {
 function my_editor_assets() {
   if (!is_admin()) { return; }
   
-  $dir = get_template_directory_uri() . '/assets/dist';
+  $dir = get_template_directory_uri() . '/dist';
 
   wp_enqueue_script('my-editor', $dir . '/my-editor.js', [ 'wp-blocks', 'wp-dom' ] , THEME_VERSION, true);
   wp_enqueue_style('my-editor', $dir . '/my-editor.css', [ 'wp-edit-blocks' ], THEME_VERSION);
