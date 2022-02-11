@@ -1,5 +1,6 @@
 <?php
 global $woocommerce;
+
 $template = '';
 $args = [
   'woo' => $woocommerce,

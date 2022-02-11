@@ -13,6 +13,7 @@ main
   letter-spacing: calc(0.01 * var(--fontSize))
   overflow-wrap: break-word
 
+  // @todo: problematic on some pages
   > *:first-child:not(.alignfull)
     padding-top: var(--blockSpacing)
 
@@ -82,6 +83,7 @@ main,
 
 .alignwide
   max-width: var(--siteWidth)
+  width: 100%
   
   @media ($below-l)
     max-width: 100%

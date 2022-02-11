@@ -6,6 +6,10 @@ body.woocommerce-cart
     row-gap: 2rem
     align-items: flex-start
     max-width: var(--siteWidth)
+
+    @media ($below-s)
+      column-gap: 1rem
+      row-gap: 1rem
   
   .woocommerce-notices-wrapper
     grid-column: span 12
@@ -231,7 +235,7 @@ td.actions
 
   .button
     width: 100%
-    text-align: center
+    justify-content: center
 
   .cart-subtotal
     border-bottom: 1px dashed rgba(--text, .1)

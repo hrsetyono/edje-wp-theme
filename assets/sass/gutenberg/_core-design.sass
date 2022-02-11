@@ -19,6 +19,9 @@
 
 // General Button
 .wp-block-button
+  --bgColor: var(--color1)
+  --textColor: var(--textInvert)
+
   + .wp-block-button
     margin-left: 0.75rem
 
@@ -26,14 +29,17 @@
       margin-left: 0
       margin-top: 0.75rem
 
+  &.is-style-outline,
+  &.is-style-h-transparent
+    --textColor: var(--text)
+
 .button,
 [type="submit"],
 [type="reset"],
 .wp-block-file__button,
 .wp-block-button__link
-  --bgColor: var(--color1)
-
-  display: inline-block
+  display: inline-flex
+  align-items: center
   cursor: pointer
   overflow: hidden
   
@@ -102,21 +108,22 @@
     color: var(--textColor)
 
   .is-style-h-transparent &
-    margin-left: -0.5rem
-    padding-right: 0.5rem
-    padding-left: 0.5rem
+    border: none
     background-color: transparent
     text-transform: uppercase
-    color: var(--textColor, var(--text))
+    font-weight: 700
+    color: var(--textColor)
 
     &:hover
-      background-color: var(--bgColor, transparent)
+      background-color: transparent
 
 
 ///// COLUMNS
 
 .wp-block-columns
   display: flex
+  row-gap: var(--blockSpacing)
+  column-gap: var(--blockSpacing)
 
   &.has-background
     padding: var(--blockSpacing)
@@ -137,17 +144,9 @@
     padding: var(--blockSpacing)
     border-radius: var(--gRadius)
 
-
-  @media ($above-s)
-    + .wp-block-column
-      margin-left: 1.5rem
-
   @media ($below-s)
     flex-basis: 100% !important
     width: 100%
-
-    + .wp-block-column
-      margin-top: 1.5rem
 
 
 ////// GROUP
@@ -162,6 +161,9 @@
   &.has-background
     padding: var(--groupSpacing) 0
     border-radius: var(--gRadius)
+
+  &.has-background.alignfull
+    border-radius: 0
 
 
 

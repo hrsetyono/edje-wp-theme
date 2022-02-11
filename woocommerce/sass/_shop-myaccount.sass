@@ -1,8 +1,9 @@
 body.woocommerce-account main > .woocommerce
   display: flex
   align-items: flex-start
+  flex-wrap: wrap
   column-gap: 3rem
-  row-gap: 2rem
+  row-gap: 1rem
   max-width: var(--siteWidth)
 
   @media ($below-m)
@@ -91,6 +92,9 @@ body.woocommerce-account main > .woocommerce
     padding: 1.5rem
     border: 2px solid rgba(--text, .1)
     border-radius: var(--gRadius)
+
+    @media ($below-s)
+      padding: 0.75rem
 
   .clear
     display: none
@@ -202,8 +206,11 @@ body.woocommerce-account main > .woocommerce
 ///// LOGIN & REGISTER
 
 #customer_login
+  width: 360px
+  flex: 1
+
   h2
-    margin: var(--blockSpacing) 0
+    margin-bottom: var(--blockSpacing)
     font-size: var(--h2Size)
     text-align: center
 
@@ -227,6 +234,10 @@ body.woocommerce-account main > .woocommerce
   grid-template-columns: repeat(12, 1fr)
   width: 100%
   max-width: 720px
+
+  @media ($below-s)
+    column-gap: 0.75rem
+    row-gap: 0.75rem
 
   .woocommerce-privacy-policy-text
     grid-column: span 12
