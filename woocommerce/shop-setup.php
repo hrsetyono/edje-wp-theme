@@ -44,8 +44,9 @@ function my_shop_init() {
  * @action wp_enqueue_scripts 101
  */
 function my_enqueue_shop_assets() {
-  $dist = get_template_directory_uri() . '/assets/dist';
+  $dist = get_template_directory_uri() . '/dist';
 
+  wp_enqueue_script('my-shop', $dist . '/shop.js', [], THEME_VERSION, true);
   wp_enqueue_style('my-shop', $dist . '/shop.css', [], THEME_VERSION);
   
   wp_deregister_style('wc-block-vendors-style');
@@ -61,7 +62,7 @@ function my_enqueue_shop_assets() {
 function my_editor_shop_assets() {
   if (!is_admin()) { return; }
   
-  $dist = get_template_directory_uri() . '/assets/dist';
+  $dist = get_template_directory_uri() . '/dist';
 
   // wp_enqueue_script( 'my-shop-editor', $dist . '/shop-editor.js', [ 'wp-blocks', 'wp-dom' ] , THEME_VERSION, true );
   wp_enqueue_style('my-shop-editor', $dist . '/shop-editor.css', ['wp-edit-blocks'], THEME_VERSION);

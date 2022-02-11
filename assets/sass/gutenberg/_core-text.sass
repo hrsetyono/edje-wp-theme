@@ -93,6 +93,10 @@ main,
   max-width: none
   margin-top: var(--groupSpacing)
 
+  @media ($below-l)
+    margin-right: calc(-1 * var(--gridRim))
+    margin-left: calc(-1 * var(--gridRim))
+
   &:first-child
     margin-top: 0
 

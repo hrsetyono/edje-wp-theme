@@ -19,7 +19,7 @@
       </span>
 
       <span class="meta-author">
-        By <?php echo the_author(); ?>
+        By <?php the_author(); ?>
       </span>
 
       <time class="meta-date">

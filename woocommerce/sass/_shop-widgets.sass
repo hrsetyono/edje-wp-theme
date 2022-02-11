@@ -5,17 +5,19 @@
   flex-direction: column
   row-gap: 1rem
   list-style-type: none
-  padding-left: 0
+  padding: 1rem
 
   .is-style-default &
     max-height: 300px
     overflow-y: auto
-    padding: var(--cartPadding, 1rem)
 
   .is-style-offcanvas &
     flex: 1
     overflow-y: auto
-    padding: var(--cartPadding, 1.5rem)
+    padding: 1.5rem
+
+    @media ($below-s)
+      padding: 1rem
 
   li
     display: flex
@@ -116,9 +118,6 @@
   body.woocommerce-checkout &
     display: none
 
-  .widgettitle
-    display: none
-
 .h-cart
   --cartPadding: 1rem
 
@@ -131,6 +130,7 @@
 
   &.is-style-offcanvas.is-active::before
     content: ""
+    cursor: pointer
     position: fixed
     top: 0
     right: 0
@@ -206,6 +206,10 @@
   span
     display: inline-block
 
+    // Hide the "Cart" text
+    @media ($below-xs)
+      display: none
+
 
 .widget_shopping_cart
   visibility: hidden
@@ -237,7 +241,11 @@
     bottom: 0
 
     width: 380px
+    padding: 0
     border-radius: 0
+
+    @media ($below-xs)
+      width: 100%
 
   .h-cart.is-active &
     visibility: visible
@@ -245,13 +253,6 @@
     transform: none
     transition: var(--gTransition)
 
-  .remove_from_cart_button
-    position: absolute
-    z-index: 2
-    top: 0
-    right: 0
-    width: auto
-    font-weight: 700
 
 @keyframes bounce
   0%,10%,25%,40%,50%
@@ -261,6 +262,51 @@
   30%
     transform: translateY(-2px)
 
+
+// Title
+.widget_shopping_cart .widgettitle
+  display: none
+
+  .is-style-offcanvas &
+    display: block
+    pointer-events: none
+
+    position: relative
+    padding: 0.75rem 1rem
+    background-color: var(--color1Light)
+    font-size: var(--h4Size)
+    text-align: center
+
+    &::after
+      content: ""
+      cursor: pointer
+      pointer-events: all
+
+      display: inline-block
+      position: absolute
+      top: 50%
+      left: 0.75rem
+      transform: translateY(-50%)
+      transition: var(--gTransition)
+
+      width: 2rem
+      height: 2rem
+      border: 1px solid var(--text)
+      border-bottom-width: 2px
+      border-radius: var(--gRadius)
+
+      background: url('../images/times.svg') no-repeat center center
+      background-size: 0.75rem auto
+      opacity: .3
+
+    &:hover::after
+      background-color: rgba(--text, .2)
+      opacity: .7
+
+    &:active::after
+      border-bottom-width: 1px
+      border-top-width: 2px
+      transition: none
 
 .widget_shopping_cart_content
   display: flex

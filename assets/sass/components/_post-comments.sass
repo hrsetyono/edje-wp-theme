@@ -129,6 +129,8 @@ a.comment-reply-link
 .comment-form
   display: flex
   flex-wrap: wrap
+  row-gap: 1rem
+  column-gap: 1rem
   padding: 1rem
   border-radius: var(--gRadius)
 
@@ -142,7 +144,6 @@ a.comment-reply-link
     display: flex
     flex-direction: column
     width: 100%
-    margin-bottom: 0.5rem
 
   
   label
@@ -178,18 +179,10 @@ a.comment-reply-link
 
 p.comment-form-author,
 p.comment-form-email
-  width: 50%
+  width: calc(50% - 0.5rem)
 
   @media ($below-xs)
     width: 100%
-
-p.comment-form-author
-  @media ($above-s)
-    padding-right: 0.5rem
-
-p.comment-form-email
-  @media ($above-s)
-    padding-left: 0.5rem
 
 p.comment-form-url
   display: none
@@ -208,3 +201,10 @@ p.comment-form-cookies-consent
 p.form-submit
   align-items: flex-end
   margin-bottom: 0
+
+
+// Edje Toolbar
+.h-editor .toolbar
+  .tool-pre,
+  .tool-code
+    display: none

@@ -26,7 +26,7 @@ const path = require('path');
 
 const cssPath = './assets/sass';
 const jsPath = './assets/js';
-const shopPath = './woocommerce/sass';
+const shopPath = './woocommerce';
 
 const blockPath = './inc';
 const outputPath = 'dist';
@@ -38,8 +38,8 @@ const entryPoints = {
   'my-editor': `${jsPath}/my-editor.js`,
   'my-admin': `${jsPath}/my-admin.js`,
 
-  shop: `${shopPath}/shop.sass`,
-  'shop-editor': `${shopPath}/shop-editor.sass`,
+  shop: `${shopPath}/js/shop.js`,
+  'shop-editor': `${shopPath}/sass/shop-editor.sass`,
 
   'my-block': `${blockPath}/my-block/index.jsx`,
 };
