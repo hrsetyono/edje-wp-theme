@@ -9,12 +9,12 @@ const myCart = {
    * Set listener to close the offcanvas cart
    */
   closeOffcanvasCart() {
-    const $title = document.querySelector('.h-cart.is-style-offcanvas .widgettitle');
+    const $titles = document.querySelectorAll('.h-cart.is-style-offcanvas .widgettitle');
 
-    if (!$title) { return; }
-
-    $title.addEventListener('click', (e) => {
-      e.currentTarget.closest('.h-cart').classList.remove('is-active');
+    [...$titles].forEach(($t) => {
+      $t.addEventListener('click', (e) => {
+        e.currentTarget.closest('.h-cart').classList.remove('is-active');
+      });
     });
   },
 };

@@ -33,6 +33,9 @@
   &.is-style-h-transparent
     --textColor: var(--text)
 
+  .wp-block-cover &
+    --textColor: var(--textInvert)
+
 .button,
 [type="submit"],
 [type="reset"],
@@ -51,7 +54,7 @@
 
   text-decoration: none
   text-transform: uppercase
-  font-size: var(--sFontSize)
+  font-size: var(--mFontSize)
   font-weight: 700
   letter-spacing: 0.05em
   color: var(--textColor, var(--textInvert))
@@ -199,6 +202,6 @@
       content: "\00b7 \00b7 \00b7"
       padding-left: 2rem
       font-family: var(--codeFontFamily)
-      font-size: var(--largeFontSize)
+      font-size: var(--lFontSize)
       letter-spacing: 1.5rem
       color: var(--bgColor, var(--text))

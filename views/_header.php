@@ -13,7 +13,7 @@
 <?php foreach ($args['headers'] as $id => $header): ?>
   <?php if ($header['widgets']): ?>
     <header
-      class="header header--<?php echo $id; ?>"
+      class="<?php echo $id; ?>"
       data-columns="<?php echo $header['columns']; ?>"
       role="navigation"
     >

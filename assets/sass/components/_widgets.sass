@@ -1,15 +1,15 @@
 ///// GENERAL
 
 .widget
-  .footer &,
+  footer &,
   .offcanvas &
     width: 100%
 
 .widget + .widget
-  .header &
+  header &
     margin-left: 1rem
 
-  .footer &
+  footer &
     margin-top: 1.5rem
 
   .offcanvas &
@@ -20,10 +20,10 @@
 
 
 .widgettitle
-  .header &
+  header &
     font-size: var(--h5Size)
 
-  .footer &
+  footer &
     margin-bottom: 0.5rem
     font-size: var(--h4Size)
 
@@ -40,21 +40,21 @@
   max-width: var(--siteWidth)
   margin: 0 auto
 
-  .header &
+  header &
     display: grid
     grid-template-columns: var(--headerGridTemplate, auto)
 
     @media ($below-l)
       padding: 0 var(--gridRim)
 
-  .header[data-columns="2"] &
+  header[data-columns="2"] &
     --headerGridTemplate: auto auto
 
-  .header[data-columns="3"] &
+  header[data-columns="3"] &
     --headerGridTemplate: 1fr auto 1fr
     
 
-  .footer &
+  footer &
     display: flex
     column-gap: 1rem
     row-gap: 1rem
@@ -71,11 +71,11 @@
   padding: 0
   list-style-type: none
 
-  .header &
+  header &
     &:last-child:not(:first-child)
       justify-content: flex-end
 
-  .footer &
+  footer &
     flex-direction: column
     align-items: flex-start
     width: var(--columnSize)
@@ -95,7 +95,7 @@
       + .widget-column
         margin-top: var(--blockSpacing)
 
-  .footer--bottom-row &
+  .footer-bottom &
     justify-content: center
 
 
@@ -205,7 +205,7 @@
 
   // tagline
   span
-    font-size: var(--smallFontSize)
+    font-size: var(--sFontSize)
     color: var(--text)
 
   .footer &
@@ -263,7 +263,7 @@
     display: inline-block
     margin-left: 0.25rem
     line-height: 1
-    font-size: var(--smallFontSize)
+    font-size: var(--sFontSize)
 
 .wp-social-link-email,
 .wp-social-link-phone,
@@ -360,6 +360,6 @@ input.search-submit
     transition: var(--gTransition)
 
   // alignment
-  .header[data-columns="2"] .widget-column:nth-child(2) &,
-  .header[data-columns="3"] .widget-column:nth-child(3) &
+  header[data-columns="2"] .widget-column:nth-child(2) &,
+  header[data-columns="3"] .widget-column:nth-child(3) &
     flex-direction: row-reverse

@@ -32,7 +32,7 @@ const myHeader = {
   stickyRow() {
     if (!(CSS.supports && CSS.supports('position', 'sticky'))) { return; }
 
-    const target = '.header--mid-row';
+    const target = '.header';
     const $elems = [].slice.call(document.querySelectorAll(target));
 
     // Initial check if already sticky
@@ -73,9 +73,9 @@ const myHeader = {
     const isStuck = currentOffset <= stickyOffset;
 
     if (isStuck) {
-      $elem.classList.add('header--stuck');
+      $elem.classList.add('is-stuck');
     } else {
-      $elem.classList.remove('header--stuck');
+      $elem.classList.remove('is-stuck');
     }
   },
 };

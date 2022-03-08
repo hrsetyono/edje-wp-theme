@@ -200,9 +200,19 @@ body.has-checkout-form-open
     padding-top: 0
     margin-right: 0.5rem
 
+// when country selection only has 1, it will be just <strong> instead of <select>
+.form-row[id*="_country"]
+  .woocommerce-input-wrapper > strong
+    display: block
+    padding-top: 1.5rem
+    padding-left: 0.625rem
+
 .select2-container
   display: block
-  background-color: var(--textInvert)
+  background-color: transparent
+  
+  .select2-selection--single
+    background-color: transparent
 
   .select2-selection
     padding-top: 1.5rem
@@ -388,6 +398,7 @@ div.create-account
 .place-order
   button[type="submit"]
     width: 100%
+    justify-content: center
 
 
 ///// LEGAL

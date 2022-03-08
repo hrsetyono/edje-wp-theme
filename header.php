@@ -2,12 +2,12 @@
 
 $args = [
   'headers' => [
-    'top-row' => H::dynamic_sidebar('header-top'),
-    'mid-row' => H::dynamic_sidebar('header-mid'),
-    'top-row-mobile' => H::dynamic_sidebar('header-top-mobile'),
-    'mid-row-mobile' => H::dynamic_sidebar('header-mid-mobile'),
+    'subheader' => H::dynamic_sidebar('subheader'),
+    'header' => H::dynamic_sidebar('header'),
+    'subheader-mobile' => H::dynamic_sidebar('subheader-mobile'),
+    'header-mobile' => H::dynamic_sidebar('header-mobile'),
   ],
-  'offcanvas' => H::dynamic_sidebar('header-offcanvas'),
+  'offcanvas' => H::dynamic_sidebar('offcanvas'),
 ];
 
 get_template_part('views/_header', '', $args);

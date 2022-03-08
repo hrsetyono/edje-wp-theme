@@ -2,7 +2,7 @@
   <?php foreach ($args['footers'] as $id => $footer): ?>
     <?php if ($footer['widgets']): ?>
       <div
-        class="footer footer--<?php echo $id; ?>"
+        class="footer footer-<?php echo $id; ?>"
         data-columns="<?php echo $footer['columns']; ?>"
       >
         <div class="widget-row">

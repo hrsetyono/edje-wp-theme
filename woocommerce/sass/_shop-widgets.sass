@@ -212,6 +212,9 @@
 
 
 .widget_shopping_cart
+  display: flex
+  flex-direction: column
+
   visibility: hidden
   opacity: 0
   will-change: opacity, transform
@@ -273,6 +276,7 @@
 
     position: relative
     padding: 0.75rem 1rem
+    margin-top: var(--adminBarHeight)
     background-color: var(--color1Light)
     font-size: var(--h4Size)
     text-align: center
@@ -311,7 +315,8 @@
 .widget_shopping_cart_content
   display: flex
   flex-direction: column
-  height: 100%
+  flex: 1
+  color: var(--text)
 
 .woocommerce-mini-cart__empty-message
   padding: var(--blockSpacing) 0
@@ -324,7 +329,7 @@
   align-items: center
   border-top: 1px solid rgba(--text, .1)
   text-align: center
-  padding: 0.75rem var(--cartPadding)
+  padding: 0.75rem 1rem
 
   strong
     display: block
@@ -334,18 +339,17 @@
 
   .amount
     margin-left: auto
-    font-size: var(--mediumFontSize)
+    font-size: var(--mFontSize)
 
   .is-style-offcanvas &
     margin-top: auto
-    margin-bottom: 1rem
 
     strong
       font-size: var(--sFontSize)
 
 .woocommerce-mini-cart__buttons
   display: flex
-  padding: 0 var(--cartPadding) var(--cartPadding)
+  padding: 0 1rem 1rem
 
   a
     display: flex
@@ -361,8 +365,10 @@
     margin-left: auto
 
   .is-style-offcanvas &
-    flex-direction: column
-    row-gap: 1rem
+    column-gap: 1rem
+
+    a
+      flex: 1
 
     a
       justify-content: center

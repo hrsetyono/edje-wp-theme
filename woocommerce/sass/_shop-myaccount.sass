@@ -1,3 +1,5 @@
+// NOTE: You need to allow creation of account in Settings
+  
 body.woocommerce-account main > .woocommerce
   display: flex
   align-items: flex-start
@@ -242,6 +244,10 @@ body.woocommerce-account main > .woocommerce
   .woocommerce-privacy-policy-text
     grid-column: span 12
     font-size: var(--sFontSize)
+
+  // note about password will be sent to your email
+  > p:not([class])
+    grid-column: span 12
 
 
 ///// Hide login / register form

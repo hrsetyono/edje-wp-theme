@@ -1,9 +1,9 @@
 <?php
 $args = [
   'footers' => [
-    'top-row' => H::dynamic_sidebar( 'footer-top' ),
-    'mid-row' => H::dynamic_sidebar( 'footer-mid' ),
-    'bottom-row' => H::dynamic_sidebar( 'footer-bottom' ),
+    'top' => H::dynamic_sidebar('footer-top'),
+    'mid' => H::dynamic_sidebar('footer-mid'),
+    'bottom' => H::dynamic_sidebar('footer-bottom'),
   ],
 ];
 
