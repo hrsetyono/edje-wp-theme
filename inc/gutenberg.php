@@ -62,6 +62,11 @@ function my_disallowed_blocks( $blocks ) {
     'core/page-list',
     'core/query-title',
     'core/post-terms',
+    'core/navigation',
+    'core/post-author',
+    'core/post-comments',
+    'core/term-description',
+    'core/post-navigation-link',
   ];
 
   if( class_exists('Jetpack') ) {

@@ -75,34 +75,8 @@ function my_after_setup_theme() {
   // Gutenberg support
   add_theme_support('align-wide');
   add_theme_support('responsive-embeds');
-  
-  // Make sure to sync this with the $colors variable in assets/sass/framework/vars.scss
-  add_theme_support('editor-color-palette', [
-    [ 'name' => 'Text',        'slug' => 'text-base',   'color' => 'var(--text)' ],
-    [ 'name' => 'Text Dim',    'slug' => 'text-dim',    'color' => 'var(--textDim)' ],
-    [ 'name' => 'Text Invert', 'slug' => 'text-invert', 'color' => 'var(--textInvert)' ],
-
-    [ 'name' => 'Primary',       'slug' => 'color1',       'color' => 'var(--color1)' ],
-    [ 'name' => 'Primary Dark',  'slug' => 'color1-dark',  'color' => 'var(--color1Dark)' ],
-    [ 'name' => 'Primary Light', 'slug' => 'color1-light', 'color' => 'var(--color1Light)' ],
-
-    [ 'name' => 'Secondary',       'slug' => 'color2',       'color' => 'var(--color2)' ],
-    [ 'name' => 'Secondary Light', 'slug' => 'color2-light', 'color' => 'var(--color2Light)' ],
-
-    [ 'name' => 'Tertiary',       'slug' => 'color3',       'color' => 'var(--color3)' ],
-    [ 'name' => 'Tertiary Light', 'slug' => 'color3-light', 'color' => 'var(--color3Light)' ],
-  ]);
-
-  add_theme_support('editor-font-sizes', [
-    [ 'name' => 'Small', 'slug' => 'small', 'size' => 14 ],
-    [ 'name' => 'Regular', 'slug' => 'regular', 'size' => 16 ],
-    [ 'name' => 'Medium', 'slug' => 'medium', 'size' => 18 ],
-    [ 'name' => 'Large', 'slug' => 'large', 'size' => 22 ],
-    [ 'name' => 'Huge', 'slug' => 'huge', 'size' => 30 ],
-  ]);
-
   remove_theme_support('core-block-patterns');
-
+  
   /**
    * ACF Options page
    */

@@ -3,7 +3,7 @@
  * EXAMPLE Block
  */
 
-add_action( 'init', 'my_register_block_example' );
+// add_action( 'init', 'my_register_block_example' );
 
 /**
  * Register a custom block type

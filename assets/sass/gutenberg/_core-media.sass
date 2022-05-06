@@ -55,56 +55,66 @@
 ///// GALLERY
 
 .wp-block-gallery
-  display: flex
-  flex-direction: column
+  --columns: 3
+  --gap: 1rem
 
-  figure
-    position: relative
-    display: flex
-    flex-direction: column
-    align-items: flex-end
-    justify-content: flex-start
-
-    height: 100%
-    margin-bottom: 0
-    border-radius: var(--gRadius)
-
-  a
-    height: 100%
-    width: 100%
-
-  .blocks-gallery-item__caption
-    @extend %figcaption
-    border-bottom: 0
-    padding-bottom: 0
-    border-radius: var(--gRadius)
-
-  .blocks-gallery-caption
-    @extend %figcaption
-
-
-ul.blocks-gallery-grid
   display: flex
   flex-wrap: wrap
+  row-gap: var(--gap)
+  column-gap: var(--gap)
   padding-left: 0
-  margin-right: -0.5rem
-  margin-left: -0.5rem
-  list-style-type: none
-  max-width: calc(var(--siteWidth) + 1rem)
+  width: 100%
 
-  .alignwide &
-    max-width: calc(var(--siteWidth) + 1rem)
+  &:not(.is-cropped)
+    align-items: flex-start
 
+  @media ($above-s)
+    &.columns-2
+      --columns: 2
+    &.columns-3
+      --columns: 3
+    &.columns-4
+      --columns: 4
+    &.columns-5
+      --columns: 5
+    &.columns-6
+      --columns: 6
+    &.columns-7
+      --columns: 7
+    &.columns-8
+      --columns: 8
+    &.columns-
+      --columns: 5
 
-.wp-block-gallery.is-cropped
-  img
-    flex: 1
-    height: 100%
-    width: 100%
-    object-fit: cover
+  @media ($below-s)
+    --columns: 3
 
-  .blocks-gallery-item__caption
+    &.columns-2
+      --columns: 2
+  
+  @media ($below-xs)
+    --columns: 2
+
+// gallery item
+.wp-block-image
+  .wp-block-gallery &
+    flex-grow: 1
+    position: relative
+    width: calc(100% / var(--columns) - var(--gap))
+  
+  .wp-block-gallery.is-cropped &
+    img
+      flex: 1
+      height: 100%
+      width: 100%
+      object-fit: cover
+
+// caption
+.wp-block-gallery
+  .wp-block-image figcaption
     position: absolute
+    z-index: 2
+    left: 0
     bottom: 0
     width: 100%
     padding: 0.5rem
@@ -113,46 +123,14 @@ ul.blocks-gallery-grid
     text-align: center
     color: white
 
-  .blocks-gallery-item__caption a:hover
+  figcaption a:hover
     opacity: .6
     color: inherit
-  
 
-.blocks-gallery-item
-  flex-grow: 1
-  padding: 0 0.5rem 1rem
-  
-  @media ($above-s)
-    .columns-2 &
-      width: 50%
-    .columns-3 &
-      width: calc(100% / 3)
-    .columns-4 &
-      width: 25%
-    .columns-5 &
-      width: 20%
-    .columns-6 &
-      width: calc(100% / 6)
-    .columns-7 &
-      width: calc(100% / 7)
-    .columns-8 &
-      width: 12.5%
-    .columns- &
-      width: 20%
-
-  @media ($below-s)
-    width: 33.33%
-
-    .columns-2 &
-      width: 50%
-
-    .columns-1 &
-      width: 100%
-  
-  @media ($below-xs)
-    width: 50%
-
-
+  .blocks-gallery-caption
+    flex-basis: 100%
+    text-align: center
+    font-size: smaller
 
 
 ///// COVER
@@ -168,6 +146,9 @@ ul.blocks-gallery-grid
   background-color: var(--bgColor, black)
   min-height: 400px
   padding: var(--blockSpacing) 0
+
+  &:not(.alignfull)
+    border-radius: var(--gRadius)
 
 
 .has-custom-content-position
@@ -218,10 +199,14 @@ ul.blocks-gallery-grid
   width: var(--siteWidth)
   color: var(--textColor, var(--textInvert))
 
+  .wp-block-cover:not(.alignfull) &
+    padding-right: var(--gridRim)
+    padding-left: var(--gridRim)
+
   > *
     width: 100%
     max-width: var(--blogWidth)
-
+  
   .alignwide
     max-width: var(--siteWidth)
 
@@ -231,33 +216,31 @@ ul.blocks-gallery-grid
   @media ($above-s)
     background-attachment: fixed
 
+// Overlay
+.wp-block-cover__gradient-background
+  +absolute-fill
+  z-index: 2
+  background-color: var(--bgColor, black)
+
 .has-background-dim
-  position: relative
-
-  &::before
-    content: ""
-    +absolute-fill
-    z-index: 1
-    opacity: .5
-    background-color: inherit
-
-.has-background-dim-10::before
+  opacity: .5
+.has-background-dim-10
   opacity: .1
-.has-background-dim-20::before
+.has-background-dim-20
   opacity: .2
-.has-background-dim-30::before
+.has-background-dim-30
   opacity: .3
-.has-background-dim-40::before
+.has-background-dim-40
   opacity: .4
-.has-background-dim-60::before
+.has-background-dim-60
   opacity: .6
-.has-background-dim-70::before
+.has-background-dim-70
   opacity: .7
-.has-background-dim-80::before
+.has-background-dim-80
   opacity: .8
-.has-background-dim-90::before
+.has-background-dim-90
   opacity: .9
-.has-background-dim-100::before
+.has-background-dim-100
   opacity: 1
 
 
@@ -271,6 +254,10 @@ ul.blocks-gallery-grid
   row-gap: var(--columnGap, 2rem)
   column-gap: var(--columnGap, 2rem)
   grid-template-columns: var(--columnMedia) var(--columnContent)
+
+  &.alignwide,
+  &.alignfull
+    margin-top: var(--groupSpacing)
 
   &.has-media-on-the-right
     grid-template-columns: var(--columnContent) var(--columnMedia)
@@ -302,6 +289,9 @@ ul.blocks-gallery-grid
 
 .wp-block-media-text__media
   margin-bottom: 0
+
+  img
+    width: 100%
 
   .is-image-fill &
     align-self: stretch

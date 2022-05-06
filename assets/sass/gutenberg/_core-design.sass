@@ -4,6 +4,7 @@
   display: flex
   align-items: center
   flex-wrap: wrap
+  gap: 1rem
 
   &.aligncenter
     justify-content: center
@@ -21,13 +22,6 @@
 .wp-block-button
   --bgColor: var(--color1)
   --textColor: var(--textInvert)
-
-  + .wp-block-button
-    margin-left: 0.75rem
-
-    .is-vertical &
-      margin-left: 0
-      margin-top: 0.75rem
 
   &.is-style-outline,
   &.is-style-h-transparent
@@ -167,6 +161,10 @@
 
   &.has-background.alignfull
     border-radius: 0
+
+  &.has-background:not(.alignfull)
+    padding-right: var(--gridRim)
+    padding-left: var(--gridRim)
 
 
 

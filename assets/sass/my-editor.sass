@@ -19,27 +19,18 @@
 .editor-styles-wrapper
   background-color: var(--siteBg)
 
-[class*="-background-color"]
-  background-color: var(--bgColor)
-
 .has-text-color,
 .has-inline-color
   color: var(--textColor, var(--text))
 
-.has-background-dim
-  position: relative
-
-  &::before
-    content: ""
-    +absolute-fill
-    z-index: 1
-    opacity: .5
-    background-color: inherit
+.has-background
+  background-color: var(--bgColor)
 
 ///// TYPOGRAPHY
 
 .editor-styles-wrapper > *
   font-family: var(--fontFamily)
+  font-size: var(--fontSize)
   font-weight: var(--fontWeight)
   line-height: var(--lineHeight)
   color: var(--text)
@@ -55,6 +46,7 @@
   font-family: var(--hFontFamily)
   font-weight: var(--hFontWeight)
   text-transform: var(--hTextTransform)
+  margin-bottom: 0
 
 .editor-styles-wrapper
   h1
@@ -69,7 +61,6 @@
     font-size: var(--h5Size)
   h6
     font-size: var(--h6Size)
-
   
 
 ///// LIST
@@ -136,6 +127,22 @@
   &.has-text-align-right cite
     text-align: left
 
+///// IMAGE
+
+.wp-block-image
+  .components-resizable-box__container
+    max-width: 100% !important
+
+.editor-styles-wrapper .block-editor-block-list__layout
+  div.wp-block[data-align="left"],
+  div.wp-block[data-align="right"]
+    float: none
+
+  div.wp-block[data-align="left"] > *:first-child
+    float: left
+  
+  div.wp-block[data-align="right"] > *:first-child
+    float: right
 
 ///// TABLE
 
@@ -217,13 +224,68 @@
   padding: 1rem
   border-radius: var(--gRadius)
 
+///// GROUP
 
-///// cover
+.wp-block-group[data-type="core/group"] > .block-list-appender
+  margin-right: auto
+  margin-left: auto
 
-.wp-block-cover.has-custom-content-position.has-custom-content-position
+.wp-block-group.has-background:not(.alignfull)
+  padding-right: var(--gridGap)
+  padding-left: var(--gridGap)
+
+.wp-block-group > *
+  max-width: var(--blogWidth)
+  margin-right: auto
+  margin-left: auto
+
+  &[data-align="wide"]
+    max-width: var(--siteWidth)
+
+///// COVER
+
+.has-custom-content-position
+  --alignX: center
+  --alignY: center
+
+  &[class*="is-position-top-"]
+    --alignY: flex-start
+
+  &[class*="is-position-bottom-"]
+    --alignY: flex-end
+
+  &[class*="-right"]
+    --alignX: flex-end
+
+  &[class*="-left"]
+    --alignX: flex-start
+
+.wp-block-cover
+  display: flex
+  align-items: stretch !important
+  justify-content: center !important
+
+.wp-block-cover.is-light .wp-block-cover__inner-container
+  color: var(--textInvert)
+
+.wp-block-cover .wp-block-cover__inner-container
+  display: flex
+  flex-direction: column
+  align-items: var(--alignX, center)
+  justify-content: var(--alignY, center)
+  width: var(--siteWidth) !important
+
+  > *
+    width: 100%
+    max-width: var(--blogWidth)
+
+  .alignwide
+    max-width: var(--siteWidth)
+
   .wp-block-cover__inner-container
     min-width: var(--blogWidth)
     width: 100%
+
 
 ///// CODE
 

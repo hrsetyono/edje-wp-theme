@@ -1,0 +1,82 @@
+{
+  "version": 2,
+  "settings": {
+    "appearanceTools": false,
+    "border": {
+      "color": false,
+      "radius": false,
+      "style": false,
+      "width": false
+    },
+    "color": {
+      "background": true,
+      "custom": true,
+      "customDuotone": true,
+      "customGradient": true,
+      "defaultGradients": true,
+      "defaultPalette": false,
+      "duotone": [],
+      "gradients": [],
+      "link": false,
+      "text": true,
+      "palette": [
+        { "name": "Text",        "slug": "text-base",   "color": "var(--text)" },
+        { "name": "Text Dim",    "slug": "text-dim",    "color": "var(--textDim)" },
+        { "name": "Text Invert", "slug": "text-invert", "color": "var(--textInvert)" },
+
+        { "name": "Primary",       "slug": "color1",       "color": "var(--color1)" },
+        { "name": "Primary Dark",  "slug": "color1-dark",  "color": "var(--color1Dark)" },
+        { "name": "Primary Light", "slug": "color1-light", "color": "var(--color1Light)" },
+
+        { "name": "Secondary",       "slug": "color2",       "color": "var(--color2)" },
+        { "name": "Secondary Light", "slug": "color2-light", "color": "var(--color2Light)" },
+
+        { "name": "Tertiary",       "slug": "color3",       "color": "var(--color3)" },
+        { "name": "Tertiary Light", "slug": "color3-light", "color": "var(--color3Light)" }
+      ]
+    },
+    "custom": {},
+    "layout": {
+      "contentSize": "650px",
+      "wideSize": "1120px"
+    },
+    "spacing": {
+      "blockGap": true,
+      "margin": false,
+      "padding": false,
+      "units": [ "px", "rem", "vh", "vw" ]
+    },
+    "typography": {
+      "customFontSize": true,
+      "dropCap": true,
+      "fontFamilies": [],
+      "fontSizes": [],
+      "fontStyle": false,
+      "fontWeight": false,
+      "letterSpacing": false,
+      "lineHeight": false,
+      "textDecoration": false,
+      "textTransform": false
+    },
+    "blocks": {
+      "core/paragraph": {
+        "typography": {
+          "fontSizes": [
+            { "name": "Small",   "size": "14px", "slug": "small" },
+            { "name": "Regular", "size": "16px", "slug": "regular" },
+            { "name": "Medium",  "size": "18px", "slug": "medium" },
+            { "name": "Large",   "size": "22px", "slug": "large" },
+            { "name": "Huge",    "size": "30px", "slug": "huge" }
+          ]
+        }
+      },
+      "core/group": {
+        "layout": false,
+        "__experimentalLayout": false,
+        "supports": {
+          "__experimentalLayout": false
+        }
+      }
+    }
+  }
+}
