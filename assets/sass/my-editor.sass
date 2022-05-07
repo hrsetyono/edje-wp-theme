@@ -10,9 +10,6 @@
   b, strong
     font-weight: 700
 
-  &.is-reusable
-    max-width: none
-
 .wp-block[data-align="wide"]
   max-width: calc(var(--siteWidth) - 100px)
 
@@ -46,6 +43,7 @@
   font-family: var(--hFontFamily)
   font-weight: var(--hFontWeight)
   text-transform: var(--hTextTransform)
+  line-height: var(--hLineHeight)
   margin-bottom: 0
 
 .editor-styles-wrapper
@@ -63,31 +61,12 @@
     font-size: var(--h6Size)
   
 
-///// LIST
-
-[data-type="core/list"]
-  ol
-    list-style-type: lower-alpha
-
-  &.has-background
-    padding: 1rem 1.5rem
-    padding-left: 2.5rem
-
 ///// HEADING
 
 [data-type="core/heading"]
-  &.has-background
-    padding: 1rem 1.5rem
-
+  // <strong> in heading become thin instead
   strong
     font-weight: var(--fontWeight)
-
-  sub,
-  sup
-    text-transform: uppercase
-    letter-spacing: 0.05em
-    font-size: 50%
-    font-weight: 400
 
 
 ///// QUOTE
@@ -127,22 +106,6 @@
   &.has-text-align-right cite
     text-align: left
 
-///// IMAGE
-
-.wp-block-image
-  .components-resizable-box__container
-    max-width: 100% !important
-
-.editor-styles-wrapper .block-editor-block-list__layout
-  div.wp-block[data-align="left"],
-  div.wp-block[data-align="right"]
-    float: none
-
-  div.wp-block[data-align="left"] > *:first-child
-    float: left
-  
-  div.wp-block[data-align="right"] > *:first-child
-    float: right
 
 ///// TABLE
 
@@ -192,8 +155,6 @@
   th, td
     border: 1px solid rgba(black, .5)
     
-    
-
 
 ///// BUTTON
 
@@ -216,31 +177,6 @@
 
     &:not(:hover)
       background-color: transparent !important
-
-
-///// COLUMN
-
-.wp-block-column.has-background
-  padding: 1rem
-  border-radius: var(--gRadius)
-
-///// GROUP
-
-.wp-block-group[data-type="core/group"] > .block-list-appender
-  margin-right: auto
-  margin-left: auto
-
-.wp-block-group.has-background:not(.alignfull)
-  padding-right: var(--gridGap)
-  padding-left: var(--gridGap)
-
-.wp-block-group > *
-  max-width: var(--blogWidth)
-  margin-right: auto
-  margin-left: auto
-
-  &[data-align="wide"]
-    max-width: var(--siteWidth)
 
 ///// COVER
 
@@ -268,6 +204,7 @@
 .wp-block-cover.is-light .wp-block-cover__inner-container
   color: var(--textInvert)
 
+// Change the custom position to be within --siteWidth
 .wp-block-cover .wp-block-cover__inner-container
   display: flex
   flex-direction: column
@@ -285,15 +222,6 @@
   .wp-block-cover__inner-container
     min-width: var(--blogWidth)
     width: 100%
-
-
-///// CODE
-
-pre.wp-block-code
-  background-color: rgba(black, 0.05)
-
-  code
-    background-color: transparent
 
 
 ///// EMBEDS
