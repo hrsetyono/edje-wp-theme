@@ -226,7 +226,7 @@
 
 ///// WIDGET: Social Buttons
 
-.widget .wp-block-social-links
+.wp-block-social-links
   --iconSize: 1.25rem
   --iconPadding: 0.25em
 
@@ -251,7 +251,7 @@
         background-color: transparent
         color: inherit
 
-.widget .wp-social-link
+.wp-social-link
   margin-bottom: 0
 
   p
@@ -363,3 +363,33 @@ input.search-submit
   header[data-columns="2"] .widget-column:nth-child(2) &,
   header[data-columns="3"] .widget-column:nth-child(3) &
     flex-direction: row-reverse
+
+// WIDGET: GALLERY
+
+.widget_media_gallery
+  .gallery
+    --columns: 3
+    display: grid
+    grid-template-columns: repeat(var(--columns), 1fr)
+    column-gap: 0.5rem
+    row-gap: 0.5rem
+  
+  .gallery-columns-2
+    --columns: 2
+  .gallery-columns-4
+    --columns: 4
+  .gallery-columns-5
+    --columns: 5
+  
+  .gallery-item
+    grid-column: span 1
+
+  img[alt*="http"]
+    cursor: pointer
+    transition: var(--gTransition)
+
+    &:hover
+      opacity: .75
+    &:active
+      transform: translateY(1px)
+      transition: none

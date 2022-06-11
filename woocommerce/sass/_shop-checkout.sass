@@ -68,6 +68,7 @@ body.has-checkout-form-open
   width: 400px
   padding: 1rem
   box-shadow: var(--shadow1)
+  border-radius: var(--gRadius)
 
   @media ($below-s)
     width: calc(100% - 1rem)
@@ -122,7 +123,7 @@ body.has-checkout-form-open
     margin-top: var(--blockSpacing)
 
 .form-row
-  grid-column: span var(--span, 6)
+  grid-column: span var(--column, 6)
   position: relative
 
   label
@@ -141,44 +142,44 @@ body.has-checkout-form-open
     padding: 1.5rem 0.25rem 0.25rem
 
   &[id*="email"]
-    --span: 12
+    --column: 12
 
   &[id*="company_field"]
     display: none
   
   &[id*="address_1_field"]
-    --span: 8
+    --column: 8
 
     @media ($below-xs)
-      --span: 12
+      --column: 12
 
   &[id*="address_2_field"]
-    --span: 4
+    --column: 4
 
     @media ($below-xs)
-      --span: 12
+      --column: 12
 
   &[id*="country"],
   &[id*="postcode"],
   &[id*="state"]
-    --span: 4
+    --column: 4
 
     @media ($below-s)
-      --span: 6
+      --column: 6
 
     .woocommerce-form-register &
-      --span: 6
+      --column: 6
 
   &[id*="phone"]
     @media ($below-xs)
-      --span: 12
+      --column: 12
 
   &[id*="city"]
     .woocommerce-form-register &
-      --span: 6
+      --column: 6
 
       @media ($below-xs)
-        --span: 12
+        --column: 12
 
 .form-row .woocommerce-form__label
   position: static
@@ -209,7 +210,7 @@ body.has-checkout-form-open
 
 .select2-container
   display: block
-  background-color: transparent
+  background-color: var(--inputBg)
   
   .select2-selection--single
     background-color: transparent
@@ -269,16 +270,37 @@ div.create-account
     padding: 1rem
 
 .woocommerce-checkout-review-order-table
+  display: block
   margin-bottom: 1rem
 
   thead
     display: none
- 
+
+  tbody,
+  tfoot
+    display: flex
+    flex-direction: column
+
+  tr
+    display: flex
+    width: 100%
+    border-bottom: 1px dashed rgba(--text, .2)
+
+  th,
   td
+    display: block
     padding: 0.5rem 0
+    border: none
 
   td:last-child
+    padding-left: 2rem
+    margin-left: auto
     text-align: right
+    font-size: var(--sFontSize)
+
+
+  tfoot tr td:last-child
+    margin-left: auto
 
   tfoot tr:last-child
     th,
@@ -294,6 +316,8 @@ div.create-account
   align-items: center
   column-gap: 0.5rem
   line-height: 1.25
+  font-family: var(--hFontFamily)
+  font-weight: var(--hFontWeight)
 
   img
     max-width: 2.5rem
@@ -311,6 +335,7 @@ div.create-account
   list-style-type: none
   padding-left: 0
   text-align: left
+  max-width: 250px
 
   li
     display: flex
@@ -328,9 +353,9 @@ div.create-account
     border: 1px solid transparent
     border-radius: var(--gRadius)
 
-    padding: 0.5rem 0.5rem
-    padding-left: 2rem
-    font-size: var(--sFontSize)
+    padding: 0.5rem
+    padding-left: 1.75rem
+    font-size: small
     
   label:hover
     border-color: rgba(--text, .1)

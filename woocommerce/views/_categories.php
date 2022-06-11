@@ -3,7 +3,7 @@
     <?php _e('Category'); ?>
   </h2>
 
-  <div data-tile="3-2">
+  <div data-tiles="3-2">
   <?php foreach ($categories as $c): ?>
     <a
       class="category-tease"
