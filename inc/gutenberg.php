@@ -89,6 +89,7 @@ function my_disallowed_blocks( $blocks ) {
       'jetpack/revue',
       'jetpack/repeat-visitor',
       'jetpack/story',
+      'jetpack/recurring-payments',
     ] );
   }
 
