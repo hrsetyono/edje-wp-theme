@@ -7,7 +7,7 @@ Stylesheet is compiled with **Node Sass**. Visit that link to know how to compil
 **REQUIREMENTS**
 
 - PHP 7.3+
-- WordPress 5.7+
+- WordPress 5.9+
 - [Composer 1.8](https://getcomposer.org/)
 - Node JS
 

@@ -1,8 +1,13 @@
-<div class="wc-block-grid has-<?php echo $args['catalog_columns'] ?? 4; ?>-columns alignwide">
-<?php if (count($args['products']) > 0): ?>
+<?php
+  $catalog_columns = $args['catalog_columns'] ?? 4;
+  $products = $args['products'] ?? [];
+?>
+
+<div class="wc-block-grid has-<?= $catalog_columns ?>-columns alignwide">
+<?php if (count($products) > 0): ?>
   <ul class="wc-block-grid__products">
 
-  <?php foreach ($args['products'] as $post): ?>
+  <?php foreach ($products as $post): ?>
     <?php setup_postdata($post); ?>
     <?php my_setup_productdata($post); ?>
 

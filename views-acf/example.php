@@ -1,11 +1,19 @@
+<?php
+  $align = $args['align'] ?? '';
+  $className = $args['className'] ?? '';
+  $anchor = $args['anchor'] ?? '';
+  $title = $args['title'] ?? '';
+  $content = $args['content'] ?? '';
+?>
+
 <section
-  class="acf-block-sample <?php echo $args['align'] . ' ' . $args['className']; ?>"
-  <?php if ($args['anchor']) {
-    echo "id='{$args['anchor']}'";
-  } ?>
+  class="acf-block-sample <?= "{$align} {$className}" ?>"
+  <?php if ($anchor): ?>
+    id="<?= $anchor ?>"
+  <?php endif; ?>
 >
   <h3>
-    <?php echo $args['title']; ?>
+    <?= $title ?>
   </h3>
-  <?php echo H::markdown($args['content']); ?>
+  <?= H::markdown($content) ?>
 </section>

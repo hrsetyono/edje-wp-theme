@@ -19,8 +19,8 @@
       <div class="wp-block-latest-posts__post-author">
         by <?php the_author(); ?>
       </div>
-      <time datetime="{{ post.post_date }}" class="wp-block-latest-posts__post-date">
-        <?php echo get_the_date(); ?>
+      <time class="wp-block-latest-posts__post-date">
+        <?= get_the_date() ?>
       </time>
       <div class="wp-block-latest-posts__post-excerpt">
         <?php the_excerpt(); ?>

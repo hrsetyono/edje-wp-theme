@@ -1,8 +1,8 @@
 <?php
 
 // ACF Blocks
-add_action( 'acf/init', 'my_acf_create_blocks' );
-add_filter( 'acf/format_value/name=sample', 'my_acf_format_sample', 10, 3 );
+add_action('acf/init', 'my_acf_create_blocks');
+add_filter('acf/format_value/name=sample', 'my_acf_format_sample', 10, 3);
 
 
 
@@ -28,14 +28,14 @@ function my_acf_create_blocks() {
  * 
  * @filter acf/format_value/name=sample 10
  */
-function my_acf_format_sample( $value, $post_id, $field ) {
+function my_acf_format_sample($value, $post_id, $field) {
   return $value;
 }
 
 /**
  * @render acf-example
  */
-function _my_render_acf_example( $block, $content='', $is_preview=false, $post_id=0) {
+function _my_render_acf_example($block, $content='', $is_preview=false, $post_id=0) {
   $args = [
     'id' => $block['id'],
     'className' => $block['className'] ?? '',

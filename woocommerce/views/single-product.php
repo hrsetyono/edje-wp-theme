@@ -47,7 +47,7 @@
   <section class="product-related / wp-block-group has-background has-color-1-light-background-color alignfull">
     <div class="wp-block-group__inner-container">
       <h3 class="alignwide">
-        <?php _e('Related Products'); ?>
+        <?= __('Related Products') ?>
       </h3>
       <?php get_template_part('woocommerce/views/_products', '', $args); ?>
     </div>

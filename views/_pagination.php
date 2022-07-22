@@ -1,8 +1,12 @@
-<?php $pagination = $args['pagination'] ?? null; ?>
+<?php
+  $pagination = $args['pagination'] ?? null;
+  $current_page = get_query_var('paged') ? (string) get_query_var('paged') : '1';
+?>
+
 <?php if ($pagination && $pagination['total'] > 1): ?>
   <nav class="pagination">
     <?php if (isset($pagination['prev']['link'])): ?>
-      <a href="<?php echo $pagination['prev']['link'] ?>">
+      <a href="<?= $pagination['prev']['link'] ?>">
     <?php else: ?>
       <a>
     <?php endif; ?>
@@ -15,19 +19,23 @@
     >
       <?php foreach ($pagination['pages'] as $page): ?>
         <?php if (isset($page['link'])): ?>
-          <option value="<?php echo $page['link']; ?>">
-            <?php echo sprintf(__('Page %s'), $page['title']); ?>
+          <option value="<?= $page['link']; ?>">
+            <?= sprintf(__('Page %s'), $page['title']); ?>
+          </option>
+        <?php elseif ($page['title'] === $current_page): ?>
+          <option selected disabled>
+            <?= sprintf(__('Page %s / %s'), $page['title'], $pagination['total']); ?>
           </option>
         <?php else: ?>
-          <option selected disabled>
-            <?php echo sprintf(__('Page %s / %s'), $page['title'], $pagination['total']); ?>
+          <option disabled>
+            ...
           </option>
         <?php endif ?>
       <?php endforeach; ?>
     </select>
     
     <?php if (isset($pagination['next']['link'])): ?>
-      <a href="<?php echo $pagination['next']['link'] ?>">
+      <a href="<?= $pagination['next']['link'] ?>">
     <?php else: ?>
       <a>
     <?php endif; ?>

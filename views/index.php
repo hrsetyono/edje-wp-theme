@@ -1,15 +1,24 @@
+<?php
+  $title = $args['title'] ?? '';
+  $description = $args['description'] ?? '';
+  $pagination = $args['pagination'] ?? null;
+?>
+
 <main role="main">
   <div
     class="wp-block-cover has-background-dim has-color-1-background-color has-text-color has-text-invert-color alignfull"
     style="min-height:200px;"
   >
     <div class="wp-block-cover__inner-container">
-      <h1 class="has-color has-text-color has-text-align-center">
-        <?php echo $args['title']; ?>
-      </h1>
-      <?php if (isset($args['description'])) {
-        echo H::markdown($args['description']);
-      } ?>
+      <?php if ($title): ?>
+        <h1 class="has-color has-text-color has-text-align-center">
+          <?= $title ?>
+        </h1>
+      <?php endif; ?>
+
+      <?php if ($description): ?>
+        <?= H::markdown($description) ?>
+      <?php endif; ?>
     </div>
   </div>
   
