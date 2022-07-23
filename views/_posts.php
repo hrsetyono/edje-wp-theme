@@ -1,6 +1,10 @@
-<?php if (count($args['posts']) > 0): ?>
+<?php
+  $posts = $args['posts'] ?? [];
+?>
+
+<?php if (count($posts) > 0): ?>
   <ul class="wp-block-latest-posts wp-block-latest-posts__list is-grid columns-3 has-dates has-author alignwide">
-  <?php foreach ($args['posts'] as $post): ?>
+  <?php foreach ($posts as $post): ?>
     <?php setup_postdata($post); ?>
 
     <li>

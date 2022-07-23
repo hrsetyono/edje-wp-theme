@@ -1,3 +1,7 @@
+<?php
+  $categories = $args['categories'] ?? [];
+?>
+
 <section class="shop-categories">
   <h2>
     <?= __('Category') ?>

@@ -1,8 +1,14 @@
 <?php the_post(); ?>
 
 <main role="main">
-<header class="post-hero / wp-block-cover has-background-dim has-color-1-light-background-color alignfull"
-  style="min-height:250px;">
+<header
+  class="post-hero / wp-block-cover alignfull"
+  style="min-height:250px;"
+>
+  <span
+    aria-hidden="true"
+    class="has-color-1-light-background-color wp-block-cover__gradient-background"
+  ></span>
   <div class="wp-block-cover__inner-container">
 
     <h1 class="alignwide has-color has-text-color">
@@ -89,7 +95,7 @@
   <?php endif; ?>
 </div>
 
-  <footer class="wp-block-group has-background has-color-1-light-background-color alignfull">
+  <footer class="related-posts / wp-block-group has-background has-text-invert-background-color alignfull">
     <div class="wp-block-group__inner-container">
       <h3 class="alignwide">
         <?= __('Related Posts') ?>

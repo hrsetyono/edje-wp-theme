@@ -19,12 +19,12 @@
     >
       <?php foreach ($pagination['pages'] as $page): ?>
         <?php if (isset($page['link'])): ?>
-          <option value="<?= $page['link']; ?>">
-            <?= sprintf(__('Page %s'), $page['title']); ?>
+          <option value="<?= $page['link'] ?>">
+            <?= sprintf(__('Page %s'), $page['title']) ?>
           </option>
         <?php elseif ($page['title'] === $current_page): ?>
           <option selected disabled>
-            <?= sprintf(__('Page %s / %s'), $page['title'], $pagination['total']); ?>
+            <?= sprintf(__('Page %s / %s'), $page['title'], $pagination['total']) ?>
           </option>
         <?php else: ?>
           <option disabled>

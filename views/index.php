@@ -1,14 +1,18 @@
 <?php
-  $title = $args['title'] ?? '';
+  $title = $args['title'] ?? 'Blog';
   $description = $args['description'] ?? '';
   $pagination = $args['pagination'] ?? null;
 ?>
 
 <main role="main">
   <div
-    class="wp-block-cover has-background-dim has-color-1-background-color has-text-color has-text-invert-color alignfull"
+    class="wp-block-cover alignfull"
     style="min-height:200px;"
   >
+    <span
+      aria-hidden="true"
+      class="has-color-1-light-background-color wp-block-cover__gradient-background"
+    ></span>
     <div class="wp-block-cover__inner-container">
       <?php if ($title): ?>
         <h1 class="has-color has-text-color has-text-align-center">

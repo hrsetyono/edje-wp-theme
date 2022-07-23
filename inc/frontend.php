@@ -9,7 +9,6 @@ add_filter('previous_post_link', 'my_adjacent_post_link', 10, 5);
 add_filter('next_post_link', 'my_adjacent_post_link', 10, 5);
 
 
-  
 /**
  * Output current year
  *   [current-year]
@@ -30,9 +29,9 @@ function shortcode_current_year($atts, $content = null) {
  * @filter wp_nav_menu_objects
  */
 function my_nav_markup($items) {
-  foreach( $items as $i ) {
+  foreach ($items as $i) {
     // Change the "menu-item" class into "submenu-item" if it's a child menu
-    if( $i->menu_item_parent !== '0' && $i->classes[1] == 'menu-item' ) {
+    if ($i->menu_item_parent !== '0' && $i->classes[1] == 'menu-item') {
       $i->classes[1] = 'sub-menu-item';
     }
   }
