@@ -16,6 +16,7 @@ if (is_admin()) {
 } else {
   // require_once $inc . '/api.php';
   require_once $inc . '/frontend.php';
+  require_once $inc . '/menu.php';
 }
 
 if (class_exists('WooCommerce')) {

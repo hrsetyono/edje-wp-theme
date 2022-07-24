@@ -1,1 +1,6 @@
-
+.acf-menu-item-fields [data-name=mega_menu] {
+  display: none;
+}
+.menu-item-depth-0 .acf-menu-item-fields [data-name=mega_menu] {
+  display: block;
+}

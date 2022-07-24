@@ -1,3 +1,12 @@
 // This styling is applied to WP Admin
 @import "vars"
 @import "helpers"
+
+// ACF MENU ITEM
+
+// Hide the columns field other than in parent item
+.acf-menu-item-fields [data-name="mega_menu"]
+  display: none
+
+  .menu-item-depth-0 &
+    display: block
