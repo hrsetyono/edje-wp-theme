@@ -1,6 +1,14 @@
-.acf-menu-item-fields [data-name=mega_menu] {
+.acf-field[data-name=mega_menu] {
   display: none;
 }
-.menu-item-depth-0 .acf-menu-item-fields [data-name=mega_menu] {
+.menu-item-depth-0 .acf-field[data-name=mega_menu] {
   display: block;
+}
+
+.menu-item-depth-1 .acf-field[data-name=style] label:nth-child(2) {
+  display: none;
+}
+
+.menu-item-depth-2 .acf-field[data-name=style] label:nth-child(3) {
+  display: none;
 }

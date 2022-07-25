@@ -1,6 +1,6 @@
 {
     "key": "group_62dccbc34b3e8",
-    "title": "Menu - Parent",
+    "title": "Menu Item",
     "fields": [
         {
             "key": "field_62dccbd8afe3e",
@@ -40,7 +40,8 @@
             },
             "choices": {
                 "has-icon": "Has Icon",
-                "has-image": "Has Image"
+                "has-image": "Has Image",
+                "has-background": "Has Background"
             },
             "allow_null": 1,
             "default_value": "",
@@ -74,7 +75,7 @@
         },
         {
             "key": "field_62dcd8e12a22a",
-            "label": "Image \/ Icon",
+            "label": "Image",
             "name": "image",
             "type": "image",
             "instructions": "",
@@ -83,7 +84,15 @@
                 [
                     {
                         "field": "field_62dd53fa63c37",
-                        "operator": "!=empty"
+                        "operator": "==",
+                        "value": "has-icon"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_62dd53fa63c37",
+                        "operator": "==",
+                        "value": "has-image"
                     }
                 ]
             ],
@@ -102,6 +111,42 @@
             "max_height": "",
             "max_size": "",
             "mime_types": ""
+        },
+        {
+            "key": "field_62de02e509bb7",
+            "label": "Background Color",
+            "name": "background_color",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_62dd53fa63c37",
+                        "operator": "==",
+                        "value": "has-background"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "main": "Main Color",
+                "sub": "Sub Color",
+                "black": "Black",
+                "gray": "Gray",
+                "white": "White"
+            },
+            "default_value": false,
+            "allow_null": 1,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
         }
     ],
     "location": [
@@ -122,5 +167,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1658674863
+    "modified": 1658762427
 }

@@ -5,8 +5,18 @@
 // ACF MENU ITEM
 
 // Hide the columns field other than in parent item
-.acf-menu-item-fields [data-name="mega_menu"]
+.acf-field[data-name="mega_menu"]
   display: none
 
   .menu-item-depth-0 &
     display: block
+
+// Hide "has image" option in style
+.menu-item-depth-1
+  .acf-field[data-name="style"] label:nth-child(2)
+    display: none
+
+// Hide "has background" option in style
+.menu-item-depth-2
+  .acf-field[data-name="style"] label:nth-child(3)
+    display: none

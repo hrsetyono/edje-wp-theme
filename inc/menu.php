@@ -35,7 +35,9 @@ function my_menu_item_markup($items, $args) {
     $description = H::markdown($i->post_content, true);
     $image_src = '';
     $image_alt = '';
+    $bg_color = '';
     
+    // Check for image
     if (in_array($style, ['has-image', 'has-icon'])) {
       $image = get_field('image', $i);
 
@@ -45,6 +47,12 @@ function my_menu_item_markup($items, $args) {
           : $image['sizes']['thumbnail'];
         $image_alt = $image['alt'];
       }
+    }
+
+    // Check for background
+    if (in_array($style, ['has-background'])) {
+      $bg_color = get_field('background_color', $i);
+      $i->classes[] = "menu-background-{$bg_color}";
     }
 
     ob_start(); ?>

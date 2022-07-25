@@ -11,17 +11,17 @@
   --color1RGB: 52, 152, 219;
   --color1Dark: #2573A7;
   --color1DarkRGB: 37, 115, 167;
-  --color1Light: #DEEDF8;
+  --color1Light: #deedf8;
   --color1LightRGB: 222, 237, 248;
   --color2: #2ecc71;
   --color2RGB: 46, 204, 113;
   --color2Dark: #26A65B;
   --color2DarkRGB: 38, 166, 91;
-  --color2Light: #DEF7E8;
+  --color2Light: #def7e8;
   --color2LightRGB: 222, 247, 232;
   --color3: #e74c3c;
   --color3RGB: 231, 76, 60;
-  --color3Light: #FBDEDB;
+  --color3Light: #fbdedb;
   --color3LightRGB: 251, 222, 219;
   --siteBg: #f8f9fb;
   --siteBgColor: #f8f9fb;
@@ -1296,8 +1296,26 @@ body.has-active-offcanvas .offcanvas {
 .menu-item {
   position: relative;
 }
+.header .menu-item > a::before {
+  content: "";
+  display: block;
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  bottom: 0;
+  left: 10px;
+  right: 10px;
+  height: 4px;
+  background-color: var(--text);
+  transition: var(--gTransition);
+}
+.header .menu-item:hover > a::before {
+  visibility: visible;
+  opacity: 1;
+}
 
 .menu-item > a {
+  position: relative;
   display: flex;
   align-items: center;
   height: 100%;
@@ -1311,23 +1329,6 @@ body.has-active-offcanvas .offcanvas {
 }
 .header .menu-item > a {
   padding: 2rem 0.75rem;
-}
-.header .menu-item > a::before {
-  content: "";
-  display: block;
-  visibility: hidden;
-  opacity: 0;
-  position: absolute;
-  bottom: 0;
-  left: 10px;
-  right: 10px;
-  height: 4px;
-  background-color: var(--color1);
-  transition: var(--gTransition);
-}
-.header .menu-item > a:hover::before {
-  visibility: visible;
-  opacity: 1;
 }
 .subheader .menu-item > a {
   padding: 0.25rem 0.5rem;
@@ -1375,6 +1376,14 @@ body.has-active-offcanvas .offcanvas {
   color: var(--textInvert);
   opacity: 1;
 }
+.sub-menu .current-menu-item > a,
+.sub-menu .current-page-ancestor > a,
+.sub-menu .current-menu-ancestor > a,
+.sub-menu .current-menu-parent > a,
+.sub-menu .current_page_parent > a {
+  background-color: rgbA(var(--textInvertRGB), 0.1);
+  color: inherit;
+}
 .current-menu-item > a::before,
 .current-page-ancestor > a::before,
 .current-menu-ancestor > a::before,
@@ -1404,23 +1413,26 @@ body.has-active-offcanvas .offcanvas {
 }
 
 .header .sub-menu, .subheader .sub-menu {
+  visibility: hidden;
+  opacity: 0;
+  background-color: var(--text);
+  width: 200px;
+  padding: 0.75em 0.5em;
+  border-radius: var(--gRadius);
+  list-style-type: none;
+  transition: var(--gTransition);
+  box-shadow: var(--shadow1);
+}
+
+.header .sub-menu-depth-1, .subheader .sub-menu-depth-1 {
   position: absolute;
   z-index: 10;
   top: 100%;
   left: 50%;
-  visibility: hidden;
-  opacity: 0;
-  width: 200px;
-  padding: 0.75em 0.5em;
-  border-radius: var(--gRadius);
-  background-color: var(--text);
-  text-align: left;
-  list-style-type: none;
-  transition: var(--gTransition);
   transform: translateX(-50%);
-  box-shadow: var(--shadow2);
+  color: var(--textInvert);
 }
-.offcanvas .sub-menu {
+.offcanvas .sub-menu-depth-1 {
   visibility: visible;
   opacity: 1;
   overflow: hidden;
@@ -1429,59 +1441,21 @@ body.has-active-offcanvas .offcanvas {
   list-style-type: none;
   transition: var(--gTransition);
 }
-.menu-item:hover > .sub-menu {
+.menu-item:hover > .sub-menu-depth-1 {
   visibility: visible;
   opacity: 1;
 }
-.menu-item:focus-within > .sub-menu {
+.menu-item:focus-within > .sub-menu-depth-1 {
   visibility: visible;
   opacity: 1;
 }
 
-.sub-menu-item {
-  display: block;
-  position: relative;
-  padding-left: 0.25rem;
-  color: var(--textInvert);
-}
-.sub-menu-item > a {
-  display: block;
-  padding: 0.375rem;
-  border-radius: var(--gRadius);
-}
-.sub-menu-item > a:hover {
-  background-color: rgbA(var(--textInvertRGB), 0.1);
-}
-.sub-menu-item dt {
-  font-weight: 700;
-}
-.sub-menu-item dd {
-  font-size: var(--sFontSize);
-  opacity: 0.75;
-}
-
-.sub-menu-item.menu-item-has-children a {
-  position: relative;
-  padding-right: 1.25rem;
-}
-.sub-menu-item.menu-item-has-children a::after {
-  position: absolute;
-  top: 50%;
-  right: 0.5rem;
-  left: auto;
-  transform: rotate(-90deg) translateX(50%);
-  filter: invert(1);
-}
-
-.header .sub-menu-depth-2 {
-  visibility: hidden;
-  opacity: 0;
+.header .sub-menu-depth-2, .subheader .sub-menu-depth-2 {
   position: absolute;
   top: 0;
   right: 0;
   left: auto;
   transform: translateX(100%);
-  transition: var(--gTransition);
 }
 .offcanvas .sub-menu-depth-2 {
   border-left: 1px solid rgbA(var(--textInvertRGB), 0.1);
@@ -1494,6 +1468,39 @@ body.has-active-offcanvas .offcanvas {
 .sub-menu-item:focus-within .sub-menu-depth-2 {
   visibility: visible;
   opacity: 1;
+}
+
+.sub-menu-item {
+  display: block;
+  position: relative;
+  padding-left: 0.25rem;
+}
+.sub-menu-item > a {
+  display: block;
+  padding: 0.375rem;
+  border-radius: var(--gRadius);
+}
+.sub-menu-item > a:hover {
+  background-color: var(--bgHover, rgbA(var(--textInvertRGB), 0.1));
+}
+.sub-menu-item dt {
+  font-weight: 700;
+}
+.sub-menu-item dd {
+  font-size: var(--sFontSize);
+  opacity: 0.75;
+}
+.sub-menu-item.menu-item-has-children a {
+  position: relative;
+  padding-right: 1.25rem;
+}
+.sub-menu-item.menu-item-has-children a::after {
+  position: absolute;
+  top: 50%;
+  right: 0.5rem;
+  left: auto;
+  transform: rotate(-90deg) translateX(50%);
+  filter: invert(1);
 }
 
 .menu-item-has-icon > a {
@@ -1511,6 +1518,10 @@ body.has-active-offcanvas .offcanvas {
   display: grid;
   grid-template-columns: repeat(var(--columns, 2), 1fr);
   width: var(--width);
+  padding: 0;
+}
+.mega-menu .sub-menu-depth-1 > li {
+  padding: 0.5rem;
 }
 .mega-menu .sub-menu-depth-1 > li > a {
   opacity: 0.75;
@@ -1526,10 +1537,15 @@ body.has-active-offcanvas .offcanvas {
   position: static;
   padding: 0;
   width: 100%;
+  background-color: transparent;
   box-shadow: none;
   transform: none;
 }
-.mega-menu:hover .sub-menu-depth-1, .mega-menu:hover .sub-menu-depth-2 {
+.mega-menu:hover .sub-menu {
+  visibility: visible;
+  opacity: 1;
+}
+.mega-menu:focus-within .sub-menu {
   visibility: visible;
   opacity: 1;
 }
@@ -1547,6 +1563,47 @@ body.has-active-offcanvas .offcanvas {
 .mega-menu-4-columns {
   --width: var(--siteWidth);
   --columns: 4;
+  position: static;
+}
+
+.header .widget-column:nth-child(1) .mega-menu-2-columns .sub-menu-depth-1,
+.header .widget-column:nth-child(1) .mega-menu-3-columns .sub-menu-depth-1 {
+  right: auto;
+  left: 0;
+  transform: none;
+}
+.header[data-columns="2"] .widget-column:nth-child(2) .mega-menu-2-columns .sub-menu-depth-1, .header[data-columns="3"] .widget-column:nth-child(3) .mega-menu-2-columns .sub-menu-depth-1,
+.header[data-columns="2"] .widget-column:nth-child(2) .mega-menu-3-columns .sub-menu-depth-1,
+.header[data-columns="3"] .widget-column:nth-child(3) .mega-menu-3-columns .sub-menu-depth-1 {
+  right: 0;
+  left: auto;
+  transform: none;
+}
+
+.menu-item-has-background {
+  background-color: var(--bgColor, transparent);
+  color: var(--textColor, inherit);
+}
+.menu-item-has-background.menu-background-main {
+  --bgColor: var(--color1Light);
+}
+.menu-item-has-background.menu-background-sub {
+  --bgColor: var(--color2Light);
+}
+.menu-item-has-background.menu-background-gray {
+  --bgColor: var(--textDim);
+}
+.menu-item-has-background.menu-background-white {
+  --bgColor: var(--textInvert);
+}
+.menu-item-has-background.menu-background-main, .menu-item-has-background.menu-background-sub, .menu-item-has-background.menu-background-gray, .menu-item-has-background.menu-background-white {
+  --textColor: var(--text);
+  --bgHover: rgbA(var(--textRGB), 0.1);
+}
+.menu-item-has-background.menu-background-black {
+  --bgColor: var(--text);
+  --textColor: var(--textInvert);
+  --bgHover: rgbA(var(--textInvertRGB), 0.1);
 }
 
 footer .widget, .offcanvas .widget {
