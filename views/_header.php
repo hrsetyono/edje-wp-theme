@@ -18,7 +18,7 @@
 <?php foreach ($headers as $id => $header): ?>
   <?php if ($header['widgets']): ?>
     <header
-      class="<?= $id ?>"
+      class="header-row <?= $id ?>"
       data-columns="<?= $header['columns'] ?>"
       role="navigation"
     >
@@ -33,7 +33,7 @@
 
 <?php if ($offcanvas): ?>
   <div class="offcanvas" role="navigation">
-    <ul class="offcanvas-inner-wrapper">
+    <ul class="offcanvas__inner-wrapper">
       <?= $offcanvas['widgets'] ?>
     </ul>
     <a href="#menu">

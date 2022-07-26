@@ -12,18 +12,12 @@ const myHeader = {
   init() {
     this.stickyRow();
 
-    // toggle offcanvas menu
-    const $menuLinks = document.querySelectorAll('[href="#menu"]');
-    [...$menuLinks].forEach(($link) => {
-      $link.addEventListener('click', this.toggleOffcanvas);
-    });
+    this.toggleOffcanvas();
+    this.closeOffcanvas();
+    this.preventCloseOffcanvas();
 
-    // close off canvas
-    document.addEventListener('click', this.closeOffcanvas);
-    const $offcanvas = document.querySelector('.offcanvas');
-    if ($offcanvas) {
-      $offcanvas.addEventListener('click', this.preventClose);
-    }
+    this.megaMenuOffcanvas();
+    this.submenuDepth2Offcanvas();
   },
 
   /**
@@ -46,21 +40,64 @@ const myHeader = {
   /**
    * Open or close the offcanvas menu
    */
-  toggleOffcanvas(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    document.querySelector('body').classList.toggle('has-active-offcanvas');
+  toggleOffcanvas() {
+    const $menuLinks = document.querySelectorAll('[href="#menu"]');
+    $menuLinks.forEach(($link) => {
+      $link.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        document.querySelector('body').classList.toggle('has-active-offcanvas');
+      });
+    });
   },
 
   /**
    * Close offcanvas when clicking outside it
    */
   closeOffcanvas() {
-    document.querySelector('body').classList.remove('has-active-offcanvas');
+    document.addEventListener('click', () => {
+      document.querySelector('body').classList.remove('has-active-offcanvas');
+    });
   },
 
-  preventClose(e) {
-    e.stopPropagation();
+  preventCloseOffcanvas() {
+    const $offcanvas = document.querySelector('.offcanvas');
+
+    if ($offcanvas) {
+      $offcanvas.addEventListener('click', (e) => {
+        e.stopPropagation();
+      });
+    }
+  },
+
+  /**
+   * Toggle listener for mega menu in offcanvas
+   */
+  megaMenuOffcanvas() {
+    const $itemLinks = document.querySelectorAll('.offcanvas .mega-menu.menu-item-has-children a');
+    $itemLinks.forEach(($link) => {
+      $link.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        const $wrapper = e.currentTarget.closest('.mega-menu');
+        $wrapper.classList.toggle('mega-menu-is-active');
+      });
+    });
+  },
+
+  /**
+   * Toggle listener for 2nd level submenu
+   */
+  submenuDepth2Offcanvas() {
+    const $itemLinks = document.querySelectorAll('.offcanvas .menu-item:not(.mega-menu) .submenu-item.menu-item-has-children > a');
+    $itemLinks.forEach(($link) => {
+      $link.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        const $wrapper = e.currentTarget.closest('.submenu-item');
+        $wrapper.classList.toggle('submenu-item-is-active');
+      });
+    });
   },
 
   /**

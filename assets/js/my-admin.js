@@ -1,3 +1,6 @@
 import '../sass/my-admin.sass';
 
-// script that affect admin panel
+// limit nav menu depth to 3rd level
+if (window.wpNavMenu) {
+  window.wpNavMenu.options.globalMaxDepth = 2;
+}

@@ -19,6 +19,7 @@
   background-color: var(--siteBgColor)
   padding-top: 0
   padding-bottom: 0
+  border-bottom: 1px solid rgba(--text, .1)
   transition: var(--gTransition)
 
   &.is-stuck
@@ -54,7 +55,6 @@
   max-width: 420px
 
   color: var(--textInvert)
-  font-size: var(--mFontSize)
 
   box-shadow: var(--shadow3) 
   transform: translateX(100%)
@@ -86,10 +86,9 @@ body.has-active-offcanvas
     transition: var(--gTransition)
 
 
-.offcanvas-inner-wrapper
+.offcanvas__inner-wrapper
   display: flex
   flex-direction: column
-  justify-content: center
   align-items: flex-start
 
   overflow-y: auto

@@ -1,156 +1,138 @@
-///// MENU NAVIGATION
+.menu-item:not([href])
+  cursor: default
 
-.menu
-  display: flex
-  flex-wrap: wrap
-  list-style-type: none
-  transition: var(--gTransition)
+// active state
+@mixin menu-item-is-active
+  .current-menu-item > a,
+  .current-page-ancestor > a,
+  .current-menu-ancestor > a,
+  .current-menu-parent > a,
+  .current_page_parent > a
+    @content
+  
+///// MENU in HEADER
 
-  .footer &
+.header
+  .menu
     display: flex
-    flex-wrap: wrap
-    list-style-type: none
-
-  .offcanvas &
-    display: flex
-    flex-direction: column
     flex-wrap: wrap
     list-style-type: none
     transition: var(--gTransition)
 
+  .menu-item
+    position: relative
 
-.menu-item
-  position: relative
-
-  // add border bottom as hover indicator
-  .header &
-    > a::before 
-      content: ""
-      display: block
-      visibility: hidden
-      opacity: 0
-
-      position: absolute
-      bottom: 0
-      left: 10px
-      right: 10px
-      height: 4px
-      background-color: var(--text)
-
-      transition: var(--gTransition)
-
-    &:hover > a::before
-      visibility: visible
-      opacity: 1
-
-.menu-item > a
-  position: relative
-  display: flex
-  align-items: center
-  height: 100%
-  padding: 0.5rem
-
-  line-height: 1
-  font-weight: var(--hFontWeight)
-  color: inherit
-
-  &:not([href])
-    cursor: default
-
-  .header &
+  .menu-item > a
+    position: relative
+    display: flex
+    align-items: center
     padding: 2rem 0.75rem
+    height: 100%
 
-  .subheader &
-    padding: 0.25rem 0.5rem
-
-  .footer &
-    padding: 0.25rem 0.5rem
-    letter-spacing: 0.025em
-    text-transform: uppercase
-    background-color: transparent
-
-  .offcanvas &
-    padding: 0.5rem 1rem
-    letter-spacing: 0.025em
-    font-size: var(--lFontSize)
-    border-radius: var(--gRadius)
-
-// Menu item hover effect
-.menu-item > a:hover
-  .subheader &,
-  .subheader-mobile &
-    background-color: var(--color1Dark)
-
-  .footer &
-    background-color: rgba(white, .1)
-
-    &:not([href])
-      text-decoration: none
-
-  .offcanvas &
-    background-color: rgba(white, .1)
-    opacity: .75
-  
-// active state
-.current-menu-item > a,
-.current-page-ancestor > a,
-.current-menu-ancestor > a,
-.current-menu-parent > a,
-.current_page_parent > a
-  color: var(--color1)
-
-  .offcanvas &
-    background-color: rgba(white, .1)
-    color: var(--textInvert)
-    opacity: 1
-
-  .sub-menu &
-    background-color: rgba(--textInvert, .1)
+    line-height: 1
+    font-weight: var(--hFontWeight)
     color: inherit
 
-  &::before
+  // add border-bottom as hover indicator
+  .menu-item > a::before 
+    content: ""
+    display: block
+    visibility: hidden
+    opacity: 0
+    transition: var(--gTransition)
+
+    position: absolute
+    bottom: 0
+    left: 10px
+    right: 10px
+    height: 4px
+    background-color: var(--text)
+
+  .menu-item:hover > a::before
     visibility: visible
     opacity: 1
 
-// Add down arrow if has children
-.menu-item-has-children > a
-  &::after
-    content: ""
-    display: inline-block
-    margin-left: 0.5rem
-    width: 0.75rem
-    height: 0.75rem
-    background: url('../svg/chevron-down.svg') no-repeat center center
-    background-size: 100% auto
-    opacity: .75
+  +menu-item-is-active
+    &::before
+      visibility: visible
+      opacity: 1
 
-    // mobile menu immediately show the children, so no need for down arrow
-    @media ($below-nav)
+  .menu-item-has-children
+    > a::after
+      content: ""
+      display: inline-block
+      margin-left: 0.5rem
+      width: 0.75rem
+      height: 0.75rem
+      background: url('../svg/chevron-down.svg') no-repeat center center
+      background-size: 100% auto
+      opacity: .75
+
+  // if has 2nd submenu, the arrow is to the right
+  .submenu-item.menu-item-has-children
+    > a::after
+      margin-left: auto
+      transform: rotate(-90deg)
+      filter: invert(1)
+
+  // megamenu immediately display the 2nd submenu, no need for arrow
+  .mega-menu .submenu-item.menu-item-has-children
+    > a::after
       display: none
 
-    .footer &
-      display: none
+// Disable menu on Header mobile
+.header-mobile
+  .menu
+    display: none
 
-///// CHILDREN MENU
+///// MENU in SUBHEADER
 
-.sub-menu
-  .header &,
-  .subheader &
+.subheader
+  .menu-item > a
+    display: flex
+    align-items: center
+    padding: 0.25rem 0.5rem
+
+    line-height: 1
+    font-weight: var(--hFontWeight)
+    color: inherit
+
+  .menu-item > a:hover
+    background-color: var(--color1Dark)
+
+  .menu-item-has-children
+    > a::after
+      content: ""
+      display: inline-block
+      margin-left: 0.5rem
+      width: 0.75rem
+      height: 0.75rem
+      background: url('../svg/chevron-down.svg') no-repeat center center
+      background-size: 100% auto
+      opacity: .75
+
+
+// Disable menu on Subheader mobile
+.subheader-mobile
+  .menu
+    display: none
+
+///// MENU in HEADER + SUBHEADER
+
+.header-row
+  .submenu
     visibility: hidden
     opacity: 0
-
     background-color: var(--text)
+
     width: 200px
-    padding: 0.75em 0.5em
+    padding: 0.5rem
     border-radius: var(--gRadius)
 
     list-style-type: none
-    transition: var(--gTransition)
     box-shadow: var(--shadow1)
 
-.sub-menu-depth-1
-  .header &,
-  .subheader &
+  .submenu-depth-1
     position: absolute
     z-index: 10
     top: 100%
@@ -159,105 +141,49 @@
 
     color: var(--textInvert)
 
-  .offcanvas &
-    visibility: visible
-    opacity: 1
-    overflow: hidden
-
-    border-left: 1px solid rgba(--textInvert, .1)
-    margin-left: 1rem
-    list-style-type: none
-    transition: var(--gTransition)
-
-  .menu-item:hover > &
-    visibility: visible
-    opacity: 1
-
-  // need to be separated with ":hover" for browser support
-  .menu-item:focus-within > &
-    visibility: visible
-    opacity: 1
-
-// DEPTH 2
-.sub-menu-depth-2
-  .header &,
-  .subheader &
+  .submenu-depth-2
     position: absolute
     top: 0
     right: 0
     left: auto
     transform: translateX(100%)
 
-  .offcanvas &
-    border-left: 1px solid rgba(--textInvert, .1)
-    font-size: var(--fontSize)
-
-  .sub-menu-item:hover &
+  // open submenu when hovering the parent
+  .menu-item:hover .submenu-depth-1,
+  .submenu-item:hover .submenu-depth-2,
+  .mega-menu:hover .submenu
     visibility: visible
     opacity: 1
+    transition: var(--gTransition) // only animate on enter
 
-  .sub-menu-item:focus-within &
+  // need to be separated with ":hover" for browser support
+  .menu-item:focus-within .submenu-depth-1,
+  .submenu-item:focus-within .submenu-depth-2,
+  .mega-menu:focus-within .submenu
     visibility: visible
     opacity: 1
+    transition: var(--gTransition)
 
-// Item in Submenu
-.sub-menu-item
-  display: block
-  position: relative
-  padding-left: 0.25rem
-
-  > a
-    display: block 
-    padding: 0.375rem
-    border-radius: var(--gRadius)
-
-  // --bgHover is added in mega menu class
-  > a:hover
-    background-color: var(--bgHover, #{rgba(--textInvert, .1)})
-
-  // from custom ACF field
-  dt
-    font-weight: 700
-  dd
-    font-size: var(--sFontSize)
-    opacity: .75
-
-  // add right arrow if has children
-  &.menu-item-has-children a
+  .submenu-item
     position: relative
-    padding-right: 1.25rem
+    
+    > a
+      display: flex
+      align-items: center
+      padding: 0.375rem 0.5rem
+      border-radius: var(--gRadius)
+    
+    // --bgHover is added in mega-menu class
+    > a:hover
+      background-color: var(--bgHover, #{rgba(--textInvert, .1)})
 
-    &::after
-      position: absolute
-      top: 50%
-      right: 0.5rem
-      left: auto
-      transform: rotate(-90deg) translateX(50%)
-      filter: invert(1)
-
-
-// Custom ACF icon
-.menu-item-has-icon > a
-  display: grid
-  grid-template-columns: 25px 1fr
-  column-gap: 0.5rem
-  align-items: flex-start
-
-  img
-    grid-row: span 2
-    height: auto
-
-///// MEGA MENU
-
-.mega-menu
-  .sub-menu-depth-1
+  
+  .mega-menu .submenu-depth-1
     display: grid
     grid-template-columns: repeat(var(--columns, 2), 1fr)
+    column-gap: 1rem
+    row-gap: 1rem
     width: var(--width)
-    padding: 0
-
-    > li
-      padding: 0.5rem
 
     > li > a
       opacity: .75
@@ -265,11 +191,8 @@
       text-transform: uppercase
       font-size: var(--xsFontSize)
       pointer-events: none
-
-    > li > a::after
-      display: none
-
-  .sub-menu-depth-2
+  
+  .mega-menu .submenu-depth-2
     position: static
     padding: 0
     width: 100%
@@ -277,47 +200,255 @@
     box-shadow: none
     transform: none
 
-  &:hover .sub-menu
-    visibility: visible
+  .mega-menu-2-columns
+    --width: calc(var(--siteWidth) / 2)
+    --columns: 2
+
+    @media ($below-l)
+      --width: 50vw
+
+  .mega-menu-3-columns
+    --width: calc(var(--siteWidth) * 3 / 4)
+    --columns: 3
+
+    @media ($below-l)
+      --width: 75vw
+
+  .mega-menu-4-columns
+    --width: var(--siteWidth)
+    --columns: 4
+    position: static // to make submenu aligned to grid
+
+    @media ($below-l)
+      --width: 100%
+
+  // Mega menu aligned left if put on first column
+  .widget-column:nth-child(1)
+    .mega-menu-2-columns,
+    .mega-menu-3-columns
+      .submenu-depth-1
+        right: auto
+        left: 0
+        transform: none
+
+  // Mega menu aligned right if put on last column
+  .widget-column:last-child:not(:first-child)
+    .mega-menu-2-columns,
+    .mega-menu-3-columns
+      .submenu-depth-1
+        right: 0
+        left: auto
+        transform: none
+
+
+///// MENU in OFFCANVAS
+
+.offcanvas
+  .menu
+    display: flex
+    flex-direction: column
+    flex-wrap: wrap
+    list-style-type: none
+    transition: var(--gTransition)
+
+  .menu-item
+    margin-bottom: 0.5rem
+
+  .menu-item > a
+    display: flex
+    align-items: center
+    padding: 0.5rem 0.75rem
+    border-radius: var(--gRadius)
+
+    line-height: 1
+    font-weight: var(--hFontWeight)
+    letter-spacing: 0.025em
+    color: inherit
+    font-size: var(--lFontSize)
+
+  .menu-item > a:hover
+    background-color: rgba(--textInvert, .1)
+    opacity: .75
+
+  +menu-item-is-active
+    background-color: rgba(--textInvert, .1)
+    color: var(--textInvert)
     opacity: 1
 
-  &:focus-within .sub-menu
-    visibility: visible
-    opacity: 1
+  .menu-item-has-children > a::after
+    content: ""
+    display: inline-block
+    opacity: .75
+    background: url('../svg/chevron-down.svg') no-repeat center center
+    background-size: 100% auto
+    filter: invert(1)
+
+    margin-left: auto
+    width: 0.75rem
+    height: 0.75rem
+
+  // 1st submenu in offcanvas is immediately shown, no need for arrow toggle
+  .menu-item:not(.mega-menu).menu-item-has-children > a::after,
+  .mega-menu .menu-item-has-children > a::after
+    display: none
+
+  // 2nd submenu and megamenu in offcanvas has toggle, rotate the arrow after displayed
+  .submenu-item-is-active > a::after,
+  .mega-menu-is-active > a::after
+    transform: rotate(180deg)
+
+  .submenu
+    border-left: 1px solid rgba(--textInvert, .1)
+    margin-left: 0.75rem
+    list-style-type: none
+
+  // 1st level submenu is only hidden if mega menu
+  .mega-menu:not(.mega-menu-is-active) .submenu-depth-1
+    display: none
+
+  // 2nd level submenu is initially hidden except in mega menu
+  .menu-item:not(.mega-menu) .submenu-item:not(.submenu-item-is-active) .submenu-depth-2
+    display: none
+
+  .submenu-item
+    position: relative
+    
+    > a
+      display: flex
+      align-items: center
+      padding: 0.375rem 0.5rem
+      margin-left: 0.25rem
+      border-radius: var(--gRadius)
+    
+    // --bgHover is added in mega-menu class
+    > a:hover
+      background-color: var(--bgHover, #{rgba(--textInvert, .1)})
+
+  .mega-menu .submenu-depth-1 > li > a
+    opacity: .75
+    letter-spacing: 0.05em
+    text-transform: uppercase
+    font-size: var(--xsFontSize)
+    pointer-events: none
+
+///// MENU in FOOTER
+
+.footer
+  .menu
+    display: flex
+    flex-wrap: wrap
+    list-style-type: none
+
+  .menu-item
+    flex: 1
+    max-width: 25%
+
+  .menu-item > a
+    display: flex
+    align-items: center
+    background-color: transparent
+    
+    padding: 0.5rem
+    border-radius: var(--gRadius)
+
+    letter-spacing: 0.05em
+    text-transform: uppercase
+    line-height: 1
+    font-weight: var(--hFontWeight)
+    color: inherit
+
+  .menu-item > a:hover
+    background-color: rgba(--textInvert, .1)
+
+  +menu-item-is-active
+    background-color: rgba(--textInvert, .1)
+    color: inherit
+
+  // @todo - find a way to fit this
+  .submenu-depth-2
+    display: none
+
+  .submenu-item
+    > a
+      display: block
+      padding: 0.375rem 0.5rem
+      border-radius: var(--gRadius)
+
+    > a:hover
+      background-color: rgba(--textInvert, .1)
+
+  // @todo - mega menu in footer?
 
 
-.mega-menu-2-columns
-  --width: calc(var(--siteWidth) / 2)
-  --columns: 2
-.mega-menu-3-columns
-  --width: calc(var(--siteWidth) * 3 / 4)
-  --columns: 3
-.mega-menu-4-columns
-  --width: var(--siteWidth)
-  --columns: 4
-  position: static // to make submenu aligned to grid
-  
-// Alignment of the popup
-.mega-menu-2-columns,
-.mega-menu-3-columns
-  .sub-menu-depth-1
-    // If aligned left
-    .header .widget-column:nth-child(1) &
-      right: auto
-      left: 0
-      transform: none
+///// CUSTOM STYLE
 
-    // If aligned right
-    .header[data-columns="2"] .widget-column:nth-child(2) &,
-    .header[data-columns="3"] .widget-column:nth-child(3) &
-      right: 0
-      left: auto
-      transform: none
+// with ICON - only work for submenu
+.submenu-item.menu-item-has-icon
+  > a
+    display: grid
+    grid-template-columns: 25px 1fr
+    column-gap: 0.5rem
+    align-items: flex-start
 
-// Background color on one section
-.menu-item-has-background
+  img
+    grid-row: span 2
+    height: auto
+
+  dt
+    font-weight: 700
+  dd
+    font-size: var(--sFontSize)
+    opacity: .75
+
+  .offcanvas &
+    dt
+      font-weight: var(--fontWeight)
+    dd
+      display: none
+
+// with IMAGE
+.submenu-item.menu-item-has-image
+  --bgHover: transparent
+
+  font-size: var(--xsFontSize)
+  margin-bottom: 0.5rem
+
+  > a
+    flex-direction: column
+    align-items: flex-start
+    padding: 0
+    margin: 0
+    pointer-events: none // image not clickable
+
+  img
+    margin-bottom: 0.5rem
+    width: auto
+    transition: var(--gTransition)
+
+// empty title
+.menu-item-empty-title
+  > a
+    color: transparent
+
+    .offcanvas &
+      display: none
+
+// Menu Background - only works in mega menu
+.mega-menu .menu-item-has-background
   background-color: var(--bgColor, transparent)
+  padding: 0.5rem
+  border-radius: var(--gRadius)
   color: var(--textColor, inherit)
+
+  // the label
+  > a
+    padding-top: 0
+    padding-left: 0
+
+  .offcanvas &
+    .submenu-depth-2,
+    .submenu-depth-2 a
+      margin: 0
 
   &.menu-background-main
     --bgColor: var(--color1Light)

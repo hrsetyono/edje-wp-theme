@@ -22,7 +22,12 @@ function my_menu_item_markup($items, $args) {
 
     // Change the "menu-item" class into "submenu-item" if it's a child menu
     if ($i->menu_item_parent !== '0' && $i->classes[1] == 'menu-item') {
-      $i->classes[1] = 'sub-menu-item';
+      $i->classes[1] = 'submenu-item';
+    }
+
+    // If title is "-", add empty class so it can be hidden
+    if ($i->title === '-') {
+      $i->classes[] = 'menu-item-empty-title';
     }
 
     // Add style as extra class
@@ -85,7 +90,12 @@ function my_menu_item_markup($items, $args) {
  * @filter nav_menu_submenu_css_class
  */
 function my_submenu_classes($classes, $args, $depth) {
+  // shorten the sub-menu class
+  if ($classes[0] === 'sub-menu') {
+    $classes[0] = 'submenu';
+  }
+
   $depth += 1;
-  $classes[] = "sub-menu-depth-{$depth}";
+  $classes[] = "submenu-depth-{$depth}";
   return $classes;
 }
