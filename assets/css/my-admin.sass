@@ -4,7 +4,14 @@
 
 // ACF MENU ITEM
 
-// Hide the columns field other than in parent item
+.field-description
+  display: block
+
+  .menu-item-depth-0 &,
+  .menu-item-depth-1.menu-item-under-mega-menu &
+    display: none
+
+// Hide the mega-menu columns field other than in parent item
 .acf-field[data-name="mega_menu"]
   display: none
 
@@ -22,11 +29,27 @@
       display: none
 
 // Hide "has image" option in style
-.menu-item-depth-1
+.menu-item-depth-1,
+.menu-item-depth-2:not(.menu-item-under-mega-menu)
   .acf-field[data-name="style"] label:nth-child(2)
     display: none
 
 // Hide "has background" option in style
-.menu-item-depth-2
+.menu-item-depth-2,
+.menu-item-depth-1:not(.menu-item-under-mega-menu)
   .acf-field[data-name="style"] label:nth-child(3)
     display: none
+
+// Change the item type for mega menu
+.menu-item-is-mega-menu .item-type
+  font-size: 0
+  line-height: 1
+
+  &::before
+    content: "Mega Menu"
+    display: inline-block
+    padding: 0.25rem
+    border-radius: 2px
+    background-color: rgba(black, .1)
+
+    font-size: 12px
