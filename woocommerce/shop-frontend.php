@@ -31,7 +31,7 @@ function my_custom_woocommerce_pagination() {
  * Change the markup of Cart's Cross-Sell
  * @action woocommerce_cart_collaterals
  */
-function my_custom_cross_sell_display( ) {
+function my_custom_cross_sell_display() {
   $args = [
     'products' => get_posts([
       'post_type' => 'product',

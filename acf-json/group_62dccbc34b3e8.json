@@ -49,6 +49,31 @@
             "return_format": "value"
         },
         {
+            "key": "field_62e0eebd17759",
+            "label": "",
+            "name": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_62dd53fa63c37",
+                        "operator": "==",
+                        "value": "has-icon"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "<span class=\"dashicons dashicons-warning\"><\/span> Icon will only appear in Offcanvas",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        },
+        {
             "key": "field_62dd5661e8e5f",
             "label": "",
             "name": "",
@@ -69,7 +94,7 @@
                 "class": "",
                 "id": ""
             },
-            "message": "Max size: 100x100",
+            "message": "<span class=\"dashicons dashicons-editor-expand\"><\/span> Max size: 100x100",
             "new_lines": "wpautop",
             "esc_html": 0
         },
@@ -133,7 +158,7 @@
                 "class": "",
                 "id": ""
             },
-            "message": "Background only works inside a Mega Menu",
+            "message": "<span class=\"dashicons dashicons-warning\"><\/span> Background only works inside a Mega Menu",
             "new_lines": "wpautop",
             "esc_html": 0
         },
@@ -192,5 +217,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1658801804
+    "modified": 1658909246
 }

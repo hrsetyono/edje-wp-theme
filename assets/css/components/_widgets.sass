@@ -1,8 +1,8 @@
 ///// GENERAL
 
 .widget
-  footer &,
-  .offcanvas &
+  .offcanvas &,
+  .footer &
     width: 100%
 
 .widget + .widget
@@ -90,15 +90,14 @@
 
     @media ($below-s)
       width: 100%
-      align-items: center
+      justify-content: center
 
       + .widget-column
         margin-top: var(--blockSpacing)
 
+  .footer-top &,
   .footer-bottom &
     justify-content: center
-
-
 
 
 ///// WIDGET: Text
@@ -208,70 +207,41 @@
     font-size: var(--sFontSize)
     color: var(--text)
 
-  .footer &
+  .footer-widgets &
     justify-content: flex-start
     width: 100%
 
 
 ///// WIDGET: Button
 
-.widget_h_button
-  .wp-block-button__link
-    padding-top: 0.375rem
-    padding-bottom: 0.375rem
-  
-  .is-style-outline .wp-block-button__link
-    --textColor: inherit
+.widget.widget_h_button
+  display: inline-block
+  width: auto
 
+  .wp-block-button
+    display: inline-flex
 
-///// WIDGET: Social Buttons
+  + .widget_h_button
+    margin-top: 0
+    margin-left: 1rem
 
-.wp-block-social-links
-  --iconSize: 1.25rem
-  --iconPadding: 0.25em
+///// WIDGET: BUTTONS
 
-  &.has-small-icon-size
-    --iconSize: 1rem
-  &.has-large-icon-size
-    --iconSize: 1.75rem
-  &.has-huge-icon-size
-    --iconSize: 2.5rem
+.widget_h_buttons
+  .subheader &
+    .wp-block-button
+      --textColor: var(--textInvert)
+      font-size: var(--xsFontSize)
+    .wp-block-button__link
+      padding: 0.25rem 0.5rem
 
-  &.is-style-pill-shape
-    .has-label
-      --iconPadding: 0.375em 0.5em
-      border-radius: 15px
+  .footer-top &
+    .wp-block-button
+      --textColor: var(--color1)
+      --bgColor: var(--textInvert)
 
-  &.has-monotone-color
-    .wp-social-link
-      background-color: var(--color1)
-    
-    &.is-style-logos-only
-      .wp-social-link
-        background-color: transparent
-        color: inherit
-
-.wp-social-link
-  margin-bottom: 0
-
-  p
-    display: block
-    margin-left: .25rem
-
-.wp-social-link.has-label
-  p
-    display: inline-block
-    margin-left: 0.25rem
-    line-height: 1
-    font-size: var(--sFontSize)
-
-.wp-social-link-email,
-.wp-social-link-phone,
-.wp-social-link-location,
-.wp-social-link-faq
-  --color: var(--color1)
-
-
+    .is-style-outline
+      --textColor: var(--textInvert)
 
 ///// WIDGET: Recent Posts
 
@@ -286,7 +256,12 @@
     text-decoration: none
   a:hover
     text-decoration: underline
-    
+
+///// WIDGET: Nav Menu
+
+.widget_nav_menu
+  footer &
+    width: 100%
   
 ///// WIDGET: Search
 

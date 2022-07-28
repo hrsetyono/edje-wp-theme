@@ -16,7 +16,9 @@ my_shop_block_styles();
  */
 function my_setup_productdata($post) {
   global $product;
-  $product = isset($post->product) ? $post->product : wc_get_product($post->ID);
+  $product = isset($post->product)
+    ? $post->product
+    : wc_get_product($post->ID);
 }
 
 /**

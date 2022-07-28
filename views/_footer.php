@@ -6,7 +6,7 @@
   <?php foreach ($footers as $id => $footer): ?>
     <?php if ($footer['widgets']): ?>
       <div
-        class="footer footer-<?= $id ?>"
+        class="footer-widgets footer-<?= $id ?>"
         data-columns="<?= $footer['columns'] ?>"
       >
         <div class="widget-row">

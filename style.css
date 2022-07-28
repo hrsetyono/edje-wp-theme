@@ -1,10 +1,13 @@
 /*
-Theme Name: Edje Basic Theme
+Theme Name: Edje Boilerplate Theme
 Author: Pixel Studio
 Author URI: https://pixelstudio.id
 Description: Boilerplate WordPress theme to be used alongside Edje WP Library
 Version: 14.2.0
-Tags: private theme, edje, acf, woocomemrce, custom-menu, editor-style
+Tags: private theme, edje, acf, woocommerce, custom-menu, editor-style
 */
 
-/* All stylesheets are located in /css directory. This file is only for meta description */
+/*
+  All stylesheets are located in /assets/css and minified into /dist
+  This file is just for the metadata
+*/

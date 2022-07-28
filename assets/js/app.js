@@ -1,4 +1,4 @@
-import '../sass/app.sass';
+import '../css/app.sass';
 
 // GENERAL LISTENERS
 const myApp = {
@@ -16,8 +16,9 @@ const myHeader = {
     this.closeOffcanvas();
     this.preventCloseOffcanvas();
 
-    this.megaMenuOffcanvas();
-    this.submenuDepth2Offcanvas();
+    this.offcanvasMegaMenu();
+    this.offcanvasDepth2();
+    this.footerDepth1();
   },
 
   /**
@@ -26,7 +27,7 @@ const myHeader = {
   stickyRow() {
     if (!(CSS.supports && CSS.supports('position', 'sticky'))) { return; }
 
-    const target = '.header';
+    const target = '.header, .header-mobile';
     const $elems = [].slice.call(document.querySelectorAll(target));
 
     // Initial check if already sticky
@@ -73,7 +74,7 @@ const myHeader = {
   /**
    * Toggle listener for mega menu in offcanvas
    */
-  megaMenuOffcanvas() {
+  offcanvasMegaMenu() {
     const $itemLinks = document.querySelectorAll('.offcanvas .mega-menu.menu-item-has-children a');
     $itemLinks.forEach(($link) => {
       $link.addEventListener('click', (e) => {
@@ -88,7 +89,7 @@ const myHeader = {
   /**
    * Toggle listener for 2nd level submenu
    */
-  submenuDepth2Offcanvas() {
+  offcanvasDepth2() {
     const $itemLinks = document.querySelectorAll('.offcanvas .menu-item:not(.mega-menu) .submenu-item.menu-item-has-children > a');
     $itemLinks.forEach(($link) => {
       $link.addEventListener('click', (e) => {
@@ -96,6 +97,19 @@ const myHeader = {
 
         const $wrapper = e.currentTarget.closest('.submenu-item');
         $wrapper.classList.toggle('submenu-item-is-active');
+      });
+    });
+  },
+
+  footerDepth1() {
+    const $itemLinks = document.querySelectorAll('.footer-widgets .menu-item-has-children > a');
+    $itemLinks.forEach(($link) => {
+      $link.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (window.width > 480) { return; }
+
+        const $wrapper = e.currentTarget.closest('.menu-item');
+        $wrapper.classList.toggle('menu-item-is-active');
       });
     });
   },

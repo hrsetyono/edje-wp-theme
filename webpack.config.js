@@ -24,7 +24,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const path = require('path');
 
-const cssPath = './assets/sass';
+const cssPath = './assets/css';
 const jsPath = './assets/js';
 const shopPath = './woocommerce';
 

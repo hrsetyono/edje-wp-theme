@@ -1,1 +1,1 @@
-import '../sass/my-editor.sass';
+import '../css/my-editor.sass';

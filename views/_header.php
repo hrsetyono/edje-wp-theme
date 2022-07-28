@@ -18,7 +18,7 @@
 <?php foreach ($headers as $id => $header): ?>
   <?php if ($header['widgets']): ?>
     <header
-      class="header-row <?= $id ?>"
+      class="header-widgets <?= $id ?>"
       data-columns="<?= $header['columns'] ?>"
       role="navigation"
     >

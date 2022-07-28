@@ -1,29 +1,31 @@
 ///// MAIN HEADER /////
 
-.subheader,
-.header
+.header,
+.subheader
   @media ($below-nav)
     display: none
 
-.subheader-mobile,
-.header-mobile
+.header-mobile,
+.subheader-mobile
   @media ($above-nav)
     display: none
 
 .header,
-.header-mobile  
+.header-mobile
   position: sticky
   top: var(--adminBarHeight) 
   z-index: 100
 
   background-color: var(--siteBgColor)
-  padding-top: 0
-  padding-bottom: 0
   border-bottom: 1px solid rgba(--text, .1)
   transition: var(--gTransition)
 
   &.is-stuck
     box-shadow: var(--shadow1)
+
+.header-mobile
+  padding-top: 0.5rem
+  padding-bottom: 0.5rem
 
 .subheader,
 .subheader-mobile
@@ -130,33 +132,81 @@ body.has-active-offcanvas
 ///// FOOTER /////
 
 .main-footer
-  background-color: var(--text)
+  background-color: var(--panelBg)
   margin-top: var(--groupSpacing)
 
-.footer
+.footer-widgets
   display: flex
   justify-content: center
-  padding-top: 2rem
-  padding-bottom: 2rem
-  background-color: transparent
-  color: var(--textInvert)
 
   @media ($below-l)
     padding-left: var(--gridRim)
     padding-right: var(--gridRim)
 
-
 .footer-top
-  padding-top: 1.5rem
-  padding-bottom: 1.5rem
+  position: relative
+  background-color: var(--main)
+
+  padding: 2.5rem
+  border-radius: var(--gRadius)
+  margin: 0 auto
+  max-width: var(--siteWidth)
+  color: var(--textInvert)
+
+  @media ($below-l)
+    padding: 1.5rem
+    margin-right: 1rem
+    margin-left: 1rem
+
+  @media ($below-xs)
+    margin-right: 0.5rem
+    margin: 0.5rem
+
+  &::before,
+  &::after
+    content: ""
+    position: absolute
+    top: 0
+    height: 50%
+    width: calc(50vw - 50%)
+    background-color: var(--siteBg)
+
+  &::before
+    left: 0
+    transform: translateX(-100%)
+    
+  &::after
+    right: 0
+    transform: translateX(100%)
+
+  .widgettitle
+    font-size: var(--h4Size)
+
+  .textwidget
+    opacity: .75
+    font-size: var(--mFontSize)
+
+    @media ($below-s)
+      font-size: var(--fontSize)
+
+
+.footer-mid
+  padding-top: 3rem
+  padding-bottom: 3rem
+
+  .wp-block-social-links
+    --iconBg: #DADEE7
+    --iconColor: var(--text)
 
 .footer-bottom
-  padding-top: 0.25rem
-  padding-bottom: 0.25rem
+  background-color: rgba(--text, .05)
+  padding-top: 0.5rem
+  padding-bottom: 0.5rem
   font-size: var(--sFontSize)
 
   .textwidget p
     margin-bottom: 0
-    opacity: .75
+    opacity: .75t
+    text-align: center
 
 
