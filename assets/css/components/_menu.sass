@@ -57,6 +57,34 @@
       visibility: visible
       opacity: 1
 
+// Disable menu on Header mobile
+.header-mobile
+  .menu
+    display: none
+
+///// MENU in SUBHEADER
+
+.subheader
+  .menu-item > a
+    display: flex
+    align-items: center
+    padding: 0.25rem 0.5rem
+
+    line-height: 1
+    font-weight: var(--hFontWeight)
+    color: inherit
+
+  .menu-item > a:hover
+    background-color: var(--color1Dark)
+
+// Disable menu on Subheader mobile
+.subheader-mobile
+  .menu
+    display: none
+
+///// MENU in HEADER + SUBHEADER
+
+.header-widgets
   .menu-item-has-children
     > a::after
       content: ""
@@ -80,50 +108,10 @@
     > a::after
       display: none
 
-// Disable menu on Header mobile
-.header-mobile
-  .menu
-    display: none
-
-///// MENU in SUBHEADER
-
-.subheader
-  .menu-item > a
-    display: flex
-    align-items: center
-    padding: 0.25rem 0.5rem
-
-    line-height: 1
-    font-weight: var(--hFontWeight)
-    color: inherit
-
-  .menu-item > a:hover
-    background-color: var(--color1Dark)
-
-  .menu-item-has-children
-    > a::after
-      content: ""
-      display: inline-block
-      margin-left: 0.5rem
-      width: 0.75rem
-      height: 0.75rem
-      background: url('../svg/chevron-down.svg') no-repeat center center
-      background-size: 100% auto
-      opacity: .75
-
-
-// Disable menu on Subheader mobile
-.subheader-mobile
-  .menu
-    display: none
-
-///// MENU in HEADER + SUBHEADER
-
-.header-widgets
   .submenu
     visibility: hidden
     opacity: 0
-    background-color: var(--text)
+    background-color: var(--textInvert)
 
     width: 200px
     padding: 0.5rem
@@ -138,8 +126,6 @@
     top: 100%
     left: 50%
     transform: translateX(-50%)
-
-    color: var(--textInvert)
 
   .submenu-depth-2
     position: absolute
@@ -172,18 +158,25 @@
       align-items: center
       padding: 0.375rem 0.5rem
       border-radius: var(--gRadius)
+      font-weight: 600
     
     // --bgHover is added in mega-menu class
     > a:hover
-      background-color: var(--bgHover, #{rgba(--textInvert, .1)})
+      background-color: var(--bgHover, #{rgba(--text, .1)})
 
-  
+    > a:active
+      transition: none
+      transform: translateY(1px)
+
   .mega-menu .submenu-depth-1
     display: grid
     grid-template-columns: repeat(var(--columns, 2), 1fr)
-    column-gap: 1rem
-    row-gap: 1rem
+    padding: 0
     width: var(--width)
+
+    > li
+      padding: 0.75rem
+      border-radius: 0
 
     > li > a
       opacity: .75
@@ -191,6 +184,10 @@
       text-transform: uppercase
       font-size: var(--xsFontSize)
       pointer-events: none
+
+    // hide description
+    > li dd
+      display: none
   
   .mega-menu .submenu-depth-2
     position: static
@@ -325,12 +322,17 @@
     > a:hover
       background-color: var(--bgHover, #{rgba(--textInvert, .1)})
 
-  .mega-menu .submenu-depth-1 > li > a
-    opacity: .75
-    letter-spacing: 0.05em
-    text-transform: uppercase
-    font-size: var(--xsFontSize)
-    pointer-events: none
+  .mega-menu .submenu-depth-1
+    > li > a
+      opacity: .75
+      letter-spacing: 0.05em
+      text-transform: uppercase
+      font-size: var(--xsFontSize)
+      pointer-events: none
+    
+    // hide description
+    > li dd
+      display: none
 
 ///// MENU in FOOTER
 
@@ -419,7 +421,7 @@
 .menu-item.menu-item-has-icon
   img
     margin-right: 0.25rem
-    max-width: 25px
+    max-width: 28px
 
     .header &,
     .subheader &
@@ -428,7 +430,7 @@
 .submenu-item.menu-item-has-icon
   > a
     display: grid
-    grid-template-columns: 25px 1fr
+    grid-template-columns: 28px 1fr
     column-gap: 0.5rem
     align-items: flex-start
 
@@ -437,9 +439,8 @@
     height: auto
 
   // if has description
-  dt
-    font-weight: 700
   dd
+    font-weight: var(--fontWeight)
     font-size: var(--sFontSize)
     opacity: .75
 
@@ -483,36 +484,23 @@
   border-radius: var(--gRadius)
   color: var(--textColor, inherit)
 
-  // the label
-  > a
-    padding-top: 0
-    padding-left: 0
-
   .offcanvas &
     .submenu-depth-2,
     .submenu-depth-2 a
       margin: 0
 
-  &.menu-background-main
-    --bgColor: var(--color1Light)
+  &.menu-background-lighter
+    --bgColor: rgba(255,255,255,.1)
   
-  &.menu-background-sub
-    --bgColor: var(--color2Light)
-
-  &.menu-background-gray
-    --bgColor: var(--textDim)
-  
-  &.menu-background-white
-    --bgColor: var(--textInvert)
-
-  &.menu-background-main,
-  &.menu-background-sub,
-  &.menu-background-gray,
-  &.menu-background-white
-    --textColor: var(--text)
-    --bgHover: #{rgba(--text, .1)}
+  &.menu-background-darker
+    --bgColor: rgba(0,0,0,.05)
 
   &.menu-background-black
-    --bgColor: var(--text)
-    --textColor: var(--textInvert)
-    --bgHover: #{rgba(--textInvert, .1)}
+    --bgColor: black
+    --textColor: white
+    --bgHover: rgba(255,255,255,.2)
+  
+  &.menu-background-white
+    --bgColor: white
+    --textColor: var(--text)
+    --bgHover: #{rgba(--text, .1)}

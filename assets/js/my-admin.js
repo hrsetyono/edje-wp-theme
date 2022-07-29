@@ -5,13 +5,14 @@ const myMenu = {
     if (!window.wpNavMenu) { return; }
 
     this.megaMenuListener();
+    this.depthChangeListener();
 
     // limit nav menu depth to 3rd level
     window.wpNavMenu.options.globalMaxDepth = 2;
   },
 
   /**
-   * Add class to several items when mega menu is activated on the parent
+   * When megamenu columns is selected, add/remove class from it's children accordingly
    */
   megaMenuListener() {
     const $toggles = document.querySelectorAll('.acf-field[data-name="mega_menu"] input[type="radio"]');
@@ -36,6 +37,28 @@ const myMenu = {
   },
 
   /**
+   * When depth changed, check if it's under mega menu and add/remove class accordingly
+   */
+  depthChangeListener() {
+    const $menu = document.querySelector('.menu');
+    $menu.addEventListener('mouseup', (e) => {
+      const $target = e.target.classList.contains('menu-item') ? e.target : e.target.closest('.menu-item');
+      if (!$target) { return; }
+
+      // wait until the class is changed
+      setTimeout(() => {
+        const $prevItem = $target.previousElementSibling;
+        const isUnderMegaMenu = $prevItem.classList.contains('menu-item-under-mega-menu') || $prevItem.classList.contains('menu-item-is-mega-menu');
+        if (this.isChildItem($target) && isUnderMegaMenu) {
+          $target.classList.add('menu-item-under-mega-menu');
+        } else {
+          $target.classList.remove('menu-item-under-mega-menu');
+        }
+      });
+    });
+  },
+
+  /**
    * Check whether current item and all its children need mega menu classes
    *
    * @param $item - `.menu-item` DOM object in the Appearance > Menu page.
@@ -53,7 +76,7 @@ const myMenu = {
       // Abort if no more next element
       if (!$nextItem) { break; }
 
-      const isChildItem = $nextItem.classList.contains('menu-item-depth-1') || $nextItem.classList.contains('menu-item-depth-2');
+      const isChildItem = this.isChildItem($nextItem);
 
       if (isChildItem) {
         $children.push($nextItem);
@@ -78,6 +101,13 @@ const myMenu = {
         $c.classList.remove('menu-item-under-mega-menu');
       });
     }
+  },
+
+  /**
+   * Check if a DOM object is a child menu item
+   */
+  isChildItem($item) {
+    return $item.classList.contains('menu-item-depth-1') || $item.classList.contains('menu-item-depth-2');
   },
 };
 

@@ -3,6 +3,23 @@
     "title": "Menu Item",
     "fields": [
         {
+            "key": "field_62e3ca7737ea9",
+            "label": "",
+            "name": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "<span class=\"dashicons dashicons-warning\"><\/span> First children under Mega Menu become a \"Heading\". It doesn't have URL and Description",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        },
+        {
             "key": "field_62dccbd8afe3e",
             "label": "Mega Menu (number of columns)",
             "name": "mega_menu",
@@ -159,11 +176,10 @@
                 "id": ""
             },
             "choices": {
-                "main": "Main Color",
-                "sub": "Sub Color",
-                "black": "Black",
-                "gray": "Gray",
-                "white": "White"
+                "lighter": "Lighter",
+                "darker": "Darker",
+                "white": "White",
+                "black": "Black"
             },
             "default_value": false,
             "allow_null": 1,
@@ -192,5 +208,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1659017777
+    "modified": 1659095797
 }
