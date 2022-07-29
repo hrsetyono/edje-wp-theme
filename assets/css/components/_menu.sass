@@ -168,34 +168,7 @@
       transition: none
       transform: translateY(1px)
 
-  .mega-menu .submenu-depth-1
-    display: grid
-    grid-template-columns: repeat(var(--columns, 2), 1fr)
-    padding: 0
-    width: var(--width)
-
-    > li
-      padding: 0.75rem
-      border-radius: 0
-
-    > li > a
-      opacity: .75
-      letter-spacing: 0.05em
-      text-transform: uppercase
-      font-size: var(--xsFontSize)
-      pointer-events: none
-
-    // hide description
-    > li dd
-      display: none
-  
-  .mega-menu .submenu-depth-2
-    position: static
-    padding: 0
-    width: 100%
-    background-color: transparent
-    box-shadow: none
-    transform: none
+  ///// MEGA MENU
 
   .mega-menu-2-columns
     --width: calc(var(--siteWidth) / 2)
@@ -218,6 +191,42 @@
 
     @media ($below-l)
       --width: 100%
+
+  .mega-menu .submenu-depth-1
+    display: flex
+    flex-wrap: wrap
+    overflow-y: auto 
+
+    padding: 0
+    width: var(--width)
+    max-height: calc(100vh - var(--headingHeight, 80px))
+    
+
+  .mega-menu .submenu-depth-2
+    position: static
+    padding: 0
+    width: 100%
+    background-color: transparent
+    box-shadow: none
+    transform: none
+
+  .mega-menu__column
+    flex-grow: 1
+    width: calc(100% / var(--columns, 2))
+    padding: 0.75rem
+    border-radius: 0
+    
+    > a
+      opacity: .75
+      letter-spacing: 0.05em
+      text-transform: uppercase
+      font-size: var(--xsFontSize)
+      pointer-events: none
+
+    // hide description
+    > a > dd
+      display: none
+  
 
   // Mega menu aligned left if put on first column
   .widget-column:nth-child(1)
@@ -322,17 +331,12 @@
     > a:hover
       background-color: var(--bgHover, #{rgba(--textInvert, .1)})
 
-  .mega-menu .submenu-depth-1
-    > li > a
-      opacity: .75
-      letter-spacing: 0.05em
-      text-transform: uppercase
-      font-size: var(--xsFontSize)
-      pointer-events: none
-    
-    // hide description
-    > li dd
-      display: none
+  .mega-menu__column
+    opacity: .75
+    letter-spacing: 0.05em
+    text-transform: uppercase
+    font-size: var(--xsFontSize)
+    pointer-events: none
 
 ///// MENU in FOOTER
 
@@ -460,7 +464,8 @@
   > a
     flex-direction: column
     align-items: flex-start
-    padding: 0
+    padding-top: 0
+    padding-bottom: 0
     margin: 0
     pointer-events: none // image not clickable
 
@@ -481,13 +486,24 @@
 .mega-menu .menu-item-has-background
   background-color: var(--bgColor, transparent)
   padding: 0.5rem
-  border-radius: var(--gRadius)
   color: var(--textColor, inherit)
 
   .offcanvas &
     .submenu-depth-2,
     .submenu-depth-2 a
       margin: 0
+
+  &.menu-background-lighter,
+  &.menu-background-darker,
+  &.menu-background-white
+    --textColor: var(--text)
+    --bgHover: rgba(0,0,0,.1)
+
+  &.menu-background-black,
+  &.menu-background-main,
+  &.menu-background-sub
+    --textColor: var(--textInvert)
+    --bgHover: rgba(255,255,255,.2)
 
   &.menu-background-lighter
     --bgColor: rgba(255,255,255,.1)
@@ -497,10 +513,12 @@
 
   &.menu-background-black
     --bgColor: black
-    --textColor: white
-    --bgHover: rgba(255,255,255,.2)
-  
+
   &.menu-background-white
     --bgColor: white
-    --textColor: var(--text)
-    --bgHover: #{rgba(--text, .1)}
+
+  &.menu-background-main
+    --bgColor: var(--color1)
+
+  &.menu-background-sub
+    --bgColor: var(--color2)

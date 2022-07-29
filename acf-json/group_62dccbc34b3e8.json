@@ -179,7 +179,9 @@
                 "lighter": "Lighter",
                 "darker": "Darker",
                 "white": "White",
-                "black": "Black"
+                "black": "Black",
+                "main": "Main Color",
+                "sub": "Sub Color"
             },
             "default_value": false,
             "allow_null": 1,
@@ -208,5 +210,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1659095797
+    "modified": 1659099462
 }

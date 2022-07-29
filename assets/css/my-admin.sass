@@ -56,15 +56,14 @@
 
 // Change the label for mega menu
 .item-type
-  .menu-item-is-mega-menu &
-    font-size: 0
-    line-height: 1
-
+  .menu-item-is-mega-menu &,
   .menu-item-depth-1.menu-item-under-mega-menu &
     font-size: 0
+    line-height: 1
   
 .item-type::before
-  .menu-item-is-mega-menu &
+  .menu-item-is-mega-menu &,
+  .menu-item-depth-1.menu-item-under-mega-menu &
     content: "Mega Menu"
     display: inline-block
     padding: 0.25rem
@@ -72,11 +71,12 @@
     background-color: rgba(black, .1)
 
     font-size: 12px
+    transform: translateY(-2px)
 
   .menu-item-depth-1.menu-item-under-mega-menu &
     content: "Heading"
-    display: inline-block
-    font-size: 12px
+    border: 1px solid rgba(black, .1)
+    background-color: transparent
 
 // Remove the "sub-item" label
 .is-submenu
