@@ -25,8 +25,7 @@
   },
   "scripts": {
     "build": "webpack --mode production",
-    "dev": "webpack --mode development --watch",
-    "test": "jest"
+    "dev": "webpack --mode development --watch"
   },
   "babel": {
     "presets": [

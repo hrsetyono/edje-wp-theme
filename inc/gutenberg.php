@@ -1,8 +1,5 @@
 <?php
 
-// Register custom blocks
-require_once __DIR__ . '/my-block/_index.php';
-
 if (is_admin()) {
   my_custom_block_styles();
   my_custom_block_patterns();

@@ -65,17 +65,32 @@
 ///// MENU in SUBHEADER
 
 .subheader
+  .menu
+    display: flex
+    list-style-type: none
+    padding: 0
+
+  .menu-item
+    position: relative
+
   .menu-item > a
     display: flex
     align-items: center
     padding: 0.25rem 0.5rem
+    border-radius: var(--gRadius)
 
     line-height: 1
     font-weight: var(--hFontWeight)
     color: inherit
 
   .menu-item > a:hover
-    background-color: var(--color1Dark)
+    background-color: rgba(--textInvert, .2)
+
+  .menu-item-has-children > a::after
+    filter: invert(1)
+
+  .submenu
+    color: var(--text)
 
 // Disable menu on Subheader mobile
 .subheader-mobile
@@ -85,28 +100,25 @@
 ///// MENU in HEADER + SUBHEADER
 
 .header-widgets
-  .menu-item-has-children
-    > a::after
-      content: ""
-      display: inline-block
-      margin-left: 0.5rem
-      width: 0.75rem
-      height: 0.75rem
-      background: url('../svg/chevron-down.svg') no-repeat center center
-      background-size: 100% auto
-      opacity: .75
+  .menu-item-has-children > a::after
+    content: ""
+    display: inline-block
+    margin-left: 0.5rem
+    width: 0.75rem
+    height: 0.75rem
+    background: url('../svg/chevron-down.svg') no-repeat center center
+    background-size: 100% auto
+    opacity: .75
 
   // if has 2nd submenu, the arrow is to the right
-  .submenu-item.menu-item-has-children
-    > a::after
-      margin-left: auto
-      transform: rotate(-90deg)
-      filter: invert(1)
+  .submenu-item.menu-item-has-children > a::after
+    margin-left: auto
+    transform: rotate(-90deg)
+    filter: invert(1)
 
   // megamenu immediately display the 2nd submenu, no need for arrow
-  .mega-menu .submenu-item.menu-item-has-children
-    > a::after
-      display: none
+  .h-mega-menu .submenu-item.menu-item-has-children > a::after
+    display: none
 
   .submenu
     visibility: hidden
@@ -137,7 +149,7 @@
   // open submenu when hovering the parent
   .menu-item:hover .submenu-depth-1,
   .submenu-item:hover .submenu-depth-2,
-  .mega-menu:hover .submenu
+  .h-mega-menu:hover .submenu
     visibility: visible
     opacity: 1
     transition: var(--gTransition) // only animate on enter
@@ -145,7 +157,7 @@
   // need to be separated with ":hover" for browser support
   .menu-item:focus-within .submenu-depth-1,
   .submenu-item:focus-within .submenu-depth-2,
-  .mega-menu:focus-within .submenu
+  .h-mega-menu:focus-within .submenu
     visibility: visible
     opacity: 1
     transition: var(--gTransition)
@@ -170,21 +182,21 @@
 
   ///// MEGA MENU
 
-  .mega-menu-2-columns
+  .h-mega-menu-2-columns
     --width: calc(var(--siteWidth) / 2)
     --columns: 2
 
     @media ($below-l)
       --width: 50vw
 
-  .mega-menu-3-columns
+  .h-mega-menu-3-columns
     --width: calc(var(--siteWidth) * 3 / 4)
     --columns: 3
 
     @media ($below-l)
       --width: 75vw
 
-  .mega-menu-4-columns
+  .h-mega-menu-4-columns
     --width: var(--siteWidth)
     --columns: 4
     position: static // to make submenu aligned to grid
@@ -192,7 +204,7 @@
     @media ($below-l)
       --width: 100%
 
-  .mega-menu .submenu-depth-1
+  .h-mega-menu .submenu-depth-1
     display: flex
     flex-wrap: wrap
     overflow-y: auto 
@@ -202,7 +214,7 @@
     max-height: calc(100vh - var(--headingHeight, 80px))
     
 
-  .mega-menu .submenu-depth-2
+  .h-mega-menu .submenu-depth-2
     position: static
     padding: 0
     width: 100%
@@ -210,7 +222,7 @@
     box-shadow: none
     transform: none
 
-  .mega-menu__column
+  .h-mega-menu__column
     flex-grow: 1
     width: calc(100% / var(--columns, 2))
     padding: 0.75rem
@@ -230,8 +242,8 @@
 
   // Mega menu aligned left if put on first column
   .widget-column:nth-child(1)
-    .mega-menu-2-columns,
-    .mega-menu-3-columns
+    .h-mega-menu-2-columns,
+    .h-mega-menu-3-columns
       .submenu-depth-1
         right: auto
         left: 0
@@ -239,8 +251,8 @@
 
   // Mega menu aligned right if put on last column
   .widget-column:last-child:not(:first-child)
-    .mega-menu-2-columns,
-    .mega-menu-3-columns
+    .h-mega-menu-2-columns,
+    .h-mega-menu-3-columns
       .submenu-depth-1
         right: 0
         left: auto
@@ -295,13 +307,13 @@
     height: 0.75rem
 
   // 1st submenu in offcanvas is immediately shown, no need for arrow toggle
-  .menu-item:not(.mega-menu).menu-item-has-children > a::after,
-  .mega-menu .menu-item-has-children > a::after
+  .menu-item:not(.h-mega-menu).menu-item-has-children > a::after,
+  .h-mega-menu .menu-item-has-children > a::after
     display: none
 
   // 2nd submenu and megamenu in offcanvas has toggle, rotate the arrow after displayed
   .submenu-item-is-active > a::after,
-  .mega-menu-is-active > a::after
+  .h-mega-menu-is-active > a::after
     transform: rotate(180deg)
 
   .submenu
@@ -310,11 +322,11 @@
     list-style-type: none
 
   // 1st level submenu is only hidden if mega menu
-  .mega-menu:not(.mega-menu-is-active) .submenu-depth-1
+  .h-mega-menu:not(.h-mega-menu-is-active) .submenu-depth-1
     display: none
 
   // 2nd level submenu is initially hidden except in mega menu
-  .menu-item:not(.mega-menu) .submenu-item:not(.submenu-item-is-active) .submenu-depth-2
+  .menu-item:not(.h-mega-menu) .submenu-item:not(.submenu-item-is-active) .submenu-depth-2
     display: none
 
   .submenu-item
@@ -331,7 +343,7 @@
     > a:hover
       background-color: var(--bgHover, #{rgba(--textInvert, .1)})
 
-  .mega-menu__column
+  .h-mega-menu__column
     opacity: .75
     letter-spacing: 0.05em
     text-transform: uppercase
@@ -483,7 +495,7 @@
       display: none
 
 // Menu BACKGROUND - only works in mega menu
-.mega-menu .menu-item-has-background
+.h-mega-menu .menu-item-has-background
   background-color: var(--bgColor, transparent)
   padding: 0.5rem
   color: var(--textColor, inherit)
@@ -522,3 +534,10 @@
 
   &.menu-background-sub
     --bgColor: var(--color2)
+
+// Has shortcode in menu item
+.menu-item-has-shortcode
+  // delete the closed and reopened <a>
+  > a:nth-child(1),
+  > a:nth-child(3)
+    display: none

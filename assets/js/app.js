@@ -3,7 +3,26 @@ import '../css/app.sass';
 // GENERAL LISTENERS
 const myApp = {
   init() {
-    // do something
+    this.darkMode();
+  },
+
+  /**
+   * Toggle dark mode class in body
+   */
+  darkMode() {
+    const $darkToggles = document.querySelectorAll('.h-dark-toggle input[type="checkbox"]');
+    if ($darkToggles.length <= 0) { return; }
+
+    $darkToggles.forEach(($t) => {
+      $t.addEventListener('change', (e) => {
+        const isChecked = e.currentTarget.checked;
+
+        document.querySelector('body').classList.toggle('h-is-dark', isChecked);
+
+        // cache the dark mode, the code to check this onload is in Edje WP Library
+        localStorage.setItem('hDarkMode', isChecked);
+      });
+    });
   },
 };
 
