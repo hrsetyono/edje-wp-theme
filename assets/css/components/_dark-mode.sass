@@ -4,10 +4,11 @@
 body.h-is-dark
   filter: invert(100%) hue-rotate(180deg)
 
+  // invert back the image
   img
     filter: invert(100%) hue-rotate(180deg) brightness(1.2)
 
-  // image that should be inverted
+  // image that you want to stay inverted
   .wp-block-site-logo img
     filter: none
 
@@ -41,6 +42,9 @@ body.h-is-dark
   height: var(--height)
   border: 1px solid var(--textInvert)
   border-radius: 1rem
+
+  &:focus
+    box-shadow: 0 0 0 2px var(--color1)
 
   &::before
     content: ""

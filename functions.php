@@ -72,6 +72,7 @@ function my_after_setup_theme() {
   // add_theme_support('h-comment-editor'); // Enable this if you allow comment in the website
   add_theme_support('h-classic-widgets');
   add_theme_support('h-mega-menu');
+  add_theme_support('h-dark-toggle');
 
   // Gutenberg support
   add_theme_support('align-wide');
