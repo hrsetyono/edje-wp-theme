@@ -1,6 +1,16 @@
+// without background, it can't be inverted
 #main-container
-  background-color: var(--siteBg) // without background, it can't be inverted
+  background-color: var(--siteBg)
+
+// Fix weird positioning bug with adminbar when dark mode is on
+html[lang]
+  margin-top: 0 !important
+#wpadminbar
+  position: sticky
   
+  body.h-is-dark &
+    filter: invert(100%) hue-rotate(180deg) 
+
 body.h-is-dark
   filter: invert(100%) hue-rotate(180deg)
 
@@ -9,8 +19,11 @@ body.h-is-dark
     filter: invert(100%) hue-rotate(180deg) brightness(1.2)
 
   // image that you want to stay inverted
-  .wp-block-site-logo img
+  .wp-block-site-logo img,
+  .footer-mid .textwidget img
     filter: none
+
+
 
 
 .h-dark-toggle
