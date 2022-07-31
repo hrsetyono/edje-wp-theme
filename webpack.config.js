@@ -24,11 +24,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const path = require('path');
 
-const cssPath = './assets/sass';
+const cssPath = './assets/css';
 const jsPath = './assets/js';
 const shopPath = './woocommerce';
-
-const blockPath = './inc';
 const outputPath = 'dist';
 
 const localDomain = 'http://lab.test/';
@@ -40,8 +38,6 @@ const entryPoints = {
 
   shop: `${shopPath}/js/shop.js`,
   'shop-editor': `${shopPath}/sass/shop-editor.sass`,
-
-  'my-block': `${blockPath}/my-block/index.jsx`,
 };
 
 module.exports = {

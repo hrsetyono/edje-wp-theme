@@ -58,7 +58,8 @@
     color: var(--textDim)
 
 // Reply link
-a.comment-reply-link
+a.comment-reply-link,
+a.comment-edit-link
   padding: 0.25rem 0.5rem
   background-color: rgba(--color1, .2)
   border-radius: var(--gRadius)
@@ -67,11 +68,30 @@ a.comment-reply-link
   letter-spacing: 0.05em
   text-transform: uppercase
 
+  &::before
+    content: ""
+    opacity: .6
+    display: inline-block
+    width: 0.75rem
+    height: 0.75rem
+    margin-right: 0.5rem
+    background-repeat: no-repeat
+    background-position: center center
+    background-size: contain
+
   &:hover
     background-color: rgba(--color1, .35)
   &:active
     transition: none
     transform: translateY(1px)
+
+  + a
+    margin-left: 0.25rem
+
+a.comment-reply-link::before
+  background-image: url('../svg/reply.svg')
+a.comment-edit-link::before
+  background-image: url('../svg/pencil.svg')
 
 .comment-content,
 .review-text
@@ -173,9 +193,9 @@ a.comment-reply-link
   label
     display: none
 
-  textarea
+  textarea[name="comment"]
     height: 12rem
-    border-radius: 0 var(--gRadius) var(--gRadius) 0
+    border: 2px solid rgba(--text, .1)
 
 p.comment-form-author,
 p.comment-form-email
@@ -221,6 +241,9 @@ p.form-submit
 .h-editor
   border-left: none
 
-  textarea
-    border: none
+  .toolbar
+    padding: 2px
     border-radius: var(--gRadius)
+    border: 2px solid rgba(--text, .1)
+    box-shadow: var(--shadowThin)
+    

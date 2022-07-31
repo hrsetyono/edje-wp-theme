@@ -1,0 +1,411 @@
+.menu-item:not([href])
+  cursor: default
+
+// active state
+@mixin menu-item-is-active
+  .current-menu-item > a,
+  .current-page-ancestor > a,
+  .current-menu-ancestor > a,
+  .current-menu-parent > a,
+  .current_page_parent > a
+    @content
+  
+///// MENU in HEADER
+
+.header
+  .menu
+    display: flex
+    flex-wrap: wrap
+    list-style-type: none
+    transition: var(--gTransition)
+
+  .menu-item
+    position: relative
+
+  .menu-item > a
+    position: relative
+    display: flex
+    align-items: center
+    padding: 2rem 0.75rem
+    height: 100%
+
+    line-height: 1
+    font-weight: var(--hFontWeight)
+    color: inherit
+
+  // add border-bottom as hover indicator
+  .menu-item > a::before 
+    content: ""
+    display: block
+    visibility: hidden
+    opacity: 0
+    transition: var(--gTransition)
+
+    position: absolute
+    bottom: 0
+    left: 10px
+    right: 10px
+    height: 4px
+    background-color: var(--text)
+
+  .menu-item:hover > a::before
+    visibility: visible
+    opacity: 1
+
+  +menu-item-is-active
+    &::before
+      visibility: visible
+      opacity: 1
+
+// Disable menu on Header mobile
+.header-mobile
+  .menu
+    display: none
+
+///// MENU in SUBHEADER
+
+.subheader
+  .menu
+    display: flex
+    list-style-type: none
+    padding: 0
+
+  .menu-item
+    position: relative
+
+  .menu-item > a
+    display: flex
+    align-items: center
+    padding: 0.25rem 0.5rem
+    border-radius: var(--gRadius)
+
+    line-height: 1
+    font-weight: var(--hFontWeight)
+    color: inherit
+
+  .menu-item > a:hover
+    background-color: rgba(--textInvert, .2)
+
+  .menu-item-has-children > a::after
+    filter: invert(1)
+
+  .submenu
+    color: var(--text)
+
+// Disable menu on Subheader mobile
+.subheader-mobile
+  .menu
+    display: none
+
+///// MENU in HEADER + SUBHEADER
+
+.header-widgets
+  .menu-item-has-children > a::after
+    content: ""
+    display: inline-block
+    margin-left: 0.5rem
+    width: 0.75rem
+    height: 0.75rem
+    background: url('../svg/chevron-down.svg') no-repeat center center
+    background-size: 100% auto
+    opacity: .75
+
+  // if has 2nd submenu, the arrow is to the right
+  .submenu-item.menu-item-has-children > a::after
+    position: absolute
+    top: 50%
+    right: 0.25rem
+    background-image: url('../svg/chevron-right.svg')
+    background-size: auto 100%
+    margin: 0
+    transform: translateY(-50%)
+
+  .submenu
+    visibility: hidden
+    opacity: 0
+    background-color: var(--textInvert)
+
+    width: 220px
+    padding: 0.5rem
+    border-radius: var(--gRadius)
+
+    list-style-type: none
+    box-shadow: var(--shadow1)
+
+  .submenu-depth-1
+    position: absolute
+    z-index: 10
+    top: 100%
+    left: 50%
+    transform: translateX(-50%)
+
+  .submenu-depth-2
+    position: absolute
+    top: 0
+    right: 0
+    left: auto
+    transform: translateX(100%)
+
+  // open submenu when hovering the parent
+  .menu-item:hover .submenu-depth-1,
+  .submenu-item:hover .submenu-depth-2
+    visibility: visible
+    opacity: 1
+    transition: var(--gTransition) // only animate on enter
+
+  // need to be separated with ":hover" for browser support
+  .menu-item:focus-within .submenu-depth-1,
+  .submenu-item:focus-within .submenu-depth-2
+    visibility: visible
+    opacity: 1
+    transition: var(--gTransition)
+
+  .submenu-item
+    position: relative
+    
+    > a
+      display: flex
+      flex-direction: column
+      padding: 0.375rem 0.5rem
+      border-radius: var(--gRadius)
+      font-weight: 600
+    
+    // --bgHover is added by mega-menu class
+    > a:hover
+      background-color: var(--bgHover, #{rgba(--text, .1)})
+
+    > a:active
+      transition: none
+      transform: translateY(1px)
+
+  
+///// MENU in OFFCANVAS
+
+.offcanvas
+  .menu
+    display: flex
+    flex-direction: column
+    flex-wrap: wrap
+    list-style-type: none
+    transition: var(--gTransition)
+
+  .menu-item
+    margin-bottom: 0.5rem
+
+  .menu-item > a
+    display: flex
+    align-items: center
+    padding: 0.5rem 0.75rem
+    border-radius: var(--gRadius)
+
+    line-height: 1
+    font-weight: var(--hFontWeight)
+    letter-spacing: 0.025em
+    color: inherit
+    font-size: var(--lFontSize)
+
+  .menu-item > a:hover
+    background-color: rgba(--textInvert, .1)
+    opacity: .75
+
+  +menu-item-is-active
+    background-color: rgba(--textInvert, .1)
+    color: var(--textInvert)
+    opacity: 1
+
+  .menu-item-has-children > a::after
+    content: ""
+    display: inline-block
+    opacity: .75
+    background: url('../svg/chevron-down.svg') no-repeat center center
+    background-size: 100% auto
+    filter: invert(1)
+    transition: var(--gTransition)
+
+    margin-left: auto
+    width: 0.75rem
+    height: 0.75rem
+
+  // 1st submenu is initially shown, no need for arrow toggle
+  .menu-item:not.menu-item-has-children > a::after
+    display: none
+
+  // 2nd submenu is initially hidden, rotate the arrow after displayed
+  .submenu-item-is-active > a::after
+    transform: rotate(180deg)
+
+  .submenu
+    border-left: 1px solid rgba(--textInvert, .1)
+    margin-left: 0.75rem
+    list-style-type: none
+
+  // 2nd level submenu is initially hidden
+  .submenu-depth-2
+    display: none
+  .submenu-item-is-active .submenu-depth-2
+    display: block
+
+  .submenu-item
+    position: relative
+    
+    > a
+      display: flex
+      align-items: center
+      padding: 0.375rem 0.5rem
+      margin-left: 0.25rem
+      border-radius: var(--gRadius)
+    
+    // --bgHover is added in mega-menu class
+    > a:hover
+      background-color: var(--bgHover, #{rgba(--textInvert, .1)})
+
+  
+///// MENU in FOOTER
+
+.footer-widgets
+  .menu
+    display: flex
+    flex-wrap: wrap
+    column-gap: 1rem
+    row-gap: 1rem
+    list-style-type: none
+
+  .menu-item
+    width: calc(25% - 1rem * 0.75)
+
+    @media ($below-m)
+      width: calc(50% - 1rem * 0.5)
+
+    @media ($below-xs)
+      width: 100%
+
+  .menu-item > a
+    display: flex
+    align-items: center
+    background-color: transparent
+    
+    padding: 0.5rem
+    border-radius: var(--gRadius)
+
+    font-size: var(--mFontSize)
+    font-weight: var(--hFontWeight)
+    color: inherit
+
+  
+  .submenu-item > a
+    display: block
+    padding: 0.375rem 0.5rem
+    border-radius: var(--gRadius)
+
+  .menu-item > a:hover,
+  .submenu-item > a:hover
+    background-color: rgba(--text, .1)
+    box-shadow: var(--shadow0)
+
+  .menu-item > a:active,
+  .submenu-item > a:active
+    transform: translateY(1px)
+    transition: none
+
+  +menu-item-is-active
+    background-color: rgba(--textInvert, .1)
+    color: inherit
+
+  .submenu
+    list-style-type: none
+
+  // @todo - find a way to fit this
+  .submenu-depth-2
+    display: none
+
+  // add toggle arrow if menu has children
+  @media ($below-xs)
+    .menu-item-has-children > a::after
+      content: ""
+      display: inline-block
+      opacity: .75
+      background: url('../svg/chevron-down.svg') no-repeat center center
+      background-size: 100% auto
+      transition: var(--gTransition)
+
+      margin-left: auto
+      width: 0.75rem
+      height: 0.75rem
+
+    .menu-item-is-active > a::after
+      transform: rotate(180deg)
+
+    .menu-item:not(.menu-item-is-active) .submenu
+      display: none
+
+
+
+///// CUSTOM STYLE
+
+.menu-item.menu-item-has-icon
+  img
+    margin-right: 0.25rem
+    max-width: 28px
+
+    .header &,
+    .subheader &
+      display: none
+
+.submenu-item.menu-item-has-icon
+  > a
+    display: grid
+    grid-template-columns: 28px 1fr
+    column-gap: 0.5rem
+    align-items: flex-start
+
+  img
+    grid-row: span 2
+    height: auto
+
+  .offcanvas &
+    dt
+      font-weight: var(--fontWeight)
+    dd
+      display: none
+
+.submenu-item
+  // if has description
+  dd
+    font-weight: var(--fontWeight)
+    font-size: var(--sFontSize)
+    opacity: .75
+
+// with IMAGE
+.submenu-item.menu-item-has-image
+  --bgHover: transparent
+
+  font-size: var(--xsFontSize)
+  margin-bottom: 0.5rem
+
+  > a
+    flex-direction: column
+    align-items: flex-start
+    padding-top: 0
+    padding-bottom: 0
+    margin: 0
+    pointer-events: none // image not clickable
+
+  img
+    margin-bottom: 0.5rem
+    width: auto
+    transition: var(--gTransition)
+
+// Empty title - when the title is just "-"
+.menu-item-empty-title
+  > a
+    color: transparent
+
+    .offcanvas &
+      display: none
+
+// Has shortcode in menu item
+.menu-item-has-shortcode
+  // delete the closed and reopened <a>
+  > a:nth-child(1),
+  > a:nth-child(3)
+    display: none

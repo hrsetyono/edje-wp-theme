@@ -1,7 +1,7 @@
 <section class="post-comments" id="comments">
   <?php if (get_comments_number()): ?>
     <h4>
-      <?php echo sprintf(__('%d comments'), get_comments_number()); ?>
+      <?= sprintf(__('%d comments'), get_comments_number()); ?>
     </h4>
   <?php endif; ?>
 
@@ -9,7 +9,7 @@
 
   <ol class="comments-list">
     <?php wp_list_comments([
-      'walker' => new H_Walker_Comment(),
+      'walker' => new H_WalkerComment(),
       'avatar_size' => 60,
       'style' => 'ol',
     ]); ?>

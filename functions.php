@@ -69,8 +69,10 @@ function my_after_setup_theme() {
   // Edje Support
   add_theme_support('h-faq-block-v2');
   add_theme_support('h-icon-block');
-  add_theme_support('h-comment-editor'); // Enable this if you allow comment in the website
+  // add_theme_support('h-comment-editor'); // Enable this if you allow comment in the website
   add_theme_support('h-classic-widgets');
+  add_theme_support('h-mega-menu');
+  add_theme_support('h-dark-toggle');
 
   // Gutenberg support
   add_theme_support('align-wide');
@@ -80,7 +82,7 @@ function my_after_setup_theme() {
   /**
    * ACF Options page
    */
-  if(function_exists('acf_add_options_page')) {
+  if (function_exists('acf_add_options_page')) {
     acf_add_options_sub_page([
   		'page_title' => 'Theme Options',
   		'parent_slug' => 'themes.php',

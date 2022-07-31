@@ -16,9 +16,9 @@
     padding: 0
 
 [data-column]
-  --span: 12
+  --grid: 12
   --width: 100%
-  grid-column: span var(--span)
+  grid-column: span var(--grid)
 
 [data-grid="centered"]
   display: block
@@ -32,35 +32,35 @@
 // Column
 @for $i from 1 through 12
   [data-column^="#{$i}"]
-    --span: #{$i}
+    --grid: #{$i}
     --width: #{ percentage(math.div($i, 12)) }
 
 // Tablet and mobile size
 @media ($below-s)
   [data-column]
-    --span: 12
+    --grid: 12
     --width: 100%
 
   @for $i from 1 through 12
     [data-column$="-#{$i}"]
-      --span: #{$i}
+      --grid: #{$i}
       --width: #{ percentage(math.div($i, 12)) }
 
 // Only tablet size
 @media ($above-xs) and ($below-s)
   @for $i from 1 through 12
     [data-column*="-#{$i}-"]
-      --span: #{$i}
+      --grid: #{$i}
       --width: #{ percentage(math.div($i, 12)) }
 
 
 ///// TILE
 
-[data-tile]
-  --columns: 3
+[data-tiles]
+  --tiles: 3
   display: -ms-grid
   display: grid
-  grid-template-columns: repeat( var(--columns), minmax(0,1fr) )
+  grid-template-columns: repeat( var(--tiles), minmax(0,1fr) )
   grid-column-gap: var(--tileGap)
   grid-row-gap: var(--tileGap)
   list-style-type: none
@@ -71,20 +71,20 @@
 
 // Large tile
 @for $i from 1 through 10
-  [data-tile^="#{$i}"]
-    --columns: #{$i}
+  [data-tiles^="#{$i}"]
+    --tiles: #{$i}
 
 // Small and XSmall tile
 @media ($below-s)
-  [data-tile]
-    --columns: 1
+  [data-tiles]
+    --tiles: 1
 
   @for $i from 1 through 5
-    [data-tile$="-#{$i}"]
-      --columns: #{$i}
+    [data-tiles$="-#{$i}"]
+      --tiles: #{$i}
 
 // Small only tile
 @media ($above-xs) and ($below-s)
   @for $i from 1 through 5
-    [data-tile*="-#{$i}-"]
-      --columns: #{$i}
+    [data-tiles*="-#{$i}-"]
+      --tiles: #{$i}

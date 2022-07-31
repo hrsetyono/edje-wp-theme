@@ -5,7 +5,7 @@ $query = get_search_query();
 $args = [
   'title' => "Search result for \"{$query}\"",
   'query' => $query,
-  'posts' => $wp_query,
+  'posts' => $wp_query->get_posts(),
 ];
 
 get_header();

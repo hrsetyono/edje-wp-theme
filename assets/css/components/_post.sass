@@ -103,7 +103,7 @@
 
 ///// POST CONTENT
 
-.post-columns
+.post-columns.wp-block-columns
   --blogWidth: auto
   column-gap: 5rem
 
@@ -118,9 +118,10 @@
 ///// SINGLE AUTHOR
 
 .post-author
-  padding: 1rem
-  background-color: var(--textInvert)
-  box-shadow: 0px 50px 90px rgba(210, 213, 218, 0.4)
+  padding-top: 2rem
+  padding-bottom: 2rem
+  border-top: 1px solid rgba(--text, .1)
+  border-bottom: 1px solid rgba(--text, .1)
 
   body.archive &
     background-color: transparent
@@ -275,7 +276,10 @@
     margin-right: 0
     margin-left: 0.5rem
 
+///// RELATED POSTS
 
+.related-posts
+  box-shadow: var(--shadowThin)
 
 
 ///// PAGINATION

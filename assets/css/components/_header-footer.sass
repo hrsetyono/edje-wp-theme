@@ -1,0 +1,212 @@
+///// MAIN HEADER /////
+
+.header,
+.subheader
+  @media ($below-nav)
+    display: none
+
+.header-mobile,
+.subheader-mobile
+  @media ($above-nav)
+    display: none
+
+.header,
+.header-mobile
+  position: sticky
+  top: var(--adminBarHeight)
+  z-index: 90
+
+  background-color: var(--siteBgColor)
+  border-bottom: 1px solid rgba(--text, .1)
+  transition: var(--gTransition)
+
+  &.is-stuck
+    box-shadow: var(--shadow1)
+
+.header-mobile
+  padding-top: 0.5rem
+  padding-bottom: 0.5rem
+
+.subheader,
+.subheader-mobile
+  position: relative
+  z-index: 100
+  padding-top: 0.25rem
+  padding-bottom: 0.25rem
+  background-color: var(--text)
+
+  font-size: var(--sFontSize)
+  color: var(--textInvert)
+  transition: var(--gTransition)
+
+
+///// OFFCANVAS /////
+
+.offcanvas
+  cursor: default
+  position: fixed
+  z-index: 200
+  top: 0
+  bottom: 0
+  right: 0
+
+  visibility: hidden
+  opacity: 0
+  background: var(--text)
+  width: 420px
+  max-width: 420px
+
+  color: var(--textInvert)
+
+  box-shadow: var(--shadow3) 
+  transform: translateX(100%)
+
+  //
+  @media ($below-xs)
+    width: 320px
+    max-width: 320px
+
+
+body.has-active-offcanvas
+  overflow-y: hidden
+  cursor: pointer
+  -webkit-tap-highlight-color: rgba(white, 0)
+
+  &::before
+    content: ""
+    display: block
+    +absolute-fill
+    z-index: 190
+    background-color: rgba(--text, .5)
+
+    transition: var(--gTransition)
+
+  .offcanvas
+    visibility: visible
+    opacity: 1
+    transform: none
+    transition: var(--gTransition)
+
+
+.offcanvas__inner-wrapper
+  display: flex
+  flex-direction: column
+  align-items: flex-start
+
+  overflow-y: auto
+  height: 100%
+  max-height: 100vh
+  padding: 2.5rem 2rem
+  list-style-type: none
+
+  -webkit-overflow-scrolling: touch
+
+  @media ($below-s)
+    padding-right: 1rem
+    padding-left: 1rem
+ 
+
+// Close button
+.offcanvas > a[href="#menu"]
+  position: absolute
+  z-index: 10
+  top: 0.5rem
+  right: 1rem
+
+  display: flex
+  align-items: center
+  justify-content: center
+
+  width: 2rem
+  height: 2rem
+  border-radius: var(--gRadius)
+  font-size: 0
+  color: transparent
+
+  path
+    fill: var(--textInvert)
+  &:hover
+    background-color: rgba(--textInvert, .2)
+
+
+///// FOOTER /////
+
+.main-footer
+  background-color: var(--panelBg)
+  margin-top: var(--groupSpacing)
+
+.footer-widgets
+  display: flex
+  justify-content: center
+
+  @media ($below-l)
+    padding-left: var(--gridRim)
+    padding-right: var(--gridRim)
+
+.footer-top
+  position: relative
+  background-color: var(--main)
+
+  padding: 2.5rem
+  border-radius: var(--gRadius)
+  margin: 0 auto
+  max-width: var(--siteWidth)
+  color: var(--textInvert)
+
+  @media ($below-l)
+    padding: 1.5rem
+    margin-right: 1rem
+    margin-left: 1rem
+
+  @media ($below-xs)
+    margin-right: 0.5rem
+    margin: 0.5rem
+
+  &::before,
+  &::after
+    content: ""
+    position: absolute
+    top: 0
+    height: 50%
+    width: calc(50vw - 50%)
+    background-color: var(--siteBg)
+
+  &::before
+    left: 0
+    transform: translateX(-100%)
+    
+  &::after
+    right: 0
+    transform: translateX(100%)
+
+  .widgettitle
+    font-size: var(--h4Size)
+
+  .textwidget
+    opacity: .75
+    font-size: var(--mFontSize)
+
+    @media ($below-s)
+      font-size: var(--fontSize)
+
+
+.footer-mid
+  padding-top: 3rem
+  padding-bottom: 3rem
+
+  .wp-block-social-links
+    --iconBg: #DADEE7
+    --iconColor: var(--text)
+
+.footer-bottom
+  background-color: rgba(--text, .05)
+  padding-top: 0.5rem
+  padding-bottom: 0.5rem
+  font-size: var(--sFontSize)
+
+  .textwidget p
+    margin-bottom: 0
+    opacity: .75t
+    text-align: center
+
+

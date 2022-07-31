@@ -1,0 +1,87 @@
+#main-container
+  background-color: var(--siteBg) // without background, it can't be inverted
+  
+body.h-is-dark
+  filter: invert(100%) hue-rotate(180deg)
+
+  // invert back the image
+  img
+    filter: invert(100%) hue-rotate(180deg) brightness(1.2)
+
+  // image that you want to stay inverted
+  .wp-block-site-logo img
+    filter: none
+
+
+.h-dark-toggle
+  cursor: pointer
+  display: flex
+  align-items: center
+  row-gap: 0.25rem
+  column-gap: 0.25rem
+
+  span
+    text-transform: uppercase
+    font-size: var(--xsFontSize)
+    font-weight: var(--hFontWeight)
+
+  input[type="checkbox"]
+    display: none
+
+
+.h-dark-toggle__switch
+  --width: 44px
+  --height: 24px
+  --padding: 4px
+
+  display: block
+  overflow: hidden
+  position: relative
+  background-color: var(--text)
+  width: var(--width)
+  height: var(--height)
+  border: 1px solid var(--textInvert)
+  border-radius: 1rem
+
+  &:focus
+    box-shadow: 0 0 0 2px var(--color1)
+
+  &::before
+    content: ""
+    position: absolute
+    z-index: 3
+    display: inline-block
+    background-color: var(--textInvert)
+
+    width: calc(var(--height) - var(--padding) - var(--padding))
+    height: calc(var(--height) - var(--padding) - var(--padding))
+    top: 50%
+    left: var(--padding)
+    border-radius: 50%
+    transform: translateY(-50%)
+    transition: var(--gTransition)
+  
+    input:checked + &
+      transform: translateY(-50%) translateX(calc(var(--width) / 2 - var(--padding) / 2))
+
+  // turn the circle into crescent
+  &::after
+    content: ""
+    position: absolute
+    top: 50%
+    left: 0
+    z-index: 2
+
+    display: inline-block
+    background-color: var(--text)
+    transition: var(--gTransition)
+    transform: translateY(-50%)
+
+    width: 1px
+    height: 1px
+    border-radius: 50%
+
+    body.h-is-dark &
+      z-index: 4
+      width: calc(var(--width) * 0.7)
+      height: calc(var(--width) * 0.7)

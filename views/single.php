@@ -1,8 +1,14 @@
 <?php the_post(); ?>
 
 <main role="main">
-<header class="post-hero / wp-block-cover has-background-dim has-color-1-light-background-color alignfull"
-  style="min-height:250px;">
+<header
+  class="post-hero / wp-block-cover alignfull"
+  style="min-height:250px;"
+>
+  <span
+    aria-hidden="true"
+    class="has-color-1-light-background-color wp-block-cover__gradient-background"
+  ></span>
   <div class="wp-block-cover__inner-container">
 
     <h1 class="alignwide has-color has-text-color">
@@ -12,8 +18,8 @@
     <div class="post-meta / alignwide">
       <span class="meta-categories">
         <?php foreach (get_the_category() as $term): ?>
-          <a href="<?php echo get_category_link($term); ?>">
-            <?php echo $term->name; ?>
+          <a href="<?= get_category_link($term) ?>">
+            <?= $term->name ?>
           </a>
         <?php endforeach; ?>
       </span>
@@ -24,14 +30,14 @@
 
       <time class="meta-date">
         <i></i>
-        <?php echo get_the_date(); ?>
+        <?= get_the_date() ?>
       </time>
 
       <?php if (get_comments_number() !== '0'): ?>
         <span class="meta-comments">
           <i></i>
           <a href="#comments">
-            <?php echo sprintf(__('%d Comments'), get_comments_number()); ?>
+            <?= sprintf(__('%d Comments'), get_comments_number()) ?>
           </a>
         </span>
       <?php endif; ?>
@@ -40,8 +46,8 @@
         <span class="meta-tags">
           <i></i>
           <?php foreach (get_the_tags() as $tag): ?>
-            <a href="<?php echo get_tag_link($tag); ?>">
-              <?php echo $tag->name; ?>
+            <a href="<?= get_tag_link($tag) ?>">
+              <?= $tag->name ?>
             </a>
           <?php endforeach; ?>
         </span>
@@ -58,7 +64,7 @@
       <div class="featured-image">
         <picture data-image-fit="2:1">
           <source
-            srcset="<?php echo get_the_post_thumbnail_url(null, 'medium'); ?>"
+            srcset="<?= get_the_post_thumbnail_url(null, 'medium'); ?>"
             media="(max-width: 480px)"
           >
           <?php the_post_thumbnail('large'); ?>
@@ -89,10 +95,10 @@
   <?php endif; ?>
 </div>
 
-  <footer class="wp-block-group has-background has-color-1-light-background-color alignfull">
+  <footer class="related-posts / wp-block-group has-background has-text-invert-background-color alignfull">
     <div class="wp-block-group__inner-container">
       <h3 class="alignwide">
-        <?php _e('Related Posts'); ?>
+        <?= __('Related Posts') ?>
       </h3>
       <?php get_template_part('views/_posts', '', $args); ?>
     </div>

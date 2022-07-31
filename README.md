@@ -7,7 +7,7 @@ Stylesheet is compiled with **Node Sass**. Visit that link to know how to compil
 **REQUIREMENTS**
 
 - PHP 7.3+
-- WordPress 5.7+
+- WordPress 5.9+
 - [Composer 1.8](https://getcomposer.org/)
 - Node JS
 
@@ -42,14 +42,8 @@ This is our workflow for starting a new project:
         { "name": "Pixel Studio", "email": "info@pixelstudio.id", "homepage": "https://pixelstudio.id" }
       ],
       "require": {
-        "pixelstudio/edje-wp-theme": "~9.1",
-        "pixelstudio/edje-wp-library": "~6.0.0",
-        "pixelstudio/wp-sync-db": "~1.8",
-
-        "wpackagist-plugin/jetpack": "*",
-        "wpackagist-plugin/autodescription": "*",
-        "wpackagist-plugin/contact-form-7": "*",
-        "wpackagist-theme/twentytwentyone": "*"
+        "pixelstudio/edje-wp-theme": "~14.1",
+        "pixelstudio/edje-wp-library": "~9.0.0"
       },
       "require-dev": {},
       "suggest": {},
@@ -77,16 +71,18 @@ This is our workflow for starting a new project:
 Here are some websites that uses this theme:
 
 - [WordPress Tips - Advanced Tutorial](https://wptips.dev)
+- [Gumaya - 5-star Hotel](https://gumayatowerhotel.com)
+- [Kantu - Peruvian Gifts](https://mikantu.com)
+- [LTL School - Learn Mandarin in China](https://ltl-school.com)
+- [Premiera Skincare](https://premieraskincare.com/)
+- [Pixel Studio - Web Designer](https://pixelstudio.id)
 - [Angela Chung - Fashion Designer](https://angela-chung.com)
 - [Briliant Glass - Glassware Factory](https://briliant.glass)
 - [Fitnation - Premium Gym](https://fitnation.co.id)
 - [Istana Mie - Restaurant Franchise](https://istanamie.com)
-- [LTL School - Learn Mandarin in China](https://ltl-school.com)
 - [GES13 - Refrigeration Distributor](https://ges13.com)
 - [Paritama - Garden Architecture](https://paritama.com)
 - [Pandarin - Mandarin Learning Center](https://pandarin.net)
-- [Pixel Studio - Web Designer](https://pixelstudio.id)
-- [Premiera Skincare](https://premieraskincare.com/)
 
 ## Useful Links
 

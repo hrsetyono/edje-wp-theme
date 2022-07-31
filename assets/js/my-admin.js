@@ -1,3 +1,3 @@
-import '../sass/my-admin.sass';
+import '../css/my-admin.sass';
 
-// script that affect admin panel
+// script that runs in admin
