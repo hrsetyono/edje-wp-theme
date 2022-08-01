@@ -1,24 +1,9 @@
-<?php
-  $footers = $args['footers'] ?? [];
-?>
-
-<footer class="main-footer">
-  <?php foreach ($footers as $id => $footer): ?>
-    <?php if ($footer['widgets']): ?>
-      <div
-        class="footer-widgets footer-<?= $id ?>"
-        data-columns="<?= $footer['columns'] ?>"
-      >
-        <div class="widget-row">
-          <ul class="widget-column">
-            <?= $footer['widgets'] ?>
-          </ul>
-        </div>
-      </div>
-    <?php endif ?>
-  <?php endforeach; ?>
-</footer>
-</div>
+  <footer class="main-footer">
+    <?php dynamic_sidebar('footer-top'); ?>
+    <?php dynamic_sidebar('footer-mid'); ?>
+    <?php dynamic_sidebar('footer-bottom'); ?>
+  </footer>
+</div> <?php // #main-container?>
 
 <?php wp_footer(); ?>
 </body>

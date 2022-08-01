@@ -52,11 +52,9 @@
 
   visibility: hidden
   opacity: 0
-  background: var(--text)
+  background: var(--textInvert)
   width: 420px
   max-width: 420px
-
-  color: var(--textInvert)
 
   box-shadow: var(--shadow3) 
   transform: translateX(100%)
@@ -86,24 +84,6 @@ body.has-active-offcanvas
     opacity: 1
     transform: none
     transition: var(--gTransition)
-
-
-.offcanvas__inner-wrapper
-  display: flex
-  flex-direction: column
-  align-items: flex-start
-
-  overflow-y: auto
-  height: 100%
-  max-height: 100vh
-  padding: 2.5rem 2rem
-  list-style-type: none
-
-  -webkit-overflow-scrolling: touch
-
-  @media ($below-s)
-    padding-right: 1rem
-    padding-left: 1rem
  
 
 // Close button
@@ -111,22 +91,27 @@ body.has-active-offcanvas
   position: absolute
   z-index: 10
   top: 0.5rem
-  right: 1rem
+  left: -0.5rem
+  transform: translateX(-100%)
 
   display: flex
   align-items: center
   justify-content: center
+  background-color: var(--textInvert)
 
   width: 2rem
   height: 2rem
+  padding: 0.375rem
+  border: 1px solid
+  border-bottom-width: 2px
   border-radius: var(--gRadius)
   font-size: 0
-  color: transparent
 
-  path
-    fill: var(--textInvert)
   &:hover
-    background-color: rgba(--textInvert, .2)
+    background-color: var(--color1)
+
+    path
+      fill: var(--textInvert)
 
 
 ///// FOOTER /////
@@ -193,10 +178,6 @@ body.has-active-offcanvas
 .footer-mid
   padding-top: 3rem
   padding-bottom: 3rem
-
-  .wp-block-social-links
-    --iconBg: #DADEE7
-    --iconColor: var(--text)
 
 .footer-bottom
   background-color: rgba(--text, .05)

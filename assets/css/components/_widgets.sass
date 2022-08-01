@@ -36,6 +36,7 @@
 ///// WIDGET WRAPPER
 
 .widget-row
+  --headerGridTemplate: auto auto
   width: 100%
   max-width: var(--siteWidth)
   margin: 0 auto
@@ -62,6 +63,19 @@
   
     @media ($below-s)
       flex-wrap: wrap
+
+  .offcanvas &
+    display: flex
+    flex-direction: column
+    align-items: flex-start
+
+    overflow-y: auto
+    height: 100%
+    max-height: 100vh
+    padding: 0
+    list-style-type: none
+
+    -webkit-overflow-scrolling: touch
 
 
 .widget-column
@@ -98,6 +112,15 @@
   .footer-top &,
   .footer-bottom &
     justify-content: center
+
+  .offcanvas &
+    width: 100%
+    padding: 1rem
+
+    &:last-child:not(:first-child)
+      margin-top: auto
+      background-color: rgba(black, .05)
+      border-top: 1px solid rgba(black, .1)
 
 
 ///// WIDGET: Text
@@ -336,8 +359,7 @@ input.search-submit
     transition: var(--gTransition)
 
   // alignment
-  header[data-columns="2"] .widget-column:nth-child(2) &,
-  header[data-columns="3"] .widget-column:nth-child(3) &
+  .widget-column:last-child:not(:first-child) &
     flex-direction: row-reverse
 
     svg

@@ -38,6 +38,7 @@ function my_disallowed_blocks($blocks) {
     'core/rss',
     'core/archives',
     'core/categories',
+    'core/social-links',
 
     // full-site editing
     'core/site-logo',

@@ -1,3 +1,5 @@
+// import myDarkMode from './_dark-mode';
+import myMegaMenu from './_mega-menu';
 import '../css/app.sass';
 
 // GENERAL LISTENERS
@@ -16,7 +18,6 @@ const myHeader = {
     this.closeOffcanvas();
     this.preventCloseOffcanvas();
 
-    this.offcanvasMegaMenu();
     this.offcanvasDepth2();
     this.footerDepth1();
   },
@@ -72,21 +73,6 @@ const myHeader = {
   },
 
   /**
-   * Toggle listener for mega menu in offcanvas
-   */
-  offcanvasMegaMenu() {
-    const $itemLinks = document.querySelectorAll('.offcanvas .mega-menu.menu-item-has-children a');
-    $itemLinks.forEach(($link) => {
-      $link.addEventListener('click', (e) => {
-        e.preventDefault();
-
-        const $wrapper = e.currentTarget.closest('.mega-menu');
-        $wrapper.classList.toggle('mega-menu-is-active');
-      });
-    });
-  },
-
-  /**
    * Toggle listener for 2nd level submenu
    */
   offcanvasDepth2() {
@@ -131,59 +117,11 @@ const myHeader = {
   },
 };
 
-// DARK TOGGLE
-const myDarkMode = {
-  init() {
-    this.clickListener();
-    this.tabindexListener();
-  },
-
-  /**
-   * Click listener for dark mode toggle
-   */
-  clickListener() {
-    const $darkToggles = document.querySelectorAll('.h-dark-toggle input[type="checkbox"]');
-    if ($darkToggles.length <= 0) { return; }
-
-    $darkToggles.forEach(($t) => {
-      $t.addEventListener('change', (e) => {
-        this.toggle(e.currentTarget.checked);
-      });
-    });
-  },
-
-  /**
-   * Keyboard listener for dark mode toggle
-   */
-  tabindexListener() {
-    const $darkSwitches = document.querySelectorAll('.h-dark-toggle__switch');
-
-    $darkSwitches.forEach(($s) => {
-      $s.addEventListener('keyup', (e) => {
-        if (e.key === 'Enter' || e.keyCode === 13) {
-          const $checkbox = e.currentTarget.closest('.h-dark-toggle').querySelector('input[type="checkbox"]');
-          $checkbox.checked = !$checkbox.checked;
-          this.toggle($checkbox.checked);
-        }
-      });
-    });
-  },
-
-  /**
-   * Toggle the body class and cache the variable
-   */
-  toggle(isChecked) {
-    document.querySelector('body').classList.toggle('h-is-dark', isChecked);
-
-    // the checker for this is outputed into wp_body_open() by Edje WP Library
-    localStorage.setItem('hDarkMode', isChecked);
-  },
-};
-
 function onReady() {
   myApp.init();
   myHeader.init();
-  myDarkMode.init();
+  myMegaMenu.init();
+  // myDarkMode.init();
 }
 
 function onLoad() {

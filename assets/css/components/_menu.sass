@@ -205,12 +205,11 @@
     font-size: var(--lFontSize)
 
   .menu-item > a:hover
-    background-color: rgba(--textInvert, .1)
+    background-color: rgba(--text, .1)
     opacity: .75
 
   +menu-item-is-active
-    background-color: rgba(--textInvert, .1)
-    color: var(--textInvert)
+    background-color: rgba(--text, .1)
     opacity: 1
 
   .menu-item-has-children > a::after
@@ -219,7 +218,6 @@
     opacity: .75
     background: url('../svg/chevron-down.svg') no-repeat center center
     background-size: 100% auto
-    filter: invert(1)
     transition: var(--gTransition)
 
     margin-left: auto
@@ -227,7 +225,7 @@
     height: 0.75rem
 
   // 1st submenu is initially shown, no need for arrow toggle
-  .menu-item:not.menu-item-has-children > a::after
+  .menu-item.menu-item-has-children > a::after
     display: none
 
   // 2nd submenu is initially hidden, rotate the arrow after displayed
@@ -235,7 +233,7 @@
     transform: rotate(180deg)
 
   .submenu
-    border-left: 1px solid rgba(--textInvert, .1)
+    border-left: 1px solid rgba(--text, .1)
     margin-left: 0.75rem
     list-style-type: none
 
