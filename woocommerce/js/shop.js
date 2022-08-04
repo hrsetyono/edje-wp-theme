@@ -1,4 +1,5 @@
 import '../sass/shop.sass';
+import myProductSlider from './_shop-slider';
 
 const myCart = {
   init() {
@@ -21,6 +22,7 @@ const myCart = {
 
 function onReady() {
   myCart.init();
+  myProductSlider.init();
 }
 
 function onLoad() {

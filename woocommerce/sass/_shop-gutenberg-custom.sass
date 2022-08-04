@@ -1,0 +1,90 @@
+.wc-block-grid.is-style-my-slider
+  padding-top: 4rem // for nav
+  padding-bottom: 2rem // for pagination
+
+  // if have heading before slider, nudge top so the Nav is aligned with title
+  h1 + &,
+  h2 + &,
+  h3 + &
+    margin-top: calc(-1.5 * var(--blockSpacing))
+
+  .wc-block-grid__products
+    row-gap: 0
+    column-gap: 0
+  
+  &:not(.swiper-initialized) li
+    width: calc(100% / var(--columns))
+  
+  // gap is bugged, has to use padding
+  li
+    padding-right: 0.5rem
+    padding-left: 0.5rem
+
+  .swiper-pagination
+    display: flex
+    justify-content: center
+    bottom: 0
+
+  span.swiper-pagination-bullet
+    display: inline-flex
+    align-items: center
+    justify-content: center
+    margin: 0
+    width: 1.25rem
+    height: 1.25rem
+    background: transparent
+    opacity: 1
+
+    &::after
+      content: ""
+      display: inline-block
+      background-color: rgba(--text, .2)
+      width: 0.625rem
+      height: 0.625rem
+      border-radius: 50%
+
+    &:hover::after
+      background-color: rgba(--text, .4)
+
+  span.swiper-pagination-bullet.swiper-pagination-bullet-active
+    background-color: rgba(--color1, .2)
+
+    &::after
+      background-color: var(--color1)
+
+  .swiper-button-next,
+  .swiper-button-prev
+    position: absolute
+    top: 0
+    left: auto
+    right: 0
+    margin-top: 0
+    height: auto
+    width: auto
+
+    &::after
+      content: ""
+      display: inline-block
+      background: rgba(--text, .1) no-repeat center center
+      background-size: auto 50%
+      transition: var(--gTransition)
+
+      border-radius: 50%
+      width: 2rem
+      height: 2rem
+      line-height: 1
+
+    &:hover::after
+      background-color: rgba(--text, .2)
+    &:active::after
+      background-color: rgba(--text, .3)
+      transform: translateY(1px)
+      transition: none
+
+  .swiper-button-prev
+    right: 2.5rem
+
+  .swiper-button-prev::after
+    background-image: url('../images/chevron-left.svg')
+  .swiper-button-next::after
+    background-image: url('../images/chevron-right.svg')

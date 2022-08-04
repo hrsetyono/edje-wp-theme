@@ -1,4 +1,4 @@
-// import myDarkMode from './_dark-mode';
+import myDarkMode from './_dark-mode';
 import myMegaMenu from './_mega-menu';
 import '../css/app.sass';
 
@@ -121,7 +121,7 @@ function onReady() {
   myApp.init();
   myHeader.init();
   myMegaMenu.init();
-  // myDarkMode.init();
+  myDarkMode.init();
 }
 
 function onLoad() {
