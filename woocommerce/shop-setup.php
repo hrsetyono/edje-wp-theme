@@ -93,16 +93,12 @@ function my_shop_support() {
   add_theme_support('wc-product-gallery-zoom');
   add_theme_support('wc-product-gallery-lightbox');
   add_theme_support('wc-product-gallery-slider');
-
-  // add_theme_support('h-checkout');
 }
 
 /**
  * Custom Styles for WooCommerce's blocks
  */
 function my_shop_block_styles() {
-  register_block_style('woocommerce/product-categories', ['name' => 'my-grid', 'label' => 'Grid']);
-
   // slider style
   $slider_blocks = [
     'woocommerce/product-best-sellers',
