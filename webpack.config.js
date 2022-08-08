@@ -38,6 +38,7 @@ const entryPoints = {
 
   shop: `${shopPath}/js/shop.js`,
   'shop-editor': `${shopPath}/sass/shop-editor.sass`,
+  'shop-admin': `${shopPath}/sass/shop-admin.sass`,
 };
 
 module.exports = {

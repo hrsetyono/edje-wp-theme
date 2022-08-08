@@ -2,15 +2,6 @@
 #main-container
   background-color: var(--siteBg)
 
-// Fix weird positioning bug with adminbar when dark mode is on
-html[lang]
-  margin-top: 0 !important
-#wpadminbar
-  position: sticky
-  
-  body.h-is-dark &
-    filter: invert(100%) hue-rotate(180deg) 
-
 body.h-is-dark
   filter: invert(100%) hue-rotate(180deg)
 
@@ -23,8 +14,14 @@ body.h-is-dark
   .footer-mid .textwidget img
     filter: none
 
-
-
+// Fix weird positioning bug with adminbar when <body> has filter
+html[lang]
+  margin-top: 0 !important
+#wpadminbar
+  position: sticky
+  
+  body.h-is-dark &
+    filter: invert(100%) hue-rotate(180deg) 
 
 .h-dark-toggle
   cursor: pointer

@@ -1,8 +1,10 @@
 import '../sass/shop.sass';
+import myProductSlider from './_shop-slider';
 
 const myCart = {
   init() {
     this.closeOffcanvasCart();
+    this.bottomBar();
   },
 
   /**
@@ -17,10 +19,30 @@ const myCart = {
       });
     });
   },
+
+  /**
+   * Listeners for the Bottom Bar in mobile
+   */
+  bottomBar() {
+    const $toggles = document.querySelectorAll('.product-bar [href="#add-product"]');
+
+    $toggles.forEach(($t) => {
+      $t.addEventListener('click', toggle);
+    });
+
+    function toggle() {
+      const $form = document.querySelector('.product-bar__form');
+      const $buttons = document.querySelector('.product-bar__buttons');
+
+      $form.classList.toggle('is-hidden');
+      $buttons.classList.toggle('is-hidden');
+    }
+  },
 };
 
 function onReady() {
   myCart.init();
+  myProductSlider.init();
 }
 
 function onLoad() {

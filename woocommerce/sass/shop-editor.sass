@@ -11,8 +11,59 @@
     padding-left: 0
     list-style-type: none
 
+// fixed spacing in Featured Category
 .editor-styles-wrapper
   .wc-block-featured-category,
   .wc-block-featured-product
-    h2
+    margin-bottom: 1.5rem
+    &.components-placeholder
+      min-height: 500px
+  
+    h2,
+    p
       margin: 0
+
+// fixed spacing in Featured Product
+.wc-block-featured-product
+  .wp-block-woocommerce-featured-product.has-background &,
+  .wp-block-woocommerce-featured-product[style*="background-color"] &
+    --padding: 1rem
+
+  div.wp-block-buttons
+    justify-content: flex-start
+
+
+// Override the button color
+.wc-block-grid
+  .wp-block-button__link
+    color: var(--textColor)
+
+// Add fake arrow on Slider products
+.wc-block-grid.is-style-my-slider
+  &::before,
+  &::after
+    position: absolute
+    z-index: 2
+    top: -1rem
+    left: auto
+    right: 0
+    transform: translateY(-100%)
+
+    content: ""
+    display: inline-block
+    background: rgba(--text, .1) no-repeat center center
+    background-size: auto 50%
+    transition: var(--gTransition)
+
+    border-radius: 50%
+    width: 2rem
+    height: 2rem
+    line-height: 1
+
+  &::before
+    right: 2.5rem
+
+  &::before
+    background-image: url('../images/chevron-left.svg')
+  &::after
+    background-image: url('../images/chevron-right.svg')

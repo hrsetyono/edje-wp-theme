@@ -144,7 +144,7 @@
   align-items: center
 
   cursor: pointer
-  padding: 0.25rem 0.5rem
+  padding: 0.5rem
   border: 1px solid rgba(--text, .2)
   border-bottom-width: 2px
   border-radius: var(--gRadius)
@@ -171,12 +171,14 @@
       fill: var(--textInvert)
 
   &:hover
-    background-color: rgba(--text, .1)
+    transform: translateY(-2px)
+    border-color: rgba(--text, .5)
+    box-shadow: var(--shadow0)
 
   &:active
-    border-top-width: 2px
-    border-bottom-width: 1px
+    transform: none
     transition: none
+    box-shadow: none
 
   * + *
     margin-left: 0.25rem
@@ -192,15 +194,15 @@
     display: flex
     align-items: center
     justify-content: center
-    width: 1.25rem
-    height: 1.25rem
-    
     background-color: var(--textInvert)
+    
+    width: 1rem
+    height: 1rem
     border-radius: 50%
+    box-shadow: 0 0 0 1px var(--textInvert)
 
     line-height: 1
     color: var(--color1)
-    font-weight: normal
     font-size: var(--xsFontSize)
 
   span
@@ -301,11 +303,11 @@
 
       background: url('../images/times.svg') no-repeat center center
       background-size: 0.75rem auto
-      opacity: .3
+      opacity: .5
 
     &:hover::after
       background-color: rgba(--text, .2)
-      opacity: .7
+      opacity: .8
 
     &:active::after
       border-bottom-width: 1px
@@ -321,6 +323,19 @@
 .woocommerce-mini-cart__empty-message
   padding: var(--blockSpacing) 0
   text-align: center
+
+// variation
+.woocommerce-mini-cart .variation
+  font-size: var(--xsFontSize)
+
+  dt,
+  dd
+    display: inline-block
+
+  dt
+    font-weight: 700
+  dd
+    margin-right: 1rem
 
 
 // total price

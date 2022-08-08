@@ -1,0 +1,209 @@
+///// PLUGIN: Variation Swatches
+
+.variable-items-wrapper
+  display: flex
+  flex-wrap: wrap
+  row-gap: 0.75rem
+  column-gap: 0.75rem
+  padding: 0
+
+  list-style-type: none
+
+.variable-item
+  cursor: pointer
+  transition: var(--gTransition)
+
+  display: inline-block
+  height: auto
+  margin: 0
+  border: 2px solid rgba(--text, .1)
+  border-radius: var(--gRadius)
+  box-shadow: none
+
+  color: rgba(--text, .5)
+  line-height: 1
+
+  &:hover
+    border-color: var(--color1Light)
+    box-shadow: 0 0 0 2px var(--color1Light)
+    box-shadow: var(--shadowThin)
+    transform: translateY(-1px)
+
+  &:active
+    transition: none
+    transform: none
+
+  &.selected,
+  &.selected:hover
+    border-color: var(--color1)
+    box-shadow: 0 0 0 1px var(--color1)
+    transform: none
+    transition: none
+    color: var(--color1)
+
+  span
+    display: inline-block
+    padding: 0.625rem 0.75rem
+    
+    @media ($below-xs)
+      padding: 0.5rem
+      font-size: var(--sFontSize)
+
+
+.image-variable-item,
+.color-variable-item
+  position: relative
+  padding: 0.125rem
+
+  &::before
+    content: attr(title)
+    display: inline-block
+    visibility: hidden
+    opacity: 0
+    background-color: var(--text)
+
+    position: absolute
+    top: -0.25rem
+    left: 50%
+    transform: translateY(calc(-100% + 0.25rem)) translateX(-50%)
+    transition: var(--gTransition)
+
+    padding: 0.5rem 0.75rem
+    border-radius: var(--gRadius)
+
+    font-size: var(--sFontSize)
+    color: var(--textInvert)
+    text-align: center
+
+  &:hover::before
+    visibility: visible
+    opacity: 1
+    transform: translateY(-100%) translateX(-50%)
+
+.color-variable-item
+  width: 2.5rem
+  height: 2.5rem
+
+  span
+    display: inline-block
+    height: 2rem
+    width: 2rem
+    border: 1px solid rgba(--text, .1)
+    border-radius: var(--gRadius)
+
+.radio-variable-item
+  label
+    cursor: pointer
+    display: flex
+    align-items: center
+    padding: 0.375rem 0.5rem
+
+  label span
+    padding: 0
+
+  input[type="radio"]
+    margin-right: 0.25rem
+
+
+///// MOBILE BOTTOM BAR
+
+// hidden in mobile, replaced by bottom bar
+@media ($below-xs)
+  .product-summary form.cart
+    display: none
+
+// push down the footer because of the Bar
+@media ($below-xs)
+  body.single-product .main-footer
+    padding-bottom: var(--productBarHeight, 72px)
+
+.product-bar
+  position: fixed
+  z-index: 5
+  bottom: 0
+  left: 0
+  right: 0
+
+  display: block
+  background-color: var(--siteBg)
+
+  margin-bottom: 0 !important
+  box-shadow: var(--shadow1)
+
+  @media ($above-xs)
+    display: none
+
+.product-bar__form
+  form
+    padding: var(--gridRim)
+    border: none
+
+  .out-of-stock
+    padding: var(--gridRim)
+    font-size: var(--h5Size)
+
+.product-bar__form-header
+  display: flex
+  align-items: center
+  background-color: var(--color1Light)
+  padding: 0.5rem
+
+  img
+    max-width: 3rem
+    max-height: 3rem
+    margin-right: 0.5rem
+
+  h5
+    flex: 1
+    margin-right: 0.5rem
+    white-space: nowrap
+    text-overflow: ellipsis
+
+  // close button
+  a
+    display: inline-block
+    transition: var(--gTransition)
+
+    margin-left: auto
+    width: 1.75rem
+    height: 1.75rem
+    border: 1px solid var(--text)
+    border-bottom-width: 2px
+    border-radius: var(--gRadius)
+
+    background: url('../images/times.svg') no-repeat center center
+    background-size: 0.75rem auto
+    opacity: .3
+
+    &:hover
+      opacity: .7
+    &:active
+      border-top-width: 2px
+      border-bottom-width: 1px
+      transition: none
+
+.product-bar__buttons
+  display: flex
+  padding: var(--gridRim)
+
+  .wp-block-button:first-child
+    flex: 1
+
+  .wp-block-button
+    min-width: 1.5rem
+    min-height: 1.5rem
+
+  a
+    justify-content: center
+    width: 100%
+    padding: 0.25rem
+    min-height: 2.5rem
+    min-width: 2.5rem
+
+  svg
+    width: 1.5rem
+    height: 1.5rem
+    max-height: none
+
+  .is-whatsapp-button a
+    --bgColor: #25d366

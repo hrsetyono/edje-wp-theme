@@ -38,6 +38,7 @@ function my_disallowed_blocks($blocks) {
     'core/rss',
     'core/archives',
     'core/categories',
+    'core/social-links',
 
     // full-site editing
     'core/site-logo',
@@ -86,8 +87,17 @@ function my_disallowed_blocks($blocks) {
 
   if (class_exists('WooCommerce')) {
     $disabled_blocks = array_merge($disabled_blocks, [
+      'woocommerce/product-search',
+      'woocommerce/mini-cart',
+      'woocommerce/active-filters',
+      'woocommerce/stock-filter',
       'woocommerce/price-filter',
-      'woocommerce/product-search'
+      'woocommerce/attribute-filter',
+
+      'woocommerce/all-reviews',
+      'woocommerce/reviews-by-product',
+      'woocommerce/reviews-by-category',
+      'woocommerce/all-products',
     ]);
   }
   return $disabled_blocks;

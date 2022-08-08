@@ -1,9 +1,10 @@
 <?php
   $catalog_columns = $args['catalog_columns'] ?? 4;
   $products = $args['products'] ?? [];
+  $extra_classes = $args['extra_classes'] ?? '';
 ?>
 
-<div class="wc-block-grid has-<?= $catalog_columns ?>-columns alignwide">
+<div class="wc-block-grid has-<?= $catalog_columns ?>-columns alignwide <?= $extra_classes ?>">
 <?php if (count($products) > 0): ?>
   <ul class="wc-block-grid__products">
 

@@ -17,8 +17,7 @@
     opacity: 1
     transition: var(--gTransition)
 
-  ///// MEGA MENU
-
+  ///// Columns
   .h-mega-menu-2-columns
     --width: calc(var(--siteWidth) / 2)
     --columns: 2
@@ -99,7 +98,7 @@
 ///// MEGA MENU in Offcanvas
 
 .offcanvas
-  .h-mega-menu__column
+  .h-mega-menu__column > a
     opacity: .75
     letter-spacing: 0.05em
     text-transform: uppercase
@@ -109,6 +108,8 @@
   // 1st submenu is initially hidden
   .h-mega-menu:not(.h-mega-menu-is-active) .submenu-depth-1
     display: none
+  .h-mega-menu.menu-item-has-children > a::after
+    display: inline-block
 
   // add arrow to indicate it can be opened
   .h-mega-menu > a::after

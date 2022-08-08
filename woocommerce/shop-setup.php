@@ -2,7 +2,8 @@
 
 add_action('init', 'my_shop_init');
 add_action('after_setup_theme', 'my_shop_support');
-add_action('wp_enqueue_scripts', 'my_enqueue_shop_assets');
+add_action('wp_enqueue_scripts', 'my_frontend_shop_assets', 101);
+add_action('admin_enqueue_scripts', 'my_admin_shop_assets', 100);
 add_action('enqueue_block_editor_assets', 'my_editor_shop_assets', 100);
 
 // disable built-in WooCommerce CSS
@@ -45,7 +46,7 @@ function my_shop_init() {
  * Register Woocommerce assets here
  * @action wp_enqueue_scripts 101
  */
-function my_enqueue_shop_assets() {
+function my_frontend_shop_assets() {
   $dist = get_template_directory_uri() . '/dist';
 
   wp_enqueue_script('my-shop', $dist . '/shop.js', [], THEME_VERSION, true);
@@ -55,6 +56,18 @@ function my_enqueue_shop_assets() {
   wp_deregister_style('wc-block-style');
   wp_deregister_style('wc-blocks-vendors-style');
   wp_deregister_style('wc-blocks-style');
+
+  // disable Swatch plugin CSS
+  wp_deregister_style('woo-variation-swatches');
+}
+
+/**
+ * Register Woocommerce assets for admin here
+ * @action admin_enqueue_scripts
+ */
+function my_admin_shop_assets() {
+  $dist = get_template_directory_uri() . '/dist';
+  wp_enqueue_style('my-shop-admin', $dist . '/shop-admin.css', [], THEME_VERSION);
 }
 
 /**
@@ -93,14 +106,26 @@ function my_shop_support() {
   add_theme_support('wc-product-gallery-zoom');
   add_theme_support('wc-product-gallery-lightbox');
   add_theme_support('wc-product-gallery-slider');
-
-  // add_theme_support('h-checkout');
 }
 
 /**
  * Custom Styles for WooCommerce's blocks
  */
 function my_shop_block_styles() {
-  register_block_style('woocommerce/featured-category', ['name' => 'landscape', 'label' => 'Landscape']);
-  register_block_style('woocommerce/product-categories', ['name' => 'grid', 'label' => 'Grid']);
+  // slider style
+  $slider_blocks = [
+    'woocommerce/product-best-sellers',
+    'woocommerce/handpicked-products',
+    'woocommerce/product-category',
+    'woocommerce/product-new',
+    'woocommerce/product-on-sale',
+    'woocommerce/product-top-rated',
+    'woocommerce/products-by-attribute',
+    'woocommerce/product-tag'
+  ];
+
+  foreach ($slider_blocks as $b) {
+    register_block_style($b, ['name' => 'my-slider', 'label' => 'Slider']);
+  }
+
 }

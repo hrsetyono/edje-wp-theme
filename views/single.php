@@ -62,7 +62,7 @@
 
     <?php if (has_post_thumbnail()): ?>
       <div class="featured-image">
-        <picture data-image-fit="2:1">
+        <picture>
           <source
             srcset="<?= get_the_post_thumbnail_url(null, 'medium'); ?>"
             media="(max-width: 480px)"
