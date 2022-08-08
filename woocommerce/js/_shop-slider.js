@@ -7,6 +7,11 @@ export default {
   init() {
     const $sliders = document.querySelectorAll('.wc-block-grid.is-style-my-slider');
     $sliders.forEach(($slider) => {
+      // abort if Related Product section and on desktop
+      if ($slider.closest('.product-related') && window.innerWidth >= 768) {
+        return;
+      }
+
       this.setupClasses($slider);
       this.setupSlider($slider);
     });
@@ -43,12 +48,13 @@ export default {
    */
   setupSlider($slider) {
     const hasColumns = $slider.getAttribute('class').match(/has-(\d)-columns/);
-    const columns = hasColumns[1] || '3';
+    const columns = hasColumns[1] ? parseInt(hasColumns[1], 10) : 3;
 
     const swiper = new Swiper($slider, {
       modules: [Navigation, Pagination],
       loop: true,
-      slidesPerView: 1,
+      slidesPerView: 2,
+      slidesPerGroup: 2,
       pagination: {
         el: '.swiper-pagination',
         clickable: true,
@@ -58,12 +64,10 @@ export default {
         prevEl: '.swiper-button-prev',
       },
       breakpoints: {
-        // when window width is >= 480px
-        480: {
-          slidesPerView: 2,
-        },
+        // when window width is >= 768px
         768: {
           slidesPerView: columns,
+          slidesPerGroup: columns,
         },
       },
     });

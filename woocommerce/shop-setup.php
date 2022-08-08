@@ -2,7 +2,8 @@
 
 add_action('init', 'my_shop_init');
 add_action('after_setup_theme', 'my_shop_support');
-add_action('wp_enqueue_scripts', 'my_enqueue_shop_assets', 101);
+add_action('wp_enqueue_scripts', 'my_frontend_shop_assets', 101);
+add_action('admin_enqueue_scripts', 'my_admin_shop_assets', 100);
 add_action('enqueue_block_editor_assets', 'my_editor_shop_assets', 100);
 
 // disable built-in WooCommerce CSS
@@ -45,7 +46,7 @@ function my_shop_init() {
  * Register Woocommerce assets here
  * @action wp_enqueue_scripts 101
  */
-function my_enqueue_shop_assets() {
+function my_frontend_shop_assets() {
   $dist = get_template_directory_uri() . '/dist';
 
   wp_enqueue_script('my-shop', $dist . '/shop.js', [], THEME_VERSION, true);
@@ -55,6 +56,18 @@ function my_enqueue_shop_assets() {
   wp_deregister_style('wc-block-style');
   wp_deregister_style('wc-blocks-vendors-style');
   wp_deregister_style('wc-blocks-style');
+
+  // disable Swatch plugin CSS
+  wp_deregister_style('woo-variation-swatches');
+}
+
+/**
+ * Register Woocommerce assets for admin here
+ * @action admin_enqueue_scripts
+ */
+function my_admin_shop_assets() {
+  $dist = get_template_directory_uri() . '/dist';
+  wp_enqueue_style('my-shop-admin', $dist . '/shop-admin.css', [], THEME_VERSION);
 }
 
 /**

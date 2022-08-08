@@ -15,12 +15,14 @@ if (is_singular('product')) {
   
   $args = array_merge($args, [
     'post' => $post,
+    'thumbnail_url' => get_the_post_thumbnail_url($post, 'thumbnail'),
     'product' => wc_get_product($post->ID),
     'products' => get_posts([
       'post_type' => 'product',
       'post__in' => $related_ids,
       'orderby' => 'post__in',
     ]),
+    'extra_classes' => 'is-style-my-slider',
   ]);
 }
 // If SHOP page

@@ -11,7 +11,7 @@
     padding-left: 0
     list-style-type: none
 
-// fixed spacing in Featured category
+// fixed spacing in Featured Category
 .editor-styles-wrapper
   .wc-block-featured-category,
   .wc-block-featured-product
@@ -22,6 +22,16 @@
     h2,
     p
       margin: 0
+
+// fixed spacing in Featured Product
+.wc-block-featured-product
+  .wp-block-woocommerce-featured-product.has-background &,
+  .wp-block-woocommerce-featured-product[style*="background-color"] &
+    --padding: 1rem
+
+  div.wp-block-buttons
+    justify-content: flex-start
+
 
 // Override the button color
 .wc-block-grid

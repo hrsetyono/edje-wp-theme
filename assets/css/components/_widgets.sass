@@ -9,6 +9,9 @@
   header &
     margin-left: 1rem
 
+    @media ($below-xs)
+      margin-left: 0.5rem
+
   footer &
     margin-top: 1.5rem
 
@@ -329,21 +332,28 @@ input.search-submit
     background-size: auto 50%
 
 
-///// WIDGET: Toggle Off canvas
+///// WIDGET: Toggle Offcanvas
 
 .widget_h_toggle a
   --toggleColor: var(--text)
 
   display: flex
   align-items: center
-  padding: 0.25rem 0.5rem
+  padding: 0.5rem
+  border: 1px solid rgba(--text, .2)
+  border-bottom-width: 2px
   color: var(--toggleColor)
 
   border-radius: var(--gRadius)
 
   &:hover
-    --toggleColor: var(--color1)
-    background-color: var(--color1Light)
+    transform: translateY(-2px)
+    border-color: rgba(--text, .5)
+    box-shadow: var(--shadow0)
+  &:active
+    transform: none
+    transition: none
+    box-shadow: none
 
   svg
     width: 1rem
@@ -352,6 +362,7 @@ input.search-submit
   span
     line-height: 1
     text-transform: uppercase
+    font-size: var(--sFontSize)
 
   path,
   circle

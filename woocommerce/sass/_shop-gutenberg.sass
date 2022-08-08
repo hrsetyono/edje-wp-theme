@@ -141,10 +141,14 @@ a:active .wc-block-grid__product-image img,
     justify-content: center
     background-color: transparent
 
-    border: 2px solid var(--textColor)
+    border: 1px solid var(--textColor)
+    border-bottom-width: 2px
     padding: 0.5rem
-    font-size: var(--xsFontSize)
+    font-size: var(--sFontSize)
     text-decoration: none
+
+    @media ($below-xs)
+      font-size: var(--xsFontSize)
 
   a.loading,
   button.loading
@@ -166,12 +170,13 @@ a:active .wc-block-grid__product-image img,
   a:hover,
   button:hover
     transform: translateY(-2px)
-    box-shadow: var(--shadow0)
+    box-shadow: var(--shadow1)
   
   a:active,
   button:active
     transform: none
     transition: none
+    box-shadow: var(--shadow0)
   
 
 // sorting
@@ -364,16 +369,26 @@ a:active .wc-block-grid__product-image img,
 ///// FEATURED PRODUCT
 
 .wc-block-featured-product
+  --padding: 0rem
+
   border-radius: var(--gRadius)
   min-height: 0 !important // disable the inline style
 
+  &.has-background,
+  &[style*="background-color"]
+    --padding: 1rem
+
 .wc-block-featured-product__wrapper
   position: relative
-  padding: 1rem
+  padding: var(--padding)
   padding-left: 50%
 
+  .has-left-content &
+    padding-left: var(--padding)
+    padding-right: 50%
+
   @media ($below-xs)
-    padding-left: 1rem
+    padding-left: var(--padding)
 
   // if in wp-admin  
   .wc-block-featured-product:not(.components-placeholder) &
@@ -385,14 +400,17 @@ a:active .wc-block-grid__product-image img,
 
     @media ($above-xs)
       position: absolute
-      top: 1rem
-      left: 1rem
-      bottom: 1rem
+      top: var(--padding)
+      left: var(--padding)
+      bottom: var(--padding)
       max-width: calc(50% - 2.5rem)
+
+      .has-left-content &
+        left: auto
+        right: var(--padding)
 
     @media ($below-xs)
       margin-bottom: 1rem
-
 
   h2
     font-size: var(--h4Size)
@@ -406,9 +424,6 @@ a:active .wc-block-grid__product-image img,
 
   .wc-block-featured-product__link
     margin-top: 1rem
-
-  .wp-block-buttons
-    justify-content: flex-start
 
   .wp-block-button__link
     padding: 0.5rem 0.75rem

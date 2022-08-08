@@ -127,7 +127,7 @@ form.cart
       margin-right: 0
 
   @media ($below-m)
-    width: 100px
+    width: 120px
     font-size: var(--fontSize)
 
   input[type="number"]
@@ -193,38 +193,57 @@ table.variations
   margin-bottom: 1rem
 
   .label
+    margin-right: 0.25rem
     font-weight: 700
     font-size: var(--sFontSize)
     text-transform: uppercase
+    text-align: left
     letter-spacing: 0.05em
+
+    @media ($below-xs)
+      font-size: var(--xsFontSize)
+
+  .label span
+    display: none
 
   select
     display: inline-block
     width: auto
     max-width: 200px
 
+    @media ($below-xs)
+      font-size: var(--sFontSize)
+
+  th,
+  td
+    padding-top: 0.5rem
+    padding-bottom: 0.5rem
+
+// I don't see a use of this
 a.reset_variations
-  display: inline-block
-  margin-left: 0.5rem
-  padding: 0rem 0.25rem
-  border: 1px solid rgba(black, .1)
-  border-bottom-width: 2px
-  border-radius: var(--gRadius)
+  display: none !important
 
-  font-weight: 700
-  font-size: var(--xsFontSize)
-  letter-spacing: 0.025em
-  text-transform: uppercase
-  text-decoration: none
+  // display: inline-block
+  // margin-left: 0.5rem
+  // padding: 0rem 0.25rem
+  // border: 1px solid rgba(black, .1)
+  // border-bottom-width: 2px
+  // border-radius: var(--gRadius)
 
-  &:hover
-    transform: translateY(-1px)
-    box-shadow: var(--shadow0)
-    color: inherit
+  // font-weight: 700
+  // font-size: var(--xsFontSize)
+  // letter-spacing: 0.025em
+  // text-transform: uppercase
+  // text-decoration: none
 
-  &:active
-    transform: none
-    transition: none
+  // &:hover
+  //   transform: translateY(-1px)
+  //   box-shadow: var(--shadow0)
+  //   color: inherit
+
+  // &:active
+  //   transform: none
+  //   transition: none
 
 .woocommerce-variation
   display: flex
