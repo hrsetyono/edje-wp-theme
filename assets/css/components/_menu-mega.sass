@@ -1,17 +1,13 @@
 ///// MEGA MENU in Header + Subheader
 
 .header-widgets
-  // megamenu immediately display the 2nd submenu, no need for arrow
-  .h-mega-menu .submenu-item.menu-item-has-children > a::after
-    display: none
-
-  // open submenu when hovering the parent
+  // open submenu on hover
   .h-mega-menu:hover .submenu
     visibility: visible
     opacity: 1
     transition: var(--gTransition)
 
-  // open submenu when tabbing the parent
+  // open submenu on tab focus
   .h-mega-menu:focus-within .submenu
     visibility: visible
     opacity: 1
@@ -48,7 +44,6 @@
     padding: 0
     width: var(--width)
     max-height: calc(100vh - var(--headingHeight, 80px))
-    
 
   .h-mega-menu .submenu-depth-2
     position: static
@@ -73,8 +68,7 @@
 
     // hide description
     > a > dd
-      display: none
-  
+      display: none  
 
   // Mega menu aligned left if put on first column
   .widget-column:nth-child(1)
@@ -108,10 +102,8 @@
   // 1st submenu is initially hidden
   .h-mega-menu:not(.h-mega-menu-is-active) .submenu-depth-1
     display: none
-  .h-mega-menu.menu-item-has-children > a::after
-    display: inline-block
 
-  // add arrow to indicate it can be opened
+  // show arrow to indicate it can be opened
   .h-mega-menu > a::after
     display: inline-block
   .h-mega-menu-is-active > a::after
@@ -120,12 +112,14 @@
   // 2nd submenu is initially open
   .h-mega-menu .submenu-depth-2
     display: block
-  .h-mega-menu .menu-item-has-children > a::after
-    display: none
 
 
 ///// Menu BACKGROUND - only works in mega menu
+
 .h-mega-menu .menu-item-has-background
+  --textColor: var(--text)
+  --bgHover: rgba(0,0,0,.1)
+
   background-color: var(--bgColor, transparent)
   padding: 0.5rem
   color: var(--textColor, inherit)
@@ -135,15 +129,7 @@
     .submenu-depth-2 a
       margin: 0
 
-  &.menu-background-lighter,
-  &.menu-background-darker,
-  &.menu-background-white
-    --textColor: var(--text)
-    --bgHover: rgba(0,0,0,.1)
-
-  &.menu-background-black,
-  &.menu-background-main,
-  &.menu-background-sub
+  &.menu-background-black
     --textColor: var(--textInvert)
     --bgHover: rgba(255,255,255,.2)
 
@@ -160,7 +146,7 @@
     --bgColor: white
 
   &.menu-background-main
-    --bgColor: var(--color1)
+    --bgColor: var(--color1Light)
 
   &.menu-background-sub
-    --bgColor: var(--color2)
+    --bgColor: var(--color2Light)
