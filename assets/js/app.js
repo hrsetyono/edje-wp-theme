@@ -76,13 +76,13 @@ const myHeader = {
    * Toggle listener for 2nd level submenu
    */
   offcanvasDepth2() {
-    const $itemLinks = document.querySelectorAll('.offcanvas .menu-item:not(.mega-menu) .submenu-item.menu-item-has-children > a');
+    const $itemLinks = document.querySelectorAll('.offcanvas .submenu-item.menu-item-has-children > a');
     $itemLinks.forEach(($link) => {
       $link.addEventListener('click', (e) => {
         e.preventDefault();
 
         const $wrapper = e.currentTarget.closest('.submenu-item');
-        $wrapper.classList.toggle('submenu-item-is-active');
+        $wrapper.classList.toggle('is-open');
       });
     });
   },
@@ -95,7 +95,7 @@ const myHeader = {
         if (window.width > 480) { return; }
 
         const $wrapper = e.currentTarget.closest('.menu-item');
-        $wrapper.classList.toggle('menu-item-is-active');
+        $wrapper.classList.toggle('is-open');
       });
     });
   },
