@@ -1,12 +1,3 @@
-// The styling for the blocks below rarely changed
-  
-[class*="-background-color"]
-  background-color: var(--bgColor)
-
-.has-text-color,
-.has-inline-color
-  color: var(--textColor, var(--text))
-
 ///// GENERAL & ALIGNMENT
 
 main
@@ -23,26 +14,13 @@ main
   > *:last-child:not(.alignfull)
     margin-bottom: var(--groupSpacing)
 
-  h1, h2, h3, h4, h5, h6
-    clear: both
-    color: var(--textColor)
-  
   ul, ol
     padding-left: 1.25rem
-
-  ul.has-background,
-  ol.has-background
-    padding: 1rem 1.5rem
-    padding-left: 2.5rem
-  
-  img
-    border-radius: var(--gRadius)
   
   a
     text-decoration: underline
   a:hover
     color: var(--linkColorHover, var(--color1))
-  
 
 main,
 .wp-block-group__inner-container
@@ -66,7 +44,6 @@ main,
 .wp-block-column
   > * + *
     margin-top: var(--blockSpacing)
-
 
 
 ///// ALIGNMENT
@@ -202,6 +179,13 @@ h1, h2, h3, h4, h5, h6
     font-weight: var(--fontWeight)
 
 
+///// LIST
+
+ul.has-background,
+ol.has-background
+  padding: 1rem 1.5rem
+  padding-left: 2.5rem
+
 ///// QUOTE
 
 .wp-block-quote
@@ -215,7 +199,7 @@ h1, h2, h3, h4, h5, h6
   cite
     display: block
     font-size: var(--sFontSize)
-    color: var(--textDim)
+    color: var(--gray)
 
   &.has-text-align-right
     border-left: none
@@ -244,8 +228,8 @@ h1, h2, h3, h4, h5, h6
   margin-bottom: 2.5rem
   border-left: none
   border-right: none
-  border-top: 3px solid var(--textDim)
-  border-bottom: 3px solid var(--textDim)
+  border-top: 3px solid var(--gray)
+  border-bottom: 3px solid var(--gray)
 
   font-size: var(--h5Size)
 
@@ -268,63 +252,84 @@ h1, h2, h3, h4, h5, h6
 ///// TABLE
 
 .wp-block-table
+  --tableStripe: #eef2f7
+
   display: flex
   flex-direction: column
-  overflow: hidden
+  overflow-x: auto
+  margin-top: var(--blockSpacing)
+  margin-bottom: var(--blockSpacing)
 
-  figcaption
-    @extend %figcaption
+  @media ($below-s)
+    font-size: var(--sFontSize)
 
   table
-    --theadBg: var(--bgColor, #eef2f7)
-    --theadColor: var(--textColor, var(--text))
-    --tbodyBg: var(--textInvert)
-    --tbodyColor: var(--text)
-
-    width: 100%
-    border: 1px solid rgba(black, .1)
-
-  &.is-style-h-full-color table
-    --tbodyBg: var(--theadBg)
-    --tbodyColor: var(--theadColor)
-
-  &.is-style-stripes
-    th, td
-      border: 1px solid rgba(black, .5)
-    tbody tr:nth-child(odd)
-      background: none
-    tbody tr:nth-child(even)
-      background-color: var(--theadBg)
-      color: var(--theadColor)
+    border-collapse: collapse
+    border-spacing: 0
+    color: var(--text)
 
   thead,
   tfoot
-    background-color: var(--theadBg)
-    color: var(--theadColor)
+    background-color: var(--bgColor, #eef2f7)
+    color: var(--textColor, var(--text))
     font-weight: 700
     text-align: left
+
   thead
     border-bottom: 2px solid var(--text)
   tfoot
     border-top: 2px solid var(--text)
-
   tbody
-    background-color: var(--tbodyBg)
-    color: var(--tbodyColor)
-
-  tr
-    border: none
+    background-color: var(--textInvert)
+    color: var(--text)
 
   th, td
     padding: 0.5rem 1rem
     border: 1px solid rgba(black, .5)
 
-  //
-  @media ($below-s)
-    overflow-x: auto
-
-    td
+    @media ($below-s)
       padding: 0.25rem 0.5rem
+
+  figcaption
+    @extend %figcaption
+
+  &.is-style-h-full-color
+    tbody
+      background-color: var(--bgColor)
+      color: var(--textColor)
+
+  &.is-style-stripes
+    tbody tr:nth-child(odd)
+      background: var(--textInvert)
+    tbody tr:nth-child(even)
+      background-color: var(--tableStripe)
+
+  // hardcoded stripe color
+  .has-color-1-background-color
+    --tableStripe: #{rgba(--color1, .1)}
+
+    thead,
+    tfoot
+      color: var(--textInvert)
+
+  .has-color-2-background-color
+    --tableStripe: #{rgba(--color2, .1)}
+  .has-color-3-background-color
+    --tableStripe: #{rgba(--color3, .1)}
+
+
+.wp-block-table
+  &.is-style-main,
+  &.is-style-main-stripes
+    --tableStripe: #{rgba(--main, .1)}
+    --bgColor: var(--main)
+    --textColor: var(--textInvert)
+
+  &.is-style-sub,
+  &.is-style-sub-stripes
+    --tableStripe: #{rgba(--sub, .2)}
+    --bgColor: var(--sub)
+    --textColor: var(--text)
 
 
 ///// VERSE
@@ -333,19 +338,3 @@ h1, h2, h3, h4, h5, h6
   white-space: pre-wrap
   font-family: var(--fontFamily)
   font-size: var(--fontSize)
-
-
-///// CODE & PREFORMATTED
-
-.wp-block-code,
-.wp-block-preformatted
-  white-space: normal
-
-.wp-block-code
-  background-color: rgba(black, .05)
-  padding: 1rem
-  border: 1px solid rgba(black, .1)
-  border-radius: var(--gRadius)
-
-  code
-    padding: 0 0.5rem

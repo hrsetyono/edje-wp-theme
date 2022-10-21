@@ -27,8 +27,8 @@
     font-size: var(--h5Size)
 
   footer &
-    margin-bottom: 0.5rem
-    font-size: var(--h4Size)
+    margin-bottom: 1rem
+    font-size: var(--h5Size)
 
   .sidebar &
     margin-bottom: 1rem
@@ -47,6 +47,7 @@
   header &
     display: grid
     grid-template-columns: var(--headerGridTemplate, auto)
+    position: relative
 
     @media ($below-l)
       padding: 0 var(--gridRim)
@@ -219,7 +220,7 @@
 
   img
     width: auto
-    height: var(--logoMaxHeight, 40px)
+    height: 40px
     transition: var(--gTransition)
     will-change: transform
 

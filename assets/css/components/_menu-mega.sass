@@ -1,64 +1,74 @@
 ///// MEGA MENU in Header + Subheader
 
 .header-widgets
-  // megamenu immediately display the 2nd submenu, no need for arrow
-  .h-mega-menu .submenu-item.menu-item-has-children > a::after
-    display: none
-
-  // open submenu when hovering the parent
-  .h-mega-menu:hover .submenu
-    visibility: visible
-    opacity: 1
-    transition: var(--gTransition)
-
-  // open submenu when tabbing the parent
-  .h-mega-menu:focus-within .submenu
-    visibility: visible
-    opacity: 1
-    transition: var(--gTransition)
-
-  ///// Columns
-  .h-mega-menu-2-columns
+  // Parent wrapper
+  .has-2-columns
     --width: calc(var(--siteWidth) / 2)
     --columns: 2
 
     @media ($below-l)
-      --width: 50vw
+      --width: 60vw
 
-  .h-mega-menu-3-columns
+  .has-3-columns
     --width: calc(var(--siteWidth) * 3 / 4)
     --columns: 3
+    position: static // relative to grid instead of parent item
 
     @media ($below-l)
       --width: 75vw
 
-  .h-mega-menu-4-columns
+  .has-4-columns
     --width: var(--siteWidth)
     --columns: 4
-    position: static // to make submenu aligned to grid
+    position: static // relative to grid instead of parent item
 
     @media ($below-l)
-      --width: 100%
+      --width: calc(100vw - var(--gridGap))
 
-  .h-mega-menu .submenu-depth-1
+  // MEGA MENU
+  .mega-menu
     display: flex
     flex-wrap: wrap
-    overflow-y: auto 
+    overflow-y: auto
+    visibility: hidden
+    opacity: 0
+    background-color: var(--textInvert)
+
+    position: absolute
+    z-index: 10
+    top: 100%
+    left: 50%
+    transform: translateX(-50%)
 
     padding: 0
     width: var(--width)
     max-height: calc(100vh - var(--headingHeight, 80px))
-    
+    border-radius: var(--gRadius)
+    box-shadow: var(--shadow1)
+    list-style-type: none
 
-  .h-mega-menu .submenu-depth-2
-    position: static
-    padding: 0
-    width: 100%
-    background-color: transparent
-    box-shadow: none
+  // Alignment
+  .is-align-left .mega-menu
+    left: 0
+    right: auto
     transform: none
 
-  .h-mega-menu__column
+  .is-align-right .mega-menu
+    left: auto 
+    right: 0
+    transform: none
+
+  // open mega menu on hover / focus
+  .menu-item-has-mega-menu:hover .mega-menu
+    visibility: visible
+    opacity: 1
+    transition: var(--gTransition)
+  .menu-item-has-mega-menu:focus-within .mega-menu
+    visibility: visible
+    opacity: 1
+    transition: var(--gTransition)
+
+  .mega-menu__column
     flex-grow: 1
     width: calc(100% / var(--columns, 2))
     padding: 0.75rem
@@ -68,82 +78,69 @@
       opacity: .75
       letter-spacing: 0.05em
       text-transform: uppercase
+      font-weight: 700
       font-size: var(--xsFontSize)
       pointer-events: none
 
     // hide description
     > a > dd
       display: none
-  
 
-  // Mega menu aligned left if put on first column
-  .widget-column:nth-child(1)
-    .h-mega-menu-2-columns,
-    .h-mega-menu-3-columns
-      .submenu-depth-1
-        right: auto
-        left: 0
-        transform: none
-
-  // Mega menu aligned right if put on last column
-  .widget-column:last-child:not(:first-child)
-    .h-mega-menu-2-columns,
-    .h-mega-menu-3-columns
-      .submenu-depth-1
-        right: 0
-        left: auto
-        transform: none
+  .mega-menu ul
+    list-style-type: none
+    padding: 0
 
 
 ///// MEGA MENU in Offcanvas
 
 .offcanvas
-  .h-mega-menu__column > a
-    opacity: .75
-    letter-spacing: 0.05em
-    text-transform: uppercase
-    font-size: var(--xsFontSize)
-    pointer-events: none
+  .mega-menu,
+  .mega-menu ul
+    list-style-type: none
+    border-left: 1px solid rgba(--text, .1)
+    margin-left: 0.75rem
 
-  // 1st submenu is initially hidden
-  .h-mega-menu:not(.h-mega-menu-is-active) .submenu-depth-1
+  .mega-menu__column
+    > a
+      display: inline-block
+      opacity: .75
+      padding: 0.5rem 0 0.5rem 0.75rem
+
+      letter-spacing: 0.05em
+      text-transform: uppercase
+      font-weight: 700
+      font-size: var(--xsFontSize)
+      pointer-events: none
+
+    > a > dd
+      display: none
+
+  .menu-item-empty-title > a
     display: none
-  .h-mega-menu.menu-item-has-children > a::after
-    display: inline-block
 
-  // add arrow to indicate it can be opened
-  .h-mega-menu > a::after
+
+  // mega menu is initially hidden
+  .menu-item-has-mega-menu:not(.is-open) .mega-menu
+    display: none
+
+  // show arrow to indicate it can be opened
+  .menu-item.menu-item-has-mega-menu > a::after
     display: inline-block
-  .h-mega-menu-is-active > a::after
+  .menu-item-has-mega-menu.is-open > a::after
     transform: rotate(180deg)
-
-  // 2nd submenu is initially open
-  .h-mega-menu .submenu-depth-2
-    display: block
-  .h-mega-menu .menu-item-has-children > a::after
-    display: none
 
 
 ///// Menu BACKGROUND - only works in mega menu
-.h-mega-menu .menu-item-has-background
+
+.mega-menu .menu-item-has-background
+  --textColor: var(--text)
+  --bgHover: rgba(0,0,0,.1)
+
   background-color: var(--bgColor, transparent)
   padding: 0.5rem
   color: var(--textColor, inherit)
 
-  .offcanvas &
-    .submenu-depth-2,
-    .submenu-depth-2 a
-      margin: 0
-
-  &.menu-background-lighter,
-  &.menu-background-darker,
-  &.menu-background-white
-    --textColor: var(--text)
-    --bgHover: rgba(0,0,0,.1)
-
-  &.menu-background-black,
-  &.menu-background-main,
-  &.menu-background-sub
+  &.menu-background-black
     --textColor: var(--textInvert)
     --bgHover: rgba(255,255,255,.2)
 
@@ -160,7 +157,7 @@
     --bgColor: white
 
   &.menu-background-main
-    --bgColor: var(--color1)
+    --bgColor: var(--color1Light)
 
   &.menu-background-sub
-    --bgColor: var(--color2)
+    --bgColor: var(--color2Light)

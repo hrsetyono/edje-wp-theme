@@ -1,5 +1,47 @@
 @use "sass:math"
 
+///// MEDIA QUERY
+//
+// You can use the variable in @media block like this:
+//
+// @media ($below-xs)
+//   ...
+// @media ($above-xs) and ($below-m)
+//   ...
+
+$size-xsmall : 480px
+$size-small  : 768px
+$size-medium : 960px
+$size-large  : 1120px
+
+$below-xs: "max-width:#{ $size-xsmall }"
+$above-xs: "min-width:#{ $size-xsmall + 1px }"
+$below-s: "max-width:#{ $size-small }"
+$above-s: "min-width:#{ $size-small + 1px }"
+$below-m: "max-width:#{ $size-medium }"
+$above-m: "min-width:#{ $size-medium + 1px }"
+$below-l: "max-width:#{ $size-large }"
+$above-l: "min-width:#{ $size-large + 1px }"
+
+$below-nav: $below-s // small navigation breakpoint
+$above-nav: $above-s
+
+$below-adminbar: "max-width:782px"
+$above-adminbar: "min-width:783px"
+
+$portrait: "orientation: portrait"
+$landscape: "orientation: landscape"
+$retina: "min-resolution: 192dpi"
+
+// Media query for below or equal the size
+@function below( $size-px )
+  @return "max-width: #{$size-px}"
+
+// Media query for above the size
+@function above( $size-px )
+  @return "min-width: #{$size-px}"
+
+
 ///// FUNCTIONS
 
 //
@@ -14,16 +56,6 @@
 
   @if $b and $a
     @return rgbA( $r, $g, $b, $a )
-
-
-// Media query for below or equal the size
-@function below( $size-px )
-  @return "max-width: #{$size-px}"
-
-// Media query for above the size
-@function above( $size-px )
-  @return "min-width: #{$size-px}"
-
 
 ///// MIXINS
 

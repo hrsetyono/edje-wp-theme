@@ -1,7 +1,7 @@
 // This styling is applied to Gutenberg editor
-@import "vars"
-@import "vars-root"
 @import "helpers"
+@import "colors"
+@import "vars"
 
 .wp-block
   max-width: var(--blogWidth)
@@ -84,8 +84,8 @@
 
 .wp-block-quote.is-style-large
   padding: 1rem 0
-  border-top: 3px solid var(--textDim)
-  border-bottom: 3px solid var(--textDim)
+  border-top: 3px solid var(--gray)
+  border-bottom: 3px solid var(--gray)
   font-size: var(--h5Size)
 
   &::before
@@ -109,50 +109,67 @@
 ///// TABLE
 
 .wp-block-table
+  --tableStripe: #eef2f7
+
+  display: flex
+  flex-direction: column
+  overflow-x: auto
   margin-top: var(--blockSpacing)
   margin-bottom: var(--blockSpacing)
 
+  @media ($below-s)
+    font-size: var(--sFontSize)
+
   table
-    --theadBg: var(--bgColor, #eef2f7)
-    --theadColor: var(--textColor, var(--text))
-    --tbodyBg: var(--textInvert)
-    --tbodyColor: var(--text)
     border-collapse: collapse
     border-spacing: 0
-
-  &.is-style-h-full-color table
-    --tbodyBg: var(--theadBg)
-    --tbodyColor: var(--theadColor)
-
-  &.is-style-stripes
-    th, td
-      border: 1px solid rgba(black, .5)
-    tbody tr:nth-child(odd)
-      background: none
-    tbody tr:nth-child(even)
-      background-color: var(--theadBg)
-      color: var(--theadColor)
+    color: var(--text)
 
   thead,
   tfoot
-    background-color: var(--theadBg)
-    color: var(--theadColor)
+    background-color: var(--bgColor, #eef2f7)
+    color: var(--textColor, var(--text))
     font-weight: 700
     text-align: left
+
   thead
     border-bottom: 2px solid var(--text)
   tfoot
     border-top: 2px solid var(--text)
-
   tbody
-    background-color: var(--tbodyBg)
-    color: var(--tbodyColor)
-
-  tr
-    border: none
+    background-color: var(--textInvert)
+    color: var(--text)
 
   th, td
-    border: 1px solid rgba(black, .5)
+    padding: 0.5rem 1rem
+    border: 1px solid rgba(black, .5) !important
+
+    @media ($below-s)
+      padding: 0.25rem 0.5rem
+
+  &.is-style-h-full-color
+    tbody
+      background-color: var(--bgColor)
+      color: var(--textColor)
+
+  &.is-style-stripes
+    tbody tr:nth-child(odd)
+      background: var(--textInvert)
+    tbody tr:nth-child(even)
+      background-color: var(--tableStripe)
+
+  // hardcoded stripe color
+  .has-color-1-background-color
+    --tableStripe: #{rgba(--color1, .1)}
+
+    thead,
+    tfoot
+      color: var(--textInvert)
+
+  .has-color-2-background-color
+    --tableStripe: #{rgba(--color2, .1)}
+  .has-color-3-background-color
+    --tableStripe: #{rgba(--color3, .1)}
     
 
 ///// BUTTON
@@ -283,7 +300,7 @@
 .wp-block-latest-posts__post-author,
 .wp-block-latest-posts__post-date
   display: inline-block
-  color: var(--textDim)
+  color: var(--gray)
   font-size: var(--sFontSize)
 
 .wp-block-latest-posts__post-author

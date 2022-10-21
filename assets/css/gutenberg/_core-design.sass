@@ -27,7 +27,7 @@
 
   &.is-style-outline,
   &.is-style-h-transparent
-    --textColor: var(--text)
+    --textColor: currentColor
 
   .wp-block-cover &
     --textColor: var(--textInvert)
@@ -63,15 +63,13 @@
   img,
   svg
     margin-right: 0.5em
-    max-height: 1.25em
+    height: 1.25em
+    width: 1.25em
     
   img:only-child,
   svg:only-child
     margin-left: 0
     margin-right: 0
-
-  svg
-    height: 1em
 
   path,
   circle,
@@ -167,6 +165,12 @@
     margin-top: var(--groupSpacing)
     margin-bottom: var(--groupSpacing)
 
+  &:first-child
+    margin-top: 0
+
+  &:last-child
+    margin-bottom: 0
+
   &.has-background
     padding: var(--groupSpacing) 0
     border-radius: var(--gRadius)
@@ -191,7 +195,7 @@
 
 .wp-block-separator
   display: block
-  border-top: 2px solid var(--bgColor, var(--textDim))
+  border-top: 2px solid var(--bgColor, var(--gray))
   margin: 2.5rem auto
   padding: 0
   width: 120px

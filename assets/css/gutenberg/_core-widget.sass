@@ -172,6 +172,9 @@ ul.wp-block-latest-posts
 
 ///// SOCIAL LINKS
 
+// BRAND COLORS
+$social-colors: ( facebook: #1977f2, instagram: #f00075, linkedin: #0577b5, skype: #0478d7, telegram: #08c, tiktok: #000, twitter: #21a1f3, whatsapp: #25d366, youtube: #ff0100 )
+
 .wp-block-social-links
   --iconSize: 1.75rem
   --iconPadding: 0.5rem
@@ -223,9 +226,6 @@ ul.wp-block-latest-posts
 @each $name, $color in $social-colors
   .wp-social-link-#{ $name }
     --brandColor: #{ $color }
-
-.wp-social-link-snapchat
-  stroke: black
 
 // anchor tag
 .wp-block-social-link-anchor

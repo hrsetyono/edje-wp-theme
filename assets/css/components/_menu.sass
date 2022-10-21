@@ -9,10 +9,11 @@
   .current-menu-parent > a,
   .current_page_parent > a
     @content
-  
-///// MENU in HEADER
 
-.header
+
+///// MENU in HEADER + SUBHEADER
+
+.header-widgets
   .menu
     display: flex
     flex-wrap: wrap
@@ -57,49 +58,6 @@
       visibility: visible
       opacity: 1
 
-// Disable menu on Header mobile
-.header-mobile
-  .menu
-    display: none
-
-///// MENU in SUBHEADER
-
-.subheader
-  .menu
-    display: flex
-    list-style-type: none
-    padding: 0
-
-  .menu-item
-    position: relative
-
-  .menu-item > a
-    display: flex
-    align-items: center
-    padding: 0.25rem 0.5rem
-    border-radius: var(--gRadius)
-
-    line-height: 1
-    font-weight: var(--hFontWeight)
-    color: inherit
-
-  .menu-item > a:hover
-    background-color: rgba(--textInvert, .2)
-
-  .menu-item-has-children > a::after
-    filter: invert(1)
-
-  .submenu
-    color: var(--text)
-
-// Disable menu on Subheader mobile
-.subheader-mobile
-  .menu
-    display: none
-
-///// MENU in HEADER + SUBHEADER
-
-.header-widgets
   .menu-item-has-children > a::after
     content: ""
     display: inline-block
@@ -110,8 +68,8 @@
     background-size: 100% auto
     opacity: .75
 
-  // if has 2nd submenu, the arrow is to the right
-  .submenu-item.menu-item-has-children > a::after
+  // Arrow is to the right on 2nd submenu
+  .submenu .menu-item-has-children > a::after
     position: absolute
     top: 50%
     right: 0.25rem
@@ -146,14 +104,12 @@
     left: auto
     transform: translateX(100%)
 
-  // open submenu when hovering the parent
+  // open submenu on hover / focus
   .menu-item:hover .submenu-depth-1,
   .submenu-item:hover .submenu-depth-2
     visibility: visible
     opacity: 1
-    transition: var(--gTransition) // only animate on enter
-
-  // need to be separated with ":hover" for browser support
+    transition: var(--gTransition)
   .menu-item:focus-within .submenu-depth-1,
   .submenu-item:focus-within .submenu-depth-2
     visibility: visible
@@ -178,7 +134,29 @@
       transition: none
       transform: translateY(1px)
 
-  
+// Disable menu on Header mobile
+.header-mobile,
+.subheader-mobile
+  .menu
+    display: none
+
+///// MENU in SUBHEADER
+
+.subheader
+  .menu-item > a
+    padding: 0.25rem 0.5rem
+    line-height: 1
+    color: inherit
+
+  .menu-item > a:hover
+    background-color: rgba(--textInvert, .2)
+
+  .menu-item-has-children > a::after
+    filter: invert(1)
+
+  .submenu
+    color: var(--text)
+
 ///// MENU in OFFCANVAS
 
 .offcanvas
@@ -229,7 +207,7 @@
     display: none
 
   // 2nd submenu is initially hidden, rotate the arrow after displayed
-  .submenu-item-is-active > a::after
+  .submenu-item.is-open > a::after
     transform: rotate(180deg)
 
   .submenu
@@ -240,7 +218,7 @@
   // 2nd level submenu is initially hidden
   .submenu-depth-2
     display: none
-  .submenu-item-is-active .submenu-depth-2
+  .submenu-item.is-open .submenu-depth-2
     display: block
 
   .submenu-item
@@ -255,7 +233,10 @@
     
     // --bgHover is added in mega-menu class
     > a:hover
-      background-color: var(--bgHover, #{rgba(--textInvert, .1)})
+      background-color: var(--bgHover, #{rgba(--text, .1)})
+    > a:active
+      transform: translateY(1px)
+      transition: none
 
   
 ///// MENU in FOOTER
@@ -330,10 +311,10 @@
       width: 0.75rem
       height: 0.75rem
 
-    .menu-item-is-active > a::after
+    .menu-item.is-open > a::after
       transform: rotate(180deg)
 
-    .menu-item:not(.menu-item-is-active) .submenu
+    .menu-item:not(.is-open) .submenu
       display: none
 
 

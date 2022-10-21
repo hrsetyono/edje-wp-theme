@@ -7,13 +7,13 @@ export default {
    * Toggle listener for mega menu in offcanvas
    */
   offcanvasMegaMenu() {
-    const $itemLinks = document.querySelectorAll('.offcanvas .h-mega-menu.menu-item-has-children a');
+    const $itemLinks = document.querySelectorAll('.offcanvas .menu-item-has-mega-menu > a');
     $itemLinks.forEach(($link) => {
       $link.addEventListener('click', (e) => {
         e.preventDefault();
 
-        const $wrapper = e.currentTarget.closest('.h-mega-menu');
-        $wrapper.classList.toggle('h-mega-menu-is-active');
+        const $wrapper = e.currentTarget.closest('.menu-item');
+        $wrapper.classList.toggle('is-open');
       });
     });
   },
