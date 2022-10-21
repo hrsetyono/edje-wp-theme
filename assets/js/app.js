@@ -1,5 +1,6 @@
 import myDarkMode from './_dark-mode';
 import myMegaMenu from './_mega-menu';
+// import myAnimation from './_animation';
 import '../css/app.sass';
 
 // GENERAL LISTENERS
@@ -122,6 +123,7 @@ function onReady() {
   myHeader.init();
   myMegaMenu.init();
   myDarkMode.init();
+  // myAnimation.init();
 }
 
 function onLoad() {

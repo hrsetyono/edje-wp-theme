@@ -14,7 +14,7 @@ require_once $inc . '/acf.php';
 if (is_admin()) {
   require_once $inc . '/admin.php';
 } else {
-  // require_once $inc . '/api.php';
+  require_once $inc . '/api.php';
   require_once $inc . '/frontend.php';
 }
 
@@ -86,6 +86,7 @@ function my_after_setup_theme() {
     acf_add_options_sub_page([
   		'page_title' => 'Theme Options',
   		'parent_slug' => 'themes.php',
+      // 'autoload' => true, // load all at once
     ]);
   }
 }

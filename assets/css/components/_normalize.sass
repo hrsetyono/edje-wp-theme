@@ -11,6 +11,7 @@ html
   line-height: 1.15 // Correct the line height in all browsers.
   font-family: sans-serif
   font-size: var(--fontSize) // change the "rem" value
+  scroll-behavior: smooth
   -webkit-text-size-adjust: 100% // Prevent adjustments of font size after orientation changes in iOS.
   -ms-text-size-adjust: 100%
 
@@ -89,6 +90,7 @@ h1, h2, h3, h4, h5, h6
   letter-spacing: var(--hLetterSpacing)
   text-transform: var(--hTextTransform)
   color: var(--hColor)
+  clear: both
 h1
   font-size: var(--h1Size)
 h2
@@ -129,8 +131,7 @@ ul
   list-style-type: disc
 ol
   list-style-type: decimal
-ul,
-ol
+ul, ol
   ul
     list-style-type: circle
   ol

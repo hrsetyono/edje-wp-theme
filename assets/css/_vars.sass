@@ -1,32 +1,4 @@
 \:root
-  @each $c in $colors
-    $var: map-get($c, 'var')
-    $hex: map-get($c, 'hex')
-
-    #{ $var } : #{ $hex }
-    // RGB version for transparency, use it like this:
-    // `rgba(--color1, .5)` which will output `rgba(var(--color1RGB), .5)`
-    #{ $var }RGB : #{ red($hex) }, #{ green($hex) }, #{ blue($hex) }
-    
-
-  // Other colors
-  --siteBg      : #f8f9fb
-  --siteBgColor : #f8f9fb
-  --panelBg     : #eff1f5
-
-  --colorAlert      : #e74c3c
-  --colorAlertLight : #f8cdc9
-
-  // SHADOW -----
-  --shadow0: 0 0.5px 2px rgba(0,0,0, .18), 0 1.5px 6px rgba(0,0,0, .08)
-  --shadow1: 0 1.5px 4px rgba(0,0,0, .24), 0 1.5px 6px rgba(0,0,0, .12)
-  --shadow2: 0 3px 12px rgba(0,0,0, .23), 0 3px 12px rgba(0,0,0, .16)
-  --shadow3: 0 6px 12px rgba(0,0,0, .23), 0 10px 40px rgba(0,0,0, .19)
-  --shadow4: 0 10px 20px rgba(0,0,0, .19), 0 6px 6px rgba(0,0,0, .23)
-
-  --shadowThin: 0 10px 30px rgba(0,0,0, .08)
-  --shadowThin2: 0 10px 30px rgba(0,0,0, .12)
-  
   // TEXT -----
   --fontFamily : -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"
   --fontWeight : 400
@@ -74,6 +46,16 @@
   --codeFontFamily : SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace
   --codeFontSize   : var(--sFontSize)
 
+  // SHADOW -----
+  --shadow0: 0 0.5px 2px rgba(0,0,0, .18), 0 1.5px 6px rgba(0,0,0, .08)
+  --shadow1: 0 1.5px 4px rgba(0,0,0, .24), 0 1.5px 6px rgba(0,0,0, .12)
+  --shadow2: 0 3px 12px rgba(0,0,0, .23), 0 3px 12px rgba(0,0,0, .16)
+  --shadow3: 0 6px 12px rgba(0,0,0, .23), 0 10px 40px rgba(0,0,0, .19)
+  --shadow4: 0 10px 20px rgba(0,0,0, .19), 0 6px 6px rgba(0,0,0, .23)
+
+  --shadowThin: 0 10px 30px rgba(0,0,0, .08)
+  --shadowThin2: 0 10px 30px rgba(0,0,0, .12)
+
   // LINK -----
   --linkColor      : inherit
   --linkColorHover : var(--color1)
@@ -86,36 +68,20 @@
   --gridRim   : 1rem
   --tileGap   : 20px
 
-  
   // GLOBAL
   --gRadius: 4px
   --gTransition: all .25s ease-in-out
 
   // INPUT
   --inputColor : var(--text)
-  --inputPlaceholderColor: var(--textDim)
+  --inputPlaceholderColor: var(--gray)
   --inputBg      : var(--textInvert)
   --inputBgFocus : var(--textInvert)
 
   // WP
   --adminBarHeight : 0px
-  --wp--style--block-gap : 1.5rem
+  --blockSpacing   : 1.5rem
   --groupSpacing   : 3rem
-
-
-  // Backward compatibility for old variable naming
-  --main: var(--color1)
-  --mainDark: var(--color1Dark)
-  --mainLight: var(--color1Light)
-
-  --sub: var(--color2)
-  --subDark: var(--color2Dark)
-  --subLight: var(--color2Light)
-  
-  --extra: var(--color3)
-  --extraLight: var(--color3Light)
-
-  --blockSpacing: var(--wp--style--block-gap)
 
   
   @media ($below-m)
@@ -145,21 +111,6 @@ body.admin-bar
   @media ($below-adminbar)
     --adminBarHeight : 0px
 
-
-///// GUTENBERG COLORS
-
-@each $c in $colors
-  $var: map-get($c, 'var')
-  $slug: map-get($c, 'slug')
-  $filter: map-get($filters, $slug)
-
-  .has-#{ $slug }-background-color
-    --bgColor: var(#{ $var })
-    --bgColorRGB: var(#{ $var }RGB)
-  .has-#{ $slug }-color
-    --textColor: var(#{ $var })
-    --textColorRGB: var(#{ $var }RGB)
-    --filterColor: #{$filter}
 
 ///// FONT FACES
 

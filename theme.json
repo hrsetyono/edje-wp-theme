@@ -21,8 +21,11 @@
       "text": true,
       "palette": [
         { "name": "Text",        "slug": "text-base",   "color": "var(--text)" },
-        { "name": "Text Dim",    "slug": "text-dim",    "color": "var(--textDim)" },
         { "name": "Text Invert", "slug": "text-invert", "color": "var(--textInvert)" },
+        
+        { "name": "Gray",       "slug": "gray",       "color": "var(--gray)" },
+        { "name": "Gray Dark",  "slug": "gray-dark",  "color": "var(--grayDark)" },
+        { "name": "Gray Light", "slug": "gray-light", "color": "var(--grayLight)" },
 
         { "name": "Primary",       "slug": "color-1",       "color": "var(--color1)" },
         { "name": "Primary Dark",  "slug": "color-1-dark",  "color": "var(--color1Dark)" },

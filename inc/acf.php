@@ -18,6 +18,7 @@ function my_acf_create_blocks() {
   //   'description' => __('A custom ACF Block'),
   //   'category' => 'design',
   //   'icon' => 'admin-comments',
+  //   'mode' => 'edit',
   //   'render_callback' => '_my_render_acf_example'
   // ]);
 }

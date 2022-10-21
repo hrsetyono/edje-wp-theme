@@ -17,11 +17,8 @@ function my_public_assets() {
 
   wp_enqueue_style('my-app', $dir . '/app.css', [], THEME_VERSION);
   wp_enqueue_style('my-gutenberg', $dir . '/gutenberg.css', [], THEME_VERSION);
-  
-  // wp_enqueue_script( 'h-lightbox' );
-  // wp_enqueue_script( 'h-slider' );
-  // wp_enqueue_style( 'h-lightbox' );
-  // wp_enqueue_style( 'h-slider' );
+
+  // wp_enqueue_script('h-scroll'); // enable if using Animation
 
   // Disable gutenberg default styling
   wp_dequeue_style('wp-block-library');
