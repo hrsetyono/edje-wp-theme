@@ -95,6 +95,8 @@
 
 
 .wp-block-button__link
+  display: flex
+
   .is-style-outline &
     border: 1px solid
     border-bottom-width: 2px
@@ -129,11 +131,11 @@
 
 .wp-block-columns
   display: flex
-  row-gap: var(--blockSpacing)
-  column-gap: var(--blockSpacing)
+  row-gap: var(--blockGap)
+  column-gap: var(--blockGap)
 
   &.has-background
-    padding: var(--blockSpacing)
+    padding: var(--blockGap)
     background-color: var(--bgColor)
 
   @media ($below-s)
@@ -148,12 +150,16 @@
     flex-grow: 0
 
   &.has-background
-    padding: var(--blockSpacing)
+    padding: var(--blockGap)
     border-radius: var(--gRadius)
 
   @media ($below-s)
     flex-basis: 100% !important
     width: 100%
+
+.wp-block-columns.is-style-h-wide-gap
+  column-gap: var(--wideGap)
+
 
 
 ////// GROUP
@@ -162,8 +168,8 @@
   position: relative
   
   &:not(.has-background)
-    margin-top: var(--groupSpacing)
-    margin-bottom: var(--groupSpacing)
+    margin-top: var(--wideGap)
+    margin-bottom: var(--wideGap)
 
   &:first-child
     margin-top: 0
@@ -172,7 +178,7 @@
     margin-bottom: 0
 
   &.has-background
-    padding: var(--groupSpacing) 0
+    padding: var(--wideGap) 0
     border-radius: var(--gRadius)
 
   &.has-background.alignfull

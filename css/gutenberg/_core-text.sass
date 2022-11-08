@@ -6,13 +6,13 @@ main
 
   // @todo: problematic on some pages
   > *:first-child:not(.alignfull)
-    padding-top: var(--blockSpacing)
+    padding-top: var(--blockGap)
 
     body.single-post &
       padding-top: 0
   
   > *:last-child:not(.alignfull)
-    margin-bottom: var(--groupSpacing)
+    margin-bottom: var(--wideGap)
 
   ul, ol
     padding-left: 1.25rem
@@ -43,7 +43,7 @@ main,
 .wp-block-media-text__content,
 .wp-block-column
   > * + *
-    margin-top: var(--blockSpacing)
+    margin-top: var(--blockGap)
 
 
 ///// ALIGNMENT
@@ -68,7 +68,7 @@ main,
 
 .alignfull
   max-width: none
-  margin-top: var(--groupSpacing)
+  margin-top: var(--wideGap)
 
   @media ($below-l)
     margin-right: calc(-1 * var(--gridRim))
@@ -78,7 +78,7 @@ main,
     margin-top: 0
 
   + *
-    margin-top: var(--groupSpacing)
+    margin-top: var(--wideGap)
 
   + .alignfull
     margin-top: 0
@@ -135,6 +135,9 @@ p.has-background
   padding: 1rem
   border-radius: var(--gRadius)
 
+p.is-style-h-no-spacing
+  margin-bottom: calc(var(--blockGap) * -1)
+
 .has-drop-cap:first-letter
   float: left
   margin-right: 0.25rem
@@ -177,6 +180,10 @@ h1, h2, h3, h4, h5, h6
 
   strong
     font-weight: var(--fontWeight)
+
+  &.is-style-h-no-spacing
+    line-height: var(--lineHeight) // make line height larger
+    margin-bottom: calc(var(--blockGap) * -1)
 
 
 ///// LIST
@@ -257,8 +264,8 @@ ol.has-background
   display: flex
   flex-direction: column
   overflow-x: auto
-  margin-top: var(--blockSpacing)
-  margin-bottom: var(--blockSpacing)
+  margin-top: var(--blockGap)
+  margin-bottom: var(--blockGap)
 
   @media ($below-s)
     font-size: var(--sFontSize)

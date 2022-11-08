@@ -8,7 +8,7 @@ form.checkout
   column-gap: 3rem
   row-gap: 2rem
 
-  margin-top: var(--groupSpacing)
+  margin-top: var(--wideGap)
   max-width: var(--siteWidth)
 
   @media ($below-m)
@@ -113,14 +113,14 @@ body.has-checkout-form-open
     font-size: var(--h4Size)
 
 .woocommerce-shipping-fields
-  margin: var(--blockSpacing) 0
+  margin: var(--blockGap) 0
 
   h3
     font-size: var(--h6Size)
     font-family: var(--fontFamily)
 
   .shipping_address
-    margin-top: var(--blockSpacing)
+    margin-top: var(--blockGap)
 
 .form-row
   grid-column: span var(--column, 6)
@@ -235,7 +235,7 @@ body.has-checkout-form-open
 
 // Create Account toggle
 .woocommerce-account-fields
-  margin-top: var(--blockSpacing)
+  margin-top: var(--blockGap)
 
 .form-row.create-account 
   label

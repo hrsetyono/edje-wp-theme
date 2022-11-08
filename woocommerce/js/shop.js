@@ -1,4 +1,4 @@
-import '../sass/shop.sass';
+import '../css/shop.sass';
 import myProductSlider from './_shop-slider';
 
 const myCart = {

@@ -10,7 +10,7 @@ add_action('rest_api_init', 'my_init_api');
  * @action rest_api_init
  */
 function my_init_api() {
-  $namespace = 'custom/v1';
+  $namespace = 'h/v1';
 
   // sample-get/:id
   register_rest_route($namespace, '/sample-get/(?P<id>\d+)', [

@@ -3,8 +3,13 @@
 @import "colors"
 @import "vars"
 
+///// WRAPPER SIZE
+
 .wp-block
   max-width: var(--blogWidth)
+
+  .wp-block-columns &
+    max-width: none
 
   b, strong
     font-weight: 700
@@ -22,43 +27,6 @@
 .has-background
   background-color: var(--bgColor)
 
-///// TYPOGRAPHY
-
-.editor-styles-wrapper > *
-  font-family: var(--fontFamily)
-  font-size: var(--fontSize)
-  font-weight: var(--fontWeight)
-  line-height: var(--lineHeight)
-  color: var(--text)
-
-.editor-post-title__block .editor-post-title__input,
-.editor-styles-wrapper h1,
-.editor-styles-wrapper h2,
-.editor-styles-wrapper h3,
-.editor-styles-wrapper h4,
-.editor-styles-wrapper h5,
-.editor-styles-wrapper h6,
-.editor-styles-wrapper .has-drop-cap:not(:focus)::first-letter
-  font-family: var(--hFontFamily)
-  font-weight: var(--hFontWeight)
-  text-transform: var(--hTextTransform)
-  line-height: var(--hLineHeight)
-  margin-bottom: 0
-
-.editor-styles-wrapper
-  h1
-    font-size: var(--h1Size)
-  h2
-    font-size: var(--h2Size)
-  h3
-    font-size: var(--h3Size)
-  h4
-    font-size: var(--h4Size)
-  h5
-    font-size: var(--h5Size)
-  h6
-    font-size: var(--h6Size)
-  
 
 ///// HEADING
 
@@ -114,8 +82,8 @@
   display: flex
   flex-direction: column
   overflow-x: auto
-  margin-top: var(--blockSpacing)
-  margin-bottom: var(--blockSpacing)
+  margin-top: var(--blockGap)
+  margin-bottom: var(--blockGap)
 
   @media ($below-s)
     font-size: var(--sFontSize)
@@ -194,50 +162,6 @@
     &:not(:hover)
       background-color: transparent !important
 
-///// COVER
-
-.has-custom-content-position
-  --alignX: center
-  --alignY: center
-
-  &[class*="is-position-top-"]
-    --alignY: flex-start
-
-  &[class*="is-position-bottom-"]
-    --alignY: flex-end
-
-  &[class*="-right"]
-    --alignX: flex-end
-
-  &[class*="-left"]
-    --alignX: flex-start
-
-.wp-block-cover
-  display: flex
-  align-items: stretch !important
-  justify-content: center !important
-
-.wp-block-cover.is-light .wp-block-cover__inner-container
-  color: var(--textInvert)
-
-// Change the custom position to be within --siteWidth
-.wp-block-cover .wp-block-cover__inner-container
-  display: flex
-  flex-direction: column
-  align-items: var(--alignX, center)
-  justify-content: var(--alignY, center)
-  width: var(--siteWidth) !important
-
-  > *
-    width: 100%
-    max-width: var(--blogWidth)
-
-  .alignwide
-    max-width: var(--siteWidth)
-
-  .wp-block-cover__inner-container
-    min-width: var(--blogWidth)
-    width: 100%
 
 
 ///// EMBEDS
@@ -263,7 +187,7 @@
   // the top spacing should follow Group sizing
   &.alignwide,
   &.alignfull
-    --blockSpacing: var(--groupSpacing)
+    --blockGap: var(--wideGap)
 
   li
     clear: both
