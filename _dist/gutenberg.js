@@ -81,31 +81,19 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./js/my-editor.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./assets/css/gutenberg.sass");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./css/my-editor.sass":
-/*!****************************!*\
-  !*** ./css/my-editor.sass ***!
-  \****************************/
+/***/ "./assets/css/gutenberg.sass":
+/*!***********************************!*\
+  !*** ./assets/css/gutenberg.sass ***!
+  \***********************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./css/my-editor.sass?");
-
-/***/ }),
-
-/***/ "./js/my-editor.js":
-/*!*************************!*\
-  !*** ./js/my-editor.js ***!
-  \*************************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _css_my_editor_sass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../css/my-editor.sass */ \"./css/my-editor.sass\");\n/* harmony import */ var _css_my_editor_sass__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_css_my_editor_sass__WEBPACK_IMPORTED_MODULE_0__);\n\r\n\n\n//# sourceURL=webpack:///./js/my-editor.js?");
+eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./assets/css/gutenberg.sass?");
 
 /***/ })
 

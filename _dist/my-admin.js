@@ -81,19 +81,31 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./css/gutenberg.sass");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./assets/js/my-admin.js");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./css/gutenberg.sass":
-/*!****************************!*\
-  !*** ./css/gutenberg.sass ***!
-  \****************************/
+/***/ "./assets/css/my-admin.sass":
+/*!**********************************!*\
+  !*** ./assets/css/my-admin.sass ***!
+  \**********************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./css/gutenberg.sass?");
+eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./assets/css/my-admin.sass?");
+
+/***/ }),
+
+/***/ "./assets/js/my-admin.js":
+/*!*******************************!*\
+  !*** ./assets/js/my-admin.js ***!
+  \*******************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _css_my_admin_sass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../css/my-admin.sass */ \"./assets/css/my-admin.sass\");\n/* harmony import */ var _css_my_admin_sass__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_css_my_admin_sass__WEBPACK_IMPORTED_MODULE_0__);\n\r\n\r\n// script that runs in admin\r\n\n\n//# sourceURL=webpack:///./assets/js/my-admin.js?");
 
 /***/ })
 

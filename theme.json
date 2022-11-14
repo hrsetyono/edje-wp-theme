@@ -20,22 +20,21 @@
       "link": false,
       "text": true,
       "palette": [
-        { "name": "Text",        "slug": "text-base",   "color": "var(--text)" },
-        { "name": "Text Invert", "slug": "text-invert", "color": "var(--textInvert)" },
-        
-        { "name": "Gray",       "slug": "gray",       "color": "var(--gray)" },
-        { "name": "Gray Dark",  "slug": "gray-dark",  "color": "var(--grayDark)" },
-        { "name": "Gray Light", "slug": "gray-light", "color": "var(--grayLight)" },
-
         { "name": "Primary",       "slug": "color-1",       "color": "var(--color1)" },
-        { "name": "Primary Dark",  "slug": "color-1-dark",  "color": "var(--color1Dark)" },
         { "name": "Primary Light", "slug": "color-1-light", "color": "var(--color1Light)" },
 
         { "name": "Secondary",       "slug": "color-2",       "color": "var(--color2)" },
         { "name": "Secondary Light", "slug": "color-2-light", "color": "var(--color2Light)" },
 
         { "name": "Tertiary",       "slug": "color-3",       "color": "var(--color3)" },
-        { "name": "Tertiary Light", "slug": "color-3-light", "color": "var(--color3Light)" }
+        { "name": "Tertiary Light", "slug": "color-3-light", "color": "var(--color3Light)" },
+
+        { "name": "Text",        "slug": "text-base",   "color": "var(--text)" },
+        { "name": "Text Invert", "slug": "text-invert", "color": "var(--textInvert)" },
+
+        { "name": "Gray",       "slug": "gray",       "color": "var(--gray)" },
+        { "name": "Gray Dark",  "slug": "gray-dark",  "color": "var(--grayDark)" },
+        { "name": "Gray Light", "slug": "gray-light", "color": "var(--grayLight)" }
       ]
     },
     "custom": {},

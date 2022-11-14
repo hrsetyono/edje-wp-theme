@@ -24,10 +24,10 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const path = require('path');
 
-const cssPath = './css';
-const jsPath = './js';
+const cssPath = './assets/css';
+const jsPath = './assets/js';
 const shopPath = './woocommerce';
-const outputPath = 'dist';
+const outputPath = '_dist';
 
 const localDomain = 'http://lab.test/';
 const entryPoints = {
