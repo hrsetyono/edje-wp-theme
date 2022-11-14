@@ -11,66 +11,73 @@
   ></span>
   <div class="wp-block-cover__inner-container">
 
-    <h1 class="alignwide has-color has-text-color">
-      <?php the_title(); ?>
-    </h1>
+    <section class="wp-block-columns alignwide">
+      <div class="wp-block-column">
+        <h1 class="has-color has-text-color">
+          <?php the_title(); ?>
+        </h1>
 
-    <div class="post-meta / alignwide">
-      <span class="meta-categories">
-        <?php foreach (get_the_category() as $term): ?>
-          <a href="<?= get_category_link($term) ?>">
-            <?= $term->name ?>
-          </a>
-        <?php endforeach; ?>
-      </span>
+        <div class="post-meta / alignwide">
+          <span class="meta-categories">
+            <?php foreach (get_the_category() as $term): ?>
+              <a href="<?= get_category_link($term) ?>">
+                <?= $term->name ?>
+              </a>
+            <?php endforeach; ?>
+          </span>
 
-      <span class="meta-author">
-        By <?php the_author(); ?>
-      </span>
+          <span class="meta-author">
+            By <?php the_author(); ?>
+          </span>
 
-      <time class="meta-date">
-        <i></i>
-        <?= get_the_date() ?>
-      </time>
+          <time class="meta-date">
+            <i></i>
+            <?= get_the_date() ?>
+          </time>
 
-      <?php if (get_comments_number() !== '0'): ?>
-        <span class="meta-comments">
-          <i></i>
-          <a href="#comments">
-            <?= sprintf(__('%d Comments'), get_comments_number()) ?>
-          </a>
-        </span>
-      <?php endif; ?>
+          <?php if (get_comments_number() !== '0'): ?>
+            <span class="meta-comments">
+              <i></i>
+              <a href="#comments">
+                <?= sprintf(__('%d Comments'), get_comments_number()) ?>
+              </a>
+            </span>
+          <?php endif; ?>
 
-      <?php if (has_tag()): ?>
-        <span class="meta-tags">
-          <i></i>
-          <?php foreach (get_the_tags() as $tag): ?>
-            <a href="<?= get_tag_link($tag) ?>">
-              <?= $tag->name ?>
-            </a>
-          <?php endforeach; ?>
-        </span>
-      <?php endif; ?>
-    </div>
+          <?php if (has_tag()): ?>
+            <span class="meta-tags">
+              <i></i>
+              <?php foreach (get_the_tags() as $tag): ?>
+                <a href="<?= get_tag_link($tag) ?>">
+                  <?= $tag->name ?>
+                </a>
+              <?php endforeach; ?>
+            </span>
+          <?php endif; ?>
+        </div>
 
-  </div>
-</header>
-
-<div class="post-columns / wp-block-columns alignwide">
-  <article class="wp-block-column" style="flex-basis:66.66%">
-
-    <?php if (has_post_thumbnail()): ?>
-      <div class="featured-image">
-        <picture>
+      </div>
+      
+      <?php if (has_post_thumbnail()): ?>
+      <div class="wp-block-column" style="flex-basis:35%">
+        <picture class="featured-image | wp-block-image">
           <source
             srcset="<?= get_the_post_thumbnail_url(null, 'medium'); ?>"
             media="(max-width: 480px)"
           >
           <?php the_post_thumbnail('large'); ?>
         </picture>
+
+        <div class="wp-block-spacer is-style-h-negative" style="margin-bottom:-50px"></div>
       </div>
-    <?php endif; ?>
+      <?php endif; ?>
+    </section>
+
+  </div>
+</header>
+
+<div class="post-columns / wp-block-columns alignwide">
+  <article class="wp-block-column" style="flex-basis:66.66%">
 
     <?php the_content(); ?>
 

@@ -157,9 +157,14 @@
     flex-basis: 100% !important
     width: 100%
 
+.wp-block-columns.is-style-h-no-gap
+  column-gap: 0
+
+  .wp-block-column
+    border-radius: 0
+
 .wp-block-columns.is-style-h-wide-gap
   column-gap: var(--wideGap)
-
 
 
 ////// GROUP
@@ -199,6 +204,9 @@
   + *
     margin-top: 0
 
+.wp-block-cover + .wp-block-spacer.is-style-h-negative + *
+  position: relative
+  z-index: 2
 
 ///// SEPARATOR
 

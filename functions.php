@@ -14,7 +14,7 @@ require_once $inc . '/acf.php';
 if (is_admin()) {
   require_once $inc . '/admin.php';
 } else {
-  require_once $inc . '/api.php';
+  // require_once $inc . '/api.php';
   require_once $inc . '/frontend.php';
 }
 

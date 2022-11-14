@@ -103,6 +103,8 @@
     width: calc(100% / var(--columns) - var(--gap))
   
   .wp-block-gallery.is-cropped &
+    a
+      height: 100%
     img
       flex: 1
       height: 100%
@@ -134,46 +136,47 @@
     font-size: smaller
 
 
-// GALLERY in v5.8 and older
-.wp-block-gallery:not(.has-nested-images)
-  ul
-    list-style-type: none
-    padding: 0
-    display: flex
-    flex-wrap: wrap
-    row-gap: var(--gap)
-    column-gap: var(--gap)
+///// GALLERY Thumbnails
 
-  li
-    flex-grow: 1
-    width: calc(100% / var(--columns) - var(--gap))
+.wp-block-gallery.is-style-h-thumbnails
+  display: grid
+  grid-template-columns: repeat(var(--columns, 3), 1fr)
+
+  @media ($below-s)
+    --columns: 2
 
   figure
-    position: relative
-
-  &.is-cropped figure
-    height: 100%
-  
-  &.is-cropped img
-    flex: 1
-    height: 100%
     width: 100%
-    object-fit: cover
-    object-position: center center
+    height: 100%
+    padding-bottom: 75%
 
-  li figcaption
-    position: absolute
-    bottom: 0
-    left: 0
-    right: 0
-    padding: 0.25rem
-    background-image: linear-gradient( 0deg, rgba(black,.7), rgba(black,.5) 50%,transparent)
+  figure > a,
+  figure > img
+    +absolute-fill
+    height: 100%
 
-    text-align: center
-    font-size: var(--sFontSize)
-    color: var(--textInvert)
+  figcaption
+    max-height: 75%
+    padding: 1rem
+    overflow-y: hidden
+    pointer-events: none
+    text-align: left
+    
+    @media ($below-s)
+      font-size: 0 // hide the description
+  
+  strong
+    display: block
+    font-size: var(--mFontSize)
+    font-family: var(--hFontFamily)
 
 
+  .is-style-h-thumbnail-wide
+    grid-column: span 2
+    padding-bottom: calc(37.5% - var(--gap) / 2)
+
+  .is-style-h-thumbnail-tall
+    grid-row: span 2
 
 ///// COVER
 
@@ -287,6 +290,19 @@
   &.has-background-dim-100
     opacity: 1
 
+// Cover Below Header
+.wp-block-cover.is-style-h-below-header
+  margin-top: calc(var(--headerHeight) * -1)
+
+body.h-has-cover-below-header
+  .header:not(.is-stuck),
+  .header-mobile:not(.is-stuck)
+    background-color: transparent
+
+    .menu-item > a
+      color: var(--textInvert)
+    .menu-item.menu-item-has-children > a::after
+      filter: var(--textInvertFilter)
 
 ///// MEDIA TEXT
 

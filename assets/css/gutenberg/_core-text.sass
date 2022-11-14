@@ -226,8 +226,6 @@ ol.has-background
       background-color: var(--text)
       transform: translateX(-50%)
 
-
-  
 .wp-block-quote.is-style-large
   padding-top: 1rem
   padding-bottom: 1rem
@@ -254,7 +252,138 @@ ol.has-background
   &.has-text-align-right cite
     text-align: left
   
+// QUOTE Timeline
+.wp-block-quote.is-style-h-timeline
+  --gap: 2rem
+  --x: 50%
+  --x2: 100%
 
+  position: relative
+  max-width: calc(var(--siteWidth) / 2 - var(--gap))
+  transform: translateX(calc(-50% - var(--gap)))
+  
+  border: none
+  padding: var(--blockGap)
+  box-shadow: var(--shadowThin)
+
+  @media ($below-l)
+    max-width: calc(100% / 2 - var(--gap))
+
+  @media ($below-s)
+    max-width: calc(100% - var(--gap) - 0.5rem)
+    margin-left: 0
+    margin-right: auto
+    transform: none
+
+    text-align: left
+
+  cite
+    position: absolute
+    top: 50%
+    right: calc(-1 * (var(--gap) + 1rem))
+    transform: translateY(-50%) translateX(var(--x2))
+    
+    margin-top: 0
+    padding: 0 0.5rem
+    background-color: var(--grayLight)
+    border-radius: var(--gRadius)
+
+    font-size: var(--fontSize)
+    font-weight: 700
+    font-style: normal
+    color: var(--text)
+
+    @media ($below-s)
+      position: static
+      display: inline-block
+      width: auto
+      right: 0
+      transform: none
+      margin-top: 1rem
+      font-size: var(--sFontSize)
+
+  &::before
+    content: ""
+    display: inline-block
+    background-color: var(--textInvert)
+
+    position: absolute
+    z-index: 2
+    top: 50%
+    right: calc(-1 * var(--gap))
+    transform: translateY(-50%) translateX(var(--x))
+    
+    width: 1rem
+    height: 1rem
+    border: 2px solid
+    border-radius: 50%
+
+  &::after
+    content: ""
+    display: block
+    position: absolute
+    top: 0
+    right: calc(-1 * var(--gap))
+    width: 2px
+    height: 100%
+    background-color: var(--text)
+    transform: translateX(var(--x))
+
+    @media ($below-s)
+      top: -1rem
+      bottom: -1rem
+      height: auto
+
+  @media ($below-s)
+    &:first-of-type::after
+      top: 0
+    &:last-of-type::after
+      bottom: 0
+
+  @media ($above-s)
+    + .is-style-h-timeline
+      margin-top: 0
+
+    &.has-text-align-right
+      --x: -50%
+      --x2: -100%
+
+      text-align: left
+      transform: translateX(calc(50% + var(--gap)))
+
+      cite
+        left: calc(-1 * (var(--gap) + 1rem))
+        right: auto
+      &::before,
+      &::after
+        left: calc(-1 * var(--gap))
+        right: auto
+      &::after
+        width: 2.5px // looks thinner if only 2px?
+
+    &.has-text-align-center
+      transform: none
+      margin-top: 5rem
+      max-width: var(--blogWidth)
+
+      cite
+        top: 0
+        left: 50%
+        right: auto
+        transform: translateX(-50%) translateY(-50%)
+
+      &::before
+        top: -3rem
+        left: auto
+        right: auto
+        transform: translateX(-50%)
+      
+      &::after
+        top: -5rem
+        left: 50%
+        width: 2.5px
+        height: 3rem
+        transform: translateX(-50%)
 
 ///// TABLE
 

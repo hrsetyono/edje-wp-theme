@@ -12,8 +12,8 @@ if (is_admin()) {
  */
 function my_custom_block_styles() {
   // register_block_style('core/table', [ 'name' => 'sample', 'label' => 'Sample Style' ]);
-  register_block_style('core/buttons', [ 'name' => 'no-spacing', 'label' => 'No Spacing' ]);
 }
+
 
 
 /**
