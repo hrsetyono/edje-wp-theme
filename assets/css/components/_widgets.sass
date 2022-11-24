@@ -2,7 +2,7 @@
 
 .widget
   .offcanvas &,
-  .footer &
+  .footer-widgets &
     width: 100%
 
 .widget + .widget
@@ -61,8 +61,8 @@
 
   footer &
     display: flex
-    column-gap: 1rem
-    row-gap: 1rem
+    column-gap: var(--blockGap)
+    row-gap: var(--blockGap)
     max-width: var(--siteWidth)
   
     @media ($below-s)

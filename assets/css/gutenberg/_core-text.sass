@@ -251,7 +251,45 @@ ol.has-background
 
   &.has-text-align-right cite
     text-align: left
-  
+
+// QUOTE Testimony
+.wp-block-quote.is-style-h-testimony
+  position: relative
+  border: none
+  padding: var(--blockGap)
+  padding-right: var(--wideGap)
+  box-shadow: var(--shadowThin)
+
+  &::before
+    content: ""
+    display: inline-block
+    background: url('../svg/quote-right.svg') no-repeat center center
+    background-size: contain
+    opacity: .1
+
+    position: absolute
+    top: var(--blockGap)
+    right: var(--blockGap)
+    width: 2rem
+    height: 2rem
+
+
+  cite
+    font-style: normal
+    color: var(--text)
+
+    strong
+      display: block
+
+    img
+      float: left
+      object-fit: cover
+      object-position: center center
+      max-width: 2.5rem
+      max-height: 2.5rem
+      margin-right: 0.5rem
+      border-radius: 50%
+
 // QUOTE Timeline
 .wp-block-quote.is-style-h-timeline
   --gap: 2rem

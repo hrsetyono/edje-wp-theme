@@ -7,6 +7,7 @@ if (is_admin()) {
   add_filter('h_disallowed_blocks', 'my_disallowed_blocks');
 }
 
+
 /**
  * Register custom block style
  */

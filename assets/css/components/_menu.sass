@@ -250,7 +250,7 @@
     list-style-type: none
 
   .menu-item
-    width: calc(25% - 1rem * 0.75)
+    flex: 1
 
     @media ($below-m)
       width: calc(50% - 1rem * 0.5)
@@ -263,11 +263,14 @@
     align-items: center
     background-color: transparent
     
-    padding: 0.5rem
+    padding: 0 0.5rem
+    margin-bottom: 0.75rem
     border-radius: var(--gRadius)
 
-    font-size: var(--mFontSize)
+    font-family: var(--hFontFamily)
+    font-size: var(--h5Size)
     font-weight: var(--hFontWeight)
+    line-height: var(--hLineHeight)
     color: inherit
 
   
