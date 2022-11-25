@@ -1,5 +1,5 @@
+import swiper from '../../assets/js/_swiper';
 import '../css/shop.sass';
-import myProductSlider from './_shop-slider';
 
 const myCart = {
   init() {
@@ -40,9 +40,41 @@ const myCart = {
   },
 };
 
+const mySlider = {
+  init() {
+    const $sliders = document.querySelectorAll('.wc-block-grid.is-style-my-slider');
+
+    $sliders.forEach(($slider) => {
+      // abort if Related Product section and on desktop
+      if ($slider.closest('.product-related') && window.innerWidth >= 768) {
+        return;
+      }
+
+      const hasColumns = $slider.getAttribute('class').match(/has-(\d)-columns/);
+      const columns = hasColumns[1] ? parseInt(hasColumns[1], 10) : 3;
+
+      swiper($slider, {
+        slideClass: 'wc-block-grid__product',
+        loop: true,
+        slidesPerView: 2,
+        slidesPerGroup: 2,
+        pagination: true,
+        navigation: true,
+        breakpoints: {
+          // when window width is >= 768px
+          768: {
+            slidesPerView: columns,
+            slidesPerGroup: columns,
+          },
+        },
+      });
+    });
+  },
+};
+
 function onReady() {
   myCart.init();
-  myProductSlider.init();
+  mySlider.init();
 }
 
 function onLoad() {

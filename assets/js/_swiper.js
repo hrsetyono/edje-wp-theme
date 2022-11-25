@@ -1,16 +1,13 @@
 import Swiper, { Navigation, Pagination } from 'swiper';
-import 'swiper/swiper.min.css';
-import 'swiper/modules/navigation/navigation.min.css';
-import 'swiper/modules/pagination/pagination.min.css';
 
 export default function initSwiper($wrapper, rawArgs) {
   const args = {
-    createElements: true,
     slideClass: 'wp-block-image',
     slidesPerView: 1,
     spaceBetween: 20,
     pagination: true,
     navigation: true,
+    createElements: true,
     modules: [],
     ...rawArgs,
   };
@@ -23,9 +20,18 @@ export default function initSwiper($wrapper, rawArgs) {
     $s.classList.add('swiper-slide');
   });
 
-  // Check for modules
   if (args.pagination) {
+    // Create pagination element
+    const $pagination = document.createElement('div');
+    $pagination.classList.add('swiper-pagination');
+    $wrapper.appendChild($pagination);
+
     args.modules.push(Pagination);
+    args.pagination = {
+      el: '.swiper-pagination',
+      clickable: true,
+      ...args.pagination,
+    };
   }
 
   if (args.navigation) {

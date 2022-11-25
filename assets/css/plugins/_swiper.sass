@@ -1,0 +1,374 @@
+\:root
+  --swiper-theme-color: var(--color1)
+
+.swiper
+  margin-left: auto
+  margin-right: auto
+  position: relative
+  overflow: hidden
+  list-style: none
+  padding: 0
+
+  /* Fix of Webkit flickering
+  z-index: 1
+
+.swiper-vertical > .swiper-wrapper
+  flex-direction: column
+
+.swiper-wrapper
+  position: relative
+  width: 100%
+  height: 100%
+  z-index: 1
+  display: flex
+  transition-property: transform
+  box-sizing: content-box
+
+.swiper-android .swiper-slide,
+.swiper-wrapper
+  transform: translate3d(0px, 0, 0)
+
+.swiper-pointer-events
+  touch-action: pan-y
+
+  &.swiper-vertical
+    touch-action: pan-x
+
+.swiper-slide
+  flex-shrink: 0
+  width: 100%
+  height: 100%
+  position: relative
+  transition-property: transform
+
+.swiper-slide-invisible-blank
+  visibility: hidden
+
+/* Auto Height
+.swiper-autoheight
+  &,
+  .swiper-slide
+    height: auto
+
+  .swiper-wrapper
+    align-items: flex-start
+    transition-property: transform, height
+
+.swiper-backface-hidden .swiper-slide
+  transform: translateZ(0)
+  backface-visibility: hidden
+
+/* 3D Effects
+.swiper-3d
+  &,
+  &.swiper-css-mode .swiper-wrapper
+    perspective: 1200px
+
+  .swiper-wrapper,
+  .swiper-slide,
+  .swiper-slide-shadow,
+  .swiper-slide-shadow-left,
+  .swiper-slide-shadow-right,
+  .swiper-slide-shadow-top,
+  .swiper-slide-shadow-bottom,
+  .swiper-cube-shadow
+    transform-style: preserve-3d
+
+  .swiper-slide-shadow,
+  .swiper-slide-shadow-left,
+  .swiper-slide-shadow-right,
+  .swiper-slide-shadow-top,
+  .swiper-slide-shadow-bottom
+    position: absolute
+    left: 0
+    top: 0
+    width: 100%
+    height: 100%
+    pointer-events: none
+    z-index: 10
+
+  .swiper-slide-shadow
+    background: rgba(0, 0, 0, 0.15)
+
+  .swiper-slide-shadow-left
+    background-image: linear-gradient(to left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0))
+
+  .swiper-slide-shadow-right
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0))
+
+  .swiper-slide-shadow-top
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0))
+
+  .swiper-slide-shadow-bottom
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0))
+
+/* CSS Mode
+.swiper-css-mode
+  > .swiper-wrapper
+    overflow: auto
+    scrollbar-width: none
+
+    /* For Firefox
+    -ms-overflow-style: none
+
+    /* For Internet Explorer and Edge
+    &::-webkit-scrollbar
+      display: none
+
+  > .swiper-wrapper > .swiper-slide
+    scroll-snap-align: start start
+
+.swiper-horizontal.swiper-css-mode
+  > .swiper-wrapper
+    scroll-snap-type: x mandatory
+
+.swiper-vertical.swiper-css-mode
+  > .swiper-wrapper
+    scroll-snap-type: y mandatory
+
+.swiper-centered
+  > .swiper-wrapper::before
+    content: ''
+    flex-shrink: 0
+    order: 9999
+
+  &.swiper-horizontal
+    > .swiper-wrapper > .swiper-slide:first-child
+      margin-inline-start: var(--swiper-centered-offset-before)
+
+    > .swiper-wrapper::before
+      height: 100%
+      width: var(--swiper-centered-offset-after)
+
+  &.swiper-vertical
+    > .swiper-wrapper > .swiper-slide:first-child
+      margin-block-start: var(--swiper-centered-offset-before)
+
+    > .swiper-wrapper::before
+      width: 100%
+      height: var(--swiper-centered-offset-after)
+
+  > .swiper-wrapper > .swiper-slide
+    scroll-snap-align: center center
+  
+///// NAVIGATION
+
+.swiper-button-prev,
+.swiper-button-next
+  position: absolute
+  z-index: 10
+  top: 50%
+  transform: translateY(-50%)
+  cursor: pointer
+  display: flex
+  align-items: center
+  justify-content: center
+
+  &.swiper-button-disabled
+    opacity: 0.35
+    cursor: auto
+    pointer-events: none
+
+  &.swiper-button-hidden
+    opacity: 0
+    cursor: auto
+    pointer-events: none
+
+  .swiper-navigation-disabled &
+    display: none !important
+
+.swiper-button-prev,
+.swiper-rtl .swiper-button-next,
+.swiper-button-next,
+.swiper-rtl .swiper-button-prev
+
+  &::after
+    content: ''
+    display: inline-block
+    filter: invert(1)
+    transition: var(--gTransition)
+    background: no-repeat center center
+    background-size: auto 2rem
+
+    width: 3rem
+    height: 3rem
+    border-radius: var(--gRadius)
+
+  &:hover::after
+    background-color: rgba(black, .2)
+  &:active::after
+    background-color: rgba(black, .4)
+    transition: none
+
+
+.swiper-button-prev,
+.swiper-rtl .swiper-button-next
+  &:after
+    background-image: url('../svg/chevron-left.svg')
+
+  left: 0
+  right: auto
+
+.swiper-button-next,
+.swiper-rtl .swiper-button-prev
+  &:after
+    background-image: url('../svg/chevron-right.svg')
+
+  right: 0
+  left: auto
+
+.swiper-button-lock
+  display: none
+
+///// PAGINATION
+
+.swiper-pagination
+  position: absolute
+  text-align: center
+  transition: 300ms opacity
+  transform: translate3d(0, 0, 0)
+  z-index: 10
+
+  &.swiper-pagination-hidden
+    opacity: 0
+
+  .swiper-pagination-disabled > &,
+  &.swiper-pagination-disabled
+    display: none !important
+
+/* Common Styles
+.swiper-pagination-fraction,
+.swiper-pagination-custom,
+.swiper-horizontal > .swiper-pagination-bullets,
+.swiper-pagination-bullets.swiper-pagination-horizontal
+  bottom: 10px
+  left: 0
+  width: 100%
+
+/* Bullets
+.swiper-pagination-bullet
+  width: 0.75rem
+  height: 0.75rem
+  display: inline-block
+  border-radius: 50%
+  background: var(--textInvert)
+  opacity: .2
+
+  @at-root button#{&}
+    border: none
+    margin: 0
+    padding: 0
+    box-shadow: none
+    appearance: none
+
+  .swiper-pagination-clickable &
+    cursor: pointer
+
+  &:only-child
+    display: none !important
+
+.swiper-pagination-bullet-active
+  opacity: 1
+  background: var(--textInvert)
+  box-shadow: 0 0 0 1px var(--textInvert)
+
+.swiper-vertical > .swiper-pagination-bullets,
+.swiper-pagination-vertical.swiper-pagination-bullets
+  right: 10px
+  top: 50%
+  transform: translate3d(0px, -50%, 0)
+
+  .swiper-pagination-bullet
+    margin: 0.5rem
+    display: block
+
+  &.swiper-pagination-bullets-dynamic
+    top: 50%
+    transform: translateY(-50%)
+    width: 8px
+
+    .swiper-pagination-bullet
+      display: inline-block
+      transition: 200ms transform, 200ms top
+
+.swiper-horizontal > .swiper-pagination-bullets,
+.swiper-pagination-horizontal.swiper-pagination-bullets
+  .swiper-pagination-bullet
+    margin: 0 0.25rem
+
+  &.swiper-pagination-bullets-dynamic
+    left: 50%
+    transform: translateX(-50%)
+    white-space: nowrap
+
+    .swiper-pagination-bullet
+      transition: 200ms transform, 200ms left
+
+.swiper-horizontal.swiper-rtl > .swiper-pagination-bullets-dynamic .swiper-pagination-bullet
+  transition: 200ms transform, 200ms right
+
+/* Dynamic Bullets
+.swiper-pagination-bullets-dynamic
+  overflow: hidden
+  font-size: 0
+
+  .swiper-pagination-bullet
+    transform: scale(0.33)
+    position: relative
+
+  .swiper-pagination-bullet-active
+    transform: scale(1)
+
+  .swiper-pagination-bullet-active-main
+    transform: scale(1)
+
+  .swiper-pagination-bullet-active-prev
+    transform: scale(0.66)
+
+  .swiper-pagination-bullet-active-prev-prev
+    transform: scale(0.33)
+
+  .swiper-pagination-bullet-active-next
+    transform: scale(0.66)
+
+  .swiper-pagination-bullet-active-next-next
+    transform: scale(0.33)
+
+/* Progress
+.swiper-pagination-progressbar
+  background: rgba(0, 0, 0, 0.25)
+  position: absolute
+
+  .swiper-pagination-progressbar-fill
+    background: var(--textInvert)
+    position: absolute
+    left: 0
+    top: 0
+    width: 100%
+    height: 100%
+    transform: scale(0)
+    transform-origin: left top
+
+  .swiper-rtl & .swiper-pagination-progressbar-fill
+    transform-origin: right top
+
+  .swiper-horizontal > &,
+  &.swiper-pagination-horizontal,
+  .swiper-vertical > &.swiper-pagination-progressbar-opposite,
+  &.swiper-pagination-vertical.swiper-pagination-progressbar-opposite
+    width: 100%
+    height: 4px
+    left: 0
+    top: 0
+
+  .swiper-vertical > &,
+  &.swiper-pagination-vertical,
+  .swiper-horizontal > &.swiper-pagination-progressbar-opposite,
+  &.swiper-pagination-horizontal.swiper-pagination-progressbar-opposite
+    width: 4px
+    height: 100%
+    left: 0
+    top: 0
+
+.swiper-pagination-lock
+  display: none

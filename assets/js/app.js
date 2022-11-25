@@ -1,6 +1,7 @@
 import myDarkMode from './_dark-mode';
 import myMegaMenu from './_mega-menu';
-import mySwiper from './_slider';
+import swiper from './_swiper';
+
 // import myAnimation from './_animation';
 import '../css/app.sass';
 
@@ -15,12 +16,13 @@ const myApp = {
 
     $sliders.forEach(($slider) => {
       const matchColumns = $slider.getAttribute('class').match(/columns-(\d)/);
-      const columns = matchColumns ? matchColumns[1] : 1;
+      const columns = matchColumns ? parseInt(matchColumns[1], 10) : 1;
 
-      mySwiper($slider, {
+      swiper($slider, {
         slideClass: 'wp-block-image',
         slidesPerView: columns,
         slidesPerGroup: columns,
+        loop: true,
         pagination: true,
         navigation: true,
       });
