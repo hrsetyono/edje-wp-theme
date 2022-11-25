@@ -27,7 +27,7 @@ const path = require('path');
 const cssPath = './assets/css';
 const jsPath = './assets/js';
 const shopPath = './woocommerce';
-const outputPath = 'dist';
+const outputPath = '_dist';
 
 const localDomain = 'http://lab.test/';
 const entryPoints = {
@@ -37,8 +37,8 @@ const entryPoints = {
   'my-admin': `${jsPath}/my-admin.js`,
 
   shop: `${shopPath}/js/shop.js`,
-  'shop-editor': `${shopPath}/sass/shop-editor.sass`,
-  'shop-admin': `${shopPath}/sass/shop-admin.sass`,
+  'shop-editor': `${shopPath}/css/shop-editor.sass`,
+  'shop-admin': `${shopPath}/css/shop-admin.sass`,
 };
 
 module.exports = {

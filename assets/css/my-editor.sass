@@ -3,62 +3,30 @@
 @import "colors"
 @import "vars"
 
-.wp-block
-  max-width: var(--blogWidth)
+///// BUTTON
 
-  b, strong
-    font-weight: 700
-
-.wp-block[data-align="wide"]
-  max-width: calc(var(--siteWidth) - 100px)
-
-.editor-styles-wrapper
-  background-color: var(--siteBg)
-
-.has-text-color,
-.has-inline-color
-  color: var(--textColor, var(--text))
-
-.has-background
-  background-color: var(--bgColor)
-
-///// TYPOGRAPHY
-
-.editor-styles-wrapper > *
-  font-family: var(--fontFamily)
-  font-size: var(--fontSize)
-  font-weight: var(--fontWeight)
-  line-height: var(--lineHeight)
-  color: var(--text)
-
-.editor-post-title__block .editor-post-title__input,
-.editor-styles-wrapper h1,
-.editor-styles-wrapper h2,
-.editor-styles-wrapper h3,
-.editor-styles-wrapper h4,
-.editor-styles-wrapper h5,
-.editor-styles-wrapper h6,
-.editor-styles-wrapper .has-drop-cap:not(:focus)::first-letter
-  font-family: var(--hFontFamily)
+.wp-block-button__link
+  background-color: var(--color1)
+  text-transform: uppercase
   font-weight: var(--hFontWeight)
-  text-transform: var(--hTextTransform)
-  line-height: var(--hLineHeight)
-  margin-bottom: 0
+  font-size: var(--fontSize)
+  letter-spacing: 0.025em
+  border-radius: var(--gRadius)
 
-.editor-styles-wrapper
-  h1
-    font-size: var(--h1Size)
-  h2
-    font-size: var(--h2Size)
-  h3
-    font-size: var(--h3Size)
-  h4
-    font-size: var(--h4Size)
-  h5
-    font-size: var(--h5Size)
-  h6
-    font-size: var(--h6Size)
-  
+  .is-style-outline &
+    border: 2px solid currentColor
+    color: var(--color1)
+
+    &:not(:hover)
+      background-color: transparent !important
+
+  .is-style-h-transparent &
+    border: none
+    color: var(--textColor, var(--text))
+
+    &:not(:hover)
+      background-color: transparent !important
+
 
 ///// HEADING
 
@@ -66,7 +34,6 @@
   // <strong> in heading become thin instead
   strong
     font-weight: var(--fontWeight)
-
 
 ///// QUOTE
 
@@ -114,8 +81,8 @@
   display: flex
   flex-direction: column
   overflow-x: auto
-  margin-top: var(--blockSpacing)
-  margin-bottom: var(--blockSpacing)
+  margin-top: var(--blockGap)
+  margin-bottom: var(--blockGap)
 
   @media ($below-s)
     font-size: var(--sFontSize)
@@ -172,73 +139,6 @@
     --tableStripe: #{rgba(--color3, .1)}
     
 
-///// BUTTON
-
-.wp-block-button__link
-  background-color: var(--color1)
-  text-transform: uppercase
-  font-weight: var(--hFontWeight)
-  border-radius: var(--gRadius)
-
-  .is-style-outline &
-    border: 2px solid currentColor
-    color: var(--color1)
-
-    &:not(:hover)
-      background-color: transparent !important
-
-  .is-style-h-transparent &
-    border: none
-    color: var(--textColor, var(--text))
-
-    &:not(:hover)
-      background-color: transparent !important
-
-///// COVER
-
-.has-custom-content-position
-  --alignX: center
-  --alignY: center
-
-  &[class*="is-position-top-"]
-    --alignY: flex-start
-
-  &[class*="is-position-bottom-"]
-    --alignY: flex-end
-
-  &[class*="-right"]
-    --alignX: flex-end
-
-  &[class*="-left"]
-    --alignX: flex-start
-
-.wp-block-cover
-  display: flex
-  align-items: stretch !important
-  justify-content: center !important
-
-.wp-block-cover.is-light .wp-block-cover__inner-container
-  color: var(--textInvert)
-
-// Change the custom position to be within --siteWidth
-.wp-block-cover .wp-block-cover__inner-container
-  display: flex
-  flex-direction: column
-  align-items: var(--alignX, center)
-  justify-content: var(--alignY, center)
-  width: var(--siteWidth) !important
-
-  > *
-    width: 100%
-    max-width: var(--blogWidth)
-
-  .alignwide
-    max-width: var(--siteWidth)
-
-  .wp-block-cover__inner-container
-    min-width: var(--blogWidth)
-    width: 100%
-
 
 ///// EMBEDS
 
@@ -247,91 +147,58 @@
   > div:nth-child(n+2)
     display: none
 
+.wp-block-image.is-style-h-thumbnail-wide,
+.wp-block-image.is-style-h-thumbnail-tall
+  position: relative
+  height: 0
 
-///// LATEST POSTS
+  .components-resizable-box__side-handle
+    display: none
 
-.edit-post-visual-editor ul.wp-block-latest-posts
-  display: grid
-  grid-template-columns: repeat(var(--postsColumns, 1), 1fr)
-  column-gap: var(--postsGap, 1.5rem)
-  row-gap: var(--postsGap, 1.5rem)
+  > div
+    position: static !important
 
-  list-style-type: none
-  padding-left: 0
-  clear: both
-
-  // the top spacing should follow Group sizing
-  &.alignwide,
-  &.alignfull
-    --blockSpacing: var(--groupSpacing)
-
-  li
-    clear: both
+  > div > img
+    +absolute-fill
     width: 100%
-    margin: 0
+    height: 100%
+    object-fit: cover
+    object-position: center center
 
-  a
+  figcaption
     display: block
-    pointer-events: none
+    overflow-y: hidden
+    background-image: linear-gradient( 0deg, rgba(black,.7), rgba(black,.5) 50%,transparent)
+    grid-column: none
 
-  li > a
-    font-family: var(--hFontFamily)
-    font-size: var(--postsFontSize, var(--h5Size))
+    position: absolute
+    z-index: 2
+    left: 0
+    bottom: 0
+    right: 0
+    
+    width: 100%
+    max-height: 75%
+    padding: 1rem
+    margin: 0
+    border: none
 
-  &.columns-1
-    --postsColumns: 1
-  &.columns-2
-    --postsColumns: 2
-  &.columns-3
-    --postsColumns: 3
-  &.columns-4
-    --postsColumns: 4
-  &.columns-5
-    --postsColumns: 5
-  &.columns-6
-    --postsColumns: 6
-
-  &.columns-4,
-  &.columns-5,
-  &.columns-6
-    --postsGap: 1rem
-    --postsFontSize: var(--h6Size)
-
-.wp-block-latest-posts__post-author,
-.wp-block-latest-posts__post-date
-  display: inline-block
-  color: var(--gray)
-  font-size: var(--sFontSize)
-
-.wp-block-latest-posts__post-author
-  margin-right: 1rem
-
-.wp-block-latest-posts__featured-image
-  margin-bottom: 0.5rem
-
-  a:hover
-    opacity: .75
-
-  &.alignleft,
-  &.alignright
-    max-width: 50%
-
-    .is-grid &
-      max-width: 40%
-
-  &.alignleft
-    float: left
-    margin-right: 1rem
-
-  &.alignright
-    float: right
-    margin-left: 1rem
+    font-size: var(--sFontSize)
+    text-align: left
+    color: white
+    
+    @media ($below-s)
+      font-size: 0 // hide the description
   
-  &.aligncenter,
-  .is-grid &
-    max-width: none
+  strong
+    display: block
+    font-size: var(--mFontSize)
+    font-family: var(--hFontFamily)
 
-    img
-      width: 100%
-      max-height: 150px
-      object-fit: cover
+
+.editor-styles-wrapper
+  .wp-block-image.is-style-h-thumbnail-wide
+    padding-bottom: calc(var(--blogWidth) / 2)
+  .wp-block-image.is-style-h-thumbnail-tall
+    padding-bottom: var(--blogWidth)
+    max-width: calc(var(--blogWidth) / 2)

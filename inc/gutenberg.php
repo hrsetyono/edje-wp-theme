@@ -7,13 +7,14 @@ if (is_admin()) {
   add_filter('h_disallowed_blocks', 'my_disallowed_blocks');
 }
 
+
 /**
  * Register custom block style
  */
 function my_custom_block_styles() {
   // register_block_style('core/table', [ 'name' => 'sample', 'label' => 'Sample Style' ]);
-  register_block_style('core/buttons', [ 'name' => 'no-spacing', 'label' => 'No Spacing' ]);
 }
+
 
 
 /**

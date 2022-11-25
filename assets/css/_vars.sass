@@ -80,8 +80,10 @@
 
   // WP
   --adminBarHeight : 0px
-  --blockSpacing   : 1.5rem
-  --groupSpacing   : 3rem
+  --headerHeight   : 80px
+
+  --blockGap  : 1.5rem
+  --wideGap   : 3rem
 
   
   @media ($below-m)
@@ -100,10 +102,11 @@
     --h5Size : 18px
     --h6Size : var(--fontSize)
 
-    --groupSpacing: 2.5rem
+    --headerHeight: 60px
+    --wideGap: 2.5rem
 
   @media ($below-xs)
-    --blockSpacing: 1rem
+    --blockGap: 1rem
 
 body.admin-bar
   --adminBarHeight : 32px

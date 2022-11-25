@@ -66,6 +66,11 @@
   &:not(.is-cropped)
     align-items: flex-start
 
+  .blocks-gallery-caption
+    flex-basis: 100%
+    text-align: center
+    font-size: smaller
+
   @media ($above-s)
     &.columns-1
       --columns: 1
@@ -103,6 +108,8 @@
     width: calc(100% / var(--columns) - var(--gap))
   
   .wp-block-gallery.is-cropped &
+    a
+      height: 100%
     img
       flex: 1
       height: 100%
@@ -110,69 +117,91 @@
       object-fit: cover
       object-position: center center
 
-// caption
-.wp-block-gallery
-  .wp-block-image figcaption
+
+///// THUMBNAILS
+
+.is-style-h-thumbnails figure,
+.is-style-h-thumbnail-wide,
+.is-style-h-thumbnail-tall
+  position: relative
+  height: 0
+
+  > a,
+  > img
+    +absolute-fill
+    width: 100%
+    height: 100%
+
+  > img,
+  > a img
+    width: 100%
+    object-fit: cover
+    object-position: center center
+
+  // hide the description
+  @media ($below-s)
+    figcaption
+      font-size: 0
+  
+  strong
+    display: block
+    font-size: var(--mFontSize)
+    font-family: var(--hFontFamily)
+
+.is-style-h-thumbnail-wide
+  padding-bottom: calc(var(--blogWidth) / 2)
+
+.is-style-h-thumbnail-tall
+  padding-bottom: var(--blogWidth)
+  max-width: calc(var(--blogWidth) / 2)
+
+// Thumbnail caption
+.wp-block-gallery figure,
+.is-style-h-thumbnail-wide,
+.is-style-h-thumbnail-tall
+  figcaption
+    overflow-y: hidden
+    pointer-events: none
+    background-image: linear-gradient( 0deg, rgba(black,.7), rgba(black,.5) 50%,transparent)
+    
     position: absolute
     z-index: 2
     left: 0
     bottom: 0
+    
     width: 100%
-    padding: 0.5rem
-    background-image: linear-gradient( 0deg, rgba(black,.7), rgba(black,.5) 50%,transparent)
+    max-height: 75%
+    padding: 1rem
+    border: none
 
-    text-align: center
+    font-size: var(--sFontSize)
+    text-align: left
     color: white
 
   figcaption a:hover
     opacity: .6
     color: inherit
 
-  .blocks-gallery-caption
-    flex-basis: 100%
-    text-align: center
-    font-size: smaller
+// Gallery Thumbnails
+.wp-block-gallery.is-style-h-thumbnails
+  display: grid
+  grid-template-columns: repeat(var(--columns, 3), 1fr)
 
-
-// GALLERY in v5.8 and older
-.wp-block-gallery:not(.has-nested-images)
-  ul
-    list-style-type: none
-    padding: 0
-    display: flex
-    flex-wrap: wrap
-    row-gap: var(--gap)
-    column-gap: var(--gap)
-
-  li
-    flex-grow: 1
-    width: calc(100% / var(--columns) - var(--gap))
+  @media ($below-s)
+    --columns: 2
 
   figure
-    position: relative
-
-  &.is-cropped figure
-    height: 100%
-  
-  &.is-cropped img
-    flex: 1
-    height: 100%
+    max-width: none
     width: 100%
-    object-fit: cover
-    object-position: center center
+    height: 100%
+    padding-bottom: 75%
 
-  li figcaption
-    position: absolute
-    bottom: 0
-    left: 0
-    right: 0
-    padding: 0.25rem
-    background-image: linear-gradient( 0deg, rgba(black,.7), rgba(black,.5) 50%,transparent)
+  .is-style-h-thumbnail-wide
+    grid-column: span 2
+    padding-bottom: calc(37.5% - var(--gap) / 2)
 
-    text-align: center
-    font-size: var(--sFontSize)
-    color: var(--textInvert)
-
+  .is-style-h-thumbnail-tall
+    grid-row: span 2
 
 
 ///// COVER
@@ -187,7 +216,7 @@
   background-position: center center
   background-color: var(--bgColor, black)
   min-height: 400px
-  padding: var(--blockSpacing) 0
+  padding: var(--blockGap) 0
 
   &:not(.alignfull)
     border-radius: var(--gRadius)
@@ -287,6 +316,24 @@
   &.has-background-dim-100
     opacity: 1
 
+// Cover Below Header
+.wp-block-cover.is-style-h-below-header
+  margin-top: calc(var(--headerHeight) * -1)
+
+body.h-has-cover-below-header
+  .header:not(.is-stuck),
+  .header-mobile:not(.is-stuck)
+    background-color: transparent
+
+    .menu-item > a
+      color: var(--textInvert)
+    .menu-item.menu-item-has-children > a::after
+      filter: var(--textInvertFilter)
+
+// Cover Mobile
+.wp-block-cover[style*="--hMobileHeight"]
+  @media ($below-s)
+    min-height: var(--hMobileHeight) !important
 
 ///// MEDIA TEXT
 
@@ -301,7 +348,7 @@
 
   &.alignwide,
   &.alignfull
-    margin-top: var(--groupSpacing)
+    margin-top: var(--wideGap)
 
   &.has-media-on-the-right
     grid-template-columns: var(--columnContent) var(--columnMedia)
