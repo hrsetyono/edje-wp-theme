@@ -1,29 +1,28 @@
 <?php
-
 add_action('init', 'my_shop_init');
-add_action('after_setup_theme', 'my_shop_support');
+add_action('after_setup_theme', 'my_shop_theme_supports');
 add_action('wp_enqueue_scripts', 'my_frontend_shop_assets', 101);
 add_action('admin_enqueue_scripts', 'my_admin_shop_assets', 100);
 add_action('enqueue_block_editor_assets', 'my_editor_shop_assets', 100);
+my_shop_block_styles();
 
 // disable built-in WooCommerce CSS
 add_filter('woocommerce_enqueue_styles', '__return_empty_array');
 
-my_shop_block_styles();
-
-
-/**
- * Set global $product object
- */
-function my_setup_productdata($post) {
-  global $product;
-  $product = isset($post->product)
-    ? $post->product
-    : wc_get_product($post->ID);
+if (is_admin()) {
+  add_action('add_meta_boxes' , 'my_modify_shop_excerpt_metabox', 40);
 }
 
+if (is_cart()) {
+  // Move the Cross-sell out of the CART TOTAL div
+  remove_action('woocommerce_cart_collaterals', 'woocommerce_cross_sell_display');
+  add_action('woocommerce_after_cart', 'my_custom_cross_sell_display');
+}
+
+/////
+
 /**
- * Remove image sizes
+ * @action init
  */
 function my_shop_init() {
   // remove all woocommerce image sizes
@@ -39,6 +38,24 @@ function my_shop_init() {
   foreach ($wc_image_sizes as $s) {
     remove_image_size($s);
   }
+}
+
+/**
+ * Setup theme_support for WooCommerce
+ * 
+ * @action after_setup_theme
+ */
+function my_shop_theme_supports() {
+  add_theme_support('woocommerce', [
+    'product_grid' => [
+      'default_columns' => 4
+    ],
+    'single_image_width' => 480,
+  ]);
+
+  add_theme_support('wc-product-gallery-zoom');
+  add_theme_support('wc-product-gallery-lightbox');
+  add_theme_support('wc-product-gallery-slider');
 }
 
 
@@ -90,24 +107,6 @@ function my_editor_shop_assets() {
   wp_deregister_style('wc-blocks-editor'); 
 }
 
-
-/**
- * Run after theme is loaded
- * @action after_setup_theme
- */
-function my_shop_support() {
-  add_theme_support('woocommerce', [
-    'product_grid' => [
-      'default_columns' => 4
-    ],
-    'single_image_width' => 480,
-  ]);
-
-  add_theme_support('wc-product-gallery-zoom');
-  add_theme_support('wc-product-gallery-lightbox');
-  add_theme_support('wc-product-gallery-slider');
-}
-
 /**
  * Custom Styles for WooCommerce's blocks
  */
@@ -127,5 +126,31 @@ function my_shop_block_styles() {
   foreach ($slider_blocks as $b) {
     register_block_style($b, ['name' => 'my-slider', 'label' => 'Slider']);
   }
+}
 
+/**
+ * Override the WooCommerce excerpt box with plain textarea
+ * 
+ * @action add_meta_boxes 40
+ */
+function my_modify_shop_excerpt_metabox() {
+  remove_meta_box('postexcerpt', 'product', 'normal');
+  add_meta_box('postexcerpt', __('Excerpt'), 'post_excerpt_meta_box', 'product', 'side');
+}
+
+
+/**
+ * Change the markup of Cart's Cross-Sell
+ * @action woocommerce_cart_collaterals
+ */
+function my_custom_cross_sell_display() {
+  $args = [
+    'products' => get_posts([
+      'post_type' => 'product',
+      'post__in' => WC()->cart->get_cross_sells(),
+      'posts_per_page' => 4,
+    ]),
+  ];
+
+  get_template_part('woocommerce/views/_cart-cross-sells', '', $args);
 }

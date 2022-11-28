@@ -3,7 +3,7 @@
   $content = $args['content'] ?? '';
 
   $categories = $args['categories'] ?? null;
-  $products = $args['products'] ?? null;
+  $products = $args['products'] ?? [];
 ?>
 
 <main>
@@ -24,5 +24,6 @@
 
   <?php if ($products) {
     get_template_part('woocommerce/views/_products', '', $args);
+    get_template_part('views/_pagination', '', $args);
   } ?>
 </main>

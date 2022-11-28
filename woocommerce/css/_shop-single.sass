@@ -497,3 +497,20 @@ div.woocommerce-product-rating
 
   a + a
     margin-left: 0.25rem
+
+
+///// Marketplace CTA Sidebar
+
+.product-cta
+  form.cart
+    position: sticky
+    top: calc(var(--headerHeight) + 0.5rem)
+    flex-direction: column
+    row-gap: 1rem
+    padding: 1rem
+    border: 1px solid rgba(--text, .1)
+    border-radius: var(--gRadius)
+
+  .woocommerce-variation-add-to-cart
+    flex-direction: column
+    row-gap: 1rem

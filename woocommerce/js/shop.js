@@ -24,18 +24,20 @@ const myCart = {
    * Listeners for the Bottom Bar in mobile
    */
   bottomBar() {
-    const $toggles = document.querySelectorAll('.product-bar [href="#add-product"]');
-
+    const $toggles = document.querySelectorAll('.product-bar form');
     $toggles.forEach(($t) => {
-      $t.addEventListener('click', toggle);
+      $t.addEventListener('click', openBar);
     });
 
-    function toggle() {
-      const $form = document.querySelector('.product-bar__form');
-      const $buttons = document.querySelector('.product-bar__buttons');
+    function openBar(e) {
+      e.stopPropagation();
+      console.log('click bar');
+      const $form = e.currentTarget;
 
-      $form.classList.toggle('is-hidden');
-      $buttons.classList.toggle('is-hidden');
+      if (!$form.classList.contains('is-toggled')) {
+        e.preventDefault();
+        $form.classList.add('is-toggled');
+      }
     }
   },
 };

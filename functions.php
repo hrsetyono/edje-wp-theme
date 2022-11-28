@@ -18,11 +18,9 @@ if (is_admin()) {
   require_once $inc . '/frontend.php';
 }
 
+
 if (class_exists('WooCommerce')) {
-  $wc_dir = __DIR__ . '/woocommerce';
-  require_once $wc_dir . '/shop-setup.php';
-  require_once $wc_dir . '/shop-frontend.php';
-  require_once $wc_dir . '/shop-admin.php';
+  require_once __DIR__ . '/woocommerce/_functions.php';
 }
 
 

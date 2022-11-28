@@ -1,5 +1,9 @@
 ///// PLUGIN: Variation Swatches
 
+.variations
+  th
+    padding-right: 1rem
+
 .variable-items-wrapper
   display: flex
   flex-wrap: wrap
@@ -133,14 +137,39 @@
   @media ($above-xs)
     display: none
 
-.product-bar__form
+  .woocommerce-variation
+    display: none
+
+.product-bar
   form
     padding: var(--gridRim)
     border: none
 
+  form.variations_form:not(.is-toggled)
+    .variations,
+    .woocommerce-variation
+      display: none !important
+    [type="submit"]
+      font-size: 0
+      filter: none
+    [type="submit"]::before
+      content: "Select Variation"
+      font-size: var(--fontSize)
+      letter-spacing: 0.025em
+
+
   .out-of-stock
     padding: var(--gridRim)
     font-size: var(--h5Size)
+
+  button
+    flex: 1
+    justify-content: center
+
+  .stock
+    margin-left: 0
+    padding: 0
+    background-color: transparent
 
 .product-bar__form-header
   display: flex

@@ -1,6 +1,7 @@
 <?php
-  $catalog_columns = $args['catalog_columns'] ?? 4;
-  $products = $args['products'] ?? [];
+  $products = $args['products'];
+
+  $catalog_columns = $args['catalog_columns'] ?? get_option('woocommerce_catalog_columns');
   $extra_classes = $args['extra_classes'] ?? '';
 ?>
 
@@ -9,8 +10,13 @@
   <ul class="wc-block-grid__products">
 
   <?php foreach ($products as $post): ?>
-    <?php setup_postdata($post); ?>
-    <?php my_setup_productdata($post); ?>
+    <?php
+      setup_postdata($post);
+
+      // Set the global variable
+      global $product;
+      $product = isset($post->product) ? $post->product : wc_get_product($post->ID);
+    ?>
 
     <li class="wc-block-grid__product">
       <a
@@ -19,12 +25,10 @@
       >
         <figure class="wc-block-grid__product-image">
           <?php
-            /**
-             * @hooked woocommerce_show_product_loop_sale_flash - 10
-             * @hooked woocommerce_template_loop_product_thumbnail - 10
-             * @hooked h_show_product_outfstock_flash - 15
-             */
-            do_action('woocommerce_before_shop_loop_item_title');
+            // do_action('woocommerce_before_shop_loop_item_title');
+            woocommerce_show_product_loop_sale_flash();
+            woocommerce_template_loop_product_thumbnail();
+            h_show_product_outfstock_flash();
           ?>
         </figure>
         <h2 class="wc-block-grid__product-title">
@@ -33,20 +37,16 @@
       </a>
 
       <?php
-        /**
-         * @hooked woocommerce_template_loop_rating - 5
-         * @hooked woocommerce_template_loop_price - 10
-         */
-        do_action('woocommerce_after_shop_loop_item_title');
+        // do_action('woocommerce_after_shop_loop_item_title');
+        woocommerce_template_loop_rating();
+        woocommerce_template_loop_price();
       ?>
       
       <div class="wc-block-grid__product-add-to-cart">
         <?php
-          /**
-           * @hooked woocommerce_template_loop_product_link_close - 5
-           * @hooked woocommerce_template_loop_add_to_cart - 10
-           */
-          do_action('woocommerce_after_shop_loop_item');
+          // do_action('woocommerce_after_shop_loop_item');
+          woocommerce_template_loop_product_link_close();
+          woocommerce_template_loop_add_to_cart();
         ?>
       </div>
     </li>
@@ -56,9 +56,9 @@
 <?php else: ?>
   <div class="wp-block-group">
     <div class="wp-block-group__inner-container">
-      <h1 class="has-text-align-center">
+      <h2 class="has-text-align-center">
         Product Not Found
-      </h1>
+      </h2>
       <p class="has-text-align-center">
         Sorry, there is no product in this category
       </p>

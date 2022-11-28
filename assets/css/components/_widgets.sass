@@ -359,11 +359,15 @@ input.search-submit
   svg
     width: 1rem
     height: 1rem
-    margin-right: 0.25rem
+
   span
+    margin-right: 0.25rem
     line-height: 1
     text-transform: uppercase
     font-size: var(--sFontSize)
+
+    @media ($below-xs)
+      display: none
 
   path,
   circle
@@ -373,10 +377,6 @@ input.search-submit
   // alignment
   .widget-column:last-child:not(:first-child) &
     flex-direction: row-reverse
-
-    svg
-      margin-right: 0
-      margin-left: 0.25rem
 
 // WIDGET: GALLERY
 
