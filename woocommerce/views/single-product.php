@@ -23,10 +23,17 @@
       ?>
     </div>
     <div class="product-summary / wp-block-column">
+      <?php // do_action('woocommerce_single_product_summary'); ?>
+      <?php woocommerce_template_single_title(); ?>
+
+      <div class="product-summary__subheader">
+        <div class="product-summary__sold">
+          Sold <span><?= $total_sales ?></span>
+        </div>
+        <?php woocommerce_template_single_rating(); ?>
+      </div>
+
       <?php
-        // do_action('woocommerce_single_product_summary');
-        woocommerce_template_single_title();
-        woocommerce_template_single_rating();
         woocommerce_template_single_price();
         woocommerce_template_single_add_to_cart();
         woocommerce_template_single_excerpt();

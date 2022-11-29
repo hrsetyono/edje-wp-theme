@@ -1,4 +1,5 @@
 .product-columns
+  align-items: flex-start
   column-gap: 4rem
 
   @media ($below-m)
@@ -7,7 +8,8 @@
 ///// GALLERY
 
 .product-figure
-  position: relative
+  position: sticky
+  top: calc(var(--headerHeight) + var(--adminBarHeight))
 
 div.woocommerce-product-gallery
   margin-top: 0
@@ -85,23 +87,33 @@ div.woocommerce-product-gallery
 
 .product-summary
   h1
-    font-size: var(--h2Size)
+    font-size: var(--h3Size)
 
   .price
     display: flex
     justify-content: flex-start
     margin-top: var(--blockGap)
-    font-size: var(--h4Size)
+    font-size: var(--h3Size)
     color: var(--text)
-
-  .stock
-    font-weight: 700
-    font-size: var(--mFontSize)
+    line-height: 1
 
   del
     font-size: var(--h5Size)
 
-  
+// Sold and Rating
+.product-summary__subheader
+  display: flex
+  align-items: center
+  margin-top: 0
+
+  > *:nth-child(n+2)::before
+    content: "•"
+    display: inline-block
+    padding: 0 0.75rem
+    color: var(--gray)
+
+  span
+    color: var(--gray)
 
 form.cart
   display: flex
@@ -216,7 +228,6 @@ table.variations
 
   th,
   td
-    padding-top: 0.5rem
     padding-bottom: 0.5rem
 
 // I don't see a use of this
@@ -259,16 +270,14 @@ a.reset_variations
       margin-bottom: 0.5rem
 
   .price
-    margin: 0
-    font-size: var(--mFontSize)
+    display: none !important // change the big price instead
 
   .stock
     padding: 0 0.5rem
     border-radius: var(--gRadius)
-    margin-left: 1rem
     background-color: rgba(--text, .2)
     font-weight: var(--fontWeight)
-    font-size: var(--sFontSize)
+    font-size: var(--fontSize)
 
   .out-of-stock
     background-color: var(--colorAlertLight)
@@ -279,7 +288,6 @@ a.reset_variations
 div.woocommerce-product-rating
   display: flex
   align-items: center
-  margin-top: 0.5rem
 
   .woocommerce-review-link
     margin-left: 0.5rem

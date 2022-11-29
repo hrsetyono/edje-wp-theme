@@ -31,7 +31,6 @@ const myCart = {
 
     function openBar(e) {
       e.stopPropagation();
-      console.log('click bar');
       const $form = e.currentTarget;
 
       if (!$form.classList.contains('is-toggled')) {
@@ -74,9 +73,27 @@ const mySlider = {
   },
 };
 
+const myVariation = {
+  init() {
+    const $form = document.querySelector('form.variations_form');
+
+    // Change the big price
+    if ($form) {
+      window.jQuery($form).on('found_variation', (e, variation) => {
+        const $price = document.querySelector('.product-summary .price');
+        const newPrice = variation.price_html
+          .replace(/^<span class="price">/g, '')
+          .replace(/<\/span>$/g, '');
+        $price.innerHTML = newPrice;
+      });
+    }
+  },
+};
+
 function onReady() {
   myCart.init();
   mySlider.init();
+  myVariation.init();
 }
 
 function onLoad() {
