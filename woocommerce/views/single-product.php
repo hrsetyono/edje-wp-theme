@@ -27,9 +27,12 @@
       <?php woocommerce_template_single_title(); ?>
 
       <div class="product-summary__subheader">
-        <div class="product-summary__sold">
-          Sold <span><?= $total_sales ?></span>
-        </div>
+        <?php if ($total_sales > 0): ?>
+          <div class="product-summary__sold">
+            Sold <span><?= $total_sales ?></span>
+          </div>
+        <?php endif; ?>
+
         <?php woocommerce_template_single_rating(); ?>
       </div>
 

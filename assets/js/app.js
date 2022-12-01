@@ -40,24 +40,54 @@ const myHeader = {
     this.preventCloseOffcanvas();
 
     this.offcanvasDepth2();
-    this.footerDepth1();
+    // this.footerDepth1();
   },
 
   /**
    *  Add extra class to Sticky header when it's on sticky state
    */
   stickyRow() {
+    // Abort if browser doesn't support sticky position
     if (!(CSS.supports && CSS.supports('position', 'sticky'))) { return; }
 
-    const target = '.header, .header-mobile';
-    const $elems = [].slice.call(document.querySelectorAll(target));
+    const $elems = document.querySelectorAll('.header, .header-mobile');
+    let $visibleElems = $elems;
+
+    // If has transparent header, filter only visible elements
+    if (document.body.classList.contains('h-has-transparent-header')) {
+      $visibleElems = getVisibleElems($elems);
+
+      window.addEventListener('resize', () => {
+        $visibleElems = getVisibleElems($elems);
+      });
+    }
 
     // Initial check if already sticky
-    $elems.forEach(this.checkStickyState);
+    $visibleElems.forEach(checkPosition);
 
     window.addEventListener('scroll', () => {
-      $elems.forEach(this.checkStickyState);
+      $visibleElems.forEach(checkPosition);
     });
+
+    //
+
+    function getVisibleElems($elements) {
+      return [...$elements].filter(($e) => $e.offsetWidth > 0 || $e.offsetHeight > 0 || $e.getClientRects().length > 0);
+    }
+
+    function checkPosition($elem) {
+      const currentOffset = $elem.getBoundingClientRect().top;
+      const stickyOffset = parseInt(getComputedStyle($elem).top.replace('px', ''), 10);
+      const isStuck = currentOffset <= stickyOffset;
+
+      if (isStuck) {
+        $elem.classList.add('is-stuck');
+        document.body.classList.remove('h-has-transparent-header');
+      } else {
+        $elem.classList.remove('is-stuck');
+        document.body.classList.add('h-has-transparent-header');
+      }
+    }
   },
 
   /**
@@ -119,22 +149,6 @@ const myHeader = {
         $wrapper.classList.toggle('is-open');
       });
     });
-  },
-
-  /**
-   * Check if an element is in Sticky state or not
-   * @param {*} $elem
-   */
-  checkStickyState($elem) {
-    const currentOffset = $elem.getBoundingClientRect().top;
-    const stickyOffset = parseInt(getComputedStyle($elem).top.replace('px', ''), 10);
-    const isStuck = currentOffset <= stickyOffset;
-
-    if (isStuck) {
-      $elem.classList.add('is-stuck');
-    } else {
-      $elem.classList.remove('is-stuck');
-    }
   },
 };
 

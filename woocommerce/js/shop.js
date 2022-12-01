@@ -54,6 +54,10 @@ const mySlider = {
       const hasColumns = $slider.getAttribute('class').match(/has-(\d)-columns/);
       const columns = hasColumns[1] ? parseInt(hasColumns[1], 10) : 3;
 
+      const $wrapper = $slider.querySelector('.wc-block-grid__products');
+      $wrapper.classList.add('swiper-wrapper');
+
+      // TODO: .wc-block-grid__products should be the swiper-wrapper, not create new one
       swiper($slider, {
         slideClass: 'wc-block-grid__product',
         loop: true,

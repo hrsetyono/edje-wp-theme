@@ -5,6 +5,10 @@
   .footer-widgets &
     width: 100%
 
+  .offcanvas &
+    display: flex
+    justify-content: center
+
 .widget + .widget
   header &
     margin-left: 1rem
@@ -71,7 +75,7 @@
   .offcanvas &
     display: flex
     flex-direction: column
-    align-items: flex-start
+    justify-content: center
 
     overflow-y: auto
     height: 100%
@@ -341,7 +345,7 @@ input.search-submit
   display: flex
   align-items: center
   padding: 0.5rem
-  border: 1px solid rgba(--text, .2)
+  border: 1px solid
   border-bottom-width: 2px
   color: var(--toggleColor)
 
@@ -377,6 +381,10 @@ input.search-submit
   // alignment
   .widget-column:last-child:not(:first-child) &
     flex-direction: row-reverse
+
+  // when transparent
+  body.h-has-transparent-header &
+    --toggleColor: var(--textInvert)
 
 // WIDGET: GALLERY
 
