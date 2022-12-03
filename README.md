@@ -22,41 +22,16 @@ Stylesheet is compiled with **Node Sass**. Visit that link to know how to compil
 **MANUAL**
 
 1. Copy this repo to your WordPress theme directory.
-1. Download [Edje WP Library](https://github.com/hrsetyono/edje-wp-library) plugin and put it into your Plugin directory.
+1. Download [Edje WP Library](https://github.com/hrsetyono/edje-wp-library) plugin as dependency.
 
 **WITH COMPOSER**
 
-> Available in Packagist under the name `pixelstudio/edje-wp-theme`.
+If you are using Composer to manage themes and plugins, add these packages:
 
-This is our workflow for starting a new project:
+- `"pixelstudio/edje-wp-theme": "~14.4.0",`
+- `"pixelstudio/edje-wp-library": "~9.4",`
 
-1. Create a directory, put WP Core files in it.
-
-1. In the root path (where `wp-config` resides), create new file named `composer.json`. Put this code below:
-
-    ```
-    {
-      "name": "pixelstudio/new-site",
-      "description": "Run the command `composer update` to download all plugins and themes.",
-      "authors": [
-        { "name": "Pixel Studio", "email": "info@pixelstudio.id", "homepage": "https://pixelstudio.id" }
-      ],
-      "require": {
-        "pixelstudio/edje-wp-theme": "~14.1",
-        "pixelstudio/edje-wp-library": "~9.0.0"
-      },
-      "require-dev": {},
-      "suggest": {},
-      "repositories":[
-        { "type": "composer", "url":"https://wpackagist.org" }
-      ],
-      "autoload": { "psr-0": { "Acme": "src/" } }
-    }
-    ```
-
-1. Run the command `composer update` in that directory.
-
-1. After first run, rename `edje-wp-theme` so it won't be overriden the next time you run `composer update`. Also remove `pixelstudio/edje-wp-theme` in your Composer JSON.
+Then rename `edje-wp-theme` to prevent it from being overriden.
 
 ## Compiling Sass
 
@@ -83,11 +58,3 @@ Here are some websites that uses this theme:
 - [GES13 - Refrigeration Distributor](https://ges13.com)
 - [Paritama - Garden Architecture](https://paritama.com)
 - [Pandarin - Mandarin Learning Center](https://pandarin.net)
-
-## Useful Links
-
-1. [What is Edje Sass?](https://github.com/hrsetyono/edje/wiki)
-1. [What is Edje WordPress Library?](https://github.com/hrsetyono/edje-wp-library)
-1. [What is Edje WooCommerce Library?](https://github.com/hrsetyono/edje-wc-library)
-1. [How to compile Sass files?](https://github.com/hrsetyono/edje/wiki#installation)
-1. [How to debug with mobile browser?](https://github.com/hrsetyono/generator-edje/wiki/My-Workflow#debugging-in-mobile)

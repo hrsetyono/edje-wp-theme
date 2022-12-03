@@ -97,7 +97,7 @@
   .mega-menu,
   .mega-menu ul
     list-style-type: none
-    border-left: 1px solid rgba(--text, .1)
+    border-left: 1px solid rgba(--textInvert, .1)
     margin-left: 0.75rem
 
   .mega-menu__column
@@ -133,7 +133,7 @@
 ///// Menu BACKGROUND - only works in mega menu
 
 .mega-menu .menu-item-has-background
-  --textColor: var(--text)
+  --textColor: inherit
   --bgHover: rgba(0,0,0,.1)
 
   background-color: var(--bgColor, transparent)
@@ -142,6 +142,7 @@
 
   &.menu-background-black
     --textColor: var(--textInvert)
+    --bgColor: black
     --bgHover: rgba(255,255,255,.2)
 
   &.menu-background-lighter
@@ -150,14 +151,12 @@
   &.menu-background-darker
     --bgColor: rgba(0,0,0,.05)
 
-  &.menu-background-black
-    --bgColor: black
-
   &.menu-background-white
     --bgColor: white
 
   &.menu-background-main
     --bgColor: var(--color1Light)
+    --textColor: var(--text)
 
   &.menu-background-sub
     --bgColor: var(--color2Light)

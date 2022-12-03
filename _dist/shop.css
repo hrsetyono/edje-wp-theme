@@ -929,6 +929,7 @@ body.woocommerce-cart .widget_h_cart, body.woocommerce-checkout .widget_h_cart {
   font-weight: var(--fontWeight);
   text-align: center;
   letter-spacing: 0;
+  line-height: 1;
 }
 @media (max-width:960px) {
   .hwc-widget-button {

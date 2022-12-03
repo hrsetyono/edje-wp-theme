@@ -279,13 +279,14 @@
     --h4Size: 20px;
     --h5Size: 18px;
     --h6Size: var(--fontSize);
-    --headerHeight: 60px;
+    --headerHeight: 57px;
     --wideGap: 2.5rem;
   }
 }
 @media (max-width:480px) {
   :root {
     --blockGap: 1rem;
+    --headerHeight: 52px;
   }
 }
 
