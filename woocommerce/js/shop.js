@@ -5,6 +5,7 @@ const myCart = {
   init() {
     this.closeOffcanvasCart();
     this.bottomBar();
+    this.openCartOnAdded();
   },
 
   /**
@@ -38,6 +39,23 @@ const myCart = {
         $form.classList.add('is-toggled');
       }
     }
+  },
+
+  /**
+   * Open the Cart Offcanvas when product is added to cart via AJAX
+   */
+  openCartOnAdded() {
+    // have to use jQuery for WC compatibility
+    window.jQuery('body').on('added_to_cart', (e) => {
+      const isDesktop = window.innerWidth > 768;
+      const $cart = isDesktop
+        ? document.querySelector('.header .h-cart')
+        : document.querySelector('.header-mobile .h-cart');
+
+      if ($cart) {
+        $cart.classList.add('is-active');
+      }
+    });
   },
 };
 

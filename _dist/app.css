@@ -40,12 +40,15 @@
   --shadowThin2: 0 10px 30px rgba(0,0,0, .12);
   --linkColor: inherit;
   --linkColorHover: var(--color1);
-  --siteWidth: 1120px;
-  --blogWidth: 650px;
+  --contentSize: 650px;
+  --wideSize: 1120px;
+  --blogWidth: var(--contentSize);
+  --siteWidth: var(--wideSize);
   --gridGap: 20px;
   --gridRim: 1rem;
   --tileGap: 20px;
   --gRadius: 4px;
+  --largeRadius: 8px;
   --gTransition: all .25s ease-in-out;
   --inputColor: var(--text);
   --inputPlaceholderColor: var(--gray);
@@ -54,7 +57,9 @@
   --adminBarHeight: 0px;
   --headerHeight: 80px;
   --blockGap: 1.5rem;
-  --wideGap: 3rem;
+  --blockWideGap: 3rem;
+  --blockSpacing: var(--blockGap);
+  --groupSpacing: var(--blockWideGap);
 }
 @media (max-width:960px) {
   :root {
@@ -75,7 +80,7 @@
     --h5Size: 18px;
     --h6Size: var(--fontSize);
     --headerHeight: 57px;
-    --wideGap: 2.5rem;
+    --blockWideGap: 2.5rem;
   }
 }
 @media (max-width:480px) {
@@ -532,7 +537,7 @@ td, th {
   grid-template-columns: repeat(12, minmax(0, 1fr));
   grid-column-gap: var(--gridGap);
   grid-row-gap: var(--gridGap);
-  max-width: calc(var(--siteWidth) + var(--gridRim) * 2);
+  max-width: calc(var(--wideSize) + var(--gridRim) * 2);
   padding: 0 var(--gridRim);
   margin: 0 auto;
   width: 100%;
@@ -1036,7 +1041,7 @@ body.has-active-offcanvas .offcanvas {
 
 .main-footer {
   background-color: var(--panelBg);
-  margin-top: var(--wideGap);
+  margin-top: var(--blockWideGap);
 }
 
 .footer-widgets {
@@ -1056,7 +1061,7 @@ body.has-active-offcanvas .offcanvas {
   padding: 2.5rem;
   border-radius: var(--gRadius);
   margin: 0 auto;
-  max-width: var(--siteWidth);
+  max-width: var(--wideSize);
   color: var(--textInvert);
 }
 @media (max-width:1120px) {
@@ -1163,7 +1168,7 @@ footer .widgettitle {
 .widget-row {
   --headerGridTemplate: auto auto;
   width: 100%;
-  max-width: var(--siteWidth);
+  max-width: var(--wideSize);
   margin: 0 auto;
 }
 header .widget-row {
@@ -1186,7 +1191,7 @@ footer .widget-row {
   display: flex;
   column-gap: var(--blockGap);
   row-gap: var(--blockGap);
-  max-width: var(--siteWidth);
+  max-width: var(--wideSize);
 }
 @media (max-width:768px) {
   footer .widget-row {
@@ -1519,7 +1524,7 @@ body.h-has-transparent-header .widget_h_toggle a {
 }
 
 .post-hero.wp-block-cover {
-  padding-top: var(--wideGap);
+  padding-top: var(--blockWideGap);
 }
 
 .post-meta {
@@ -1623,7 +1628,7 @@ body.h-has-transparent-header .widget_h_toggle a {
 }
 
 .post-columns.wp-block-columns {
-  --blogWidth: auto;
+  --contentSize: auto;
   column-gap: 5rem;
 }
 @media (max-width:1120px) {
@@ -1806,8 +1811,8 @@ body.archive .post-author {
 .pagination {
   display: flex;
   justify-content: center;
-  margin-top: var(--wideGap);
-  margin-bottom: var(--wideGap);
+  margin-top: var(--blockWideGap);
+  margin-bottom: var(--blockWideGap);
   color: var(--text);
   font-size: var(--sFontSize);
 }
@@ -1870,7 +1875,7 @@ body.archive .post-author {
 
 .sidebar {
   order: 1;
-  padding-bottom: var(--wideGap);
+  padding-bottom: var(--blockWideGap);
 }
 @media (max-width:768px) {
   .sidebar {
@@ -2680,7 +2685,7 @@ button.swiper-pagination-bullet {
 }
 
 .header-widgets .has-2-columns {
-  --width: calc(var(--siteWidth) / 2);
+  --width: calc(var(--wideSize) / 2);
   --columns: 2;
 }
 @media (max-width:1120px) {
@@ -2689,7 +2694,7 @@ button.swiper-pagination-bullet {
   }
 }
 .header-widgets .has-3-columns {
-  --width: calc(var(--siteWidth) * 3 / 4);
+  --width: calc(var(--wideSize) * 3 / 4);
   --columns: 3;
   position: static;
 }
@@ -2699,7 +2704,7 @@ button.swiper-pagination-bullet {
   }
 }
 .header-widgets .has-4-columns {
-  --width: var(--siteWidth);
+  --width: var(--wideSize);
   --columns: 4;
   position: static;
 }
@@ -2927,8 +2932,8 @@ body.h-is-dark .h-dark-toggle__switch::after {
 
 .post-comments {
   padding: 0 calc(var(--gridGap) / 2);
-  max-width: var(--blogWidth);
-  margin: var(--wideGap) auto;
+  max-width: var(--contentSize);
+  margin: var(--blockWideGap) auto;
 }
 .post-comments h4 {
   margin-bottom: 1rem;
@@ -3112,7 +3117,7 @@ a.comment-edit-link::before {
   border: 1px solid rgbA(var(--textRGB), 0.2);
   box-shadow: var(--shadow0);
 }
-.comment-form > * {
+.comment-form > p {
   display: flex;
   flex-direction: column;
   width: 100%;

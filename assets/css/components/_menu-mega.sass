@@ -3,14 +3,14 @@
 .header-widgets
   // Parent wrapper
   .has-2-columns
-    --width: calc(var(--siteWidth) / 2)
+    --width: calc(var(--wideSize) / 2)
     --columns: 2
 
     @media ($below-l)
       --width: 60vw
 
   .has-3-columns
-    --width: calc(var(--siteWidth) * 3 / 4)
+    --width: calc(var(--wideSize) * 3 / 4)
     --columns: 3
     position: static // relative to grid instead of parent item
 
@@ -18,7 +18,7 @@
       --width: 75vw
 
   .has-4-columns
-    --width: var(--siteWidth)
+    --width: var(--wideSize)
     --columns: 4
     position: static // relative to grid instead of parent item
 

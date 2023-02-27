@@ -4,7 +4,6 @@
 ?>
 
 <address class="post-author">
-
   <figure class="author-avatar">
     <?= get_avatar($author_id, '100') ?>
   </figure>

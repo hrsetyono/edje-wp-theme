@@ -245,12 +245,15 @@
   --shadowThin2: 0 10px 30px rgba(0,0,0, .12);
   --linkColor: inherit;
   --linkColorHover: var(--color1);
-  --siteWidth: 1120px;
-  --blogWidth: 650px;
+  --contentSize: 650px;
+  --wideSize: 1120px;
+  --blogWidth: var(--contentSize);
+  --siteWidth: var(--wideSize);
   --gridGap: 20px;
   --gridRim: 1rem;
   --tileGap: 20px;
   --gRadius: 4px;
+  --largeRadius: 8px;
   --gTransition: all .25s ease-in-out;
   --inputColor: var(--text);
   --inputPlaceholderColor: var(--gray);
@@ -259,7 +262,9 @@
   --adminBarHeight: 0px;
   --headerHeight: 80px;
   --blockGap: 1.5rem;
-  --wideGap: 3rem;
+  --blockWideGap: 3rem;
+  --blockSpacing: var(--blockGap);
+  --groupSpacing: var(--blockWideGap);
 }
 @media (max-width:960px) {
   :root {
@@ -280,7 +285,7 @@
     --h5Size: 18px;
     --h6Size: var(--fontSize);
     --headerHeight: 57px;
-    --wideGap: 2.5rem;
+    --blockWideGap: 2.5rem;
   }
 }
 @media (max-width:480px) {
@@ -504,9 +509,9 @@ body.admin-bar {
 }
 
 .editor-styles-wrapper .wp-block-image.is-style-h-thumbnail-wide {
-  padding-bottom: calc(var(--blogWidth) / 2);
+  padding-bottom: calc(var(--contentSize) / 2);
 }
 .editor-styles-wrapper .wp-block-image.is-style-h-thumbnail-tall {
-  padding-bottom: var(--blogWidth);
-  max-width: calc(var(--blogWidth) / 2);
+  padding-bottom: var(--contentSize);
+  max-width: calc(var(--contentSize) / 2);
 }

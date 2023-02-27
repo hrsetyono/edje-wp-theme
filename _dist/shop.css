@@ -939,7 +939,6 @@ body.woocommerce-cart .widget_h_cart, body.woocommerce-checkout .widget_h_cart {
 .hwc-widget-button.is-cart-filled {
   background-color: var(--color1);
   color: var(--textInvert);
-  animation: bounce 4s 2s infinite;
 }
 .hwc-widget-button.is-cart-filled:hover {
   background-color: var(--color1Dark);

@@ -1,7 +1,7 @@
 ///// POST HERO
 
 .post-hero.wp-block-cover
-  padding-top: var(--wideGap)
+  padding-top: var(--blockWideGap)
 
 .post-meta
   --metaGap: 0.5rem
@@ -107,7 +107,7 @@
 ///// POST CONTENT
 
 .post-columns.wp-block-columns
-  --blogWidth: auto
+  --contentSize: auto
   column-gap: 5rem
 
   @media ($below-l)
@@ -290,8 +290,8 @@
 .pagination
   display: flex
   justify-content: center
-  margin-top: var(--wideGap)
-  margin-bottom: var(--wideGap)
+  margin-top: var(--blockWideGap)
+  margin-bottom: var(--blockWideGap)
 
   color: var(--text)
   font-size: var(--sFontSize)
@@ -356,7 +356,7 @@
 
 .sidebar
   order: 1
-  padding-bottom: var(--wideGap)
+  padding-bottom: var(--blockWideGap)
 
   @media ($below-s)
     order: 1

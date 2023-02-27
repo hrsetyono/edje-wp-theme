@@ -120,9 +120,11 @@
     background-image: url('../images/exclamation-circle.svg')
 
 .woocommerce-NoticeGroup-checkout
-  grid-column: span 2
-  max-width: 50%
   font-size: var(--sFontSize)
+
+  @media ($above-s)
+    grid-column: span 2 
+    max-width: 50%
 
 // Notice about changed Shipping zone in Checkout, it appear inside <form>
 
