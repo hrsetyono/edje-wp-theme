@@ -186,12 +186,13 @@
   &:last-child
     margin-bottom: 0
 
-  &.has-background
-    padding: var(--blockWideGap)
-    border-radius: var(--gRadius)
-
   &.has-background.alignfull
+    padding: var(--blockWideGap) var(--gridRim)
     border-radius: 0
+  
+  &.has-background:not(.alignfull)
+    padding: var(--blockGap)
+    border-radius: var(--gRadius)
 
 
 // Large spacing
