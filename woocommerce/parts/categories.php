@@ -1,5 +1,5 @@
 <?php
-  $categories = $args['categories'] ?? [];
+  $categories = $args['categories'];
 ?>
 
 <section class="shop-categories">

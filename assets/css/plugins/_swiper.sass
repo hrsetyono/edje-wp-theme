@@ -181,29 +181,30 @@
 .swiper-rtl .swiper-button-next,
 .swiper-button-next,
 .swiper-rtl .swiper-button-prev
+  width: 3rem
+  height: 3rem
+  border-radius: var(--gRadius)
+  transition: var(--gTransition)
 
   &::after
     content: ''
     display: inline-block
     filter: invert(1)
-    transition: var(--gTransition)
-    background: no-repeat center center
-    background-size: auto 2rem
+    background: transparent no-repeat center center
+    background-size: auto 60%
+    height: 100%
+    width: 100%
 
-    width: 3rem
-    height: 3rem
-    border-radius: var(--gRadius)
-
-  &:hover::after
-    background-color: rgba(black, .2)
-  &:active::after
-    background-color: rgba(black, .4)
+  &:hover
+    background-color: rgba(--textInvert, .2)
+  &:active
+    background-color: rgba(--textInvert, .4)
     transition: none
 
 
 .swiper-button-prev,
 .swiper-rtl .swiper-button-next
-  &:after
+  &::after
     background-image: url('../svg/chevron-left.svg')
 
   left: 0
@@ -211,7 +212,7 @@
 
 .swiper-button-next,
 .swiper-rtl .swiper-button-prev
-  &:after
+  &::after
     background-image: url('../svg/chevron-right.svg')
 
   right: 0

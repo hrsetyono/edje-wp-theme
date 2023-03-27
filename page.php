@@ -1,7 +1,7 @@
-<?php
-global $post;
-$args = [];
+<?php get_header(); ?>
 
-get_header();
-get_template_part('views/page', $post->post_name, $args);
-get_footer();
+<main role="main">
+  <?php the_content(); ?>
+</main>
+
+<?php get_footer(); ?>

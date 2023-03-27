@@ -61,15 +61,19 @@
   --linkColorHover : var(--color1)
 
 
-  // GRID -----
-  --siteWidth : #{ $size-large }
-  --blogWidth : 650px
+  // LAYOUT -----
+  --contentSize : 650px
+  --wideSize : #{ $size-large }
+  --blogWidth : var(--contentSize)
+  --siteWidth : var(--wideSize)
+
   --gridGap   : 20px
   --gridRim   : 1rem
   --tileGap   : 20px
 
   // GLOBAL
   --gRadius: 4px
+  --largeRadius: 8px
   --gTransition: all .25s ease-in-out
 
   // INPUT
@@ -83,7 +87,9 @@
   --headerHeight   : 80px
 
   --blockGap  : 1.5rem
-  --wideGap   : 3rem
+  --blockWideGap : 3rem
+  --blockSpacing: var(--blockGap)
+  --groupSpacing: var(--blockWideGap)
 
   
   @media ($below-m)
@@ -102,11 +108,12 @@
     --h5Size : 18px
     --h6Size : var(--fontSize)
 
-    --headerHeight: 60px
-    --wideGap: 2.5rem
+    --headerHeight: 57px
+    --blockWideGap: 2.5rem
 
   @media ($below-xs)
     --blockGap: 1rem
+    --headerHeight: 52px
 
 body.admin-bar
   --adminBarHeight : 32px

@@ -8,7 +8,7 @@ $colors: (
   ( hex: #E0E0E0, var: '--grayLight',  slug: 'gray-light' ),
 
   ( hex: #5C6BC0, var: '--color1',      slug: 'color-1',),
-  ( hex: #3F4EA2, var: '--color1Dark',  slug: 'color-1-dark' ),
+  ( hex: #283167, var: '--color1Dark',  slug: 'color-1-dark' ),
   ( hex: #D3D7EE, var: '--color1Light', slug: 'color-1-light' ),
 
   ( hex: #2ecc71, var: '--color2',      slug: 'color-2' ),
@@ -30,7 +30,7 @@ $filters: (
   'gray-light': invert(100%) sepia(2%) saturate(1493%) hue-rotate(171deg) brightness(114%) contrast(76%),
 
   'color-1': invert(59%) sepia(80%) saturate(2621%) hue-rotate(178deg) brightness(91%) contrast(87%),
-  'color-1-dark': invert(39%) sepia(9%) saturate(4187%) hue-rotate(163deg) brightness(95%) contrast(86%),
+  'color-1-dark': invert(17%) sepia(11%) saturate(5879%) hue-rotate(206deg) brightness(96%) contrast(93%),
   'color-1-light': invert(87%) sepia(18%) saturate(184%) hue-rotate(170deg) brightness(105%) contrast(95%),
 
   'color-2': invert(64%) sepia(63%) saturate(493%) hue-rotate(92deg) brightness(90%) contrast(90%),

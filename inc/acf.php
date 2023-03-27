@@ -47,7 +47,7 @@ function _my_render_acf_example($block, $content='', $is_preview=false, $post_id
     'content' => get_field('content'),
   ];
 
-  get_template_part('views-acf/example', '', $args);
+  get_template_part('parts/acf-example', '', $args);
 }
 
 

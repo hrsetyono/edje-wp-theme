@@ -1,15 +1,12 @@
 <?php
 global $wp_query;
-
 $term = get_queried_object();
+
 $display_mode = woocommerce_get_loop_display_mode();
 
-$args = [
-  'catalog_columns' => get_option('woocommerce_catalog_columns'),
-  'title' => $term->name,
-  'content' => wpautop($term->description),
-  'pagination' => H::get_pagination(),
-];
+$title = $term->name;
+$content = wpautop($term->description);
+$pagination = H::get_pagination();
 
 // if display products
 if ($display_mode === 'both' || $display_mode === 'products') {
@@ -18,30 +15,9 @@ if ($display_mode === 'both' || $display_mode === 'products') {
 
 // if display categories
 if ($display_mode === 'both' || $display_mode === 'subcategories') {
-  $args['categories'] = _get_categories($term->term_id);
-}
+  $raw_cats = woocommerce_get_product_subcategories($term->term_id);
 
-// disable pagination
-if ($display_mode === 'subcategories') {
-  wc_set_loop_prop('total', 0);
-}
-
-get_header();
-get_template_part('woocommerce/views/archive-product', '', $args);
-get_footer();
-
-
-/**
- * Get categories / subcategories with attached Thumbnail image and Permalink
- * 
- * @param $parent_id
- * @return - The formatted categories
- */
-function _get_categories(int $term_id = 0) : array {
-  $raw_cats = woocommerce_get_product_subcategories($term_id);
-
-  // get extra data for category
-  $parsed_cats = array_map(function($c) {
+  $args['categories'] = array_map(function($c) {
     // get thumbnail image
     $thumb_id = get_term_meta($c->term_id, 'thumbnail_id', true);
     $image = wp_get_attachment_image_src($thumb_id, 'medium');
@@ -52,6 +28,37 @@ function _get_categories(int $term_id = 0) : array {
 
     return $c;
   }, $raw_cats);
-
-  return $parsed_cats;
 }
+
+// disable pagination
+if ($display_mode === 'subcategories') {
+  wc_set_loop_prop('total', 0);
+}
+
+///// ?>
+
+<?php get_header(); ?>
+
+<main>
+  <header class="wp-block-group alignwide / shop-header">
+    <div class="wp-block-group__inner-container">
+      <h1 class="has-text-align-center">
+        <?= $title ?>
+      </h1>
+      <div class="has-text-align-center">
+        <?= $content ?>
+      </div>
+    </div>
+  </header>
+
+  <?php if ($categories) {
+    get_template_part('woocommerce/parts/categories', '', $args);
+  } ?>
+
+  <?php if ($products) {
+    get_template_part('woocommerce/parts/products', '', $args);
+    get_template_part('parts/pagination', '', $args);
+  } ?>
+</main>
+
+<?php get_footer(); ?>

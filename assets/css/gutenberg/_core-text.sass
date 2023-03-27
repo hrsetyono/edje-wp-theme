@@ -12,7 +12,7 @@ main
       padding-top: 0
   
   > *:last-child:not(.alignfull)
-    margin-bottom: var(--wideGap)
+    margin-bottom: var(--blockWideGap)
 
   ul, ol
     padding-left: 1.25rem
@@ -26,7 +26,7 @@ main,
 .wp-block-group__inner-container
   > *
     margin: 0 auto
-    max-width: var(--blogWidth)
+    max-width: var(--contentSize)
 
 // Add rim to the side
 body:not(.single-post) main,
@@ -59,7 +59,7 @@ main,
   text-align: center
 
 .alignwide
-  max-width: var(--siteWidth)
+  max-width: var(--wideSize)
   width: 100%
   
   @media ($below-l)
@@ -68,7 +68,7 @@ main,
 
 .alignfull
   max-width: none
-  margin-top: var(--wideGap)
+  margin-top: var(--blockWideGap)
 
   @media ($below-l)
     margin-right: calc(-1 * var(--gridRim))
@@ -78,7 +78,7 @@ main,
     margin-top: 0
 
   + *
-    margin-top: var(--wideGap)
+    margin-top: var(--blockWideGap)
 
   + .alignfull
     margin-top: 0
@@ -136,7 +136,7 @@ p.has-background
   border-radius: var(--gRadius)
 
 p.is-style-h-no-spacing
-  margin-bottom: calc(var(--blockGap) * -1)
+  margin-top: 0 !important
 
 .has-drop-cap:first-letter
   float: left
@@ -148,6 +148,9 @@ p.is-style-h-no-spacing
 
 .has-small-font-size
   font-size: var(--sFontSize)
+
+.has-regular-font-size
+  font-size: var(--fontSize)
 
 .has-medium-font-size
   font-size: var(--mFontSize)
@@ -257,7 +260,7 @@ ol.has-background
   position: relative
   border: none
   padding: var(--blockGap)
-  padding-right: var(--wideGap)
+  padding-right: var(--blockWideGap)
   box-shadow: var(--shadowThin)
 
   &::before
@@ -297,7 +300,7 @@ ol.has-background
   --x2: 100%
 
   position: relative
-  max-width: calc(var(--siteWidth) / 2 - var(--gap))
+  max-width: calc(var(--wideSize) / 2 - var(--gap))
   transform: translateX(calc(-50% - var(--gap)))
   
   border: none
@@ -402,7 +405,7 @@ ol.has-background
     &.has-text-align-center
       transform: none
       margin-top: 5rem
-      max-width: var(--blogWidth)
+      max-width: var(--contentSize)
 
       cite
         top: 0

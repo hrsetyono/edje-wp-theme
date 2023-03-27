@@ -9,8 +9,9 @@
     margin-top: calc(-1.5 * var(--blockGap))
 
   .wc-block-grid__products
-    row-gap: 1rem
-    column-gap: 1rem
+    display: flex
+    row-gap: 0
+    column-gap: 0
 
   .swiper-pagination
     display: flex
@@ -46,37 +47,28 @@
 
   .swiper-button-next,
   .swiper-button-prev
+    display: inline-block
+    background-color:  rgba(--text, .4)
+    transition: var(--gTransition)
+
     position: absolute
     top: 0
     left: auto
     right: 0
+    transform: none
+
     margin-top: 0
-    height: auto
-    width: auto
+    width: 2rem
+    height: 2rem
+    border-radius: 50%
+    line-height: 1
 
-    &::after
-      content: ""
-      display: inline-block
-      background: rgba(--text, .1) no-repeat center center
-      background-size: auto 50%
-      transition: var(--gTransition)
-
-      border-radius: 50%
-      width: 2rem
-      height: 2rem
-      line-height: 1
-
-    &:hover::after
-      background-color: rgba(--text, .2)
-    &:active::after
-      background-color: rgba(--text, .3)
+    &:hover
+      background-color: rgba(--text, .6)
+    &:active
+      background-color: rgba(--text, .8)
       transform: translateY(1px)
       transition: none
 
   .swiper-button-prev
     right: 2.5rem
-
-  .swiper-button-prev::after
-    background-image: url('../images/chevron-left.svg')
-  .swiper-button-next::after
-    background-image: url('../images/chevron-right.svg')

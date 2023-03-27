@@ -139,7 +139,7 @@
     z-index: 105
     background-color: rgba(black, .5)
 
-.h-widget-button
+.hwc-widget-button
   display: flex
   align-items: center
 
@@ -155,6 +155,7 @@
   font-weight: var(--fontWeight)
   text-align: center
   letter-spacing: 0
+  line-height: 1
 
   @media ($below-m)
     font-size: var(--sFontSize)
@@ -162,7 +163,7 @@
   &.is-cart-filled
     background-color: var(--color1)
     color: var(--textInvert)
-    animation: bounce 4s 2s infinite
+      
 
     &:hover
       background-color: var(--color1Dark)
@@ -170,7 +171,7 @@
     path
       fill: var(--textInvert)
 
-  body.h-has-cover-below-header .header-widgets:not(.is-stuck) &
+  body.h-has-transparent-header &
     border-color: rgba(--textInvert, .3)
     color: var(--textInvert)
 

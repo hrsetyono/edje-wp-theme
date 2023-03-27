@@ -149,11 +149,11 @@
     font-family: var(--hFontFamily)
 
 .is-style-h-thumbnail-wide
-  padding-bottom: calc(var(--blogWidth) / 2)
+  padding-bottom: calc(var(--contentSize) / 2)
 
 .is-style-h-thumbnail-tall
-  padding-bottom: var(--blogWidth)
-  max-width: calc(var(--blogWidth) / 2)
+  padding-bottom: var(--contentSize)
+  max-width: calc(var(--contentSize) / 2)
 
 // Thumbnail caption
 .wp-block-gallery figure,
@@ -267,19 +267,24 @@
 
   position: relative
   z-index: 2
-  width: var(--siteWidth)
+  width: var(--wideSize)
   color: var(--textColor, var(--textInvert))
 
   .wp-block-cover:not(.alignfull) &
     padding-right: var(--gridRim)
     padding-left: var(--gridRim)
 
+  // Bugged: WP 5.9 with theme.json can't change alignment for inner Cover
+  // > *
+  //   width: 100%
+  //   max-width: var(--contentSize)
+  // .alignwide
+  //   max-width: var(--wideSize)
+
+  // Temp fix: everything aligned wide
   > *
     width: 100%
-    max-width: var(--blogWidth)
-  
-  .alignwide
-    max-width: var(--siteWidth)
+    max-width: var(--wideSize)
 
 
 .has-parallax
@@ -321,7 +326,7 @@
   margin-top: calc(var(--headerHeight) * -1)
   padding-top: calc(var(--headerHeight))
 
-body.h-has-cover-below-header
+body.h-has-transparent-header
   .header:not(.is-stuck),
   .header-mobile:not(.is-stuck)
     background-color: transparent
@@ -349,7 +354,7 @@ body.h-has-cover-below-header
 
   &.alignwide,
   &.alignfull
-    margin-top: var(--wideGap)
+    margin-top: var(--blockWideGap)
 
   &.has-media-on-the-right
     grid-template-columns: var(--columnContent) var(--columnMedia)

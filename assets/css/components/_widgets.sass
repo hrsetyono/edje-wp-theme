@@ -5,6 +5,13 @@
   .footer-widgets &
     width: 100%
 
+  .offcanvas &
+    flex: 1
+  .offcanvas.is-center &
+    display: flex
+    justify-content: center
+    text-align: center
+
 .widget + .widget
   header &
     margin-left: 1rem
@@ -41,7 +48,7 @@
 .widget-row
   --headerGridTemplate: auto auto
   width: 100%
-  max-width: var(--siteWidth)
+  max-width: var(--wideSize)
   margin: 0 auto
 
   header &
@@ -63,7 +70,7 @@
     display: flex
     column-gap: var(--blockGap)
     row-gap: var(--blockGap)
-    max-width: var(--siteWidth)
+    max-width: var(--wideSize)
   
     @media ($below-s)
       flex-wrap: wrap
@@ -71,10 +78,8 @@
   .offcanvas &
     display: flex
     flex-direction: column
-    align-items: flex-start
 
     overflow-y: auto
-    height: 100%
     max-height: 100vh
     padding: 0
     list-style-type: none
@@ -118,8 +123,9 @@
     justify-content: center
 
   .offcanvas &
+    flex-direction: column
     width: 100%
-    padding: 1rem
+    padding: 2rem
 
     &:last-child:not(:first-child)
       margin-top: auto
@@ -224,6 +230,9 @@
     transition: var(--gTransition)
     will-change: transform
 
+    @media ($below-xs)
+      height: 30px
+
   &:hover
     img
       opacity: .75
@@ -238,20 +247,6 @@
     justify-content: flex-start
     width: 100%
 
-
-///// WIDGET: Button
-
-.widget.widget_h_button
-  display: inline-block
-  width: auto
-
-  .wp-block-button
-    display: inline-flex
-
-  + .widget_h_button
-    margin-top: 0
-    margin-left: 1rem
-
 ///// WIDGET: BUTTONS
 
 .widget_h_buttons
@@ -261,6 +256,13 @@
       font-size: var(--xsFontSize)
     .wp-block-button__link
       padding: 0.25rem 0.5rem
+
+  .subheader-mobile &,
+  .header-mobile &
+    font-size: var(--sFontSize)
+
+    a
+      padding: 0.5rem
 
   .footer-top &
     .wp-block-button
@@ -341,7 +343,7 @@ input.search-submit
   display: flex
   align-items: center
   padding: 0.5rem
-  border: 1px solid rgba(--text, .2)
+  border: 1px solid
   border-bottom-width: 2px
   color: var(--toggleColor)
 
@@ -349,7 +351,6 @@ input.search-submit
 
   &:hover
     transform: translateY(-2px)
-    border-color: rgba(--text, .5)
     box-shadow: var(--shadow0)
   &:active
     transform: none
@@ -364,7 +365,9 @@ input.search-submit
     margin-right: 0.25rem
     line-height: 1
     text-transform: uppercase
+    font-weight: 700
     font-size: var(--sFontSize)
+    letter-spacing: 0.05em
 
     @media ($below-xs)
       display: none
@@ -377,6 +380,10 @@ input.search-submit
   // alignment
   .widget-column:last-child:not(:first-child) &
     flex-direction: row-reverse
+
+  // when transparent
+  body.h-has-transparent-header &
+    --toggleColor: var(--textInvert)
 
 // WIDGET: GALLERY
 

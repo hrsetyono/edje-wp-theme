@@ -6,6 +6,9 @@
   align-items: flex-start
   max-width: var(--siteWidth)
 
+  > *
+    grid-column: span 12
+
   @media ($below-m)
     column-gap: 2rem
 
@@ -81,3 +84,12 @@
   h2
     margin-bottom: 1rem
     font-size: var(--h4Size)
+
+.woocommerce-order-downloads
+  overflow-x: auto
+
+  .button
+    padding: 0.5rem 0.75rem
+    font-size: var(--sFontSize)
+    color: var(--white)
+    background-color: var(--color1)

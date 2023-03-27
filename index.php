@@ -1,12 +1,18 @@
 <?php
 global $wp_query;
 
-$args = [
-  'title' => null,
-  'posts' => $wp_query->get_posts(),
-  'pagination' => H::get_pagination(),
-];
+$title = 'Blog';
+$posts = $wp_query->get_posts();
+$pagination = H::get_pagination();
 
-get_header();
-get_template_part('views/index', '', $args);
-get_footer();
+///// ?>
+
+<?php get_header(); ?>
+
+<main role="main">
+  <?php get_template_part('parts/blog-header', '', [ 'title' => $title ]); ?>
+  <?php get_template_part('parts/posts', '', $posts); ?>
+  <?php get_template_part('parts/pagination', '', $pagination); ?>
+</main>
+
+<?php get_footer(); ?>

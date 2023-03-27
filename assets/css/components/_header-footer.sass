@@ -51,20 +51,18 @@
   bottom: 0
   right: 0
 
+  display: flex
+  align-items: center
   visibility: hidden
   opacity: 0
-  background: var(--textInvert)
-  width: 420px
-  max-width: 420px
-
-  box-shadow: var(--shadow3) 
+  background: var(--color1Dark)
   transform: translateX(100%)
+  
+  width: 100%
+  max-width: 480px
+  box-shadow: var(--shadow3)
 
-  //
-  @media ($below-xs)
-    width: 320px
-    max-width: 320px
-
+  color: var(--textInvert)
 
 body.has-active-offcanvas
   overflow-y: hidden
@@ -91,25 +89,25 @@ body.has-active-offcanvas
 .offcanvas > a[href="#menu"]
   position: absolute
   z-index: 10
-  top: 0.5rem
-  left: -0.5rem
-  transform: translateX(-100%)
+  top: 1rem
+  right: 1rem
 
   display: flex
   align-items: center
   justify-content: center
-  background-color: var(--textInvert)
 
   width: 2rem
   height: 2rem
-  padding: 0.375rem
+  padding: 0.5rem
   border: 1px solid
-  border-bottom-width: 2px
   border-radius: var(--gRadius)
   font-size: 0
 
+  path
+    fill: var(--textInvert)
+
   &:hover
-    background-color: var(--color1Light)
+    background-color: rgba(--textInvert, .2)
   &:active
     border-top-width: 2px
     border-bottom-width: 1px
@@ -120,7 +118,7 @@ body.has-active-offcanvas
 
 .main-footer
   background-color: var(--panelBg)
-  margin-top: var(--wideGap)
+  margin-top: var(--blockWideGap)
 
 .footer-widgets
   display: flex
@@ -137,7 +135,7 @@ body.has-active-offcanvas
   padding: 2.5rem
   border-radius: var(--gRadius)
   margin: 0 auto
-  max-width: var(--siteWidth)
+  max-width: var(--wideSize)
   color: var(--textInvert)
 
   @media ($below-l)

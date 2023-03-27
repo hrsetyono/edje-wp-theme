@@ -1,5 +1,5 @@
 <?php
-  $pagination = $args['pagination'] ?? null;
+  $pagination = $args ?? null;
   $current_page = get_query_var('paged') ? (string) get_query_var('paged') : '1';
 ?>
 

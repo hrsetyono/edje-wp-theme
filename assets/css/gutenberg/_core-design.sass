@@ -2,6 +2,9 @@
 
 .wp-block-buttons
   --gap: 1rem
+  --bgColor: var(--color1)
+  --textColor: var(--textInvert)
+  
   display: flex
   align-items: center
   flex-wrap: wrap
@@ -22,9 +25,6 @@
 
 // General Button
 .wp-block-button
-  --bgColor: var(--color1)
-  --textColor: var(--textInvert)
-
   &.is-style-outline,
   &.is-style-h-transparent
     --textColor: currentColor
@@ -157,6 +157,10 @@
     flex-basis: 100% !important
     width: 100%
 
+    .is-not-stacked-on-mobile &
+      flex-basis: calc(50% - var(--blockGap) / 2) !important
+      
+
 .wp-block-columns.is-style-h-no-gap
   column-gap: 0
 
@@ -164,7 +168,7 @@
     border-radius: 0
 
 .wp-block-columns.is-style-h-wide-gap
-  column-gap: var(--wideGap)
+  column-gap: var(--blockWideGap)
 
 
 ////// GROUP
@@ -173,8 +177,8 @@
   position: relative
   
   &:not(.has-background)
-    margin-top: var(--wideGap)
-    margin-bottom: var(--wideGap)
+    margin-top: var(--blockWideGap)
+    margin-bottom: var(--blockWideGap)
 
   &:first-child
     margin-top: 0
@@ -182,17 +186,18 @@
   &:last-child
     margin-bottom: 0
 
-  &.has-background
-    padding: var(--wideGap)
-    border-radius: var(--gRadius)
-
   &.has-background.alignfull
+    padding: var(--blockWideGap) var(--gridRim)
     border-radius: 0
+  
+  &.has-background:not(.alignfull)
+    padding: var(--blockGap)
+    border-radius: var(--gRadius)
 
 
 // Large spacing
 .wp-block-group.is-style-h-large-spacing
-  padding: calc(var(--wideGap) * 1.5) 0
+  padding: calc(var(--blockWideGap) * 1.5) 0
 
 ///// SPACER
 
@@ -219,7 +224,7 @@
   clear: both
 
   &.is-style-wide
-    width: var(--siteWidth)
+    width: var(--wideSize)
 
   &.is-style-dots
     border: 0
@@ -229,7 +234,7 @@
     text-align: center
 
     &::before
-      content: "\00b7 \00b7 \00b7"
+      content: "• • •"
       padding-left: 2rem
       font-family: var(--codeFontFamily)
       font-size: var(--lFontSize)

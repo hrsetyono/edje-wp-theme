@@ -1,5 +1,5 @@
 <?php
-  $posts = $args['posts'] ?? [];
+  $posts = $args;
 ?>
 
 <?php if (count($posts) > 0): ?>

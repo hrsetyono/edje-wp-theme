@@ -5,6 +5,7 @@ const myCart = {
   init() {
     this.closeOffcanvasCart();
     this.bottomBar();
+    this.openCartOnAdded();
   },
 
   /**
@@ -39,6 +40,23 @@ const myCart = {
       }
     }
   },
+
+  /**
+   * Open the Cart Offcanvas when product is added to cart via AJAX
+   */
+  openCartOnAdded() {
+    // have to use jQuery for WC compatibility
+    window.jQuery('body').on('added_to_cart', (e) => {
+      const isDesktop = window.innerWidth > 768;
+      const $cart = isDesktop
+        ? document.querySelector('.header .h-cart')
+        : document.querySelector('.header-mobile .h-cart');
+
+      if ($cart) {
+        $cart.classList.add('is-active');
+      }
+    });
+  },
 };
 
 const mySlider = {
@@ -54,6 +72,10 @@ const mySlider = {
       const hasColumns = $slider.getAttribute('class').match(/has-(\d)-columns/);
       const columns = hasColumns[1] ? parseInt(hasColumns[1], 10) : 3;
 
+      const $wrapper = $slider.querySelector('.wc-block-grid__products');
+      $wrapper.classList.add('swiper-wrapper');
+
+      // TODO: .wc-block-grid__products should be the swiper-wrapper, not create new one
       swiper($slider, {
         slideClass: 'wc-block-grid__product',
         loop: true,

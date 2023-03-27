@@ -152,5 +152,5 @@ function my_custom_cross_sell_display() {
     ]),
   ];
 
-  get_template_part('woocommerce/views/_cart-cross-sells', '', $args);
+  get_template_part('woocommerce/parts/cart-cross-sells', '', $args);
 }
